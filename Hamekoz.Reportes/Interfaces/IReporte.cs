@@ -26,12 +26,14 @@ namespace Hamekoz.Reportes
 {
 	public interface IReporte
 	{
-		string Titulo { get; set; }
+        string FileName { get; set; }
+        string Titulo { get; set; }
 		string Asunto { get; set; }
 		string Autor { get; set; }
 		string Creador { get; set; }
 		string Empresa { get; set; }
 		string Usuario { get; set; }
+        bool Apaisado { get; set; }
 
 		bool HasEncabezadoPieDePagina { get; set; }
 		bool HasTituloPrimerPagina { get; set; }

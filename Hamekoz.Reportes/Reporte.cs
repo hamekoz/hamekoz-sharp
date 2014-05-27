@@ -32,43 +32,26 @@ namespace Hamekoz.Reportes
 	{
 		List<IElemento> elementos;
 
-		public void Agregar (IElemento elemento)
-        {
-            elementos.Add (elemento);
-        }
-
 		protected Document document;
 		protected PdfWriter pdfWriter;
-
-        private string filename = string.Format("{0}Reporte-{1}.pdf", Path.GetTempPath(), DateTime.Now.ToFileTime());
 
 		public Reporte ()
 		{
 			document = new Document ();
-			pdfWriter = PdfWriter.GetInstance (document, new FileStream (filename, FileMode.Create));
 			elementos = new List<IElemento> ();
 		}
 
-        /// <summary>
-        /// Crea un reporte indicando el nombre de archivo pdf destino
-        /// </summary>
-        /// <param name="nombreDeArchivo">Nombre del archivo sin extension.</param>
-        public Reporte(string nombreDeArchivo)
-        {
-            nombreDeArchivo = String.Join("", nombreDeArchivo.Split(Path.GetInvalidFileNameChars()));
-            filename = string.Format("{0}{1}-{2}.pdf", Path.GetTempPath(), nombreDeArchivo, DateTime.Now.ToFileTime());
-            document = new Document();
-            pdfWriter = PdfWriter.GetInstance(document, new FileStream(filename, FileMode.Create));
-            elementos = new List<IElemento>();
-        }
-
         public void Iniciar ()
 		{
+            pdfWriter = PdfWriter.GetInstance (document, new FileStream (FileName, FileMode.Create));
 			this.SetInfo ();
 			document.SetPageSize (PageSize.A4);
 			//int margen = 0;
 			//document.SetMargins (margen, margen, margen, margen);
-			//document.SetPageSize (PageSize.A4.Rotate ());
+            if (Apaisado)
+            {
+                document.SetPageSize (PageSize.A4.Rotate ());
+            }
 
 			if (HasEncabezadoPieDePagina) {
 				MostrarEncabezadoYPieDePagina ();
@@ -133,15 +116,33 @@ namespace Hamekoz.Reportes
 		}
 
 		#region IReporte implementation
-		private string titulo = string.Empty;
-		public string Titulo {
-			get {
-				return titulo;
-			}
-			set {
-				titulo = value;
-			}
-		}
+
+        private string filename = string.Empty;
+        public string FileName
+        { 
+            get
+            { 
+                if (filename == string.Empty)
+                {
+                    filename = string.Format("{0}{1}-{2}.pdf", Path.GetTempPath(), titulo, DateTime.Now.ToFileTime());
+                }
+                return filename; 
+            }
+            set { filename = value; }
+        }
+
+        private string titulo = "Reporte";
+		public string Titulo
+        {
+            get
+            {
+                return titulo;
+            }
+            set
+            {
+                titulo = value;
+            }
+        }
 
 		private string asunto = string.Empty;
 		public string Asunto {
@@ -196,19 +197,28 @@ namespace Hamekoz.Reportes
 			}
 		}
 
+        public bool Apaisado { get; set; }
+
 		public bool HasEncabezadoPieDePagina { get; set; }
 
 		public bool HasTituloPrimerPagina { get; set; }
 
 		public bool HasAsuntoPrimerPagina { get; set; }
 
+        public void Agregar (IElemento elemento)
+        {
+            elementos.Add (elemento);
+        }
+
 		public void Abrir ()
 		{
 			this.Iniciar ();
 
 			document.Close ();
-			System.Diagnostics.Process.Start (filename);
+            System.Diagnostics.Process.Start (FileName);
 		}
+
+        #endregion
 
 		public void NuevaPagina ()
 		{
@@ -223,7 +233,5 @@ namespace Hamekoz.Reportes
 			document.Add (linea);
 			document.Add (new Paragraph (espacio));
 		}
-
-		#endregion
 	}
 }
