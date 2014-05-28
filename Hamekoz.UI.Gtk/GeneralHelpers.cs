@@ -57,6 +57,13 @@ namespace Hamekoz.UI.Gtk
             }           
         }
 
+        public static void ChangeWidget (Box box, Widget widget)
+        {
+            box.Remove (widget);
+            box.Add (widget);
+            widget.Show ();
+        }
+
         //FIXME dependent-function
         public static void SetTextTextview (TextView view, string text)
         {

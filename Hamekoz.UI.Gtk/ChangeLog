@@ -1,5 +1,9 @@
 2014-05-28  Emiliano Gabriel Canedo  <emilianocanedo@gmail.com>
 
+	* GeneralHelpers.cs: Se agrega helper para box y widget
+
+2014-05-28  Emiliano Gabriel Canedo  <emilianocanedo@gmail.com>
+
 	* ComboBoxHelpers.cs:
 	* SearchableComboBox.cs:
 	* SearchableComboBoxEntry.cs: 
