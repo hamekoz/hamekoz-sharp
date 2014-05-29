@@ -173,3 +173,6 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+/Hamekoz.UI.Gtk/gtk-gui/ChangeLog
+/Hamekoz.UI.Gtk/gtk-gui/gui.stetic
+/Hamekoz.UI.Gtk/Hamekoz.UI.Gtk.csproj
