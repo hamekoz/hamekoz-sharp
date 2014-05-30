@@ -28,7 +28,7 @@ namespace Hamekoz.UI.Gtk
 {
     public class ComboBoxHelpers
     {
-        public static void SetById (ComboBox combo, int id)
+		public static void SetById (ComboBox combo, int id, int position)
         {
             //HACK with for sentence
             int iterator = 0;
@@ -37,7 +37,7 @@ namespace Hamekoz.UI.Gtk
             while (state) {
                 combo.Active = iterator;
                 combo.GetActiveIter (out iter);
-                if ((int)combo.Model.GetValue(iter, 1) == id) {
+				if ((int)combo.Model.GetValue(iter, position) == id) {
                     combo.SetActiveIter (iter);
                     state = false;
                 }
@@ -45,25 +45,25 @@ namespace Hamekoz.UI.Gtk
             }
         }
 
-        public static int GetCurrentId (ComboBox combo)
+		public static int GetCurrentId (ComboBox combo, int position)
         {
             TreeIter iter;
             combo.GetActiveIter (out iter);
-            return (int)combo.Model.GetValue (iter, 1);
+			return (int)combo.Model.GetValue (iter, position);
         }
 
-        public static string GetCurrentString (ComboBox combo)
+		public static string GetCurrentString (ComboBox combo, int position)
         {
             TreeIter iter;
             combo.GetActiveIter (out iter);
-            return (string)combo.Model.GetValue (iter, 0);
+			return (string)combo.Model.GetValue (iter, position);
         }
 
         public static void SetByFilter<T> (ComboBox combo, string filter, List<T> list)
         {
             foreach (IDescriptible descriptible in list) {
                 if (GeneralHelpers.SearchCompare (filter, descriptible.Descripcion)) {
-                    ComboBoxHelpers.SetById (combo, descriptible.Id);
+					ComboBoxHelpers.SetById (combo, descriptible.Id, 0);
                     break;
                 }
             }
@@ -111,7 +111,7 @@ namespace Hamekoz.UI.Gtk
             }
         }
 
-        public static void GetComboboxId<T> (ComboBoxEntry combo, List<T> list, out int ID)
+		public static void GetComboEntryId<T> (ComboBoxEntry combo, List<T> list, out int ID)
         {
             ID = new int();
             foreach (IDescriptible item in list)
