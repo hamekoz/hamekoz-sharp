@@ -30,7 +30,6 @@ namespace Hamekoz.UI.Gtk
     {
 		public static void SetById (ComboBox combo, int id, int position)
         {
-            //HACK with for sentence
             int iterator = 0;
             TreeIter iter;
             bool state = true;
