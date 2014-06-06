@@ -38,6 +38,7 @@
     <Compile Include="IDescriptible.cs" />
     <Compile Include="IDescriptibleControlador.cs" />
     <Compile Include="IPersistible.cs" />
+    <Compile Include="IPersistibleData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
