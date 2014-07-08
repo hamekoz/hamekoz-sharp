@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{35F2BA75-C58A-46F9-866E-B528671FB0D0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -66,6 +66,11 @@
     <Compile Include="SearchableComboBox.cs" />
     <Compile Include="SearchableComboBoxEntry.cs" />
     <Compile Include="ComboBoxHelpers.cs" />
+    <Compile Include="DatePicker.cs" />
+    <Compile Include="gtk-gui\DatePicker.DatePicker.cs" />
+    <Compile Include="DialogCalendar.cs" />
+    <Compile Include="gtk-gui\DatePicker.DialogCalendar.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogCalendar.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
