@@ -57,7 +57,6 @@ namespace DatePicker
 			this.FocusOutEvent += DialogFocusOutEvent;
 			buttonToday.Clicked += buttonTodayClicked;
 			buttonDefault.Clicked += buttonDefaultClicked;
-			ButtonsVisible = false;
 		}
 
 		public DateTime Date {
@@ -89,7 +88,7 @@ namespace DatePicker
 
 		protected virtual void buttonDefaultClicked (object sender, EventArgs e)
 		{
-			calendar.Date = defaultDate;
+			calendar.Date = DefaultDate;
 		}
 	}
 }

@@ -2,11 +2,11 @@
 //  DatePicker.cs
 //
 //  Author:
-//       Krzysztof Marecki <marecki.krzysztof@gmail.com>
-//		 Emiliano Canedo <emilianocanedo@gmail.com>
+//		Krzysztof Marecki <marecki.krzysztof@gmail.com>
+//		Emiliano Canedo <emilianocanedo@gmail.com>
 //
 //	Copyright (c) 2010 Krzysztof Marecki
-//  Copyright (c) 2014 Emiliano Canedo
+//	Copyright (c) 2014 Emiliano Canedo
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -48,8 +48,8 @@ namespace DatePicker
 				return calendarDialog.DefaultDate;
 			}
 			set {
-				Date = value;
 				calendarDialog.DefaultDate = value;
+				Date = value;
 			}
 		}
 
@@ -58,14 +58,14 @@ namespace DatePicker
 				DateTime date;
 				if (DateTime.TryParse (entry.Text, out date))
 					return date;
-
-				return DateTime.Now;
+				else
+					return DateTime.Now;
 			}
 			set {
-				if (Date != value) {
+				//if (Date != value) {
 					string format = GetDateFormat ();
 					entry.Text = value.ToString (format);
-				}
+				//}
 			}
 		}
 
@@ -74,6 +74,7 @@ namespace DatePicker
 			this.Build ();
 
 			calendarDialog.Visible = false;
+
 			this.WindowStateEvent += HandleWindowStateEvent;
 			calendarDialog.Hidden += HandleCalendarDialogHidden;
 

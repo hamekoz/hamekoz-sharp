@@ -2,11 +2,11 @@
 //  IFocusableWidget.cs
 //
 //  Author:
-//       Krzysztof Marecki <marecki.krzysztof@gmail.com>
-//		 Emiliano Canedo <emilianocanedo@gmail.com>
+//		Krzysztof Marecki <marecki.krzysztof@gmail.com>
+//		Emiliano Canedo <emilianocanedo@gmail.com>
 //
 //	Copyright (c) 2010 Krzysztof Marecki
-//  Copyright (c) 2014 Emiliano Canedo
+//	Copyright (c) 2014 Emiliano Canedo
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
