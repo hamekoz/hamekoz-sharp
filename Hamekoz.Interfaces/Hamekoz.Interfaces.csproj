@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A1CEA90B-1A76-47CB-83BE-A1B666B489AF}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -39,6 +39,8 @@
     <Compile Include="IDescriptibleControlador.cs" />
     <Compile Include="IPersistible.cs" />
     <Compile Include="IPersistibleData.cs" />
+    <Compile Include="IFocusableWidget.cs" />
+    <Compile Include="IAutorizable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
