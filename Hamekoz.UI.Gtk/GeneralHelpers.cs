@@ -151,7 +151,8 @@ namespace Hamekoz.UI.Gtk
         /// <param name="current">Current.</param>
         public static bool SearchCompare (string filter, string current)
         {
-            int matches = 0;
+			return SearchCompareRecursive (filter, current, 0);
+			/* int matches = 0;
             for (int i = 0; i < filter.Length; i++) {
                 if (current[i] == filter[i]) {
                     matches++;
@@ -164,8 +165,36 @@ namespace Hamekoz.UI.Gtk
                 return true;
             } else {
                 return false;
-            }
+            } */
         }
+
+		public static bool SearchCompareRecursive (string filter, string current, int currentPosition)
+		{
+			if (currentPosition < current.Length && filter.Length <= (current.Length - currentPosition)) {
+
+				current = current.ToLower ();
+				filter = filter.ToLower ();
+
+				int matches = 0;
+				for (int i = 0; i < filter.Length; i++) {
+					if (current[currentPosition] == filter[i]) {
+						matches++;
+						currentPosition++;
+					} else {
+						break;
+					}
+				}
+
+				if (matches == filter.Length) {
+					return true;
+				} else {
+					return SearchCompareRecursive (filter, current, currentPosition+1);
+				}
+
+			} else {
+				return false;
+			}
+		}
     }
 }
 
