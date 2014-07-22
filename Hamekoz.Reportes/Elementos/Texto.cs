@@ -31,6 +31,7 @@ namespace Hamekoz.Reportes
 		public Texto (string texto)
 		{
 			parrafo = new Paragraph (texto);
+            parrafo.SpacingAfter = (float)3.0;
 		}
 
 		public Texto (int indentacion, params string[] texto)
