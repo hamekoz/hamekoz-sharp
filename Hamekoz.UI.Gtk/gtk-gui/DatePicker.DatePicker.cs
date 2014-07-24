@@ -15,13 +15,18 @@ namespace DatePicker
 			global::Stetic.Gui.Initialize (this);
 			// Widget DatePicker.DatePicker
 			global::Stetic.BinContainer.Attach (this);
+			this.WidthRequest = 200;
+			this.HeightRequest = 27;
 			this.Name = "DatePicker.DatePicker";
 			// Container child DatePicker.DatePicker.Gtk.Container+ContainerChild
 			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1.WidthRequest = 200;
+			this.hbox1.HeightRequest = 27;
 			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.entry = new global::Gtk.Entry ();
+			this.entry.WidthRequest = 200;
 			this.entry.CanFocus = true;
 			this.entry.Name = "entry";
 			this.entry.IsEditable = true;
@@ -31,6 +36,8 @@ namespace DatePicker
 			w1.Position = 0;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.button = new global::Gtk.Button ();
+			this.button.WidthRequest = 27;
+			this.button.HeightRequest = 27;
 			this.button.CanFocus = true;
 			this.button.Name = "button";
 			this.button.UseUnderline = true;

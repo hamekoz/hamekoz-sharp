@@ -16,16 +16,21 @@
       <placeholder />
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="DatePicker.DatePicker" design-size="198 28">
+  <widget class="Gtk.Bin" id="DatePicker.DatePicker" design-size="200 27">
     <property name="MemberName" />
+    <property name="WidthRequest">200</property>
+    <property name="HeightRequest">27</property>
     <property name="Visible">False</property>
     <child>
       <widget class="Gtk.HBox" id="hbox1">
         <property name="MemberName" />
+        <property name="WidthRequest">200</property>
+        <property name="HeightRequest">27</property>
         <property name="Spacing">6</property>
         <child>
           <widget class="Gtk.Entry" id="entry">
             <property name="MemberName" />
+            <property name="WidthRequest">200</property>
             <property name="CanFocus">True</property>
             <property name="IsEditable">True</property>
             <property name="InvisibleChar">●</property>
@@ -38,6 +43,8 @@
         <child>
           <widget class="Gtk.Button" id="button">
             <property name="MemberName" />
+            <property name="WidthRequest">27</property>
+            <property name="HeightRequest">27</property>
             <property name="CanFocus">True</property>
             <property name="Type">TextAndIcon</property>
             <property name="Icon">stock:stock_calendar Menu</property>

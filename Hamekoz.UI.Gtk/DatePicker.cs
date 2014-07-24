@@ -106,9 +106,6 @@ namespace DatePicker
 
 		void HandleButtonClicked (object sender, EventArgs e)
 		{
-//			if (calendarDialog == null) {
-//
-//			}
 			calendarDialog.Date = Date;
 
 			int x, y;
