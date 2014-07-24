@@ -53,12 +53,15 @@ namespace Hamekoz.Reportes
 
 		public PdfPCell GetNewHeader (Columna columna)
 		{
-			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), 7, Font.BOLD | Font.UNDERLINE);
+			//Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), 7, Font.BOLD | Font.UNDERLINE);
+			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), 7, Font.BOLD);
 			Phrase phrase = new Phrase (columna.Nombre, font);
 			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
-            pdfPCell.Bottom = 5;
-            pdfPCell.PaddingBottom = 5;
-            pdfPCell.Phrase = phrase;
+			//pdfPCell.Bottom = 5;
+			pdfPCell.PaddingBottom = 3;
+			pdfPCell.BorderWidthBottom = 0.5f;
+			pdfPCell.BorderColorBottom = BaseColor.BLACK;
+			pdfPCell.Phrase = phrase;
 			pdfPCell.HorizontalAlignment = (int)columna.Alineacion;
 			return pdfPCell;
 		}
@@ -67,18 +70,27 @@ namespace Hamekoz.Reportes
         {
             Font font = FontFactory.GetFont(Font.FontFamily.HELVETICA.ToString(), 7, Font.BOLD);
             PdfPCell pdfPCell = new PdfPCell(tabla.DefaultCell);
-            pdfPCell.Top = 10;
-            pdfPCell.PaddingTop = 10;
+			pdfPCell.PaddingTop = 2;
+			pdfPCell.BorderWidthTop = 0.5f;
+			pdfPCell.BorderColorTop = BaseColor.BLACK;
+			pdfPCell.PaddingBottom = 3;
             pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-            if (total is String)
-            {
-                pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
-            }
-            if (total is double || total is decimal || total is float)
-            {
-                total = string.Format("{0:#0.00}", total);
-            }
-
+			if (total is string)
+			{
+				pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
+			}
+			if (total is double)
+			{
+				total = string.Format("{0:#0.00}", total);
+			}
+			if (total is decimal)
+			{
+				total = string.Format("{0:$ #0.00}", total);
+			}
+			if (total is float)
+			{
+				total = string.Format("{0:#0.0000}", total);
+			}
 
             Phrase phrase = new Phrase(total.ToString(), font);
             pdfPCell.Phrase = phrase;
@@ -91,7 +103,7 @@ namespace Hamekoz.Reportes
 			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
 
             pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-            if (dato is String)
+			if (dato is string)
             {
                 pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
             }
@@ -138,7 +150,7 @@ namespace Hamekoz.Reportes
 			foreach (Object dato in datos) {
 				tabla.AddCell (GetNewData (dato));
 			}
-            foreach (Object total in totales)
+			foreach (Object total in totales)
             {
                 tabla.AddCell(GetNewTotal(total));
             }
