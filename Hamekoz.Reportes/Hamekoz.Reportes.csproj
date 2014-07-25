@@ -53,6 +53,8 @@
     <Compile Include="Elementos\Columna.cs" />
     <Compile Include="Enumerados\Alineaciones.cs" />
     <Compile Include="Enumerados\FuenteEstilos.cs" />
+    <Compile Include="Elementos\Grupo.cs" />
+    <Compile Include="Elementos\Parrafo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

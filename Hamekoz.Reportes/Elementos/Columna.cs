@@ -28,6 +28,7 @@ namespace Hamekoz.Reportes
 		{
 		}
 
+		[Obsolete("Usar asignacion de propiedades Nombre, Ancho, Alineacion")]
 		public Columna (string nombre, int ancho, Alineaciones alineacion)
 		{
 			Nombre = nombre;
