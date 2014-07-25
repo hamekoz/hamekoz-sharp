@@ -30,9 +30,9 @@ namespace Hamekoz.Reportes
 		{
 		}
 
-		IList<IElemento> contenido = new List<IElemento>(); 
+		IList<IElemento> contenido = new List<IElemento>();
 		IList<Grupo> subgrupos = new List<Grupo>();
-		public Texto Texto { get; set; }
+        public Parrafo Texto { get; set; }
 		public bool Numerado { get; set; }
 		public bool SaltarPagina { get; set; }
 		public int Indentacion { get; set; }
@@ -54,7 +54,7 @@ namespace Hamekoz.Reportes
 		public IElement GetElemento ()
 		{
 			Section grupo;
-			Paragraph texto = (Paragraph)Texto.GetElemento ();
+            Paragraph texto = (Paragraph)Texto.GetElemento ();
 			if (Parent == null) {
 				grupo = new ChapterAutoNumber (texto);
 			} else {
