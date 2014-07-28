@@ -30,12 +30,13 @@ namespace Hamekoz.Reportes
 		{
 		}
 
-		IList<IElemento> contenido = new List<IElemento>(); 
+		IList<IElemento> contenido = new List<IElemento>();
 		IList<Grupo> subgrupos = new List<Grupo>();
-		public Texto Texto { get; set; }
+        public Parrafo Texto { get; set; }
 		public bool Numerado { get; set; }
 		public bool SaltarPagina { get; set; }
 		public int Indentacion { get; set; }
+		public string Titulo { get; set;}
 		Section Parent { get; set;}
 
 		public void AgregarSubgrupo (Grupo subgrupo)
@@ -53,7 +54,7 @@ namespace Hamekoz.Reportes
 		public IElement GetElemento ()
 		{
 			Section grupo;
-			Paragraph texto = (Paragraph)Texto.GetElemento ();
+            Paragraph texto = (Paragraph)Texto.GetElemento ();
 			if (Parent == null) {
 				grupo = new ChapterAutoNumber (texto);
 			} else {
@@ -72,6 +73,11 @@ namespace Hamekoz.Reportes
 			if (!Numerado) {
 				grupo.NumberDepth = 0;
 			}
+
+			if (Titulo != string.Empty) {
+				grupo.BookmarkTitle = Titulo;
+			}
+
 			grupo.BookmarkOpen = true;
 			grupo.TriggerNewPage = SaltarPagina;
 			return grupo;
