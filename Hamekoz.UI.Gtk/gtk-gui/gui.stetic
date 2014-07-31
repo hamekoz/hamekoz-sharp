@@ -68,6 +68,7 @@
     <property name="Modal">True</property>
     <property name="Resizable">False</property>
     <property name="Decorated">False</property>
+    <property name="DestroyWithParent">True</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
     <child internal-child="VBox">

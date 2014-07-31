@@ -20,6 +20,7 @@ namespace DatePicker
 			this.Modal = true;
 			this.Resizable = false;
 			this.Decorated = false;
+			this.DestroyWithParent = true;
 			// Internal child DatePicker.DialogCalendar.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";
