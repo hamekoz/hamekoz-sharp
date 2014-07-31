@@ -30,6 +30,13 @@ namespace Hamekoz.Reportes
 		public string Texto {get; set;}
 		public int Indentacion {get; set;}
 		public Alineaciones Alineacion {get; set;}
+
+		private int size = 10;
+		public int Size {
+			get {return Size; }
+			set { size = value; }
+		}
+
 		private IList<string> fragmentos = new List<string>();
 
 		public void Agregar(string texto)
@@ -40,10 +47,11 @@ namespace Hamekoz.Reportes
 		#region IElemento implementation
 		public IElement GetElemento ()
 		{
+			Font fuente = FontFactory.GetFont (FontFactory.HELVETICA, size);
 			if (Texto != null) {
-				parrafo = new Paragraph (Texto);
+				parrafo = new Paragraph (Texto, fuente);
 			} else {
-				parrafo = new Paragraph ();
+				parrafo = new Paragraph ("", fuente);
 			}
 			foreach (string fragmento in fragmentos) {
 				parrafo.Add (new Chunk(fragmento));

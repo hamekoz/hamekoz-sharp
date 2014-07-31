@@ -1,0 +1,11 @@
+2014-07-31  Claudio Rodrigo Pereyra Diaz  <claudiorodrigo@pereyradiaz.com.ar>
+
+	* Parrafo.cs: Agregada propieadad para modificar el tamaño del
+	  texto
+
+	* Tabla.cs: Agregada propiedad para ocultar las leyendas de
+	  columnas
+	Ahora se permite establecer el valor de la lista de columnas
+	Se agrego un margen antes y despues de la tabla para que no
+	  solape con parraros u otros elementos
+

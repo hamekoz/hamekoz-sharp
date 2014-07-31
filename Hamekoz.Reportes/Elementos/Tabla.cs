@@ -32,9 +32,12 @@ namespace Hamekoz.Reportes
 		{
 		}
 
+		public bool OcultarTitulosDeColumnas { get; set; }
+
 		List<Columna> columnas = new List<Columna>();
-		public IList<Columna> Columnas {
+		public List<Columna> Columnas {
 			get { return columnas; }
+			set { columnas = value; }
 		}
 
 		List<Object> datos = new List<Object>();
@@ -139,13 +142,16 @@ namespace Hamekoz.Reportes
 		public IElement GetElemento ()
 		{
 			tabla = new PdfPTable (columnas.Count);
+			tabla.SpacingBefore = 3f;
+			tabla.SpacingAfter = 3f;
 			tabla.DefaultCell.Border = PdfPCell.NO_BORDER;
 			tabla.DefaultCell.BackgroundColor = BaseColor.WHITE;
 			tabla.WidthPercentage = 100;
-			tabla.HeaderRows = 1;
-
-			foreach (Columna columna in Columnas) {
-				tabla.AddCell (GetNewHeader (columna));
+			if (!OcultarTitulosDeColumnas) {
+				tabla.HeaderRows = 1;
+				foreach (Columna columna in Columnas) {
+					tabla.AddCell (GetNewHeader (columna));
+				}
 			}
 			foreach (Object dato in datos) {
 				tabla.AddCell (GetNewData (dato));
