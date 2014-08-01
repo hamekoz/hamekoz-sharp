@@ -19,15 +19,17 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
 
 namespace Hamekoz.Interfaces
 {
 	public interface IPersistibleData<T>
 	{
-		void Cargar (T o);
-		void Guardar (T o);
-		void Eliminar (T o);
-		void CargarTodos ();
+		void Load (T o);
+		void Insert (T o);
+		void Update (T o);
+		void Delete (T o);
+		IList<T> GetAll ();
 	}
 }
 

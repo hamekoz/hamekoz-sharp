@@ -27,10 +27,10 @@ namespace Hamekoz.UI.Gtk
 {
     public class SearchableComboBoxEntry<T>
     {
-        private List<T> cacheList;
+        private IList<T> cacheList;
         private bool enterState = false;
 
-        public SearchableComboBoxEntry (ref ComboBoxEntry combo, List<T> list)
+        public SearchableComboBoxEntry (ref ComboBoxEntry combo, IList<T> list)
         {
             ComboBoxHelpers.LoadByList (combo, list);
             combo.Entry.Activated += new EventHandler (OnComboBoxActivated); 
