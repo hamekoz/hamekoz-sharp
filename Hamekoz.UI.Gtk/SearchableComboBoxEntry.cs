@@ -34,7 +34,7 @@ namespace Hamekoz.UI.Gtk
         {
             ComboBoxHelpers.LoadByList (combo, list);
             combo.Entry.Activated += new EventHandler (OnComboBoxActivated); 
-            combo.KeyPressEvent += new KeyPressEventHandler (OnComboBoxTabPress);
+			//combo.KeyPressEvent += new KeyPressEventHandler (OnComboBoxTabPress);
             combo.GrabNotify += new GrabNotifyHandler (OnComboBoxGrabbed);
             combo.Changed += new EventHandler (OnComboBoxChanged);
             cacheList = list;
@@ -53,6 +53,7 @@ namespace Hamekoz.UI.Gtk
             }
         }
 
+		/*
         /// <summary>
         /// Autocompleta en funcion al filtro
         /// </summary>
@@ -67,6 +68,7 @@ namespace Hamekoz.UI.Gtk
                 ComboBoxHelpers.SetByFilter (combo, filter, cacheList);
             }
         }
+		*/
 
         /// <summary>
         /// Suscriptora a evento de cambio general
