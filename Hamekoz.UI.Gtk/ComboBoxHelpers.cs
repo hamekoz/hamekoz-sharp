@@ -28,6 +28,22 @@ namespace Hamekoz.UI.Gtk
 {
     public class ComboBoxHelpers
     {
+		public static void SetByString (ComboBox combo, string text, int position)
+		{
+			int iterator = 0;
+			TreeIter iter;
+			bool state = true;
+			while (state) {
+				combo.Active = iterator;
+				combo.GetActiveIter (out iter);
+				if ((string)combo.Model.GetValue(iter, position) == text) {
+					combo.SetActiveIter (iter);
+					state = false;
+				}
+				iterator++;
+			}
+		}
+
 		public static void SetById (ComboBox combo, int id, int position)
         {
             int iterator = 0;

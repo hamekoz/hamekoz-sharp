@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Interfaces", "Hamek
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Hasar", "Hamekoz.Hasar\Hamekoz.Hasar.csproj", "{8F803E76-E8C1-45D7-88D1-E97B56297E75}"
 EndProject
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Hamekoz", "Hamekoz\Hamekoz.mdproj", "{277291F1-3469-4E87-9D97-76D3C4512FAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		MSWindows|Any CPU = MSWindows|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{277291F1-3469-4E87-9D97-76D3C4512FAB}.Debug Test|Any CPU.ActiveCfg = Debug Test|Any CPU
+		{277291F1-3469-4E87-9D97-76D3C4512FAB}.Debug_woDrawing|Any CPU.ActiveCfg = Debug_woDrawing|Any CPU
+		{277291F1-3469-4E87-9D97-76D3C4512FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{277291F1-3469-4E87-9D97-76D3C4512FAB}.MSWindows|Any CPU.ActiveCfg = MSWindows|Any CPU
+		{277291F1-3469-4E87-9D97-76D3C4512FAB}.Release_woDrawing|Any CPU.ActiveCfg = Release_woDrawing|Any CPU
+		{277291F1-3469-4E87-9D97-76D3C4512FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29DC07C7-4B1A-4AC2-99A5-7AE8C795A62A}.Debug Test|Any CPU.ActiveCfg = Debug|Any CPU
 		{29DC07C7-4B1A-4AC2-99A5-7AE8C795A62A}.Debug Test|Any CPU.Build.0 = Debug|Any CPU
 		{29DC07C7-4B1A-4AC2-99A5-7AE8C795A62A}.Debug_woDrawing|Any CPU.ActiveCfg = Debug|Any CPU

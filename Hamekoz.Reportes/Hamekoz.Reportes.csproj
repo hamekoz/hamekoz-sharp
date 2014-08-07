@@ -36,7 +36,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="itextsharp">
-      <HintPath>..\libs\itextsharp.dll</HintPath>
+      <HintPath>..\packages\iTextSharp.5.5.2\lib\itextsharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -68,5 +68,6 @@
   </ProjectExtensions>
   <ItemGroup>
     <None Include="README.md" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ItemType>PackagingProject</ItemType>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{277291F1-3469-4E87-9D97-76D3C4512FAB}</ProjectGuid>
+    <Packages>
+      <Packages>
+        <Package name="Tarball">
+          <Builder TargetDirectory=".." DefaultConfiguration="Debug" ctype="TarballDeployTarget">
+            <ChildEntries>
+              <SolutionItemReference path="..\Hamekoz.Data\Hamekoz.Data.csproj" />
+              <SolutionItemReference path="..\Hamekoz.Reportes\Hamekoz.Reportes.csproj" />
+              <SolutionItemReference path="..\Hamekoz.UI.Gtk\Hamekoz.UI.Gtk.csproj" />
+              <SolutionItemReference path="..\Hamekoz.Interfaces\Hamekoz.Interfaces.csproj" />
+              <SolutionItemReference path="..\Hamekoz.Hasar\Hamekoz.Hasar.csproj" />
+            </ChildEntries>
+            <RootEntry path="..\Hamekoz.sln" id=":root:" />
+          </Builder>
+        </Package>
+      </Packages>
+    </Packages>
+  </PropertyGroup>
+</Project>

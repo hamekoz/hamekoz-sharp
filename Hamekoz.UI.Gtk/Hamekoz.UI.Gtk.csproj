@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{35F2BA75-C58A-46F9-866E-B528671FB0D0}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz.UI.Gtk</RootNamespace>
     <AssemblyName>Hamekoz.UI.Gtk</AssemblyName>
   </PropertyGroup>
