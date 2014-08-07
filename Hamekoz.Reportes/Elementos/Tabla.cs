@@ -88,7 +88,7 @@ namespace Hamekoz.Reportes
 			}
 			if (total is decimal)
 			{
-				total = string.Format("{0:$ #0.00}", total);
+				total = string.Format("{0:C}", total);
 			}
 			if (total is float)
 			{
