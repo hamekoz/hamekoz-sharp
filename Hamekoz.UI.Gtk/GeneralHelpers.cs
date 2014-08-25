@@ -34,23 +34,20 @@ namespace Hamekoz.UI.Gtk
                 if (control is Container) {
                     GeneralHelpers.HabilitarControles((Container)control, estado);
                 }
-                if (control is Entry) {
-                    ((Entry)control).Sensitive = estado;
+				if (control is Entry) {
+					((Entry)control).Sensitive = estado;
                 }
-                if (control is ComboBox) {
-                    ((ComboBox)control).Sensitive = estado;
+				if (control is TreeView) {
+					((TreeView)control).Sensitive = estado;
+				}
+				if (control is ComboBox) {
+					((ComboBox)control).Sensitive = estado; 
                 }
-                if (control is ComboBoxEntry) {
-                    ((ComboBoxEntry)control).Sensitive = estado;
-                }
-                /*if (control is GtkForms.FormsDatePicker) {
-                    ((GtkForms.FormsDatePicker)control).Sensitive = estado;
-                }*/
                 if (control is TextView) {
                     ((TextView)control).Sensitive = estado;
                 }
                 if (control is Button) {
-                    if (((Button)control).Parent.Name != "HBoxPrincipal") {
+					if (((Button)control).Parent.Name != "HBoxPrincipal") {
                         ((Button)control).Sensitive = estado;
                     }
                 }
