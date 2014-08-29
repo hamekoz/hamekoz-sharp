@@ -85,13 +85,13 @@ namespace Hamekoz.UI.Gtk
         }
 
         //FIXME dependent-function
-        public static bool VentanaConfirmacion (Window ventana)
+		public static bool VentanaConfirmacion (Window ventana, string mensaje)
         {
             MessageDialog md = new MessageDialog (ventana, 
                 DialogFlags.DestroyWithParent,
                 MessageType.Question,
                 ButtonsType.YesNo,
-                "¿Estás Seguro?");
+				mensaje);
 
             ResponseType result = (ResponseType)md.Run ();
 
