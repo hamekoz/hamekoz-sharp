@@ -90,7 +90,7 @@ namespace Hamekoz.UI.Gtk
             MessageDialog md = new MessageDialog (ventana, 
                 DialogFlags.DestroyWithParent,
                 MessageType.Question,
-                ButtonsType.YesNo,
+				ButtonsType.YesNo,
 				mensaje);
 
             ResponseType result = (ResponseType)md.Run ();

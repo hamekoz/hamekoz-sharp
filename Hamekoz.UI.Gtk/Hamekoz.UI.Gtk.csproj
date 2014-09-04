@@ -71,6 +71,8 @@
     <Compile Include="DialogCalendar.cs" />
     <Compile Include="gtk-gui\DatePicker.DialogCalendar.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogCalendar.cs" />
+    <Compile Include="DialogSave.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogSave.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
