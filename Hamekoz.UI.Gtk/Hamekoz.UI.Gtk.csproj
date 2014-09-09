@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{35F2BA75-C58A-46F9-866E-B528671FB0D0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz.UI.Gtk</RootNamespace>
@@ -70,7 +68,6 @@
     <Compile Include="gtk-gui\DatePicker.DatePicker.cs" />
     <Compile Include="DialogCalendar.cs" />
     <Compile Include="gtk-gui\DatePicker.DialogCalendar.cs" />
-    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogCalendar.cs" />
     <Compile Include="DialogSave.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogSave.cs" />
   </ItemGroup>
