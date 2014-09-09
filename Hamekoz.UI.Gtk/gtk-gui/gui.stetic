@@ -63,7 +63,7 @@
   </widget>
   <widget class="Gtk.Dialog" id="DatePicker.DialogCalendar" design-size="243 211">
     <property name="MemberName" />
-    <property name="TypeHint">Dialog</property>
+    <property name="TypeHint">Splashscreen</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
     <property name="Resizable">False</property>
