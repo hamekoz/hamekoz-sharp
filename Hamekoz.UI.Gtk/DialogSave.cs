@@ -28,6 +28,7 @@ namespace Hamekoz.UI.Gtk
 		public DialogSave ()
 		{
 			this.Build ();
+			this.Deletable = false;
 		}
 
 		protected void OnButtonCancelClicked (object sender, EventArgs e)
