@@ -32,6 +32,17 @@ namespace Hamekoz.Reportes
 		{
 		}
 
+		float fuenteTamaño = 7f;
+
+		public float FuenteTamaño {
+			get {
+				return fuenteTamaño;
+			}
+			set {
+				fuenteTamaño = value;
+			}
+		}
+
 		public bool OcultarTitulosDeColumnas { get; set; }
 
 		List<Columna> columnas = new List<Columna>();
@@ -57,13 +68,14 @@ namespace Hamekoz.Reportes
 		public PdfPCell GetNewHeader (Columna columna)
 		{
 			//Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), 7, Font.BOLD | Font.UNDERLINE);
-			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), 7, Font.BOLD);
+			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño, Font.BOLD);
 			Phrase phrase = new Phrase (columna.Nombre, font);
 			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
-			//pdfPCell.Bottom = 5;
 			pdfPCell.PaddingBottom = 3;
-			pdfPCell.BorderWidthBottom = 0.5f;
-			pdfPCell.BorderColorBottom = BaseColor.BLACK;
+			if (!string.IsNullOrEmpty(columna.Nombre)) {
+				pdfPCell.BorderWidthBottom = 0.5f;
+				pdfPCell.BorderColorBottom = BaseColor.BLACK;
+			}
 			pdfPCell.Phrase = phrase;
 			pdfPCell.HorizontalAlignment = (int)columna.Alineacion;
 			return pdfPCell;
@@ -71,7 +83,7 @@ namespace Hamekoz.Reportes
 
         public PdfPCell GetNewTotal(Object total)
         {
-            Font font = FontFactory.GetFont(Font.FontFamily.HELVETICA.ToString(), 7, Font.BOLD);
+			Font font = FontFactory.GetFont(Font.FontFamily.HELVETICA.ToString(), fuenteTamaño, Font.BOLD);
             PdfPCell pdfPCell = new PdfPCell(tabla.DefaultCell);
 			pdfPCell.PaddingTop = 2;
 			pdfPCell.BorderWidthTop = 0.5f;
@@ -81,6 +93,9 @@ namespace Hamekoz.Reportes
 			if (total is string)
 			{
 				pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
+				if (string.IsNullOrEmpty(total.ToString())) {
+					pdfPCell.BorderColorTop = BaseColor.WHITE;
+				}
 			}
 			if (total is double)
 			{
@@ -102,7 +117,7 @@ namespace Hamekoz.Reportes
 
 		public PdfPCell GetNewData (Object dato)
 		{
-			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), 7);
+			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño);
 			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
 
             pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
@@ -112,15 +127,15 @@ namespace Hamekoz.Reportes
             }
             if (dato is double)
             {
-                dato = string.Format("{0:#0.00}", dato);
+				dato = string.Format("{0:#0.00}", dato);
             }
             if (dato is decimal)
             {
-                dato = string.Format("{0:$ #0.00}", dato);
+				dato = string.Format("{0:C}", dato);
             }
             if (dato is float)
             {
-                dato = string.Format("{0:#0.0000}", dato);
+				dato = string.Format("{0:#0.0000}", dato);
             }
 			Phrase phrase = new Phrase (dato.ToString(), font);
 			pdfPCell.Phrase = phrase;

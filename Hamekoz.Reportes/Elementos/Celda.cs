@@ -28,14 +28,6 @@ namespace Hamekoz.Reportes
 		{
 		}
 
-		[Obsolete("Usar asignacion de propiedades Dato, Alineacion, Estilo")]
-        public Celda(CeldaEstilos estilo,  Object dato, Alineaciones alineacion)
-		{
-            Estilo = estilo;
-			Dato = dato;
-			Alineacion = alineacion;
-		}
-
 		public Object Dato {get; set;}
 		public Alineaciones Alineacion {get; set;}
         public CeldaEstilos Estilo { get; set; }

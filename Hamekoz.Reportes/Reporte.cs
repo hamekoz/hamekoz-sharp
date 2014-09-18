@@ -38,7 +38,55 @@ namespace Hamekoz.Reportes
 		public Reporte ()
 		{
 			document = new Document ();
+			margenDerecho = document.RightMargin;
+			margenIzquierdo = document.LeftMargin;
+			margenInferior = document.BottomMargin;
+			margenSuperior = document.TopMargin;
 			elementos = new List<IElemento> ();
+		}
+
+		float margenSuperior;
+
+		public float MargenSuperior {
+			get {
+				return margenSuperior;
+			}
+			set {
+				margenSuperior = value;
+			}
+		}
+
+		float margenInferior;
+
+		public float MargenInferior {
+			get {
+				return margenInferior;
+			}
+			set {
+				margenInferior = value;
+			}
+		}
+
+		float margenDerecho;
+
+		public float MargenDerecho {
+			get {
+				return margenDerecho;
+			}
+			set {
+				margenDerecho = value;
+			}
+		}
+
+		float margenIzquierdo;
+
+		public float MargenIzquierdo {
+			get {
+				return margenIzquierdo;
+			}
+			set {
+				margenIzquierdo = value;
+			}
 		}
 
         public void Iniciar ()
@@ -46,8 +94,7 @@ namespace Hamekoz.Reportes
             pdfWriter = PdfWriter.GetInstance (document, new FileStream (FileName, FileMode.Create));
 			this.SetInfo ();
 			document.SetPageSize (PageSize.A4);
-			//int margen = 0;
-			//document.SetMargins (margen, margen, margen, margen);
+			document.SetMargins (margenIzquierdo, margenDerecho, margenSuperior, margenInferior);
             if (Apaisado)
             {
                 document.SetPageSize (PageSize.A4.Rotate ());
