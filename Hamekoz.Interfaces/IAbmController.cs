@@ -1,5 +1,5 @@
-//
-//  IPersistibleData.cs
+﻿//
+//  IAbmController.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -23,13 +23,15 @@ using System.Collections.Generic;
 
 namespace Hamekoz.Interfaces
 {
-	public interface IPersistibleData<T>
+	public interface IAbmController<T>
 	{
-		void Load (T instance);
-		void Insert (T instance);
-		void Update (T instance);
-		void Delete (T instance);
-		IList<T> GetAll ();
+		bool Reload { get; set;}
+		IList<T> List { get;}
+		T Get(int id);
+		T Get(T instance);
+		T New();
+		void Save(T instance);
+		void Remove(T instance);
 	}
 }
 

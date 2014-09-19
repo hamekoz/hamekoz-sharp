@@ -63,7 +63,7 @@ namespace Hamekoz.Reportes
             totales.Add(total);
         }
 
-		public int Borde { get; set; }
+		public bool MostrarBordes { get; set; }
 
 		public PdfPCell GetNewHeader (Columna columna)
 		{
@@ -72,10 +72,12 @@ namespace Hamekoz.Reportes
 			Phrase phrase = new Phrase (columna.Nombre, font);
 			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
 			pdfPCell.PaddingBottom = 3;
-			if (!string.IsNullOrEmpty(columna.Nombre)) {
+			if (MostrarBordes) {
+				pdfPCell.BackgroundColor = BaseColor.LIGHT_GRAY;
+			} else {
 				pdfPCell.BorderWidthBottom = 0.5f;
-				pdfPCell.BorderColorBottom = BaseColor.BLACK;
 			}
+
 			pdfPCell.Phrase = phrase;
 			pdfPCell.HorizontalAlignment = (int)columna.Alineacion;
 			return pdfPCell;
@@ -86,16 +88,17 @@ namespace Hamekoz.Reportes
 			Font font = FontFactory.GetFont(Font.FontFamily.HELVETICA.ToString(), fuenteTamaño, Font.BOLD);
             PdfPCell pdfPCell = new PdfPCell(tabla.DefaultCell);
 			pdfPCell.PaddingTop = 2;
-			pdfPCell.BorderWidthTop = 0.5f;
-			pdfPCell.BorderColorTop = BaseColor.BLACK;
+			if (MostrarBordes) {
+				pdfPCell.BackgroundColor = BaseColor.LIGHT_GRAY;
+			} else {
+				pdfPCell.BorderWidthTop = 0.5f;
+			}
 			pdfPCell.PaddingBottom = 3;
             pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 			if (total is string)
 			{
-				pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
-				if (string.IsNullOrEmpty(total.ToString())) {
-					pdfPCell.BorderColorTop = BaseColor.WHITE;
-				}
+				if (!total.ToString().Contains("%"))
+					pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
 			}
 			if (total is double)
 			{
@@ -123,7 +126,8 @@ namespace Hamekoz.Reportes
             pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 			if (dato is string)
             {
-                pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
+				if (!dato.ToString().Contains("%"))
+	                pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
             }
             if (dato is double)
             {
@@ -159,7 +163,9 @@ namespace Hamekoz.Reportes
 			tabla = new PdfPTable (columnas.Count);
 			tabla.SpacingBefore = 3f;
 			tabla.SpacingAfter = 3f;
-			tabla.DefaultCell.Border = PdfPCell.NO_BORDER;
+			if (!MostrarBordes) {
+				tabla.DefaultCell.Border = PdfPCell.NO_BORDER;
+			}
 			tabla.DefaultCell.BackgroundColor = BaseColor.WHITE;
 			tabla.WidthPercentage = 100;
 			if (!OcultarTitulosDeColumnas) {

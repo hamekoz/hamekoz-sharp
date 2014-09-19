@@ -9,6 +9,8 @@
     <RootNamespace>Hamekoz.Interfaces</RootNamespace>
     <AssemblyName>Hamekoz.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,6 +38,7 @@
     <Compile Include="IPersistibleData.cs" />
     <Compile Include="IFocusableWidget.cs" />
     <Compile Include="IAutorizable.cs" />
+    <Compile Include="IAbmController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
