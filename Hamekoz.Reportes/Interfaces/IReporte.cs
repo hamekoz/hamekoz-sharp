@@ -39,6 +39,11 @@ namespace Hamekoz.Reportes
 		bool HasTituloPrimerPagina { get; set; }
 		bool HasAsuntoPrimerPagina { get; set; }
 
+		float MargenSuperior { get; set; }
+		float MargenInferior { get; set; }
+		float MargenDerecho { get; set; }
+		float MargenIzquierdo { get; set; }
+
 		void Agregar(IElemento elemento);
 
 		void Abrir();
