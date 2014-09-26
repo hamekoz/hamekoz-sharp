@@ -25,8 +25,8 @@ namespace Hamekoz.Reportes
 	public enum Alineaciones
 	{
 		Derecha = 2,
-		Izquierda,
+		Izquierda = 0,
 		Centrado = 1,
-		Justificado,
+		Justificado = 3,
 	}
 }

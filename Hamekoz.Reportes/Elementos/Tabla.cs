@@ -97,8 +97,24 @@ namespace Hamekoz.Reportes
             pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 			if (total is string)
 			{
-				if (!total.ToString().Contains("%"))
+				Alineaciones alineacionColumna = columnas [totales.IndexOf (total) % columnas.Count].Alineacion;
+				switch (alineacionColumna) {
+				case Alineaciones.Izquierda:
 					pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
+					break;
+				case Alineaciones.Centrado:
+					pdfPCell.HorizontalAlignment = Element.ALIGN_CENTER;
+					break;
+				case Alineaciones.Justificado:
+					pdfPCell.HorizontalAlignment = Element.ALIGN_JUSTIFIED;
+					break;
+				case Alineaciones.Derecha:
+					pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+					break;
+				default:
+					pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
+					break;
+				}
 			}
 			if (total is double)
 			{
@@ -122,12 +138,27 @@ namespace Hamekoz.Reportes
 		{
 			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño);
 			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
-
             pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 			if (dato is string)
             {
-				if (!dato.ToString().Contains("%"))
-	                pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
+				Alineaciones alineacionColumna = columnas [datos.IndexOf (dato) % columnas.Count].Alineacion;
+				switch (alineacionColumna) {
+				case Alineaciones.Izquierda:
+					pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
+					break;
+				case Alineaciones.Centrado:
+					pdfPCell.HorizontalAlignment = Element.ALIGN_CENTER;
+					break;
+				case Alineaciones.Justificado:
+					pdfPCell.HorizontalAlignment = Element.ALIGN_JUSTIFIED;
+					break;
+				case Alineaciones.Derecha:
+					pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+					break;
+				default:
+					pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
+					break;
+				}
             }
             if (dato is double)
             {
@@ -141,6 +172,7 @@ namespace Hamekoz.Reportes
             {
 				dato = string.Format("{0:#0.0000}", dato);
             }
+
 			Phrase phrase = new Phrase (dato.ToString(), font);
 			pdfPCell.Phrase = phrase;
 			return pdfPCell;

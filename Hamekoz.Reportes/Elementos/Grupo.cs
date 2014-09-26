@@ -35,6 +35,7 @@ namespace Hamekoz.Reportes
         public Parrafo Texto { get; set; }
 		public bool Numerado { get; set; }
 		public bool SaltarPagina { get; set; }
+		[Obsolete("Usar propiedad Indentacion del la propiedad Texto")]
 		public int Indentacion { get; set; }
 		public string Titulo { get; set;}
 		Section Parent { get; set;}
