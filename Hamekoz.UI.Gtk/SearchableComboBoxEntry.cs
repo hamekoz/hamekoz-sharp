@@ -27,74 +27,19 @@ namespace Hamekoz.UI.Gtk
 {
     public class SearchableComboBoxEntry<T>
     {
-        private IList<T> cacheList;
-        private bool enterState = false;
-
-        public SearchableComboBoxEntry (ref ComboBoxEntry combo, IList<T> list)
+        public SearchableComboBoxEntry (ComboBoxEntry combo, IList<T> list)
         {
             ComboBoxHelpers.LoadByList (combo, list);
-            combo.Entry.Activated += new EventHandler (OnComboBoxActivated); 
-			//combo.KeyPressEvent += new KeyPressEventHandler (OnComboBoxTabPress);
-            combo.GrabNotify += new GrabNotifyHandler (OnComboBoxGrabbed);
-            combo.Changed += new EventHandler (OnComboBoxChanged);
-            cacheList = list;
-        }
+            
+			combo.Entry.Activated += delegate(object sender, EventArgs e) {
+				combo.Popup ();
+			};
 
-        /// <summary>
-        /// Dumpea lista filtrada (Accion de boton o PopUp)
-        /// </summary>
-        /// <param name="o">O.</param>
-        /// <param name="args">Arguments.</param>
-        private void OnComboBoxGrabbed (object o, GrabNotifyArgs args)
-        {
-            ComboBoxEntry combo = o as ComboBoxEntry;
-            if (!args.WasGrabbed) {
-                ComboBoxHelpers.LoadByEntry (combo, cacheList);
-            }
-        }
-
-		/*
-        /// <summary>
-        /// Autocompleta en funcion al filtro
-        /// </summary>
-        /// <param name="o">O.</param>
-        /// <param name="args">Arguments.</param>
-        private void OnComboBoxTabPress (object o, KeyPressEventArgs args)
-        {
-            ComboBoxEntry combo = o as ComboBoxEntry;
-            if (args.Event.Key == Gdk.Key.Tab) {
-                ComboBoxHelpers.LoadByList (combo, cacheList);
-                string filter = combo.Entry.Text;
-                ComboBoxHelpers.SetByFilter (combo, filter, cacheList);
-            }
-        }
-		*/
-
-        /// <summary>
-        /// Suscriptora a evento de cambio general
-        /// </summary>
-        /// <param name="sender">Sender.</param>
-        /// <param name="e">E.</param>
-        private void OnComboBoxChanged (object sender, EventArgs e)
-        {
-            ComboBoxEntry combo = sender as ComboBoxEntry;
-            if (enterState) {
-                combo.Popup ();
-            }
-            enterState = false;
-        }
-
-        /// <summary>
-        /// Al precionar enter, habilita changed
-        /// </summary>
-        /// <param name="sender">Sender.</param>
-        /// <param name="e">E.</param>
-        private void OnComboBoxActivated (object sender, EventArgs e)
-        {
-            Entry entry = sender as Entry;
-            enterState = true;
-            //HACK implementacion con bajo nivel de robustez. Refactorizar
-            entry.InsertText ("");
+			combo.GrabNotify += delegate(object o, GrabNotifyArgs args) {
+				if (!args.WasGrabbed) {
+					ComboBoxHelpers.LoadByEntry (combo, list);
+				}
+			};
         }
     }
 }
