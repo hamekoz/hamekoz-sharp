@@ -81,6 +81,13 @@ namespace Hamekoz.Data
             }
         }
 
+		public int DefaultCommandTimeOut
+		{
+			get {
+				return  30;
+			}
+		}
+
 		private int commandTimeOut = 30;
         /// <summary>
         /// Gets or sets the command time out.
@@ -262,7 +269,7 @@ namespace Hamekoz.Data
                         adaptador.Fill(dataset, sp);
                         return dataset;
                     }
-                }
+				}
             }
         }
 

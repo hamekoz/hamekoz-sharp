@@ -1,10 +1,10 @@
-//
-//  Celda.cs
+﻿//
+//  GetConfigurationData.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
-//  Copyright (c) 2010 Hamekoz
+//  Copyright (c) 2014 etaranto
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,17 +20,25 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Hamekoz.Reportes
+namespace Hamekoz.Hasar
 {
-	public class Celda
+	public class GetConfigurationData
 	{
-		public Celda ()
+		const string cmd = "f";
+		public float LimiteDatos {get;set;}
+		public float LImiteTicket {get;set;}
+		public string Cambio {get;set;}
+		public string Leyendas {get;set;}
+		public string TipoDeCorte {get;set;}
+
+		public string Comando()
 		{
+			return cmd;
 		}
 
-		public Object Dato {get; set;}
-		public Alineaciones Alineacion {get; set;}
-        public CeldaEstilos Estilo { get; set; }
+		public GetConfigurationData ()
+		{
+		}
 	}
 }
 

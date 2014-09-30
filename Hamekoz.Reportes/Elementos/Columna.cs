@@ -28,13 +28,6 @@ namespace Hamekoz.Reportes
 		{
 		}
 
-		public Columna (string nombre, int ancho, Alineaciones alineacion)
-		{
-			Nombre = nombre;
-			Ancho = ancho;
-			Alineacion = alineacion;
-		}
-
 		public String Nombre {get; set;}
 		public int Ancho {get;set;}
 		public Alineaciones Alineacion {get; set;}

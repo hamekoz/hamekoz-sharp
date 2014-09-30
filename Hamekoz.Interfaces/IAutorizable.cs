@@ -1,10 +1,10 @@
-//
-//  Celda.cs
+﻿//
+//  IAutorizable.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2010 Hamekoz
+//  Copyright (c) 2014 ecanedo
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,17 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Hamekoz.Reportes
+namespace Hamekoz.Interfaces
 {
-	public class Celda
+	public interface IAutorizable
 	{
-		public Celda ()
-		{
-		}
-
-		public Object Dato {get; set;}
-		public Alineaciones Alineacion {get; set;}
-        public CeldaEstilos Estilo { get; set; }
+		int Guid { get; }
 	}
 }
 

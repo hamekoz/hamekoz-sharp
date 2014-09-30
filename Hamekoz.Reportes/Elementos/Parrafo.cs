@@ -1,10 +1,10 @@
-//
-//  Texto.cs
+﻿//
+//  Parrafo.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2010 Hamekoz
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,45 +19,46 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-
+using System.Collections.Generic;
 using iTextSharp.text;
 
 namespace Hamekoz.Reportes
 {
-	public class Texto : IElemento
+	public class Parrafo : IElemento
 	{
 		Paragraph parrafo;
+		public string Texto {get; set;}
+		public int Indentacion {get; set;}
+		public Alineaciones Alineacion {get; set;}
 
-		public Texto (string texto)
-		{
-			parrafo = new Paragraph (texto);
+		private int size = 10;
+		public int Size {
+			get {return Size; }
+			set { size = value; }
 		}
 
-		public Texto (int indentacion, params string[] texto)
+		private IList<string> fragmentos = new List<string>();
+
+		public void Agregar(string texto)
 		{
-			parrafo = new Paragraph ();
-			parrafo.FirstLineIndent = indentacion * 20;
-			foreach (string fragmento in texto) {
-				parrafo.Add (new Chunk(fragmento));
-				parrafo.Add(" ");
-			}
+			fragmentos.Add (texto);
 		}
-
-        public Texto(Alineaciones alineacion, params string[] texto)
-        {
-            parrafo = new Paragraph();
-            parrafo.Alignment = (int)alineacion;
-            foreach (string fragmento in texto)
-            {
-                parrafo.Add(new Chunk(fragmento));
-                parrafo.Add(" ");
-            }
-        }
-
 
 		#region IElemento implementation
 		public IElement GetElemento ()
 		{
+			Font fuente = FontFactory.GetFont (FontFactory.HELVETICA, size);
+			if (Texto != null) {
+				parrafo = new Paragraph (Texto, fuente);
+			} else {
+				parrafo = new Paragraph ("", fuente);
+			}
+			foreach (string fragmento in fragmentos) {
+				parrafo.Add (new Chunk(fragmento));
+				parrafo.Add(" ");
+			}
+			parrafo.Alignment = (int)Alineacion;
+			parrafo.FirstLineIndent = Indentacion * 20;
 			return parrafo;
 		}
 		#endregion

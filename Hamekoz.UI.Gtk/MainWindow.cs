@@ -1,10 +1,10 @@
 //
-//  Celda.cs
+//  MainWindow.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2010 Hamekoz
+//  Copyright (c) 2014 ecanedo
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,18 +19,18 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gtk;
 
-namespace Hamekoz.Reportes
+public partial class MainWindow: Gtk.Window
 {
-	public class Celda
-	{
-		public Celda ()
-		{
-		}
+    public MainWindow() : base(Gtk.WindowType.Toplevel)
+    {
+        Build();
+    }
 
-		public Object Dato {get; set;}
-		public Alineaciones Alineacion {get; set;}
-        public CeldaEstilos Estilo { get; set; }
-	}
+    protected void OnDeleteEvent(object sender, DeleteEventArgs a)
+    {
+        Application.Quit();
+        a.RetVal = true;
+    }
 }
-

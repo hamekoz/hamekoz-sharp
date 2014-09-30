@@ -1,10 +1,10 @@
-//
-//  Celda.cs
+﻿//
+//  SendFirstIVA.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
-//  Copyright (c) 2010 Hamekoz
+//  Copyright (c) 2014 etaranto
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,17 +20,24 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Hamekoz.Reportes
+namespace Hamekoz.Hasar
 {
-	public class Celda
+	public class SendFirstIVA
 	{
-		public Celda ()
+		const string cmd = "p";
+		public int NroRegistro {get;set;}
+		public float AlicuotaIVA {get;set;}
+		public float MontoIVA {get;set;}
+		public float MontoImpuestosInternos {get;set;}
+		public float VentaNeta {get;set;}
+
+		public string Comando()
+		{
+			return cmd;
+		}
+		public SendFirstIVA ()
 		{
 		}
-
-		public Object Dato {get; set;}
-		public Alineaciones Alineacion {get; set;}
-        public CeldaEstilos Estilo { get; set; }
 	}
 }
 

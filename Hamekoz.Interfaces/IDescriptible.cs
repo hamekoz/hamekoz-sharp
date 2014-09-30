@@ -1,10 +1,10 @@
 //
-//  Celda.cs
+//  IDescriptible.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2010 Hamekoz
+//  Copyright (c) 2014 Claudio Rodrigo Pereyra Diaz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,17 +20,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Hamekoz.Reportes
+namespace Hamekoz.Interfaces
 {
-	public class Celda
+	/// <summary>
+	/// Interfaz que debe implementar clases que puedan ser cargadas a un combo
+	/// </summary>
+	public interface IDescriptible
 	{
-		public Celda ()
-		{
-		}
-
-		public Object Dato {get; set;}
-		public Alineaciones Alineacion {get; set;}
-        public CeldaEstilos Estilo { get; set; }
+		/// <summary>
+		/// Gets the identifier.
+		/// </summary>
+		/// <value>The identifier.</value>
+		int Id { get;}
+		/// <summary>
+		/// Gets the descripcion.
+		/// </summary>
+		/// <value>The descripcion.</value>
+		string Descripcion { get;}
 	}
 }
 

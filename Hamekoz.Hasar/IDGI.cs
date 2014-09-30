@@ -1,10 +1,10 @@
 //
-//  Celda.cs
+//  IDGI.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
-//  Copyright (c) 2010 Hamekoz
+//  Copyright (c) 2014 etaranto
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,17 +20,36 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Hamekoz.Reportes
+namespace POS.Fiscal
 {
-	public class Celda
+	
+	/// <summary>
+	/// Interface de acceso a comandos para DGI de impresora fiscal
+	/// </summary>
+	public interface IDGI
 	{
-		public Celda ()
-		{
-		}
-
-		public Object Dato {get; set;}
-		public Alineaciones Alineacion {get; set;}
-        public CeldaEstilos Estilo { get; set; }
+		#region Comandos para uso de la DGI
+		
+		/// <summary>
+		/// Procesador de comandos DGI
+		/// </summary>
+		void DGICommandProcessor();
+		
+		/// <summary>
+		/// Reporte auditoria DGI por fechas
+		/// </summary>
+		void DGIRequestByDate();
+		
+		/// <summary>
+		/// Reporte auditoria DGI por Z
+		/// </summary>
+		void DGIRequestByNumber();
+		
+		/// <summary>
+		/// Comando de baja de controlador fiscal
+		/// </summary>
+		void KillEmprom();
+		
+		#endregion	
 	}
 }
-

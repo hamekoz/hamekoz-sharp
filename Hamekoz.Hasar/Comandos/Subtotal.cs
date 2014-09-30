@@ -1,10 +1,10 @@
-//
-//  Celda.cs
+﻿//
+//  Subtotal.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
-//  Copyright (c) 2010 Hamekoz
+//  Copyright (c) 2014 etaranto
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,17 +20,26 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Hamekoz.Reportes
+namespace Hamekoz.Hasar
 {
-	public class Celda
+	public class Subtotal : Comando
 	{
-		public Celda ()
-		{
-		}
+		const string cmd = "C";
+		public float CantidadItemsVendidos {get;set;}
+		public float MontoVentas {get;set;}
+		public float MontoIVA {get;set;}
+		public float MontoPagado {get;set;}
+		public float MontoImpuestosInternos {get;set;}
+		string Impresion;
 
-		public Object Dato {get; set;}
-		public Alineaciones Alineacion {get; set;}
-        public CeldaEstilos Estilo { get; set; }
+		public string Comando()
+		{
+			return string.Format("{0}{1}{2}{1}{3}{1}{4}",cmd,separador,Impresion,0,0);
+		}
+		public Subtotal (string Impresion)
+		{
+			this.Impresion = Impresion;
+		}
 	}
 }
 

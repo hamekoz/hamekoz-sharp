@@ -1,10 +1,10 @@
-//
-//  Celda.cs
+﻿//
+//  DialogSave.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2010 Hamekoz
+//  Copyright (c) 2014 ecanedo
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,18 +19,32 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Gtk;
 
-namespace Hamekoz.Reportes
+namespace Hamekoz.UI.Gtk
 {
-	public class Celda
+	public partial class DialogSave : Dialog
 	{
-		public Celda ()
+		public DialogSave ()
 		{
+			this.Build ();
+			this.Deletable = false;
 		}
 
-		public Object Dato {get; set;}
-		public Alineaciones Alineacion {get; set;}
-        public CeldaEstilos Estilo { get; set; }
+		protected void OnButtonCancelClicked (object sender, EventArgs e)
+		{
+			this.Destroy ();
+		}
+
+		protected void OnButtonCloseClicked (object sender, EventArgs e)
+		{
+			this.Destroy ();
+		}
+
+		protected void OnButtonSaveClicked (object sender, EventArgs e)
+		{
+			this.Destroy ();
+		}
 	}
 }
 

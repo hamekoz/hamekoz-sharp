@@ -1,10 +1,10 @@
-//
-//  Celda.cs
+﻿//
+//  TotalTender.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
-//  Copyright (c) 2010 Hamekoz
+//  Copyright (c) 2014 etaranto
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,17 +20,26 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Hamekoz.Reportes
+namespace Hamekoz.Hasar
 {
-	public class Celda
+	public class TotalTender : Comando
 	{
-		public Celda ()
-		{
-		}
+		const string cmd = "D";
+		public float Vuelto {get;set;}
+		string texto;
+		float montoPagado;
+		string cancelacionOVuelto;
 
-		public Object Dato {get; set;}
-		public Alineaciones Alineacion {get; set;}
-        public CeldaEstilos Estilo { get; set; }
+		public string Comando()
+		{
+			return string.Format("{0}{1}{2}{1}{3:###0.00}{1}{4}{1}{5}",cmd,separador,texto,montoPagado,cancelacionOVuelto,0).Replace(",",".");
+		}
+		public TotalTender (string texto, float montoPagado,string cancelacionOVuelto)
+		{
+			this.texto = texto;
+			this.montoPagado = montoPagado;
+			this.cancelacionOVuelto = cancelacionOVuelto;
+		}
 	}
 }
 

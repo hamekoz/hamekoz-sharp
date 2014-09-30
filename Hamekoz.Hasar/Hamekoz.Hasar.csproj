@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F803E76-E8C1-45D7-88D1-E97B56297E75}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Hamekoz.Hasar</RootNamespace>
+    <AssemblyName>Hamekoz.Hasar</AssemblyName>
+    <newfilesearch>OnLoad</newfilesearch>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Enumerados\CortePapel.cs" />
+    <Compile Include="Enumerados\Imprime.cs" />
+    <Compile Include="Enumerados\ResponsabilidaFrenteIVA.cs" />
+    <Compile Include="Tipos\A.cs" />
+    <Compile Include="Tipos\D.cs" />
+    <Compile Include="Tipos\H.cs" />
+    <Compile Include="Tipos\N.cs" />
+    <Compile Include="Tipos\T.cs" />
+    <Compile Include="IDGI.cs" />
+    <Compile Include="IHasar.cs" />
+    <Compile Include="Impresora.cs" />
+    <Compile Include="IHasarAfip.cs" />
+    <Compile Include="Hasar.cs" />
+    <Compile Include="Comandos\StatusRequest.cs" />
+    <Compile Include="Comandos\DailyClose.cs" />
+    <Compile Include="Comandos\Comando.cs" />
+    <Compile Include="Comandos\GetConfigurationData.cs" />
+    <Compile Include="Comandos\GetInitData.cs" />
+    <Compile Include="Comandos\GetWorkingMemory.cs" />
+    <Compile Include="Comandos\HistoryCapacity.cs" />
+    <Compile Include="Comandos\GetDailyReport.cs" />
+    <Compile Include="Comandos\SendFirstIVA.cs" />
+    <Compile Include="Comandos\NextIVATransmission.cs" />
+    <Compile Include="Comandos\Subtotal.cs" />
+    <Compile Include="Comandos\TotalTender.cs" />
+    <Compile Include="Comandos\CloseFiscalReceipt.cs" />
+    <Compile Include="Comandos\OpenDNFH.cs" />
+    <Compile Include="Comandos\CloseDNFH.cs" />
+    <Compile Include="Comandos\GetDateTime.cs" />
+    <Compile Include="Comandos\GetHeaderTrailer.cs" />
+    <Compile Include="Comandos\CustomerData.cs" />
+    <Compile Include="Comandos\GetFantasyName.cs" />
+    <Compile Include="Comandos\GetEmbarkNumber.cs" />
+    <Compile Include="Test.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Comandos\" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <StandardHeader Text="&#xA; ${FileName}&#xA; &#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA; &#xA; Copyright (c) ${Year} ${CopyrightHolder}&#xA;&#xA; This program is free software: you can redistribute it and/or modify&#xA; it under the terms of the GNU Lesser General Public License as published by&#xA; the Free Software Foundation, either version 3 of the License, or&#xA; (at your option) any later version.&#xA;&#xA; This program is distributed in the hope that it will be useful,&#xA; but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xA; GNU Lesser General Public License for more details.&#xA;&#xA; You should have received a copy of the GNU Lesser General Public License&#xA; along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;." IncludeInNewFiles="True" />
+        </Policies>
+        <Deployment.LinuxDeployData generateScript="False" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>
