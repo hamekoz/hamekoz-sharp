@@ -26,13 +26,11 @@ using Hamekoz.Interfaces;
 namespace Hamekoz.UI.Gtk
 {
 	public delegate void ChangeIdEventHandler(int id);
-
 	public delegate void ChangeEventHandler();
 
 	public class AutocompletableComboBoxEntry<T>
 	{
 		public event ChangeIdEventHandler ChangeIdEvent;
-
 		public event ChangeEventHandler ChangeEvent;
 
 		public AutocompletableComboBoxEntry (ComboBoxEntry combo, IList<T> list)
@@ -44,6 +42,24 @@ namespace Hamekoz.UI.Gtk
 						ChangeEvent();
 						break;
 					}
+				}
+			};
+
+			combo.Entry.ScrollEvent += delegate(object o, ScrollEventArgs args) {
+
+				if (args.Event.Direction == Gdk.ScrollDirection.Down) {
+					TreeIter iter;
+					combo.GetActiveIter (out iter);
+					combo.Model.IterNext (ref iter);
+					ChangeIdEvent ((int)combo.Model.GetValue (iter, 1));
+				}
+
+				if (args.Event.Direction == Gdk.ScrollDirection.Up) {
+					TreeIter iter;
+					combo.GetActiveIter (out iter);
+					int position = Convert.ToInt32(combo.Model.GetStringFromIter(iter)) - 1;
+					combo.Model.GetIterFromString (out iter, position.ToString());
+					ChangeIdEvent ((int)combo.Model.GetValue (iter, 1));
 				}
 			};
 
@@ -64,7 +80,19 @@ namespace Hamekoz.UI.Gtk
 					ChangeIdEvent ((int)combo.Model.GetValue (iter, 1));
 				}
 
-				if (Gdk.Key.Tab == args.Event.Key) {
+				if (Gdk.Key.Page_Up == args.Event.Key) {
+					TreeIter iter;
+					combo.Model.GetIterFirst (out iter);
+					ChangeIdEvent ((int)combo.Model.GetValue (iter, 1));
+				}
+
+				//HACK Don't work fine.
+				/*if (Gdk.Key.Page_Down == args.Event.Key) {
+					ChangeEvent();
+				}*/
+
+				//HACK Tab disabled! Don't work fine.
+				/*if (Gdk.Key.Tab == args.Event.Key) {
 					foreach (IDescriptible item in list) {
 						if (String.Compare (item.Descripcion, combo.Entry.Text) == 1) {
 							ComboBoxHelpers.SetByString (combo, item.Descripcion, 0);
@@ -72,7 +100,7 @@ namespace Hamekoz.UI.Gtk
 							break;
 						}
 					}
-				}
+				}*/
 			};
 
 			combo.Model.RowChanged += delegate {
