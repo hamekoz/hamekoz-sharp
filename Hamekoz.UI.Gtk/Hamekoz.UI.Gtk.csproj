@@ -73,6 +73,9 @@
     <Compile Include="DialogSave.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogSave.cs" />
     <Compile Include="AutocompletableComboBoxEntry.cs" />
+    <Compile Include="TreeViewHelpers.cs" />
+    <Compile Include="SearchableTreeView.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.SearchableTreeView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
