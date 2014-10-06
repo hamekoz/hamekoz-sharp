@@ -76,6 +76,10 @@
     <Compile Include="TreeViewHelpers.cs" />
     <Compile Include="SearchableTreeView.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.SearchableTreeView.cs" />
+    <Compile Include="TreeViewPicker.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.TreeViewPicker.cs" />
+    <Compile Include="DialogTreeView.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogTreeView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

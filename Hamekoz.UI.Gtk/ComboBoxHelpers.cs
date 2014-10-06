@@ -26,9 +26,9 @@ using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
-    public class ComboBoxHelpers
+	public static class ComboBoxHelpers
     {
-		public static void SetByString (ComboBox combo, string text, int position)
+		public static void SetByString (this ComboBox combo, string text, int position)
 		{
 			int iterator = 0;
 			TreeIter iter;
