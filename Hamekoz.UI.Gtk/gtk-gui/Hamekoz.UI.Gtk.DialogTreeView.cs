@@ -4,7 +4,7 @@ namespace Hamekoz.UI.Gtk
 {
 	public partial class DialogTreeView
 	{
-		private global::Hamekoz.UI.Gtk.SearchableTreeView searchabletreeview1;
+		private global::Hamekoz.UI.Gtk.SearchableTreeView searchabletreeview;
 		
 		private global::Gtk.Button buttonCancel;
 		
@@ -24,13 +24,13 @@ namespace Hamekoz.UI.Gtk
 			w1.Name = "dialog1_VBox";
 			w1.BorderWidth = ((uint)(2));
 			// Container child dialog1_VBox.Gtk.Box+BoxChild
-			this.searchabletreeview1 = new global::Hamekoz.UI.Gtk.SearchableTreeView ();
-			this.searchabletreeview1.WidthRequest = 220;
-			this.searchabletreeview1.HeightRequest = 180;
-			this.searchabletreeview1.Events = ((global::Gdk.EventMask)(256));
-			this.searchabletreeview1.Name = "searchabletreeview1";
-			w1.Add (this.searchabletreeview1);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(w1 [this.searchabletreeview1]));
+			this.searchabletreeview = new global::Hamekoz.UI.Gtk.SearchableTreeView ();
+			this.searchabletreeview.WidthRequest = 220;
+			this.searchabletreeview.HeightRequest = 180;
+			this.searchabletreeview.Events = ((global::Gdk.EventMask)(256));
+			this.searchabletreeview.Name = "searchabletreeview";
+			w1.Add (this.searchabletreeview);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(w1 [this.searchabletreeview]));
 			w2.Position = 0;
 			// Internal child Hamekoz.UI.Gtk.DialogTreeView.ActionArea
 			global::Gtk.HButtonBox w3 = this.ActionArea;

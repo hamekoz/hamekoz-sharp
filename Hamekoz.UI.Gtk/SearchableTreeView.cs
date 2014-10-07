@@ -25,16 +25,28 @@ using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
-	public delegate void DescriptibleEventHandler(string descripcion, int id);
-
 	[System.ComponentModel.ToolboxItem (true)]
 	public partial class SearchableTreeView : Bin
 	{
 		private TreeModelFilter filter; 
 
-		public event ChangeIdEventHandler ChangeIdEvent;
+		public event  ChangeEventHandler ChangeEvent, ActivateEvent;
 
-		public event DescriptibleEventHandler ActivatedEvent;
+		string actualString;
+
+		public string ActualString {
+			get {
+				return actualString;
+			}
+		}
+
+		int actualId;
+
+		public int ActualId {
+			get {
+				return actualId;
+			}
+		}
 
 		public SearchableTreeView ()
 		{
@@ -53,16 +65,17 @@ namespace Hamekoz.UI.Gtk
 			treeview.CursorChanged += delegate(object sender, EventArgs e) {
 				TreeIter iter;
 				treeview.Selection.GetSelected (out iter);
-				int id = (int)treeview.Model.GetValue (iter, 1);
-				ChangeIdEvent(id);
+				actualId = (int)treeview.Model.GetValue (iter, 1);
+				actualString = (string)treeview.Model.GetValue (iter, 0);
+				ChangeEvent();
 			};
 
 			treeview.RowActivated += delegate(object o, RowActivatedArgs args) { 
 				TreeIter iter;
 				treeview.Selection.GetSelected (out iter);
-				int id = (int)treeview.Model.GetValue (iter, 1);
-				string descripcion = (string)treeview.Model.GetValue (iter, 0);
-				ActivatedEvent(descripcion, id);
+				actualId = (int)treeview.Model.GetValue (iter, 1);
+				actualString = (string)treeview.Model.GetValue (iter, 0);
+				ActivateEvent();
 			};
 		}
 
