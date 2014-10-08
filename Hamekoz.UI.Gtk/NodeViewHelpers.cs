@@ -25,10 +25,10 @@ using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
-    public class NodeViewHelpers
+	public static class NodeViewHelpers
     {
         //FIXME dependent-function
-        public static void SetColumns (NodeView node, params string[] listColumns)
+		public static void SetColumns (this NodeView node, params string[] listColumns)
         {
             int iter = 0;
             foreach (string column in listColumns) {

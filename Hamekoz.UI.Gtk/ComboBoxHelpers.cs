@@ -44,7 +44,7 @@ namespace Hamekoz.UI.Gtk
 			}
 		}
 
-		public static void SetById (ComboBox combo, int id, int position)
+		public static void SetById (this ComboBox combo, int id, int position)
         {
             int iterator = 0;
             TreeIter iter;
@@ -60,21 +60,21 @@ namespace Hamekoz.UI.Gtk
             }
         }
 
-		public static int GetCurrentId (ComboBox combo, int position)
+		public static int GetCurrentId (this ComboBox combo, int position)
         {
             TreeIter iter;
             combo.GetActiveIter (out iter);
 			return (int)combo.Model.GetValue (iter, position);
         }
 
-		public static string GetCurrentString (ComboBox combo, int position)
+		public static string GetCurrentString (this ComboBox combo, int position)
         {
             TreeIter iter;
             combo.GetActiveIter (out iter);
 			return (string)combo.Model.GetValue (iter, position);
         }
 
-        public static void SetByFilter<T> (ComboBox combo, string filter, IList<T> list)
+		public static void SetByFilter<T> (this ComboBox combo, string filter, IList<T> list)
         {
             foreach (IDescriptible descriptible in list) {
                 if (GeneralHelpers.SearchCompare (filter, descriptible.Descripcion)) {
@@ -84,7 +84,7 @@ namespace Hamekoz.UI.Gtk
             }
         }
 
-        public static void LoadByList<T> (ComboBox combo, IList<T> list)
+		public static void LoadByList<T> (this ComboBox combo, IList<T> list)
         {
             ListStore listStore = new ListStore (typeof (String), typeof (int));
             foreach (IDescriptible descriptible in list) {
@@ -93,7 +93,7 @@ namespace Hamekoz.UI.Gtk
             combo.Model = listStore;
         }
 
-        public static void LoadByFilter<T> (ComboBox combo, string filter, IList<T> list)
+		public static void LoadByFilter<T> (this ComboBox combo, string filter, IList<T> list)
         {
             bool checker = false;
             ListStore listStore = new ListStore (typeof (String), typeof (int));
@@ -113,7 +113,7 @@ namespace Hamekoz.UI.Gtk
             }
         }
 
-        public static void LoadByEntry<T> (ComboBoxEntry combo, IList<T> list)
+		public static void LoadByEntry<T> (this ComboBoxEntry combo, IList<T> list)
         {
             string filter = combo.Entry.Text;
 
@@ -126,7 +126,7 @@ namespace Hamekoz.UI.Gtk
             }
         }
 
-		public static void GetComboEntryId<T> (ComboBoxEntry combo, IList<T> list, out int ID)
+		public static void GetComboEntryId<T> (this ComboBoxEntry combo, IList<T> list, out int ID)
         {
             ID = new int();
             foreach (IDescriptible item in list)

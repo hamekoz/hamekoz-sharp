@@ -25,10 +25,10 @@ using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
-    public class GeneralHelpers
+	public static class GeneralHelpers
     {
         //FIXME dependent-function
-        public static void HabilitarControles (Container widget, bool estado)
+		public static void HabilitarControles (this Container widget, bool estado)
         {
             foreach (var control in widget.AllChildren) {
                 if (control is Container) {
@@ -55,7 +55,7 @@ namespace Hamekoz.UI.Gtk
         }
 
         //FIXME dependent-function
-        public static void SetTextTextview (TextView view, string text)
+		public static void SetTextTextview (this TextView view, string text)
         {
             TextBuffer buffer;
             buffer = view.Buffer;
@@ -63,7 +63,7 @@ namespace Hamekoz.UI.Gtk
         }
 
         //FIXME dependent-function
-        public static void SetControlesVacios (Container widget)
+		public static void SetControlesVacios (this Container widget)
         {
             foreach (var control in widget.AllChildren) {
                 if (control is Container) {
@@ -85,7 +85,7 @@ namespace Hamekoz.UI.Gtk
         }
 
         //FIXME dependent-function
-		public static bool VentanaConfirmacion (Window ventana, string mensaje)
+		public static bool VentanaConfirmacion (this Window ventana, string mensaje)
         {
             MessageDialog md = new MessageDialog (ventana, 
                 DialogFlags.DestroyWithParent,
@@ -105,7 +105,7 @@ namespace Hamekoz.UI.Gtk
         }
 
         //FIXME dependent-function
-        public static void VentanaError (Window ventana, string mensaje)
+		public static void VentanaError (this Window ventana, string mensaje)
         {
             MessageDialog md = new MessageDialog (ventana,
                 DialogFlags.DestroyWithParent,
@@ -123,7 +123,7 @@ namespace Hamekoz.UI.Gtk
         }
 
         //FIXME dependent-function
-        public static void VentanaMensaje (Window ventana, string mensaje)
+		public static void VentanaMensaje (this Window ventana, string mensaje)
         {
             MessageDialog md = new MessageDialog (ventana,
                 DialogFlags.DestroyWithParent,

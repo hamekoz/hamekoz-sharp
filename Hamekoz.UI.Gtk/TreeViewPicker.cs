@@ -46,7 +46,7 @@ namespace Hamekoz.UI.Gtk
 				y += this.Allocation.Top + this.Allocation.Height;
 				treeviewDialog.Move (x, y);
 				treeviewDialog.Modal = true;
-				treeviewDialog.Show ();
+				treeviewDialog.Show();
 			};
 		}
 

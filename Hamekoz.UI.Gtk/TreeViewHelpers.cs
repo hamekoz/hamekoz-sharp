@@ -25,14 +25,14 @@ using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
-	public class TreeViewHelpers
+	public static class TreeViewHelpers
 	{
 		/// <summary>
 		/// Helper for set the columns of a TreeView.
 		/// </summary>
 		/// <param name="tree">Tree.</param>
 		/// <param name="columns">Columns.</param>
-		public static void SetColumns (TreeView tree, List<string> columns)
+		public static void SetColumns (this TreeView tree, List<string> columns)
 		{
 			int iter = 0;
 			foreach (string column in columns) {
