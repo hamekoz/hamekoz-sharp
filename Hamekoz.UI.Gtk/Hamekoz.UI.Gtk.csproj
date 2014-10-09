@@ -80,6 +80,9 @@
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.TreeViewPicker.cs" />
     <Compile Include="DialogTreeView.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogTreeView.cs" />
+    <Compile Include="WidgetAbm.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.WidgetAbm.cs" />
+    <Compile Include="GenericAbm.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
