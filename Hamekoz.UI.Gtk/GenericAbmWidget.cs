@@ -1,10 +1,10 @@
 ﻿//
-//  IAbmController.cs
+//  GenericAbmWidget.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2014 Hamekoz
+//  Copyright (c) 2014 ecanedo
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,22 +19,18 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
+using Gtk;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.UI.Gtk
 {
-	public interface IAbmController<T>
+	public class GenericAbmWidget : Bin
 	{
-		bool CanEdit { get; }
-		bool CanAdd { get; }
-		bool CanDelete { get; }
-		bool Reload { get; set; }
-		IList<T> List { get; }
-		T Get(int id);
-		T Get(T instance);
-		T New();
-		void Save(T instance);
-		void Remove(T instance);
+		private int id;
+
+		public virtual int Id {
+			get { return id; }
+			set { id = value; }
+		}
 	}
 }
 

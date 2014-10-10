@@ -184,18 +184,15 @@ namespace Hamekoz.UI.Gtk
 			}
 			set {
 				controller = value;
-
-				ListStore listStore = new ListStore (typeof (String), typeof (int));
-				foreach (IDescriptible descriptible in controller.List) {
-					listStore.AppendValues (descriptible.Descripcion, descriptible.Id);
-				}
-				searchabletreeview.LoadList(listStore);
+				ClearSearchableTreeView ();
+				LoadSearchableTreeView ();
+				VerifyPermissions ();
 			}
 		}
 
-		private Widget specificWidget;
+		private GenericAbmWidget specificWidget;
 
-		public Widget SpecificWidget {
+		public GenericAbmWidget SpecificWidget {
 			get {
 				return specificWidget;
 			}
@@ -218,29 +215,58 @@ namespace Hamekoz.UI.Gtk
 			buttonSave.Clicked += ButtonSaveHandler;
 		}
 
+		void LoadSearchableTreeView ()
+		{
+			ListStore listStore = new ListStore (typeof (String), typeof (int));
+			foreach (IDescriptible descriptible in controller.List) {
+				listStore.AppendValues (descriptible.Descripcion, descriptible.Id);
+			}
+			searchabletreeview.LoadList(listStore);
+		}
+
+		void ClearSearchableTreeView ()
+		{
+			searchabletreeview.LoadList (null);
+			searchabletreeview.QueueDraw ();
+		}
+
 		void SearchableTreeViewActivateEvent ()
 		{
+			vboxWidget.Remove (specificWidget);
+			specificWidget.Id = searchabletreeview.ActualId;
+			specificWidget.Sensitive = false;
+			vboxWidget.Add (specificWidget);
+			specificWidget.Show ();
+		}
 
+		void VerifyPermissions ()
+		{
+			buttonEdit.Sensitive = controller.CanEdit;
+			buttonAdd.Sensitive = controller.CanAdd;
+			buttonDelete.Sensitive = controller.CanDelete;
+
+			buttonSave.Sensitive = (buttonEdit.Sensitive || buttonAdd.Sensitive);
+			buttonCancel.Sensitive = (buttonEdit.Sensitive || buttonEdit.Sensitive);
 		}
 
 		void SearchableTreeViewChangeEvent ()
 		{
-
+			//
 		}
 
 		void ButtonSaveHandler (object sender, EventArgs e)
 		{
-
+			Controller.Save(Controller.Get (specificWidget.Id));
 		}
 
 		void ButtonEditClicked (object sender, EventArgs e)
 		{
-
+			specificWidget.Sensitive = true;
 		}
 
 		void ButtonDeleteClicked (object sender, EventArgs e)
 		{
-
+			Controller.Remove(Controller.Get (specificWidget.Id));
 		}
 
 		void ButtonCancelClicked (object sender, EventArgs e)
