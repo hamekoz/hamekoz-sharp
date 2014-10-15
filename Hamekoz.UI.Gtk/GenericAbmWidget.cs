@@ -25,12 +25,38 @@ namespace Hamekoz.UI.Gtk
 {
 	public class GenericAbmWidget : Bin
 	{
-		private int id;
+		protected bool onInit = true;
+		public bool OnInit {
+			get { return onInit; }
+			set { onInit = value; }
+		}
 
-		public virtual int Id {
+		protected bool onNew = false;
+		public bool OnNew {
+			get { return onNew; }
+			set { onNew = value; }
+		}
+
+		protected int id;
+		public int Id {
 			get { return id; }
 			set { id = value; }
 		}
+
+		protected bool workInProgress;
+		public virtual bool WorkInProgress {
+			get { return workInProgress; }
+			set { workInProgress = value; }
+		}
+			
+		public virtual bool InstanceIsNull {
+			get { return false; }
+		}
+
+		public virtual void Load(int id) {}
+		public virtual void Save() {}
+		public virtual void New() {}
+		public virtual void Clear() {}
 	}
 }
 

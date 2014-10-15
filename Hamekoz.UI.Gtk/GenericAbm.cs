@@ -176,6 +176,8 @@ namespace Hamekoz.UI.Gtk
 		}
 		#endregion
 
+		private int cacheId;
+
 		private IAbmController<T> controller;
 
 		public IAbmController<T> Controller {
@@ -205,6 +207,8 @@ namespace Hamekoz.UI.Gtk
 		{
 			this.Build ();
 
+			specificWidget = new GenericAbmWidget ();
+
 			searchabletreeview.ChangeEvent += SearchableTreeViewChangeEvent;
 			searchabletreeview.ActivateEvent += SearchableTreeViewActivateEvent;
 
@@ -230,10 +234,21 @@ namespace Hamekoz.UI.Gtk
 			searchabletreeview.QueueDraw ();
 		}
 
+		void SearchableTreeViewChangeEvent ()
+		{
+			// DrawSpecificWidget ();
+		}
+
 		void SearchableTreeViewActivateEvent ()
 		{
+			DrawSpecificWidget ();
+		}
+
+		void DrawSpecificWidget ()
+		{
 			vboxWidget.Remove (specificWidget);
-			specificWidget.Id = searchabletreeview.ActualId;
+			cacheId = searchabletreeview.ActualId;
+			LoadInSpecificWidget ();
 			specificWidget.Sensitive = false;
 			vboxWidget.Add (specificWidget);
 			specificWidget.Show ();
@@ -249,34 +264,90 @@ namespace Hamekoz.UI.Gtk
 			buttonCancel.Sensitive = (buttonEdit.Sensitive || buttonEdit.Sensitive);
 		}
 
-		void SearchableTreeViewChangeEvent ()
-		{
-			//
-		}
-
 		void ButtonSaveHandler (object sender, EventArgs e)
 		{
-			Controller.Save(Controller.Get (specificWidget.Id));
+			if (specificWidget.WorkInProgress && !specificWidget.InstanceIsNull) {
+				try {
+					specificWidget.Save ();
+					((Window)this.Toplevel).VentanaMensaje ("Se ha guardado correctamente");
+					specificWidget.WorkInProgress = false;
+					specificWidget.Sensitive = false;
+					specificWidget.Clear ();
+				} catch (Exception ex) {
+					((Window)this.Toplevel).VentanaError (ex.Message);
+				}
+			}
 		}
 
 		void ButtonEditClicked (object sender, EventArgs e)
 		{
-			specificWidget.Sensitive = true;
+			if (!specificWidget.OnInit) {
+				specificWidget.Sensitive = true;
+			}
 		}
 
 		void ButtonDeleteClicked (object sender, EventArgs e)
 		{
-			Controller.Remove(Controller.Get (specificWidget.Id));
+			if (!specificWidget.OnInit) {
+				if (((Window)this.Toplevel).VentanaConfirmacion ("Está seguro?")) {
+					try {
+						Controller.Remove(Controller.Get (specificWidget.Id));
+						specificWidget.Sensitive = false;
+						specificWidget.Clear ();
+					} catch (Exception ex) {
+						((Window)this.Toplevel).VentanaError (ex.Message);
+					}
+				}
+			} 
 		}
 
 		void ButtonCancelClicked (object sender, EventArgs e)
 		{
-
+			if (specificWidget.WorkInProgress) {
+				if (((Window)this.Toplevel).VentanaConfirmacion ("Está seguro?")) {
+					if (specificWidget.OnNew) {
+						specificWidget.New ();
+					} else {
+						LoadInSpecificWidget ();
+					}
+				}
+			}
 		}
 
 		void ButtonAddClicked (object sender, EventArgs e)
 		{
+			if (specificWidget.WorkInProgress) {
+				((Window)this.Toplevel).VentanaMensaje ("<b>Hay modificaciones sin guardar</b>\n" +
+					"Debe guardar o cancelar antes de agregar");
+			} else {
+				DrawSpecificWidget ();
+				specificWidget.Sensitive = true;
+				specificWidget.New ();
+			}
+		}
 
+		void LoadInSpecificWidget ()
+		{
+			specificWidget.OnNew = false;
+			specificWidget.OnInit = false;
+			specificWidget.Load(cacheId);
+			specificWidget.WorkInProgress = false;
+		}
+
+		void NewInSpecificWidget ()
+		{
+			specificWidget.OnNew = true;
+			specificWidget.OnInit = false;
+			specificWidget.New ();
+			specificWidget.WorkInProgress = false;
+		}
+
+		void ClearInSpecificWidget ()
+		{
+			specificWidget.OnInit = true;
+			specificWidget.OnNew = false;
+			specificWidget.Clear ();
+			specificWidget.WorkInProgress = false;
 		}
 	}
 }
