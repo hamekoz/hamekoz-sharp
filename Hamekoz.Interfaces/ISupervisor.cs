@@ -1,5 +1,5 @@
 ﻿//
-//  GenericAbmWidget.cs
+//  ISupervisor.cs
 //
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
@@ -19,41 +19,18 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Gtk;
-using Hamekoz.Interfaces;
 
-namespace Hamekoz.UI.Gtk
+namespace Hamekoz.Interfaces
 {
-	public class GenericAbmWidget : Bin
-	{ 
-		protected bool onInit = true;
-		public bool OnInit {
-			get { return onInit; }
-			set { onInit = value; }
-		}
+	public delegate void SaveEventHandler();
 
-		protected bool onNew = false;
-		public bool OnNew {
-			get { return onNew; }
-			set { onNew = value; }
-		}
+	public interface ISupervisor
+	{
+		event SaveEventHandler SaveEvent;
 
-		protected int id;
-		public int Id {
-			get { return id; }
-			set { id = value; }
-		}
+		void RunSaveEvent();
 
-		protected bool objectInstance;
-		public virtual bool ObjectInstance {
-			get { return objectInstance; }
-			set { objectInstance = value; }
-		}
-
-		public virtual void Load(int id) {}
-		public virtual void Save() {}
-		public virtual void New() {}
-		public virtual void Clear() {}
+		bool WorkInProgress {get; set;}
 	}
 }
 
