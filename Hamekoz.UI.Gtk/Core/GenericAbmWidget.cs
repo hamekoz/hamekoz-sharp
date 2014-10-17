@@ -53,7 +53,6 @@ namespace Hamekoz.UI.Gtk
 		public virtual void Load(int id) {}
 		public virtual void Save() {}
 		public virtual void New() {}
-		public virtual void Clear() {}
 	}
 }
 

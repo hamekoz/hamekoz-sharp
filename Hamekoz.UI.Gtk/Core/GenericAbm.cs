@@ -203,23 +203,12 @@ namespace Hamekoz.UI.Gtk
 			}
 		}
 
-		private ISupervisor supervisor;
-
-		public ISupervisor Supervisor {
-			get {
-				return supervisor;
-			}
-			set {
-				supervisor = value;
-				supervisor.SaveEvent += HandleSaveEvent;
-			}
-		}
-
 		public GenericAbm ()
 		{
 			this.Build ();
 
 			specificWidget = new GenericAbmWidget ();
+			Supervisor.Instance.SaveEvent += HandleSaveEvent;
 
 			searchabletreeview.ChangeEvent += SearchableTreeViewChangeEvent;
 			searchabletreeview.ActivateEvent += SearchableTreeViewActivateEvent;
@@ -248,7 +237,7 @@ namespace Hamekoz.UI.Gtk
 
 		void SearchableTreeViewChangeEvent ()
 		{
-			/*if (Supervisor.WorkInProgress) {
+			/*if (Supervisor.Instance.WorkInProgress) {
 				((Window)this.Toplevel).VentanaMensaje ("<b>Hay modificaciones sin guardar</b>\n" +
 					"Debe guardar o cancelar antes de cambiar");
 			} else {
@@ -258,7 +247,7 @@ namespace Hamekoz.UI.Gtk
 
 		void SearchableTreeViewActivateEvent ()
 		{
-			if (Supervisor.WorkInProgress) {
+			if (Supervisor.Instance.WorkInProgress) {
 				((Window)this.Toplevel).VentanaMensaje ("<b>Hay modificaciones sin guardar</b>\n" +
 					"Debe guardar o cancelar antes de agregar");
 			} else {
@@ -309,10 +298,10 @@ namespace Hamekoz.UI.Gtk
 				if (((Window)this.Toplevel).VentanaConfirmacion ("Está seguro?")) {
 					try {
 						Controller.Remove(Controller.Get (specificWidget.Id));
-						specificWidget.Sensitive = false;
-						specificWidget.Clear ();
+						ClearInSpecificWidget ();
 					} catch (Exception ex) {
 						((Window)this.Toplevel).VentanaError (ex.Message);
+						ClearInSpecificWidget ();
 					}
 				}
 			} 
@@ -320,10 +309,10 @@ namespace Hamekoz.UI.Gtk
 
 		void ButtonCancelClicked (object sender, EventArgs e)
 		{
-			if (Supervisor.WorkInProgress) {
+			if (Supervisor.Instance.WorkInProgress) {
 				if (((Window)this.Toplevel).VentanaConfirmacion ("Está seguro?")) {
 					if (specificWidget.OnNew) {
-						specificWidget.New ();
+						NewInSpecificWidget ();
 					} else {
 						LoadInSpecificWidget ();
 					}
@@ -333,28 +322,25 @@ namespace Hamekoz.UI.Gtk
 
 		void ButtonAddClicked (object sender, EventArgs e)
 		{
-			if (Supervisor.WorkInProgress) {
+			if (Supervisor.Instance.WorkInProgress) {
 				((Window)this.Toplevel).VentanaMensaje ("<b>Hay modificaciones sin guardar</b>\n" +
 					"Debe guardar o cancelar antes de agregar");
 			} else {
-				DrawSpecificWidget ();
-				specificWidget.Sensitive = true;
-				specificWidget.New ();
+				NewInSpecificWidget ();
 			}
 		}
 
 		public void SaveInSpecificWidget ()
 		{
-			if (Supervisor.WorkInProgress && specificWidget.ObjectInstance) {
+			if (Supervisor.Instance.WorkInProgress && specificWidget.ObjectInstance) {
 				try {
 					specificWidget.Save ();
-					((Window)this.Toplevel).VentanaMensaje ("Se ha guardado correctamente");
-					Supervisor.WorkInProgress = false;
-					specificWidget.Sensitive = false;
-					specificWidget.Clear ();
 				} catch (Exception ex) {
-					((Window)this.Toplevel).VentanaError (ex.Message);
+					Console.WriteLine (ex.Message);
 				}
+				//FIXME
+				ClearInSpecificWidget();
+				((Window)this.Toplevel).VentanaMensaje ("Se ha guardado correctamente");
 			}
 		}
 
@@ -362,8 +348,14 @@ namespace Hamekoz.UI.Gtk
 		{
 			specificWidget.OnNew = false;
 			specificWidget.OnInit = false;
-			specificWidget.Load(cacheId);
-			Supervisor.WorkInProgress = false;
+			try {
+				specificWidget.Load (cacheId);
+				Supervisor.Instance.WorkInProgress = false;
+			} catch (Exception ex) {
+				//FIXME problemas de persistencia. Verificar con paciencia.
+				((Window)this.Toplevel).VentanaError (ex.Message);
+				ClearInSpecificWidget ();
+			}
 		}
 
 		void NewInSpecificWidget ()
@@ -371,8 +363,15 @@ namespace Hamekoz.UI.Gtk
 			specificWidget.OnNew = true;
 			specificWidget.OnInit = false;
 			specificWidget.ObjectInstance = true;
-			specificWidget.New ();
-			Supervisor.WorkInProgress = false;
+			DrawSpecificWidget ();
+			try {
+				specificWidget.New ();
+				specificWidget.Sensitive = true;
+				Supervisor.Instance.WorkInProgress = false;
+			} catch (Exception ex) {
+				((Window)this.Toplevel).VentanaError (ex.Message);
+				ClearInSpecificWidget ();
+			}
 		}
 
 		void ClearInSpecificWidget ()
@@ -380,8 +379,10 @@ namespace Hamekoz.UI.Gtk
 			specificWidget.OnInit = true;
 			specificWidget.OnNew = false;
 			specificWidget.ObjectInstance = false;
-			specificWidget.Clear ();
-			Supervisor.WorkInProgress = false;
+			vboxWidget.Remove (specificWidget);
+			controller.Reload = true;
+			LoadSearchableTreeView ();
+			Supervisor.Instance.WorkInProgress = false;
 		}
 	}
 }
