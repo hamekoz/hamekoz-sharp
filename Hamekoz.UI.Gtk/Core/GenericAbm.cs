@@ -237,22 +237,22 @@ namespace Hamekoz.UI.Gtk
 
 		void SearchableTreeViewChangeEvent ()
 		{
-			/*if (Supervisor.Instance.WorkInProgress) {
+			if (Supervisor.Instance.WorkInProgress) {
 				((Window)this.Toplevel).VentanaMensaje ("<b>Hay modificaciones sin guardar</b>\n" +
 					"Debe guardar o cancelar antes de cambiar");
 			} else {
 				DrawSpecificWidget ();
-			}*/
+			}
 		}
 
 		void SearchableTreeViewActivateEvent ()
 		{
-			if (Supervisor.Instance.WorkInProgress) {
+			/*if (Supervisor.Instance.WorkInProgress) {
 				((Window)this.Toplevel).VentanaMensaje ("<b>Hay modificaciones sin guardar</b>\n" +
 					"Debe guardar o cancelar antes de agregar");
 			} else {
 				DrawSpecificWidget ();
-			}
+			}*/
 		}
 
 		void DrawSpecificWidget ()

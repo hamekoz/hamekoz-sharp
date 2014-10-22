@@ -68,6 +68,7 @@
     </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -107,6 +108,14 @@
     <Compile Include="Core\GenericAbm.cs" />
     <Compile Include="Core\GenericAbmWidget.cs">
       <DependentUpon>GenericAbm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\MasterWindow.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.MasterWindow.cs" />
+    <Compile Include="Core\MasterTreeView.cs">
+      <DependentUpon>MasterWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\MasterTrayIcon.cs">
+      <DependentUpon>MasterWindow.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
