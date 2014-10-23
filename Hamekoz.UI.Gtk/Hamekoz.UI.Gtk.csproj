@@ -117,6 +117,7 @@
     <Compile Include="Core\MasterTrayIcon.cs">
       <DependentUpon>MasterWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\WidgetHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

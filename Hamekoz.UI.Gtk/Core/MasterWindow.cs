@@ -32,6 +32,17 @@ namespace Hamekoz.UI.Gtk
 		public event ChangeEventHandler QuitActivated, AboutActivated, ButtonUserClicked;
 		public event MenuSelectionHandler OnChangeSelection;
 
+		string xmlInputAttach;
+
+		public string XmlInputAttach {
+			get {
+				return xmlInputAttach;
+			}
+			set {
+				xmlInputAttach = value;
+			}
+		}
+
 		public bool ButtonUserVisibility {
 			get {
 				return buttonUser.Visible;
@@ -54,30 +65,20 @@ namespace Hamekoz.UI.Gtk
 		{
 			Build();
 
-			this.Maximize ();
+			ButtonUserVisibility = false;
 
-			tray.icon.Activate += delegate {
-				this.Visible = !this.Visible;
-			};
-
-			tray.QuitActivated += delegate {
-				QuitActivated();
-			};
-
-			tray.AboutActivated += delegate {
-				AboutActivated();
-			};
-		}
-
-		public MasterWindow(string xmlInputAttach, Gdk.Pixbuf icon) : base(WindowType.Toplevel)
-		{
-			Build();
-
-			this.Icon = icon;
+			//FIXME
+			this.Icon = new Gdk.Pixbuf (System.IO.Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, 
+				"imagenes/logo.png"));
+				
+			//FIXME
+			tray = new MasterTrayIcon(new Gdk.Pixbuf (System.IO.Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, 
+				"imagenes/logo.png")));
 
 			this.Maximize ();
 
-			MasterTreeView menu = new MasterTreeView (ref treeviewMenuPrincipal, xmlInputAttach);
+			//FIXME
+			MasterTreeView menu = new MasterTreeView (ref treeviewMenuPrincipal, "Menues.xml");
 
 			menu.OnChangeSelection += delegate(string Id) {
 				OnChangeSelection (Id);
