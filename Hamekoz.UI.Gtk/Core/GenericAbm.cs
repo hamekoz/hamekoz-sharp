@@ -259,7 +259,9 @@ namespace Hamekoz.UI.Gtk
 		{
 			vboxWidget.Remove (specificWidget);
 			cacheId = searchabletreeview.ActualId;
-			LoadInSpecificWidget ();
+			if (!specificWidget.OnNew) {
+				LoadInSpecificWidget ();
+			}
 			specificWidget.Sensitive = false;
 			vboxWidget.Add (specificWidget);
 			specificWidget.Show ();

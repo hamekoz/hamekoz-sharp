@@ -461,7 +461,7 @@
   <widget class="Gtk.Window" id="Hamekoz.UI.Gtk.MasterWindow" design-size="515 300">
     <property name="MemberName" />
     <property name="Title" translatable="yes">MasterWindow</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">CenterAlways</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
