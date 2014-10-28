@@ -32,14 +32,49 @@ namespace Hamekoz.UI.Gtk
 		public event ChangeEventHandler QuitActivated, AboutActivated, ButtonUserClicked;
 		public event MenuSelectionHandler OnChangeSelection;
 
-		string xmlInputAttach;
+		string smallIconPath;
 
-		public string XmlInputAttach {
+		public string SmallIconPath {
 			get {
-				return xmlInputAttach;
+				return smallIconPath;
 			}
 			set {
-				xmlInputAttach = value;
+				this.Icon = new Gdk.Pixbuf (System.IO.Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, 
+					value));
+					
+				tray = new MasterTrayIcon(new Gdk.Pixbuf (System.IO.Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, 
+					value)));
+
+				tray.icon.Activate += delegate {
+					this.Visible = !this.Visible;
+				};
+
+				tray.QuitActivated += delegate {
+					QuitActivated();
+				};
+
+				tray.AboutActivated += delegate {
+					AboutActivated();
+				};
+
+				smallIconPath = value;
+			}
+		}
+
+		string xmlPath;
+
+		public string XmlPath {
+			get {
+				return xmlPath;
+			}
+			set {
+				MasterTreeView menu = new MasterTreeView (ref treeviewMenuPrincipal, value);
+
+				menu.OnChangeSelection += delegate(string Id) {
+					OnChangeSelection (Id);
+				};
+
+				xmlPath = value;
 			}
 		}
 
@@ -67,34 +102,7 @@ namespace Hamekoz.UI.Gtk
 
 			ButtonUserVisibility = false;
 
-			//FIXME
-			this.Icon = new Gdk.Pixbuf (System.IO.Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, 
-				"imagenes/logo.png"));
-				
-			//FIXME
-			tray = new MasterTrayIcon(new Gdk.Pixbuf (System.IO.Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, 
-				"imagenes/logo.png")));
-
 			this.Maximize ();
-
-			//FIXME
-			MasterTreeView menu = new MasterTreeView (ref treeviewMenuPrincipal, "Menues.xml");
-
-			menu.OnChangeSelection += delegate(string Id) {
-				OnChangeSelection (Id);
-			};
-
-			tray.icon.Activate += delegate {
-				this.Visible = !this.Visible;
-			};
-
-			tray.QuitActivated += delegate {
-				QuitActivated();
-			};
-
-			tray.AboutActivated += delegate {
-				AboutActivated();
-			};
 
 			buttonUser.Clicked += delegate {
 				ButtonUserClicked();
