@@ -50,9 +50,9 @@ namespace Hamekoz.UI.Gtk
 			set { objectInstance = value; }
 		}
 
-		public virtual void Load(int id) {}
-		public virtual void Save() {}
-		public virtual void New() {}
+		public virtual void Load(IPersistible o) {}
+		public virtual void Save(object controller) {}
+		public virtual void New(IPersistible o) {}
 	}
 }
 

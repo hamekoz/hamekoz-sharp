@@ -299,7 +299,7 @@ namespace Hamekoz.UI.Gtk
 			if (!specificWidget.OnInit) {
 				if (((Window)this.Toplevel).VentanaConfirmacion ("Está seguro?")) {
 					try {
-						Controller.Remove(Controller.Get (specificWidget.Id));
+						Controller.Remove(Controller.Get (cacheId));
 						ClearInSpecificWidget ();
 					} catch (Exception ex) {
 						((Window)this.Toplevel).VentanaError (ex.Message);
@@ -336,7 +336,7 @@ namespace Hamekoz.UI.Gtk
 		{
 			if (Supervisor.Instance.WorkInProgress && specificWidget.ObjectInstance) {
 				try {
-					specificWidget.Save ();
+					specificWidget.Save (Controller);
 				} catch (Exception ex) {
 					Console.WriteLine (ex.Message);
 				}
@@ -350,14 +350,18 @@ namespace Hamekoz.UI.Gtk
 		{
 			specificWidget.OnNew = false;
 			specificWidget.OnInit = false;
+			#if !DEBUG
 			try {
-				specificWidget.Load (cacheId);
+			#endif
+				specificWidget.Load ((IPersistible)Controller.Get(cacheId));
 				Supervisor.Instance.WorkInProgress = false;
+			#if !DEBUG
 			} catch (Exception ex) {
 				//FIXME problemas de persistencia. Verificar con paciencia.
 				((Window)this.Toplevel).VentanaError (ex.Message);
 				ClearInSpecificWidget ();
 			}
+			#endif
 		}
 
 		void NewInSpecificWidget ()
@@ -367,7 +371,7 @@ namespace Hamekoz.UI.Gtk
 			specificWidget.ObjectInstance = true;
 			DrawSpecificWidget ();
 			try {
-				specificWidget.New ();
+				specificWidget.New ((IPersistible)Controller.New());
 				specificWidget.Sensitive = true;
 				Supervisor.Instance.WorkInProgress = false;
 			} catch (Exception ex) {
