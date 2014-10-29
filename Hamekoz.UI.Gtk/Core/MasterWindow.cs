@@ -28,6 +28,7 @@ namespace Hamekoz.UI.Gtk
 		public Widget actualWidget;
 
 		public static MasterTrayIcon tray;
+		private MasterTreeView menu;
 
 		public event ChangeEventHandler QuitActivated, AboutActivated, ButtonUserClicked;
 		public event MenuSelectionHandler OnChangeSelection;
@@ -68,7 +69,7 @@ namespace Hamekoz.UI.Gtk
 				return xmlPath;
 			}
 			set {
-				MasterTreeView menu = new MasterTreeView (ref treeviewMenuPrincipal, value);
+				menu = new MasterTreeView (ref treeviewMenuPrincipal, value);
 
 				menu.OnChangeSelection += delegate(string Id) {
 					OnChangeSelection (Id);
@@ -83,6 +84,9 @@ namespace Hamekoz.UI.Gtk
 				return buttonUser.Visible;
 			}
 			set {
+				if (menu != null) {
+					menu.Initializer ();
+				}
 				buttonUser.Visible = value;
 			}
 		}
