@@ -2,7 +2,7 @@
 //  DB.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Claudio Rodrigo Pereyra Diaz <rodrigo@hamekoz.com.ar>
 //
 //  Copyright (c) 2010 Hamekoz
 //

@@ -22,7 +22,7 @@ using System;
 
 namespace Hamekoz.Extensions
 {
-	public class StringExtensions
+	public static class StringExtensions
 	{
 		/// <summary>
 		/// String to the camel case convension.
