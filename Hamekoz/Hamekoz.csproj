@@ -7,6 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz</RootNamespace>
     <AssemblyName>Hamekoz</AssemblyName>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +35,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Numalet.cs" />
+    <Compile Include="Extensions\NumericExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
