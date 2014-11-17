@@ -27,7 +27,7 @@ namespace Hamekoz.UI.Gtk
 			global::Stetic.Gui.Initialize (this);
 			// Widget Hamekoz.UI.Gtk.MasterWindow
 			this.Name = "Hamekoz.UI.Gtk.MasterWindow";
-			this.Title = global::Mono.Unix.Catalog.GetString ("MasterWindow");
+			this.Title = global::Mono.Unix.Catalog.GetString ("Postres Balcarce");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			// Container child Hamekoz.UI.Gtk.MasterWindow.Gtk.Container+ContainerChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
