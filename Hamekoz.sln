@@ -13,11 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Interfaces", "Hamek
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Hasar", "Hamekoz.Hasar\Hamekoz.Hasar.csproj", "{8F803E76-E8C1-45D7-88D1-E97B56297E75}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Hamekoz", "Hamekoz\Hamekoz.mdproj", "{277291F1-3469-4E87-9D97-76D3C4512FAB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.UI.WinForm", "Hamekoz.UI.WinForm\Hamekoz.UI.WinForm.csproj", "{9184B746-F0F7-41A3-B0EA-7FE5D1B8BBCF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz", "Hamekoz\Hamekoz.csproj", "{6201BB5D-2825-4E51-B610-1230C5585362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Core", "Hamekoz.Core\Hamekoz.Core.csproj", "{C5A5D712-545F-4088-B6B3-610BB7B61E9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,8 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{277291F1-3469-4E87-9D97-76D3C4512FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{277291F1-3469-4E87-9D97-76D3C4512FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29DC07C7-4B1A-4AC2-99A5-7AE8C795A62A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{29DC07C7-4B1A-4AC2-99A5-7AE8C795A62A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29DC07C7-4B1A-4AC2-99A5-7AE8C795A62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +49,10 @@ Global
 		{A1CEA90B-1A76-47CB-83BE-A1B666B489AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1CEA90B-1A76-47CB-83BE-A1B666B489AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1CEA90B-1A76-47CB-83BE-A1B666B489AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5A5D712-545F-4088-B6B3-610BB7B61E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5A5D712-545F-4088-B6B3-610BB7B61E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5A5D712-545F-4088-B6B3-610BB7B61E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5A5D712-545F-4088-B6B3-610BB7B61E9D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
