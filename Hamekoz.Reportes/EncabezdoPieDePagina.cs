@@ -35,7 +35,7 @@ namespace Hamekoz.Reportes
 		// we will put the final number of pages in a template
 		PdfTemplate template;
 
-		static Font fuente = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 8, BaseColor.GRAY);
+		Font fuente = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 8, BaseColor.GRAY);
 
 		// This keeps track of the creation time
 		DateTime PrintTime = DateTime.Now;
@@ -65,17 +65,6 @@ namespace Hamekoz.Reportes
 			set { headerRight = value; }
 		}
 
-		private Font headerFont = fuente;
-		public Font HeaderFont {
-			get { return headerFont; }
-			set { headerFont = value; }
-		}
-
-		private Font footerFont = fuente;
-		public Font FooterFont {
-			get { return footerFont; }
-			set { footerFont = value; }
-		}
 		#endregion
 
 		public override void OnOpenDocument (PdfWriter writer, Document document)
@@ -102,16 +91,16 @@ namespace Hamekoz.Reportes
 			HeaderTable.DefaultCell.Border = PdfPCell.NO_BORDER;
 			HeaderTable.TotalWidth = pageSize.Width - document.LeftMargin - document.RightMargin;
 
-			PdfPCell HeaderLeftCell = new PdfPCell (new Phrase (8, HeaderLeft, HeaderFont));
+			PdfPCell HeaderLeftCell = new PdfPCell (new Phrase (8, HeaderLeft, fuente));
 			HeaderLeftCell.Border = PdfPCell.NO_BORDER;
 			HeaderTable.AddCell (HeaderLeftCell);
 
-			PdfPCell HeaderCenterCell = new PdfPCell (new Phrase (8, Title, HeaderFont));
+			PdfPCell HeaderCenterCell = new PdfPCell (new Phrase (8, Title, fuente));
 			HeaderCenterCell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
 			HeaderCenterCell.Border = PdfPCell.NO_BORDER;
 			HeaderTable.AddCell (HeaderCenterCell);
 
-			PdfPCell HeaderRightCell = new PdfPCell (new Phrase (8, HeaderRight, HeaderFont));
+			PdfPCell HeaderRightCell = new PdfPCell (new Phrase (8, HeaderRight, fuente));
 			HeaderRightCell.Border = PdfPCell.NO_BORDER;
 			HeaderRightCell.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
 			HeaderTable.AddCell (HeaderRightCell);
@@ -139,18 +128,18 @@ namespace Hamekoz.Reportes
 			FooterTable.DefaultCell.Border = PdfPCell.NO_BORDER;
 			FooterTable.TotalWidth = pageSize.Width - document.LeftMargin - document.RightMargin;
 
-			PdfPCell FooterLeftCell = new PdfPCell (new Phrase (8, text, FooterFont));
+			PdfPCell FooterLeftCell = new PdfPCell (new Phrase (8, text, fuente));
 			FooterLeftCell.Border = PdfPCell.NO_BORDER;
 			FooterTable.AddCell (FooterLeftCell);
 
-			PdfPCell FooterCenterCell = new PdfPCell (new Phrase (8, Footer, FooterFont));
+			PdfPCell FooterCenterCell = new PdfPCell (new Phrase (8, Footer, fuente));
 			FooterCenterCell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
 			FooterCenterCell.Border = PdfPCell.NO_BORDER;
 			FooterTable.AddCell (FooterCenterCell);
 
             string texto = String.Format("Generado el {0} {1}", PrintTime.ToShortDateString(), PrintTime.ToShortTimeString());
 
-			PdfPCell FooterRightCell = new PdfPCell (new Phrase (8, texto , FooterFont));
+			PdfPCell FooterRightCell = new PdfPCell (new Phrase (8, texto , fuente));
 			FooterRightCell.Border = PdfPCell.NO_BORDER;
 			FooterRightCell.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
 			FooterTable.AddCell (FooterRightCell);
@@ -167,8 +156,8 @@ namespace Hamekoz.Reportes
 		{
 			base.OnCloseDocument (writer, document);
 			template.BeginText ();
-			template.SetFontAndSize (FooterFont.BaseFont, FooterFont.Size);
-			template.SetColorFill (FooterFont.Color);
+			template.SetFontAndSize (fuente.BaseFont, fuente.Size);
+			template.SetColorFill (fuente.Color);
 			template.SetTextMatrix (0, 0);
 			template.ShowText ("" + (writer.PageNumber - 1));
 			template.EndText ();

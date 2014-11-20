@@ -30,7 +30,7 @@ namespace Hamekoz.Reportes
 	public class Watermark : EncabezdoPieDePagina
 	{
 		private Font font = new Font (
-			Font.FontFamily.HELVETICA, 40, Font.BOLD, new GrayColor (0.75f)
+			Font.FontFamily.HELVETICA, 40, Font.NORMAL, BaseColor.LIGHT_GRAY
 		);
 
 		private Image image;
@@ -46,8 +46,8 @@ namespace Hamekoz.Reportes
 
 		// set transparency, see commented section below; 'image watermark'
 		private PdfGState state = new PdfGState () {
-			FillOpacity = 0.3F,
-			StrokeOpacity = 0.3F
+			FillOpacity = 0.1F,
+			StrokeOpacity = 0.1F
 		};
 
 		private string waterMarkText = string.Empty;
@@ -64,7 +64,6 @@ namespace Hamekoz.Reportes
 		public Watermark ()
 		{
 			image = Image.GetInstance ("http://www.hamekoz.com.ar/assets/logo-3327cf1683862cd164f3d76995915e24.png");
-			image.SetAbsolutePosition (200, 400);
 		}
 		/*
  * override OnEndPage() to suite your needs;
@@ -78,7 +77,7 @@ namespace Hamekoz.Reportes
  */
 			if (waterMarkText != string.Empty ) {
 				ColumnText.ShowTextAligned (
-					writer.DirectContentUnder,
+					writer.DirectContent,
 					Element.ALIGN_CENTER, new Phrase (waterMarkText, font),
 					300, 400, 45
 				);
@@ -87,7 +86,9 @@ namespace Hamekoz.Reportes
  * image watermark
  */
 			if (image != null) {
-				PdfContentByte cb = writer.DirectContentUnder;
+				image.ScaleToFit(document.PageSize);
+				image.SetAbsolutePosition ((document.PageSize.Width - image.PlainWidth) / 2, (document.PageSize.Height - image.PlainHeight) / 2);
+				PdfContentByte cb = writer.DirectContent;
 				cb.SaveState ();
 				cb.SetGState (state);
 				cb.AddImage (image);

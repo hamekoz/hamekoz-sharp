@@ -139,7 +139,6 @@ namespace Hamekoz.Reportes
 			IPdfPageEvent pageEventHandler;
 			if (HasMarcaDeAgua) {
 				pageEventHandler = new Watermark () {
-					HeaderFont = FontFactory.GetFont (BaseFont.COURIER_BOLD, 10, Font.BOLD),
 					Title = Titulo,
 					HeaderLeft = Empresa,
 					HeaderRight = Creador,
@@ -147,7 +146,6 @@ namespace Hamekoz.Reportes
 				};
 			} else {
 				pageEventHandler = new EncabezdoPieDePagina () {
-					HeaderFont = FontFactory.GetFont (BaseFont.COURIER_BOLD, 10, Font.BOLD),
 					Title = Titulo,
 					HeaderLeft = Empresa,
 					HeaderRight = Creador,

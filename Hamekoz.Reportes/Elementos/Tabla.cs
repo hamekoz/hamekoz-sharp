@@ -45,23 +45,26 @@ namespace Hamekoz.Reportes
 
 		public bool OcultarTitulosDeColumnas { get; set; }
 
-		List<Columna> columnas = new List<Columna>();
+		List<Columna> columnas = new List<Columna> ();
+
 		public List<Columna> Columnas {
 			get { return columnas; }
 			set { columnas = value; }
 		}
 
-		List<Object> datos = new List<Object>();
+		List<Object> datos = new List<Object> ();
+
 		public void AgregarDato (Object dato)
 		{
 			datos.Add (dato);
 		}
 
-        List<Object> totales = new List<Object>();
-        public void AgregarTotal(Object total)
-        {
-            totales.Add(total);
-        }
+		List<Object> totales = new List<Object> ();
+
+		public void AgregarTotal (Object total)
+		{
+			totales.Add (total);
+		}
 
 		public bool MostrarBordes { get; set; }
 
@@ -83,10 +86,10 @@ namespace Hamekoz.Reportes
 			return pdfPCell;
 		}
 
-        public PdfPCell GetNewTotal(Object total)
-        {
-			Font font = FontFactory.GetFont(Font.FontFamily.HELVETICA.ToString(), fuenteTamaño, Font.BOLD);
-            PdfPCell pdfPCell = new PdfPCell(tabla.DefaultCell);
+		public PdfPCell GetNewTotal (Object total)
+		{
+			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño, Font.BOLD);
+			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
 			pdfPCell.PaddingTop = 2;
 			if (MostrarBordes) {
 				pdfPCell.BackgroundColor = BaseColor.LIGHT_GRAY;
@@ -94,9 +97,8 @@ namespace Hamekoz.Reportes
 				pdfPCell.BorderWidthTop = 0.5f;
 			}
 			pdfPCell.PaddingBottom = 3;
-            pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-			if (total is string)
-			{
+			pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+			if (total is string) {
 				Alineaciones alineacionColumna = columnas [totales.IndexOf (total) % columnas.Count].Alineacion;
 				switch (alineacionColumna) {
 				case Alineaciones.Izquierda:
@@ -116,31 +118,27 @@ namespace Hamekoz.Reportes
 					break;
 				}
 			}
-			if (total is double)
-			{
-				total = string.Format("{0:#0.00}", total);
+			if (total is double) {
+				total = string.Format ("{0:#0.00}", total);
 			}
-			if (total is decimal)
-			{
-				total = string.Format("{0:C}", total);
+			if (total is decimal) {
+				total = string.Format ("{0:C}", total);
 			}
-			if (total is float)
-			{
-				total = string.Format("{0:#0.0000}", total);
+			if (total is float) {
+				total = string.Format ("{0:#0.0000}", total);
 			}
 
-            Phrase phrase = new Phrase(total.ToString(), font);
-            pdfPCell.Phrase = phrase;
-            return pdfPCell;
-        }
+			Phrase phrase = new Phrase (total.ToString (), font);
+			pdfPCell.Phrase = phrase;
+			return pdfPCell;
+		}
 
 		public PdfPCell GetNewData (Object dato)
 		{
 			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño);
 			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
-            pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-			if (dato is string)
-            {
+			pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+			if (dato is string) {
 				Alineaciones alineacionColumna = columnas [datos.IndexOf (dato) % columnas.Count].Alineacion;
 				switch (alineacionColumna) {
 				case Alineaciones.Izquierda:
@@ -159,37 +157,36 @@ namespace Hamekoz.Reportes
 					pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
 					break;
 				}
-            }
-            if (dato is double)
-            {
-				dato = string.Format("{0:#0.00}", dato);
-            }
-            if (dato is decimal)
-            {
-				dato = string.Format("{0:C}", dato);
-            }
-            if (dato is float)
-            {
-				dato = string.Format("{0:#0.0000}", dato);
-            }
+			}
+			if (dato is double) {
+				dato = string.Format ("{0:#0.00}", dato);
+			}
+			if (dato is decimal) {
+				dato = string.Format ("{0:C}", dato);
+			}
+			if (dato is float) {
+				dato = string.Format ("{0:#0.0000}", dato);
+			}
 
-			Phrase phrase = new Phrase (dato.ToString(), font);
+			Phrase phrase = new Phrase (dato.ToString (), font);
 			pdfPCell.Phrase = phrase;
 			return pdfPCell;
 		}
 
 
-		private float[] AnchoDeColumnas()
+		private float[] AnchoDeColumnas ()
 		{
-			List<float> anchos = new List<float>();
+			List<float> anchos = new List<float> ();
 			foreach (var columna in Columnas) {
-				anchos.Add(columna.Ancho);
+				anchos.Add (columna.Ancho);
 			}
-			return anchos.ToArray();
+			return anchos.ToArray ();
 		}
 
 		#region IElemento implementation
+
 		PdfPTable tabla;
+
 		public IElement GetElemento ()
 		{
 			tabla = new PdfPTable (columnas.Count);
@@ -198,7 +195,7 @@ namespace Hamekoz.Reportes
 			if (!MostrarBordes) {
 				tabla.DefaultCell.Border = PdfPCell.NO_BORDER;
 			}
-			tabla.DefaultCell.BackgroundColor = BaseColor.WHITE;
+			tabla.DefaultCell.BackgroundColor = new BaseColor (System.Drawing.Color.Transparent);
 			tabla.WidthPercentage = 100;
 			if (!OcultarTitulosDeColumnas) {
 				tabla.HeaderRows = 1;
@@ -209,15 +206,15 @@ namespace Hamekoz.Reportes
 			foreach (Object dato in datos) {
 				tabla.AddCell (GetNewData (dato));
 			}
-			foreach (Object total in totales)
-            {
-                tabla.AddCell(GetNewTotal(total));
-            }
+			foreach (Object total in totales) {
+				tabla.AddCell (GetNewTotal (total));
+			}
 
-            tabla.SetWidths (AnchoDeColumnas());
+			tabla.SetWidths (AnchoDeColumnas ());
 
 			return tabla;
 		}
+
 		#endregion
 	}
 }
