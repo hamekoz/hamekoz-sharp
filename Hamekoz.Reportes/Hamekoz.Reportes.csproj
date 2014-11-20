@@ -70,6 +70,7 @@
     <Compile Include="Enumerados\FuenteEstilos.cs" />
     <Compile Include="Elementos\Grupo.cs" />
     <Compile Include="Elementos\Parrafo.cs" />
+    <Compile Include="WaterMark.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

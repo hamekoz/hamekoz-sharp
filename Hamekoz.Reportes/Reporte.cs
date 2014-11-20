@@ -136,12 +136,23 @@ namespace Hamekoz.Reportes
 		{
 			document.SetMargins (document.LeftMargin, document.RightMargin, document.TopMargin + 20, document.BottomMargin + 15);
 
-			EncabezdoPieDePagina pageEventHandler = new EncabezdoPieDePagina ();
-
-			pageEventHandler.HeaderFont = FontFactory.GetFont (BaseFont.COURIER_BOLD, 10, Font.BOLD);
-			pageEventHandler.Title = Titulo;
-			pageEventHandler.HeaderLeft = Empresa;
-			pageEventHandler.HeaderRight = Creador;
+			IPdfPageEvent pageEventHandler;
+			if (HasMarcaDeAgua) {
+				pageEventHandler = new Watermark () {
+					HeaderFont = FontFactory.GetFont (BaseFont.COURIER_BOLD, 10, Font.BOLD),
+					Title = Titulo,
+					HeaderLeft = Empresa,
+					HeaderRight = Creador,
+					WaterMarkText = Empresa,
+				};
+			} else {
+				pageEventHandler = new EncabezdoPieDePagina () {
+					HeaderFont = FontFactory.GetFont (BaseFont.COURIER_BOLD, 10, Font.BOLD),
+					Title = Titulo,
+					HeaderLeft = Empresa,
+					HeaderRight = Creador,
+				};
+			}
 
 			pdfWriter.PageEvent = pageEventHandler;
 		}
@@ -251,6 +262,8 @@ namespace Hamekoz.Reportes
 		public bool HasTituloPrimerPagina { get; set; }
 
 		public bool HasAsuntoPrimerPagina { get; set; }
+
+		public bool HasMarcaDeAgua { get; set; }
 
         public void Agregar (IElemento elemento)
         {

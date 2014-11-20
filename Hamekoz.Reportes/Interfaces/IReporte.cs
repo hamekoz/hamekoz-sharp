@@ -38,6 +38,7 @@ namespace Hamekoz.Reportes
 		bool HasEncabezadoPieDePagina { get; set; }
 		bool HasTituloPrimerPagina { get; set; }
 		bool HasAsuntoPrimerPagina { get; set; }
+		bool HasMarcaDeAgua { get; set; }
 
 		float MargenSuperior { get; set; }
 		float MargenInferior { get; set; }
