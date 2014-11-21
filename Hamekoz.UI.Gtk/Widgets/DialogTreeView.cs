@@ -30,6 +30,24 @@ namespace Hamekoz.UI.Gtk
 	{
 		public event DescriptibleEventHandler ActivatedEvent;
 
+		public int ActualId {
+			get {
+				return searchabletreeview.ActualId;
+			}
+			set {
+				searchabletreeview.ActualId = value;
+			}
+		}
+
+		public string ActualString {
+			get {
+				return searchabletreeview.ActualString;
+			}
+			set {
+				searchabletreeview.ActualString = value;
+			}
+		}
+
 		public DialogTreeView ()
 		{
 			Build ();

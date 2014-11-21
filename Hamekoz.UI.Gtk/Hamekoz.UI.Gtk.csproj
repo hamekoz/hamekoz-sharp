@@ -118,6 +118,7 @@
       <DependentUpon>MasterWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\WidgetHelpers.cs" />
+    <Compile Include="Helpers\TreeViewPickerHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

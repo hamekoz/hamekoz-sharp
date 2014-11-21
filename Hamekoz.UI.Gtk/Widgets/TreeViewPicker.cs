@@ -21,6 +21,7 @@
 using System;
 using Gtk;
 using Hamekoz.Interfaces;
+using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
@@ -28,6 +29,25 @@ namespace Hamekoz.UI.Gtk
 	public partial class TreeViewPicker : Bin
 	{
 		DialogTreeView treeviewDialog = new DialogTreeView ();
+
+		public int ActualId {
+			get {
+				return treeviewDialog.ActualId;
+			}
+			set {
+				treeviewDialog.ActualId = value;
+			}
+		}
+
+		public string ActualString {
+			get {
+				return treeviewDialog.ActualString;
+			}
+			set {
+				treeviewDialog.ActualString = value;
+				entry.Text = treeviewDialog.ActualString;
+			}
+		}
 
 		public TreeViewPicker ()
 		{

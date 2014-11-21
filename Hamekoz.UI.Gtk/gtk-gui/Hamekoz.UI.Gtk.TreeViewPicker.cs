@@ -25,7 +25,6 @@ namespace Hamekoz.UI.Gtk
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.entry = new global::Gtk.Entry ();
 			this.entry.WidthRequest = 200;
-			this.entry.CanFocus = true;
 			this.entry.Name = "entry";
 			this.entry.IsEditable = false;
 			this.entry.InvisibleChar = '●';

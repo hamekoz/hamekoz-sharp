@@ -358,7 +358,6 @@
           <widget class="Gtk.Entry" id="entry">
             <property name="MemberName" />
             <property name="WidthRequest">200</property>
-            <property name="CanFocus">True</property>
             <property name="IsEditable">False</property>
             <property name="InvisibleChar">●</property>
           </widget>
@@ -390,7 +389,6 @@
   </widget>
   <widget class="Gtk.Dialog" id="Hamekoz.UI.Gtk.DialogTreeView" design-size="228 230">
     <property name="MemberName" />
-    <property name="TypeHint">Splashscreen</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Resizable">False</property>
     <property name="Decorated">False</property>

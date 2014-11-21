@@ -15,7 +15,6 @@ namespace Hamekoz.UI.Gtk
 			global::Stetic.Gui.Initialize (this);
 			// Widget Hamekoz.UI.Gtk.DialogTreeView
 			this.Name = "Hamekoz.UI.Gtk.DialogTreeView";
-			this.TypeHint = ((global::Gdk.WindowTypeHint)(4));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Resizable = false;
 			this.Decorated = false;

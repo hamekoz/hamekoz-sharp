@@ -38,6 +38,9 @@ namespace Hamekoz.UI.Gtk
 			get {
 				return actualString;
 			}
+			set {
+				actualString = value;
+			}
 		}
 
 		int actualId;
@@ -45,6 +48,9 @@ namespace Hamekoz.UI.Gtk
 		public int ActualId {
 			get {
 				return actualId;
+			}
+			set {
+				actualId = value;
 			}
 		}
 
