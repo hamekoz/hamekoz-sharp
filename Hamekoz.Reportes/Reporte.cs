@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Reflection;
 
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -89,20 +90,45 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-        public void Iniciar ()
+		public void Iniciar ()
 		{
-            pdfWriter = PdfWriter.GetInstance (document, new FileStream (FileName, FileMode.Create));
+			pdfWriter = PdfWriter.GetInstance (document, new FileStream (FileName, FileMode.Create));
 			this.SetInfo ();
-			document.SetPageSize (PageSize.A4);
+
 			document.SetMargins (margenIzquierdo, margenDerecho, margenSuperior, margenInferior);
-            if (Apaisado)
-            {
-                document.SetPageSize (PageSize.A4.Rotate ());
-            }
+
+			if (Apaisado) {
+				document.SetPageSize (PageSize.A4.Rotate ());
+			} else {
+				document.SetPageSize (PageSize.A4);
+			}
+
+			//TODO definir bien cuales son las propiedades a asignar
+			ReportPdfPageEvent pageEventHandler = new ReportPdfPageEvent () {
+				HasHeader = HasEncabezadoPieDePagina,
+				HasFooter = HasEncabezadoPieDePagina,
+				HasWaterMarkText = HasMarcaDeAgua,
+				HasWaterMarkImage = HasMarcaDeAgua,
+			};
 
 			if (HasEncabezadoPieDePagina) {
-				MostrarEncabezadoYPieDePagina ();
+				document.SetMargins (
+					document.LeftMargin,
+					document.RightMargin,
+					document.TopMargin + 20,
+					document.BottomMargin + 15
+				);
+				pageEventHandler.Header = Titulo;
+				pageEventHandler.HeaderLeft = Empresa;
+				pageEventHandler.HeaderRight = Creador;
+				pageEventHandler.Footer = string.Empty;
 			}
+
+			if (HasMarcaDeAgua) {
+				pageEventHandler.WaterMarkText = Empresa;
+			}
+
+			pdfWriter.PageEvent = pageEventHandler;
 
 			document.Open ();
 
@@ -116,7 +142,6 @@ namespace Hamekoz.Reportes
 				NuevaLineaDivisoria ();
 			}
 			foreach (IElemento elemento in elementos) {
-				//Console.WriteLine ("Generando elemento al documento...");
 				document.Add (elemento.GetElemento ());
 			}
 		}
@@ -134,25 +159,7 @@ namespace Hamekoz.Reportes
 
 		private void MostrarEncabezadoYPieDePagina ()
 		{
-			document.SetMargins (document.LeftMargin, document.RightMargin, document.TopMargin + 20, document.BottomMargin + 15);
 
-			IPdfPageEvent pageEventHandler;
-			if (HasMarcaDeAgua) {
-				pageEventHandler = new Watermark () {
-					Title = Titulo,
-					HeaderLeft = Empresa,
-					HeaderRight = Creador,
-					WaterMarkText = Empresa,
-				};
-			} else {
-				pageEventHandler = new EncabezdoPieDePagina () {
-					Title = Titulo,
-					HeaderLeft = Empresa,
-					HeaderRight = Creador,
-				};
-			}
-
-			pdfWriter.PageEvent = pageEventHandler;
 		}
 
 		private void MostrarTitulo ()
@@ -173,34 +180,31 @@ namespace Hamekoz.Reportes
 
 		#region IReporte implementation
 
-        private string filename = string.Empty;
-        public string FileName
-        { 
-            get
-            { 
-                if (filename == string.Empty)
-                {
-                    filename = string.Format("{0}{1}-{2}.pdf", Path.GetTempPath(), titulo, DateTime.Now.ToFileTime());
-                }
-                return filename; 
-            }
-            set { filename = value; }
-        }
+		private string filename = string.Empty;
 
-        private string titulo = "Reporte";
-		public string Titulo
-        {
-            get
-            {
-                return titulo;
-            }
-            set
-            {
-                titulo = value;
-            }
-        }
+		public string FileName {
+			get {
+				if (filename == string.Empty) {
+					filename = string.Format ("{0}{1}-{2}.pdf", Path.GetTempPath (), titulo, DateTime.Now.ToFileTime ());
+				}
+				return filename;
+			}
+			set { filename = value; }
+		}
+
+		private string titulo = "Hamekoz Report";
+
+		public string Titulo {
+			get {
+				return titulo;
+			}
+			set {
+				titulo = value;
+			}
+		}
 
 		private string asunto = string.Empty;
+
 		public string Asunto {
 			get {
 				return asunto;
@@ -211,6 +215,7 @@ namespace Hamekoz.Reportes
 		}
 
 		private string autor = string.Empty;
+
 		public string Autor {
 			get {
 				return autor;
@@ -220,10 +225,11 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private static string assemblyName = System.Reflection.Assembly.GetExecutingAssembly ().GetName().Name;
-		private static string assemblyVersion = System.Reflection.Assembly.GetExecutingAssembly ().GetName ().Version.ToString (2);
+		private static string assemblyName = Assembly.GetExecutingAssembly ().GetName ().Name;
+		private static string assemblyVersion = Assembly.GetExecutingAssembly ().GetName ().Version.ToString (2);
 
-		private string creador = assemblyName + " " + assemblyVersion;
+		private string creador = string.Format ("{0} v{1}", assemblyName, assemblyVersion);
+
 		public string Creador {
 			get {
 				return creador;
@@ -234,6 +240,7 @@ namespace Hamekoz.Reportes
 		}
 
 		private string empresa = string.Empty;
+
 		public string Empresa {
 			get {
 				return empresa;
@@ -244,6 +251,7 @@ namespace Hamekoz.Reportes
 		}
 
 		private string usuario = string.Empty;
+
 		public string Usuario {
 			get {
 				return usuario;
@@ -253,7 +261,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-        public bool Apaisado { get; set; }
+		public bool Apaisado { get; set; }
 
 		public bool HasEncabezadoPieDePagina { get; set; }
 
@@ -263,20 +271,20 @@ namespace Hamekoz.Reportes
 
 		public bool HasMarcaDeAgua { get; set; }
 
-        public void Agregar (IElemento elemento)
-        {
-            elementos.Add (elemento);
-        }
+		public void Agregar (IElemento elemento)
+		{
+			elementos.Add (elemento);
+		}
 
 		public void Abrir ()
 		{
 			this.Iniciar ();
 
 			document.Close ();
-            System.Diagnostics.Process.Start (FileName);
+			System.Diagnostics.Process.Start (FileName);
 		}
 
-        #endregion
+		#endregion
 
 		public void NuevaPagina ()
 		{

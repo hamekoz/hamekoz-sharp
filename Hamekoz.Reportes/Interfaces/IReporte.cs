@@ -26,27 +26,40 @@ namespace Hamekoz.Reportes
 {
 	public interface IReporte
 	{
-        string FileName { get; set; }
-        string Titulo { get; set; }
+		string FileName { get; set; }
+
+		string Titulo { get; set; }
+
 		string Asunto { get; set; }
+
 		string Autor { get; set; }
+
 		string Creador { get; set; }
+
 		string Empresa { get; set; }
+
 		string Usuario { get; set; }
-        bool Apaisado { get; set; }
+
+		bool Apaisado { get; set; }
 
 		bool HasEncabezadoPieDePagina { get; set; }
+
 		bool HasTituloPrimerPagina { get; set; }
+
 		bool HasAsuntoPrimerPagina { get; set; }
+
 		bool HasMarcaDeAgua { get; set; }
 
 		float MargenSuperior { get; set; }
+
 		float MargenInferior { get; set; }
+
 		float MargenDerecho { get; set; }
+
 		float MargenIzquierdo { get; set; }
 
-		void Agregar(IElemento elemento);
+		void Agregar (IElemento elemento);
 
-		void Abrir();
+		void Abrir ();
 	}
 }

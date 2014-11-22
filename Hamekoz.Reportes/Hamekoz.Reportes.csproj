@@ -10,6 +10,8 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <newfilesearch>OnLoad</newfilesearch>
     <Description>Ayuda a generar Reportes en PDF</Description>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,7 +63,6 @@
     <Compile Include="Enumerados\CeldaEstilo.cs" />
     <Compile Include="Reporte.cs" />
     <Compile Include="Elementos\Tabla.cs" />
-    <Compile Include="EncabezdoPieDePagina.cs" />
     <Compile Include="Interfaces\IElemento.cs" />
     <Compile Include="Interfaces\IReporte.cs" />
     <Compile Include="Elementos\Linea.cs" />
@@ -70,7 +71,7 @@
     <Compile Include="Enumerados\FuenteEstilos.cs" />
     <Compile Include="Elementos\Grupo.cs" />
     <Compile Include="Elementos\Parrafo.cs" />
-    <Compile Include="WaterMark.cs" />
+    <Compile Include="ReportPdfPageEvent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
