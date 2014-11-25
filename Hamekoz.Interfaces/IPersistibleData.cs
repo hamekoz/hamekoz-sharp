@@ -26,9 +26,13 @@ namespace Hamekoz.Interfaces
 	public interface IPersistibleData<T>
 	{
 		void Load (T instance);
+
 		void Insert (T instance);
+
 		void Update (T instance);
+
 		void Delete (T instance);
+
 		IList<T> GetAll ();
 	}
 }

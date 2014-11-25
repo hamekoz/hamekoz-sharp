@@ -30,15 +30,18 @@ namespace Hamekoz.Reportes
 		{
 		}
 
-		IList<IElemento> contenido = new List<IElemento>();
-		IList<Grupo> subgrupos = new List<Grupo>();
-        public Parrafo Texto { get; set; }
+		IList<IElemento> contenido = new List<IElemento> ();
+		IList<Grupo> subgrupos = new List<Grupo> ();
+
+		public Parrafo Texto { get; set; }
+
 		public bool Numerado { get; set; }
+
 		public bool SaltarPagina { get; set; }
-		[Obsolete("Usar propiedad Indentacion del la propiedad Texto")]
-		public int Indentacion { get; set; }
-		public string Titulo { get; set;}
-		Section Parent { get; set;}
+
+		public string Titulo { get; set; }
+
+		Section Parent { get; set; }
 
 		public void AgregarSubgrupo (Grupo subgrupo)
 		{
@@ -52,10 +55,11 @@ namespace Hamekoz.Reportes
 
 
 		#region IElemento implementation
+
 		public IElement GetElemento ()
 		{
 			Section grupo;
-            Paragraph texto = (Paragraph)Texto.GetElemento ();
+			Paragraph texto = (Paragraph)Texto.GetElemento ();
 			if (Parent == null) {
 				grupo = new ChapterAutoNumber (texto);
 			} else {
@@ -64,11 +68,11 @@ namespace Hamekoz.Reportes
 
 			foreach (Grupo subgrupo in subgrupos) {
 				subgrupo.Parent = grupo;
-				subgrupo.GetElemento();
+				subgrupo.GetElemento ();
 			}
 
 			foreach (IElemento item in contenido) {
-				grupo.Add(item.GetElemento());
+				grupo.Add (item.GetElemento ());
 			}
 
 			if (!Numerado) {
@@ -83,6 +87,7 @@ namespace Hamekoz.Reportes
 			grupo.TriggerNewPage = SaltarPagina;
 			return grupo;
 		}
+
 		#endregion
 	}
 }

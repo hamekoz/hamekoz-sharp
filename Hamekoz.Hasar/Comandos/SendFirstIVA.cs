@@ -25,16 +25,22 @@ namespace Hamekoz.Hasar
 	public class SendFirstIVA
 	{
 		const string cmd = "p";
-		public int NroRegistro {get;set;}
-		public float AlicuotaIVA {get;set;}
-		public float MontoIVA {get;set;}
-		public float MontoImpuestosInternos {get;set;}
-		public float VentaNeta {get;set;}
 
-		public string Comando()
+		public int NroRegistro { get; set; }
+
+		public float AlicuotaIVA { get; set; }
+
+		public float MontoIVA { get; set; }
+
+		public float MontoImpuestosInternos { get; set; }
+
+		public float VentaNeta { get; set; }
+
+		public string Comando ()
 		{
 			return cmd;
 		}
+
 		public SendFirstIVA ()
 		{
 		}

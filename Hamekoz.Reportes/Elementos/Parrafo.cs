@@ -27,24 +27,29 @@ namespace Hamekoz.Reportes
 	public class Parrafo : IElemento
 	{
 		Paragraph parrafo;
-		public string Texto {get; set;}
-		public int Indentacion {get; set;}
-		public Alineaciones Alineacion {get; set;}
+
+		public string Texto { get; set; }
+
+		public int Indentacion { get; set; }
+
+		public Alineaciones Alineacion { get; set; }
 
 		private int size = 10;
+
 		public int Size {
-			get {return Size; }
+			get { return Size; }
 			set { size = value; }
 		}
 
-		private IList<string> fragmentos = new List<string>();
+		private IList<string> fragmentos = new List<string> ();
 
-		public void Agregar(string texto)
+		public void Agregar (string texto)
 		{
 			fragmentos.Add (texto);
 		}
 
 		#region IElemento implementation
+
 		public IElement GetElemento ()
 		{
 			Font fuente = FontFactory.GetFont (FontFactory.HELVETICA, size);
@@ -54,13 +59,14 @@ namespace Hamekoz.Reportes
 				parrafo = new Paragraph ("", fuente);
 			}
 			foreach (string fragmento in fragmentos) {
-				parrafo.Add (new Chunk(fragmento));
-				parrafo.Add(" ");
+				parrafo.Add (new Chunk (fragmento));
+				parrafo.Add (" ");
 			}
 			parrafo.Alignment = (int)Alineacion;
 			parrafo.FirstLineIndent = Indentacion * 20;
 			return parrafo;
 		}
+
 		#endregion
 	}
 }

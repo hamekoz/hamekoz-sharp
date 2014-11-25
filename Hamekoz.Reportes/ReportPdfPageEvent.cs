@@ -20,14 +20,15 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
-using iTextSharp.text.pdf;
 using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace Hamekoz.Reportes
 {
-	internal class ReportPdfPageEvent : PdfPageEventHelper
+	public class ReportPdfPageEvent : PdfPageEventHelper
 	{
 		// This is the contentbyte object of the writer
 		PdfContentByte contentByte;
@@ -56,9 +57,7 @@ namespace Hamekoz.Reportes
 
 		#region Properties
 
-		public bool HasHeader{ get; set; }
-
-		public bool HasFooter{ get; set; }
+		public bool HasHeaderAndFooter{ get; set; }
 
 		public bool HasWaterMarkImage{ get; set; }
 
@@ -85,13 +84,6 @@ namespace Hamekoz.Reportes
 			set { headerRight = value; }
 		}
 
-		private string footer = string.Empty;
-
-		public string Footer {
-			get { return footer; }
-			set { footer = value; }
-		}
-
 		private string waterMarkText = string.Empty;
 
 		public string WaterMarkText {
@@ -114,8 +106,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		const string hamekozLogo = "http://www.hamekoz.com.ar/favicon.png";
-		private Image waterMarkImage = Image.GetInstance (hamekozLogo);
+		private Image waterMarkImage = Image.GetInstance (Constants.HamekozLogo);
 
 		public string WaterMarkImagePath {
 			get {
@@ -143,11 +134,8 @@ namespace Hamekoz.Reportes
 
 			contentByte.SetColorStroke (BaseColor.GRAY);
 
-			if (HasHeader) {
+			if (HasHeaderAndFooter) {
 				PrintHeader (writer, document);
-			}
-
-			if (HasFooter) {
 				PrintFooter (writer, document);
 			}
 		}
@@ -197,10 +185,10 @@ namespace Hamekoz.Reportes
 		{
 			//TODO localizar los textos para poder traducirlos
 			string generated = String.Format (
-				"Generado el {0} {1}",
-				printTime.ToShortDateString (),
-				printTime.ToShortTimeString ()
-			);
+				                   "Generado el {0} {1}",
+				                   printTime.ToShortDateString (),
+				                   printTime.ToShortTimeString ()
+			                   );
 
 			//TODO localizar los textos para poder traducirlos
 			String pageof = string.Format ("Página {0} de ", writer.PageNumber);
@@ -220,12 +208,12 @@ namespace Hamekoz.Reportes
 			footerLeftCell.Border = PdfPCell.NO_BORDER;
 			footerTable.AddCell (footerLeftCell);
 
-			PdfPCell footerCenterCell = new PdfPCell (new Phrase (8, footer, font));
+			PdfPCell footerCenterCell = new PdfPCell (new Phrase (8, generated, font));
 			footerCenterCell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
 			footerCenterCell.Border = PdfPCell.NO_BORDER;
 			footerTable.AddCell (footerCenterCell);
 
-			PdfPCell footerRightCell = new PdfPCell (new Phrase (8, generated, font));
+			PdfPCell footerRightCell = new PdfPCell (new Phrase (8, Constants.PoweredBy, font));
 			footerRightCell.Border = PdfPCell.NO_BORDER;
 			footerRightCell.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
 			footerTable.AddCell (footerRightCell);
@@ -279,7 +267,7 @@ namespace Hamekoz.Reportes
 			template.SetFontAndSize (font.BaseFont, font.Size);
 			template.SetColorFill (font.Color);
 			template.SetTextMatrix (0, 0);
-			template.ShowText ((writer.PageNumber - 1).ToString());
+			template.ShowText ((writer.PageNumber - 1).ToString ());
 			template.EndText ();
 		}
 	}

@@ -26,15 +26,24 @@ namespace Hamekoz.Interfaces
 	public interface IAbmController<T>
 	{
 		bool CanEdit { get; }
+
 		bool CanAdd { get; }
+
 		bool CanDelete { get; }
+
 		bool Reload { get; set; }
+
 		IList<T> List { get; }
-		T Get(int id);
-		T Get(T instance);
-		T New();
-		void Save(T instance);
-		void Remove(T instance);
+
+		T Get (int id);
+
+		T Get (T instance);
+
+		T New ();
+
+		void Save (T instance);
+
+		void Remove (T instance);
 	}
 }
 

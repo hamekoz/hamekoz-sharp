@@ -31,12 +31,13 @@ namespace Hamekoz.Interfaces
 		/// Gets the identifier.
 		/// </summary>
 		/// <value>The identifier.</value>
-		int Id { get;}
+		int Id { get; }
+
 		/// <summary>
 		/// Gets the descripcion.
 		/// </summary>
 		/// <value>The descripcion.</value>
-		string Descripcion { get;}
+		string Descripcion { get; }
 	}
 }
 

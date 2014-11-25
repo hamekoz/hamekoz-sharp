@@ -25,12 +25,14 @@ namespace Hamekoz.Hasar
 	public class HistoryCapacity
 	{
 		const string cmd = "7";
-		public int RegistrosUtilizados {get;set;}
 
-		public string Comando()
+		public int RegistrosUtilizados { get; set; }
+
+		public string Comando ()
 		{
 			return cmd;
 		}
+
 		public HistoryCapacity ()
 		{
 		}

@@ -25,17 +25,24 @@ namespace Hamekoz.Hasar
 	public class Subtotal : Comando
 	{
 		const string cmd = "C";
-		public float CantidadItemsVendidos {get;set;}
-		public float MontoVentas {get;set;}
-		public float MontoIVA {get;set;}
-		public float MontoPagado {get;set;}
-		public float MontoImpuestosInternos {get;set;}
+
+		public float CantidadItemsVendidos { get; set; }
+
+		public float MontoVentas { get; set; }
+
+		public float MontoIVA { get; set; }
+
+		public float MontoPagado { get; set; }
+
+		public float MontoImpuestosInternos { get; set; }
+
 		string Impresion;
 
-		public string Comando()
+		public string Comando ()
 		{
-			return string.Format("{0}{1}{2}{1}{3}{1}{4}",cmd,separador,Impresion,0,0);
+			return string.Format ("{0}{1}{2}{1}{3}{1}{4}", cmd, separador, Impresion, 0, 0);
 		}
+
 		public Subtotal (string Impresion)
 		{
 			this.Impresion = Impresion;

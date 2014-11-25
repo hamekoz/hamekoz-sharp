@@ -28,12 +28,14 @@ namespace Hamekoz.Reportes
 	public class Linea : IElemento
 	{
 		#region IElemento implementation
+
 		public IElement GetElemento ()
 		{
-			return new LineSeparator() ;
+			return new LineSeparator ();
 		}
 
 		#endregion
+
 		public Linea ()
 		{
 		}

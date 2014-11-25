@@ -28,9 +28,11 @@ namespace Hamekoz.Reportes
 		{
 		}
 
-		public Object Dato {get; set;}
-		public Alineaciones Alineacion {get; set;}
-        public CeldaEstilos Estilo { get; set; }
+		public Object Dato { get; set; }
+
+		public Alineaciones Alineacion { get; set; }
+
+		public CeldaEstilos Estilo { get; set; }
 	}
 }
 

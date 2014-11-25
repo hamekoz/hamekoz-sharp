@@ -38,8 +38,6 @@ namespace Hamekoz.Reportes
 
 		string Empresa { get; set; }
 
-		string Usuario { get; set; }
-
 		bool Apaisado { get; set; }
 
 		bool HasEncabezadoPieDePagina { get; set; }
@@ -48,7 +46,9 @@ namespace Hamekoz.Reportes
 
 		bool HasAsuntoPrimerPagina { get; set; }
 
-		bool HasMarcaDeAgua { get; set; }
+		string MarcaDeAguaImagenUri { get; set; }
+
+		string MarcaDeAguaTexto { get; set; }
 
 		float MargenSuperior { get; set; }
 

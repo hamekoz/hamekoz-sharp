@@ -25,13 +25,18 @@ namespace Hamekoz.Hasar
 	public class GetConfigurationData
 	{
 		const string cmd = "f";
-		public float LimiteDatos {get;set;}
-		public float LImiteTicket {get;set;}
-		public string Cambio {get;set;}
-		public string Leyendas {get;set;}
-		public string TipoDeCorte {get;set;}
 
-		public string Comando()
+		public float LimiteDatos { get; set; }
+
+		public float LImiteTicket { get; set; }
+
+		public string Cambio { get; set; }
+
+		public string Leyendas { get; set; }
+
+		public string TipoDeCorte { get; set; }
+
+		public string Comando ()
 		{
 			return cmd;
 		}

@@ -29,36 +29,39 @@ namespace Hamekoz.Extensions
 		/// </summary>
 		/// <returns>The words.</returns>
 		/// <param name="number">Number.</param>
-		public static string ToWords(this decimal number)
+		public static string ToWords (this decimal number)
 		{
-			return Numalet.ToCardinal(number);
+			return Numalet.ToCardinal (number);
 		}
+
 		/// <summary>
 		/// Convert int to words.
 		/// </summary>
 		/// <returns>The words.</returns>
 		/// <param name="number">Number.</param>
-		public static string ToWords(this int number)
+		public static string ToWords (this int number)
 		{
-			return Numalet.ToCardinal(number);
+			return Numalet.ToCardinal (number);
 		}
+
 		/// <summary>
 		/// Convert float to words
 		/// </summary>
 		/// <returns>The words.</returns>
 		/// <param name="number">Number.</param>
-		public static string ToWords(this float number)
+		public static string ToWords (this float number)
 		{
-			return Numalet.ToCardinal(number);
+			return Numalet.ToCardinal (number);
 		}
+
 		/// <summary>
 		/// Convert double to words
 		/// </summary>
 		/// <returns>The words.</returns>
 		/// <param name="number">Number.</param>
-		public static string ToWords(this double number)
+		public static string ToWords (this double number)
 		{
-			return Numalet.ToCardinal(number);
+			return Numalet.ToCardinal (number);
 		}
 	}
 }

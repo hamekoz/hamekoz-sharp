@@ -25,13 +25,16 @@ namespace Hamekoz.Hasar
 	public class GetHeaderTrailer : Comando
 	{
 		const string cmd = "^";
-		public string texto {get;set;}
+
+		public string texto { get; set; }
+
 		int NroLineaEncabezamiento;
 
-		public string Comando()
+		public string Comando ()
 		{
-			return string.Format("{0}{1}{2}",cmd,separador,NroLineaEncabezamiento);
+			return string.Format ("{0}{1}{2}", cmd, separador, NroLineaEncabezamiento);
 		}
+
 		public GetHeaderTrailer (int NroLineaEncabezamiento)
 		{
 			this.NroLineaEncabezamiento = NroLineaEncabezamiento;

@@ -25,12 +25,14 @@ namespace Hamekoz.Hasar
 	public class CloseFiscalReceipt : Comando
 	{
 		const string cmd = "E";
-		public int NroComprobanteFiscalEmitido {get;set;}
 
-		public string Comando()
+		public int NroComprobanteFiscalEmitido { get; set; }
+
+		public string Comando ()
 		{
-			return string.Format("{0}",cmd);
+			return string.Format ("{0}", cmd);
 		}
+
 		public CloseFiscalReceipt ()
 		{
 		}

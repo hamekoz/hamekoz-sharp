@@ -22,34 +22,34 @@ using System;
 
 namespace POS.Fiscal
 {
-	
+
 	/// <summary>
 	/// Interface de acceso a comandos para DGI de impresora fiscal
 	/// </summary>
 	public interface IDGI
 	{
 		#region Comandos para uso de la DGI
-		
+
 		/// <summary>
 		/// Procesador de comandos DGI
 		/// </summary>
-		void DGICommandProcessor();
-		
+		void DGICommandProcessor ();
+
 		/// <summary>
 		/// Reporte auditoria DGI por fechas
 		/// </summary>
-		void DGIRequestByDate();
-		
+		void DGIRequestByDate ();
+
 		/// <summary>
 		/// Reporte auditoria DGI por Z
 		/// </summary>
-		void DGIRequestByNumber();
-		
+		void DGIRequestByNumber ();
+
 		/// <summary>
 		/// Comando de baja de controlador fiscal
 		/// </summary>
-		void KillEmprom();
-		
-		#endregion	
+		void KillEmprom ();
+
+		#endregion
 	}
 }

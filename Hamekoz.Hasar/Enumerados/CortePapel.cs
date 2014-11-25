@@ -1,14 +1,20 @@
-
 using System;
 
 namespace POS.Fiscal
 {
-	
-	
 	public enum CortePapel
 	{
-		Completo,// = "F",
-		Parcial,// = "P",
-		NoCorta,// = "N",
+		/// <summary>
+		/// F
+		/// </summary>
+		Completo,
+		/// <summary>
+		/// P
+		/// </summary>
+		Parcial,
+		/// <summary>
+		/// N
+		/// </summary>
+		NoCorta,
 	}
 }

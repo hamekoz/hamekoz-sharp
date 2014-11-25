@@ -24,7 +24,7 @@ namespace Hamekoz.Hasar
 {
 	public class Test
 	{
-		IHasar hasar = new Hasar();
+		IHasar hasar = new Hasar ();
 
 		//hasar.GetConfigurationData();
 		//hasar.GetWorkingMemory();
@@ -69,66 +69,72 @@ namespace Hamekoz.Hasar
 		//Console.WriteLine(hasar.GetInitData().ResponsabilidadIVA);
 		//hasar.OpenDrawer();
 		//hasar.GetPrinterVersion();
-		//hasar.StatusRequest();	
+		//hasar.StatusRequest();
 		//hasar.TotalTender("Cancela Comprobante",100,"C");
 
-		public void CancelaComprobantes(){
-			hasar.Cancel();
+		public void CancelaComprobantes ()
+		{
+			hasar.Cancel ();
 		}
 
-		public void ImprimeFacturaConsumidorFinal(){
-			hasar.OpenFiscalReceipt("T");
-			hasar.PrintFiscalText("IMPRIME TEXTO FISCAL");
-			hasar.PrintLineItem("Rosca de Pascua",2,50,21,"M",0,"T");
-			hasar.PrintLineItem("Postre Chocolate",1,70,21,"M",0,"T");
-			hasar.PrintLineItem("Alfajor Frutilla",3,8,21,"M",0,"T");
-			hasar.LastItemDiscount("descuento ultimo item",5,"m","T");
-			hasar.ReturnRecharge("bonificacion",33,21,"m",0,"T","B");
-			hasar.GeneralDiscount("descuento general",7,"m","T");
-			hasar.TotalTender("Efectivo",300,"T");
-			hasar.CloseFiscalReceipt();
+		public void ImprimeFacturaConsumidorFinal ()
+		{
+			hasar.OpenFiscalReceipt ("T");
+			hasar.PrintFiscalText ("IMPRIME TEXTO FISCAL");
+			hasar.PrintLineItem ("Rosca de Pascua", 2, 50, 21, "M", 0, "T");
+			hasar.PrintLineItem ("Postre Chocolate", 1, 70, 21, "M", 0, "T");
+			hasar.PrintLineItem ("Alfajor Frutilla", 3, 8, 21, "M", 0, "T");
+			hasar.LastItemDiscount ("descuento ultimo item", 5, "m", "T");
+			hasar.ReturnRecharge ("bonificacion", 33, 21, "m", 0, "T", "B");
+			hasar.GeneralDiscount ("descuento general", 7, "m", "T");
+			hasar.TotalTender ("Efectivo", 300, "T");
+			hasar.CloseFiscalReceipt ();
 		}
 
-		public void ImprimeFacturaA(){
-			hasar.CustomerData("Nuevo Cliente","30702383923","I","C","Domicilio 1111");
-			hasar.OpenFiscalReceipt("A");
-			hasar.PrintLineItem("Rosca de Pascua",2,50,21,"M",0,"T");
-			hasar.PrintLineItem("Postre Chocolate",1,70,21,"M",0,"T");
-			hasar.PrintLineItem("Alfajor Frutilla",3,8,21,"M",0,"T");
-			hasar.Perceptions(21,"Percepciones",10);
-			hasar.Subtotal("P");
-			hasar.TotalTender("Efectivo",300,"T");
-			hasar.CloseFiscalReceipt();
+		public void ImprimeFacturaA ()
+		{
+			hasar.CustomerData ("Nuevo Cliente", "30702383923", "I", "C", "Domicilio 1111");
+			hasar.OpenFiscalReceipt ("A");
+			hasar.PrintLineItem ("Rosca de Pascua", 2, 50, 21, "M", 0, "T");
+			hasar.PrintLineItem ("Postre Chocolate", 1, 70, 21, "M", 0, "T");
+			hasar.PrintLineItem ("Alfajor Frutilla", 3, 8, 21, "M", 0, "T");
+			hasar.Perceptions (21, "Percepciones", 10);
+			hasar.Subtotal ("P");
+			hasar.TotalTender ("Efectivo", 300, "T");
+			hasar.CloseFiscalReceipt ();
 		}
 
-		public void ImprimeNCConsumidorFinal(){
-			hasar.CustomerData("Cliente","33333333","C"," ","Domicilio");
-			hasar.SetEmbarkNumber(1,"00001751");
-			hasar.OpenDNFH("S","");
-			hasar.PrintLineItem("Rosca de Pascua",2,50,21,"M",0,"T");
-			hasar.PrintLineItem("Postre Chocolate",1,70,21,"M",0,"T");
-			hasar.PrintLineItem("Alfajor Frutilla",3,8,21,"M",0,"T");
-			hasar.LastItemDiscount("descuento ultimo item",5,"m","T");
-			hasar.ReturnRecharge("bonificacion",33,21,"m",0,"T","B");
-			hasar.GeneralDiscount("descuento general",7,"m","T");
-			hasar.CloseDNFH();
+		public void ImprimeNCConsumidorFinal ()
+		{
+			hasar.CustomerData ("Cliente", "33333333", "C", " ", "Domicilio");
+			hasar.SetEmbarkNumber (1, "00001751");
+			hasar.OpenDNFH ("S", "");
+			hasar.PrintLineItem ("Rosca de Pascua", 2, 50, 21, "M", 0, "T");
+			hasar.PrintLineItem ("Postre Chocolate", 1, 70, 21, "M", 0, "T");
+			hasar.PrintLineItem ("Alfajor Frutilla", 3, 8, 21, "M", 0, "T");
+			hasar.LastItemDiscount ("descuento ultimo item", 5, "m", "T");
+			hasar.ReturnRecharge ("bonificacion", 33, 21, "m", 0, "T", "B");
+			hasar.GeneralDiscount ("descuento general", 7, "m", "T");
+			hasar.CloseDNFH ();
 		}
 
-		public void ImprimeNCA(){
-			hasar.CustomerData("Nuevo Cliente","30702383923","I","C","Domicilio 1111");
-			hasar.SetEmbarkNumber(1,"00000082");
-			hasar.OpenDNFH("R","");
-			hasar.PrintLineItem("Rosca de Pascua",2,50,21,"M",0,"T");
-			hasar.PrintLineItem("Postre Chocolate",1,70,21,"M",0,"T");
-			hasar.PrintLineItem("Alfajor Frutilla",3,8,21,"M",0,"T");
-			hasar.CloseDNFH();
+		public void ImprimeNCA ()
+		{
+			hasar.CustomerData ("Nuevo Cliente", "30702383923", "I", "C", "Domicilio 1111");
+			hasar.SetEmbarkNumber (1, "00000082");
+			hasar.OpenDNFH ("R", "");
+			hasar.PrintLineItem ("Rosca de Pascua", 2, 50, 21, "M", 0, "T");
+			hasar.PrintLineItem ("Postre Chocolate", 1, 70, 21, "M", 0, "T");
+			hasar.PrintLineItem ("Alfajor Frutilla", 3, 8, 21, "M", 0, "T");
+			hasar.CloseDNFH ();
 		}
 
-		public void ImprimeComprobanteNoFiscal(){
-			hasar.OpenNonFiscalRecipt();
-			hasar.PrintNonFiscalText("descripciondescripciondescripciondescripciondescripcion");
-			hasar.PrintNonFiscalText("descripciondescripciondescripciondescripciondescripcion");
-			hasar.CloseNonFiscalReceipt();
+		public void ImprimeComprobanteNoFiscal ()
+		{
+			hasar.OpenNonFiscalRecipt ();
+			hasar.PrintNonFiscalText ("descripciondescripciondescripciondescripciondescripcion");
+			hasar.PrintNonFiscalText ("descripciondescripciondescripciondescripciondescripcion");
+			hasar.CloseNonFiscalReceipt ();
 		}
 
 		public Test ()
@@ -136,4 +142,3 @@ namespace Hamekoz.Hasar
 		}
 	}
 }
-

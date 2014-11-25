@@ -25,10 +25,12 @@ namespace Hamekoz.Hasar
 	public class StatusRequest : Comando
 	{
 		const string cmd = "*";
-		public string NroUltimoTicket {get;set;}
-		public string NroUltimoTicketFacturaA {get;set;}
 
-		public string Comando()
+		public string NroUltimoTicket { get; set; }
+
+		public string NroUltimoTicketFacturaA { get; set; }
+
+		public string Comando ()
 		{
 			return cmd;
 		}

@@ -26,19 +26,22 @@ namespace Hamekoz.Hasar
 	public class OpenDNFH : Comando
 	{
 		const string cmd = "Ç";
-		public int NroDNFHAbierto {get;set;}
+
+		public int NroDNFHAbierto { get; set; }
+
 		string TipoDocumento;
 		//string identificacionNroDocumento;
 
 		//Encoding enc = Encoding.GetEncoding(437);
 		//const string cmd = enc.GetString(new byte[]{128});
 
-		public string Comando()
+		public string Comando ()
 		{
 			//return string.Format("{0}{1}{2}{1}{3}{1}{4}",cmd,separador,TipoDocumento,"S",identificacionNroDocumento);
-			return string.Format("{0}{1}{2}{1}{3}",cmd,separador,TipoDocumento,"T");
+			return string.Format ("{0}{1}{2}{1}{3}", cmd, separador, TipoDocumento, "T");
 		}
-		public OpenDNFH (string TipoDocumento,string identificacionNroDocumento)
+
+		public OpenDNFH (string TipoDocumento, string identificacionNroDocumento)
 		{
 			this.TipoDocumento = TipoDocumento;
 			//this.identificacionNroDocumento = identificacionNroDocumento;

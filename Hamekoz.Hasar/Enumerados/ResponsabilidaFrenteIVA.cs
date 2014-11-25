@@ -1,40 +1,39 @@
-
 using System;
 
 namespace POS.Fiscal
 {
-	
-	
+
+
 	public enum ResponsabilidaFrenteIVA
 	{
 		/// <summary>
-		/// /
+		/// I
 		/// </summary>
-		ResponsableInscripto,// = "I",
-		
+		ResponsableInscripto,
+
 		/// <summary>
-		/// no válido en los modelos SMH/P-715F, SMH/P-PR5F y SMH/P-441F
+		///N. No válido en los modelos SMH/P-715F, SMH/P-PR5F y SMH/P-441F
 		/// </summary>
-		ResponsableNoInscripto,// = "N",
-		
+		ResponsableNoInscripto,
+
 		/// <summary>
-		/// no válido en los modelos SMH/P-715F, SMH/P-PR5F y SMH/P-441F
+		/// E. No válido en los modelos SMH/P-715F, SMH/P-PR5F y SMH/P-441F
 		/// </summary>
-		Exento,// = "E",
-		
+		Exento,
+
 		/// <summary>
-		/// 
+		/// A
 		/// </summary>
-		NoResponsable,// = "A",
-		
+		NoResponsable,
+
 		/// <summary>
-		/// no disponible en el modelo SMH/P-PR4F
+		/// M. No disponible en el modelo SMH/P-PR4F
 		/// </summary>
-		Monotributista,// = "M",
-		
+		Monotributista,
+
 		/// <summary>
-		/// sólo disponible en los modelos SMH/P-715F, SMH/P-PR5F y SMH/P-441F
+		/// S. Sólo disponible en los modelos SMH/P-715F, SMH/P-PR5F y SMH/P-441F
 		/// </summary>
-		MonotributistaSocial,// = "S",
+		MonotributistaSocial,
 	}
 }

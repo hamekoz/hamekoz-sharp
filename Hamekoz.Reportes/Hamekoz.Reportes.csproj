@@ -72,6 +72,7 @@
     <Compile Include="Elementos\Grupo.cs" />
     <Compile Include="Elementos\Parrafo.cs" />
     <Compile Include="ReportPdfPageEvent.cs" />
+    <Compile Include="Constants.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

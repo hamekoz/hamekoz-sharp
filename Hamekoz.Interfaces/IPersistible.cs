@@ -28,6 +28,6 @@ namespace Hamekoz.Interfaces
 		/// Gets the identifier.
 		/// </summary>
 		/// <value>The identifier.</value>
-		int Id { get; set;}
+		int Id { get; set; }
 	}
 }

@@ -25,19 +25,28 @@ namespace Hamekoz.Hasar
 	public class GetInitData : Comando
 	{
 		const string cmd = "s";
-		public double CUIT {get;set;}
-		public string RazonSocial {get;set;}
-		public string NroRegistro {get;set;}
-		public DateTime FechaDeInicializacion {get;set;}
-		public int NroPV {get;set;}
-		public DateTime InicioDeActividades {get;set;}
-		public string NroIngresosBrutos {get;set;}
-		public string ResponsabilidadIVA {get;set;}
 
-		public string Comando()
+		public double CUIT { get; set; }
+
+		public string RazonSocial { get; set; }
+
+		public string NroRegistro { get; set; }
+
+		public DateTime FechaDeInicializacion { get; set; }
+
+		public int NroPV { get; set; }
+
+		public DateTime InicioDeActividades { get; set; }
+
+		public string NroIngresosBrutos { get; set; }
+
+		public string ResponsabilidadIVA { get; set; }
+
+		public string Comando ()
 		{
 			return cmd;
 		}
+
 		public GetInitData ()
 		{
 		}

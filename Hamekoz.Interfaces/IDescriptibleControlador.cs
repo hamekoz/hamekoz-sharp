@@ -32,7 +32,7 @@ namespace Hamekoz.Interfaces
 		/// Gets the descriptibles.
 		/// </summary>
 		/// <value>The descriptibles.</value>
-		IList<IDescriptible> Descriptibles { get;}
+		IList<IDescriptible> Descriptibles { get; }
 	}
 }
 

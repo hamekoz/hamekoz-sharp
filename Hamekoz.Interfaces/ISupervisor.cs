@@ -22,15 +22,15 @@ using System;
 
 namespace Hamekoz.Interfaces
 {
-	public delegate void SaveEventHandler();
+	public delegate void SaveEventHandler ();
 
 	public interface ISupervisor
 	{
 		event SaveEventHandler SaveEvent;
 
-		void RunSaveEvent();
+		void RunSaveEvent ();
 
-		bool WorkInProgress {get; set;}
+		bool WorkInProgress { get; set; }
 	}
 }
 

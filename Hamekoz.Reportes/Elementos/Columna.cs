@@ -28,9 +28,11 @@ namespace Hamekoz.Reportes
 		{
 		}
 
-		public String Nombre {get; set;}
-		public int Ancho {get;set;}
-		public Alineaciones Alineacion {get; set;}
+		public String Nombre { get; set; }
+
+		public int Ancho { get; set; }
+
+		public Alineaciones Alineacion { get; set; }
 	}
 }
 

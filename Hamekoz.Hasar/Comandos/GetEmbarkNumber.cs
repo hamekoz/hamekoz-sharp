@@ -25,13 +25,16 @@ namespace Hamekoz.Hasar
 	public class GetEmbarkNumber : Comando
 	{
 		const string cmd = "ö";
-		public string Texto {get;set;}
+
+		public string Texto { get; set; }
+
 		int nroLinea;
 
-		public string Comando()
+		public string Comando ()
 		{
-			return string.Format("{0}{1}{2}",cmd,separador,nroLinea);
+			return string.Format ("{0}{1}{2}", cmd, separador, nroLinea);
 		}
+
 		public GetEmbarkNumber (int nroLinea)
 		{
 			this.nroLinea = nroLinea;

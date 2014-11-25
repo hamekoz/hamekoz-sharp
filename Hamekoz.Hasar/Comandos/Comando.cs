@@ -24,7 +24,7 @@ namespace Hamekoz.Hasar
 {
 	public abstract class Comando
 	{
-		public string separador = ((char)28).ToString();
+		public string separador = ((char)28).ToString ();
 	}
 }
 

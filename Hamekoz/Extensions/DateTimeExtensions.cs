@@ -30,7 +30,7 @@ namespace Hamekoz.Extensions
 		/// </summary>
 		/// <returns>The number of week.</returns>
 		/// <param name="date">Date.</param>
-		public static int WeekOfYear(this DateTime date)
+		public static int WeekOfYear (this DateTime date)
 		{
 			Calendar calendario = DateTimeFormatInfo.CurrentInfo.Calendar;
 			return calendario.GetWeekOfYear (date, CalendarWeekRule.FirstFullWeek, DayOfWeek.Sunday);
@@ -42,7 +42,7 @@ namespace Hamekoz.Extensions
 		/// <returns>The number of week.</returns>
 		/// <param name="date">Date.</param>
 		/// <param name="firstDay">First day of week.</param>
-		public static int WeekOfYear(this DateTime date, DayOfWeek firstDay)
+		public static int WeekOfYear (this DateTime date, DayOfWeek firstDay)
 		{
 			Calendar calendario = DateTimeFormatInfo.CurrentInfo.Calendar;
 			return calendario.GetWeekOfYear (date, CalendarWeekRule.FirstFullWeek, firstDay);
@@ -55,7 +55,7 @@ namespace Hamekoz.Extensions
 		/// <param name="date">Date.</param>
 		public static DateTime AllDay (this DateTime date)
 		{
-			return date.Date.AddDays(1).AddMilliseconds(-1);
+			return date.Date.AddDays (1).AddMilliseconds (-1);
 		}
 
 		/// <summary>
@@ -63,9 +63,9 @@ namespace Hamekoz.Extensions
 		/// </summary>
 		/// <returns>The first day of month.</returns>
 		/// <param name="date">Date.</param>
-		public static DateTime FirstDayOfMonth(this DateTime date)
+		public static DateTime FirstDayOfMonth (this DateTime date)
 		{
-			return new DateTime(date.Year, date.Month, 1);
+			return new DateTime (date.Year, date.Month, 1);
 		}
 	}
 }

@@ -25,12 +25,14 @@ namespace Hamekoz.Hasar
 	public class CloseDNFH : Comando
 	{
 		const string cmd = "ü";
-		public int NroDNFHEmitido {get;set;}
 
-		public string Comando()
+		public int NroDNFHEmitido { get; set; }
+
+		public string Comando ()
 		{
-			return string.Format("{0}",cmd,separador,NroDNFHEmitido);
+			return string.Format ("{0}", cmd, separador, NroDNFHEmitido);
 		}
+
 		public CloseDNFH ()
 		{
 		}
