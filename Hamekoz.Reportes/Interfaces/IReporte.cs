@@ -50,6 +50,8 @@ namespace Hamekoz.Reportes
 
 		string MarcaDeAguaTexto { get; set; }
 
+		float MarcaDeAguaTransparencia { get; set; }
+
 		float MargenSuperior { get; set; }
 
 		float MargenInferior { get; set; }

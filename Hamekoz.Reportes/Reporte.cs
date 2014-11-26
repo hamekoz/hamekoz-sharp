@@ -124,9 +124,11 @@ namespace Hamekoz.Reportes
 				pageEventHandler.HasWaterMarkText = true;
 				pageEventHandler.WaterMarkText = MarcaDeAguaTexto;
 			}
+
 			if (marcaDeAguaImagenUri != string.Empty) {
 				pageEventHandler.HasWaterMarkImage = true;
 				pageEventHandler.WaterMarkImagePath = MarcaDeAguaImagenUri;
+				pageEventHandler.WaterMarkOpacity = marcaDeAguaTransparencia;
 			}
 
 			pdfWriter.PageEvent = pageEventHandler;
@@ -196,6 +198,17 @@ namespace Hamekoz.Reportes
 			}
 			set {
 				marcaDeAguaTexto = value;
+			}
+		}
+
+		private float marcaDeAguaTransparencia = 0.1F;
+
+		public float MarcaDeAguaTransparencia {
+			get {
+				return marcaDeAguaTransparencia;
+			}
+			set {
+				marcaDeAguaTransparencia = value;
 			}
 		}
 
