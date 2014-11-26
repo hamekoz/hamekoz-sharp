@@ -31,8 +31,6 @@ namespace Hamekoz.Reportes
 {
 	public class Reporte : IReporte
 	{
-		List<IElemento> elementos;
-
 		protected Document document;
 		protected PdfWriter pdfWriter;
 
@@ -43,7 +41,6 @@ namespace Hamekoz.Reportes
 			margenIzquierdo = document.LeftMargin;
 			margenInferior = document.BottomMargin;
 			margenSuperior = document.TopMargin;
-			elementos = new List<IElemento> ();
 		}
 
 		float margenSuperior;
@@ -103,7 +100,6 @@ namespace Hamekoz.Reportes
 				document.SetPageSize (PageSize.A4);
 			}
 
-			//TODO definir bien cuales son las propiedades a asignar
 			ReportPdfPageEvent pageEventHandler = new ReportPdfPageEvent () {
 				HasHeaderAndFooter = HasEncabezadoPieDePagina,
 			};
@@ -143,9 +139,6 @@ namespace Hamekoz.Reportes
 			}
 			if (HasTituloPrimerPagina || HasAsuntoPrimerPagina) {
 				NuevaLineaDivisoria ();
-			}
-			foreach (IElemento elemento in elementos) {
-				document.Add (elemento.GetElemento ());
 			}
 		}
 
@@ -289,18 +282,17 @@ namespace Hamekoz.Reportes
 
 		public void Agregar (IElemento elemento)
 		{
-			elementos.Add (elemento);
+			if (!document.IsOpen ()) {
+				Iniciar ();
+			}
+			document.Add (elemento.GetElemento ());
 		}
 
 		public void Abrir ()
 		{
-			this.Iniciar ();
-
 			document.Close ();
 			System.Diagnostics.Process.Start (FileName);
 		}
-
-		#endregion
 
 		public void NuevaPagina ()
 		{
@@ -315,5 +307,7 @@ namespace Hamekoz.Reportes
 			document.Add (linea);
 			document.Add (new Paragraph (espacio));
 		}
+
+		#endregion
 	}
 }

@@ -62,6 +62,12 @@ namespace Hamekoz.Reportes
 
 		void Agregar (IElemento elemento);
 
+		void Iniciar ();
+
 		void Abrir ();
+
+		void NuevaPagina ();
+
+		void NuevaLineaDivisoria ();
 	}
 }

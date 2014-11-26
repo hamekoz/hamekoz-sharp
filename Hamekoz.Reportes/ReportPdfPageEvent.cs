@@ -113,7 +113,11 @@ namespace Hamekoz.Reportes
 				return waterMarkImage.Url.AbsolutePath;
 			}
 			set {
-				waterMarkImage = Image.GetInstance (value);
+				try {
+					waterMarkImage = Image.GetInstance (value);
+				} catch (InvalidOperationException ex) {
+					Console.WriteLine ("Fallo al obtener el archivo, usando imagen por defecto.\n Detalle: {0}", ex);
+				}
 			}
 		}
 
