@@ -32,7 +32,7 @@ namespace Hamekoz.UI.Gtk
 		/// </summary>
 		/// <param name="tree">Tree.</param>
 		/// <param name="columns">Columns.</param>
-		public static void SetColumns (this TreeView tree, List<string> columns)
+		public static void SetColumns (this TreeView tree, params string[] columns)
 		{
 			int iter = 0;
 			foreach (string column in columns) {
