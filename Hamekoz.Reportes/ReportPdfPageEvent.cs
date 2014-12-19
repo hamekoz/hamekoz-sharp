@@ -106,10 +106,13 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private Image waterMarkImage = Image.GetInstance (Constants.HamekozLogo);
+		private Image waterMarkImage;
 
 		public string WaterMarkImagePath {
 			get {
+				if (waterMarkImage == null) {
+					waterMarkImage = Image.GetInstance (Constants.HamekozLogo);	
+				}
 				return waterMarkImage.Url.AbsolutePath;
 			}
 			set {
@@ -127,16 +130,12 @@ namespace Hamekoz.Reportes
 		{
 			printTime = DateTime.Now;
 			contentByte = writer.DirectContent;
-			contentByte.SetColorStroke (BaseColor.GRAY);
-			contentByte.SetColorFill (BaseColor.GRAY);
 			template = contentByte.CreateTemplate (50, 50);
 		}
 
 		public override void OnStartPage (PdfWriter writer, Document document)
 		{
 			base.OnStartPage (writer, document);
-
-			contentByte.SetColorStroke (BaseColor.GRAY);
 
 			if (HasHeaderAndFooter) {
 				PrintHeader (writer, document);
