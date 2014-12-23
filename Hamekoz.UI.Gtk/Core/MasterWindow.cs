@@ -35,6 +35,15 @@ namespace Hamekoz.UI.Gtk
 
 		string smallIconPath;
 
+		public string WindowTitle {
+			get {
+				return this.Title;
+			}
+			set {
+				this.Title = value;
+			}
+		}
+
 		public string SmallIconPath {
 			get {
 				return smallIconPath;
