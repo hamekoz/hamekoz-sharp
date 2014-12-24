@@ -66,7 +66,7 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Mono.Posix" />
-    <Reference Include="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a" Condition=" '$(Configuration)' != 'Release Win " />
+    <Reference Include="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a" Condition=" '$(Configuration)' != 'Release Win' " />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
