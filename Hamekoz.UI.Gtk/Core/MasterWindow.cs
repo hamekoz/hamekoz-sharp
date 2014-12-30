@@ -132,7 +132,8 @@ namespace Hamekoz.UI.Gtk
 
 		public void RemoveWidget()
 		{
-			vboxWidget.Remove (actualWidget);
+			if (actualWidget != null)
+				vboxWidget.Remove (actualWidget);
 		}
 
 		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
