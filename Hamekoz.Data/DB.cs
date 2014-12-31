@@ -26,6 +26,36 @@ using System.Configuration;
 
 namespace Hamekoz.Data
 {
+    public static class SqlExtension 
+    {
+        public static string SqlClean(this string sql)
+        {
+            //HACK refactoriar para que sea mas eficiente y contemple mas caracteres
+            // eliminamos palabras de un caracter solo
+            if (sql.Length == 1)
+                return null;
+
+            string aux = sql;
+            // eliminamos caracteres que nos puedan estorbar
+            char[] simbolos = new char[7];
+            simbolos.SetValue(',', 0);
+            simbolos.SetValue(';', 1);
+            simbolos.SetValue('.', 2);
+            simbolos.SetValue(':', 3);
+            simbolos.SetValue('"', 4);
+            simbolos.SetValue('\'', 5);
+            simbolos.SetValue(char.Parse("'"), 6);
+
+            for (int i = 0; i < simbolos.Length; i++)
+            {
+                aux = aux.Replace(simbolos[i], ' ');
+            }
+
+            return aux;
+        }
+    }
+
+
     /// <summary>
     /// Data Base access class
     /// </summary>
@@ -354,21 +384,23 @@ namespace Hamekoz.Data
             }
         }
 
+        /// <summary>
+        /// Qwery database with sql string and return a DbDataReader
+        /// </summary>
+        /// <param name="sql">Sql qwery</param>
+        /// <returns>DbDataReader with data</returns>
+        /// <remarks>Must wrap this method with using sentence </remarks>
         public DbDataReader SqlToDbDataReader(string sql)
         {
-            using (DbConnection conexion = factory.CreateConnection())
-            {
-                conexion.ConnectionString = ConnectionString;
-                conexion.Open();
-                using (DbCommand comando = factory.CreateCommand())
-                {
-                    comando.Connection = conexion;
-                    comando.CommandType = CommandType.Text;
-					comando.CommandText = sql;
-                    comando.CommandTimeout = CommandTimeOut;
-                    return comando.ExecuteReader(CommandBehavior.CloseConnection);
-                }
-            }
+            DbConnection conexion = factory.CreateConnection();
+            conexion.ConnectionString = ConnectionString;
+            conexion.Open();
+            DbCommand comando = factory.CreateCommand();
+            comando.Connection = conexion;
+            comando.CommandType = CommandType.Text;
+            comando.CommandText = sql;
+            comando.CommandTimeout = CommandTimeOut;
+            return comando.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
         public object SqlToScalar(string sql)
