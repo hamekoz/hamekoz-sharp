@@ -30,6 +30,8 @@ namespace Hamekoz.UI.Gtk
 	{
 		DialogTreeView treeviewDialog = new DialogTreeView ();
 
+		public event ChangeEventHandler ChangeEvent;
+
 		public int ActualId {
 			get {
 				return treeviewDialog.ActualId;
@@ -57,6 +59,7 @@ namespace Hamekoz.UI.Gtk
 
 			treeviewDialog.ActivatedEvent += delegate(string descripcion, int id) {
 				entry.Text = descripcion;
+				ChangeEvent();
 			};
 
 			button.Clicked += delegate(object sender, EventArgs e) {
