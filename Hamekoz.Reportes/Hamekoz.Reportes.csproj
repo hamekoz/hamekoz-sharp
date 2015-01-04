@@ -7,9 +7,9 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz.Reportes</RootNamespace>
     <AssemblyName>Hamekoz.Reportes</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <newfilesearch>OnLoad</newfilesearch>
     <Description>Ayuda a generar Reportes en PDF</Description>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,7 +52,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="itextsharp">
-      <HintPath>..\..\packages\iTextSharp.5.5.2\lib\itextsharp.dll</HintPath>
+      <HintPath>..\packages\iTextSharp.5.5.2\lib\itextsharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
