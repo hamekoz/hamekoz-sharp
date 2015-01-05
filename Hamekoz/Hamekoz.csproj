@@ -7,7 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz</RootNamespace>
     <AssemblyName>Hamekoz</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

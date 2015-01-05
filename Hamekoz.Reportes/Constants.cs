@@ -38,9 +38,12 @@ namespace Hamekoz.Reportes
 
 		internal static string GeneratedBy {
 			get {
+                Assembly generator = Assembly.GetEntryAssembly();
+                AssemblyTitleAttribute title = ((AssemblyTitleAttribute)Attribute.GetCustomAttribute(generator, typeof(AssemblyTitleAttribute), false));
+
 				return string.Format ("{0} v{1}",
-					Assembly.GetEntryAssembly ().GetName ().Name, 
-					Assembly.GetEntryAssembly ().GetName ().Version.ToString (2)
+					title.Title.Length > 0 ? title.Title : generator.GetName ().Name, 
+					generator.GetName ().Version.ToString (2)
 				);
 			}
 		}
