@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz", "Hamekoz\Hamekoz.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Core", "Hamekoz.Core\Hamekoz.Core.csproj", "{C5A5D712-545F-4088-B6B3-610BB7B61E9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Argentina", "Hamekoz.Argentina\Hamekoz.Argentina.csproj", "{A996E409-1FB5-49C4-94E4-EFB8AB5BE44E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Tests", "Hamekoz.Tests\Hamekoz.Tests.csproj", "{C50E017F-915E-472D-939D-79CA7E3EF557}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,14 @@ Global
 		{A1CEA90B-1A76-47CB-83BE-A1B666B489AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1CEA90B-1A76-47CB-83BE-A1B666B489AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1CEA90B-1A76-47CB-83BE-A1B666B489AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A996E409-1FB5-49C4-94E4-EFB8AB5BE44E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A996E409-1FB5-49C4-94E4-EFB8AB5BE44E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A996E409-1FB5-49C4-94E4-EFB8AB5BE44E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A996E409-1FB5-49C4-94E4-EFB8AB5BE44E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50E017F-915E-472D-939D-79CA7E3EF557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50E017F-915E-472D-939D-79CA7E3EF557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50E017F-915E-472D-939D-79CA7E3EF557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50E017F-915E-472D-939D-79CA7E3EF557}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5A5D712-545F-4088-B6B3-610BB7B61E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5A5D712-545F-4088-B6B3-610BB7B61E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5A5D712-545F-4088-B6B3-610BB7B61E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,7 +71,7 @@ Global
 		{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Hamekoz.Data\Hamekoz.Data.csproj
+		StartupItem = Hamekoz.Tests\Hamekoz.Tests.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None
