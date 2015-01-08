@@ -32,6 +32,8 @@ namespace DatePicker
 	{
 		DialogCalendar calendarDialog = new DialogCalendar ();
 
+		bool FirstClick = false;
+
 		public string CustomFormat { get; set; }
 
 		public bool ButtonsVisible {
@@ -48,8 +50,10 @@ namespace DatePicker
 				return calendarDialog.DefaultDate;
 			}
 			set {
-				calendarDialog.DefaultDate = value;
-				Date = value;
+				if (value != new global::System.DateTime (0)) {
+					calendarDialog.DefaultDate = value;
+					Date = calendarDialog.DefaultDate;
+				}
 			}
 		}
 
@@ -62,10 +66,10 @@ namespace DatePicker
 					return DateTime.Now;
 			}
 			set {
-				//if (Date != value) {
+				if (value != new global::System.DateTime (0)) {
 					string format = GetDateFormat ();
 					entry.Text = value.ToString (format);
-				//}
+				}
 			}
 		}
 
@@ -106,7 +110,13 @@ namespace DatePicker
 
 		void HandleButtonClicked (object sender, EventArgs e)
 		{
-			calendarDialog.Date = Date;
+			if (!FirstClick) {
+				calendarDialog.Date = DateTime.Now;
+				OnFirstClickEvent ();
+				FirstClick = true;
+			} else {
+				calendarDialog.Date = Date;
+			}
 
 			int x, y;
 			this.GdkWindow.GetOrigin(out x, out y);	
@@ -152,6 +162,14 @@ namespace DatePicker
 			if (handler != null)
 				handler (this, EventArgs.Empty);
 		}
+
+		public event Hamekoz.UI.Gtk.ChangeEventHandler FirstClickEvent;
+
+		protected virtual void OnFirstClickEvent ()
+		{
+			var handler = FirstClickEvent;
+			if (handler != null)
+				handler ();
+		}
 	}
 }
-

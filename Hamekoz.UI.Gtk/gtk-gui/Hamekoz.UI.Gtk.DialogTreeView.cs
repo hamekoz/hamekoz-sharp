@@ -28,6 +28,7 @@ namespace Hamekoz.UI.Gtk
 			this.searchabletreeview.HeightRequest = 180;
 			this.searchabletreeview.Events = ((global::Gdk.EventMask)(256));
 			this.searchabletreeview.Name = "searchabletreeview";
+			this.searchabletreeview.ActualId = 0;
 			w1.Add (this.searchabletreeview);
 			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(w1 [this.searchabletreeview]));
 			w2.Position = 0;

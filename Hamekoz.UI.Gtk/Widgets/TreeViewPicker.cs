@@ -32,6 +32,13 @@ namespace Hamekoz.UI.Gtk
 
 		public event ChangeEventHandler ChangeEvent;
 
+		protected virtual void OnChangeEvent ()
+		{
+			var handler = ChangeEvent;
+			if (handler != null)
+				handler ();
+		}
+
 		public int ActualId {
 			get {
 				return treeviewDialog.ActualId;
@@ -59,7 +66,7 @@ namespace Hamekoz.UI.Gtk
 
 			treeviewDialog.ActivatedEvent += delegate(string descripcion, int id) {
 				entry.Text = descripcion;
-				ChangeEvent();
+				OnChangeEvent();
 			};
 
 			button.Clicked += delegate(object sender, EventArgs e) {

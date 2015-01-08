@@ -15,12 +15,9 @@ namespace DatePicker
 			global::Stetic.Gui.Initialize (this);
 			// Widget DatePicker.DialogCalendar
 			this.Name = "DatePicker.DialogCalendar";
-			this.TypeHint = ((global::Gdk.WindowTypeHint)(4));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
-			this.Modal = true;
 			this.Resizable = false;
 			this.Decorated = false;
-			this.DestroyWithParent = true;
 			// Internal child DatePicker.DialogCalendar.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "dialog1_VBox";

@@ -30,6 +30,13 @@ namespace Hamekoz.UI.Gtk
 	{
 		public event DescriptibleEventHandler ActivatedEvent;
 
+		protected virtual void OnActivatedEvent (string descripcion, int id)
+		{
+			var handler = ActivatedEvent;
+			if (handler != null)
+				handler (descripcion, id);
+		}
+
 		public int ActualId {
 			get {
 				return searchabletreeview.ActualId;
@@ -57,12 +64,12 @@ namespace Hamekoz.UI.Gtk
 			};
 
 			this.searchabletreeview.ActivateEvent += delegate {
-				ActivatedEvent(searchabletreeview.ActualString, searchabletreeview.ActualId);
+				OnActivatedEvent(searchabletreeview.ActualString, searchabletreeview.ActualId);
 				Hide();
 			};
 
 			this.FocusOutEvent += delegate(object o, FocusOutEventArgs args) {
-				ActivatedEvent(searchabletreeview.ActualString, searchabletreeview.ActualId);
+				OnActivatedEvent(searchabletreeview.ActualString, searchabletreeview.ActualId);
 				Hide();
 			};
 		}

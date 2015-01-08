@@ -30,7 +30,23 @@ namespace Hamekoz.UI.Gtk
 	{
 		private TreeModelFilter filter; 
 
-		public event  ChangeEventHandler ChangeEvent, ActivateEvent;
+		public event ChangeEventHandler ChangeEvent;
+
+		protected virtual void OnChangeEvent ()
+		{
+			var handler = ChangeEvent;
+			if (handler != null)
+				handler ();
+		}
+
+		public event ChangeEventHandler ActivateEvent;
+
+		protected virtual void OnActivateEvent ()
+		{
+			var handler = ActivateEvent;
+			if (handler != null)
+				handler ();
+		}
 
 		string actualString;
 
@@ -73,7 +89,7 @@ namespace Hamekoz.UI.Gtk
 				treeview.Selection.GetSelected (out iter);
 				actualId = (int)treeview.Model.GetValue (iter, 1);
 				actualString = (string)treeview.Model.GetValue (iter, 0);
-				ChangeEvent();
+				OnChangeEvent();
 			};
 
 			treeview.RowActivated += delegate(object o, RowActivatedArgs args) { 
@@ -81,7 +97,7 @@ namespace Hamekoz.UI.Gtk
 				treeview.Selection.GetSelected (out iter);
 				actualId = (int)treeview.Model.GetValue (iter, 1);
 				actualString = (string)treeview.Model.GetValue (iter, 0);
-				ActivateEvent();
+				OnActivateEvent();
 			};
 		}
 
