@@ -33,7 +33,7 @@
             <property name="MemberName" />
             <property name="WidthRequest">200</property>
             <property name="CanFocus">True</property>
-            <property name="IsEditable">False</property>
+            <property name="IsEditable">True</property>
             <property name="InvisibleChar">●</property>
           </widget>
           <packing>

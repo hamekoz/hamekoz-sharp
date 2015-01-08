@@ -29,7 +29,7 @@ namespace DatePicker
 			this.entry.WidthRequest = 200;
 			this.entry.CanFocus = true;
 			this.entry.Name = "entry";
-			this.entry.IsEditable = false;
+			this.entry.IsEditable = true;
 			this.entry.InvisibleChar = '●';
 			this.hbox1.Add (this.entry);
 			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.entry]));
