@@ -32,7 +32,7 @@ namespace DatePicker
 	{
 		DialogCalendar calendarDialog = new DialogCalendar ();
 
-		bool FirstClick = false;
+		bool FirstDateChange = false;
 
 		public string CustomFormat { get; set; }
 
@@ -101,6 +101,12 @@ namespace DatePicker
 			}
 		}
 
+		public void ClearDate()
+		{
+			FirstDateChange = false;
+			entry.Text = "";
+		}
+
 		string GetDateFormat ()
 		{
 			return string.IsNullOrEmpty (CustomFormat) ?
@@ -110,10 +116,8 @@ namespace DatePicker
 
 		void HandleButtonClicked (object sender, EventArgs e)
 		{
-			if (!FirstClick) {
+			if (!FirstDateChange) {
 				calendarDialog.Date = DateTime.Now;
-				OnFirstClickEvent ();
-				FirstClick = true;
 			} else {
 				calendarDialog.Date = Date;
 			}
@@ -129,6 +133,12 @@ namespace DatePicker
 
 		void HandleCalendarDialogHidden (object sender, EventArgs e)
 		{
+			if (!FirstDateChange) {
+				OnFirstDateChange ();
+				FirstDateChange = true;
+			} else {
+				OnDateChanged ();
+			}
 			Date = calendarDialog.Date;
 			entry.GrabFocus ();
 			entry.Position = entry.Text.Length;
@@ -137,6 +147,7 @@ namespace DatePicker
 		void HandleEntryChanged (object sender, EventArgs e)
 		{
 			OnDateChanged ();
+
 		}
 
 		[GLib.ConnectBefore]
@@ -163,11 +174,11 @@ namespace DatePicker
 				handler (this, EventArgs.Empty);
 		}
 
-		public event Hamekoz.UI.Gtk.ChangeEventHandler FirstClickEvent;
+		public event Hamekoz.UI.Gtk.ChangeEventHandler FirstDateChangeEvent;
 
-		protected virtual void OnFirstClickEvent ()
+		protected virtual void OnFirstDateChange ()
 		{
-			var handler = FirstClickEvent;
+			var handler = FirstDateChangeEvent;
 			if (handler != null)
 				handler ();
 		}
