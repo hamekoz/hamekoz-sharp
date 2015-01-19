@@ -38,6 +38,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DialogItemSelector.cs" />
+    <Compile Include="DialogItemSelector.Designer.cs">
+      <DependentUpon>DialogItemSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Splash.cs">
       <SubType>Form</SubType>
@@ -45,6 +49,10 @@
     <Compile Include="Splash.designer.cs">
       <DependentUpon>Splash.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DialogItemSelector.resx">
+      <DependentUpon>DialogItemSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
