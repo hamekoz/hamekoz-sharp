@@ -135,7 +135,7 @@ namespace Hamekoz.Argentina
 				set;
 			}
 
-			public Letra LetraDelComprobante {
+			public string LetraDelComprobante {
 				get;
 				set;
 			}
@@ -150,6 +150,11 @@ namespace Hamekoz.Argentina
 				set;
 			}
 
+			/// <summary>
+			/// Gets or sets the codigo de norma.
+			/// </summary>
+			/// <value>The codigo de norma.</value>
+			/// <see cref="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
 			public int CodigoDeNorma {
 				get;
 				set;
@@ -170,6 +175,11 @@ namespace Hamekoz.Argentina
 				set;
 			}
 
+			/// <summary>
+			/// Tos the fixed string.
+			/// </summary>
+			/// <returns>The fixed string.</returns>
+			/// <see cref="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
 			public string ToFixedString()
 			{
 				string cadena = string.Format ("{0:D1}{1:D12}{2:d}{3:0000000000000.00}{4}{5:D2}{6}{7:D16}{8:D11}{9:D3}{10:d}{11:0000000000000.00}{12:00.00}"
@@ -201,6 +211,11 @@ namespace Hamekoz.Argentina
 				set;
 			}
 
+			/// <summary>
+			/// Gets or sets the codigo de norma.
+			/// </summary>
+			/// <value>The codigo de norma.</value>
+			/// <see cref="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
 			public int CodigoDeNorma {
 				get;
 				set;
@@ -216,7 +231,7 @@ namespace Hamekoz.Argentina
 				set;
 			}
 
-			public Letra LetraDelComprobante {
+			public string LetraDelComprobante {
 				get;
 				set;
 			}
@@ -311,8 +326,17 @@ namespace Hamekoz.Argentina
 				set;
 			}
 
+			/// <summary>
+			/// Tos the fixed string.
+			/// </summary>
+			/// <returns>The fixed string.</returns>
+			/// <see cref="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
 			public string ToFixedString()
 			{
+				if (MontoSujetoARetencionPercepcion != (MontoDelComprobante - ImporteIVA - ImporteOtrosConceptos)) {
+					throw new Exception (string.Format("El monto sujeto no es correcto.\nRazon Social: {0}\nComprobante: {1}", this.RazonSocialDelRetenido, this.NroDeComprobante));
+				}
+
 				string cadena = string.Format ("{0:D1}{1:D3}{2:d}{3:D2}{4}{5:D16}{6:d}{7:0000000000000.00}{8}{9:D1}{10:D11}{11:D1}{12:D11}{13:D1}{14}{15:0000000000000.00}{16:0000000000000.00}{17:0000000000000.00}{18:00.00}{19:0000000000000.00}{20:0000000000000.00}"
 					, (int)this.Operacion
 					, this.CodigoDeNorma
