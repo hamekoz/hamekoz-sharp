@@ -259,9 +259,9 @@ namespace Hamekoz.UI.Gtk
 		{
 			vboxWidget.Remove (specificWidget);
 			cacheId = searchabletreeview.ActualId;
-			if (!specificWidget.OnNew) {
-				LoadInSpecificWidget ();
-			}
+			//if (!specificWidget.OnNew) {
+			LoadInSpecificWidget ();
+			//}
 			specificWidget.Sensitive = false;
 			vboxWidget.Add (specificWidget);
 			specificWidget.Show ();
@@ -337,12 +337,11 @@ namespace Hamekoz.UI.Gtk
 			if (Supervisor.Instance.WorkInProgress && specificWidget.ObjectInstance) {
 				try {
 					specificWidget.Save (Controller);
+					((Window)this.Toplevel).VentanaMensaje ("Se ha guardado correctamente");
 				} catch (Exception ex) {
-					Console.WriteLine (ex.Message);
+					((Window)this.Toplevel).VentanaError (ex.Message);
 				}
-				//FIXME
 				ClearInSpecificWidget();
-				((Window)this.Toplevel).VentanaMensaje ("Se ha guardado correctamente");
 			}
 		}
 
