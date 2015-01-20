@@ -211,7 +211,6 @@ namespace Hamekoz.UI.Gtk
 			Supervisor.Instance.SaveEvent += HandleSaveEvent;
 
 			searchabletreeview.ChangeEvent += SearchableTreeViewChangeEvent;
-			searchabletreeview.ActivateEvent += SearchableTreeViewActivateEvent;
 
 			buttonAdd.Clicked += ButtonAddClicked;
 			buttonCancel.Clicked += ButtonCancelClicked;
@@ -241,27 +240,18 @@ namespace Hamekoz.UI.Gtk
 				((Window)this.Toplevel).VentanaMensaje ("<b>Hay modificaciones sin guardar</b>\n" +
 					"Debe guardar o cancelar antes de cambiar");
 			} else {
+				specificWidget.OnNew = false;
 				DrawSpecificWidget ();
 			}
-		}
-
-		void SearchableTreeViewActivateEvent ()
-		{
-			/*if (Supervisor.Instance.WorkInProgress) {
-				((Window)this.Toplevel).VentanaMensaje ("<b>Hay modificaciones sin guardar</b>\n" +
-					"Debe guardar o cancelar antes de agregar");
-			} else {
-				DrawSpecificWidget ();
-			}*/
 		}
 
 		void DrawSpecificWidget ()
 		{
 			vboxWidget.Remove (specificWidget);
 			cacheId = searchabletreeview.ActualId;
-			//if (!specificWidget.OnNew) {
-			LoadInSpecificWidget ();
-			//}
+			if (!specificWidget.OnNew) {
+				LoadInSpecificWidget ();
+			}
 			specificWidget.Sensitive = false;
 			vboxWidget.Add (specificWidget);
 			specificWidget.Show ();
@@ -349,18 +339,13 @@ namespace Hamekoz.UI.Gtk
 		{
 			specificWidget.OnNew = false;
 			specificWidget.OnInit = false;
-			#if !DEBUG
 			try {
-			#endif
 				specificWidget.Load ((IPersistible)Controller.Get(cacheId));
 				Supervisor.Instance.WorkInProgress = false;
-			#if !DEBUG
 			} catch (Exception ex) {
-				//FIXME problemas de persistencia. Verificar con paciencia.
 				((Window)this.Toplevel).VentanaError (ex.Message);
 				ClearInSpecificWidget ();
 			}
-			#endif
 		}
 
 		void NewInSpecificWidget ()
