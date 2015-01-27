@@ -119,6 +119,12 @@
     <Compile Include="Helpers\WidgetHelpers.cs" />
     <Compile Include="Helpers\TreeViewPickerHelpers.cs" />
     <Compile Include="Helpers\ListStoreHelpers.cs" />
+    <Compile Include="Widgets\DynamicTreeView.cs" />
+    <Compile Include="Widgets\IDynamicTreeView.cs">
+      <DependentUpon>DynamicTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Widgets\DialogSelectFolder.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogSelectFolder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
