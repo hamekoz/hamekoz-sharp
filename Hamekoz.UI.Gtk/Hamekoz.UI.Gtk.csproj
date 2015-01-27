@@ -118,6 +118,7 @@
     </Compile>
     <Compile Include="Helpers\WidgetHelpers.cs" />
     <Compile Include="Helpers\TreeViewPickerHelpers.cs" />
+    <Compile Include="Helpers\ListStoreHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
