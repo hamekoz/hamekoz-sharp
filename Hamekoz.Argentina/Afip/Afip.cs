@@ -27,16 +27,16 @@ namespace Hamekoz.Argentina.Afip
 {
 	public class Afip
 	{
-		public Afip ()
-		{
+		public static void DescargarPadron(bool conDenominacion){
+			DescargarPadron(conDenominacion, string.Empty);
 		}
 
-		public static void DescargarPadron(bool conDenominacion){
+		public static void DescargarPadron(bool conDenominacion, string destino){
 			string urlBase = "http://www.afip.gob.ar/genericos/cInscripcion/archivos";
 			string archivo = string.Format ("{0}apellidoNombreDenominacion", conDenominacion ? "" : "SIN");
 			string url = string.Format("{0}/{1}.zip", urlBase, archivo);
 			using (WebClient webClient = new WebClient ()) {
-				webClient.DownloadFile (url, string.Format("AFIP-PadronDeCondicionTributaria-{0}-{1:yyyyMMdd}.zip", archivo, DateTime.Now));
+				webClient.DownloadFile (url, string.Format("{0}AFIP-Padron-{1}-{2:yyyyMMdd}.zip", destino, archivo, DateTime.Now));
 			}
 		}
 
@@ -51,7 +51,9 @@ namespace Hamekoz.Argentina.Afip
 				string  linea = reader.ReadLine();
 				try {
 					RegistroPadron registro = new RegistroPadron (linea, denominacion);
-					//HACK cambiar llamda a SP por consulta de texto con posibilidad de agregar denominacion
+					//TODO cambiar SP por consulta de texto plana
+					//TODO controlar la existencia de la tabla en la base de datos.
+					//UNDONE considerar la posibilidad de almacenar la denominacion
 					dbafip.SP("padronTmpActualizar"
 						, "cuit", registro.CUIT
 						, "impGanancias", registro.ImpuestoGanancias
