@@ -64,7 +64,7 @@ namespace Hamekoz.Argentina.Arba
 		}
 
 		public static void DescargarPadron (string usuario, string clave, int año, int mes){
-			DescargarPadron(usuario, clave,año, mes, string.Empty);
+			DescargarPadron(usuario, clave, año, mes, string.Empty);
 		}
 
 		/// <summary>
@@ -73,7 +73,7 @@ namespace Hamekoz.Argentina.Arba
 		/// <see cref="http://www.arba.gov.ar/Informacion/IBrutos/LinksIIBB/RegimenSujeto.asp"/>
 		/// <param name="usuario">Usuario.</param>
 		/// <param name="clave">Clave.</param>
-		public static void DescargarPadronDeIn (string usuario, string clave, int año, int mes, string destino)
+		public static void DescargarPadron (string usuario, string clave, int año, int mes, string destino)
 		{
 			string serverURL = "http://dfe.arba.gov.ar/DomicilioElectronico/SeguridadCliente/dfeServicioDescargaPadron.do";
 			string archivo = "DFEServicioDescargaPadron";
