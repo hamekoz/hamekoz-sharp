@@ -23,15 +23,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Hamekoz.Data;
+using System.Diagnostics;
 
 namespace Hamekoz.Argentina.Agip
 {
 	public class Agip
 	{
-		public Agip ()
-		{
-		}
-
 		public static void Exportar(List<RegistroImportacionRetencionPercepcion> registros, string archivo)
 		{
 			StreamWriter sw = File.CreateText (archivo);
@@ -49,6 +46,16 @@ namespace Hamekoz.Argentina.Agip
 				sw.WriteLine (registro.ToFixedString ());
 			}
 			sw.Close ();
+		}
+
+		public static void DescargarPadronDeContribuyentesDeRiesgoFiscal()
+		{
+			Process.Start ("http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm");
+		}
+
+		public static void DescargarPadronDeContribuyentesConAlicuotasDiferenciales()
+		{
+			Process.Start ("http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html");
 		}
 
 		/// <summary>
