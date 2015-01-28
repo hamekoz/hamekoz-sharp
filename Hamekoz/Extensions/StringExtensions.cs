@@ -19,6 +19,8 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hamekoz.Extensions
 {
@@ -50,5 +52,31 @@ namespace Hamekoz.Extensions
 
 			return result;
 		}
+
+		public static string ToTitleCase(this string value)
+		{
+			string[] spacedWords
+			= ((IEnumerable<char>)value)
+				.Select(c => c == char.ToUpper(c)
+					? " " + c.ToString()
+					: c.ToString()).ToArray();
+
+			return (String.Join("", spacedWords)).Trim();
+		}
+
+		public static string ToHumanize(this string value)
+		{
+			string[] spacedWords
+			= ((IEnumerable<char>)value).Skip(1)
+				.Select(c => c == char.ToUpper(c)
+					? " " + char.ToLower(c).ToString()
+					: c.ToString()).ToArray();
+
+			string result = value.Substring(0, 1)
+				+ (String.Join("", spacedWords)).Trim();
+			result = result.Replace ("  ", " ");
+			return result;
+		}
+
 	}
 }

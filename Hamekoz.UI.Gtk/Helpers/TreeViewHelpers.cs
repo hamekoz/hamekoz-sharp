@@ -22,6 +22,7 @@
 using Gtk;
 using System;
 using System.Collections.Generic;
+using Hamekoz.Extensions;
 
 namespace Hamekoz.UI.Gtk
 {
@@ -37,7 +38,7 @@ namespace Hamekoz.UI.Gtk
 			int iter = 0;
 			foreach (string column in columns) {
 				TreeViewColumn treeColumn = new TreeViewColumn ();
-				treeColumn.Title = column;
+				treeColumn.Title = column.ToHumanize();
 				CellRendererText columnCell = new CellRendererText ();
 				treeColumn.PackStart (columnCell, true);
 				tree.AppendColumn (treeColumn);

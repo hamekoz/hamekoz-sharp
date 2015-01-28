@@ -19,6 +19,8 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Hamekoz.Interfaces;
+using System.Collections.Generic;
 
 namespace Hamekoz.Argentina.Agip
 {
@@ -126,6 +128,25 @@ namespace Hamekoz.Argentina.Agip
 			}
 			return cadena;
 		}
+
+//		public List<string> GetPropertiesToString()
+//		{
+//			List<string> properties = new List<string>();
+//			properties.Add (this.Operacion.ToString ());
+//			properties.Add (this.NroNotaDeCredito.ToString ());
+//			properties.Add (this.FechaNotaDeCredito.ToShortDateString ());
+//			properties.Add (this.MontoNotaDeCredito.ToString ());
+//			properties.Add (this.NroCertificadoPropio.ToString ());
+//			properties.Add (this.TipoDeComprobanteOrigenDeLaRetencion.ToString ());
+//			properties.Add (this.LetraDelComprobante.ToString ());
+//			properties.Add (this.NroDeComprobante.ToString ());
+//			properties.Add (this.NroDeDocumento.ToString ());
+//			properties.Add (this.CodigoDeNorma.ToString ());
+//			properties.Add (this.FechaDeRetencionPercepcion.ToShortDateString ());
+//			properties.Add (this.RetecionPercepcionADeducir.ToString ());
+//			properties.Add (this.Alicuota.ToString ());
+//			return properties;
+//		}
 	}
 }
 

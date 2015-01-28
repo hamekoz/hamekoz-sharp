@@ -56,6 +56,10 @@
       <Project>{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}</Project>
       <Name>Hamekoz.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hamekoz.Interfaces\Hamekoz.Interfaces.csproj">
+      <Project>{A1CEA90B-1A76-47CB-83BE-A1B666B489AF}</Project>
+      <Name>Hamekoz.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

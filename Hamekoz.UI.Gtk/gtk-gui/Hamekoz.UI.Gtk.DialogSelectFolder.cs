@@ -17,6 +17,7 @@ namespace Hamekoz.UI.Gtk
 			this.WidthRequest = 700;
 			this.HeightRequest = 500;
 			this.Name = "Hamekoz.UI.Gtk.DialogSelectFolder";
+			this.Title = global::Mono.Unix.Catalog.GetString ("Guardar");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Internal child Hamekoz.UI.Gtk.DialogSelectFolder.VBox
 			global::Gtk.VBox w1 = this.VBox;

@@ -21,6 +21,7 @@
 
 using Gtk;
 using System;
+using Hamekoz.Interfaces;
 using System.Reflection;
 using System.Collections.Generic;
 
@@ -28,6 +29,7 @@ namespace Hamekoz.UI.Gtk
 {
 	public class DynamicTreeView<T>
 	{
+		List<string> stringList;
 		private ListStore Store;
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DynamicTreeView"/> class.
@@ -38,8 +40,9 @@ namespace Hamekoz.UI.Gtk
 		{
 			Type reflectionClass = typeof(T);
 			PropertyInfo[] properties = reflectionClass.GetProperties ();
-			List<string> stringList = new List<string>();
-			foreach (var property in properties) stringList.Add (property.Name);
+			stringList = new List<string>();
+			foreach (var property in properties)
+				stringList.Add (property.Name);
 			tree.SetColumns (stringList.ToArray());
 			Store = TreeViewHelpers.SetListStore (stringList.Count);
 			tree.Model = Store;
@@ -48,12 +51,17 @@ namespace Hamekoz.UI.Gtk
 		/// Loads the tree, according to a list of instances of the class T.
 		/// </summary>
 		/// <param name="modelClass">Model class.</param>
-		public void LoadByList (List<T> modelClass)
+		public void LoadByList (IEnumerable<T> modelClass)
 		{
-			foreach (IDynamicTreeView item in modelClass) {
-				Store.AppendValues (item.GetProperties().ToArray());
+			foreach (var item in modelClass) {
+				List<string> valores = new List<string> ();
+				foreach (var propertyName in stringList) {
+					valores.Add(item.GetType().GetProperty(propertyName).GetValue(item, null).ToString());
+				}
+				Store.AppendValues(valores.ToArray());
 			}
 		}
+
 		public void Clear ()
 		{
 			Store.Clear ();

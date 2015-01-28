@@ -25,6 +25,12 @@ namespace Hamekoz.UI.Gtk
 {
 	public partial class DialogSelectFolder : Dialog
 	{
+		public string CurrentFolder {
+			get {
+				return filechooserwidget.CurrentFolder;
+			}
+		}
+
 		public DialogSelectFolder ()
 		{
 			this.Build ();

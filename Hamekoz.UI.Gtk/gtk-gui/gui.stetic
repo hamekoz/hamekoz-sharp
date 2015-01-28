@@ -563,6 +563,7 @@
     <property name="MemberName" />
     <property name="WidthRequest">700</property>
     <property name="HeightRequest">500</property>
+    <property name="Title" translatable="yes">Guardar</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
