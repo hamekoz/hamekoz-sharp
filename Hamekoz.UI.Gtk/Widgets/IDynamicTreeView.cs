@@ -1,5 +1,5 @@
 ﻿//
-//  ListStoreHelpers.cs
+//  IDynamicTreeView.cs
 //
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
@@ -25,44 +25,13 @@ using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
-	public static class ListStoreHelpers
+	public interface IDynamicTreeView
 	{
-		public static bool SearchIntAtPosition (this ListStore list, int value, int position) {
-			TreeIter iter;
-			bool state = false;
-
-			if (list.GetIterFirst (out iter)) {
-				do {
-					int current = (int)list.GetValue (iter, position);
-
-					if (current == value) {
-						state = true;
-						break;
-					}
-				} while (list.IterNext (ref iter));
-			}
-
-			return state;
-		}
-
-		public static bool SearchIntAtPosition (this ListStore list, int value, int position, out TreeIter outIter) {
-			TreeIter iter;
-			bool state = false;
-
-			if (list.GetIterFirst (out iter)) {
-				do {
-					int current = (int)list.GetValue (iter, position);
-
-					if (current == value) {
-						state = true;
-						break;
-					}
-				} while (list.IterNext (ref iter));
-			}
-
-			outIter = iter;
-			return state;
-		}
+		/// <summary>
+		/// Return a List of all strings for show in the dynamic TreeView.
+		/// </summary>
+		/// <returns>List of properties values, in string format.</returns>
+		List<string> GetProperties();
 	}
 }
 
