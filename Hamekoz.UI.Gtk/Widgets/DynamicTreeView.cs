@@ -53,6 +53,7 @@ namespace Hamekoz.UI.Gtk
 		/// <param name="modelClass">Model class.</param>
 		public void LoadByList (IEnumerable<T> modelClass)
 		{
+			Store.Clear ();
 			foreach (var item in modelClass) {
 				List<string> valores = new List<string> ();
 				foreach (var propertyName in stringList) {
