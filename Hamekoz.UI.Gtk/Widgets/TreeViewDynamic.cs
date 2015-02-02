@@ -24,15 +24,91 @@ using System;
 using Hamekoz.Interfaces;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hamekoz.UI.Gtk
 {
+	public delegate void ObjectHandler(object obj);
+
 	[System.ComponentModel.ToolboxItem (true)]
 	public partial class TreeViewDynamic : Bin
 	{
+		private List<string> stringList;
+		private ListStore store;
+
+		private object currentObject;
+
+		public object CurrentObject {
+			get {
+				return currentObject;
+			}
+		}
+
+		public event ObjectHandler EventCursorChanged;
+
+		protected virtual void OnEventCursorChanged (object obj)
+		{
+			var handler = EventCursorChanged;
+			if (handler != null)
+				handler (obj);
+		}
+
+		private Type classType;
+
+		public Type ClassType {
+			get {
+				return classType;
+			}
+			set {
+				classType = value;
+				foreach (TreeViewColumn col in treeview.Columns) {
+					treeview.RemoveColumn (col);
+				} 
+				PropertyInfo[] properties = classType.GetProperties ();
+				stringList = new List<string>();
+				foreach (var property in properties)
+					stringList.Add (property.Name);
+				treeview.SetColumns (stringList.ToArray());
+				store = TreeViewHelpers.SetListStore (stringList.Count);
+				treeview.Model = store;
+			}
+		}
+
+		List<object> model;
+
+		public List<object> Model {
+			get {
+				return model;
+			}
+		}
+
+		public void SetList<T>(IList<T> modelClass)
+		{
+			ClassType = typeof(T);
+			model = modelClass.Cast<object>().ToList();
+			store.Clear ();
+			foreach (var item in modelClass) {
+				List<string> valores = new List<string> ();
+				foreach (var propertyName in stringList) {
+					valores.Add(item.GetType().GetProperty(propertyName).GetValue(item, null).ToString());
+				}
+				store.AppendValues(valores.ToArray());
+			}
+		}
+
 		public TreeViewDynamic ()
 		{
 			this.Build ();
+
+			treeview.CursorChanged += delegate {
+				int index;
+				TreeIter treeIter;
+				TreeModel treeModel;
+				treeview.Selection.GetSelected (out treeModel, out treeIter);
+				index = treeModel.GetPath(treeIter).Indices[0];
+				currentObject = model[index];
+				OnEventCursorChanged(model[index]);
+			};
 		}
 	}
 }
