@@ -43,4 +43,12 @@
       </itemgroup>
     </signals>
   </object>
+  <object type="Hamekoz.UI.Gtk.TreeViewDynamic" palette-category="General" allow-children="false" base-type="Gtk.Bin">
+    <itemgroups />
+    <signals>
+      <itemgroup label="TreeViewDynamic Signals">
+        <signal name="EventCursorChanged" />
+      </itemgroup>
+    </signals>
+  </object>
 </objects>

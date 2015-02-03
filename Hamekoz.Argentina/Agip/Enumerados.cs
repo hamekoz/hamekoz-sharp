@@ -22,8 +22,8 @@ namespace Hamekoz.Argentina.Agip
 {
 	public enum TipoDeOperacion
 	{
-		Percepcion = 1,
-		Retencion = 2,
+		Retencion = 1,
+		Percepcion = 2,
 	}
 
 	public enum TipoDeComprobante
