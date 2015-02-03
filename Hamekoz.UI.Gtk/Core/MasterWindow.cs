@@ -122,6 +122,10 @@ namespace Hamekoz.UI.Gtk
 			};
 		}
 
+		/// <summary>
+		/// Adds a widget to the Window.
+		/// </summary>
+		/// <param name="widget">Widget.</param>
 		public void AddWidget(Widget widget)
 		{
 			RemoveWidget ();
@@ -130,6 +134,9 @@ namespace Hamekoz.UI.Gtk
 			actualWidget.Show ();
 		}
 
+		/// <summary>
+		/// Removes the widget in the Window.
+		/// </summary>
 		public void RemoveWidget()
 		{
 			if (actualWidget != null)
