@@ -26,7 +26,7 @@ namespace Hamekoz.UI.Gtk
 {
 	public delegate void DescriptibleEventHandler(string descripcion, int id);
 
-	public partial class DialogTreeView : Dialog
+	public partial class TreeViewDialog : Dialog
 	{
 		public event DescriptibleEventHandler ActivatedEvent;
 
@@ -55,7 +55,7 @@ namespace Hamekoz.UI.Gtk
 			}
 		}
 
-		public DialogTreeView ()
+		public TreeViewDialog ()
 		{
 			Build ();
 

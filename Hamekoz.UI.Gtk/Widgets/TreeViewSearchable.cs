@@ -25,6 +25,9 @@ using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
+	public delegate void ChangeIdEventHandler(int id);
+	public delegate void ChangeEventHandler();
+
 	[System.ComponentModel.ToolboxItem (true)]
 	public partial class SearchableTreeView : Bin
 	{
@@ -101,6 +104,10 @@ namespace Hamekoz.UI.Gtk
 			};
 		}
 
+		/// <summary>
+		/// Loads the list.
+		/// </summary>
+		/// <param name="liststore">Liststore.</param>
 		public void LoadList (ListStore liststore)
 		{
 			filter = new TreeModelFilter (liststore, null);

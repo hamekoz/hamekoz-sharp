@@ -28,7 +28,7 @@ namespace Hamekoz.UI.Gtk
 	[System.ComponentModel.ToolboxItem (true)]
 	public partial class TreeViewPicker : Bin
 	{
-		DialogTreeView treeviewDialog = new DialogTreeView ();
+		TreeViewDialog treeviewDialog = new TreeViewDialog ();
 
 		public event ChangeEventHandler ChangeEvent;
 
@@ -80,6 +80,10 @@ namespace Hamekoz.UI.Gtk
 			};
 		}
 
+		/// <summary>
+		/// Loads the list.
+		/// </summary>
+		/// <param name="liststore">Liststore.</param>
 		public void LoadList (ListStore liststore)
 		{
 			this.treeviewDialog.LoadList (liststore);
