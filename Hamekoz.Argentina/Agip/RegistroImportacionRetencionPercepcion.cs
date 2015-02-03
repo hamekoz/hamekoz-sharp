@@ -148,6 +148,21 @@ namespace Hamekoz.Argentina.Agip
 			set;
 		}
 
+		string domicilio = string.Empty;
+		/// <summary>
+		/// Gets or sets the domicilio.
+		/// Opcional para completar los datos del certificado de retencion
+		/// </summary>
+		/// <value>The domicilio.</value>
+		public string Domicilio {
+			get {
+				return domicilio;
+			}
+			set {
+				domicilio = value;
+			}
+		}
+
 		/// <summary>
 		/// Tos the fixed string.
 		/// </summary>
