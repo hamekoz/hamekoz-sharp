@@ -115,11 +115,20 @@
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogSelectFolder.cs" />
     <Compile Include="Widgets\TreeViewDynamic.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.TreeViewDynamic.cs" />
-    <Compile Include="Widgets\TreeViewSearchable.cs" />
     <Compile Include="Widgets\TreeViewDialog.cs">
       <DependentUpon>TreeViewPicker.cs</DependentUpon>
     </Compile>
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.TreeViewDialog.cs" />
+    <Compile Include="Widgets\SearchableTreeView.cs" />
+    <Compile Include="Widgets\WidgetCheckbox.cs" />
+    <Compile Include="Widgets\WidgetFromAndToDate.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.WidgetFromAndToDate.cs" />
+    <Compile Include="Widgets\WidgetDate.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.WidgetDate.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.WidgetDetallado.cs" />
+    <Compile Include="GenericWidgets\GenericSearchableAndAll.cs" />
+    <Compile Include="GenericWidgets\GenericTreeViewPickerAndAll.cs" />
+    <Compile Include="GenericWidgets\GenericTreeViewPicker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -136,5 +145,6 @@
     <Folder Include="Widgets\" />
     <Folder Include="Helpers\" />
     <Folder Include="Core\" />
+    <Folder Include="GenericWidgets\" />
   </ItemGroup>
 </Project>

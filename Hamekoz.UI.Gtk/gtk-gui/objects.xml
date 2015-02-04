@@ -51,4 +51,46 @@
       </itemgroup>
     </signals>
   </object>
+  <object type="Hamekoz.UI.Gtk.WidgetFromAndToDate" palette-category="General" allow-children="false" base-type="Gtk.Bin">
+    <itemgroups>
+      <itemgroup label="WidgetFromAndToDate Properties">
+        <property name="Desde" />
+        <property name="Hasta" />
+        <property name="LabelFrom" />
+        <property name="LabelTo" />
+      </itemgroup>
+    </itemgroups>
+    <signals>
+      <itemgroup label="WidgetFromAndToDate Signals">
+        <signal name="ChangeFrom" />
+        <signal name="ChangeTo" />
+      </itemgroup>
+    </signals>
+  </object>
+  <object type="Hamekoz.UI.Gtk.WidgetDate" palette-category="General" allow-children="false" base-type="Gtk.Bin">
+    <itemgroups>
+      <itemgroup label="WidgetDate Properties">
+        <property name="Date" />
+        <property name="Label" />
+      </itemgroup>
+    </itemgroups>
+    <signals>
+      <itemgroup label="WidgetDate Signals">
+        <signal name="ChangeDate" />
+      </itemgroup>
+    </signals>
+  </object>
+  <object type="Hamekoz.UI.Gtk.WidgetDetallado" palette-category="General" allow-children="false" base-type="Gtk.Bin">
+    <itemgroups>
+      <itemgroup label="WidgetDetallado Properties">
+        <property name="Estado" />
+        <property name="Label" />
+      </itemgroup>
+    </itemgroups>
+    <signals>
+      <itemgroup label="WidgetDetallado Signals">
+        <signal name="ChangeState" />
+      </itemgroup>
+    </signals>
+  </object>
 </objects>

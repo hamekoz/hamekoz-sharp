@@ -54,8 +54,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="itextsharp">
-      <HintPath>..\packages\iTextSharp.5.5.2\lib\itextsharp.dll</HintPath>
-      <Package>/media/galileo/git/libs/itextsharp.dll</Package>
+      <HintPath>..\..\packages\iTextSharp.5.5.4\lib\itextsharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
