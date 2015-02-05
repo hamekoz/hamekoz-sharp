@@ -146,6 +146,15 @@ namespace Hamekoz.UI.Gtk
 		}
 		#endregion
 
+		public bool CheckVisibility {
+			get {
+				return checkbutton.Visible;
+			}
+			set {
+				checkbutton.Visible = value;
+			}
+		}
+
 		public string LabelAll {
 			get {
 				return checkbutton.Label;
