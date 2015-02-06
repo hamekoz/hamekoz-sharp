@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6201BB5D-2825-4E51-B610-1230C5585362}</ProjectGuid>
+    <ProjectGuid>{CB676913-ACEE-45EF-AC60-F6BBB1D50B79}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Hamekoz</RootNamespace>
-    <AssemblyName>Hamekoz</AssemblyName>
+    <RootNamespace>Hamekoz.Gestion</RootNamespace>
+    <AssemblyName>Hamekoz.Gestion</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -19,7 +19,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -28,11 +28,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cliente.cs" />
+    <Compile Include="Comprobante.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Articulo.cs">
+      <DependentUpon>Item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Proveedor.cs" />
+    <Compile Include="Rubro.cs" />
+    <Compile Include="Enums\Estados.cs" />
+    <Compile Include="Enums\Medidas.cs" />
+    <Compile Include="Enums\Sexos.cs" />
+    <Compile Include="Enums\TiposControladorFiscal.cs" />
+    <Compile Include="Enums\TiposResposableAFIP.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
+      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
+      <Name>Hamekoz.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

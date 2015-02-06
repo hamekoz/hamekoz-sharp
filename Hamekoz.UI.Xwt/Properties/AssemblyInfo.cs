@@ -2,7 +2,7 @@
 //  AssemblyInfo.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Claudio Rodrigo Pereyra Diaz <rodrigo@hamekoz.com.ar>
 //
 //  Copyright (c) 2015 Hamekoz
 //
@@ -24,20 +24,20 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle ("Hamekoz.Tests")]
-[assembly: AssemblyDescription ("")]
-[assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Hamekoz")]
-[assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("Hamekoz")]
-[assembly: AssemblyTrademark ("Hamekoz")]
-[assembly: AssemblyCulture ("")]
+[assembly: AssemblyTitle("Hamekoz.UI.Xwt")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("Hamekoz")]
+[assembly: AssemblyProduct("")]
+[assembly: AssemblyCopyright("Hamekoz")]
+[assembly: AssemblyTrademark("Hamekoz")]
+[assembly: AssemblyCulture("")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,
 // and "{Major}.{Minor}.{Build}.*" will update just the revision.
 
-[assembly: AssemblyVersion ("1.0.*")]
+[assembly: AssemblyVersion("1.0.*")]
 
 // The following attributes are used to specify the signing key for the assembly,
 // if desired. See the Mono documentation for more information about signing.

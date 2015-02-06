@@ -1,8 +1,8 @@
 ﻿//
-//  Program.cs
+//  Test.cs
 //
 //  Author:
-//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Claudio Rodrigo Pereyra Diaz <rodrigo@hamekoz.com.ar>
 //
 //  Copyright (c) 2015 Hamekoz
 //
@@ -18,15 +18,18 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using NUnit.Framework;
 using System;
 
 namespace Hamekoz.Tests
 {
-	class MainClass
-	{
-		public static void Main (string[] args)
-		{
-			Console.WriteLine ("Hello World!");
-		}
-	}
+    [TestFixture()]
+    public class Test
+    {
+        [Test()]
+        public void TestCase()
+        {
+        }
+    }
 }
+

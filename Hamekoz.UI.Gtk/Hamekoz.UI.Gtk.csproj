@@ -7,8 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz.UI.Gtk</RootNamespace>
     <AssemblyName>Hamekoz.UI.Gtk</AssemblyName>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -132,13 +130,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Hamekoz.Interfaces\Hamekoz.Interfaces.csproj">
-      <Project>{A1CEA90B-1A76-47CB-83BE-A1B666B489AF}</Project>
-      <Name>Hamekoz.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hamekoz\Hamekoz.csproj">
-      <Project>{6201BB5D-2825-4E51-B610-1230C5585362}</Project>
-      <Name>Hamekoz</Name>
+    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
+      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
+      <Name>Hamekoz.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
