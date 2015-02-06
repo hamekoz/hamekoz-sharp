@@ -25,9 +25,9 @@ namespace Hamekoz.Interfaces
 {
 	public interface IAbmController<T>
 	{
-		bool CanEdit { get; }
-
 		bool CanAdd { get; }
+
+		bool CanEdit { get; }
 
 		bool CanDelete { get; }
 
