@@ -8,15 +8,6 @@
     <widget-library name="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a" />
     <widget-library name="../bin/Debug/Hamekoz.UI.Gtk.dll" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
-    <property name="MemberName" />
-    <property name="Title" translatable="yes">MainWindow</property>
-    <property name="WindowPosition">CenterOnParent</property>
-    <signal name="DeleteEvent" handler="OnDeleteEvent" />
-    <child>
-      <placeholder />
-    </child>
-  </widget>
   <widget class="Gtk.Bin" id="DatePicker.DatePicker" design-size="200 27">
     <property name="MemberName" />
     <property name="WidthRequest">200</property>
