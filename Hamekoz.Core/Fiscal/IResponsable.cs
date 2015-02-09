@@ -25,12 +25,12 @@ namespace Hamekoz.Fiscal
 {
 	public interface IResponsable
 	{
-		string CUIT { get; set; }
+		string CUIT { get; }
 
-		string RazonSocial { get; set; }
+		string RazonSocial { get; }
 
-		string Domicilio { get; set; }
+		string Domicilio { get; }
 
-		SituacionIVA CondicionDeIVA { get; set; }
+		SituacionIVA CondicionDeIVA { get; }
 	}
 }

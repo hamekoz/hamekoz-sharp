@@ -25,17 +25,17 @@ namespace Hamekoz.Fiscal
 {
 	public interface IItem
 	{
-		string Descripcion { get; set; }
+		string Descripcion { get; }
 
-		string DescripcionCorta { get; set; }
+		string DescripcionCorta { get; }
 
-		int Cantidad { get; set; }
+		double Cantidad { get; }
 
-		double Precio { get; set; }
+		double Precio { get; }
 
-		double IVA { get; set; }
+		double IVA { get; }
 
-		double Impuestos { get; set; }
+		double Impuestos { get; }
 
 		double Total { get; }
 	}
