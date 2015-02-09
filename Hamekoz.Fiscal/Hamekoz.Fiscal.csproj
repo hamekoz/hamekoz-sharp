@@ -1,13 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}</ProjectGuid>
+    <ProjectGuid>{E773C3F7-FCB9-496E-871E-E0EA20E880EF}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Hamekoz.Data</RootNamespace>
-    <AssemblyName>Hamekoz.Data</AssemblyName>
-    <newfilesearch>OnLoad</newfilesearch>
+    <RootNamespace>Hamekoz.Fiscal</RootNamespace>
+    <AssemblyName>Hamekoz.Fiscal</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,7 +19,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -29,18 +28,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DB.cs" />
-    <Compile Include="DataSetExtension.cs" />
+    <Compile Include="TiposDeResposableAFIP.cs" />
+    <Compile Include="TiposDeControladorFiscal.cs" />
+    <Compile Include="FiscalHasar.cs" />
+    <Compile Include="IFiscalHasar.cs" />
+    <Compile Include="Fiscal\IComprobante.cs" />
+    <Compile Include="Fiscal\IComprobanteElectronico.cs" />
+    <Compile Include="Fiscal\IItem.cs" />
+    <Compile Include="Fiscal\IResponsable.cs" />
+    <Compile Include="Fiscal\IZeta.cs" />
+    <Compile Include="Fiscal\SituacionIVA.cs" />
+    <Compile Include="Fiscal\TipoControladorFiscal.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <None Include="README.md" />
-  </ItemGroup>
 </Project>

@@ -1,9 +1,8 @@
 ﻿//
-//  IAbmController.cs
+//  TiposDeResposableAFIP.cs
 //
 //  Author:
-//      Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
-//		Emiliano Canedo <emilianocanedo@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <rodrigo@hamekoz.com.ar>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -20,31 +19,24 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Fiscal
 {
-	public interface IAbmController<T>
+	public enum TiposDeResposableAFIP
 	{
-		bool CanAdd { get; }
-
-		bool CanEdit { get; }
-
-		bool CanDelete { get; }
-
-		bool Reload { get; set; }
-
-		IList<T> List { get; }
-
-		T Get (int id);
-
-		T Get (T instance);
-
-		T New ();
-
-		void Save (T instance);
-
-		void Remove (T instance);
+		ResponsableInscripto = 1,
+		ResponsableNoInscripto = 2,
+		NoResponsable = 3,
+		SujetoExento = 4,
+		ConsumidorFinal = 5,
+		ResponsableMonotributo = 6,
+		SujetoNoCategorizado = 7,
+		ProveedorDelExterior = 8,
+		ClienteDelExterior = 9,
+		LiberadoLeyNro19640 = 10,
+		ResponsableInscriptoAgenteDePercepción = 11,
+		PequeñoContribuyenteEventual = 12,
+		MonotributistaSocial = 13,
+		PequeñoContribuyenteEventualSocial = 14,
 	}
 }
-

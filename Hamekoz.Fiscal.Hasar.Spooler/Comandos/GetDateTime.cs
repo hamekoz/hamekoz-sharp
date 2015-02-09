@@ -1,9 +1,8 @@
 ﻿//
-//  IAbmController.cs
+//  GetDateTime.cs
 //
 //  Author:
-//      Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
-//		Emiliano Canedo <emilianocanedo@gmail.com>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -20,31 +19,23 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public interface IAbmController<T>
+	public class GetDateTime : Comando
 	{
-		bool CanAdd { get; }
+		const string cmd = "Y";
 
-		bool CanEdit { get; }
+		public DateTime FechaHora { get; set; }
 
-		bool CanDelete { get; }
+		public string Comando ()
+		{
+			return cmd;
+		}
 
-		bool Reload { get; set; }
-
-		IList<T> List { get; }
-
-		T Get (int id);
-
-		T Get (T instance);
-
-		T New ();
-
-		void Save (T instance);
-
-		void Remove (T instance);
+		public GetDateTime ()
+		{
+		}
 	}
 }
 

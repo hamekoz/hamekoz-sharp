@@ -1,9 +1,8 @@
 ﻿//
-//  IAbmController.cs
+//  GetHeaderTrailer.cs
 //
 //  Author:
-//      Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
-//		Emiliano Canedo <emilianocanedo@gmail.com>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -20,31 +19,26 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public interface IAbmController<T>
+	public class GetHeaderTrailer : Comando
 	{
-		bool CanAdd { get; }
+		const string cmd = "^";
 
-		bool CanEdit { get; }
+		public string texto { get; set; }
 
-		bool CanDelete { get; }
+		int NroLineaEncabezamiento;
 
-		bool Reload { get; set; }
+		public string Comando ()
+		{
+			return string.Format ("{0}{1}{2}", cmd, separador, NroLineaEncabezamiento);
+		}
 
-		IList<T> List { get; }
-
-		T Get (int id);
-
-		T Get (T instance);
-
-		T New ();
-
-		void Save (T instance);
-
-		void Remove (T instance);
+		public GetHeaderTrailer (int NroLineaEncabezamiento)
+		{
+			this.NroLineaEncabezamiento = NroLineaEncabezamiento;
+		}
 	}
 }
 

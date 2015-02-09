@@ -1,9 +1,8 @@
 ﻿//
-//  IAbmController.cs
+//  TiposDeControladorFiscal.cs
 //
 //  Author:
-//      Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
-//		Emiliano Canedo <emilianocanedo@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <rodrigo@hamekoz.com.ar>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -20,31 +19,16 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Fiscal
 {
-	public interface IAbmController<T>
+	public enum TiposDeControladorFiscal
 	{
-		bool CanAdd { get; }
-
-		bool CanEdit { get; }
-
-		bool CanDelete { get; }
-
-		bool Reload { get; set; }
-
-		IList<T> List { get; }
-
-		T Get (int id);
-
-		T Get (T instance);
-
-		T New ();
-
-		void Save (T instance);
-
-		void Remove (T instance);
+		SinDato = 0,
+		ImpresoraFiscal = 1,
+		CajaRegistradora = 2,
+		FormularioPreImpreso = 3,
+		Talonario = 4,
+		FacturaDigital = 5,
 	}
 }
-

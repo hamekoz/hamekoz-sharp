@@ -1,5 +1,5 @@
-//
-//  DialogItemSelector.cs
+﻿//
+//  SituacionIVA.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -20,40 +20,16 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Windows.Forms;
 
-namespace Hamekoz.UI.WinForm
+//Mapeado con el PADRON Afip
+namespace Hamekoz.Fiscal
 {
-	public partial class DialogItemSelector : Form
+	public enum SituacionIVA
 	{
-		public DialogItemSelector ()
-		{
-			InitializeComponent ();
-		}
-
-		public object Item {
-			get { return combo.SelectedItem; }
-		}
-
-		public ComboBox ComboBox {
-			get { return combo; }
-		}
-
-		private void btnCancelar_Click (object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Close ();
-		}
-
-		private void btnAceptar_Click (object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.OK;
-			this.Close ();
-		}
-
-		private void DialogItemSelector_Load (object sender, EventArgs e)
-		{
-			this.combo.Focus ();
-		}
+		SIN_DATO = 0,
+		CONSUMIDOR_FINAL = 1,
+		MONOTRIBUTO = 2,
+		RESPONSABLE_INSCRIPTO = 3,
+		EXENTO = 4
 	}
 }

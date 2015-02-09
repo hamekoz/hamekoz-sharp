@@ -1,9 +1,8 @@
 ﻿//
-//  IAbmController.cs
+//  GetConfigurationData.cs
 //
 //  Author:
-//      Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
-//		Emiliano Canedo <emilianocanedo@gmail.com>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -20,31 +19,31 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public interface IAbmController<T>
+	public class GetConfigurationData
 	{
-		bool CanAdd { get; }
+		const string cmd = "f";
 
-		bool CanEdit { get; }
+		public float LimiteDatos { get; set; }
 
-		bool CanDelete { get; }
+		public float LImiteTicket { get; set; }
 
-		bool Reload { get; set; }
+		public string Cambio { get; set; }
 
-		IList<T> List { get; }
+		public string Leyendas { get; set; }
 
-		T Get (int id);
+		public string TipoDeCorte { get; set; }
 
-		T Get (T instance);
+		public string Comando ()
+		{
+			return cmd;
+		}
 
-		T New ();
-
-		void Save (T instance);
-
-		void Remove (T instance);
+		public GetConfigurationData ()
+		{
+		}
 	}
 }
 

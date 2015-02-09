@@ -1,9 +1,8 @@
 ﻿//
-//  IAbmController.cs
+//  Subtotal.cs
 //
 //  Author:
-//      Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
-//		Emiliano Canedo <emilianocanedo@gmail.com>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -20,31 +19,34 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public interface IAbmController<T>
+	public class Subtotal : Comando
 	{
-		bool CanAdd { get; }
+		const string cmd = "C";
 
-		bool CanEdit { get; }
+		public float CantidadItemsVendidos { get; set; }
 
-		bool CanDelete { get; }
+		public float MontoVentas { get; set; }
 
-		bool Reload { get; set; }
+		public float MontoIVA { get; set; }
 
-		IList<T> List { get; }
+		public float MontoPagado { get; set; }
 
-		T Get (int id);
+		public float MontoImpuestosInternos { get; set; }
 
-		T Get (T instance);
+		string Impresion;
 
-		T New ();
+		public string Comando ()
+		{
+			return string.Format ("{0}{1}{2}{1}{3}{1}{4}", cmd, separador, Impresion, 0, 0);
+		}
 
-		void Save (T instance);
-
-		void Remove (T instance);
+		public Subtotal (string Impresion)
+		{
+			this.Impresion = Impresion;
+		}
 	}
 }
 

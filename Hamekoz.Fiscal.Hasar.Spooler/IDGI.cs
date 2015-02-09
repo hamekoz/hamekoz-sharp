@@ -1,9 +1,9 @@
-﻿//
-//  IAbmController.cs
+//
+//  IDGI.cs
 //
 //  Author:
-//      Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
-//		Emiliano Canedo <emilianocanedo@gmail.com>
+//		 Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -20,31 +20,37 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public interface IAbmController<T>
+
+	/// <summary>
+	/// Interface de acceso a comandos para DGI de impresora fiscal
+	/// </summary>
+	public interface IDGI
 	{
-		bool CanAdd { get; }
+		#region Comandos para uso de la DGI
 
-		bool CanEdit { get; }
+		/// <summary>
+		/// Procesador de comandos DGI
+		/// </summary>
+		void DGICommandProcessor ();
 
-		bool CanDelete { get; }
+		/// <summary>
+		/// Reporte auditoria DGI por fechas
+		/// </summary>
+		void DGIRequestByDate ();
 
-		bool Reload { get; set; }
+		/// <summary>
+		/// Reporte auditoria DGI por Z
+		/// </summary>
+		void DGIRequestByNumber ();
 
-		IList<T> List { get; }
+		/// <summary>
+		/// Comando de baja de controlador fiscal
+		/// </summary>
+		void KillEmprom ();
 
-		T Get (int id);
-
-		T Get (T instance);
-
-		T New ();
-
-		void Save (T instance);
-
-		void Remove (T instance);
+		#endregion
 	}
 }
-

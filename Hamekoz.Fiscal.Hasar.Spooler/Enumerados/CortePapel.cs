@@ -1,5 +1,5 @@
 //
-//  DialogItemSelector.cs
+//  CortePapel.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -20,40 +20,22 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Windows.Forms;
 
-namespace Hamekoz.UI.WinForm
+namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public partial class DialogItemSelector : Form
+	public enum CortePapel
 	{
-		public DialogItemSelector ()
-		{
-			InitializeComponent ();
-		}
-
-		public object Item {
-			get { return combo.SelectedItem; }
-		}
-
-		public ComboBox ComboBox {
-			get { return combo; }
-		}
-
-		private void btnCancelar_Click (object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Close ();
-		}
-
-		private void btnAceptar_Click (object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.OK;
-			this.Close ();
-		}
-
-		private void DialogItemSelector_Load (object sender, EventArgs e)
-		{
-			this.combo.Focus ();
-		}
+		/// <summary>
+		/// F
+		/// </summary>
+		Completo,
+		/// <summary>
+		/// P
+		/// </summary>
+		Parcial,
+		/// <summary>
+		/// N
+		/// </summary>
+		NoCorta,
 	}
 }

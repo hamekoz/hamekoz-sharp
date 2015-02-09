@@ -1,9 +1,8 @@
 ﻿//
-//  IAbmController.cs
+//  TotalTender.cs
 //
 //  Author:
-//      Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
-//		Emiliano Canedo <emilianocanedo@gmail.com>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -20,31 +19,30 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public interface IAbmController<T>
+	public class TotalTender : Comando
 	{
-		bool CanAdd { get; }
+		const string cmd = "D";
 
-		bool CanEdit { get; }
+		public float Vuelto { get; set; }
 
-		bool CanDelete { get; }
+		string texto;
+		float montoPagado;
+		string cancelacionOVuelto;
 
-		bool Reload { get; set; }
+		public string Comando ()
+		{
+			return string.Format ("{0}{1}{2}{1}{3:###0.00}{1}{4}{1}{5}", cmd, separador, texto, montoPagado, cancelacionOVuelto, 0).Replace (",", ".");
+		}
 
-		IList<T> List { get; }
-
-		T Get (int id);
-
-		T Get (T instance);
-
-		T New ();
-
-		void Save (T instance);
-
-		void Remove (T instance);
+		public TotalTender (string texto, float montoPagado, string cancelacionOVuelto)
+		{
+			this.texto = texto;
+			this.montoPagado = montoPagado;
+			this.cancelacionOVuelto = cancelacionOVuelto;
+		}
 	}
 }
 

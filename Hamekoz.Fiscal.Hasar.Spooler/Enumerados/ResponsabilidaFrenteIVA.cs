@@ -1,5 +1,5 @@
 //
-//  DialogItemSelector.cs
+//  ResponsabilidaFrenteIVA.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -20,40 +20,39 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Windows.Forms;
 
-namespace Hamekoz.UI.WinForm
+namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public partial class DialogItemSelector : Form
+	public enum ResponsabilidaFrenteIVA
 	{
-		public DialogItemSelector ()
-		{
-			InitializeComponent ();
-		}
+		/// <summary>
+		/// I
+		/// </summary>
+		ResponsableInscripto,
 
-		public object Item {
-			get { return combo.SelectedItem; }
-		}
+		/// <summary>
+		///N. No válido en los modelos SMH/P-715F, SMH/P-PR5F y SMH/P-441F
+		/// </summary>
+		ResponsableNoInscripto,
 
-		public ComboBox ComboBox {
-			get { return combo; }
-		}
+		/// <summary>
+		/// E. No válido en los modelos SMH/P-715F, SMH/P-PR5F y SMH/P-441F
+		/// </summary>
+		Exento,
 
-		private void btnCancelar_Click (object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Close ();
-		}
+		/// <summary>
+		/// A
+		/// </summary>
+		NoResponsable,
 
-		private void btnAceptar_Click (object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.OK;
-			this.Close ();
-		}
+		/// <summary>
+		/// M. No disponible en el modelo SMH/P-PR4F
+		/// </summary>
+		Monotributista,
 
-		private void DialogItemSelector_Load (object sender, EventArgs e)
-		{
-			this.combo.Focus ();
-		}
+		/// <summary>
+		/// S. Sólo disponible en los modelos SMH/P-715F, SMH/P-PR5F y SMH/P-441F
+		/// </summary>
+		MonotributistaSocial,
 	}
 }

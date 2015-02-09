@@ -1,5 +1,5 @@
-//
-//  DialogItemSelector.cs
+﻿//
+//  IComprobante.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -20,40 +20,36 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
-namespace Hamekoz.UI.WinForm
+namespace Hamekoz.Fiscal
 {
-	public partial class DialogItemSelector : Form
+	public interface IComprobante
 	{
-		public DialogItemSelector ()
-		{
-			InitializeComponent ();
-		}
+		IResponsable Responsable { get; set; }
 
-		public object Item {
-			get { return combo.SelectedItem; }
-		}
+		string Numero { get; set; }
 
-		public ComboBox ComboBox {
-			get { return combo; }
-		}
+		string PuntoDeVenta { get; set; }
 
-		private void btnCancelar_Click (object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Close ();
-		}
+		DateTime FechaDeEmision { get; set; }
 
-		private void btnAceptar_Click (object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.OK;
-			this.Close ();
-		}
+		IList<IItem> Items { get; }
 
-		private void DialogItemSelector_Load (object sender, EventArgs e)
-		{
-			this.combo.Focus ();
-		}
+		double Total { get; set; }
+
+		double SubTotal { get; set; }
+
+		double IVA { get; set; }
+
+		double NOGravado { get; set; }
+
+		double ImporteRestante { get; set; }
+
+		double Percepciones { get; set; }
+
+		string Observaciones { get; set; }
+
+		IZeta Zeta { get; set; }
 	}
 }

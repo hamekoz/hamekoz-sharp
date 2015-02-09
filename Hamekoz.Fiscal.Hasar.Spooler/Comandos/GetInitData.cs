@@ -1,9 +1,8 @@
 ﻿//
-//  IAbmController.cs
+//  GetInitData.cs
 //
 //  Author:
-//      Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
-//		Emiliano Canedo <emilianocanedo@gmail.com>
+//       Ezequiel Taranto <ezequiel89@gmail.com>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -20,31 +19,37 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public interface IAbmController<T>
+	public class GetInitData : Comando
 	{
-		bool CanAdd { get; }
+		const string cmd = "s";
 
-		bool CanEdit { get; }
+		public double CUIT { get; set; }
 
-		bool CanDelete { get; }
+		public string RazonSocial { get; set; }
 
-		bool Reload { get; set; }
+		public string NroRegistro { get; set; }
 
-		IList<T> List { get; }
+		public DateTime FechaDeInicializacion { get; set; }
 
-		T Get (int id);
+		public int NroPV { get; set; }
 
-		T Get (T instance);
+		public DateTime InicioDeActividades { get; set; }
 
-		T New ();
+		public string NroIngresosBrutos { get; set; }
 
-		void Save (T instance);
+		public string ResponsabilidadIVA { get; set; }
 
-		void Remove (T instance);
+		public string Comando ()
+		{
+			return cmd;
+		}
+
+		public GetInitData ()
+		{
+		}
 	}
 }
 

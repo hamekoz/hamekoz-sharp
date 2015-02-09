@@ -1,5 +1,5 @@
-//
-//  DialogItemSelector.cs
+﻿//
+//  IItem.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -20,40 +20,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Windows.Forms;
 
-namespace Hamekoz.UI.WinForm
+namespace Hamekoz.Fiscal
 {
-	public partial class DialogItemSelector : Form
+	public interface IItem
 	{
-		public DialogItemSelector ()
-		{
-			InitializeComponent ();
-		}
+		string Descripcion { get; set; }
 
-		public object Item {
-			get { return combo.SelectedItem; }
-		}
+		string DescripcionCorta { get; set; }
 
-		public ComboBox ComboBox {
-			get { return combo; }
-		}
+		int Cantidad { get; set; }
 
-		private void btnCancelar_Click (object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Close ();
-		}
+		double Precio { get; set; }
 
-		private void btnAceptar_Click (object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.OK;
-			this.Close ();
-		}
+		double IVA { get; set; }
 
-		private void DialogItemSelector_Load (object sender, EventArgs e)
-		{
-			this.combo.Focus ();
-		}
+		double Impuestos { get; set; }
+
+		double Total { get; }
 	}
 }

@@ -7,8 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz.Argentina</RootNamespace>
     <AssemblyName>Hamekoz.Argentina</AssemblyName>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,7 +68,4 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
-  <ItemGroup>
-    <None Include="Arba\Secreto.txt" />
-  </ItemGroup>
 </Project>

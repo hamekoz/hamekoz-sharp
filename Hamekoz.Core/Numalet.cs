@@ -13,8 +13,18 @@ public sealed class Numalet
 
 	private const int UNI = 0, DIECI = 1, DECENA = 2, CENTENA = 3;
 	private static string[,] _matriz = new string[CENTENA + 1, 10] {
-		{ null, " uno", " dos", " tres", " cuatro", " cinco", " seis", " siete", " ocho", " nueve" },
-		{ " diez", " once", " doce", " trece", " catorce", " quince", " dieciséis", " diecisiete", " dieciocho", " diecinueve" },
+		{ null, " uno", " dos", " tres", " cuatro", " cinco", " seis", " siete", " ocho", " nueve" }, {
+			" diez",
+			" once",
+			" doce",
+			" trece",
+			" catorce",
+			" quince",
+			" dieciséis",
+			" diecisiete",
+			" dieciocho",
+			" diecinueve"
+		},
 		{ null, null, null, " treinta", " cuarenta", " cincuenta", " sesenta", " setenta", " ochenta", " noventa" },
 		{ null, null, null, null, null, " quinientos", null, " setecientos", null, " novecientos" }
 	};
@@ -96,8 +106,8 @@ public sealed class Numalet
 			//que haya al principio de la cadena, y también si es una máscara numérica
 			int i = 0;
 			while (i < value.Length
-			                && (value [i] == '0')
-			                | value [i] == '#')
+			       && (value [i] == '0')
+			       | value [i] == '#')
 				i++;
 			_posiciones = i;
 			if (i > 0) {
@@ -339,7 +349,6 @@ public sealed class Numalet
 			Resultado.Append (" " + SeparadorDecimalSalida + " ");
 			Int32 EnteroDecimal = (Int32)Math.Round ((Double)(Numero - (Int64)Numero) * Math.Pow (10, Decimales), 0);
 			if (ConvertirDecimales) {
-				Boolean esMascaraDecimalDefault = MascaraSalidaDecimal == MascaraSalidaDecimalDefault;
 				Resultado.Append (Convertir ((Decimal)EnteroDecimal, 0, null, null, EsMascaraNumerica, false, false, (ApocoparUnoParteDecimal && !EsMascaraNumerica/*&& !esMascaraDecimalDefault*/), false) + " "
 				+ (EsMascaraNumerica ? "" : MascaraSalidaDecimal));
 			} else if (EsMascaraNumerica)
