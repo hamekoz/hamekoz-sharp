@@ -23,14 +23,14 @@ using System;
 
 namespace Hamekoz.Fiscal
 {
-	public class IResponsable
+	public interface IResponsable
 	{
-		public string CUIT { get; set; }
+		string CUIT { get; set; }
 
-		public string RazonSocial { get; set; }
+		string RazonSocial { get; set; }
 
-		public string Domicilio { get; set; }
+		string Domicilio { get; set; }
 
-		public SituacionIVA CondicionDeIVA { get; set; }
+		SituacionIVA CondicionDeIVA { get; set; }
 	}
 }
