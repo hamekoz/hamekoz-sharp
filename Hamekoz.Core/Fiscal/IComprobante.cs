@@ -1,5 +1,5 @@
 ﻿//
-//  IResponsable.cs
+//  IComprobante.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -20,17 +20,32 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 
 namespace Hamekoz.Fiscal
 {
-	public class IResponsable
+	public interface IComprobante
 	{
-		public string CUIT { get; set; }
+		IResponsable Responsable { get;}
 
-		public string RazonSocial { get; set; }
+        string Numero { get; set; }
 
-		public string Domicilio { get; set; }
+		string PuntoDeVenta { get;}
 
-		public SituacionIVA CondicionDeIVA { get; set; }
+		DateTime FechaDeEmision { get;}
+
+		IList<IItem> Items { get; }
+
+		double Total { get; }
+
+		double SubTotal { get;}
+
+		double IVA { get; }
+
+		double NOGravado { get;}
+
+		double Percepciones { get;}
+
+		string Observaciones { get;}
 	}
 }

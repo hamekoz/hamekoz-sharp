@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -105,6 +105,10 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
+    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
+      <Project>{c5a5d712-545f-4088-b6b3-610bb7b61e9d}</Project>
+      <Name>Hamekoz.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hamekoz.Fiscal\Hamekoz.Fiscal.csproj">
       <Project>{E773C3F7-FCB9-496E-871E-E0EA20E880EF}</Project>
       <Name>Hamekoz.Fiscal</Name>

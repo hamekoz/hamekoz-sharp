@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -17,6 +17,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -25,6 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -35,13 +37,12 @@
     <Compile Include="TiposDeControladorFiscal.cs" />
     <Compile Include="FiscalHasar.cs" />
     <Compile Include="IFiscalHasar.cs" />
-    <Compile Include="Fiscal\IComprobante.cs" />
-    <Compile Include="Fiscal\IComprobanteElectronico.cs" />
-    <Compile Include="Fiscal\IItem.cs" />
-    <Compile Include="Fiscal\IResponsable.cs" />
-    <Compile Include="Fiscal\IZeta.cs" />
-    <Compile Include="Fiscal\SituacionIVA.cs" />
-    <Compile Include="Fiscal\TipoControladorFiscal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
+      <Project>{c5a5d712-545f-4088-b6b3-610bb7b61e9d}</Project>
+      <Name>Hamekoz.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
