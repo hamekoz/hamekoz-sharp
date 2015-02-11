@@ -3,8 +3,9 @@
 //
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
+//		 Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 ecanedo
+//  Copyright (c) 2015 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -23,10 +24,10 @@ using Gtk;
 
 namespace Hamekoz.UI.Gtk
 {
-	public delegate void ChangedHandler();
+	public delegate void ChangedHandler ();
 
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class WidgetDetallado : Bin
+	public partial class WidgetCheckbox : Bin
 	{
 		public string Label {
 			get {
@@ -46,7 +47,7 @@ namespace Hamekoz.UI.Gtk
 				handler ();
 		}
 
-		public bool Estado {
+		public bool Checked {
 			get {
 				return checkbutton.Active;
 			}
@@ -55,12 +56,12 @@ namespace Hamekoz.UI.Gtk
 			}
 		}
 
-		public WidgetDetallado ()
+		public WidgetCheckbox ()
 		{
 			this.Build ();
 
 			checkbutton.Clicked += delegate {
-				OnChangeState();
+				OnChangeState ();
 			};
 		}
 	}

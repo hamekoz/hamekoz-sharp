@@ -634,7 +634,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="Hamekoz.UI.Gtk.WidgetDetallado" design-size="118 53">
+  <widget class="Gtk.Bin" id="Hamekoz.UI.Gtk.WidgetCheckbox" design-size="120 54">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>

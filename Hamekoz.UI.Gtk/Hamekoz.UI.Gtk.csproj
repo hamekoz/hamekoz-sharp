@@ -7,6 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz.UI.Gtk</RootNamespace>
     <AssemblyName>Hamekoz.UI.Gtk</AssemblyName>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -120,10 +122,10 @@
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.WidgetFromAndToDate.cs" />
     <Compile Include="Widgets\WidgetDate.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.WidgetDate.cs" />
-    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.WidgetDetallado.cs" />
     <Compile Include="GenericWidgets\GenericSearchableAndAll.cs" />
     <Compile Include="GenericWidgets\GenericTreeViewPickerAndAll.cs" />
     <Compile Include="GenericWidgets\GenericTreeViewPicker.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.WidgetCheckbox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

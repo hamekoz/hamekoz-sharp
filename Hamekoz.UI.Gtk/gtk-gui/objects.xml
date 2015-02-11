@@ -80,15 +80,15 @@
       </itemgroup>
     </signals>
   </object>
-  <object type="Hamekoz.UI.Gtk.WidgetDetallado" palette-category="General" allow-children="false" base-type="Gtk.Bin">
+  <object type="Hamekoz.UI.Gtk.WidgetCheckbox" palette-category="General" allow-children="false" base-type="Gtk.Bin">
     <itemgroups>
-      <itemgroup label="WidgetDetallado Properties">
-        <property name="Estado" />
+      <itemgroup label="WidgetCheckbox Properties">
         <property name="Label" />
+        <property name="Checked" />
       </itemgroup>
     </itemgroups>
     <signals>
-      <itemgroup label="WidgetDetallado Signals">
+      <itemgroup label="WidgetCheckbox Signals">
         <signal name="ChangeState" />
       </itemgroup>
     </signals>
