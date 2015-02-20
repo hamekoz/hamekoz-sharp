@@ -315,53 +315,6 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 				break;
 			}
 
-			//FACTURA "B"
-			if (factura.Responsable.CondicionDeIVA == SituacionIVA.MONOTRIBUTO || factura.Responsable.CondicionDeIVA == SituacionIVA.EXENTO) {
-				switch (factura.Responsable.CondicionDeIVA) {
-				case SituacionIVA.MONOTRIBUTO:
-					fiscalHasar.DatosCliente (factura.Responsable.RazonSocial, factura.Responsable.CUIT.Replace ("-", ""), FiscalPrinterLib.TiposDeDocumento.TIPO_CUIT, FiscalPrinterLib.TiposDeResponsabilidades.MONOTRIBUTO, 1);
-					break;
-				case SituacionIVA.EXENTO:
-					fiscalHasar.DatosCliente (factura.Responsable.RazonSocial, factura.Responsable.CUIT.Replace ("-", ""), FiscalPrinterLib.TiposDeDocumento.TIPO_CUIT, FiscalPrinterLib.TiposDeResponsabilidades.RESPONSABLE_EXENTO, 1);
-					break;
-				}
-				;
-				Console.WriteLine ("cuit: " + factura.Responsable.CUIT.Replace ("-", ""));
-				if (fiscalHasar.HuboErrorFiscal)
-					Console.WriteLine ("hubo error al cargar datos cliente:" + descripcionErrorFiscal);
-				fiscalHasar.AbrirComprobanteFiscal (FiscalPrinterLib.DocumentosFiscales.TICKET_FACTURA_B);
-				if (fiscalHasar.HuboErrorFiscal) {
-					Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
-					fiscalHasar.CancelarComprobante ();
-					abortar = true;
-				}
-			}
-
-			//FACTURA "A"
-			if (factura.Responsable.CondicionDeIVA == SituacionIVA.RESPONSABLE_INSCRIPTO) {
-				fiscalHasar.DatosCliente (factura.Responsable.RazonSocial, factura.Responsable.CUIT.Replace ("-", ""), FiscalPrinterLib.TiposDeDocumento.TIPO_CUIT, FiscalPrinterLib.TiposDeResponsabilidades.RESPONSABLE_INSCRIPTO, 1);
-				Console.WriteLine ("cuit: " + factura.Responsable.CUIT.Replace ("-", ""));
-				if (fiscalHasar.HuboErrorFiscal) {
-					Console.WriteLine ("hubo error al cargar datos cliente: " + descripcionErrorFiscal);
-				}
-				fiscalHasar.AbrirComprobanteFiscal (FiscalPrinterLib.DocumentosFiscales.TICKET_FACTURA_A);
-				if (fiscalHasar.HuboErrorFiscal) {
-					Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
-					fiscalHasar.CancelarComprobante ();
-					abortar = true;
-				}
-			}
-
-			//TICKET
-			if (factura.Responsable.CondicionDeIVA == SituacionIVA.CONSUMIDOR_FINAL) {
-				fiscalHasar.AbrirComprobanteFiscal (FiscalPrinterLib.DocumentosFiscales.TICKET_C);
-				if (fiscalHasar.HuboErrorFiscal) {
-					Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
-					fiscalHasar.CancelarComprobante ();
-					abortar = true;
-				}
-			}
-
 			//IMPRIMO RENGLONES
 			foreach (IItem renglon in factura.Items) {
 				fiscalHasar.ImprimirItem (renglon.DescripcionCorta, renglon.Cantidad, renglon.Precio, renglon.IVA, renglon.Impuestos);
@@ -378,11 +331,9 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 				object numero;
 				//IMPRIMO PAGOS
 				if (recibo != null) {
-
-
 					foreach (IItem ren in recibo.Items) {
 						Console.WriteLine ((ren.Total + vueltoefectivo).ToString ());
-						fiscalHasar.ImprimirPago (ren.DescripcionCorta, ren.Total + vueltoefectivo, "", out vuelto);
+						fiscalHasar.ImprimirPago (ren.Descripcion, ren.Total + vueltoefectivo, "", out vuelto);
 						if (fiscalHasar.HuboErrorFiscal) {
 							Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
 							fiscalHasar.CancelarComprobante ();
