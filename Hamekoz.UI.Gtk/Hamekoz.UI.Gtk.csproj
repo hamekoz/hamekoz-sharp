@@ -126,6 +126,8 @@
     <Compile Include="GenericWidgets\GenericTreeViewPickerAndAll.cs" />
     <Compile Include="GenericWidgets\GenericTreeViewPicker.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.WidgetCheckbox.cs" />
+    <Compile Include="EntryLabeled.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.EntryLabeled.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

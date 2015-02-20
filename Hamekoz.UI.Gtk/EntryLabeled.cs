@@ -1,9 +1,8 @@
 ﻿//
-//  WidgetDate.cs
+//  EntryLabeled.cs
 //
 //  Author:
-//       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
-//		 Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
 //  Copyright (c) 2015 Hamekoz
 //
@@ -25,8 +24,16 @@ using Gtk;
 namespace Hamekoz.UI.Gtk
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class WidgetDate : Bin
+	public partial class EntryLabeled : Bin
 	{
+		public EntryLabeled ()
+		{
+			this.Build ();
+			entry.Changed += delegate {
+				OnChangeValue ();
+			};
+		}
+
 		public string Label {
 			get {
 				return label.Text;
@@ -36,47 +43,26 @@ namespace Hamekoz.UI.Gtk
 			}
 		}
 
-		public delegate void DateChangedHandler ();
+		public delegate void ValueChangedHandler ();
 
-		public event DateChangedHandler ChangeDate;
+		public event ValueChangedHandler ChangeValue;
 
-		protected virtual void OnChangeDate ()
+		protected virtual void OnChangeValue ()
 		{
-			var handler = ChangeDate;
+			var handler = ChangeValue;
 			if (handler != null)
 				handler ();
 		}
 
-		public DateTime Date {
+		public string Value {
 			get {
-				return datepicker.Date;
+				return entry.Text;
 			}
 			set {
-				datepicker.Date = value;
+				entry.Text = value;
 			}
 		}
 
-		public WidgetDate ()
-		{
-			this.Build ();
-
-			datepicker.DefaultDate = DateTime.Now;
-
-			datepicker.DateChanged += delegate {
-				OnChangeDate ();
-			};
-		}
-
-		public WidgetDate (DateTime fecha)
-		{
-			this.Build ();
-
-			datepicker.DefaultDate = fecha;
-
-			datepicker.DateChanged += delegate {
-				OnChangeDate ();
-			};
-		}
 	}
 }
 

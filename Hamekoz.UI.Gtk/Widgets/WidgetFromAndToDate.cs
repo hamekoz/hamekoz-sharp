@@ -3,8 +3,9 @@
 //
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
+//		 Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 ecanedo
+//  Copyright (c) 2015 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -44,7 +45,9 @@ namespace Hamekoz.UI.Gtk
 			}
 		}
 
-		public event Hamekoz.UI.Gtk.DateChangedHandler ChangeFrom;
+		public delegate void DateChangedHandler ();
+
+		public event DateChangedHandler ChangeFrom;
 
 		protected virtual void OnChangeFrom ()
 		{
@@ -53,7 +56,7 @@ namespace Hamekoz.UI.Gtk
 				handler ();
 		}
 
-		public event Hamekoz.UI.Gtk.DateChangedHandler ChangeTo;
+		public event DateChangedHandler ChangeTo;
 
 		protected virtual void OnChangeTo ()
 		{

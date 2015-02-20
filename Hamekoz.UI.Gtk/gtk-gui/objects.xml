@@ -93,4 +93,17 @@
       </itemgroup>
     </signals>
   </object>
+  <object type="Hamekoz.UI.Gtk.EntryLabeled" palette-category="General" allow-children="false" base-type="Gtk.Bin">
+    <itemgroups>
+      <itemgroup label="EntryLabeled Properties">
+        <property name="Label" />
+        <property name="Value" />
+      </itemgroup>
+    </itemgroups>
+    <signals>
+      <itemgroup label="EntryLabeled Signals">
+        <signal name="ChangeValue" />
+      </itemgroup>
+    </signals>
+  </object>
 </objects>

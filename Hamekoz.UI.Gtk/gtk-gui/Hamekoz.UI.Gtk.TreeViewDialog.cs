@@ -23,12 +23,7 @@ namespace Hamekoz.UI.Gtk
 			w1.Name = "dialog1_VBox";
 			w1.BorderWidth = ((uint)(2));
 			// Container child dialog1_VBox.Gtk.Box+BoxChild
-			this.searchabletreeview = new global::Hamekoz.UI.Gtk.SearchableTreeView ();
-			this.searchabletreeview.WidthRequest = 220;
-			this.searchabletreeview.HeightRequest = 180;
-			this.searchabletreeview.Events = ((global::Gdk.EventMask)(256));
-			this.searchabletreeview.Name = "searchabletreeview";
-			this.searchabletreeview.ActualId = 0;
+			this.searchabletreeview = null;
 			w1.Add (this.searchabletreeview);
 			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(w1 [this.searchabletreeview]));
 			w2.Position = 0;
