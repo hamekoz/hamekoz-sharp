@@ -7,8 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz.Fiscal.Hasar.Spooler</RootNamespace>
     <newfilesearch>OnLoad</newfilesearch>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <AssemblyName>Hamekoz.Fiscal.Hasar.Spooler</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -106,7 +104,7 @@
   </ProjectExtensions>
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
-      <Project>{c5a5d712-545f-4088-b6b3-610bb7b61e9d}</Project>
+      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
       <Name>Hamekoz.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hamekoz.Fiscal\Hamekoz.Fiscal.csproj">

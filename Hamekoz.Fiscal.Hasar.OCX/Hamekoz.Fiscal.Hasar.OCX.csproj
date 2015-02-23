@@ -39,7 +39,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
-      <Project>{c5a5d712-545f-4088-b6b3-610bb7b61e9d}</Project>
+      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
       <Name>Hamekoz.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hamekoz.Fiscal\Hamekoz.Fiscal.csproj">
