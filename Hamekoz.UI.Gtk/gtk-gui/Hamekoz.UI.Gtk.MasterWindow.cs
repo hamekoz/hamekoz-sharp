@@ -45,7 +45,7 @@ namespace Hamekoz.UI.Gtk
 			this.hpaned = new global::Gtk.HPaned ();
 			this.hpaned.CanFocus = true;
 			this.hpaned.Name = "hpaned";
-			this.hpaned.Position = 90;
+			this.hpaned.Position = 227;
 			// Container child hpaned.Gtk.Paned+PanedChild
 			this.vboxMenu = new global::Gtk.VBox ();
 			this.vboxMenu.Name = "vboxMenu";
@@ -64,6 +64,7 @@ namespace Hamekoz.UI.Gtk
 			w3.Position = 0;
 			// Container child vboxMenu.Gtk.Box+BoxChild
 			this.buttonUser = new global::Gtk.Button ();
+			this.buttonUser.WidthRequest = 200;
 			this.buttonUser.CanFocus = true;
 			this.buttonUser.Name = "buttonUser";
 			this.buttonUser.UseUnderline = true;

@@ -468,7 +468,7 @@
                   <widget class="Gtk.HPaned" id="hpaned">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Position">90</property>
+                    <property name="Position">227</property>
                     <child>
                       <widget class="Gtk.VBox" id="vboxMenu">
                         <property name="MemberName" />
@@ -493,6 +493,7 @@
                         <child>
                           <widget class="Gtk.Button" id="buttonUser">
                             <property name="MemberName" />
+                            <property name="WidthRequest">200</property>
                             <property name="Tooltip" translatable="yes" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextAndIcon</property>
