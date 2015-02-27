@@ -117,7 +117,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="Hamekoz.UI.Gtk.DialogSave" design-size="502 149">
+  <widget class="Gtk.Dialog" id="Hamekoz.UI.Gtk.DialogSave" design-size="505 149">
     <property name="MemberName" />
     <property name="Title" translatable="yes">¿quiere guardar?</property>
     <property name="Icon">stock:gtk-dialog-warning Menu</property>
@@ -445,7 +445,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Hamekoz.UI.Gtk.MasterWindow" design-size="515 300">
+  <widget class="Gtk.Window" id="Hamekoz.UI.Gtk.MasterWindow" design-size="628 300">
     <property name="MemberName" />
     <property name="Title" translatable="yes" />
     <property name="WindowPosition">Center</property>
@@ -468,7 +468,7 @@
                   <widget class="Gtk.HPaned" id="hpaned">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
-                    <property name="Position">250</property>
+                    <property name="Position">90</property>
                     <child>
                       <widget class="Gtk.VBox" id="vboxMenu">
                         <property name="MemberName" />
@@ -511,12 +511,12 @@
                       </widget>
                       <packing>
                         <property name="Resize">False</property>
+                        <property name="Shrink">False</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.VBox" id="vboxWidget">
+                      <widget class="Gtk.Alignment" id="primaryWidget">
                         <property name="MemberName" />
-                        <property name="Spacing">6</property>
                         <child>
                           <placeholder />
                         </child>
@@ -754,7 +754,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="Hamekoz.UI.Gtk.WidgetFromAndToDate" design-size="242 148">
+  <widget class="Gtk.Bin" id="Hamekoz.UI.Gtk.WidgetFromAndToDate" design-size="242 156">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -854,39 +854,10 @@
             <property name="Spacing">10</property>
             <property name="BorderWidth">5</property>
             <child>
-              <widget class="Gtk.VBox" id="vbox6">
+              <widget class="Gtk.Label" id="labelFrom">
                 <property name="MemberName" />
-                <property name="Spacing">6</property>
-                <child>
-                  <widget class="Gtk.Label" id="labelFrom">
-                    <property name="MemberName" />
-                    <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">Desde</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">0</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="DatePicker.DatePicker" id="datepickerFrom">
-                    <property name="MemberName" />
-                    <property name="WidthRequest">200</property>
-                    <property name="HeightRequest">27</property>
-                    <property name="Events">ButtonPressMask</property>
-                    <property name="ButtonsVisible">False</property>
-                    <property name="DefaultDate">0</property>
-                    <property name="Date">0</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">1</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">Desde</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -896,42 +867,47 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.VBox" id="vbox5">
+              <widget class="DatePicker.DatePicker" id="datepickerFrom">
                 <property name="MemberName" />
-                <property name="Spacing">6</property>
-                <child>
-                  <widget class="Gtk.Label" id="labelTo">
-                    <property name="MemberName" />
-                    <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">Hasta</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">0</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="DatePicker.DatePicker" id="datepickerTo">
-                    <property name="MemberName" />
-                    <property name="WidthRequest">200</property>
-                    <property name="HeightRequest">27</property>
-                    <property name="Events">ButtonPressMask</property>
-                    <property name="ButtonsVisible">False</property>
-                    <property name="DefaultDate">0</property>
-                    <property name="Date">0</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">1</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
+                <property name="WidthRequest">200</property>
+                <property name="HeightRequest">27</property>
+                <property name="Events">ButtonPressMask</property>
+                <property name="ButtonsVisible">False</property>
+                <property name="DefaultDate">0</property>
+                <property name="Date">0</property>
               </widget>
               <packing>
                 <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="labelTo">
+                <property name="MemberName" />
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">Hasta</property>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="DatePicker.DatePicker" id="datepickerTo">
+                <property name="MemberName" />
+                <property name="WidthRequest">200</property>
+                <property name="HeightRequest">27</property>
+                <property name="Events">ButtonPressMask</property>
+                <property name="ButtonsVisible">False</property>
+                <property name="DefaultDate">0</property>
+                <property name="Date">0</property>
+              </widget>
+              <packing>
+                <property name="Position">3</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -957,7 +933,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="Hamekoz.UI.Gtk.WidgetDate" design-size="242 90">
+  <widget class="Gtk.Bin" id="Hamekoz.UI.Gtk.WidgetDate" design-size="242 94">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
@@ -1057,42 +1033,30 @@
             <property name="Spacing">10</property>
             <property name="BorderWidth">5</property>
             <child>
-              <widget class="Gtk.VBox" id="vbox6">
+              <widget class="Gtk.Label" id="label">
                 <property name="MemberName" />
-                <property name="Spacing">6</property>
-                <child>
-                  <widget class="Gtk.Label" id="label">
-                    <property name="MemberName" />
-                    <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">Date</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">0</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="DatePicker.DatePicker" id="datepicker">
-                    <property name="MemberName" />
-                    <property name="WidthRequest">200</property>
-                    <property name="HeightRequest">27</property>
-                    <property name="Events">ButtonPressMask</property>
-                    <property name="ButtonsVisible">False</property>
-                    <property name="DefaultDate">0</property>
-                    <property name="Date">0</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">1</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">Date</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="DatePicker.DatePicker" id="datepicker">
+                <property name="MemberName" />
+                <property name="WidthRequest">200</property>
+                <property name="HeightRequest">27</property>
+                <property name="Events">ButtonPressMask</property>
+                <property name="ButtonsVisible">False</property>
+                <property name="DefaultDate">0</property>
+                <property name="Date">0</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>

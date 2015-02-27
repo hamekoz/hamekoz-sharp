@@ -24,7 +24,7 @@ using Hamekoz.Interfaces;
 
 namespace Hamekoz.UI.Gtk
 {
-	public delegate void DescriptibleEventHandler(string descripcion, int id);
+	public delegate void DescriptibleEventHandler (string descripcion, int id);
 
 	public partial class TreeViewDialog : Dialog
 	{
@@ -59,18 +59,14 @@ namespace Hamekoz.UI.Gtk
 		{
 			Build ();
 
-			this.searchabletreeview.ChangeEvent += delegate {
-				//
-			};
-
 			this.searchabletreeview.ActivateEvent += delegate {
-				OnActivatedEvent(searchabletreeview.ActualString, searchabletreeview.ActualId);
-				Hide();
+				OnActivatedEvent (searchabletreeview.ActualString, searchabletreeview.ActualId);
+				Hide ();
 			};
 
 			this.FocusOutEvent += delegate(object o, FocusOutEventArgs args) {
-				OnActivatedEvent(searchabletreeview.ActualString, searchabletreeview.ActualId);
-				Hide();
+				OnActivatedEvent (searchabletreeview.ActualString, searchabletreeview.ActualId);
+				Hide ();
 			};
 		}
 

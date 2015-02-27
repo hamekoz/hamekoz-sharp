@@ -49,10 +49,10 @@ namespace Hamekoz.UI.Gtk
 				return smallIconPath;
 			}
 			set {
-				this.Icon = new Gdk.Pixbuf (System.IO.Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, 
+				this.Icon = new Gdk.Pixbuf (System.IO.Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory,
 					value));
-					
-				tray = new MasterTrayIcon(new Gdk.Pixbuf (System.IO.Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, 
+
+				tray = new MasterTrayIcon (new Gdk.Pixbuf (System.IO.Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory,
 					value)));
 
 				tray.icon.Activate += delegate {
@@ -60,11 +60,11 @@ namespace Hamekoz.UI.Gtk
 				};
 
 				tray.QuitActivated += delegate {
-					QuitActivated();
+					QuitActivated ();
 				};
 
 				tray.AboutActivated += delegate {
-					AboutActivated();
+					AboutActivated ();
 				};
 
 				smallIconPath = value;
@@ -109,16 +109,16 @@ namespace Hamekoz.UI.Gtk
 			}
 		}
 
-		public MasterWindow() : base(WindowType.Toplevel)
+		public MasterWindow () : base (WindowType.Toplevel)
 		{
-			Build();
+			Build ();
 
 			ButtonUserVisibility = false;
 
 			this.Maximize ();
 
 			buttonUser.Clicked += delegate {
-				ButtonUserClicked();
+				ButtonUserClicked ();
 			};
 		}
 
@@ -126,39 +126,39 @@ namespace Hamekoz.UI.Gtk
 		/// Adds a widget to the Window.
 		/// </summary>
 		/// <param name="widget">Widget.</param>
-		public void AddWidget(Widget widget)
+		public void AddWidget (Widget widget)
 		{
 			RemoveWidget ();
 			actualWidget = widget;
-			vboxWidget.Add (actualWidget);
+			primaryWidget.Add (actualWidget);
 			actualWidget.Show ();
 		}
 
 		/// <summary>
 		/// Removes the widget in the Window.
 		/// </summary>
-		public void RemoveWidget()
+		public void RemoveWidget ()
 		{
 			if (actualWidget != null)
-				vboxWidget.Remove (actualWidget);
+				primaryWidget.Remove (actualWidget);
 		}
 
-		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
+		protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 		{
 			if (!Supervisor.Instance.WorkInProgress) {
-				Application.Quit();
+				Application.Quit ();
 			} else {
 				DialogSave guardar = new DialogSave ();
 				ResponseType result = (ResponseType)guardar.Run ();
 
 				if (result == ResponseType.Accept) {
-					Supervisor.Instance.RunSaveEvent();
-					Application.Quit();
+					Supervisor.Instance.RunSaveEvent ();
+					Application.Quit ();
 				}
 
 				if (result == ResponseType.Close) {
 					Supervisor.Instance.WorkInProgress = false;
-					Application.Quit();
+					Application.Quit ();
 				}
 
 				if (result == ResponseType.Cancel) {

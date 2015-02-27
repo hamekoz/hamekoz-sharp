@@ -18,7 +18,7 @@ namespace Hamekoz.UI.Gtk
 		
 		private global::Gtk.Button buttonUser;
 		
-		private global::Gtk.VBox vboxWidget;
+		private global::Gtk.Alignment primaryWidget;
 		
 		private global::Gtk.Statusbar statusbar;
 
@@ -45,7 +45,7 @@ namespace Hamekoz.UI.Gtk
 			this.hpaned = new global::Gtk.HPaned ();
 			this.hpaned.CanFocus = true;
 			this.hpaned.Name = "hpaned";
-			this.hpaned.Position = 250;
+			this.hpaned.Position = 221;
 			// Container child hpaned.Gtk.Paned+PanedChild
 			this.vboxMenu = new global::Gtk.VBox ();
 			this.vboxMenu.Name = "vboxMenu";
@@ -79,11 +79,11 @@ namespace Hamekoz.UI.Gtk
 			this.hpaned.Add (this.vboxMenu);
 			global::Gtk.Paned.PanedChild w6 = ((global::Gtk.Paned.PanedChild)(this.hpaned [this.vboxMenu]));
 			w6.Resize = false;
+			w6.Shrink = false;
 			// Container child hpaned.Gtk.Paned+PanedChild
-			this.vboxWidget = new global::Gtk.VBox ();
-			this.vboxWidget.Name = "vboxWidget";
-			this.vboxWidget.Spacing = 6;
-			this.hpaned.Add (this.vboxWidget);
+			this.primaryWidget = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
+			this.primaryWidget.Name = "primaryWidget";
+			this.hpaned.Add (this.primaryWidget);
 			this.vboxPrincipal.Add (this.hpaned);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vboxPrincipal [this.hpaned]));
 			w8.Position = 0;
@@ -102,7 +102,7 @@ namespace Hamekoz.UI.Gtk
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 515;
+			this.DefaultWidth = 628;
 			this.DefaultHeight = 300;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);

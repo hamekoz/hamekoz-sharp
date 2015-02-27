@@ -137,7 +137,7 @@ namespace Hamekoz.UI.Gtk
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 502;
+			this.DefaultWidth = 505;
 			this.DefaultHeight = 149;
 			this.Show ();
 			this.buttonCancel.Clicked += new global::System.EventHandler (this.OnButtonCancelClicked);

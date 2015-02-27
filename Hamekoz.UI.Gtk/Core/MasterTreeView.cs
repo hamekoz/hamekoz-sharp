@@ -26,19 +26,20 @@ using Hamekoz.UI.Gtk;
 
 namespace Hamekoz.UI.Gtk
 {
-	public delegate void MenuSelectionHandler(string Id);
+	public delegate void MenuSelectionHandler (string Id);
 
 	public class MasterTreeView
 	{
 		#region ATTRIBUTES_AND_CONSTRUCTORS
+
 		public event MenuSelectionHandler OnChangeSelection;
 
-		private TreeStore list = new TreeStore (typeof (string), typeof(string), typeof(string));
+		private TreeStore list = new TreeStore (typeof(string), typeof(string), typeof(string));
 
 		//TREE FOR STYLE CONTROL
-		private List<string> nodes = new List<string>();
-		private List<string> leafs = new List<string>();
-		private List<string> sensibilityInvertedItems = new List<string>();
+		private List<string> nodes = new List<string> ();
+		private List<string> leafs = new List<string> ();
+		private List<string> sensibilityInvertedItems = new List<string> ();
 
 		private string ActualId;
 
@@ -56,8 +57,8 @@ namespace Hamekoz.UI.Gtk
 
 			if (document.FirstChild.HasChildNodes) {
 				foreach (XmlNode child in document.FirstChild.ChildNodes) {
-					addNode(child);
-				}	
+					addNode (child);
+				}
 			}
 
 			TreeModelFilter filter = new TreeModelFilter (list, null);
@@ -65,13 +66,15 @@ namespace Hamekoz.UI.Gtk
 			tree.Model = filter;
 
 			tree.Columns [0].SetCellDataFunc (tree.Columns [0].Cells [0], new TreeCellDataFunc (RenderFunc));
-			tree.CursorChanged += HandleCursorChanged; 
+			tree.CursorChanged += HandleCursorChanged;
 			tree.RowActivated += HandleRowActivated;
 		}
+
 		#endregion
 
 		#region RECURSIVE_ADDNODE
-		void addNode(XmlNode nodo)
+
+		void addNode (XmlNode nodo)
 		{
 			TreeIter nuevoIter = list.AppendValues (nodo.Attributes ["nombre"].Value, nodo.Attributes ["id"].Value, nodo.Attributes ["new"].Value);
 
@@ -82,8 +85,8 @@ namespace Hamekoz.UI.Gtk
 					sensibilityInvertedItems.Add (nodo.Attributes ["id"].Value);
 
 				foreach (XmlNode child in nodo.ChildNodes) {
-					addNode(child, nuevoIter);
-				}	
+					addNode (child, nuevoIter);
+				}
 			} else {
 				leafs.Add (nodo.Attributes ["id"].Value);
 
@@ -92,7 +95,7 @@ namespace Hamekoz.UI.Gtk
 			}
 		}
 
-		void addNode(XmlNode nodo, TreeIter iterador)
+		void addNode (XmlNode nodo, TreeIter iterador)
 		{
 			TreeIter nuevoIter = list.AppendValues (iterador, nodo.Attributes ["nombre"].Value, nodo.Attributes ["id"].Value, nodo.Attributes ["new"].Value);
 
@@ -104,7 +107,7 @@ namespace Hamekoz.UI.Gtk
 
 				foreach (XmlNode child in nodo.ChildNodes) {
 					addNode (child, nuevoIter);
-				}	
+				}
 			} else {
 				leafs.Add (nodo.Attributes ["id"].Value);
 
@@ -112,30 +115,32 @@ namespace Hamekoz.UI.Gtk
 					sensibilityInvertedItems.Add (nodo.Attributes ["id"].Value);
 			}
 		}
+
 		#endregion
 
 		#region METHODS
+
 		void RenderFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
 		{
 			foreach (string node in nodes) {
 				if (tree_model.GetValue (iter, 1).ToString () == node) {
 					(cell as CellRendererText).Font = "bold";
 					(cell as CellRendererText).Sensitive = true;
-				} 
+				}
 			}
 
 			foreach (string leaf in leafs) {
 				if (tree_model.GetValue (iter, 1).ToString () == leaf) {
 					(cell as CellRendererText).Font = "italic";
 					(cell as CellRendererText).Sensitive = true;
-				} 
+				}
 			}
 
 			#if !DEBUG
 			foreach (string item in sensibilityInvertedItems) {
 			if (tree_model.GetValue (iter, 1).ToString () == item) {
 			(cell as CellRendererText).Sensitive = false;
-			} 
+			}
 			}
 			#endif
 
@@ -146,13 +151,15 @@ namespace Hamekoz.UI.Gtk
 			//ALL THE LIST*
 			return true;
 		}
+
 		#endregion
 
 		#region EVENTS_HANDLERS
+
 		void HandleRowActivated (object o, RowActivatedArgs args)
 		{
-			TreeIter iter;        
-			TreeView view = (TreeView) o;   
+			TreeIter iter;
+			TreeView view = (TreeView)o;
 
 			if (view.Model.GetIter (out iter, args.Path)) {
 
@@ -163,14 +170,16 @@ namespace Hamekoz.UI.Gtk
 				}
 			}
 		}
+
 		#endregion
 
 		#region CURSOR_CHANGED_LOGIC
+
 		//HACK Llevar a funciones semanticamente atómicas
 
 		void HandleCursorChanged (object sender, EventArgs e)
 		{
-			TreeView view = (TreeView) sender;   
+			TreeView view = (TreeView)sender;
 			TreeModel model;
 			TreeIter iter;
 
@@ -208,7 +217,7 @@ namespace Hamekoz.UI.Gtk
 				ResponseType result = (ResponseType)guardar.Run ();
 
 				if (result == ResponseType.Accept) {
-					Supervisor.Instance.RunSaveEvent();
+					Supervisor.Instance.RunSaveEvent ();
 					ChangeSelection (ID);
 				}
 
@@ -224,6 +233,7 @@ namespace Hamekoz.UI.Gtk
 			ActualId = ID;
 			OnChangeSelection (ID);
 		}
+
 		#endregion
 	}
 }
