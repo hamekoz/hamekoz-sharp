@@ -45,7 +45,7 @@ namespace Hamekoz.UI.Gtk
 			this.hpaned = new global::Gtk.HPaned ();
 			this.hpaned.CanFocus = true;
 			this.hpaned.Name = "hpaned";
-			this.hpaned.Position = 221;
+			this.hpaned.Position = 90;
 			// Container child hpaned.Gtk.Paned+PanedChild
 			this.vboxMenu = new global::Gtk.VBox ();
 			this.vboxMenu.Name = "vboxMenu";
