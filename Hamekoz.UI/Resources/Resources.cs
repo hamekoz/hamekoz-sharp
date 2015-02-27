@@ -1,5 +1,5 @@
 ﻿//
-//  EntryLabeled.cs
+//  Hamekoz.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -19,19 +19,14 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Xwt;
 
-namespace Hamekoz.UI.Xwt
+namespace Hamekoz.UI
 {
-	public class EntryLabeled : VBox
+	internal static class Resources
 	{
-		Label label = new Label ();
-		TextEntry entry = new TextEntry ();
-
-		public EntryLabeled ()
-		{
-			
-		}
+		internal const string Icon = "Hamekoz.UI.Resources.Icon.png";
+		internal const string Logo = "Hamekoz.UI.Resources.Logo.png";
+		internal const string Splash = "Hamekoz.UI.Resources.Splash.png";
 	}
 }
 
