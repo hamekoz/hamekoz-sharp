@@ -10,6 +10,8 @@
     <newfilesearch>OnLoad</newfilesearch>
     <Description>Ayuda a generar Reportes en PDF</Description>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,7 +55,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="itextsharp">
       <HintPath>..\..\packages\iTextSharp.5.5.4\lib\itextsharp.dll</HintPath>
-      <Package>/media/galileo/git/libs/itextsharp.dll</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
