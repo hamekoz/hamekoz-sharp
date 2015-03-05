@@ -25,13 +25,13 @@ using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
-	public delegate void ChangeIdEventHandler(int id);
-	public delegate void ChangeEventHandler();
+	public delegate void ChangeIdEventHandler (int id);
+	public delegate void ChangeEventHandler ();
 
 	[System.ComponentModel.ToolboxItem (true)]
 	public partial class SearchableTreeView : Bin
 	{
-		private TreeModelFilter filter; 
+		private TreeModelFilter filter;
 
 		public event ChangeEventHandler ChangeEvent;
 
@@ -92,15 +92,15 @@ namespace Hamekoz.UI.Gtk
 				treeview.Selection.GetSelected (out iter);
 				actualId = (int)treeview.Model.GetValue (iter, 1);
 				actualString = (string)treeview.Model.GetValue (iter, 0);
-				OnChangeEvent();
+				OnChangeEvent ();
 			};
 
-			treeview.RowActivated += delegate(object o, RowActivatedArgs args) { 
+			treeview.RowActivated += delegate(object o, RowActivatedArgs args) {
 				TreeIter iter;
 				treeview.Selection.GetSelected (out iter);
 				actualId = (int)treeview.Model.GetValue (iter, 1);
 				actualString = (string)treeview.Model.GetValue (iter, 0);
-				OnActivateEvent();
+				OnActivateEvent ();
 			};
 		}
 
@@ -119,13 +119,10 @@ namespace Hamekoz.UI.Gtk
 		{
 			string name = model.GetValue (iter, 0).ToString ();
 
-			if (entryBuscar.Text == "")
+			if (entryBuscar.Text == string.Empty)
 				return true;
 
-			if (GeneralHelpers.SearchCompare (entryBuscar.Text, name))
-				return true;
-			else
-				return false;
+			return GeneralHelpers.SearchCompare (entryBuscar.Text, name);
 		}
 	}
 }

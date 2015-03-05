@@ -26,144 +26,130 @@ using System.Collections.Generic;
 namespace Hamekoz.UI.Gtk
 {
 	public static class GeneralHelpers
-    {
-        //FIXME dependent-function
+	{
+		//FIXME dependent-function
 		public static void HabilitarControles (this Container widget, bool estado)
-        {
-            foreach (var control in widget.AllChildren) {
-                if (control is Container) {
-                    GeneralHelpers.HabilitarControles((Container)control, estado);
-                }
+		{
+			foreach (var control in widget.AllChildren) {
+				if (control is Container) {
+					GeneralHelpers.HabilitarControles ((Container)control, estado);
+				}
 				if (control is Entry) {
 					((Entry)control).Sensitive = estado;
-                }
+				}
 				if (control is TreeView) {
 					((TreeView)control).Sensitive = estado;
 				}
 				if (control is ComboBox) {
-					((ComboBox)control).Sensitive = estado; 
-                }
-                if (control is TextView) {
-                    ((TextView)control).Sensitive = estado;
-                }
-                if (control is Button) {
+					((ComboBox)control).Sensitive = estado;
+				}
+				if (control is TextView) {
+					((TextView)control).Sensitive = estado;
+				}
+				if (control is Button) {
 					if (((Button)control).Parent.Name != "HBoxPrincipal") {
-                        ((Button)control).Sensitive = estado;
-                    }
-                }
-            }           
-        }
+						((Button)control).Sensitive = estado;
+					}
+				}
+			}
+		}
 
-        //FIXME dependent-function
+		//FIXME dependent-function
 		public static void SetTextTextview (this TextView view, string text)
-        {
-            TextBuffer buffer;
-            buffer = view.Buffer;
-            buffer.Text = text;
-        }
+		{
+			TextBuffer buffer;
+			buffer = view.Buffer;
+			buffer.Text = text;
+		}
 
-        //FIXME dependent-function
+		//FIXME dependent-function
 		public static void SetControlesVacios (this Container widget)
-        {
-            foreach (var control in widget.AllChildren) {
-                if (control is Container) {
-                    GeneralHelpers.SetControlesVacios ((Container)control);
-                }
-                if (control is Entry) {
-                    ((Entry)control).Text = "";
-                }
-                if (control is ComboBox) {
-                    ((ComboBox)control).Active = 0;
-                }
-                if (control is ComboBoxEntry) {
-                    ((ComboBoxEntry)control).Active = 0;
-                }
-                if (control is TextView) {
-                    SetTextTextview (((TextView)control), "");
-                }
-            }           
-        }
+		{
+			foreach (var control in widget.AllChildren) {
+				if (control is Container) {
+					GeneralHelpers.SetControlesVacios ((Container)control);
+				}
+				if (control is Entry) {
+					((Entry)control).Text = "";
+				}
+				if (control is ComboBox) {
+					((ComboBox)control).Active = 0;
+				}
+				if (control is ComboBoxEntry) {
+					((ComboBoxEntry)control).Active = 0;
+				}
+				if (control is TextView) {
+					SetTextTextview (((TextView)control), "");
+				}
+			}
+		}
 
-        //FIXME dependent-function
+		//FIXME dependent-function
 		public static bool VentanaConfirmacion (this Window ventana, string mensaje)
-        {
-            MessageDialog md = new MessageDialog (ventana, 
-                DialogFlags.DestroyWithParent,
-                MessageType.Question,
-				ButtonsType.YesNo,
-				mensaje);
+		{
+			MessageDialog md = new MessageDialog (ventana,
+				                   DialogFlags.DestroyWithParent,
+				                   MessageType.Question,
+				                   ButtonsType.YesNo,
+				                   mensaje);
 
-            ResponseType result = (ResponseType)md.Run ();
+			ResponseType result = (ResponseType)md.Run ();
 
-            if (result == ResponseType.Yes) {
-                md.Destroy();
-                return true;
-            } else {
-                md.Destroy ();
-                return false;
-            }
-        }
+			if (result == ResponseType.Yes) {
+				md.Destroy ();
+				return true;
+			} else {
+				md.Destroy ();
+				return false;
+			}
+		}
 
-        //FIXME dependent-function
+		//FIXME dependent-function
 		public static void VentanaError (this Window ventana, string mensaje)
-        {
-            MessageDialog md = new MessageDialog (ventana,
-                DialogFlags.DestroyWithParent,
-                MessageType.Error,
-                ButtonsType.Ok, 
-                mensaje);
+		{
+			MessageDialog md = new MessageDialog (ventana,
+				                   DialogFlags.DestroyWithParent,
+				                   MessageType.Error,
+				                   ButtonsType.Ok,
+				                   mensaje);
 
-            ResponseType result = (ResponseType)md.Run ();
+			ResponseType result = (ResponseType)md.Run ();
 
-            if (result == ResponseType.Ok)
-                md.Destroy ();
-            else {
-                md.Destroy ();
-            }
-        }
+			if (result == ResponseType.Ok)
+				md.Destroy ();
+			else {
+				md.Destroy ();
+			}
+		}
 
-        //FIXME dependent-function
+		//FIXME dependent-function
 		public static void VentanaMensaje (this Window ventana, string mensaje)
-        {
-            MessageDialog md = new MessageDialog (ventana,
-                DialogFlags.DestroyWithParent,
-                MessageType.Info,
-                ButtonsType.Ok, 
-                mensaje);
+		{
+			MessageDialog md = new MessageDialog (ventana,
+				                   DialogFlags.DestroyWithParent,
+				                   MessageType.Info,
+				                   ButtonsType.Ok,
+				                   mensaje);
 
-            ResponseType result = (ResponseType)md.Run ();
+			ResponseType result = (ResponseType)md.Run ();
 
-            if (result == ResponseType.Ok)
-                md.Destroy ();
-            else {
-                md.Destroy ();
-            }
-        }
+			if (result == ResponseType.Ok)
+				md.Destroy ();
+			else {
+				md.Destroy ();
+			}
+		}
 
-        /// <summary>
-        /// Function to compare strings for search systems.
-        /// </summary>
-        /// <returns><c>true</c>, if comparison is ok, <c>false</c> otherwise.</returns>
-        /// <param name="filter">Filter.</param>
-        /// <param name="current">Current.</param>
-        public static bool SearchCompare (string filter, string current)
-        {
+		/// <summary>
+		/// Function to compare strings for search systems.
+		/// </summary>
+		/// <returns><c>true</c>, if comparison is ok, <c>false</c> otherwise.</returns>
+		/// <param name="filter">Filter.</param>
+		/// <param name="current">Current.</param>
+		public static bool SearchCompare (string filter, string current)
+		{
 			return SearchCompareRecursive (filter, current, 0);
-			/* int matches = 0;
-            for (int i = 0; i < filter.Length; i++) {
-                if (current[i] == filter[i]) {
-                    matches++;
-                } else {
-                    break;
-                }
-            }
-
-            if (matches == filter.Length) {
-                return true;
-            } else {
-                return false;
-            } */
-        }
+		}
 
 		public static bool SearchCompareRecursive (string filter, string current, int currentPosition)
 		{
@@ -174,7 +160,7 @@ namespace Hamekoz.UI.Gtk
 
 				int matches = 0;
 				for (int i = 0; i < filter.Length; i++) {
-					if (current[currentPosition] == filter[i]) {
+					if (current [currentPosition] == filter [i]) {
 						matches++;
 						currentPosition++;
 					} else {
@@ -185,13 +171,13 @@ namespace Hamekoz.UI.Gtk
 				if (matches == filter.Length) {
 					return true;
 				} else {
-					return SearchCompareRecursive (filter, current, currentPosition+1);
+					return SearchCompareRecursive (filter, current, currentPosition + 1);
 				}
 
 			} else {
 				return false;
 			}
 		}
-    }
+	}
 }
 
