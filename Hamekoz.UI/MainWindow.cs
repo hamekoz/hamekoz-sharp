@@ -72,6 +72,7 @@ namespace Hamekoz.UI
 
 			menuTree.DataSource = store;
 			menuTree.SelectionChanged += HandleMenuTreeSelectionChanged;
+			menuTree.MinWidth = 200;
 
 			panel.Panel1.Content = menuTree;
 
@@ -80,6 +81,8 @@ namespace Hamekoz.UI
 			Content = panel;
 
 			CloseRequested += HandleCloseRequested;
+
+			InitialLocation = WindowLocation.CenterScreen;
 		}
 
 		protected override void Dispose (bool disposing)
@@ -121,7 +124,26 @@ namespace Hamekoz.UI
 				.CurrentPosition;
 		}
 
-		class ItemWidget
+		public TreePosition AddWiget (TreePosition pos, string name, ItemWidget widget)
+		{
+			return store.AddNode (pos)
+				.SetValue (nameCol, name)
+				.SetValue (iconCol, Icon)
+				.SetValue (widgetCol, widget)
+				.CurrentPosition;
+		}
+
+		public TreePosition AddWiget (TreePosition pos, string name, Type type, Widget widget)
+		{
+			var item = new ItemWidget (type) { Widget = widget };
+			return store.AddNode (pos)
+				.SetValue (nameCol, name)
+				.SetValue (iconCol, Icon)
+				.SetValue (widgetCol, item)
+				.CurrentPosition;
+		}
+
+		public class ItemWidget
 		{
 			public ItemWidget (Type type)
 			{
@@ -130,17 +152,6 @@ namespace Hamekoz.UI
 
 			public Type Type;
 			public Widget Widget;
-		}
-
-		public void Splash ()
-		{
-			var splash = new Splash ();
-			splash.Show ();
-			Application.Invoke (() => splash.Run ());
-			splash.Finish += delegate {
-				splash.Close ();
-				Show ();
-			};
 		}
 	}
 }

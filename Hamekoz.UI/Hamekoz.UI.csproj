@@ -38,6 +38,7 @@
     <Compile Include="Welcome.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="Resources\Resources.cs" />
+    <Compile Include="ListBoxFilter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -49,6 +49,7 @@ namespace Hamekoz.UI
 			};
 			info = new Label () {
 				TextColor = new Color (1, 0, 0),
+				Visible = false,
 			};
 			userEntry.Activated += delegate {
 				passwordEntry.SetFocus ();
@@ -107,6 +108,7 @@ namespace Hamekoz.UI
 				} catch (Exception ex) {
 					passwordEntry.Password = string.Empty;
 					info.Text = ex.Message;
+					info.Visible = true;
 				}
 			}
 		}

@@ -28,11 +28,12 @@ namespace Hamekoz.UI
 {
 	public class Splash : Window
 	{
-		delegate void SplashDelegate ();
+		Thread loadThread;
 
 		VBox box;
 		ProgressBar progressBar;
 		ImageView imageView;
+		Label info;
 
 		public Splash ()
 		{
@@ -42,21 +43,30 @@ namespace Hamekoz.UI
 			box = new VBox () {
 				Margin = -2,
 			};
+			imageView = new ImageView () {
+				Image = Image.FromResource (Resources.Splash),
+			};
 			progressBar = new ProgressBar () {
 				Indeterminate = true,
 				TooltipText = "Loading...",
 			};
-			imageView = new ImageView () {
-				Image = Image.FromResource (Resources.Splash),
+			info = new Label () {
+				Text = "Loading...",
+				TextAlignment = Alignment.Center,
 			};
 			box.PackStart (imageView);
 			box.PackEnd (progressBar);
+			box.PackEnd (info);
+
 			Content = box;
+
+			InitialLocation = WindowLocation.CenterScreen;
 		}
 
-		public void SetInfo (string info)
+		public void SetInfo (string text)
 		{
-			progressBar.TooltipText = info;
+			progressBar.TooltipText = text;
+			info.Text = text;
 		}
 
 		string splashURI = string.Empty;
@@ -76,15 +86,37 @@ namespace Hamekoz.UI
 			}
 		}
 
-		public event EventHandler Finish;
-
 		public void Run ()
 		{
-			for (int i = 0; i < 100000; i++) {
-				Console.WriteLine (i.ToString ());
+			loadThread = new Thread (new ThreadStart (Preload));
+			loadThread.Start ();
+			Show ();
+		}
+
+		public delegate void PreloadHandler ();
+
+		public PreloadHandler OnPreload;
+
+		protected void Preload ()
+		{
+			var preload = OnPreload;
+			if (preload != null) {
+				preload ();
 			}
-			//Finish ();
+			OnFinish ();
+			Close ();
+		}
+
+		public delegate void FinishHandler ();
+
+		public FinishHandler OnFinish;
+
+		protected void Finish ()
+		{
+			var finish = OnFinish;
+			if (finish != null) {
+				finish ();
+			}
 		}
 	}
 }
-
