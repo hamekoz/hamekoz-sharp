@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Argentina", "Hameko
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Tests", "Hamekoz.Tests\Hamekoz.Tests.csproj", "{72C95C7D-ECC8-4392-B003-181995BC89B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.UI.Xwt", "Hamekoz.UI.Xwt\Hamekoz.UI.Xwt.csproj", "{57C0A7DC-F7B7-42C3-AE4D-984938F61542}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Fiscal", "Hamekoz.Fiscal\Hamekoz.Fiscal.csproj", "{E773C3F7-FCB9-496E-871E-E0EA20E880EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Fiscal.Hasar.OCX", "Hamekoz.Fiscal.Hasar.OCX\Hamekoz.Fiscal.Hasar.OCX.csproj", "{A42896DA-744C-4366-9CC3-770583EADB4E}"
@@ -34,6 +32,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xwt.Gtk", "xwt\Xwt.Gtk\Xwt.Gtk.csproj", "{C3887A93-B2BD-4097-8E2F-3A063EFF32FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xwt.Gtk3", "xwt\Xwt.Gtk\Xwt.Gtk3.csproj", "{3B25FD1F-CEBA-4450-8893-DC330FDB56A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.UI", "Hamekoz.UI\Hamekoz.UI.csproj", "{57C0A7DC-F7B7-42C3-AE4D-984938F61542}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

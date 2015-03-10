@@ -37,10 +37,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Hamekoz.UI.Xwt\Hamekoz.UI.Xwt.csproj">
-      <Project>{57C0A7DC-F7B7-42C3-AE4D-984938F61542}</Project>
-      <Name>Hamekoz.UI.Xwt</Name>
-    </ProjectReference>
     <ProjectReference Include="..\xwt\Xwt\Xwt.csproj">
       <Project>{92494904-35FA-4DC9-BDE9-3A3E87AC49D3}</Project>
       <Name>Xwt</Name>
@@ -48,6 +44,10 @@
     <ProjectReference Include="..\xwt\Xwt.Gtk\Xwt.Gtk.csproj">
       <Project>{C3887A93-B2BD-4097-8E2F-3A063EFF32FD}</Project>
       <Name>Xwt.Gtk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hamekoz.UI\Hamekoz.UI.csproj">
+      <Project>{57C0A7DC-F7B7-42C3-AE4D-984938F61542}</Project>
+      <Name>Hamekoz.UI</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
