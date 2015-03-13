@@ -35,6 +35,8 @@ namespace Hamekoz.Fiscal
 
 		double IVA { get; }
 
+        double TasaIVA { get; }
+
 		double Impuestos { get; }
 
 		double Total { get; }

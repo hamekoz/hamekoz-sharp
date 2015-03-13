@@ -317,7 +317,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 
 			//IMPRIMO RENGLONES
 			foreach (IItem renglon in factura.Items) {
-				fiscalHasar.ImprimirItem (renglon.DescripcionCorta, renglon.Cantidad, renglon.Precio, renglon.IVA, renglon.Impuestos);
+				fiscalHasar.ImprimirItem (renglon.DescripcionCorta, renglon.Cantidad, renglon.Precio, renglon.TasaIVA, renglon.Impuestos);
 				if (fiscalHasar.HuboErrorFiscal) {
 					Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
 					fiscalHasar.CancelarComprobante ();
