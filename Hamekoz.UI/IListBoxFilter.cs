@@ -1,5 +1,5 @@
 ﻿//
-//  Hamekoz.cs
+//  IListBoxFilter.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -18,14 +18,32 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
+using System.Collections.Generic;
 
 namespace Hamekoz.UI
 {
-	static class Resources
+	public interface IListBoxFilter
 	{
-		internal const string Icon = "Hamekoz.UI.Resources.Icon.png";
-		internal const string Logo = "Hamekoz.UI.Resources.Logo.png";
-		internal const string Splash = "Hamekoz.UI.Resources.Splash.png";
+		event ListBoxFilterSelectionChanged SelectionChanged;
+
+		string FieldDescription { get; set; }
+
+		bool RealTimeFilter { get; set; }
+
+		void SetList<T> (IList<T> typedList);
+
+		IList<object> List { get; set; }
+
+		object SelectedItem { get; }
+
+		T GetSelectedItem<T> ();
+
+		bool MultipleSelection { get; set; }
+
+		IList<object> SelectedItems { get; }
+
+		IList<T> GetSelectedItems<T> ();
 	}
 }
 

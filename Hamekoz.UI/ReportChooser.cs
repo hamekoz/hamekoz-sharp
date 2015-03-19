@@ -20,26 +20,65 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Xwt;
+using Mono.Unix;
 
 namespace Hamekoz.UI
 {
-	public class ReportChooser : HPaned
+	public class ReportChooser : ItemChooser
 	{
+		public event EventHandler PdfClicked, XlsClicked, ExportClicked;
+
+		readonly Button pdf = new Button {
+			Label = "PDF",
+			ExpandHorizontal = true,
+			HorizontalPlacement = WidgetPlacement.Fill,
+			Image = Icons.Document.WithSize (IconSize.Medium),
+			ImagePosition = ContentPosition.Left,
+		};
+		readonly Button xls = new Button {
+			Label = "XLS",
+			ExpandHorizontal = true,
+			HorizontalPlacement = WidgetPlacement.Fill,
+			Image = Icons.Spreadsheet.WithSize (IconSize.Medium),
+			ImagePosition = ContentPosition.Left,
+		};
+		readonly Button export = new Button {
+			Label = Catalog.GetString ("Export"),
+			ExpandHorizontal = true,
+			HorizontalPlacement = WidgetPlacement.Fill,
+			Image = Icons.SaveAs.WithSize (IconSize.Medium),
+			ImagePosition = ContentPosition.Left,
+		};
+
 		public ReportChooser ()
 		{
-			var listBox = new VBox ();
-			var parameters = new VBox ();
-			var searchEntry = new SearchTextEntry ();
-			var listTree = new TreeView ();
-			var store = new ListStore ();
+			pdf.Clicked += OnPdfClicked;
+			xls.Clicked += OnXlsClicked;
+			export.Clicked += OnExportClicked;
+			AddAction (pdf);
+			AddAction (xls);
+			AddAction (export);
+		}
 
-			listBox.PackStart (searchEntry);
-			listBox.PackStart (listTree);
+		void OnExportClicked (object sender, EventArgs e)
+		{
+			var handler = ExportClicked;
+			if (handler != null)
+				handler (sender, e);
+		}
 
-			parameters.PackStart (new Label ("No parameters requiered"));
+		void OnXlsClicked (object sender, EventArgs e)
+		{
+			var handler = XlsClicked;
+			if (handler != null)
+				handler (sender, e);
+		}
 
-			Panel1.Content = listBox;
-			Panel2.Content = parameters;
+		void OnPdfClicked (object sender, EventArgs e)
+		{
+			var handler = PdfClicked;
+			if (handler != null)
+				handler (sender, e);
 		}
 	}
 }

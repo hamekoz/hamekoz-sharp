@@ -22,12 +22,13 @@ using System;
 using Xwt;
 using Xwt.Drawing;
 using System.Reflection;
+using Mono.Unix;
 
 namespace Hamekoz.UI
 {
 	public class Welcome : VBox
 	{
-		ImageView logo;
+		readonly ImageView logo;
 		Label primaryInfo;
 		Label secondaryInfo;
 		Label errorInfo;
@@ -38,27 +39,27 @@ namespace Hamekoz.UI
 			AssemblyName assemblyName = assembly.GetName ();
 			Version version = assemblyName.Version;
 
-			logo = new ImageView () {
+			logo = new ImageView {
 				Image = Image.FromResource (Resources.Logo),
 			};
 
-			primaryInfo = new Label () {
-				Text = string.Format ("Welcome to {0}", assemblyName.Name),
+			primaryInfo = new Label {
+				Text = string.Format (Catalog.GetString ("Welcome to {0}"), assemblyName.Name),
 				TextAlignment = Alignment.Center,
 				Font = Font.WithSize (15),
 				MarginTop = 10,
 			};
-			secondaryInfo = new Label () {
-				Text = "Powered by Hamekoz",
+			secondaryInfo = new Label {
+				Text = string.Format (Catalog.GetString ("Powered by {0}"), "Hamekoz"),
 				TextAlignment = Alignment.Center,
 				Font = Font.WithSize (11),
 			};
-			var versionLabel = new Label () {
-				Text = string.Format ("Versión {0}", version.ToString ()),
+			var versionLabel = new Label {
+				Text = string.Format (Catalog.GetString ("Version {0}"), version),
 				TextAlignment = Alignment.Center,
 				MarginTop = 3,
 			};
-			errorInfo = new Label () {
+			errorInfo = new Label {
 				TextColor = new Color (1, 0, 0),
 				TextAlignment = Alignment.Center,
 				MarginTop = 10,
@@ -113,7 +114,7 @@ namespace Hamekoz.UI
 					logo.Image = Image.FromFile (value);
 					logoURI = value;
 				} catch (Exception ex) {
-					Console.WriteLine ("Can not load image, using default logo.\nError: {0}", ex.Message);
+					Console.WriteLine (Catalog.GetString ("Can not load image, using default logo.\nError: {0}"), ex.Message);
 					logo.Image = Image.FromResource (Resources.Logo);
 				}
 			}

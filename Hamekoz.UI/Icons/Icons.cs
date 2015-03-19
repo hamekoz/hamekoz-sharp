@@ -1,5 +1,5 @@
 ﻿//
-//  Hamekoz.cs
+//  Icons.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -18,14 +18,18 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Xwt.Drawing;
 
 namespace Hamekoz.UI
 {
-	static class Resources
+	public static class Icons
 	{
-		internal const string Icon = "Hamekoz.UI.Resources.Icon.png";
-		internal const string Logo = "Hamekoz.UI.Resources.Logo.png";
-		internal const string Splash = "Hamekoz.UI.Resources.Splash.png";
+		public static readonly Image Document = Image.FromResource ("Hamekoz.UI.Icons.x-office-document.png");
+		public static readonly Image Spreadsheet = Image.FromResource ("Hamekoz.UI.Icons.x-office-spreadsheet.png");
+		public static readonly Image Save = Image.FromResource ("Hamekoz.UI.Icons.document-save.png");
+		public static readonly Image SaveAs = Image.FromResource ("Hamekoz.UI.Icons.document-save-as.png");
+		public static readonly Image UserInfo = Image.FromResource ("Hamekoz.UI.Icons.user-info.png");
+		public static readonly Image EditFind = Image.FromResource ("Hamekoz.UI.Icons.edit-find.png");
 	}
 }
 
