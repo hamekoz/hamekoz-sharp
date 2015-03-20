@@ -1,13 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Hamekoz.Data</RootNamespace>
-    <AssemblyName>Hamekoz.Data</AssemblyName>
-    <newfilesearch>OnLoad</newfilesearch>
+    <ProjectGuid>{491DDC9E-53C2-481A-8C7F-13333915FB15}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Hamekoz.UI.Demo</RootNamespace>
+    <AssemblyName>Hamekoz.UI.Demo</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -17,30 +16,28 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DB.cs" />
-    <Compile Include="DataSetExtension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="README.md" />
+    <ProjectReference Include="..\Hamekoz.UI\Hamekoz.UI.csproj">
+      <Project>{57C0A7DC-F7B7-42C3-AE4D-984938F61542}</Project>
+      <Name>Hamekoz.UI</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

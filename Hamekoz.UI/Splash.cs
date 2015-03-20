@@ -80,7 +80,9 @@ namespace Hamekoz.UI
 					imageView.Image = Image.FromFile (value);
 					splashURI = value;
 				} catch (Exception ex) {
-					Console.WriteLine (Catalog.GetString ("Can not load image, using default splash.\nError: {0}"), ex.Message);
+					Console.WriteLine (Catalog.GetString ("Failed to load image."));
+					Console.WriteLine (Catalog.GetString ("Swiching to default splash."));
+					Console.WriteLine (Catalog.GetString ("Error: {0}"), ex.Message);
 					imageView.Image = Image.FromResource (Resources.Splash);
 				}
 			}

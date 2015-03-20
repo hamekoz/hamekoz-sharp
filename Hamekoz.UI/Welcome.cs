@@ -114,7 +114,9 @@ namespace Hamekoz.UI
 					logo.Image = Image.FromFile (value);
 					logoURI = value;
 				} catch (Exception ex) {
-					Console.WriteLine (Catalog.GetString ("Can not load image, using default logo.\nError: {0}"), ex.Message);
+					Console.WriteLine (Catalog.GetString ("Failed to load image."));
+					Console.WriteLine (Catalog.GetString ("Swiching to default logo."));
+					Console.WriteLine (Catalog.GetString ("Error: {0}"), ex.Message);
 					logo.Image = Image.FromResource (Resources.Logo);
 				}
 			}
