@@ -1,0 +1,102 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2015-03-20 10:14:29-0300\n"
+"PO-Revision-Date: 2015-03-20 10:14:30-0300\n"
+"Last-Translator: Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: MonoDevelop Gettext addin\n"
+
+#: ../Hamekoz.UI/ReportChooser.cs:2
+msgid "Export"
+msgstr ""
+
+#: ../Hamekoz.UI/Login.cs:2
+msgid "User"
+msgstr ""
+
+#: ../Hamekoz.UI/Login.cs:2
+msgid "Password"
+msgstr ""
+
+#: ../Hamekoz.UI/Login.cs:5
+msgid "Login"
+msgstr ""
+
+#: ../Hamekoz.UI/Splash.cs:3
+msgid "Loading..."
+msgstr ""
+
+#: ../Hamekoz.UI/Splash.cs:8
+#: ../Hamekoz.UI/Welcome.cs:10
+msgid "Failed to load image."
+msgstr ""
+
+#: ../Hamekoz.UI/Splash.cs:8
+msgid "Swiching to default splash."
+msgstr ""
+
+#: ../Hamekoz.UI/Splash.cs:8
+#: ../Hamekoz.UI/Welcome.cs:10
+msgid "Error: {0}"
+msgstr ""
+
+#: ../Hamekoz.UI/Welcome.cs:4
+msgid "Welcome to {0}"
+msgstr ""
+
+#: ../Hamekoz.UI/Welcome.cs:4
+msgid "Powered by {0}"
+msgstr ""
+
+#: ../Hamekoz.UI/Welcome.cs:4
+msgid "Version {0}"
+msgstr ""
+
+#: ../Hamekoz.UI/Welcome.cs:10
+msgid "Swiching to default logo."
+msgstr ""
+
+#: ../Hamekoz.UI/MainWindow.cs:5
+msgid "{0} Demo Application"
+msgstr ""
+
+#: ../Hamekoz.UI/MainWindow.cs:7
+msgid "About"
+msgstr ""
+
+#: ../Hamekoz.UI/MainWindow.cs:7
+msgid "Status icon could not be shown"
+msgstr ""
+
+#: ../Hamekoz.UI/MainWindow.cs:18
+msgid "The application will be closed"
+msgstr ""
+
+#: ../Hamekoz.UI/MainWindow.cs:19
+msgid "Select one item from menu"
+msgstr ""
+
+#: ../Hamekoz.UI/ListBoxFilter.cs:7
+msgid "Filter"
+msgstr ""
+
+#: ../Hamekoz.UI/ItemPicker.cs:2
+msgid "Press the search button and select one item from the list"
+msgstr ""
+
+#: ../Hamekoz.UI/ItemPicker.cs:2
+msgid "Search item"
+msgstr ""
+
+#: ../Hamekoz.UI/ListBoxAll.cs:2
+msgid "List description"
+msgstr ""
+
+#: ../Hamekoz.UI/ListBoxAll.cs:4
+msgid "All"
+msgstr ""
+

@@ -22,7 +22,7 @@ using System;
 using Xwt;
 using Xwt.Drawing;
 using System.Threading;
-using System.Threading.Tasks;
+using Mono.Unix;
 
 namespace Hamekoz.UI
 {
@@ -39,19 +39,19 @@ namespace Hamekoz.UI
 		{
 			Decorated = false;
 			ShowInTaskbar = false;
-			this.Opacity = 0.5d;
-			box = new VBox () {
+			Opacity = 0.5d;
+			box = new VBox {
 				Margin = -2,
 			};
-			imageView = new ImageView () {
+			imageView = new ImageView {
 				Image = Image.FromResource (Resources.Splash),
 			};
-			progressBar = new ProgressBar () {
+			progressBar = new ProgressBar {
 				Indeterminate = true,
-				TooltipText = "Loading...",
+				TooltipText = Catalog.GetString ("Loading..."),
 			};
-			info = new Label () {
-				Text = "Loading...",
+			info = new Label {
+				Text = Catalog.GetString ("Loading..."),
 				TextAlignment = Alignment.Center,
 			};
 			box.PackStart (imageView);
@@ -80,7 +80,9 @@ namespace Hamekoz.UI
 					imageView.Image = Image.FromFile (value);
 					splashURI = value;
 				} catch (Exception ex) {
-					Console.WriteLine ("Can not load image, using default splash.\nError: {0}", ex.Message);
+					Console.WriteLine (Catalog.GetString ("Failed to load image."));
+					Console.WriteLine (Catalog.GetString ("Swiching to default splash."));
+					Console.WriteLine (Catalog.GetString ("Error: {0}"), ex.Message);
 					imageView.Image = Image.FromResource (Resources.Splash);
 				}
 			}

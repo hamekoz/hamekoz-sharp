@@ -7,8 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz.UI</RootNamespace>
     <AssemblyName>Hamekoz.UI</AssemblyName>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +27,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Mono.Posix">
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -39,6 +40,11 @@
     <Compile Include="MainWindow.cs" />
     <Compile Include="Resources\Resources.cs" />
     <Compile Include="ListBoxFilter.cs" />
+    <Compile Include="ItemChooser.cs" />
+    <Compile Include="Icons\Icons.cs" />
+    <Compile Include="ItemPicker.cs" />
+    <Compile Include="ListBoxAll.cs" />
+    <Compile Include="IListBoxFilter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -51,6 +57,13 @@
     <EmbeddedResource Include="Resources\Logo.png" />
     <EmbeddedResource Include="Resources\Splash.png" />
     <EmbeddedResource Include="Resources\Icon.png" />
+    <EmbeddedResource Include="Icons\document-print-preview.png" />
+    <EmbeddedResource Include="Icons\document-save.png" />
+    <EmbeddedResource Include="Icons\document-save-as.png" />
+    <EmbeddedResource Include="Icons\x-office-document.png" />
+    <EmbeddedResource Include="Icons\x-office-spreadsheet.png" />
+    <EmbeddedResource Include="Icons\user-info.png" />
+    <EmbeddedResource Include="Icons\edit-find.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

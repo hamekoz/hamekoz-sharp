@@ -1,5 +1,5 @@
 ﻿//
-//  Hamekoz.cs
+//  Program.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -18,14 +18,14 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 
-namespace Hamekoz.UI
+namespace Hamekoz.UI.Demo
 {
-	static class Resources
+	class MainClass
 	{
-		internal const string Icon = "Hamekoz.UI.Resources.Icon.png";
-		internal const string Logo = "Hamekoz.UI.Resources.Logo.png";
-		internal const string Splash = "Hamekoz.UI.Resources.Splash.png";
+		public static void Main (string[] args)
+		{
+		}
 	}
 }
-

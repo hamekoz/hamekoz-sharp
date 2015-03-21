@@ -21,6 +21,7 @@
 using System;
 using Xwt;
 using Xwt.Drawing;
+using Mono.Unix;
 
 namespace Hamekoz.UI
 {
@@ -29,11 +30,11 @@ namespace Hamekoz.UI
 		StatusIcon statusIcon;
 		HPaned panel;
 		TreeView menuTree;
-		TreeStore store;
+		readonly TreeStore store;
 
-		DataField<string> nameCol = new DataField<string> ();
-		DataField<ItemWidget> widgetCol = new DataField<ItemWidget> ();
-		DataField<Image> iconCol = new DataField<Image> ();
+		readonly DataField<string> nameCol = new DataField<string> ();
+		readonly DataField<ItemWidget> widgetCol = new DataField<ItemWidget> ();
+		readonly DataField<Image> iconCol = new DataField<Image> ();
 
 		public StatusIcon StatusIcon {
 			get {
@@ -49,7 +50,7 @@ namespace Hamekoz.UI
 
 		public MainWindow ()
 		{
-			Title = "Hamekoz Xwt Demo Application";
+			Title = string.Format (Catalog.GetString ("{0} Demo Application"), "Hamekoz Xwt");
 			Width = 500;
 			Height = 400;
 
@@ -58,10 +59,10 @@ namespace Hamekoz.UI
 			try {
 				statusIcon = Application.CreateStatusIcon ();
 				statusIcon.Menu = new Menu ();
-				statusIcon.Menu.Items.Add (new MenuItem ("About"));
+				statusIcon.Menu.Items.Add (new MenuItem (Catalog.GetString ("About")));
 				statusIcon.Image = Icon;
 			} catch {
-				Console.WriteLine ("Status icon could not be shown");
+				Console.WriteLine (Catalog.GetString ("Status icon could not be shown"));
 			}
 
 			panel = new HPaned ();
@@ -96,7 +97,7 @@ namespace Hamekoz.UI
 
 		void HandleCloseRequested (object sender, CloseRequestedEventArgs args)
 		{
-			args.AllowClose = MessageDialog.Confirm ("Se va a cerrar la aplicación", Command.Ok);
+			args.AllowClose = MessageDialog.Confirm (Catalog.GetString ("The application will be closed"), Command.Ok);
 			if (args.AllowClose)
 				Application.Exit ();
 		}
@@ -110,7 +111,7 @@ namespace Hamekoz.UI
 						w.Widget = (Widget)Activator.CreateInstance (w.Type);
 					panel.Panel2.Content = w.Widget;
 				} else {
-					panel.Panel2.Content = new Label ("Select one item from menu");
+					panel.Panel2.Content = new Label (Catalog.GetString ("Select one item from menu"));
 				}
 			}
 		}

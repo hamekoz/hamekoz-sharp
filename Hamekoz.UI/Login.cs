@@ -21,76 +21,61 @@
 using System;
 using Xwt;
 using Xwt.Drawing;
+using Mono.Unix;
 
 namespace Hamekoz.UI
 {
 	public class Login : Dialog
 	{
-		Label userLabel;
-		TextEntry userEntry;
-		Label passwordLabel;
-		PasswordEntry passwordEntry;
-		Label info;
+		readonly TextEntry userEntry;
+		readonly PasswordEntry passwordEntry;
+		readonly Label info;
 
 		public Login ()
 		{
-			var box = new VBox ();
-			userEntry = new TextEntry () { 
-				PlaceholderText = "User",
+			var table = new Table ();
+			var image = new ImageView {
+				Image = Icons.UserInfo.WithBoxSize (96),
 			};
-			passwordEntry = new PasswordEntry () { 
-				PlaceholderText = "Password",
+			userEntry = new TextEntry {
+				PlaceholderText = Catalog.GetString ("User"),
 			};
-			userLabel = new Label () {
-				Text = "User",
+			passwordEntry = new PasswordEntry {
+				PlaceholderText = Catalog.GetString ("Password"),
 			};
-			passwordLabel = new Label () {
-				Text = "Password",
+			var userLabel = new Label {
+				Text = Catalog.GetString ("User"),
+				TextAlignment = Alignment.Center,
 			};
-			info = new Label () {
+			var passwordLabel = new Label {
+				Text = Catalog.GetString ("Password"),
+				TextAlignment = Alignment.Center,
+			};
+			info = new Label {
+				TextAlignment = Alignment.Center,
 				TextColor = new Color (1, 0, 0),
 				Visible = false,
 			};
 			userEntry.Activated += delegate {
 				passwordEntry.SetFocus ();
 			};
-			box.PackStart (userLabel);
-			box.PackStart (userEntry);
-			box.PackStart (passwordLabel);
-			box.PackStart (passwordEntry);
 			passwordEntry.Activated += OnAutenticate;
-			box.PackStart (info);
-			box.VerticalPlacement = WidgetPlacement.Center;
-			box.HorizontalPlacement = WidgetPlacement.Center;
-			box.ExpandHorizontal = false;
-			box.ExpandVertical = false;
-			Content = box;
+
+			table.Add (image, 0, 0, 4);
+			table.Add (userLabel, 1, 0);
+			table.Add (userEntry, 1, 1);
+			table.Add (passwordLabel, 1, 2);
+			table.Add (passwordEntry, 1, 3);
+			table.Add (info, 0, 4, colspan: 2);
+
+			Content = table;
+
 			userEntry.SetFocus ();
 			Resizable = false;
 			Opacity = 0.5d;
 			ShowInTaskbar = false;
-			Title = "Login";
+			Title = Catalog.GetString ("Login");
 			Icon = Image.FromResource (GetType (), Resources.Icon);
-		}
-
-		public string UserLabel {
-			get { 
-				return userLabel.Text;
-			}
-			set {
-				userLabel.Text = value;
-				userEntry.PlaceholderText = value;
-			}
-		}
-
-		public string PasswordLabel {
-			get { 
-				return passwordLabel.Text;
-			}
-			set {
-				passwordLabel.Text = value;
-				passwordEntry.PlaceholderText = value;
-			}
 		}
 
 		public delegate void AutenticateHandler (string user, string password);

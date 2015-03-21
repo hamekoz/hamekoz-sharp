@@ -19,39 +19,46 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using Xwt;
 using Xwt.Drawing;
+using Mono.Unix;
 
 namespace Hamekoz.UI
 {
 	public delegate void ListBoxFilterSelectionChanged ();
 
-	public class ListBoxFilter : VBox
+	public class ListBoxFilter : VBox, IListBoxFilter
 	{
-		Label label;
 		SearchTextEntry search;
+
+		internal SearchTextEntry Search {
+			get {
+				return search;
+			}
+		}
+
 		ListBox listBox;
-		CheckBox allCheckBox;
+
+		internal ListBox ListBox {
+			get {
+				return listBox;
+			}
+		}
+
 		IList<object> list = new List<object> ();
 
 		public ListBoxFilter ()
 		{
-			label = new Label () {
-				Text = "List description",
-				Visible = false,
+			search = new SearchTextEntry {
+				PlaceholderText = Catalog.GetString ("Filter"),
 			};
 
-			search = new SearchTextEntry () {
-				PlaceholderText = "Filter",
-			};
+			search.Activated += FilterActivated;
+			search.Changed += FilterChanged;
 
-			search.Activated += Filter_Activated;
-			search.Changed += Filter_Changed;
-
-			listBox = new ListBox () {
+			listBox = new ListBox {
 				ExpandHorizontal = true,
 				ExpandVertical = true,
 				HorizontalPlacement = WidgetPlacement.Fill,
@@ -61,21 +68,10 @@ namespace Hamekoz.UI
 				OnSelectionChanged ();
 			};
 
-			allCheckBox = new CheckBox () {
-				Label = "All",
-				AllowMixed = false,
-				State = CheckBoxState.Off,
-				Active = false,
-				Visible = false,
-			};
-			allCheckBox.Clicked += AllCheckBox_Clicked;
-
-			PackStart (label);
 			PackStart (search);
-			PackStart (listBox);
-			PackStart (allCheckBox);
-
-			listBox.ExpandVertical = true;
+			PackStart (listBox, true, true);
+			ExpandHorizontal = true;
+			ExpandVertical = true;
 		}
 
 		void FilterList ()
@@ -85,11 +81,7 @@ namespace Hamekoz.UI
 
 		void FilterList (string filter)
 		{
-			if (filter == string.Empty) {
-				search.BackgroundColor = Colors.White;
-			} else {
-				search.BackgroundColor = Colors.LightGreen;
-			}
+			search.BackgroundColor = filter == string.Empty ? Colors.White : Colors.LightGreen;
 			filter = filter.ToUpper ();
 			var filterList = list.Where (i => ItemLabel (i).ToUpper ().Contains (filter));
 			listBox.Items.Clear ();
@@ -100,22 +92,22 @@ namespace Hamekoz.UI
 
 		string ItemLabel (object item)
 		{
-			string label;
+			string labelText;
 			try {
-				label = item.GetType ().GetProperty (FieldDescription).GetValue (item, null).ToString ();
+				labelText = item.GetType ().GetProperty (FieldDescription).GetValue (item, null).ToString ();
 			} catch {
-				label = item.ToString ();
+				labelText = item.ToString ();
 			}
-			return label;
+			return labelText;
 		}
 
-		void Filter_Activated (object sender, EventArgs e)
+		void FilterActivated (object sender, EventArgs e)
 		{
 			var s = sender as SearchTextEntry;
 			FilterList (s.Text);
 		}
 
-		void Filter_Changed (object sender, EventArgs e)
+		void FilterChanged (object sender, EventArgs e)
 		{
 			var s = sender as SearchTextEntry;
 			if (RealTimeFilter || s.Text == string.Empty) {
@@ -123,18 +115,6 @@ namespace Hamekoz.UI
 			} else {
 				search.BackgroundColor = Colors.White;
 			}
-		}
-
-		void AllCheckBox_Clicked (object sender, EventArgs e)
-		{
-			listBox.Sensitive = !allCheckBox.Active;
-			search.Sensitive = !allCheckBox.Active;
-			search.Text = string.Empty;
-			if (allCheckBox.Active && MultipleSelection)
-				listBox.SelectAll ();
-			else
-				listBox.UnselectAll ();
-			OnSelectionChanged ();
 		}
 
 		string fieldDescription;
@@ -181,7 +161,7 @@ namespace Hamekoz.UI
 			return (T)SelectedItem;
 		}
 
-		public List<T> GetSelectedItems<T> ()
+		public IList<T> GetSelectedItems<T> ()
 		{
 			return SelectedItems.Cast<T> ().ToList ();
 		}
@@ -196,40 +176,6 @@ namespace Hamekoz.UI
 			set {
 				listBox.SelectionMode = value ? SelectionMode.Multiple : SelectionMode.Single;
 			}
-		}
-
-		public string Label {
-			get { return label.Text; }
-			set {
-				label.Text = value;
-				label.Visible = value != string.Empty;
-			}
-		}
-
-		public bool AllCheckBoxValue {
-			get { return allCheckBox.Active; }
-			set {
-				allCheckBox.Active = value;
-				allCheckBox.Visible = true;
-			}
-		}
-
-		public string AllCheckBoxLabel {
-			get { return allCheckBox.Label; }
-			set {
-				allCheckBox.Label = value;
-				allCheckBox.Visible = value != string.Empty;
-			}
-		}
-
-		public bool AllCheckBoxVisible {
-			get { return allCheckBox.Visible; }
-			set { allCheckBox.Visible = value; }
-		}
-
-		public string FilterPlaceholderText {
-			get { return search.PlaceholderText; }
-			set { search.PlaceholderText = value; }
 		}
 
 		public event ListBoxFilterSelectionChanged SelectionChanged;
