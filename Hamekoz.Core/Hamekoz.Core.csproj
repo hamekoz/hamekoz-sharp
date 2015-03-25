@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\IPersistibleData.cs" />
     <Compile Include="Interfaces\ISupervisor.cs" />
     <Compile Include="Numalet.cs" />
+    <Compile Include="ValidationDataException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
