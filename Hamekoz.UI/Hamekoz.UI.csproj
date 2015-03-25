@@ -45,6 +45,7 @@
     <Compile Include="ItemPicker.cs" />
     <Compile Include="ListBoxAll.cs" />
     <Compile Include="IListBoxFilter.cs" />
+    <Compile Include="Extensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
