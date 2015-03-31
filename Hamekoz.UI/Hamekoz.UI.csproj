@@ -65,6 +65,7 @@
     <EmbeddedResource Include="Icons\x-office-spreadsheet.png" />
     <EmbeddedResource Include="Icons\user-info.png" />
     <EmbeddedResource Include="Icons\edit-find.png" />
+    <EmbeddedResource Include="Icons\document-new.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

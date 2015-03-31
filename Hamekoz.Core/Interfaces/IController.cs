@@ -1,10 +1,10 @@
-//
-//  IPersistibleData.cs
+﻿//
+//  IController.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2014 Hamekoz
+//  Copyright (c) 2015 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -21,20 +21,21 @@
 using System;
 using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Core
 {
-	[Obsolete ("Use Hamekoz.Core.IPersistible<T>")]
-	public interface IPersistibleData<T> where T : IPersistible
+	public interface IController<T>
 	{
-		void Load (T instance);
+		IList<T> List { get; }
 
-		void Insert (T instance);
+		T New ();
 
-		void Update (T instance);
+		T Get (int id);
 
-		void Delete (T instance);
+		T Get (T instance);
 
-		IList<T> GetAll ();
+		void Save (T instance);
+
+		void Remove (T instance);
 	}
 }
 

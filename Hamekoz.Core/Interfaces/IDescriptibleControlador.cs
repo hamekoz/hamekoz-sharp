@@ -26,6 +26,7 @@ namespace Hamekoz.Interfaces
 	/// <summary>
 	/// Interfaz para controlador de clases aptas para combo
 	/// </summary>
+	[Obsolete ("IDescriptible is obsolete to")]
 	public interface IDescriptibleControlador
 	{
 		/// <summary>

@@ -129,6 +129,9 @@ namespace Hamekoz.UI
 			get {
 				return listBoxFilter.SelectedItem;
 			}
+			set {
+				listBoxFilter.SelectedItem = value;
+			}
 		}
 
 		public bool MultipleSelection {

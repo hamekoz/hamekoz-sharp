@@ -21,10 +21,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using Hamekoz.Core;
 
 namespace Hamekoz.Interfaces
 {
-	public interface IAbmController<T>
+	public interface IAbmController<T> : IController<T>
 	{
 		bool CanAdd { get; }
 

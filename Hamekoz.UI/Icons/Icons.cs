@@ -26,6 +26,7 @@ namespace Hamekoz.UI
 	{
 		public static readonly Image Document = Image.FromResource ("Hamekoz.UI.Icons.x-office-document.png");
 		public static readonly Image Spreadsheet = Image.FromResource ("Hamekoz.UI.Icons.x-office-spreadsheet.png");
+		public static readonly Image New = Image.FromResource ("Hamekoz.UI.Icons.document-new.png");
 		public static readonly Image Save = Image.FromResource ("Hamekoz.UI.Icons.document-save.png");
 		public static readonly Image SaveAs = Image.FromResource ("Hamekoz.UI.Icons.document-save-as.png");
 		public static readonly Image UserInfo = Image.FromResource ("Hamekoz.UI.Icons.user-info.png");

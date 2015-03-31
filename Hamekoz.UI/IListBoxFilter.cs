@@ -35,7 +35,7 @@ namespace Hamekoz.UI
 
 		IList<object> List { get; set; }
 
-		object SelectedItem { get; }
+		object SelectedItem { get; set; }
 
 		T GetSelectedItem<T> ();
 

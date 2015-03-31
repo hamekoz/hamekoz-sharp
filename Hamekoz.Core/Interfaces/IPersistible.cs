@@ -19,9 +19,56 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
+
+namespace Hamekoz.Core
+{
+	public interface IPersistible
+	{
+		/// <summary>
+		/// Gets the identifier.
+		/// </summary>
+		/// <value>The identifier.</value>
+		int Id { get; set; }
+	}
+
+	public interface IPersistible<T> where T : IPersistible
+	{
+		/// <summary>
+		/// Read the specified instance.
+		/// </summary>
+		/// <param name="instance">Instance.</param>
+		void Read (T instance);
+
+		/// <summary>
+		/// Insert the specified instance.
+		/// </summary>
+		/// <param name="instance">Instance.</param>
+		void Insert (T instance);
+
+		/// <summary>
+		/// Update the specified instance.
+		/// </summary>
+		/// <param name="instance">Instance.</param>
+		void Update (T instance);
+
+		/// <summary>
+		/// Delete the specified instance.
+		/// </summary>
+		/// <param name="instance">Instance.</param>
+		void Delete (T instance);
+
+		/// <summary>
+		/// Gets all instances.
+		/// </summary>
+		/// <returns>All persistent instances</returns>
+		IList<T> GetAll ();
+	}
+}
 
 namespace Hamekoz.Interfaces
 {
+	[Obsolete ("Use Hamekoz.Core.IPersistible")]
 	public interface IPersistible
 	{
 		/// <summary>

@@ -131,10 +131,11 @@ namespace Hamekoz.UI
 
 		public object SelectedItem {
 			get { return listBox.SelectedItem; }
+			set { listBox.SelectedItem = value; }
 		}
 
 		public IList<object> SelectedItems {
-			get { 
+			get {
 				var selectedItems = new List<object> ();
 				foreach (int item in listBox.SelectedRows) {
 					selectedItems.Add (listBox.Items [item]);
