@@ -47,6 +47,7 @@ namespace Hamekoz.Argentina.Agip
 		}
 
 		string nroCertificadoPropio = string.Empty;
+
 		public string NroCertificadoPropio {
 			get {
 				return nroCertificadoPropio;
@@ -106,7 +107,7 @@ namespace Hamekoz.Argentina.Agip
 		/// </summary>
 		/// <returns>The fixed string.</returns>
 		/// <see cref="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
-		public string ToFixedString()
+		public string ToFixedString ()
 		{
 			string cadena = string.Format ("{0:D1}{1:D12}{2:d}{3:0000000000000.00}{4}{5:D2}{6}{7:D16}{8:D11}{9:D3}{10:d}{11:0000000000000.00}{12:00.00}"
 				, (int)this.Operacion
@@ -122,31 +123,12 @@ namespace Hamekoz.Argentina.Agip
 				, this.FechaDeRetencionPercepcion
 				, this.RetecionPercepcionADeducir
 				, this.Alicuota
-			);
+			                );
 			if (cadena.Length != 119) {
-				throw new Exception (string.Format("La longitud del registro a exportar es incorrecta.\nNota de credito: {0}", this.NroNotaDeCredito));
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nNota de credito: {0}", this.NroNotaDeCredito));
 			}
 			return cadena;
 		}
-
-//		public List<string> GetPropertiesToString()
-//		{
-//			List<string> properties = new List<string>();
-//			properties.Add (this.Operacion.ToString ());
-//			properties.Add (this.NroNotaDeCredito.ToString ());
-//			properties.Add (this.FechaNotaDeCredito.ToShortDateString ());
-//			properties.Add (this.MontoNotaDeCredito.ToString ());
-//			properties.Add (this.NroCertificadoPropio.ToString ());
-//			properties.Add (this.TipoDeComprobanteOrigenDeLaRetencion.ToString ());
-//			properties.Add (this.LetraDelComprobante.ToString ());
-//			properties.Add (this.NroDeComprobante.ToString ());
-//			properties.Add (this.NroDeDocumento.ToString ());
-//			properties.Add (this.CodigoDeNorma.ToString ());
-//			properties.Add (this.FechaDeRetencionPercepcion.ToShortDateString ());
-//			properties.Add (this.RetecionPercepcionADeducir.ToString ());
-//			properties.Add (this.Alicuota.ToString ());
-//			return properties;
-//		}
 	}
 }
 

@@ -149,6 +149,7 @@ namespace Hamekoz.Argentina.Agip
 		}
 
 		string domicilio = string.Empty;
+
 		/// <summary>
 		/// Gets or sets the domicilio.
 		/// Opcional para completar los datos del certificado de retencion
@@ -203,33 +204,6 @@ namespace Hamekoz.Argentina.Agip
 
 			return cadena;
 		}
-
-//		public List<string> GetPropertiesToString()
-//		{
-//			List<string> properties = new List<string>();
-//			properties.Add (Operacion.ToString ());
-//			properties.Add (CodigoDeNorma.ToString ());
-//			properties.Add (FechaRetencionPercepcion.ToShortDateString ());
-//			properties.Add (TipoDeComprobanteOrigenDeLaRetencion.ToString ());
-//			properties.Add (LetraDelComprobante);
-//			properties.Add (NroDeComprobante.ToString ());
-//			properties.Add (FechaDelComprobante.ToShortDateString ());
-//			properties.Add (MontoDelComprobante.ToString ());
-//			properties.Add (NroDeCertificadoPropio);
-//			properties.Add (TipoDeDocumentoDelRetenido.ToString ());
-//			properties.Add (NroDeDocumentoDelRetenido.ToString ());
-//			properties.Add (SituacionIngresosBrutosDelRetenido.ToString ());
-//			properties.Add (NroInscripcionIngresosBrutosDelRetenido.ToString ());
-//			properties.Add (SituacionFrenteAlIVADelRetenido.ToString ());
-//			properties.Add (RazonSocialDelRetenido);
-//			properties.Add (ImporteOtrosConceptos.ToString ());
-//			properties.Add (ImporteIVA.ToString ());
-//			properties.Add (MontoSujetoARetencionPercepcion.ToString ());
-//			properties.Add (Alicuota.ToString ());
-//			properties.Add (RetencionPercepcionPracticada.ToString ());
-//			properties.Add (MontoTotalRetenidoPercibido.ToString ());
-//			return properties;
-//		}
 	}
 }
 
