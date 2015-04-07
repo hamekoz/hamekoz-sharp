@@ -116,21 +116,19 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public TreePosition AddWiget (TreePosition pos, string name)
+		{
+			return store.AddNode (pos)
+				.SetValue (nameCol, name)
+				.CurrentPosition;
+		}
+
 		public TreePosition AddWiget (TreePosition pos, string name, Type widgetType)
 		{
 			return store.AddNode (pos)
 				.SetValue (nameCol, name)
-				.SetValue (iconCol, Icon)
+			//.SetValue (iconCol, Icon)
 				.SetValue (widgetCol, new ItemWidget (widgetType))
-				.CurrentPosition;
-		}
-
-		public TreePosition AddWiget (TreePosition pos, string name, ItemWidget widget)
-		{
-			return store.AddNode (pos)
-				.SetValue (nameCol, name)
-				.SetValue (iconCol, Icon)
-				.SetValue (widgetCol, widget)
 				.CurrentPosition;
 		}
 
@@ -139,7 +137,7 @@ namespace Hamekoz.UI
 			var item = new ItemWidget (type) { Widget = widget };
 			return store.AddNode (pos)
 				.SetValue (nameCol, name)
-				.SetValue (iconCol, Icon)
+			//.SetValue (iconCol, Icon)
 				.SetValue (widgetCol, item)
 				.CurrentPosition;
 		}

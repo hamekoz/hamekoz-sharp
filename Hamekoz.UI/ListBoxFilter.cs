@@ -179,11 +179,11 @@ namespace Hamekoz.UI
 			}
 		}
 
-		public event ListBoxFilterSelectionChanged SelectionChanged;
+		public event ListBoxFilterSelectionChanged SelectionItemChanged;
 
 		protected virtual void OnSelectionChanged ()
 		{
-			var handler = SelectionChanged;
+			var handler = SelectionItemChanged;
 			if (handler != null)
 				handler ();
 		}

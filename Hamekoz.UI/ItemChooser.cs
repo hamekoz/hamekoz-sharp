@@ -64,7 +64,7 @@ namespace Hamekoz.UI
 
 		public ItemChooser ()
 		{
-			list.SelectionChanged += ListSelectionChanged;
+			list.SelectionItemChanged += ListSelectionChanged;
 			container.PackStart (scroller, true, true);
 			container.PackEnd (actionBox, false, true);
 			Panel1.Content = list;

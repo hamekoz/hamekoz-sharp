@@ -34,18 +34,6 @@ namespace Hamekoz.Interfaces
 		bool CanDelete { get; }
 
 		bool Reload { get; set; }
-
-		IList<T> List { get; }
-
-		T Get (int id);
-
-		T Get (T instance);
-
-		T New ();
-
-		void Save (T instance);
-
-		void Remove (T instance);
 	}
 }
 

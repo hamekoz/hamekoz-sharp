@@ -25,6 +25,7 @@ namespace Hamekoz.Core
 {
 	public interface IPersistible
 	{
+		//TODO encapsular Id para solo poder ser establecido por la clase
 		/// <summary>
 		/// Gets the identifier.
 		/// </summary>

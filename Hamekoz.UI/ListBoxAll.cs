@@ -44,7 +44,7 @@ namespace Hamekoz.UI
 				HorizontalPlacement = WidgetPlacement.Fill,
 				VerticalPlacement = WidgetPlacement.Fill,
 			};
-			listBoxFilter.SelectionChanged += delegate {
+			listBoxFilter.SelectionItemChanged += delegate {
 				OnSelectionChanged ();
 			};
 
@@ -113,7 +113,7 @@ namespace Hamekoz.UI
 
 		#region IListBoxFilter implementation
 
-		public event ListBoxFilterSelectionChanged SelectionChanged;
+		public event ListBoxFilterSelectionChanged SelectionItemChanged;
 
 		public void SetList<T> (IList<T> typedList)
 		{
@@ -185,7 +185,7 @@ namespace Hamekoz.UI
 
 		protected virtual void OnSelectionChanged ()
 		{
-			var handler = SelectionChanged;
+			var handler = SelectionItemChanged;
 			if (handler != null)
 				handler ();
 		}

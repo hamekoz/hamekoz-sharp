@@ -21,29 +21,26 @@
 using Xwt;
 using System.Collections.Generic;
 using Mono.Unix;
+using System;
 
 namespace Hamekoz.UI
 {
-	public class ItemPicker : HBox, IListBoxFilter
+	public class ItemPicker : TextEntry, IListBoxFilter
 	{
-		readonly ListBoxFilter listBoxFilter;
+		readonly ListBoxFilter listBoxFilter = new ListBoxFilter {
+			RealTimeFilter = true,
+			ExpandHorizontal = true,
+			ExpandVertical = true,
+			HeightRequest = 150,
+			WidthRequest = 350,
+		};
 
 		public ItemPicker ()
 		{
-			var entry = new TextEntry {
-				ExpandHorizontal = true,
-				ExpandVertical = false,
-				ReadOnly = true,
-				PlaceholderText = Catalog.GetString ("Press the search button and select one item from the list"),
-			};
-			var button = new Button {
-				ExpandHorizontal = false,
-				ExpandVertical = false,
-				HorizontalPlacement = WidgetPlacement.Center,
-				VerticalPlacement = WidgetPlacement.Center,
-				Image = Icons.EditFind.WithSize (IconSize.Small),
-				TooltipText = Catalog.GetString ("Search item"),
-			};
+			ReadOnly = true;
+			PlaceholderText = Catalog.GetString ("Click o press Intro or Space to select one item");
+			TooltipText = Catalog.GetString ("Click o press Intro or Space to select one item from the list");
+
 			listBoxFilter = new ListBoxFilter {
 				RealTimeFilter = true,
 				ExpandHorizontal = true,
@@ -51,21 +48,27 @@ namespace Hamekoz.UI
 				HeightRequest = 150,
 				WidthRequest = 350,
 			};
-			var popover = new Popover {
+
+			Popover popover = new Popover {
 				Content = listBoxFilter,
 			};
-			button.Clicked += delegate {
-				popover.Show (Popover.Position.Top, button);
+
+			Activated += delegate {
+				popover.Show (Popover.Position.Top, this);
 			};
+			ButtonPressed += delegate {
+				popover.Show (Popover.Position.Top, this);
+			}; 
+
 			popover.Closed += delegate {
 				if (SelectedItem != null) {
 					try {
-						entry.Text = SelectedItem.GetType ().GetProperty (FieldDescription).GetValue (SelectedItem, null).ToString ();
+						Text = SelectedItem.GetType ().GetProperty (FieldDescription).GetValue (SelectedItem, null).ToString ();
 					} catch {
-						entry.Text = SelectedItem.ToString ();
+						Text = SelectedItem.ToString ();
 					}
 				} else {
-					entry.Text = string.Empty;
+					Text = string.Empty;
 				}
 			};
 			listBoxFilter.ListBox.RowActivated += delegate {
@@ -73,15 +76,11 @@ namespace Hamekoz.UI
 					popover.Hide ();
 				}
 			};
-			PackStart (entry, true);
-			PackEnd (button, false, false);
-			ExpandHorizontal = true;
-			ExpandVertical = false;
 		}
 
 		#region IListBoxFilter implementation
 
-		public event ListBoxFilterSelectionChanged SelectionChanged;
+		public event ListBoxFilterSelectionChanged SelectionItemChanged;
 
 		public void SetList<T> (IList<T> typedList)
 		{
@@ -151,9 +150,9 @@ namespace Hamekoz.UI
 
 		#endregion
 
-		protected virtual void OnSelectionChanged ()
+		protected virtual void OnSelectionItemChanged ()
 		{
-			var handler = SelectionChanged;
+			var handler = SelectionItemChanged;
 			if (handler != null)
 				handler ();
 		}

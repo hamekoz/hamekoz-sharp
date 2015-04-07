@@ -25,7 +25,7 @@ namespace Hamekoz.UI
 {
 	public interface IListBoxFilter
 	{
-		event ListBoxFilterSelectionChanged SelectionChanged;
+		event ListBoxFilterSelectionChanged SelectionItemChanged;
 
 		string FieldDescription { get; set; }
 
