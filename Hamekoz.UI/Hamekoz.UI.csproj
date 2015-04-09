@@ -7,6 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz.UI</RootNamespace>
     <AssemblyName>Hamekoz.UI</AssemblyName>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,6 +69,13 @@
     <EmbeddedResource Include="Icons\user-info.png" />
     <EmbeddedResource Include="Icons\edit-find.png" />
     <EmbeddedResource Include="Icons\document-new.png" />
+    <EmbeddedResource Include="Icons\starred.png" />
+    <EmbeddedResource Include="Icons\edit-delete.png" />
+    <EmbeddedResource Include="Icons\edit-select-all.png" />
+    <EmbeddedResource Include="Icons\process-stop.png" />
+    <EmbeddedResource Include="Icons\system-search.png" />
+    <EmbeddedResource Include="Icons\document-properties.png" />
+    <EmbeddedResource Include="Icons\edit-find-replace.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
