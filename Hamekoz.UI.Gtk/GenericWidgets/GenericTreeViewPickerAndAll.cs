@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Gtk;
+using Hamekoz.Core;
 using Hamekoz.Interfaces;
 
 namespace Hamekoz.UI.Gtk
@@ -27,6 +28,7 @@ namespace Hamekoz.UI.Gtk
 	public class GenericTreeViewPickerAndAll<T> : Bin
 	{
 		#region GTK_GUI
+
 		private global::Gtk.Table table1;
 
 		private global::Gtk.DrawingArea drawingarea1;
@@ -144,6 +146,7 @@ namespace Hamekoz.UI.Gtk
 			}
 			this.Hide ();
 		}
+
 		#endregion
 
 		public bool CheckVisibility {
@@ -208,7 +211,7 @@ namespace Hamekoz.UI.Gtk
 		public ListStore Objects {
 			get {
 				if (objects == null) {
-					objects = new ListStore (typeof (String), typeof (int));
+					objects = new ListStore (typeof(String), typeof(int));
 					foreach (IDescriptible descriptible in controller.List) {
 						objects.AppendValues (descriptible.Descripcion, descriptible.Id);
 					}
@@ -229,11 +232,11 @@ namespace Hamekoz.UI.Gtk
 
 			treeviewpicker.ChangeEvent += delegate {
 				checkbutton.Active = false;
-				OnEventGetObject ((object)controller.Get(treeviewpicker.ActualId));
+				OnEventGetObject ((object)controller.Get (treeviewpicker.ActualId));
 			};
 
 			checkbutton.Clicked += delegate {
-				OnChangeAll();
+				OnChangeAll ();
 			};
 		}
 	}

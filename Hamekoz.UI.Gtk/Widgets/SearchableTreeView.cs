@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Gtk;
-using Hamekoz.Interfaces;
+using Hamekoz.Core;
 using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk

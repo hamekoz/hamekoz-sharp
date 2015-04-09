@@ -25,34 +25,46 @@ using Hamekoz.Interfaces;
 namespace Hamekoz.UI.Gtk
 {
 	public class GenericAbmWidget : Bin
-	{ 
+	{
 		protected bool onInit = true;
+
 		public bool OnInit {
 			get { return onInit; }
 			set { onInit = value; }
 		}
 
 		protected bool onNew = false;
+
 		public bool OnNew {
 			get { return onNew; }
 			set { onNew = value; }
 		}
 
 		protected int id;
+
 		public int Id {
 			get { return id; }
 			set { id = value; }
 		}
 
 		protected bool objectInstance;
+
 		public virtual bool ObjectInstance {
 			get { return objectInstance; }
 			set { objectInstance = value; }
 		}
 
-		public virtual void Load(IPersistible o) {}
-		public virtual void Save(object controller) {}
-		public virtual void New(IPersistible o) {}
+		public virtual void Load (IPersistible o)
+		{
+		}
+
+		public virtual void Save (object controller)
+		{
+		}
+
+		public virtual void New (IPersistible o)
+		{
+		}
 	}
 }
 

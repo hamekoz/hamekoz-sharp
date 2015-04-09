@@ -27,7 +27,7 @@ namespace Hamekoz.UI.Gtk
 	public class Supervisor : ISupervisor
 	{
 		#if !MSWindows
-		public static List<Notifications.Notification> notificaciones = new List<Notifications.Notification>();
+		public static List<Notifications.Notification> notificaciones = new List<Notifications.Notification> ();
 		#endif
 
 		public static int ContadorThread {
@@ -44,25 +44,25 @@ namespace Hamekoz.UI.Gtk
 
 		public void RunSaveEvent ()
 		{
-			OnSaveEvent();
+			OnSaveEvent ();
 		}
 
-		void OnSaveEvent()
+		void OnSaveEvent ()
 		{
-			if (SaveEvent != null) SaveEvent();
+			if (SaveEvent != null)
+				SaveEvent ();
 		}
 
 		private static Supervisor instance;
 
-		private Supervisor() {}
-
-		public static Supervisor Instance
+		private Supervisor ()
 		{
-			get 
-			{
-				if (instance == null)
-				{
-					instance = new Supervisor();
+		}
+
+		public static Supervisor Instance {
+			get {
+				if (instance == null) {
+					instance = new Supervisor ();
 				}
 				return instance;
 			}

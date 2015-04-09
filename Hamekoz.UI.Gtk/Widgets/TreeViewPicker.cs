@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Gtk;
-using Hamekoz.Interfaces;
+using Hamekoz.Core;
 using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
@@ -66,17 +66,17 @@ namespace Hamekoz.UI.Gtk
 
 			treeviewDialog.ActivatedEvent += delegate(string descripcion, int id) {
 				entry.Text = descripcion;
-				OnChangeEvent();
+				OnChangeEvent ();
 			};
 
 			button.Clicked += delegate(object sender, EventArgs e) {
 				int x, y;
-				this.GdkWindow.GetOrigin(out x, out y);	
+				this.GdkWindow.GetOrigin (out x, out y);	
 				x += this.Allocation.Left;
 				y += this.Allocation.Top + this.Allocation.Height;
 				treeviewDialog.Move (x, y);
 				treeviewDialog.Modal = true;
-				treeviewDialog.Show();
+				treeviewDialog.Show ();
 			};
 		}
 

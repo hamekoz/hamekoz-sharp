@@ -26,7 +26,8 @@ namespace Hamekoz.UI.Gtk
 {
 	public class GenericAbm<T> : Bin
 	{
-		#region GTK_GUI 
+		#region GTK_GUI
+
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		private global::Gtk.HPaned hpaned;
 		private global::Gtk.VBox vboxMenu;
@@ -40,7 +41,7 @@ namespace Hamekoz.UI.Gtk
 		private global::Gtk.Button buttonDelete;
 		private global::Gtk.Button buttonCancel;
 
-		void Build()
+		void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
 
@@ -174,6 +175,7 @@ namespace Hamekoz.UI.Gtk
 			}
 			this.Hide ();
 		}
+
 		#endregion
 
 		private int cacheId;
@@ -221,11 +223,11 @@ namespace Hamekoz.UI.Gtk
 
 		void LoadSearchableTreeView ()
 		{
-			ListStore listStore = new ListStore (typeof (String), typeof (int));
+			ListStore listStore = new ListStore (typeof(String), typeof(int));
 			foreach (IDescriptible descriptible in controller.List) {
 				listStore.AppendValues (descriptible.Descripcion, descriptible.Id);
 			}
-			searchabletreeview.LoadList(listStore);
+			searchabletreeview.LoadList (listStore);
 		}
 
 		void ClearSearchableTreeView ()
@@ -238,7 +240,7 @@ namespace Hamekoz.UI.Gtk
 		{
 			if (Supervisor.Instance.WorkInProgress) {
 				((Window)this.Toplevel).VentanaMensaje ("<b>Hay modificaciones sin guardar</b>\n" +
-					"Debe guardar o cancelar antes de cambiar");
+				"Debe guardar o cancelar antes de cambiar");
 			} else {
 				specificWidget.OnNew = false;
 				DrawSpecificWidget ();
@@ -289,7 +291,7 @@ namespace Hamekoz.UI.Gtk
 			if (!specificWidget.OnInit) {
 				if (((Window)this.Toplevel).VentanaConfirmacion ("Está seguro?")) {
 					try {
-						Controller.Remove(Controller.Get (cacheId));
+						Controller.Remove (Controller.Get (cacheId));
 						ClearInSpecificWidget ();
 					} catch (Exception ex) {
 						((Window)this.Toplevel).VentanaError (ex.Message);
@@ -316,7 +318,7 @@ namespace Hamekoz.UI.Gtk
 		{
 			if (Supervisor.Instance.WorkInProgress) {
 				((Window)this.Toplevel).VentanaMensaje ("<b>Hay modificaciones sin guardar</b>\n" +
-					"Debe guardar o cancelar antes de agregar");
+				"Debe guardar o cancelar antes de agregar");
 			} else {
 				NewInSpecificWidget ();
 			}
@@ -331,7 +333,7 @@ namespace Hamekoz.UI.Gtk
 				} catch (Exception ex) {
 					((Window)this.Toplevel).VentanaError (ex.Message);
 				}
-				ClearInSpecificWidget();
+				ClearInSpecificWidget ();
 			}
 		}
 
@@ -340,7 +342,7 @@ namespace Hamekoz.UI.Gtk
 			specificWidget.OnNew = false;
 			specificWidget.OnInit = false;
 			try {
-				specificWidget.Load ((IPersistible)Controller.Get(cacheId));
+				specificWidget.Load ((IPersistible)Controller.Get (cacheId));
 				Supervisor.Instance.WorkInProgress = false;
 			} catch (Exception ex) {
 				((Window)this.Toplevel).VentanaError (ex.Message);
@@ -355,7 +357,7 @@ namespace Hamekoz.UI.Gtk
 			specificWidget.ObjectInstance = true;
 			DrawSpecificWidget ();
 			try {
-				specificWidget.New ((IPersistible)Controller.New());
+				specificWidget.New ((IPersistible)Controller.New ());
 				specificWidget.Sensitive = true;
 				Supervisor.Instance.WorkInProgress = false;
 			} catch (Exception ex) {
