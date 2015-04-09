@@ -69,6 +69,15 @@ namespace Hamekoz.UI
 			info.Text = text;
 		}
 
+		public Image SplashImage {
+			get {
+				return imageView.Image;
+			}
+			set {
+				imageView.Image = value;
+			}
+		}
+
 		string splashURI = string.Empty;
 
 		public string SplashURI {

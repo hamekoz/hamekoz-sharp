@@ -103,6 +103,15 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public Image Logo {
+			get {
+				return logo.Image;
+			}
+			set {
+				logo.Image = value;
+			}
+		}
+
 		string logoURI = string.Empty;
 
 		public string LogoURI {
