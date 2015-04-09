@@ -46,6 +46,7 @@
     <Compile Include="ListBoxAll.cs" />
     <Compile Include="IListBoxFilter.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="ListViewDinamic.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

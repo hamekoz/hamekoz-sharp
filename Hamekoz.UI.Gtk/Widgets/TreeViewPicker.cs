@@ -71,7 +71,7 @@ namespace Hamekoz.UI.Gtk
 
 			button.Clicked += delegate(object sender, EventArgs e) {
 				int x, y;
-				this.GdkWindow.GetOrigin (out x, out y);	
+				this.GdkWindow.GetOrigin (out x, out y);
 				x += this.Allocation.Left;
 				y += this.Allocation.Top + this.Allocation.Height;
 				treeviewDialog.Move (x, y);

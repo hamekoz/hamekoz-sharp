@@ -69,10 +69,10 @@ namespace Hamekoz.UI
 			container.PackEnd (actionBox, false, true);
 			Panel1.Content = list;
 			Panel1.Shrink = false;
-			Panel1.Resize = false;
+			Panel1.Resize = true;
 			Panel2.Content = container;
 			Panel2.Shrink = false;
-			Panel2.Resize = false;
+			Panel2.Resize = true;
 		}
 
 		void ListSelectionChanged ()
