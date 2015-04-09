@@ -8,7 +8,7 @@
     <widget-library name="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a" />
     <widget-library name="../bin/Debug/Hamekoz.UI.Gtk.dll" internal="true" />
   </import>
-  <widget class="Gtk.Bin" id="DatePicker.DatePicker" design-size="200 27">
+  <widget class="Gtk.Bin" id="Hamekoz.UI.Gtk.DatePicker" design-size="200 27">
     <property name="MemberName" />
     <property name="WidthRequest">200</property>
     <property name="HeightRequest">27</property>
@@ -53,7 +53,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="DatePicker.DialogCalendar" design-size="243 211">
+  <widget class="Gtk.Dialog" id="Hamekoz.UI.Gtk.DialogCalendar" design-size="243 211">
     <property name="MemberName" />
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Resizable">False</property>
@@ -868,7 +868,7 @@
               </packing>
             </child>
             <child>
-              <widget class="DatePicker.DatePicker" id="datepickerFrom">
+              <widget class="Hamekoz.UI.Gtk.DatePicker" id="datepickerFrom">
                 <property name="MemberName" />
                 <property name="WidthRequest">200</property>
                 <property name="HeightRequest">27</property>
@@ -898,7 +898,7 @@
               </packing>
             </child>
             <child>
-              <widget class="DatePicker.DatePicker" id="datepickerTo">
+              <widget class="Hamekoz.UI.Gtk.DatePicker" id="datepickerTo">
                 <property name="MemberName" />
                 <property name="WidthRequest">200</property>
                 <property name="HeightRequest">27</property>
@@ -1047,7 +1047,7 @@
               </packing>
             </child>
             <child>
-              <widget class="DatePicker.DatePicker" id="datepicker">
+              <widget class="Hamekoz.UI.Gtk.DatePicker" id="datepicker">
                 <property name="MemberName" />
                 <property name="WidthRequest">200</property>
                 <property name="HeightRequest">27</property>

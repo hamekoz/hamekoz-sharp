@@ -16,17 +16,13 @@ namespace Hamekoz.UI.Gtk
 		
 		private global::Gtk.VBox vbox2;
 		
-		private global::Gtk.VBox vbox6;
-		
 		private global::Gtk.Label labelFrom;
 		
-		private global::DatePicker.DatePicker datepickerFrom;
-		
-		private global::Gtk.VBox vbox5;
+		private global::Hamekoz.UI.Gtk.DatePicker datepickerFrom;
 		
 		private global::Gtk.Label labelTo;
 		
-		private global::DatePicker.DatePicker datepickerTo;
+		private global::Hamekoz.UI.Gtk.DatePicker datepickerTo;
 
 		protected virtual void Build ()
 		{
@@ -81,21 +77,17 @@ namespace Hamekoz.UI.Gtk
 			this.vbox2.Spacing = 10;
 			this.vbox2.BorderWidth = ((uint)(5));
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.vbox6 = new global::Gtk.VBox ();
-			this.vbox6.Name = "vbox6";
-			this.vbox6.Spacing = 6;
-			// Container child vbox6.Gtk.Box+BoxChild
 			this.labelFrom = new global::Gtk.Label ();
 			this.labelFrom.Name = "labelFrom";
 			this.labelFrom.Xalign = 0F;
 			this.labelFrom.LabelProp = global::Mono.Unix.Catalog.GetString ("Desde");
-			this.vbox6.Add (this.labelFrom);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.labelFrom]));
+			this.vbox2.Add (this.labelFrom);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.labelFrom]));
 			w5.Position = 0;
 			w5.Expand = false;
 			w5.Fill = false;
-			// Container child vbox6.Gtk.Box+BoxChild
-			this.datepickerFrom = new global::DatePicker.DatePicker ();
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.datepickerFrom = new global::Hamekoz.UI.Gtk.DatePicker ();
 			this.datepickerFrom.WidthRequest = 200;
 			this.datepickerFrom.HeightRequest = 27;
 			this.datepickerFrom.Events = ((global::Gdk.EventMask)(256));
@@ -103,32 +95,23 @@ namespace Hamekoz.UI.Gtk
 			this.datepickerFrom.ButtonsVisible = false;
 			this.datepickerFrom.DefaultDate = new global::System.DateTime (0);
 			this.datepickerFrom.Date = new global::System.DateTime (0);
-			this.vbox6.Add (this.datepickerFrom);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.datepickerFrom]));
+			this.vbox2.Add (this.datepickerFrom);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.datepickerFrom]));
 			w6.Position = 1;
 			w6.Expand = false;
 			w6.Fill = false;
-			this.vbox2.Add (this.vbox6);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.vbox6]));
-			w7.Position = 0;
-			w7.Expand = false;
-			w7.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.vbox5 = new global::Gtk.VBox ();
-			this.vbox5.Name = "vbox5";
-			this.vbox5.Spacing = 6;
-			// Container child vbox5.Gtk.Box+BoxChild
 			this.labelTo = new global::Gtk.Label ();
 			this.labelTo.Name = "labelTo";
 			this.labelTo.Xalign = 0F;
 			this.labelTo.LabelProp = global::Mono.Unix.Catalog.GetString ("Hasta");
-			this.vbox5.Add (this.labelTo);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.labelTo]));
-			w8.Position = 0;
-			w8.Expand = false;
-			w8.Fill = false;
-			// Container child vbox5.Gtk.Box+BoxChild
-			this.datepickerTo = new global::DatePicker.DatePicker ();
+			this.vbox2.Add (this.labelTo);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.labelTo]));
+			w7.Position = 2;
+			w7.Expand = false;
+			w7.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.datepickerTo = new global::Hamekoz.UI.Gtk.DatePicker ();
 			this.datepickerTo.WidthRequest = 200;
 			this.datepickerTo.HeightRequest = 27;
 			this.datepickerTo.Events = ((global::Gdk.EventMask)(256));
@@ -136,24 +119,19 @@ namespace Hamekoz.UI.Gtk
 			this.datepickerTo.ButtonsVisible = false;
 			this.datepickerTo.DefaultDate = new global::System.DateTime (0);
 			this.datepickerTo.Date = new global::System.DateTime (0);
-			this.vbox5.Add (this.datepickerTo);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.datepickerTo]));
-			w9.Position = 1;
-			w9.Expand = false;
-			w9.Fill = false;
-			this.vbox2.Add (this.vbox5);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.vbox5]));
-			w10.Position = 1;
-			w10.Expand = false;
-			w10.Fill = false;
+			this.vbox2.Add (this.datepickerTo);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.datepickerTo]));
+			w8.Position = 3;
+			w8.Expand = false;
+			w8.Fill = false;
 			this.table1.Add (this.vbox2);
-			global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table1 [this.vbox2]));
-			w11.TopAttach = ((uint)(1));
-			w11.BottomAttach = ((uint)(2));
-			w11.LeftAttach = ((uint)(1));
-			w11.RightAttach = ((uint)(2));
-			w11.XOptions = ((global::Gtk.AttachOptions)(4));
-			w11.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.table1 [this.vbox2]));
+			w9.TopAttach = ((uint)(1));
+			w9.BottomAttach = ((uint)(2));
+			w9.LeftAttach = ((uint)(1));
+			w9.RightAttach = ((uint)(2));
+			w9.XOptions = ((global::Gtk.AttachOptions)(4));
+			w9.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.Add (this.table1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

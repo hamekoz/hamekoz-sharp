@@ -22,9 +22,9 @@
 using System;
 using Gtk;
 
-namespace DatePicker
+namespace Hamekoz.UI.Gtk
 {
-	public partial class DialogCalendar : Gtk.Dialog
+	public partial class DialogCalendar : Dialog
 	{
 		private DateTime defaultDate;
 
@@ -75,7 +75,7 @@ namespace DatePicker
 			Hide ();
 		}
 
-		protected virtual void DialogFocusOutEvent (object o, Gtk.FocusOutEventArgs args)
+		protected virtual void DialogFocusOutEvent (object o, FocusOutEventArgs args)
 		{
 			Hide ();
 		}

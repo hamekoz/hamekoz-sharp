@@ -25,10 +25,10 @@ using System;
 using System.Globalization;
 using Gtk;
 
-namespace DatePicker
+namespace Hamekoz.UI.Gtk
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class DatePicker : Gtk.Bin, Hamekoz.Interfaces.IFocusableWidget
+	public partial class DatePicker : Bin, Hamekoz.Interfaces.IFocusableWidget
 	{
 		DialogCalendar calendarDialog = new DialogCalendar ();
 
@@ -101,7 +101,7 @@ namespace DatePicker
 			}
 		}
 
-		public void ClearDate()
+		public void ClearDate ()
 		{
 			FirstDateChange = false;
 			entry.Text = "";
@@ -111,7 +111,7 @@ namespace DatePicker
 		{
 			return string.IsNullOrEmpty (CustomFormat) ?
 				CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern :
-				CustomFormat;	
+				CustomFormat;
 		}
 
 		void HandleButtonClicked (object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace DatePicker
 			}
 
 			int x, y;
-			this.GdkWindow.GetOrigin(out x, out y);	
+			this.GdkWindow.GetOrigin (out x, out y);
 			x += this.Allocation.Left;
 			y += this.Allocation.Top + this.Allocation.Height;
 			calendarDialog.Move (x, y);
@@ -151,7 +151,7 @@ namespace DatePicker
 		}
 
 		[GLib.ConnectBefore]
-		void HandleEntryFocusOutEvent (object sender, Gtk.FocusOutEventArgs e)
+		void HandleEntryFocusOutEvent (object sender, FocusOutEventArgs e)
 		{
 			OnFocusOut ();
 		}
@@ -161,7 +161,7 @@ namespace DatePicker
 		protected virtual void OnDateChanged ()
 		{
 			var handler = DateChanged;
-			if (handler != null) 
+			if (handler != null)
 				handler (this, EventArgs.Empty);
 		}
 

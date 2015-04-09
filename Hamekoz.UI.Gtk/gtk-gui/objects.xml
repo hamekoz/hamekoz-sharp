@@ -1,21 +1,4 @@
 <objects attr-sync="on">
-  <object type="DatePicker.DatePicker" palette-category="Hamekoz.UI.Gtk" allow-children="false" base-type="Gtk.Bin" icon="Hamekoz.UI.Gtk.DatePicker.png">
-    <itemgroups>
-      <itemgroup label="DatePicker Properties">
-        <property name="CustomFormat" />
-        <property name="ButtonsVisible" />
-        <property name="DefaultDate" />
-        <property name="Date" />
-      </itemgroup>
-    </itemgroups>
-    <signals>
-      <itemgroup label="DatePicker Signals">
-        <signal name="DateChanged" />
-        <signal name="FocusOut" />
-        <signal name="FirstDateChangeEvent" />
-      </itemgroup>
-    </signals>
-  </object>
   <object type="Hamekoz.UI.Gtk.SearchableTreeView" palette-category="General" allow-children="false" base-type="Gtk.Bin" icon="Hamekoz.UI.Gtk.DatePicker.png">
     <itemgroups>
       <itemgroup label="SearchableTreeView Properties">
@@ -103,6 +86,23 @@
     <signals>
       <itemgroup label="EntryLabeled Signals">
         <signal name="ChangeValue" />
+      </itemgroup>
+    </signals>
+  </object>
+  <object type="Hamekoz.UI.Gtk.DatePicker" palette-category="General" allow-children="false" base-type="Gtk.Bin">
+    <itemgroups>
+      <itemgroup label="DatePicker Properties">
+        <property name="CustomFormat" />
+        <property name="ButtonsVisible" />
+        <property name="DefaultDate" />
+        <property name="Date" />
+      </itemgroup>
+    </itemgroups>
+    <signals>
+      <itemgroup label="DatePicker Signals">
+        <signal name="DateChanged" />
+        <signal name="FocusOut" />
+        <signal name="FirstDateChangeEvent" />
       </itemgroup>
     </signals>
   </object>

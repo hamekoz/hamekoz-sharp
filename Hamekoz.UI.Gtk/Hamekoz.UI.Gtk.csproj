@@ -75,8 +75,6 @@
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="gtk-gui\DatePicker.DatePicker.cs" />
-    <Compile Include="gtk-gui\DatePicker.DialogCalendar.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogSave.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.SearchableTreeView.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.TreeViewPicker.cs" />
@@ -126,6 +124,8 @@
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.WidgetCheckbox.cs" />
     <Compile Include="EntryLabeled.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.EntryLabeled.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DatePicker.cs" />
+    <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogCalendar.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
