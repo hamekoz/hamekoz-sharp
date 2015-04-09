@@ -27,6 +27,11 @@ namespace Hamekoz.UI
 {
 	public class MainWindow : Window
 	{
+		public void SetMenuLabel (string text)
+		{
+			menuTree.Columns [0].Title = text;
+		}
+
 		StatusIcon statusIcon;
 		HPaned panel;
 		TreeView menuTree;
@@ -53,8 +58,8 @@ namespace Hamekoz.UI
 			Title = string.Format (Catalog.GetString ("{0} Demo Application"), "Hamekoz Xwt");
 			Width = 500;
 			Height = 400;
-
-			Icon = Image.FromResource (GetType (), Resources.Icon);
+			InitialLocation = WindowLocation.CenterScreen;
+			Icon = Image.FromResource (Resources.Icon);
 
 			try {
 				statusIcon = Application.CreateStatusIcon ();
@@ -73,7 +78,7 @@ namespace Hamekoz.UI
 
 			menuTree.DataSource = store;
 			menuTree.SelectionChanged += HandleMenuTreeSelectionChanged;
-			menuTree.MinWidth = 200;
+			menuTree.MinWidth = 220;
 
 			panel.Panel1.Content = menuTree;
 
@@ -102,18 +107,37 @@ namespace Hamekoz.UI
 				Application.Exit ();
 		}
 
+		Label SelectItemLabel = new Label {
+			Text = Catalog.GetString ("Select one item from menu"),
+			TextAlignment = Alignment.Center
+		};
+
+		Label AccessDeniedLabel = new Label {
+			Text = Catalog.GetString ("Access Denied. You do not have sufficient permissions."),
+			TextAlignment = Alignment.Center
+		};
+
 		void HandleMenuTreeSelectionChanged (object sender, EventArgs e)
 		{
 			if (menuTree.SelectedRow != null) {
 				ItemWidget w = store.GetNavigatorAt (menuTree.SelectedRow).GetValue (widgetCol);
 				if (w.Type != null) {
-					if (w.Widget == null)
-						w.Widget = (Widget)Activator.CreateInstance (w.Type);
-					panel.Panel2.Content = w.Widget;
+					if (AllowAccess (w)) {
+						if (w.Widget == null)
+							w.Widget = (Widget)Activator.CreateInstance (w.Type);
+						panel.Panel2.Content = w.Widget;
+					} else {
+						panel.Panel2.Content = AccessDeniedLabel;
+					}
 				} else {
-					panel.Panel2.Content = new Label (Catalog.GetString ("Select one item from menu"));
+					panel.Panel2.Content = SelectItemLabel;
 				}
 			}
+		}
+
+		public virtual bool AllowAccess (ItemWidget widget)
+		{
+			return true;
 		}
 
 		public TreePosition AddWiget (TreePosition pos, string name)
