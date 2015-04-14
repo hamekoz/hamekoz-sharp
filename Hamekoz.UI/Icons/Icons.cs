@@ -37,6 +37,7 @@ namespace Hamekoz.UI
 		public static readonly Image Starred = Image.FromResource ("Hamekoz.UI.Icons.starred.png");
 		public static readonly Image SystemSearch = Image.FromResource ("Hamekoz.UI.Icons.system-search.png");
 		public static readonly Image UserInfo = Image.FromResource ("Hamekoz.UI.Icons.user-info.png");
+		public static readonly Image ViewRefresh = Image.FromResource ("Hamekoz.UI.Icons.view-refresh.png");
 		public static readonly Image Document = Image.FromResource ("Hamekoz.UI.Icons.x-office-document.png");
 		public static readonly Image Spreadsheet = Image.FromResource ("Hamekoz.UI.Icons.x-office-spreadsheet.png");
 	}

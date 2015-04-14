@@ -76,6 +76,7 @@
     <EmbeddedResource Include="Icons\system-search.png" />
     <EmbeddedResource Include="Icons\document-properties.png" />
     <EmbeddedResource Include="Icons\edit-find-replace.png" />
+    <EmbeddedResource Include="Icons\view-refresh.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
