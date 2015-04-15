@@ -23,7 +23,7 @@ using System;
 using System.Collections.Generic;
 using Hamekoz.Core;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Core
 {
 	public interface IAbmController<T> : IController<T>
 	{

@@ -21,7 +21,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.Core
 {
 	/// <summary>
 	/// Interfaz para controlador de clases aptas para combo

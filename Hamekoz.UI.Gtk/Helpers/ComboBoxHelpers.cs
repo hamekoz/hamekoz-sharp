@@ -23,7 +23,6 @@ using Gtk;
 using System;
 using Hamekoz.Core;
 using System.Collections.Generic;
-using Hamekoz.Interfaces;
 
 namespace Hamekoz.UI.Gtk
 {

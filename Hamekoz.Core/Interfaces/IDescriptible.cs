@@ -20,6 +20,24 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
+namespace Hamekoz.Core
+{
+	public interface IDescriptible
+	{
+		/// <summary>
+		/// Gets the identifier.
+		/// </summary>
+		/// <value>The identifier.</value>
+		int Id { get; }
+
+		/// <summary>
+		/// Gets the descripcion.
+		/// </summary>
+		/// <value>The descripcion.</value>
+		string Descripcion { get; }
+	}
+}
+
 namespace Hamekoz.Interfaces
 {
 	/// <summary>

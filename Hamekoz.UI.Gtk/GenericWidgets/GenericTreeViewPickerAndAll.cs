@@ -21,7 +21,6 @@
 using System;
 using Gtk;
 using Hamekoz.Core;
-using Hamekoz.Interfaces;
 
 namespace Hamekoz.UI.Gtk
 {
