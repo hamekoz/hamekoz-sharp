@@ -49,6 +49,33 @@
     <Compile Include="IListBoxFilter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ListViewDinamic.cs" />
+    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\Axis.cs">
+      <Link>MonoDevelop.Components.Chart\Axis.cs</Link>
+    </Compile>
+    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\AxisDimension.cs">
+      <Link>MonoDevelop.Components.Chart\AxisDimension.cs</Link>
+    </Compile>
+    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\AxisPosition.cs">
+      <Link>MonoDevelop.Components.Chart\AxisPosition.cs</Link>
+    </Compile>
+    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\BasicChart.cs">
+      <Link>MonoDevelop.Components.Chart\BasicChart.cs</Link>
+    </Compile>
+    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\ChartCursor.cs">
+      <Link>MonoDevelop.Components.Chart\ChartCursor.cs</Link>
+    </Compile>
+    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\DateTimeAxis.cs">
+      <Link>MonoDevelop.Components.Chart\DateTimeAxis.cs</Link>
+    </Compile>
+    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\IntegerAxis.cs">
+      <Link>MonoDevelop.Components.Chart\IntegerAxis.cs</Link>
+    </Compile>
+    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\Serie.cs">
+      <Link>MonoDevelop.Components.Chart\Serie.cs</Link>
+    </Compile>
+    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\TickEnumerator.cs">
+      <Link>MonoDevelop.Components.Chart\TickEnumerator.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -77,6 +104,12 @@
     <EmbeddedResource Include="Icons\document-properties.png" />
     <EmbeddedResource Include="Icons\edit-find-replace.png" />
     <EmbeddedResource Include="Icons\view-refresh.png" />
+    <EmbeddedResource Include="Icons\list-add.svg" />
+    <EmbeddedResource Include="Icons\go-first.png" />
+    <EmbeddedResource Include="Icons\go-jump.png" />
+    <EmbeddedResource Include="Icons\go-last.png" />
+    <EmbeddedResource Include="Icons\go-next.png" />
+    <EmbeddedResource Include="Icons\go-previous.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
