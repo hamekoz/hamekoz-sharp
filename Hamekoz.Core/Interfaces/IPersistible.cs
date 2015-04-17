@@ -66,16 +66,3 @@ namespace Hamekoz.Core
 		IList<T> GetAll ();
 	}
 }
-
-namespace Hamekoz.Interfaces
-{
-	[Obsolete ("Use Hamekoz.Core.IPersistible")]
-	public interface IPersistible
-	{
-		/// <summary>
-		/// Gets the identifier.
-		/// </summary>
-		/// <value>The identifier.</value>
-		int Id { get; set; }
-	}
-}

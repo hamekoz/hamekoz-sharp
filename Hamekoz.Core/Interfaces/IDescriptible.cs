@@ -38,25 +38,3 @@ namespace Hamekoz.Core
 	}
 }
 
-namespace Hamekoz.Interfaces
-{
-	/// <summary>
-	/// Interfaz que debe implementar clases que puedan ser cargadas a un combo
-	/// </summary>
-	[Obsolete ("Use a specific property to descript the object")]
-	public interface IDescriptible
-	{
-		/// <summary>
-		/// Gets the identifier.
-		/// </summary>
-		/// <value>The identifier.</value>
-		int Id { get; }
-
-		/// <summary>
-		/// Gets the descripcion.
-		/// </summary>
-		/// <value>The descripcion.</value>
-		string Descripcion { get; }
-	}
-}
-

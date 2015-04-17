@@ -20,15 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Hamekoz.Interfaces
-{
-	[Obsolete ("Use Hamekoz.Core.IAutorizable")]
-	public interface IAutorizable
-	{
-		int Guid { get; }
-	}
-}
-
 namespace Hamekoz.Core
 {
 	public interface IAutorizable
