@@ -24,7 +24,7 @@ namespace Hamekoz.UI
 {
 	public static class Extensions
 	{
-		public static Box WithLabel (this Widget widget, string label, bool horizontal = false)
+		public static Box WithLabel (this Widget widget, string label, bool horizontal = false, bool expand = true, bool fill = true)
 		{
 			Box box;
 			if (horizontal) {
@@ -32,10 +32,14 @@ namespace Hamekoz.UI
 			} else {
 				box = new VBox ();
 			}
-			box.ExpandVertical = true;
-			box.ExpandHorizontal = true;
+			if (widget is DatePicker) {
+				expand = false;
+				fill = false;
+			}
+			box.ExpandVertical = expand;
+			box.ExpandHorizontal = expand;
 			box.PackStart (new Label (label));
-			box.PackStart (widget, true, true);
+			box.PackStart (widget, expand, fill);
 			return box;
 		}
 	}
