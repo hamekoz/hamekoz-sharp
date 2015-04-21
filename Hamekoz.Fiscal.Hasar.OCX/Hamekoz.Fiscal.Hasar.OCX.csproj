@@ -7,6 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Hamekoz.Fiscal.Hasar.OCX</RootNamespace>
     <AssemblyName>Hamekoz.Fiscal.Hasar.OCX</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
