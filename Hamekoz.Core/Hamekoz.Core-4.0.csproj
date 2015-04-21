@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Hamekoz.Core</RootNamespace>
+    <AssemblyName>Hamekoz.Core</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fiscal\IComprobante.cs" />
+    <Compile Include="Fiscal\IComprobanteElectronico.cs" />
+    <Compile Include="Fiscal\IItem.cs" />
+    <Compile Include="Fiscal\IResponsable.cs" />
+    <Compile Include="Fiscal\IZeta.cs" />
+    <Compile Include="Fiscal\SituacionIVA.cs" />
+    <Compile Include="Fiscal\TipoControladorFiscal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\NumericExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Interfaces\IAbmController.cs" />
+    <Compile Include="Interfaces\IAutorizable.cs" />
+    <Compile Include="Interfaces\IDescriptible.cs" />
+    <Compile Include="Interfaces\IFocusableWidget.cs" />
+    <Compile Include="Interfaces\IPersistible.cs" />
+    <Compile Include="Interfaces\ISupervisor.cs" />
+    <Compile Include="Numalet.cs" />
+    <Compile Include="ValidationDataException.cs" />
+    <Compile Include="Interfaces\IController.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
+</Project>
