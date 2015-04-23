@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Globalization;
 
 namespace Hamekoz.Extensions
 {
@@ -63,6 +64,13 @@ namespace Hamekoz.Extensions
 		{
 			return Numalet.ToCardinal (number);
 		}
+
+		public static string ToEnglishFormat (this double number)
+		{
+			NumberFormatInfo nfi = new System.Globalization.CultureInfo ("en-US", false).NumberFormat;
+			return number.ToString (nfi);
+		}
+
 	}
 }
 
