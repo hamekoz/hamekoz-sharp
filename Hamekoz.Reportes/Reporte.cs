@@ -26,6 +26,7 @@ using System.Reflection;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.draw;
+using System.Diagnostics;
 
 namespace Hamekoz.Reportes
 {
@@ -291,7 +292,11 @@ namespace Hamekoz.Reportes
 		public void Abrir ()
 		{
 			document.Close ();
-			System.Diagnostics.Process.Start (FileName);
+			//HACK Mono 4 has a bug when open a file directly
+			if (Environment.OSVersion.Platform == PlatformID.Unix)
+				Process.Start ("xdg-open", FileName);
+			else
+				Process.Start (FileName);
 		}
 
 		public void NuevaPagina ()
