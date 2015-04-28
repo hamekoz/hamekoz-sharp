@@ -18,10 +18,10 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Xwt;
+using System;
 using System.Collections.Generic;
 using Mono.Unix;
-using System;
+using Xwt;
 
 namespace Hamekoz.UI
 {
@@ -87,6 +87,7 @@ namespace Hamekoz.UI
 		public void SetList<T> (IList<T> typedList)
 		{
 			listBoxFilter.SetList<T> (typedList);
+			Text = string.Empty;
 		}
 
 		public T GetSelectedItem<T> ()
@@ -105,6 +106,7 @@ namespace Hamekoz.UI
 			}
 			set {
 				listBoxFilter.FieldDescription = value;
+				Text = string.Empty;
 			}
 		}
 
@@ -123,6 +125,7 @@ namespace Hamekoz.UI
 			}
 			set {
 				listBoxFilter.List = value;
+				Text = string.Empty;
 			}
 		}
 
