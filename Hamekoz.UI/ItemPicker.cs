@@ -135,6 +135,8 @@ namespace Hamekoz.UI
 			}
 			set {
 				listBoxFilter.SelectedItem = value;
+				if (value == null)
+					Text = string.Empty;
 			}
 		}
 
