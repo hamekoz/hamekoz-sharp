@@ -76,6 +76,8 @@ namespace Hamekoz.UI
 					popover.Hide ();
 				}
 			};
+
+			listBoxFilter.SelectionItemChanged += OnSelectionItemChanged;
 		}
 
 		#region IListBoxFilter implementation
