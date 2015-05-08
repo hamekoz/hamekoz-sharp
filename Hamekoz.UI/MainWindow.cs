@@ -64,7 +64,18 @@ namespace Hamekoz.UI
 			try {
 				statusIcon = Application.CreateStatusIcon ();
 				statusIcon.Menu = new Menu ();
-				statusIcon.Menu.Items.Add (new MenuItem (Catalog.GetString ("About")));
+				var about = new MenuItem {
+					Label = Catalog.GetString ("About"),
+					Image = Hamekoz.UI.Icons.Starred.WithSize (IconSize.Small),
+				};
+				var exit = new MenuItem{
+					Label = Catalog.GetString ("Exit"),
+					Image = Hamekoz.UI.Icons.Delete.WithSize (IconSize.Small),
+				};
+				statusIcon.Menu.Items.Add (about);
+				statusIcon.Menu.Items.Add(exit);
+				about.Clicked += AboutClicked;
+				exit.Clicked += ExitClicked;
 				statusIcon.Image = Icon;
 			} catch {
 				Console.WriteLine (Catalog.GetString ("Status icon could not be shown"));
@@ -89,6 +100,26 @@ namespace Hamekoz.UI
 			CloseRequested += HandleCloseRequested;
 
 			InitialLocation = WindowLocation.CenterScreen;
+		}
+
+		public delegate void AboutHandler ();
+
+		public AboutHandler OnAboutClicked;
+
+		void AboutClicked (object sender, EventArgs e)
+		{
+			var about = OnAboutClicked;
+			if (about != null) {
+				about ();
+			} else {
+				var log = new About ();
+				log.Run();			
+			}
+		}
+
+		void ExitClicked (object sender, EventArgs e)
+		{
+			this.Close();
 		}
 
 		protected override void Dispose (bool disposing)
