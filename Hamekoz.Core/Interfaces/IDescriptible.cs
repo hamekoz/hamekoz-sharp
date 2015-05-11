@@ -22,14 +22,8 @@ using System;
 
 namespace Hamekoz.Core
 {
-	public interface IDescriptible
+	public interface IDescriptible : IIdentifiable
 	{
-		/// <summary>
-		/// Gets the identifier.
-		/// </summary>
-		/// <value>The identifier.</value>
-		int Id { get; }
-
 		/// <summary>
 		/// Gets the descripcion.
 		/// </summary>

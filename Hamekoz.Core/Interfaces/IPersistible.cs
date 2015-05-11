@@ -23,14 +23,11 @@ using System.Collections.Generic;
 
 namespace Hamekoz.Core
 {
+	/// <summary>
+	/// Mark a class as data persistible.
+	/// </summary>
 	public interface IPersistible
 	{
-		//TODO encapsular Id para solo poder ser establecido por la clase
-		/// <summary>
-		/// Gets the identifier.
-		/// </summary>
-		/// <value>The identifier.</value>
-		int Id { get; set; }
 	}
 
 	public interface IPersistible<T> where T : IPersistible
@@ -58,11 +55,5 @@ namespace Hamekoz.Core
 		/// </summary>
 		/// <param name="instance">Instance.</param>
 		void Delete (T instance);
-
-		/// <summary>
-		/// Gets all instances.
-		/// </summary>
-		/// <returns>All persistent instances</returns>
-		IList<T> GetAll ();
 	}
 }

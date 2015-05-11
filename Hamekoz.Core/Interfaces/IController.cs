@@ -25,17 +25,15 @@ namespace Hamekoz.Core
 {
 	public interface IController<T>
 	{
-		IList<T> List { get; }
+		T Create ();
 
-		T New ();
-
-		T Get (int id);
-
-		T Get (T instance);
+		void Get (T instance);
 
 		void Save (T instance);
 
 		void Remove (T instance);
+
+		IList<T> List { get; }
 	}
 }
 

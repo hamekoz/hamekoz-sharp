@@ -357,7 +357,7 @@ namespace Hamekoz.UI.Gtk
 			specificWidget.ObjectInstance = true;
 			DrawSpecificWidget ();
 			try {
-				specificWidget.New ((IPersistible)Controller.New ());
+				specificWidget.New ((IPersistible)Controller.Create ());
 				specificWidget.Sensitive = true;
 				Supervisor.Instance.WorkInProgress = false;
 			} catch (Exception ex) {

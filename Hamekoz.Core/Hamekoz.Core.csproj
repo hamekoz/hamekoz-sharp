@@ -8,6 +8,8 @@
     <RootNamespace>Hamekoz.Core</RootNamespace>
     <AssemblyName>Hamekoz.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,6 +52,7 @@
     <Compile Include="Numalet.cs" />
     <Compile Include="ValidationDataException.cs" />
     <Compile Include="Interfaces\IController.cs" />
+    <Compile Include="Interfaces\IIdentifiable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

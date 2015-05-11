@@ -34,6 +34,8 @@ namespace Hamekoz.Core
 		bool CanDelete { get; }
 
 		bool Reload { get; set; }
+
+		T Get (int id);
 	}
 }
 

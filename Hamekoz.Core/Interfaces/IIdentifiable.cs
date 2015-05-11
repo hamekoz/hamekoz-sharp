@@ -25,10 +25,10 @@ namespace Hamekoz.Core
 	/// <summary>
 	/// It makes class objects to be uniquely identifiable
 	/// </summary>
-	public interface IIdentity
+	public interface IIdentifiable
 	{
 		/// <summary>
-		/// Gets the identifier.
+		/// Gets the unique identifier.
 		/// </summary>
 		/// <value>The identifier.</value>
 		int Id { get;}
