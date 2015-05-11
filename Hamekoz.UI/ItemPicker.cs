@@ -49,7 +49,7 @@ namespace Hamekoz.UI
 				WidthRequest = 350,
 			};
 
-			Popover popover = new Popover {
+			var popover = new Popover {
 				Content = listBoxFilter,
 			};
 
@@ -77,7 +77,7 @@ namespace Hamekoz.UI
 				}
 			};
 
-			listBoxFilter.SelectionItemChanged += OnSelectionItemChanged;
+			listBoxFilter.SelectionItemChanged += SelectionItemChanged;
 		}
 
 		#region IListBoxFilter implementation
@@ -157,12 +157,12 @@ namespace Hamekoz.UI
 
 		#endregion
 
-		protected virtual void OnSelectionItemChanged ()
-		{
-			var handler = SelectionItemChanged;
-			if (handler != null)
-				handler ();
-		}
+		//		protected virtual void OnSelectionItemChanged ()
+		//		{
+		//			var handler = SelectionItemChanged;
+		//			if (handler != null)
+		//				handler ();
+		//		}
 	}
 }
 
