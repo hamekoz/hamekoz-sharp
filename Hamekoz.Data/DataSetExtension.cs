@@ -42,19 +42,20 @@ namespace Hamekoz.Data
 		/// <param name="dataSet">DataSet a exportar</param>
 		/// <param name="delimitador">Delimitador de celda a utilizar</param>
 		/// <returns>Resultado de la exportacion</returns>
+		/// <param name = "filename"></param>
 		public static void ToCSV (this DataSet dataSet, Delimitador delimitador, string filename)
 		{
-			StringBuilder dataToExport = new StringBuilder ();
-			StreamWriter sw = new StreamWriter (filename);
+			var dataToExport = new StringBuilder ();
+			var sw = new StreamWriter (filename);
 			foreach (DataTable dtExport in dataSet.Tables) {
-				StringBuilder headerToExport = new StringBuilder ();
+				var headerToExport = new StringBuilder ();
 				foreach (DataColumn dCol in dtExport.Columns) {
 					headerToExport.Append ((char)34 + dCol.ColumnName + (char)34 + (char)delimitador);
 				}
 				headerToExport.Remove (headerToExport.Length - 1, 1);
 				headerToExport.Append (Environment.NewLine);
 				dataToExport.Append (headerToExport);
-				StringBuilder bodyToExport = new StringBuilder ();
+				var bodyToExport = new StringBuilder ();
 				foreach (DataRow dRow in dtExport.Rows) {
 					foreach (object obj in dRow.ItemArray) {
 						bodyToExport.Append (obj.ToString () + (char)delimitador);
@@ -76,6 +77,7 @@ namespace Hamekoz.Data
 		/// </summary>
 		/// <param name="dataSet">DataSet que contiene la tabla a exportar</param>
 		/// <param name="delimitador">Delimitador de celda a utilizar</param>
+		/// <param name = "filename"></param>
 		/// <param name="colControl">Columna a utilizar para el corte y control</param>
 		/// <param name="ColValor">Columna que representa los datos a presentar en forma horizontal para cada corte realizado</param>
 		/// <returns>Resultado de la exportacion</returns>
@@ -85,10 +87,10 @@ namespace Hamekoz.Data
 		/// </remarks>
 		public static void ToCSVPivot (this DataSet dataSet, Delimitador delimitador, string filename, int colControl, int ColValor)
 		{
-			StringBuilder dataToExport = new StringBuilder ();
+			var dataToExport = new StringBuilder ();
 			DataTable dtExport = dataSet.Tables [0];
-			StringBuilder bodyToExport = new StringBuilder ();
-			StreamWriter sw = new StreamWriter (filename);
+			var bodyToExport = new StringBuilder ();
+			var sw = new StreamWriter (filename);
 			//Inicializo la variable de control
 			object control = dtExport.Rows [0].ItemArray [colControl];
 			//Agrego el primer objeto del control a renglon a exportar
@@ -118,6 +120,29 @@ namespace Hamekoz.Data
 
 			sw.Write (dataToExport);
 			sw.Close ();
+		}
+
+		public static DataSet ToDataSet<T> (this IList<T> list)
+		{
+			Type elementType = typeof(T);
+			var ds = new DataSet ();
+			var t = new DataTable ();
+			ds.Tables.Add (t);
+
+			//add a column to table for each public property on T
+			foreach (var propInfo in elementType.GetProperties()) {
+				t.Columns.Add (propInfo.Name, propInfo.PropertyType);
+			}
+
+			//go through each property on T and add each value to the table
+			foreach (T item in list) {
+				DataRow row = t.NewRow ();
+				foreach (var propInfo in elementType.GetProperties()) {
+					row [propInfo.Name] = propInfo.GetValue (item, null);
+				}
+			}
+
+			return ds;
 		}
 	}
 }
