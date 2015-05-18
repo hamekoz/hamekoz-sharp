@@ -140,8 +140,8 @@ namespace Hamekoz.Data
 				foreach (var propInfo in elementType.GetProperties()) {
 					row [propInfo.Name] = propInfo.GetValue (item, null);
 				}
+				t.Rows.Add (row);
 			}
-
 			return ds;
 		}
 	}
