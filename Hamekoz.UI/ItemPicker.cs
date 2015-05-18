@@ -28,7 +28,7 @@ namespace Hamekoz.UI
 	public class ItemPicker : TextEntry, IListBoxFilter
 	{
 		readonly ListBoxFilter listBoxFilter = new ListBoxFilter {
-			RealTimeFilter = true,
+			RealTimeFilter = false,
 			ExpandHorizontal = true,
 			ExpandVertical = true,
 			HeightRequest = 150,
@@ -40,14 +40,6 @@ namespace Hamekoz.UI
 			ReadOnly = true;
 			PlaceholderText = Catalog.GetString ("Click o press Intro or Space to select one item");
 			TooltipText = Catalog.GetString ("Click o press Intro or Space to select one item from the list");
-
-			listBoxFilter = new ListBoxFilter {
-				RealTimeFilter = true,
-				ExpandHorizontal = true,
-				ExpandVertical = true,
-				HeightRequest = 150,
-				WidthRequest = 350,
-			};
 
 			var popover = new Popover {
 				Content = listBoxFilter,
