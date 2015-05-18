@@ -3,6 +3,7 @@
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <rodrigo@hamekoz.com.ar>
+//		 Ezequiel Taranto <ezequiel89@gmail.com>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -53,30 +54,35 @@ namespace Hamekoz.Extensions
 			return result;
 		}
 
-		public static string ToTitleCase(this string value)
+		/// <summary>
+		/// Convert CamelCase to string with spaces.
+		/// </summary>
+		/// <returns>The title case.</returns>
+		/// <param name="s">S.</param>
+		public static string ToTitleCase (this string s)
 		{
-			string[] spacedWords
-			= ((IEnumerable<char>)value)
-				.Select(c => c == char.ToUpper(c)
-					? " " + c.ToString()
-					: c.ToString()).ToArray();
-
-			return (String.Join("", spacedWords)).Trim();
+			s = System.Text.RegularExpressions.Regex.Replace (s, "[A-Z]", " $0").Remove (0, 1);
+			s = s.ToLower ();
+			//s = char.ToUpper(s[0]) + s.Substring(1);
+			//Console.Out.WriteLine (System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase (s));
+			char[] a = s.ToCharArray ();
+			a [0] = char.ToUpper (a [0]);
+			s = new string (a);
+			return s;
 		}
 
-		public static string ToHumanize(this string value)
+		public static string ToHumanize (this string value)
 		{
 			string[] spacedWords
-			= ((IEnumerable<char>)value).Skip(1)
-				.Select(c => c == char.ToUpper(c)
-					? " " + char.ToLower(c).ToString()
-					: c.ToString()).ToArray();
+			= ((IEnumerable<char>)value).Skip (1)
+				.Select (c => c == char.ToUpper (c)
+					? " " + char.ToLower (c).ToString ()
+					: c.ToString ()).ToArray ();
 
-			string result = value.Substring(0, 1)
-				+ (String.Join("", spacedWords)).Trim();
+			string result = value.Substring (0, 1)
+			                + (String.Join ("", spacedWords)).Trim ();
 			result = result.Replace ("  ", " ");
 			return result;
 		}
-
 	}
 }

@@ -56,8 +56,8 @@ namespace Hamekoz.UI
 		public MainWindow ()
 		{
 			Title = string.Format (Catalog.GetString ("{0} Demo Application"), "Hamekoz Xwt");
-			Width = 500;
-			Height = 400;
+			Width = Desktop.Bounds.Width;
+			Height = Desktop.Bounds.Height;
 			InitialLocation = WindowLocation.CenterScreen;
 			Icon = Image.FromResource (Resources.Icon);
 
