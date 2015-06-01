@@ -24,7 +24,7 @@ using Mono.Unix;
 
 namespace Hamekoz.UI
 {
-	public class ReportChooser : ItemChooser
+	public class ReportChooser<T> : ItemChooser<T>
 	{
 		public event EventHandler PdfClicked, XlsClicked, ExportClicked;
 

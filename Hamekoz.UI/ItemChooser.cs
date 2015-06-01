@@ -19,9 +19,11 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Xwt;
+using System;
 
 namespace Hamekoz.UI
 {
+	[Obsolete ("Use ItemChooser<T>")]
 	public class ItemChooser : HPaned
 	{
 		public event ListBoxFilterSelectionChanged SelectedItemChanged;
@@ -75,11 +77,77 @@ namespace Hamekoz.UI
 			Panel2.Resize = true;
 		}
 
-		void ListSelectionChanged ()
+		void ListSelectionChanged (object sender, EventArgs e)
 		{
 			var handler = SelectedItemChanged;
 			if (handler != null)
-				handler ();
+				handler (this, e);
+		}
+
+		public void AddAction (Button action)
+		{
+			actionBox.PackStart (action, true, true);
+		}
+	}
+
+	public class ItemChooser<T> : HPaned
+	{
+		public event ListBoxFilterSelectionChanged SelectedItemChanged;
+
+		readonly ListBoxFilter<T> list = new ListBoxFilter<T> {
+			RealTimeFilter = true,
+			WidthRequest = 200,
+		};
+
+		public ListBoxFilter<T> List {
+			get { return list; }
+		}
+
+		readonly VBox container = new VBox {
+			ExpandVertical = true,
+			ExpandHorizontal = false,
+			VerticalPlacement = WidgetPlacement.Fill,
+		};
+
+		public Widget Widget {
+			get { return scroller.Content; }
+			set {
+				scroller.Content = value;
+				scroller.Content.Margin = 10;
+			}
+		}
+
+		readonly HBox actionBox = new HBox {
+			ExpandHorizontal = true,
+			ExpandVertical = true,
+			HorizontalPlacement = WidgetPlacement.Fill,
+			VerticalPlacement = WidgetPlacement.Fill,
+		};
+
+		readonly ScrollView scroller = new ScrollView {
+			BorderVisible = false,
+			VerticalScrollPolicy = ScrollPolicy.Automatic,
+			HorizontalScrollPolicy = ScrollPolicy.Automatic,
+		};
+
+		public ItemChooser ()
+		{
+			list.SelectionItemChanged += ListSelectionChanged;
+			container.PackStart (scroller, true, true);
+			container.PackEnd (actionBox, false, true);
+			Panel1.Content = list;
+			Panel1.Shrink = false;
+			Panel1.Resize = true;
+			Panel2.Content = container;
+			Panel2.Shrink = false;
+			Panel2.Resize = true;
+		}
+
+		void ListSelectionChanged (object sender, EventArgs e)
+		{
+			var handler = SelectedItemChanged;
+			if (handler != null)
+				handler (this, e);
 		}
 
 		public void AddAction (Button action)
@@ -88,4 +156,3 @@ namespace Hamekoz.UI
 		}
 	}
 }
-

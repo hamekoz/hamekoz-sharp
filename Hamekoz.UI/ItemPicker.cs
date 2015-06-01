@@ -22,9 +22,11 @@ using System;
 using System.Collections.Generic;
 using Mono.Unix;
 using Xwt;
+using System.Reflection;
 
 namespace Hamekoz.UI
 {
+	[Obsolete ("Use ItemPicker<T>")]
 	public class ItemPicker : TextEntry, IListBoxFilter
 	{
 		readonly ListBoxFilter listBoxFilter = new ListBoxFilter {
@@ -155,6 +157,127 @@ namespace Hamekoz.UI
 		//			if (handler != null)
 		//				handler ();
 		//		}
+	}
+
+	public class ItemPicker<T> : TextEntry, IListBoxFilter<T>
+	{
+		Type type = typeof(T);
+
+		readonly ListBoxFilter<T> listBoxFilter = new ListBoxFilter<T> {
+			RealTimeFilter = false,
+			ExpandHorizontal = true,
+			ExpandVertical = true,
+			HeightRequest = 150,
+			WidthRequest = 350,
+		};
+
+		public ItemPicker ()
+		{
+			ReadOnly = true;
+			PlaceholderText = Catalog.GetString ("Click o press Intro or Space to select one item");
+			TooltipText = Catalog.GetString ("Click o press Intro or Space to select one item from the list");
+
+			var popover = new Popover {
+				Content = listBoxFilter,
+			};
+
+			Activated += delegate {
+				popover.Show (Popover.Position.Top, this);
+			};
+			ButtonPressed += delegate {
+				popover.Show (Popover.Position.Top, this);
+			}; 
+
+			popover.Closed += delegate {
+				if (SelectedItem != null) {
+					try {
+						Text = fieldDescription.GetValue (SelectedItem, null).ToString ();
+					} catch {
+						Text = SelectedItem.ToString ();
+					}
+				} else {
+					Text = string.Empty;
+				}
+			};
+			listBoxFilter.ListBox.RowActivated += delegate {
+				if (SelectedItem != null) {
+					popover.Hide ();
+				}
+			};
+
+			Changed += (sender, e) => OnSelectionItemChanged (e);
+		}
+
+		#region IListBoxFilter implementation
+
+		public event ListBoxFilterSelectionChanged SelectionItemChanged;
+
+		PropertyInfo fieldDescription;
+
+		public string FieldDescription {
+			get {
+				return listBoxFilter.FieldDescription;
+			}
+			set {
+				listBoxFilter.FieldDescription = value;
+				fieldDescription = type.GetProperty (FieldDescription);
+				Text = string.Empty;
+			}
+		}
+
+		public bool RealTimeFilter {
+			get {
+				return listBoxFilter.RealTimeFilter;
+			}
+			set {
+				listBoxFilter.RealTimeFilter = value;
+			}
+		}
+
+		public IList<T> List {
+			get {
+				return listBoxFilter.List;
+			}
+			set {
+				listBoxFilter.List = value;
+				Text = string.Empty;
+			}
+		}
+
+		public T SelectedItem {
+			get {
+				return listBoxFilter.SelectedItem;
+			}
+			set {
+				listBoxFilter.SelectedItem = value;
+				if (value == null)
+					Text = string.Empty;
+			}
+		}
+
+		public SelectionMode SelectionMode {
+			get {
+				return listBoxFilter.SelectionMode;
+			}
+			set {
+				listBoxFilter.SelectionMode = value;
+			}
+		}
+
+		public IList<T> SelectedItems {
+			get {
+				return listBoxFilter.SelectedItems;
+			}
+		}
+
+		#endregion
+
+		protected virtual void OnSelectionItemChanged (EventArgs e)
+		{
+			var handler = SelectionItemChanged;
+			if (handler != null)
+				handler (this, e);
+		}
 	}
 }
 
