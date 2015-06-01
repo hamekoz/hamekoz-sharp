@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 
 namespace Hamekoz.Extensions
 {
@@ -83,6 +84,11 @@ namespace Hamekoz.Extensions
 			                + (String.Join ("", spacedWords)).Trim ();
 			result = result.Replace ("  ", " ");
 			return result;
+		}
+
+		public static string ToName (this string value)
+		{
+			return CultureInfo.CurrentCulture.TextInfo.ToTitleCase (value.ToLower ());
 		}
 	}
 }
