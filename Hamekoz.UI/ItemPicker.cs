@@ -250,8 +250,15 @@ namespace Hamekoz.UI
 			}
 			set {
 				listBoxFilter.SelectedItem = value;
-				if (value == null)
+				if (value != null) {
+					try {
+						Text = fieldDescription.GetValue (value, null).ToString ();
+					} catch {
+						Text = value.ToString ();
+					}
+				} else {
 					Text = string.Empty;
+				}
 			}
 		}
 

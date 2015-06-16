@@ -82,6 +82,7 @@ namespace Hamekoz.UI
 			search.BackgroundColor = filter == string.Empty ? Colors.White : Colors.LightGreen;
 			filter = filter.ToUpper ();
 			var filterList = list.Where (i => ItemLabel (i).ToUpper ().Contains (filter));
+			listBox.UnselectAll ();
 			listBox.Items.Clear ();
 			foreach (var item in filterList) {
 				listBox.Items.Add (item, ItemLabel (item));
@@ -243,6 +244,7 @@ namespace Hamekoz.UI
 			search.BackgroundColor = filter == string.Empty ? Colors.White : Colors.LightGreen;
 			filter = filter.ToUpper ();
 			var filterList = list.Where (i => ItemLabel (i).ToUpper ().Contains (filter));
+			listBox.UnselectAll ();
 			listBox.Items.Clear ();
 			foreach (var item in filterList) {
 				listBox.Items.Add (item, ItemLabel (item));
