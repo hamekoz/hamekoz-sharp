@@ -241,14 +241,16 @@ namespace Hamekoz.UI
 
 		void FilterList (string filter)
 		{
+			filtering = true;
 			search.BackgroundColor = filter == string.Empty ? Colors.White : Colors.LightGreen;
 			filter = filter.ToUpper ();
 			var filterList = list.Where (i => ItemLabel (i).ToUpper ().Contains (filter));
-			listBox.UnselectAll ();
 			listBox.Items.Clear ();
 			foreach (var item in filterList) {
 				listBox.Items.Add (item, ItemLabel (item));
 			}
+			filtering = false;
+			listBox.UnselectAll ();
 		}
 
 		string ItemLabel (T item)
@@ -325,10 +327,12 @@ namespace Hamekoz.UI
 
 		public event ListBoxFilterSelectionChanged SelectionItemChanged;
 
+		bool filtering;
+
 		protected virtual void OnSelectionItemChanged (EventArgs e)
 		{
 			var handler = SelectionItemChanged;
-			if (handler != null)
+			if (handler != null && !filtering)
 				handler (this, e);
 		}
 	}
