@@ -67,5 +67,18 @@ namespace Hamekoz.Extensions
 		{
 			return new DateTime (date.Year, date.Month, 1);
 		}
+
+		/// <summary>
+		/// Firsts the day of month from date.
+		/// </summary>
+		/// <returns>The first day of month.</returns>
+		/// <param name="date">Date.</param>
+		public static DateTime LastDayOfMonth (this DateTime date)
+		{
+			var value = date.FirstDayOfMonth ();
+			value = value.AddMonths (1);
+			value = value.AddDays (-1);
+			return value; // date.FirstDayOfMonth ().AddMonths (1).AddDays (-1);
+		}
 	}
 }
