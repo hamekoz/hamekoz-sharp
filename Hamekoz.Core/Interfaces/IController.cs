@@ -27,7 +27,7 @@ namespace Hamekoz.Core
 	{
 		T Create ();
 
-		void Get (T instance);
+		void Load (T instance);
 
 		void Save (T instance);
 
