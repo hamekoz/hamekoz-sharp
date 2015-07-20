@@ -43,7 +43,6 @@
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\NumericExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Interfaces\IAbmController.cs" />
     <Compile Include="Interfaces\IAutorizable.cs" />
     <Compile Include="Interfaces\IDescriptible.cs" />
     <Compile Include="Interfaces\IFocusableWidget.cs" />
