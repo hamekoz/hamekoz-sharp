@@ -35,7 +35,7 @@ namespace Hamekoz.Core
 
 		bool Reload { get; set; }
 
-		T Get (int id);
+		T Load (int id);
 	}
 }
 
