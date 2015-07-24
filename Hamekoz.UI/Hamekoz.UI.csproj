@@ -78,6 +78,7 @@
       <Link>MonoDevelop.Components.Chart\TickEnumerator.cs</Link>
     </Compile>
     <Compile Include="About.cs" />
+    <Compile Include="DatePeriod.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
