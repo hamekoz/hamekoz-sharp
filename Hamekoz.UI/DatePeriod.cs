@@ -31,6 +31,7 @@ namespace Hamekoz.UI
 			TooltipText = Catalog.GetString ("Star date"),
 			ExpandHorizontal = false,
 			ExpandVertical = false,
+			DateTime = DateTime.Now.Date
 		};
 
 		readonly DatePicker dateEnd = new DatePicker {
@@ -38,6 +39,7 @@ namespace Hamekoz.UI
 			TooltipText = Catalog.GetString ("End date"),
 			ExpandHorizontal = false,
 			ExpandVertical = false,
+			DateTime = DateTime.Now.Date.AddDays (1).AddMilliseconds (-1),
 		};
 
 		public DatePeriod (bool horizonal = false)
