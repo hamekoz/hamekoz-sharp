@@ -72,7 +72,6 @@ namespace Hamekoz.UI
 
 			userEntry.SetFocus ();
 			Resizable = false;
-			Opacity = 0.5d;
 			ShowInTaskbar = false;
 			Title = Catalog.GetString ("Login");
 			Icon = Image.FromResource (GetType (), Resources.Icon);
