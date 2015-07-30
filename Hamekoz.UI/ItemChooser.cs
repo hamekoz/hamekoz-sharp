@@ -31,6 +31,7 @@ namespace Hamekoz.UI
 		readonly ListBoxFilter list = new ListBoxFilter {
 			RealTimeFilter = true,
 			WidthRequest = 200,
+			MarginRight = 5,
 		};
 
 		public ListBoxFilter List {
@@ -41,14 +42,12 @@ namespace Hamekoz.UI
 			ExpandVertical = true,
 			ExpandHorizontal = false,
 			VerticalPlacement = WidgetPlacement.Fill,
+			MarginLeft = 5,
 		};
 
 		public Widget Widget {
 			get { return scroller.Content; }
-			set {
-				scroller.Content = value;
-				scroller.Content.Margin = 10;
-			}
+			set { scroller.Content = value; }
 		}
 
 		readonly HBox actionBox = new HBox {
@@ -97,6 +96,7 @@ namespace Hamekoz.UI
 		readonly ListBoxFilter<T> list = new ListBoxFilter<T> {
 			RealTimeFilter = true,
 			WidthRequest = 200,
+			MarginRight = 5,
 		};
 
 		public ListBoxFilter<T> List {
@@ -107,14 +107,12 @@ namespace Hamekoz.UI
 			ExpandVertical = true,
 			ExpandHorizontal = false,
 			VerticalPlacement = WidgetPlacement.Fill,
+			MarginLeft = 5,
 		};
 
 		public Widget Widget {
 			get { return scroller.Content; }
-			set {
-				scroller.Content = value;
-				scroller.Content.Margin = 10;
-			}
+			set { scroller.Content = value; }
 		}
 
 		readonly HBox actionBox = new HBox {

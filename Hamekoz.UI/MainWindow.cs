@@ -66,14 +66,14 @@ namespace Hamekoz.UI
 				statusIcon.Menu = new Menu ();
 				var about = new MenuItem {
 					Label = Catalog.GetString ("About"),
-					Image = Hamekoz.UI.Icons.Starred.WithSize (IconSize.Small),
+					Image = Icons.Starred.WithSize (IconSize.Small),
 				};
-				var exit = new MenuItem{
+				var exit = new MenuItem {
 					Label = Catalog.GetString ("Exit"),
-					Image = Hamekoz.UI.Icons.Delete.WithSize (IconSize.Small),
+					Image = Icons.Delete.WithSize (IconSize.Small),
 				};
 				statusIcon.Menu.Items.Add (about);
-				statusIcon.Menu.Items.Add(exit);
+				statusIcon.Menu.Items.Add (exit);
 				about.Clicked += AboutClicked;
 				exit.Clicked += ExitClicked;
 				statusIcon.Image = Icon;
@@ -92,6 +92,7 @@ namespace Hamekoz.UI
 			menuTree.MinWidth = 220;
 
 			panel.Panel1.Content = menuTree;
+			panel.Panel1.Content.MarginRight = 5;
 
 			panel.Panel2.Resize = true;
 
@@ -113,13 +114,13 @@ namespace Hamekoz.UI
 				about ();
 			} else {
 				var log = new About ();
-				log.Run();			
+				log.Run ();			
 			}
 		}
 
 		void ExitClicked (object sender, EventArgs e)
 		{
-			this.Close();
+			Close ();
 		}
 
 		protected override void Dispose (bool disposing)
@@ -164,6 +165,7 @@ namespace Hamekoz.UI
 					panel.Panel2.Content = SelectItemLabel;
 				}
 			}
+			panel.Panel2.Content.MarginLeft = 5;
 		}
 
 		public virtual bool AllowAccess (ItemWidget widget)
