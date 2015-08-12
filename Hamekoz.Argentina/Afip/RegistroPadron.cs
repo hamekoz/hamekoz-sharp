@@ -17,14 +17,12 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-
 namespace Hamekoz.Argentina.Afip
 {
 	/// <summary>
 	/// Registro padron de condicion impositiva.
 	/// </summary>
-	/// <see cref="http://www.afip.gob.ar/genericos/cInscripcion/archivoCompleto.asp"/>
+	/// <see href="http://www.afip.gob.ar/genericos/cInscripcion/archivoCompleto.asp"/>
 	public class RegistroPadron
 	{
 		/// <summary>
@@ -38,9 +36,9 @@ namespace Hamekoz.Argentina.Afip
 			Denominacion = string.Empty;
 			if (denominacion) {
 				offset = 30;
-				Denominacion = linea.Substring(11, 30);
+				Denominacion = linea.Substring (11, 30);
 			}
-			CUIT = long.Parse(linea.Substring (0, 11));
+			CUIT = long.Parse (linea.Substring (0, 11));
 			ImpuestoGanancias = linea.Substring (11 + offset, 2);
 			ImpuestoIVA = linea.Substring (13 + offset, 2);
 			Monotributo = linea.Substring (15 + offset, 2);
@@ -73,7 +71,7 @@ namespace Hamekoz.Argentina.Afip
 		///	'NA' = No alcanzado
 		///	'XN' = Exento no alcanzado
 		///	'AN' = Activo no alcanzado
-		///	'NC' = No corresponde  
+		///	'NC' = No corresponde
 		/// </summary>
 		/// <value>The impuesto ganancias.</value>
 		public string ImpuestoGanancias {
@@ -91,7 +89,7 @@ namespace Hamekoz.Argentina.Afip
 		///	'NA' = No alcanzado
 		///	'XN' = Exento no alcanzado
 		///	'AN' = Activo no alcanzado
-		///	'NC' = No corresponde  
+		///	'NC' = No corresponde
 		/// </summary>
 		/// <value>The impuesto IVA.</value>
 		public string ImpuestoIVA {

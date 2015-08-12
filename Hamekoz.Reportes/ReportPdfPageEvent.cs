@@ -19,10 +19,6 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -39,7 +35,7 @@ namespace Hamekoz.Reportes
 		/// <summary>
 		/// The header and footer font.
 		/// </summary>
-		Font font = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 8, BaseColor.GRAY);
+		readonly Font font = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 8, BaseColor.GRAY);
 
 		/// <summary>
 		/// The water font.
@@ -50,7 +46,7 @@ namespace Hamekoz.Reportes
 		DateTime printTime = DateTime.Now;
 
 		// set transparency, see commented section below; 'image watermark'
-		PdfGState state = new PdfGState () {
+		PdfGState state = new PdfGState {
 			FillOpacity = waterMarkOpacity,
 			StrokeOpacity = waterMarkOpacity
 		};
@@ -63,28 +59,28 @@ namespace Hamekoz.Reportes
 
 		public bool HasWaterMarkText{ get; set; }
 
-		private string header = string.Empty;
+		string header = string.Empty;
 
 		public string Header {
 			get { return header; }
 			set { header = value; }
 		}
 
-		private string headerLeft = string.Empty;
+		string headerLeft = string.Empty;
 
 		public string HeaderLeft {
 			get { return headerLeft; }
 			set { headerLeft = value; }
 		}
 
-		private string headerRight = string.Empty;
+		string headerRight = string.Empty;
 
 		public string HeaderRight {
 			get { return headerRight; }
 			set { headerRight = value; }
 		}
 
-		private string waterMarkText = string.Empty;
+		string waterMarkText = string.Empty;
 
 		public string WaterMarkText {
 			get {
@@ -95,7 +91,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private static float waterMarkOpacity = 0.1F;
+		static float waterMarkOpacity = 0.1F;
 
 		public float WaterMarkOpacity {
 			get {
@@ -106,12 +102,12 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private Image waterMarkImage;
+		Image waterMarkImage;
 
 		public string WaterMarkImagePath {
 			get {
 				if (waterMarkImage == null) {
-					waterMarkImage = Image.GetInstance (Constants.HamekozLogo);	
+					waterMarkImage = Image.GetInstance (Constants.HamekozLogo);
 				}
 				return waterMarkImage.Url.AbsolutePath;
 			}
@@ -138,32 +134,32 @@ namespace Hamekoz.Reportes
 			base.OnStartPage (writer, document);
 
 			if (HasHeaderAndFooter) {
-				PrintHeader (writer, document);
+				PrintHeader (document);
 				PrintFooter (writer, document);
 			}
 		}
 
-		private void PrintHeader (PdfWriter writer, Document document)
+		void PrintHeader (Document document)
 		{
-			PdfPTable headerTable = new PdfPTable (3);
+			var headerTable = new PdfPTable (3);
 
 			headerTable.SetWidthPercentage (new float[] { 20, 60, 20 }, document.PageSize);
 
-			headerTable.DefaultCell.Border = PdfPCell.NO_BORDER;
+			headerTable.DefaultCell.Border = Rectangle.NO_BORDER;
 			headerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
 
-			PdfPCell headerLeftCell = new PdfPCell (new Phrase (8, headerLeft, font));
-			headerLeftCell.Border = PdfPCell.NO_BORDER;
+			var headerLeftCell = new PdfPCell (new Phrase (8, headerLeft, font));
+			headerLeftCell.Border = Rectangle.NO_BORDER;
 			headerTable.AddCell (headerLeftCell);
 
-			PdfPCell headerCenterCell = new PdfPCell (new Phrase (8, header, font));
-			headerCenterCell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
-			headerCenterCell.Border = PdfPCell.NO_BORDER;
+			var headerCenterCell = new PdfPCell (new Phrase (8, header, font));
+			headerCenterCell.HorizontalAlignment = Element.ALIGN_CENTER;
+			headerCenterCell.Border = Rectangle.NO_BORDER;
 			headerTable.AddCell (headerCenterCell);
 
-			PdfPCell headerRightCell = new PdfPCell (new Phrase (8, headerRight, font));
-			headerRightCell.Border = PdfPCell.NO_BORDER;
-			headerRightCell.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
+			var headerRightCell = new PdfPCell (new Phrase (8, headerRight, font));
+			headerRightCell.Border = Rectangle.NO_BORDER;
+			headerRightCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 			headerTable.AddCell (headerRightCell);
 
 			contentByte.MoveTo (
@@ -184,7 +180,7 @@ namespace Hamekoz.Reportes
 			);
 		}
 
-		private void PrintFooter (PdfWriter writer, Document document)
+		void PrintFooter (PdfWriter writer, Document document)
 		{
 			//TODO localizar los textos para poder traducirlos
 			string generated = String.Format (
@@ -203,22 +199,22 @@ namespace Hamekoz.Reportes
 				document.PageSize.GetBottom (document.BottomMargin - 10)
 			);
 
-			PdfPTable footerTable = new PdfPTable (3);
-			footerTable.DefaultCell.Border = PdfPCell.NO_BORDER;
+			var footerTable = new PdfPTable (3);
+			footerTable.DefaultCell.Border = Rectangle.NO_BORDER;
 			footerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
 
-			PdfPCell footerLeftCell = new PdfPCell (new Phrase (8, pageof, font));
-			footerLeftCell.Border = PdfPCell.NO_BORDER;
+			var footerLeftCell = new PdfPCell (new Phrase (8, pageof, font));
+			footerLeftCell.Border = Rectangle.NO_BORDER;
 			footerTable.AddCell (footerLeftCell);
 
-			PdfPCell footerCenterCell = new PdfPCell (new Phrase (8, generated, font));
-			footerCenterCell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
-			footerCenterCell.Border = PdfPCell.NO_BORDER;
+			var footerCenterCell = new PdfPCell (new Phrase (8, generated, font));
+			footerCenterCell.HorizontalAlignment = Element.ALIGN_CENTER;
+			footerCenterCell.Border = Rectangle.NO_BORDER;
 			footerTable.AddCell (footerCenterCell);
 
-			PdfPCell footerRightCell = new PdfPCell (new Phrase (8, Constants.PoweredBy, font));
-			footerRightCell.Border = PdfPCell.NO_BORDER;
-			footerRightCell.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
+			var footerRightCell = new PdfPCell (new Phrase (8, Constants.PoweredBy, font));
+			footerRightCell.Border = Rectangle.NO_BORDER;
+			footerRightCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 			footerTable.AddCell (footerRightCell);
 
 			contentByte.MoveTo (
