@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A996E409-1FB5-49C4-94E4-EFB8AB5BE44E}</ProjectGuid>
+    <ProjectGuid>{E79A4EB9-F6CE-4124-A71A-0E56D6999FE3}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Hamekoz.Argentina</RootNamespace>
-    <AssemblyName>Hamekoz.Argentina</AssemblyName>
+    <RootNamespace>Hamekoz.Argentina.Afip</RootNamespace>
+    <AssemblyName>Hamekoz.Argentina.Afip</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -29,44 +29,37 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Security" />
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Agip\RegistroPadronUnificado.cs" />
-    <Compile Include="Agip\RegistroImportacionRetencionPercepcion.cs" />
-    <Compile Include="Agip\RegistroImportacionNotaDeCredito.cs" />
-    <Compile Include="Agip\Enumerados.cs" />
-    <Compile Include="Agip\Agip.cs" />
-    <Compile Include="Afip\RegistroPadron.cs" />
-    <Compile Include="Afip\Afip.cs" />
-    <Compile Include="Arba\Arba.cs" />
-    <Compile Include="Arba\RegistroPadronUnificado.cs" />
+    <Compile Include="Web References\WSAA\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="TicketDeAcceso.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Agip\" />
-    <Folder Include="Afip\" />
-    <Folder Include="Arba\" />
+    <WebReferences Include="Web References" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hamekoz.Data\Hamekoz.Data.csproj">
-      <Project>{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}</Project>
-      <Name>Hamekoz.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
-      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
-      <Name>Hamekoz.Core</Name>
-    </ProjectReference>
+    <WebReferenceUrl Include="https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSAA</RelPath>
+      <UpdateFromURL>https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl</UpdateFromURL>
+    </WebReferenceUrl>
   </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <Policies>
-          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedHierarchical" ResourceNamePolicy="FileFormatDefault" />
-        </Policies>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
+  <ItemGroup>
+    <None Include="Web References\WSAA\LoginCms.wsdl" />
+    <None Include="Web References\WSAA\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>
