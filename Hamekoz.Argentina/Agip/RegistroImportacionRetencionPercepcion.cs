@@ -19,8 +19,6 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Hamekoz.Interfaces;
-using System.Collections.Generic;
 
 namespace Hamekoz.Argentina.Agip
 {
@@ -35,7 +33,7 @@ namespace Hamekoz.Argentina.Agip
 		/// Gets or sets the codigo de norma.
 		/// </summary>
 		/// <value>The codigo de norma.</value>
-		/// <see cref="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
+		/// <see href="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
 		public int CodigoDeNorma {
 			get;
 			set;
@@ -168,38 +166,38 @@ namespace Hamekoz.Argentina.Agip
 		/// Tos the fixed string.
 		/// </summary>
 		/// <returns>The fixed string.</returns>
-		/// <see cref="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
+		/// <see href="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
 		public string ToFixedString ()
 		{
 			if (MontoSujetoARetencionPercepcion != (MontoDelComprobante - ImporteIVA - ImporteOtrosConceptos)) {
-				throw new Exception (string.Format ("El monto sujeto no es correcto.\nRazon Social: {0}\nComprobante: {1}", this.RazonSocialDelRetenido, this.NroDeComprobante));
+				throw new Exception (string.Format ("El monto sujeto no es correcto.\nRazon Social: {0}\nComprobante: {1}", RazonSocialDelRetenido, NroDeComprobante));
 			}
 
 			string cadena = string.Format ("{0:D1}{1:D3}{2:d}{3:D2}{4}{5:D16}{6:d}{7:0000000000000.00}{8}{9:D1}{10:D11}{11:D1}{12:D11}{13:D1}{14}{15:0000000000000.00}{16:0000000000000.00}{17:0000000000000.00}{18:00.00}{19:0000000000000.00}{20:0000000000000.00}"
-				, (int)this.Operacion
-				, this.CodigoDeNorma
-				, this.FechaRetencionPercepcion
-				, (int)this.TipoDeComprobanteOrigenDeLaRetencion
-				, this.LetraDelComprobante.ToString ()
-				, this.NroDeComprobante
-				, this.FechaDelComprobante
-				, this.MontoDelComprobante
-				, this.NroDeCertificadoPropio.PadRight (16).Substring (0, 16)
-				, (int)this.TipoDeDocumentoDelRetenido
-				, this.NroDeDocumentoDelRetenido
-				, (int)this.SituacionIngresosBrutosDelRetenido
-				, this.NroInscripcionIngresosBrutosDelRetenido
-				, (int)this.SituacionFrenteAlIVADelRetenido
-				, this.RazonSocialDelRetenido.PadRight (30).Substring (0, 30)
-				, this.ImporteOtrosConceptos
-				, this.ImporteIVA
-				, this.MontoSujetoARetencionPercepcion
-				, this.Alicuota
-				, this.RetencionPercepcionPracticada
-				, this.MontoTotalRetenidoPercibido
+				, (int)Operacion
+				, CodigoDeNorma
+				, FechaRetencionPercepcion
+				, (int)TipoDeComprobanteOrigenDeLaRetencion
+				, LetraDelComprobante
+				, NroDeComprobante
+				, FechaDelComprobante
+				, MontoDelComprobante
+				, NroDeCertificadoPropio.PadRight (16).Substring (0, 16)
+				, (int)TipoDeDocumentoDelRetenido
+				, NroDeDocumentoDelRetenido
+				, (int)SituacionIngresosBrutosDelRetenido
+				, NroInscripcionIngresosBrutosDelRetenido
+				, (int)SituacionFrenteAlIVADelRetenido
+				, RazonSocialDelRetenido.PadRight (30).Substring (0, 30)
+				, ImporteOtrosConceptos
+				, ImporteIVA
+				, MontoSujetoARetencionPercepcion
+				, Alicuota
+				, RetencionPercepcionPracticada
+				, MontoTotalRetenidoPercibido
 			                );
 			if (cadena.Length != 215) {
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nRazon Social: {0}\nComprobante: {1}", this.RazonSocialDelRetenido, this.NroDeComprobante));
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nRazon Social: {0}\nComprobante: {1}", RazonSocialDelRetenido, NroDeComprobante));
 			}
 
 			return cadena;

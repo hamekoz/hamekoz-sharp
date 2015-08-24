@@ -26,11 +26,11 @@ namespace Hamekoz.Argentina.Arba
 	/// <summary>
 	/// Registro de padrón unificado.
 	/// </summary>
-	/// <see cref="http://www.arba.gov.ar/archivos/Publicaciones/regimen%20de%20rec%20x%20sujeto_nuevo%20dise%C3%B1o%20padr%C3%B3n.pdf"/>
-	/// <seealso cref="http://www.arba.gov.ar/Informacion/IBrutos/LinksIIBB/RegimenSujeto.asp"/>
+	/// <see href="http://www.arba.gov.ar/archivos/Publicaciones/regimen%20de%20rec%20x%20sujeto_nuevo%20dise%C3%B1o%20padr%C3%B3n.pdf"/>
+	/// <seealso href="http://www.arba.gov.ar/Informacion/IBrutos/LinksIIBB/RegimenSujeto.asp"/>
 	public class RegistroPadronUnificado
 	{
-		private readonly char separador = char.Parse(";");
+		readonly char separador = char.Parse (";");
 
 		/// <summary>
 		/// Gets or sets the regimen.
@@ -108,20 +108,20 @@ namespace Hamekoz.Argentina.Arba
 
 		public RegistroPadronUnificado (string linea)
 		{
-			if (linea.Length != 55 ) {
+			if (linea.Length != 55) {
 				throw new Exception ("Longitud de linea incorrecta. Verificar");
 			}
 			string[] split = linea.Split (separador);
 			Regimen = char.Parse (split [0]);
-			FechaDePublicacion = DateTime.ParseExact(split [1], "ddMMyyyy", CultureInfo.InvariantCulture);
-			FechaVigenciaDesde = DateTime.ParseExact(split [2], "ddMMyyyy", CultureInfo.InvariantCulture);
-			FechaVigenciaHasta = DateTime.ParseExact(split [3], "ddMMyyyy", CultureInfo.InvariantCulture);
+			FechaDePublicacion = DateTime.ParseExact (split [1], "ddMMyyyy", CultureInfo.InvariantCulture);
+			FechaVigenciaDesde = DateTime.ParseExact (split [2], "ddMMyyyy", CultureInfo.InvariantCulture);
+			FechaVigenciaHasta = DateTime.ParseExact (split [3], "ddMMyyyy", CultureInfo.InvariantCulture);
 			CUIT = long.Parse (split [4]);
 			TipoDeContribuyenteInscripto = char.Parse (split [5]);
 			MarcaAltaBajaSujeto = char.Parse (split [6]);
 			MarcaCambioAlicuota = char.Parse (split [7]);
 			Alicuota = double.Parse (split [8]);
-			NumeroGrupo =  int.Parse (split [9]);
+			NumeroGrupo = int.Parse (split [9]);
 		}
 	}
 }

@@ -19,14 +19,11 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Diagnostics;
 using System.IO;
-using System.Collections.Generic;
-using System.Reflection;
-
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.draw;
-using System.Diagnostics;
 
 namespace Hamekoz.Reportes
 {
@@ -38,62 +35,38 @@ namespace Hamekoz.Reportes
 		public Reporte ()
 		{
 			document = new Document ();
-			margenDerecho = document.RightMargin;
-			margenIzquierdo = document.LeftMargin;
-			margenInferior = document.BottomMargin;
-			margenSuperior = document.TopMargin;
+			MargenDerecho = document.RightMargin;
+			MargenIzquierdo = document.LeftMargin;
+			MargenInferior = document.BottomMargin;
+			MargenSuperior = document.TopMargin;
 		}
-
-		float margenSuperior;
 
 		public float MargenSuperior {
-			get {
-				return margenSuperior;
-			}
-			set {
-				margenSuperior = value;
-			}
+			get;
+			set;
 		}
-
-		float margenInferior;
 
 		public float MargenInferior {
-			get {
-				return margenInferior;
-			}
-			set {
-				margenInferior = value;
-			}
+			get;
+			set;
 		}
-
-		float margenDerecho;
 
 		public float MargenDerecho {
-			get {
-				return margenDerecho;
-			}
-			set {
-				margenDerecho = value;
-			}
+			get;
+			set;
 		}
 
-		float margenIzquierdo;
-
 		public float MargenIzquierdo {
-			get {
-				return margenIzquierdo;
-			}
-			set {
-				margenIzquierdo = value;
-			}
+			get;
+			set;
 		}
 
 		public void Iniciar ()
 		{
 			pdfWriter = PdfWriter.GetInstance (document, new FileStream (FileName, FileMode.Create));
-			this.SetInfo ();
+			SetInfo ();
 
-			document.SetMargins (margenIzquierdo, margenDerecho, margenSuperior, margenInferior);
+			document.SetMargins (MargenIzquierdo, MargenDerecho, MargenSuperior, MargenInferior);
 
 			if (Apaisado) {
 				document.SetPageSize (PageSize.A4.Rotate ());
@@ -101,7 +74,7 @@ namespace Hamekoz.Reportes
 				document.SetPageSize (PageSize.A4);
 			}
 
-			ReportPdfPageEvent pageEventHandler = new ReportPdfPageEvent () {
+			var pageEventHandler = new ReportPdfPageEvent {
 				HasHeaderAndFooter = HasEncabezadoPieDePagina,
 			};
 
@@ -143,7 +116,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private void SetInfo ()
+		void SetInfo ()
 		{
 			document.AddProducer ();
 			document.AddCreationDate ();
@@ -155,25 +128,25 @@ namespace Hamekoz.Reportes
 			document.AddTitle (titulo);
 		}
 
-		private void MostrarTitulo ()
+		void MostrarTitulo ()
 		{
 			Font fuenteTitulo = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 22);
-			Paragraph ptitulo = new Paragraph (Titulo, fuenteTitulo);
+			var ptitulo = new Paragraph (Titulo, fuenteTitulo);
 			ptitulo.Alignment = Element.ALIGN_CENTER;
 			document.Add (ptitulo);
 		}
 
-		private void MostrarAsunto ()
+		void MostrarAsunto ()
 		{
 			Font fuenteAsunto = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 14);
-			Paragraph pasunto = new Paragraph (Asunto, fuenteAsunto);
+			var pasunto = new Paragraph (Asunto, fuenteAsunto);
 			pasunto.Alignment = Element.ALIGN_CENTER;
 			document.Add (pasunto);
 		}
 
 		#region IReporte implementation
 
-		private string marcaDeAguaImagenUri = string.Empty;
+		string marcaDeAguaImagenUri = string.Empty;
 
 		public string MarcaDeAguaImagenUri {
 			get {
@@ -184,7 +157,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private string marcaDeAguaTexto = string.Empty;
+		string marcaDeAguaTexto = string.Empty;
 
 		public string MarcaDeAguaTexto {
 			get {
@@ -195,7 +168,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private float marcaDeAguaTransparencia = 0.1F;
+		float marcaDeAguaTransparencia = 0.1F;
 
 		public float MarcaDeAguaTransparencia {
 			get {
@@ -206,7 +179,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private string filename = string.Empty;
+		string filename = string.Empty;
 
 		public string FileName {
 			get {
@@ -218,7 +191,7 @@ namespace Hamekoz.Reportes
 			set { filename = value; }
 		}
 
-		private string titulo = "Hamekoz Report";
+		string titulo = "Hamekoz Report";
 
 		public string Titulo {
 			get {
@@ -229,7 +202,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private string asunto = string.Empty;
+		string asunto = string.Empty;
 
 		public string Asunto {
 			get {
@@ -240,7 +213,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private string autor = string.Empty;
+		string autor = string.Empty;
 
 		public string Autor {
 			get {
@@ -251,7 +224,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private string creador = Constants.GeneratedBy;
+		string creador = Constants.GeneratedBy;
 
 		public string Creador {
 			get {
@@ -262,7 +235,7 @@ namespace Hamekoz.Reportes
 			}
 		}
 
-		private string empresa = string.Empty;
+		string empresa = string.Empty;
 
 		public string Empresa {
 			get {
@@ -292,11 +265,7 @@ namespace Hamekoz.Reportes
 		public void Abrir ()
 		{
 			document.Close ();
-			//HACK Mono 4 has a bug when open a file directly
-			if (Environment.OSVersion.Platform == PlatformID.Unix)
-				Process.Start ("xdg-open", FileName);
-			else
-				Process.Start (FileName);
+			Process.Start (FileName);
 		}
 
 		public void NuevaPagina ()
@@ -306,8 +275,8 @@ namespace Hamekoz.Reportes
 
 		public void NuevaLineaDivisoria ()
 		{
-			LineSeparator linea = new LineSeparator ();
-			Chunk espacio = new Chunk (" ", FontFactory.GetFont (FontFactory.HELVETICA, 4));
+			var linea = new LineSeparator ();
+			var espacio = new Chunk (" ", FontFactory.GetFont (FontFactory.HELVETICA, 4));
 			document.Add (new Paragraph (espacio));
 			document.Add (linea);
 			document.Add (new Paragraph (espacio));

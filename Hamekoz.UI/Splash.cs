@@ -39,7 +39,6 @@ namespace Hamekoz.UI
 		{
 			Decorated = false;
 			ShowInTaskbar = false;
-			Opacity = 0.5d;
 			box = new VBox {
 				Margin = -2,
 			};

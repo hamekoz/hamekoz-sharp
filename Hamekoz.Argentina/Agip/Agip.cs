@@ -20,16 +20,15 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
 using System.IO;
 using Hamekoz.Data;
-using System.Diagnostics;
 
 namespace Hamekoz.Argentina.Agip
 {
-	public class Agip
+	public static class Agip
 	{
-		public static void Exportar(List<RegistroImportacionRetencionPercepcion> registros, string archivo)
+		public static void Exportar (List<RegistroImportacionRetencionPercepcion> registros, string archivo)
 		{
 			StreamWriter sw = File.CreateText (archivo);
 			foreach (var registro in registros) {
@@ -38,7 +37,7 @@ namespace Hamekoz.Argentina.Agip
 			sw.Close ();
 		}
 
-		public static void Exportar(List<RegistroImportacionNotaDeCredito> registros, string archivo)
+		public static void Exportar (List<RegistroImportacionNotaDeCredito> registros, string archivo)
 		{
 
 			StreamWriter sw = File.CreateText (archivo);
@@ -48,12 +47,12 @@ namespace Hamekoz.Argentina.Agip
 			sw.Close ();
 		}
 
-		public static void DescargarPadronDeContribuyentesDeRiesgoFiscal()
+		public static void DescargarPadronDeContribuyentesDeRiesgoFiscal ()
 		{
 			Process.Start ("http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm");
 		}
 
-		public static void DescargarPadronDeContribuyentesConAlicuotasDiferenciales()
+		public static void DescargarPadronDeContribuyentesConAlicuotasDiferenciales ()
 		{
 			Process.Start ("http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html");
 		}
@@ -63,25 +62,25 @@ namespace Hamekoz.Argentina.Agip
 		/// Validos para:
 		/// - Padrón de Riesgo Fiscal
 		/// - Padrón de contribuyentes exentos, de actividades promovidas, de nuevos emprendimientos y con alícuotas diferenciales.
-		/// <see cref="http://www.agip.gov.ar/web/files/DISENOODEREGISTROPADRONUNIFICADO.pdf"/>
-		/// <seealso cref="http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm"/>
-		/// <seealso cref="http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html"/>
+		/// <see href="http://www.agip.gov.ar/web/files/DISENOODEREGISTROPADRONUNIFICADO.pdf"/>
+		/// <seealso href="http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm"/>
+		/// <seealso href="http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html"/>
 		/// </summary>
 		/// <param name="archivo">Ruta absoluta al archivo.</param>
-		public static void ImportarPadronUnificado(string archivo){
-			FileStream stream = new FileStream(archivo , FileMode.Open, FileAccess.Read);
-			StreamReader reader = new StreamReader(stream);
-			DB dbagip = new DB () {
+		public static void ImportarPadronUnificado (string archivo)
+		{
+			var stream = new FileStream (archivo, FileMode.Open, FileAccess.Read);
+			var reader = new StreamReader (stream);
+			var dbagip = new DB {
 				ConnectionName = "Hamekoz.Argentina.Agip"
 			};
-			while (!reader.EndOfStream)
-			{
-				string  linea = reader.ReadLine();
+			while (!reader.EndOfStream) {
+				string linea = reader.ReadLine ();
 				try {
-					RegistroPadronUnificado registro = new RegistroPadronUnificado (linea);
-				//TODO cambiar SP por consulta de texto plana
-				//TODO controlar la existencia de la tabla en la base de datos.
-				dbagip.SP ("padronTmpActualizar"
+					var registro = new RegistroPadronUnificado (linea);
+					//TODO cambiar SP por consulta de texto plana
+					//TODO controlar la existencia de la tabla en la base de datos.
+					dbagip.SP ("padronTmpActualizar"
 					, "fechaPublicacion", registro.FechaDePublicacion
 					, "cuit", registro.CUIT
 					, "fechaVigenciaDesde", registro.FechaVigenciaDesde
@@ -93,12 +92,12 @@ namespace Hamekoz.Argentina.Agip
 					, "alicuotaRetencion", registro.AlicuotaRetencion
 					, "nroGrupoPercepcion", registro.NumeroGrupoPercepcion
 					, "nroGrupoRetencion", registro.NumeroGrupoRetencion
-				);
+					);
 				} catch (Exception ex) {
 					Console.WriteLine ("Error en importacion:\n\tRegistro: {0}\n\tError: {1}", linea, ex.Message);
 				}
 			}
-			reader.Close();
+			reader.Close ();
 		}
 	}
 }
