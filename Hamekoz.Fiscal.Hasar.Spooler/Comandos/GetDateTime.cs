@@ -32,10 +32,6 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 		{
 			return cmd;
 		}
-
-		public GetDateTime ()
-		{
-		}
 	}
 }
 

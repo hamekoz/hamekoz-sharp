@@ -19,8 +19,6 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-
 namespace Hamekoz.Fiscal
 {
 	public interface IItem
@@ -35,7 +33,7 @@ namespace Hamekoz.Fiscal
 
 		double IVA { get; }
 
-        double TasaIVA { get; }
+		double TasaIVA { get; }
 
 		double Impuestos { get; }
 

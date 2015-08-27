@@ -19,9 +19,9 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
-using Mono.Unix;
 
 namespace Hamekoz.UI
 {

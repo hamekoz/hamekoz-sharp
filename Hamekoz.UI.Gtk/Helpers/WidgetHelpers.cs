@@ -4,7 +4,7 @@
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2014 ecanedo
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -18,14 +18,13 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using Gtk;
 
 namespace Hamekoz.UI.Gtk
 {
 	public static class WidgetHelpers
 	{
-		public static void ChangeWidget(Widget current, Widget next)
+		public static void ChangeWidget (Widget current, Widget next)
 		{
 			//Sentencia necesaria para controlar widget desde las llamadas del menú principal
 			((MasterWindow)current.Toplevel).actualWidget = next;

@@ -18,17 +18,16 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using Gtk;
 
 namespace Hamekoz.UI.Gtk
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class EntryLabeled : Bin
+	public sealed partial class EntryLabeled : Bin
 	{
 		public EntryLabeled ()
 		{
-			this.Build ();
+			Build ();
 			entry.Changed += delegate {
 				OnChangeValue ();
 			};
@@ -47,7 +46,7 @@ namespace Hamekoz.UI.Gtk
 
 		public event ValueChangedHandler ChangeValue;
 
-		protected virtual void OnChangeValue ()
+		protected void OnChangeValue ()
 		{
 			var handler = ChangeValue;
 			if (handler != null)

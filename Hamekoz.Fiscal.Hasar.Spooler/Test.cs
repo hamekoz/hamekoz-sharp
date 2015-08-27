@@ -18,13 +18,12 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
 	public class Test
 	{
-		IHasar hasar = new Hasar ();
+		readonly IHasar hasar = new Hasar ();
 
 		//hasar.GetConfigurationData();
 		//hasar.GetWorkingMemory();
@@ -135,10 +134,6 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 			hasar.PrintNonFiscalText ("descripciondescripciondescripciondescripciondescripcion");
 			hasar.PrintNonFiscalText ("descripciondescripciondescripciondescripciondescripcion");
 			hasar.CloseNonFiscalReceipt ();
-		}
-
-		public Test ()
-		{
 		}
 	}
 }

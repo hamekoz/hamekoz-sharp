@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
@@ -28,9 +27,9 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public float Vuelto { get; set; }
 
-		string texto;
-		float montoPagado;
-		string cancelacionOVuelto;
+		readonly string texto;
+		readonly float montoPagado;
+		readonly string cancelacionOVuelto;
 
 		public string Comando ()
 		{

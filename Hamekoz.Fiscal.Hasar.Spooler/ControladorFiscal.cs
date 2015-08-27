@@ -21,7 +21,6 @@
 
 using System;
 using Hamekoz.Fiscal;
-using Hamekoz.Fiscal.Hasar.Spooler;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {

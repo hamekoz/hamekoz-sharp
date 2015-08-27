@@ -19,10 +19,9 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Text;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
-using System.Configuration;
 
 namespace Hamekoz.Data
 {
@@ -34,7 +33,7 @@ namespace Hamekoz.Data
 
 			string aux = sql;
 			// eliminamos caracteres que nos puedan estorbar
-			char[] simbolos = new char[7];
+			var simbolos = new char[7];
 			simbolos.SetValue (',', 0);
 			simbolos.SetValue (';', 1);
 			simbolos.SetValue ('.', 2);
@@ -51,28 +50,11 @@ namespace Hamekoz.Data
 		}
 	}
 
-
 	/// <summary>
 	/// Data Base access class
 	/// </summary>
 	public class DB
 	{
-		/// <summary>
-		/// Tipo de comando que se pueden utilizar en consultas de Base de Datos
-		/// </summary>
-		[Obsolete ("Ya nos se requiere")]
-		enum TipoComando
-		{
-			/// <summary>
-			/// Procedimiento almacenado
-			/// </summary>
-			SP,
-			/// <summary>
-			/// Consulta por linea de texto
-			/// </summary>
-			Texto
-		}
-
 		public static void PrintProviderFactoryClasses ()
 		{
 			// Retrieve the installed providers and factories.
@@ -88,13 +70,11 @@ namespace Hamekoz.Data
 			}
 		}
 
-		private DbProviderFactory factory;
-		[Obsolete ("No se usa mas")]
-		private DbConnection conexion;
+		DbProviderFactory factory;
 
 		#region Propiedades
 
-		private static DB instancia;
+		static DB instancia;
 
 		public static DB Instancia {
 			get {
@@ -112,7 +92,7 @@ namespace Hamekoz.Data
 			}
 		}
 
-		private int commandTimeOut = 30;
+		int commandTimeOut = 30;
 
 		/// <summary>
 		/// Gets or sets the command time out.
@@ -123,7 +103,7 @@ namespace Hamekoz.Data
 			set { commandTimeOut = value; }
 		}
 
-		private string providerName;
+		string providerName;
 
 		/// <summary>
 		/// Gets or sets the invarian name of the provider.
@@ -143,7 +123,7 @@ namespace Hamekoz.Data
 		/// <value>The connection string.</value>
 		public string ConnectionString { get; set; }
 
-		private string connectionName;
+		string connectionName;
 
 		/// <summary>
 		/// Gets or sets the name of the connection in the app.config.
@@ -164,38 +144,9 @@ namespace Hamekoz.Data
 		#region Metodos Privados
 
 		/// <summary>
-		/// Crea un comando de ejecucion en base de datos
-		/// </summary>
-		/// <param name="tipo">Tipo del comando</param>
-		/// <param name="cadenaSql">Cadena del comando</param>
-		[Obsolete ("No se usa mas")]
-		private DbCommand crearComando (TipoComando tipo, string cadenaSql)
-		{
-			DbCommand comando = factory.CreateCommand ();
-
-			//asigno los valores del comando a ejecutar
-			comando.Connection = conexion;
-			switch (tipo) {
-			case TipoComando.SP:
-				{
-					comando.CommandType = CommandType.StoredProcedure;
-					break;
-				}
-			case TipoComando.Texto:
-				{
-					comando.CommandType = CommandType.Text;
-					break;
-				}
-			}
-			comando.CommandText = cadenaSql;
-			comando.CommandTimeout = CommandTimeOut;
-			return comando;
-		}
-
-		/// <summary>
 		/// Asigna los parametros al comando de acuerdo al motor utilizado
 		/// </summary>
-		private void cargarParametros (DbCommand comando, object[] parametros)
+		void cargarParametros (DbCommand comando, object[] parametros)
 		{
 			DbParameter p;
 			for (int i = 0; i < parametros.Length; i = i + 2) {
@@ -209,37 +160,6 @@ namespace Hamekoz.Data
 		#endregion
 
 		#region Metodos Publicos
-
-		/// <summary>
-		/// Conect this instance.
-		/// </summary>
-		[Obsolete ("No se usa mas")]
-		public bool Conectar ()
-		{
-			try {
-				//Simulo una clase singleton para que solo exista una conexion a la base de datos
-				if (conexion == null) {
-					conexion = factory.CreateConnection ();
-				} else
-					conexion.Close ();
-				conexion.ConnectionString = ConnectionString;
-				conexion.Open ();
-				return true;
-			} catch (Exception ex) {
-				RegistrarError (ex);
-				return false;
-			}
-		}
-
-		/// <summary>
-		/// Disconect this instance.
-		/// </summary>
-		[Obsolete ("No se usa mas, los dataReader deben estar dentro de una sentencia Using")]
-		public void Desconectar ()
-		{
-			while (conexion.State != ConnectionState.Closed)
-				conexion.Close ();
-		}
 
 		public int SP (string sp, params object[] parameters)
 		{
@@ -259,7 +179,7 @@ namespace Hamekoz.Data
 
 		public DataSet SPToDataSet (string sp, params object[] parameters)
 		{
-			DataSet dataset = new DataSet ();
+			var dataset = new DataSet ();
 			return SPToDataSet (dataset, sp, parameters);
 		}
 
@@ -332,7 +252,7 @@ namespace Hamekoz.Data
 
 		public DataSet SqlToDataSet (string sql)
 		{
-			DataSet dataset = new DataSet ();
+			var dataset = new DataSet ();
 			return SqlToDataSet (dataset, sql);
 		}
 
@@ -390,6 +310,107 @@ namespace Hamekoz.Data
 		}
 
 		/// <summary>
+		/// Registrar los errores generados al intentar realizar las consultas.
+		/// </summary>
+		/// <param name="error"></param>
+		static void RegistrarError (Exception error)
+		{
+			System.IO.StreamWriter w = System.IO.File.AppendText ("DBNet.log");
+			w.Write ("\r\nRegistro de error: ");
+			w.WriteLine ("{0} {1}", DateTime.Now.ToShortDateString (), DateTime.Now.ToShortTimeString ());
+			w.WriteLine ("Message: {0}", error.Message);
+			w.WriteLine ("Source: {0}", error.Source);
+			w.WriteLine ("StackTrace:");
+			w.WriteLine (error.StackTrace);
+			w.WriteLine ("-------------------------------");
+			w.Flush ();
+			w.Close ();
+		}
+
+		#endregion
+
+		#region Legacy
+
+		/// <summary>
+		/// Tipo de comando que se pueden utilizar en consultas de Base de Datos
+		/// </summary>
+		[Obsolete ("Ya nos se requiere")]
+		enum TipoComando
+		{
+			/// <summary>
+			/// Procedimiento almacenado
+			/// </summary>
+			SP,
+			/// <summary>
+			/// Consulta por linea de texto
+			/// </summary>
+			Texto
+		}
+
+		[Obsolete ("No se usa mas")]
+		DbConnection conexionLegacy;
+
+		/// <summary>
+		/// Crea un comando de ejecucion en base de datos
+		/// </summary>
+		/// <param name="tipo">Tipo del comando</param>
+		/// <param name="cadenaSql">Cadena del comando</param>
+		[Obsolete ("No se usa mas")]
+		DbCommand crearComando (TipoComando tipo, string cadenaSql)
+		{
+			DbCommand comando = factory.CreateCommand ();
+
+			//asigno los valores del comando a ejecutar
+			comando.Connection = conexionLegacy;
+			switch (tipo) {
+			case TipoComando.SP:
+				{
+					comando.CommandType = CommandType.StoredProcedure;
+					break;
+				}
+			case TipoComando.Texto:
+				{
+					comando.CommandType = CommandType.Text;
+					break;
+				}
+			}
+			comando.CommandText = cadenaSql;
+			comando.CommandTimeout = CommandTimeOut;
+			return comando;
+		}
+
+		/// <summary>
+		/// Conect this instance.
+		/// </summary>
+		[Obsolete ("No se usa mas")]
+		public bool Conectar ()
+		{
+			try {
+				//Simulo una clase singleton para que solo exista una conexion a la base de datos
+				if (conexionLegacy == null) {
+					conexionLegacy = factory.CreateConnection ();
+				} else
+					conexionLegacy.Close ();
+				conexionLegacy.ConnectionString = ConnectionString;
+				conexionLegacy.Open ();
+				return true;
+			} catch (Exception ex) {
+				RegistrarError (ex);
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Disconect this instance.
+		/// </summary>
+		[Obsolete ("No se usa mas, los dataReader deben estar dentro de una sentencia Using")]
+		public void Desconectar ()
+		{
+			while (conexionLegacy.State != ConnectionState.Closed)
+				conexionLegacy.Close ();
+		}
+
+		/// <summary>
 		/// Realiza una consulta a una base de datos y devuelve un dataset nuevo
 		/// </summary>
 		/// <param name="tipo">Define el tipo de consulta a realizar. SP, texto, TablaEntera</param>
@@ -397,11 +418,11 @@ namespace Hamekoz.Data
 		/// <param name="parametros">Pares Nombre parametros, Valor parametro</param>
 		/// <returns>Devuelve resultas de la consulta en tablas contenidas en un DataSet</returns>
 		[Obsolete ("Usar SPToDataSet o SqlToDataSet")]
-		private DataSet ejecutarDataSet (TipoComando tipo, string cadenaSql, params object[] parametros)
+		DataSet ejecutarDataSet (TipoComando tipo, string cadenaSql, params object[] parametros)
 		{
 			DbCommand comando;
 			DbDataAdapter adaptador = factory.CreateDataAdapter ();
-			DataSet resultado = new DataSet ();
+			var resultado = new DataSet ();
 
 			Conectar ();
 
@@ -441,7 +462,7 @@ namespace Hamekoz.Data
 		/// <param name="cadenaSql">SP: nombre SP, Texto: Cadena de consulta</param>
 		/// <param name="parametros">Pares Nombre parametros, Valor parametro</param>
 		[Obsolete ("Usar SPToDataSet o SqlToDataSet")]
-		private void ejecutarDataSet (DataSet dataset, TipoComando tipo, string cadenaSql, params object[] parametros)
+		void ejecutarDataSet (DataSet dataset, TipoComando tipo, string cadenaSql, params object[] parametros)
 		{
 			DbCommand comando;
 			DbDataAdapter adaptador = factory.CreateDataAdapter ();
@@ -484,7 +505,7 @@ namespace Hamekoz.Data
 		/// <returns>Devuelve resultas de la consulta en DataReader</returns>
 		/// <remarks>IMPORTANTE CERRAR EL DATAREADER AL FINALIZAR SU UTILIZACION</remarks>
 		[Obsolete ("Usar SPToDbDataReader o SqlToDbDataReader")]
-		private DbDataReader ejecutarDataReader (TipoComando tipo, string cadenaSql, params object[] parametros)
+		DbDataReader ejecutarDataReader (TipoComando tipo, string cadenaSql, params object[] parametros)
 		{
 			DbCommand comando;
 			DbDataReader resultado;
@@ -506,7 +527,7 @@ namespace Hamekoz.Data
 		/// <param name="parametros">Pares Nombre parametros, Valor parametro</param>
 		/// <returns>Devuelve un objeto con un valor escalar a que necesitar ser casteado</returns>
 		[Obsolete ("Usar SPToScalar o SqlToScalar")]
-		private object ejecutarScalar (TipoComando tipo, string cadenaSql, params object[] parametros)
+		object ejecutarScalar (TipoComando tipo, string cadenaSql, params object[] parametros)
 		{
 			object id;
 			DbCommand comando;
@@ -528,9 +549,9 @@ namespace Hamekoz.Data
 		/// <param name="parametros">Pares Nombre parametros, Valor parametro</param>
 		/// <returns>Devuelve cantidad de registros afectados</returns>
 		[Obsolete ("Usar SP o Sql")]
-		private int ejecutarProceso (TipoComando tipo, string cadenaSql, params object[] parametros)
+		int ejecutarProceso (TipoComando tipo, string cadenaSql, params object[] parametros)
 		{
-			int cant = 0;
+			int cant;
 			DbCommand comando;
 			//if (!enlazado)
 			Conectar ();
@@ -543,28 +564,6 @@ namespace Hamekoz.Data
 			//if (!enlazado)
 			Desconectar ();
 			return cant;
-		}
-
-		/// <summary>
-		/// Registrar los errores generados al intentar realizar las consultas.
-		/// </summary>
-		/// <param name="error"></param>
-		private void RegistrarError (Exception error)
-		{
-			try {
-				System.IO.StreamWriter w = System.IO.File.AppendText ("DBNet.log");
-				w.Write ("\r\nRegistro de error: ");
-				w.WriteLine ("{0} {1}", DateTime.Now.ToShortDateString (), DateTime.Now.ToShortTimeString ());
-				w.WriteLine ("Message: {0}", error.Message);
-				w.WriteLine ("Source: {0}", error.Source);
-				w.WriteLine ("StackTrace:");
-				w.WriteLine (error.StackTrace);
-				w.WriteLine ("-------------------------------");
-				w.Flush ();
-				w.Close ();
-			} catch (Exception) {
-				//UNDONE cpereyra 
-			}
 		}
 
 		#endregion

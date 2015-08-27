@@ -25,7 +25,7 @@ using Gtk;
 namespace Hamekoz.UI.Gtk
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class WidgetFromAndToDate : Bin
+	public sealed partial class WidgetFromAndToDate : Bin
 	{
 		public string LabelFrom {
 			get {
@@ -49,7 +49,7 @@ namespace Hamekoz.UI.Gtk
 
 		public event DateChangedHandler ChangeFrom;
 
-		protected virtual void OnChangeFrom ()
+		protected void OnChangeFrom ()
 		{
 			var handler = ChangeFrom;
 			if (handler != null)
@@ -58,7 +58,7 @@ namespace Hamekoz.UI.Gtk
 
 		public event DateChangedHandler ChangeTo;
 
-		protected virtual void OnChangeTo ()
+		protected void OnChangeTo ()
 		{
 			var handler = ChangeTo;
 			if (handler != null)
@@ -85,7 +85,7 @@ namespace Hamekoz.UI.Gtk
 
 		public WidgetFromAndToDate ()
 		{
-			this.Build ();
+			Build ();
 
 			datepickerFrom.DefaultDate = DateTime.Now;
 			datepickerTo.DefaultDate = DateTime.Now;
@@ -101,7 +101,7 @@ namespace Hamekoz.UI.Gtk
 
 		public WidgetFromAndToDate (DateTime desde, DateTime hasta)
 		{
-			this.Build ();
+			Build ();
 
 			datepickerFrom.DefaultDate = desde;
 			datepickerTo.DefaultDate = hasta;

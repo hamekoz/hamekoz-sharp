@@ -19,23 +19,22 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Xwt;
-using System.Reflection;
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
+using Xwt;
 
 namespace Hamekoz.UI
 {
 	public class ListViewDinamic<T> : ListView
 	{
-		Type type;
-		ListStore store;
-		List<IDataField<object>> datafields;
+		readonly Type type;
+		readonly ListStore store;
+		readonly List<IDataField<object>> datafields;
 
 		IList<T> list;
 
 		public T Current {
-			get { return list [this.SelectedRow]; }
+			get { return list [SelectedRow]; }
 		}
 
 		public IList<T> List {
@@ -61,6 +60,7 @@ namespace Hamekoz.UI
 			PropertyInfo[] properties = type.GetProperties ();
 			foreach (var property in properties) {
 				var datafield = new DataField<object> ();
+				//datafield.FieldType = property.PropertyType;
 				datafields.Add (datafield);
 			}
 			store = new ListStore (datafields.ToArray ());

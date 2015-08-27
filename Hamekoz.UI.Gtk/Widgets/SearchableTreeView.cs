@@ -3,8 +3,9 @@
 //
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2014 ecanedo
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -18,10 +19,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using Gtk;
-using Hamekoz.Core;
-using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
@@ -29,13 +27,13 @@ namespace Hamekoz.UI.Gtk
 	public delegate void ChangeEventHandler ();
 
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class SearchableTreeView : Bin
+	public sealed partial class SearchableTreeView : Bin
 	{
-		private TreeModelFilter filter;
+		TreeModelFilter filter;
 
 		public event ChangeEventHandler ChangeEvent;
 
-		protected virtual void OnChangeEvent ()
+		protected void OnChangeEvent ()
 		{
 			var handler = ChangeEvent;
 			if (handler != null)
@@ -44,41 +42,31 @@ namespace Hamekoz.UI.Gtk
 
 		public event ChangeEventHandler ActivateEvent;
 
-		protected virtual void OnActivateEvent ()
+		protected void OnActivateEvent ()
 		{
 			var handler = ActivateEvent;
 			if (handler != null)
 				handler ();
 		}
 
-		string actualString;
 
 		public string ActualString {
-			get {
-				return actualString;
-			}
-			set {
-				actualString = value;
-			}
+			get;
+			set;
 		}
 
-		int actualId;
 
 		public int ActualId {
-			get {
-				return actualId;
-			}
-			set {
-				actualId = value;
-			}
+			get;
+			set;
 		}
 
 		public SearchableTreeView ()
 		{
 			Build ();
 
-			TreeViewColumn treeColumn = new TreeViewColumn ();
-			CellRendererText columnCell = new CellRendererText ();
+			var treeColumn = new TreeViewColumn ();
+			var columnCell = new CellRendererText ();
 			treeColumn.PackStart (columnCell, true);
 			treeview.AppendColumn (treeColumn);
 			treeColumn.AddAttribute (columnCell, "text", 0);
@@ -87,19 +75,19 @@ namespace Hamekoz.UI.Gtk
 				filter.Refilter ();
 			};
 
-			treeview.CursorChanged += delegate(object sender, EventArgs e) {
+			treeview.CursorChanged += delegate {
 				TreeIter iter;
 				treeview.Selection.GetSelected (out iter);
-				actualId = (int)treeview.Model.GetValue (iter, 1);
-				actualString = (string)treeview.Model.GetValue (iter, 0);
+				ActualId = (int)treeview.Model.GetValue (iter, 1);
+				ActualString = (string)treeview.Model.GetValue (iter, 0);
 				OnChangeEvent ();
 			};
 
-			treeview.RowActivated += delegate(object o, RowActivatedArgs args) {
+			treeview.RowActivated += delegate {
 				TreeIter iter;
 				treeview.Selection.GetSelected (out iter);
-				actualId = (int)treeview.Model.GetValue (iter, 1);
-				actualString = (string)treeview.Model.GetValue (iter, 0);
+				ActualId = (int)treeview.Model.GetValue (iter, 1);
+				ActualString = (string)treeview.Model.GetValue (iter, 0);
 				OnActivateEvent ();
 			};
 		}
@@ -119,10 +107,8 @@ namespace Hamekoz.UI.Gtk
 		{
 			string name = model.GetValue (iter, 0).ToString ();
 
-			if (entryBuscar.Text == string.Empty)
-				return true;
+			return entryBuscar.Text == string.Empty || GeneralHelpers.SearchCompare (entryBuscar.Text, name);
 
-			return GeneralHelpers.SearchCompare (entryBuscar.Text, name);
 		}
 	}
 }

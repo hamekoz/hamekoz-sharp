@@ -19,8 +19,10 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Xml;
+using System.Collections;
 using System.Text;
+using System.Xml;
+using Org.BouncyCastle;
 
 namespace Hamekoz.Argentina.Afip
 {
@@ -138,8 +140,8 @@ namespace Hamekoz.Argentina.Afip
 				byte[] encodedSignedCms;
 				// Firmo el msg y paso a Base64 
 				try {
-					List certList = new ArrayList ();
-					CMSTypedData msg = new Org.BouncyCastle.Cms.CMSProcessableByteArray ("Hello world!".getBytes ());
+					var certList = new ArrayList ();
+					CMSTypedData msg = new CMSProcessableByteArray ("Hello world!".getBytes ());
 
 					certList.add (signCert);
 

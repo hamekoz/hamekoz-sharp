@@ -4,7 +4,7 @@
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2014 ecanedo
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -23,27 +23,27 @@ using Gtk;
 
 namespace Hamekoz.UI.Gtk
 {
-	public partial class DialogSave : Dialog
+	public sealed partial class DialogSave : Dialog
 	{
 		public DialogSave ()
 		{
-			this.Build ();
-			this.Deletable = false;
+			Build ();
+			Deletable = false;
 		}
 
 		protected void OnButtonCancelClicked (object sender, EventArgs e)
 		{
-			this.Destroy ();
+			Destroy ();
 		}
 
 		protected void OnButtonCloseClicked (object sender, EventArgs e)
 		{
-			this.Destroy ();
+			Destroy ();
 		}
 
 		protected void OnButtonSaveClicked (object sender, EventArgs e)
 		{
-			this.Destroy ();
+			Destroy ();
 		}
 	}
 }

@@ -4,7 +4,7 @@
 //  Author:
 //       Ezequiel Taranto <ezequiel89@gmail.com>
 //
-//  Copyright (c) 2014 etaranto
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -18,8 +18,8 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using System.Globalization;
+using Hamekoz.Core;
 
 namespace Hamekoz.Extensions
 {
@@ -67,7 +67,7 @@ namespace Hamekoz.Extensions
 
 		public static string ToEnglishFormat (this double number)
 		{
-			NumberFormatInfo nfi = new System.Globalization.CultureInfo ("en-US", false).NumberFormat;
+			NumberFormatInfo nfi = new CultureInfo ("en-US", false).NumberFormat;
 			return number.ToString (nfi);
 		}
 

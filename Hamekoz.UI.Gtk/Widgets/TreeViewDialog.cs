@@ -3,8 +3,9 @@
 //
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2014 ecanedo
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -18,19 +19,17 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using Gtk;
-using Hamekoz.Core;
 
 namespace Hamekoz.UI.Gtk
 {
 	public delegate void DescriptibleEventHandler (string descripcion, int id);
 
-	public partial class TreeViewDialog : Dialog
+	public sealed partial class TreeViewDialog : Dialog
 	{
 		public event DescriptibleEventHandler ActivatedEvent;
 
-		protected virtual void OnActivatedEvent (string descripcion, int id)
+		protected void OnActivatedEvent (string descripcion, int id)
 		{
 			var handler = ActivatedEvent;
 			if (handler != null)
@@ -59,12 +58,12 @@ namespace Hamekoz.UI.Gtk
 		{
 			Build ();
 
-			this.searchabletreeview.ActivateEvent += delegate {
+			searchabletreeview.ActivateEvent += delegate {
 				OnActivatedEvent (searchabletreeview.ActualString, searchabletreeview.ActualId);
 				Hide ();
 			};
 
-			this.FocusOutEvent += delegate(object o, FocusOutEventArgs args) {
+			FocusOutEvent += delegate {
 				OnActivatedEvent (searchabletreeview.ActualString, searchabletreeview.ActualId);
 				Hide ();
 			};
@@ -72,7 +71,7 @@ namespace Hamekoz.UI.Gtk
 
 		public void LoadList (ListStore liststore)
 		{
-			this.searchabletreeview.LoadList (liststore);
+			searchabletreeview.LoadList (liststore);
 		}
 	}
 }

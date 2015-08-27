@@ -4,7 +4,7 @@
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2014 ecanedo
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,22 +20,20 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using Gtk;
-using System;
-using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
 	public static class NodeViewHelpers
-    {
-        //FIXME dependent-function
+	{
+		//FIXME dependent-function
 		public static void SetColumns (this NodeView node, params string[] listColumns)
-        {
-            int iter = 0;
-            foreach (string column in listColumns) {
-                node.AppendColumn (column, new CellRendererText(), "text", iter);
-                iter++;
-            }
-        }
-    }
+		{
+			int iter = 0;
+			foreach (string column in listColumns) {
+				node.AppendColumn (column, new CellRendererText (), "text", iter);
+				iter++;
+			}
+		}
+	}
 }
 

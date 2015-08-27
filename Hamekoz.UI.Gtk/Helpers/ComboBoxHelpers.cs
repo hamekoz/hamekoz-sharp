@@ -4,7 +4,7 @@
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2014 ecanedo
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,10 +19,10 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using Gtk;
 using System;
-using Hamekoz.Core;
 using System.Collections.Generic;
+using Gtk;
+using Hamekoz.Core;
 
 namespace Hamekoz.UI.Gtk
 {
@@ -78,7 +78,7 @@ namespace Hamekoz.UI.Gtk
 		{
 			foreach (IDescriptible descriptible in list) {
 				if (GeneralHelpers.SearchCompare (filter, descriptible.Descripcion)) {
-					ComboBoxHelpers.SetById (combo, descriptible.Id, 0);
+					combo.SetById (descriptible.Id, 0);
 					break;
 				}
 			}
@@ -86,7 +86,7 @@ namespace Hamekoz.UI.Gtk
 
 		public static void LoadByList<T> (this ComboBox combo, IList<T> list)
 		{
-			ListStore listStore = new ListStore (typeof(String), typeof(int));
+			var listStore = new ListStore (typeof(String), typeof(int));
 			foreach (IDescriptible descriptible in list) {
 				listStore.AppendValues (descriptible.Descripcion, descriptible.Id);
 			}
@@ -96,7 +96,7 @@ namespace Hamekoz.UI.Gtk
 		public static void LoadByFilter<T> (this ComboBox combo, string filter, IList<T> list)
 		{
 			bool checker = false;
-			ListStore listStore = new ListStore (typeof(String), typeof(int));
+			var listStore = new ListStore (typeof(String), typeof(int));
 			foreach (IDescriptible descriptible in list) {
 				if (GeneralHelpers.SearchCompare (filter, descriptible.Descripcion)) {
 					listStore.AppendValues (descriptible.Descripcion, descriptible.Id);
@@ -118,10 +118,10 @@ namespace Hamekoz.UI.Gtk
 			string filter = combo.Entry.Text;
 
 			if (filter == "") {
-				ComboBoxHelpers.LoadByList (combo, list);
+				combo.LoadByList (list);
 				combo.QueueDraw ();
 			} else {
-				ComboBoxHelpers.LoadByFilter (combo, filter, list);
+				combo.LoadByFilter (filter, list);
 				combo.QueueDraw ();
 			}
 		}
