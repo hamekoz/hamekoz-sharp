@@ -117,6 +117,7 @@
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.EntryLabeled.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DatePicker.cs" />
     <Compile Include="gtk-gui\Hamekoz.UI.Gtk.DialogCalendar.cs" />
+    <Compile Include="IFocusableWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
