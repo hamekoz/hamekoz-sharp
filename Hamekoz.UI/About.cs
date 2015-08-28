@@ -28,6 +28,8 @@ namespace Hamekoz.UI
 {
 	public class About : Dialog
 	{		
+		//FIXME textarea's readonly property allows to modify the paragraph
+
 		readonly ImageView logo;
 		Label companyName;
 		Label copyRight;
@@ -70,6 +72,7 @@ namespace Hamekoz.UI
 				"along with this program.  If not, see <http://www.gnu.org/licenses/>.\n" +
 				"",
 			ReadOnly= true,
+			Sensitive = false,
 		};
 
 		public About () 
