@@ -19,24 +19,24 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Net;
 using System.IO;
-using Hamekoz.Data;
-using System.Xml;
-using System.Text;
+using System.Net;
 using System.Security.Cryptography;
+using System.Text;
+using System.Xml;
+using Hamekoz.Data;
 
 namespace Hamekoz.Argentina.Arba
 {
-	public class Arba
+	public static class Arba
 	{
-		private static string CalcularHashMD5 (string archivo)
+		static string CalcularHashMD5 (string archivo)
 		{
-			FileStream fs = new FileStream (archivo, FileMode.Open, FileAccess.Read);
-			MD5CryptoServiceProvider hash = new MD5CryptoServiceProvider ();
+			var fs = new FileStream (archivo, FileMode.Open, FileAccess.Read);
+			var hash = new MD5CryptoServiceProvider ();
 			Int64 currentPos = fs.Position;
 			fs.Seek (0, SeekOrigin.Begin);
-			StringBuilder sb = new StringBuilder ();
+			var sb = new StringBuilder ();
 			foreach (Byte b in hash.ComputeHash(fs)) {
 				sb.Append (b.ToString ("X2"));
 			}
@@ -44,14 +44,13 @@ namespace Hamekoz.Argentina.Arba
 			return sb.ToString ();
 		}
 
-		private static string ContenidoDeArchivo (string archivo)
+		static string ContenidoDeArchivo (string archivo)
 		{
-			FileStream stream = new FileStream (archivo, FileMode.Open, FileAccess.Read);
+			var stream = new FileStream (archivo, FileMode.Open, FileAccess.Read);
 			string cadena = string.Empty;
 			if (stream != null) {
 				stream.Position = 0;
-				StreamReader reader = new StreamReader (stream);
-				//cadena = reader.ReadToEnd ();
+				var reader = new StreamReader (stream);
 
 				while (reader.Peek () > -1) {
 					cadena = cadena + reader.ReadLine () + "\r\n";
@@ -63,24 +62,28 @@ namespace Hamekoz.Argentina.Arba
 			return cadena;
 		}
 
-		public static void DescargarPadron (string usuario, string clave, int año, int mes){
-			DescargarPadron(usuario, clave, año, mes, string.Empty);
+		public static void DescargarPadron (string usuario, string clave, int año, int mes)
+		{
+			DescargarPadron (usuario, clave, año, mes, string.Empty);
 		}
 
 		/// <summary>
 		/// Descargars the padron.
 		/// </summary>
-		/// <see cref="http://www.arba.gov.ar/Informacion/IBrutos/LinksIIBB/RegimenSujeto.asp"/>
+		/// <see href="http://www.arba.gov.ar/Informacion/IBrutos/LinksIIBB/RegimenSujeto.asp"/>
 		/// <param name="usuario">Usuario.</param>
 		/// <param name="clave">Clave.</param>
+		/// <param name = "año">Año del padron a descargar</param>
+		/// <param name = "mes">Mes del padron a descargar</param>
+		/// <param name = "destino">Ruta destino de la descarga</param>
 		public static void DescargarPadron (string usuario, string clave, int año, int mes, string destino)
 		{
-			string serverURL = "http://dfe.arba.gov.ar/DomicilioElectronico/SeguridadCliente/dfeServicioDescargaPadron.do";
-			string archivo = "DFEServicioDescargaPadron";
-			string extension = "xml";
+			const string serverURL = "http://dfe.arba.gov.ar/DomicilioElectronico/SeguridadCliente/dfeServicioDescargaPadron.do";
+			const string archivo = "DFEServicioDescargaPadron";
+			const string extension = "xml";
 			string archivoConExtension = string.Format ("{0}{1}.{2}", Path.GetTempPath (), archivo, extension);
 
-			XmlWriterSettings settings = new XmlWriterSettings ();
+			var settings = new XmlWriterSettings ();
 			settings.Indent = true;
 			settings.Encoding = Encoding.GetEncoding ("ISO-8859-1");
 
@@ -103,7 +106,7 @@ namespace Hamekoz.Argentina.Arba
 			File.Copy (archivoConExtension, archivoConHash, true);
 			string contenido = ContenidoDeArchivo (archivoConHash);
 
-			string boundary = "AaB03x";
+			const string boundary = "AaB03x";
 
 			string postdata = string.Format ("--{0}\r\n" +
 			                  "Content-Disposition: form-data; name=\"user\"\r\n\r\n{1}" +
@@ -123,7 +126,7 @@ namespace Hamekoz.Argentina.Arba
 				, contenido
 			                  );
 			byte[] buffer = Encoding.ASCII.GetBytes (postdata);
-			HttpWebRequest consulta = HttpWebRequest.CreateHttp (serverURL);
+			HttpWebRequest consulta = WebRequest.CreateHttp (serverURL);
 			consulta.Method = "POST";
 			consulta.ContentType = string.Format ("multipart/form-data;boundary={0}", boundary);
 			consulta.ContentLength = buffer.Length;
@@ -133,18 +136,17 @@ namespace Hamekoz.Argentina.Arba
 				newStream.Write (buffer, 0, buffer.Length);
 				newStream.Close ();
 
-				HttpWebResponse respuesta = (HttpWebResponse)consulta.GetResponse ();
+				var respuesta = (HttpWebResponse)consulta.GetResponse ();
 				Stream streamRespuesta = respuesta.GetResponseStream ();
 				string archivoRespuesta = string.Format ("{0}ARBA-PadronRGS{1:D4}{2:D2}.zip", destino, año, mes);
 				if (respuesta.ContentType.Contains (extension)) {
-					archivoRespuesta = string.Format ("{0}{1}-Error.xml", destino, archivo, año, mes);
-					;
+					archivoRespuesta = string.Format ("{0}{1}-Error.xml", destino, archivo);
 				}
 
-				FileStream streamWriter = new FileStream (archivoRespuesta, FileMode.Create, FileAccess.Write);
+				var streamWriter = new FileStream (archivoRespuesta, FileMode.Create, FileAccess.Write);
 
-				byte[] bufferRead = new byte[4096];
-				int bytesRead = 0;
+				var bufferRead = new byte[4096];
+				int bytesRead;
 
 				do {
 					bytesRead = streamRespuesta.Read (bufferRead, 0, 4096);
@@ -162,20 +164,20 @@ namespace Hamekoz.Argentina.Arba
 		/// Validos para:
 		/// - Padrón de Retenciones
 		/// - Padrón de Percepciones
-		/// <see cref="http://www.arba.gov.ar/Informacion/IBrutos/LinksIIBB/RegimenSujeto.asp"/>
+		/// <see href="http://www.arba.gov.ar/Informacion/IBrutos/LinksIIBB/RegimenSujeto.asp"/>
 		/// </summary>
 		/// <param name="archivo">Ruta absoluta al archivo.</param>
 		public static void ImportarPadronUnificado (string archivo)
 		{
-			FileStream stream = new FileStream (archivo, FileMode.Open, FileAccess.Read);
-			StreamReader reader = new StreamReader (stream);
-			DB dbagip = new DB () {
+			var stream = new FileStream (archivo, FileMode.Open, FileAccess.Read);
+			var reader = new StreamReader (stream);
+			var dbagip = new DB {
 				ConnectionName = "Hamekoz.Argentina.Arba"
 			};
 			while (!reader.EndOfStream) {
 				string linea = reader.ReadLine ();
 				try {
-					RegistroPadronUnificado registro = new RegistroPadronUnificado (linea);
+					var registro = new RegistroPadronUnificado (linea);
 					//TODO cambiar SP por consulta de texto plana
 					//TODO controlar la existencia de la tabla en la base de datos.
 					dbagip.SP ("padronTmpActualizar"

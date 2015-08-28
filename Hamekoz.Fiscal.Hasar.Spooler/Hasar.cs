@@ -47,7 +47,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public void statusImpresora (string respuesta)
 		{
-			string[] error_impresora = new string[16];
+			var error_impresora = new string[16];
 			error_impresora [0] = "";
 			error_impresora [1] = "";
 			error_impresora [2] = "Error de impresora. ";
@@ -73,7 +73,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 					string mensaje = string.Format ("Error de Impresora {0}: {1}", i, error_impresora [i]);
 					Console.WriteLine (mensaje);
 					//throw new Exception(mensaje);
-					///Console.WriteLine(Convert.ToString(Convert.ToInt16(arrayRespuesta[0], 16), 2));
+					//Console.WriteLine(Convert.ToString(Convert.ToInt16(arrayRespuesta[0], 16), 2));
 					//Console.WriteLine(respuestaBit);
 				}
 			}
@@ -82,7 +82,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 		public void statusFiscal (string respuesta)
 		{
 
-			string[] error_fiscal = new string[16];
+			var error_fiscal = new string[16];
 			error_fiscal [0] = "Error en chequeo de memoria fiscal. ";
 			error_fiscal [1] = "Error en chequeo de la memoria de trabajo. ";
 			error_fiscal [2] = "Carga de bateria baja. ";
@@ -116,7 +116,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public StatusRequest StatusRequest ()
 		{
-			StatusRequest c = new StatusRequest ();
+			var c = new StatusRequest ();
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -133,7 +133,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public GetConfigurationData GetConfigurationData ()
 		{
-			GetConfigurationData c = new GetConfigurationData ();
+			var c = new GetConfigurationData ();
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -153,7 +153,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public GetInitData GetInitData ()
 		{
-			GetInitData c = new GetInitData ();
+			var c = new GetInitData ();
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -182,7 +182,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public HistoryCapacity HistoryCapacity ()
 		{
-			HistoryCapacity c = new HistoryCapacity ();
+			var c = new HistoryCapacity ();
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -193,7 +193,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public DailyClose DailyClose (bool zeta)
 		{
-			DailyClose c = new DailyClose (zeta);
+			var c = new DailyClose (zeta);
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -238,7 +238,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public GetDailyReport GetDailyReport (string nroZ, string calificadorZ)
 		{
-			GetDailyReport c = new GetDailyReport (nroZ, calificadorZ);
+			var c = new GetDailyReport (nroZ, calificadorZ);
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -262,7 +262,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public GetWorkingMemory GetWorkingMemory ()
 		{
-			GetWorkingMemory c = new GetWorkingMemory ();
+			var c = new GetWorkingMemory ();
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -288,7 +288,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public SendFirstIVA SendFirstIVA ()
 		{
-			SendFirstIVA c = new SendFirstIVA ();
+			var c = new SendFirstIVA ();
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -435,7 +435,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public Subtotal Subtotal (string impresion)
 		{
-			Subtotal c = new Subtotal (impresion);
+			var c = new Subtotal (impresion);
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -451,7 +451,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public TotalTender TotalTender (string texto, float monto, string vuelto)
 		{
-			TotalTender c = new TotalTender (texto, monto, vuelto);
+			var c = new TotalTender (texto, monto, vuelto);
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -510,7 +510,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public OpenDNFH OpenDNFH (string tipoDocumento, string identificacionNroDocumento)
 		{
-			OpenDNFH c = new OpenDNFH (tipoDocumento, identificacionNroDocumento);
+			var c = new OpenDNFH (tipoDocumento, identificacionNroDocumento);
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -536,7 +536,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public CloseDNFH CloseDNFH ()
 		{
-			CloseDNFH c = new CloseDNFH ();
+			var c = new CloseDNFH ();
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -656,7 +656,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public GetDateTime GetDateTime ()
 		{
-			GetDateTime c = new GetDateTime ();
+			var c = new GetDateTime ();
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -676,7 +676,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public GetHeaderTrailer GetHeaderTrailer (int linea)
 		{
-			GetHeaderTrailer c = new GetHeaderTrailer (linea);
+			var c = new GetHeaderTrailer (linea);
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -687,7 +687,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public CustomerData CustomerData (string nombre, string cuit, string responsabilidadIVA, string tipoDocumento, string domicilio)
 		{
-			CustomerData c = new CustomerData (nombre, cuit, responsabilidadIVA, tipoDocumento, domicilio);
+			var c = new CustomerData (nombre, cuit, responsabilidadIVA, tipoDocumento, domicilio);
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -706,7 +706,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public GetFantasyName GetFantasyName (int linea)
 		{
-			GetFantasyName c = new GetFantasyName (linea);
+			var c = new GetFantasyName (linea);
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -726,7 +726,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public GetEmbarkNumber GetEmbarkNumber (int linea)
 		{
-			GetEmbarkNumber c = new GetEmbarkNumber (linea);
+			var c = new GetEmbarkNumber (linea);
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
@@ -756,7 +756,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public void OpenDrawer ()
 		{
-			string comando = string.Format ("{");
+			const string comando = "{";
 			impresora.EnviarComando (comando);
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);

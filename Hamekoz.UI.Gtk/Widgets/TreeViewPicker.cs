@@ -3,8 +3,9 @@
 //
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2014 ecanedo
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -18,21 +19,18 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using Gtk;
-using Hamekoz.Core;
-using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class TreeViewPicker : Bin
+	public sealed partial class TreeViewPicker : Bin
 	{
 		TreeViewDialog treeviewDialog = new TreeViewDialog ();
 
 		public event ChangeEventHandler ChangeEvent;
 
-		protected virtual void OnChangeEvent ()
+		protected void OnChangeEvent ()
 		{
 			var handler = ChangeEvent;
 			if (handler != null)
@@ -60,7 +58,7 @@ namespace Hamekoz.UI.Gtk
 
 		public TreeViewPicker ()
 		{
-			this.Build ();
+			Build ();
 
 			treeviewDialog.Visible = false;
 
@@ -69,11 +67,11 @@ namespace Hamekoz.UI.Gtk
 				OnChangeEvent ();
 			};
 
-			button.Clicked += delegate(object sender, EventArgs e) {
+			button.Clicked += delegate {
 				int x, y;
-				this.GdkWindow.GetOrigin (out x, out y);
-				x += this.Allocation.Left;
-				y += this.Allocation.Top + this.Allocation.Height;
+				GdkWindow.GetOrigin (out x, out y);
+				x += Allocation.Left;
+				y += Allocation.Top + Allocation.Height;
 				treeviewDialog.Move (x, y);
 				treeviewDialog.Modal = true;
 				treeviewDialog.Show ();
@@ -86,7 +84,7 @@ namespace Hamekoz.UI.Gtk
 		/// <param name="liststore">Liststore.</param>
 		public void LoadList (ListStore liststore)
 		{
-			this.treeviewDialog.LoadList (liststore);
+			treeviewDialog.LoadList (liststore);
 		}
 	}
 }

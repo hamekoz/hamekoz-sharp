@@ -7,6 +7,7 @@
 //
 //	Copyright (c) 2010 Krzysztof Marecki
 //	Copyright (c) 2014 Emiliano Canedo
+//	Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -28,11 +29,11 @@ using Gtk;
 namespace Hamekoz.UI.Gtk
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class DatePicker : Bin, Hamekoz.Interfaces.IFocusableWidget
+	public sealed partial class DatePicker : Bin, IFocusableWidget
 	{
 		DialogCalendar calendarDialog = new DialogCalendar ();
 
-		bool FirstDateChange = false;
+		bool FirstDateChange;
 
 		public string CustomFormat { get; set; }
 
@@ -50,7 +51,7 @@ namespace Hamekoz.UI.Gtk
 				return calendarDialog.DefaultDate;
 			}
 			set {
-				if (value != new global::System.DateTime (0)) {
+				if (value != new DateTime (0)) {
 					calendarDialog.DefaultDate = value;
 					Date = calendarDialog.DefaultDate;
 				}
@@ -60,13 +61,10 @@ namespace Hamekoz.UI.Gtk
 		public DateTime Date {
 			get {
 				DateTime date;
-				if (DateTime.TryParse (entry.Text, out date))
-					return date;
-				else
-					return DateTime.Now;
+				return DateTime.TryParse (entry.Text, out date) ? date : DateTime.Now;
 			}
 			set {
-				if (value != new global::System.DateTime (0)) {
+				if (value != new DateTime (0)) {
 					string format = GetDateFormat ();
 					entry.Text = value.ToString (format);
 				}
@@ -75,11 +73,11 @@ namespace Hamekoz.UI.Gtk
 
 		public DatePicker ()
 		{
-			this.Build ();
+			Build ();
 
 			calendarDialog.Visible = false;
 
-			this.WindowStateEvent += HandleWindowStateEvent;
+			WindowStateEvent += HandleWindowStateEvent;
 			calendarDialog.Hidden += HandleCalendarDialogHidden;
 
 			button.Clicked += HandleButtonClicked;
@@ -116,16 +114,12 @@ namespace Hamekoz.UI.Gtk
 
 		void HandleButtonClicked (object sender, EventArgs e)
 		{
-			if (!FirstDateChange) {
-				calendarDialog.Date = DateTime.Now;
-			} else {
-				calendarDialog.Date = Date;
-			}
+			calendarDialog.Date = !FirstDateChange ? DateTime.Now : Date;
 
 			int x, y;
-			this.GdkWindow.GetOrigin (out x, out y);
-			x += this.Allocation.Left;
-			y += this.Allocation.Top + this.Allocation.Height;
+			GdkWindow.GetOrigin (out x, out y);
+			x += Allocation.Left;
+			y += Allocation.Top + Allocation.Height;
 			calendarDialog.Move (x, y);
 			calendarDialog.Modal = true;
 			calendarDialog.Show ();
@@ -158,7 +152,7 @@ namespace Hamekoz.UI.Gtk
 
 		public event EventHandler DateChanged;
 
-		protected virtual void OnDateChanged ()
+		protected void OnDateChanged ()
 		{
 			var handler = DateChanged;
 			if (handler != null)
@@ -167,16 +161,16 @@ namespace Hamekoz.UI.Gtk
 
 		public event EventHandler FocusOut;
 
-		protected virtual void OnFocusOut ()
+		protected void OnFocusOut ()
 		{
 			var handler = FocusOut;
 			if (handler != null)
 				handler (this, EventArgs.Empty);
 		}
 
-		public event Hamekoz.UI.Gtk.ChangeEventHandler FirstDateChangeEvent;
+		public event ChangeEventHandler FirstDateChangeEvent;
 
-		protected virtual void OnFirstDateChange ()
+		protected void OnFirstDateChange ()
 		{
 			var handler = FirstDateChangeEvent;
 			if (handler != null)

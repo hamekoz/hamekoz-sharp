@@ -29,12 +29,12 @@ namespace Hamekoz.Argentina.Agip
 	/// - Padrón de Riesgo Fiscal
 	/// - Padrón de contribuyentes exentos, de actividades promovidas, de nuevos emprendimientos y con alícuotas diferenciales.
 	/// </summary>
-	/// <see cref="http://www.agip.gov.ar/web/files/DISENOODEREGISTROPADRONUNIFICADO.pdf"/>
-	/// <seealso cref="http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm"/>
-	/// <seealso cref="http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html"/>
+	/// <see href="http://www.agip.gov.ar/web/files/DISENOODEREGISTROPADRONUNIFICADO.pdf"/>
+	/// <seealso href="http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm"/>
+	/// <seealso href="http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html"/>
 	public class RegistroPadronUnificado
 	{
-		private readonly char separador = char.Parse(";");
+		readonly char separador = char.Parse (";");
 
 		public DateTime FechaDePublicacion {
 			get;
@@ -111,21 +111,21 @@ namespace Hamekoz.Argentina.Agip
 
 		public RegistroPadronUnificado (string linea)
 		{
-			if (linea.Length < 61 || linea.Length > 121 ) {
+			if (linea.Length < 61 || linea.Length > 121) {
 				throw new Exception ("Longitud de linea incorrecta. Verificar");
 			}
 			string[] split = linea.Split (separador);
-			FechaDePublicacion = DateTime.ParseExact(split [0], "ddMMyyyy", CultureInfo.InvariantCulture);
-			FechaVigenciaDesde = DateTime.ParseExact(split [1], "ddMMyyyy", CultureInfo.InvariantCulture);
-			FechaVigenciaHasta = DateTime.ParseExact(split [2], "ddMMyyyy", CultureInfo.InvariantCulture);
+			FechaDePublicacion = DateTime.ParseExact (split [0], "ddMMyyyy", CultureInfo.InvariantCulture);
+			FechaVigenciaDesde = DateTime.ParseExact (split [1], "ddMMyyyy", CultureInfo.InvariantCulture);
+			FechaVigenciaHasta = DateTime.ParseExact (split [2], "ddMMyyyy", CultureInfo.InvariantCulture);
 			CUIT = long.Parse (split [3]);
 			TipoDeContribuyenteInscripto = char.Parse (split [4]);
 			MarcaAltaSujeto = char.Parse (split [5]);
 			MarcaAlicuota = char.Parse (split [6]);
 			AlicuotaPercepcion = double.Parse (split [7]);
-			AlicuotaRetencion =  double.Parse (split [8]);
-			NumeroGrupoPercepcion =  int.Parse (split [9]);
-			NumeroGrupoPercepcion =  int.Parse (split [10]);
+			AlicuotaRetencion = double.Parse (split [8]);
+			NumeroGrupoPercepcion = int.Parse (split [9]);
+			NumeroGrupoPercepcion = int.Parse (split [10]);
 			RazonSocial = split [11];
 		}
 	}

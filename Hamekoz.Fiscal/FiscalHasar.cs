@@ -69,7 +69,7 @@ namespace Hamekoz.Fiscal
 
 			Assembly assembly = Assembly.Load (assemblyName);
 			string nombreControlador = string.Format ("{0}.ControladorFiscal", assemblyName);
-			IFiscalHasar controlador = (IFiscalHasar)assembly.CreateInstance (nombreControlador);
+			var controlador = (IFiscalHasar)assembly.CreateInstance (nombreControlador);
 			return controlador;
 		}
 	}

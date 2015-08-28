@@ -4,7 +4,7 @@
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2014 Emiliano Canedo
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -24,20 +24,14 @@ using Gtk;
 
 namespace Hamekoz.UI.Gtk
 {
-	public partial class DialogCalendar : Dialog
+	public sealed partial class DialogCalendar : Dialog
 	{
-		private DateTime defaultDate;
-
 		public DateTime DefaultDate {
-			get {
-				return defaultDate;
-			}
-			set {
-				defaultDate = value;
-			}
+			get;
+			set;
 		}
 
-		private bool buttonsVisible;
+		bool buttonsVisible;
 
 		public bool ButtonsVisible {
 			get {
@@ -45,16 +39,16 @@ namespace Hamekoz.UI.Gtk
 			}
 			set {
 				buttonsVisible = value;
-				((HButtonBox)buttonToday.Parent).Visible = buttonsVisible;
+				buttonToday.Parent.Visible = buttonsVisible;
 			}
 		}
 
 		public DialogCalendar ()
 		{
-			this.Build ();
+			Build ();
 
 			calendar.DaySelectedDoubleClick += DaySelectedDoubleClick;
-			this.FocusOutEvent += DialogFocusOutEvent;
+			FocusOutEvent += DialogFocusOutEvent;
 			buttonToday.Clicked += buttonTodayClicked;
 			buttonDefault.Clicked += buttonDefaultClicked;
 		}
@@ -70,23 +64,23 @@ namespace Hamekoz.UI.Gtk
 			GrabFocus ();
 		}
 
-		protected virtual void DaySelectedDoubleClick (object sender, System.EventArgs e)
+		protected void DaySelectedDoubleClick (object sender, EventArgs e)
 		{
 			Hide ();
 		}
 
-		protected virtual void DialogFocusOutEvent (object o, FocusOutEventArgs args)
+		protected void DialogFocusOutEvent (object o, FocusOutEventArgs args)
 		{
 			Hide ();
 		}
 
-		protected virtual void buttonTodayClicked (object sender, EventArgs e)
+		protected void buttonTodayClicked (object sender, EventArgs e)
 		{
 			calendar.Date = DateTime.Now;
 		}
 
 
-		protected virtual void buttonDefaultClicked (object sender, EventArgs e)
+		protected void buttonDefaultClicked (object sender, EventArgs e)
 		{
 			calendar.Date = DefaultDate;
 		}

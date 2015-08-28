@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-03-20 10:14:29-0300\n"
-"PO-Revision-Date: 2015-03-20 10:14:30-0300\n"
+"POT-Creation-Date: 2015-08-24 12:04:03-0300\n"
+"PO-Revision-Date: 2015-08-24 12:04:04-0300\n"
 "Last-Translator: Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,17 +30,17 @@ msgstr ""
 msgid "Loading..."
 msgstr ""
 
-#: ../Hamekoz.UI/Splash.cs:8
-#: ../Hamekoz.UI/Welcome.cs:10
+#: ../Hamekoz.UI/Splash.cs:9
+#: ../Hamekoz.UI/Welcome.cs:11
 msgid "Failed to load image."
 msgstr ""
 
-#: ../Hamekoz.UI/Splash.cs:8
+#: ../Hamekoz.UI/Splash.cs:9
 msgid "Swiching to default splash."
 msgstr ""
 
-#: ../Hamekoz.UI/Splash.cs:8
-#: ../Hamekoz.UI/Welcome.cs:10
+#: ../Hamekoz.UI/Splash.cs:9
+#: ../Hamekoz.UI/Welcome.cs:11
 msgid "Error: {0}"
 msgstr ""
 
@@ -56,11 +56,11 @@ msgstr ""
 msgid "Version {0}"
 msgstr ""
 
-#: ../Hamekoz.UI/Welcome.cs:10
+#: ../Hamekoz.UI/Welcome.cs:11
 msgid "Swiching to default logo."
 msgstr ""
 
-#: ../Hamekoz.UI/MainWindow.cs:5
+#: ../Hamekoz.UI/MainWindow.cs:6
 msgid "{0} Demo Application"
 msgstr ""
 
@@ -69,34 +69,63 @@ msgid "About"
 msgstr ""
 
 #: ../Hamekoz.UI/MainWindow.cs:7
+msgid "Exit"
+msgstr ""
+
+#: ../Hamekoz.UI/MainWindow.cs:7
 msgid "Status icon could not be shown"
 msgstr ""
 
-#: ../Hamekoz.UI/MainWindow.cs:18
+#: ../Hamekoz.UI/MainWindow.cs:22
 msgid "The application will be closed"
 msgstr ""
 
-#: ../Hamekoz.UI/MainWindow.cs:19
+#: ../Hamekoz.UI/MainWindow.cs:23
 msgid "Select one item from menu"
 msgstr ""
 
-#: ../Hamekoz.UI/ListBoxFilter.cs:7
+#: ../Hamekoz.UI/MainWindow.cs:24
+msgid "Access Denied. You do not have sufficient permissions."
+msgstr ""
+
+#: ../Hamekoz.UI/ListBoxFilter.cs:6
+#: ../Hamekoz.UI/ListBoxFilter.cs:33
 msgid "Filter"
 msgstr ""
 
 #: ../Hamekoz.UI/ItemPicker.cs:2
-msgid "Press the search button and select one item from the list"
+#: ../Hamekoz.UI/ItemPicker.cs:22
+msgid "Click o press Intro or Space to select one item"
 msgstr ""
 
 #: ../Hamekoz.UI/ItemPicker.cs:2
-msgid "Search item"
+#: ../Hamekoz.UI/ItemPicker.cs:22
+msgid "Click o press Intro or Space to select one item from the list"
 msgstr ""
 
 #: ../Hamekoz.UI/ListBoxAll.cs:2
+#: ../Hamekoz.UI/ListBoxAll.cs:26
 msgid "List description"
 msgstr ""
 
 #: ../Hamekoz.UI/ListBoxAll.cs:4
+#: ../Hamekoz.UI/ListBoxAll.cs:28
 msgid "All"
+msgstr ""
+
+#: ../Hamekoz.UI/About.cs:2
+msgid "Credits"
+msgstr ""
+
+#: ../Hamekoz.UI/About.cs:2
+msgid "License"
+msgstr ""
+
+#: ../Hamekoz.UI/About.cs:2
+msgid "Close"
+msgstr ""
+
+#: ../Hamekoz.UI/About.cs:3
+msgid "Written by {0}"
 msgstr ""
 

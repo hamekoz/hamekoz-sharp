@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
@@ -60,18 +59,17 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public float MontoPersepcionesTicketNC { get; set; }
 
-		bool tipo;
+		readonly bool tipo;
 
 		public string Comando ()
 		{
 			return string.Format ("{0}{1}{2}", cmd, separador, tipo ? "Z" : "X");
-
 		}
 
 		/// <summary>
 		/// Imprime Cierre de Jornada Fiscal Z = true X = false
 		/// </summary>
-		/// <param name="Z">If set to <c>true</c> z.</param>
+		/// <param name = "tipo">If set to <c>true</c> z.</param>
 		public DailyClose (bool tipo)
 		{
 			this.tipo = tipo;

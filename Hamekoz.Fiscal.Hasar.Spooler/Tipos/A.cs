@@ -21,7 +21,7 @@
 
 using System;
 
-namespace Hamekoz.Fiscal.Hasar
+namespace Hamekoz.Fiscal.Hasar.Spooler
 {
 	public struct A
 	{

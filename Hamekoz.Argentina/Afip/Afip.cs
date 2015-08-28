@@ -25,36 +25,38 @@ using Hamekoz.Data;
 
 namespace Hamekoz.Argentina.Afip
 {
-	public class Afip
+	public static class Afip
 	{
-		public static void DescargarPadron(bool conDenominacion){
-			DescargarPadron(conDenominacion, string.Empty);
+		public static void DescargarPadron (bool conDenominacion)
+		{
+			DescargarPadron (conDenominacion, string.Empty);
 		}
 
-		public static void DescargarPadron(bool conDenominacion, string destino){
-			string urlBase = "http://www.afip.gob.ar/genericos/cInscripcion/archivos";
+		public static void DescargarPadron (bool conDenominacion, string destino)
+		{
+			const string urlBase = "http://www.afip.gob.ar/genericos/cInscripcion/archivos";
 			string archivo = string.Format ("{0}apellidoNombreDenominacion", conDenominacion ? "" : "SIN");
-			string url = string.Format("{0}/{1}.zip", urlBase, archivo);
-			using (WebClient webClient = new WebClient ()) {
-				webClient.DownloadFile (url, string.Format("{0}AFIP-Padron-{1}-{2:yyyyMMdd}.zip", destino, archivo, DateTime.Now));
+			string url = string.Format ("{0}/{1}.zip", urlBase, archivo);
+			using (var webClient = new WebClient ()) {
+				webClient.DownloadFile (url, string.Format ("{0}AFIP-Padron-{1}-{2:yyyyMMdd}.zip", destino, archivo, DateTime.Now));
 			}
 		}
 
-		public static void ImportarPadronUnificado(string archivo, bool denominacion){
-			FileStream stream = new FileStream(archivo , FileMode.Open, FileAccess.Read);
-			StreamReader reader = new StreamReader(stream);
-			DB dbafip = new DB () {
+		public static void ImportarPadronUnificado (string archivo, bool denominacion)
+		{
+			var stream = new FileStream (archivo, FileMode.Open, FileAccess.Read);
+			var reader = new StreamReader (stream);
+			var dbafip = new DB {
 				ConnectionName = "Hamekoz.Argentina.Afip"
 			};
-			while (!reader.EndOfStream)
-			{
-				string  linea = reader.ReadLine();
+			while (!reader.EndOfStream) {
+				string linea = reader.ReadLine ();
 				try {
-					RegistroPadron registro = new RegistroPadron (linea, denominacion);
+					var registro = new RegistroPadron (linea, denominacion);
 					//TODO cambiar SP por consulta de texto plana
 					//TODO controlar la existencia de la tabla en la base de datos.
 					//UNDONE considerar la posibilidad de almacenar la denominacion
-					dbafip.SP("padronTmpActualizar"
+					dbafip.SP ("padronTmpActualizar"
 						, "cuit", registro.CUIT
 						, "impGanancias", registro.ImpuestoGanancias
 						, "impiva", registro.ImpuestoIVA
@@ -67,7 +69,7 @@ namespace Hamekoz.Argentina.Afip
 					Console.WriteLine ("Error en importacion:\n\tRegistro: {0}\n\tError: {1}", linea, ex.Message);
 				}
 			}
-			reader.Close();
+			reader.Close ();
 		}
 	}
 }

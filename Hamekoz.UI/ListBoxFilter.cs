@@ -21,10 +21,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
-using Mono.Unix;
-using System.Reflection;
 
 namespace Hamekoz.UI
 {

@@ -39,21 +39,21 @@ namespace Hamekoz.UI.WinForm
 			get { return combo; }
 		}
 
-		private void btnCancelar_Click (object sender, EventArgs e)
+		void btnCancelar_Click (object sender, EventArgs e)
 		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Close ();
+			DialogResult = DialogResult.Cancel;
+			Close ();
 		}
 
-		private void btnAceptar_Click (object sender, EventArgs e)
+		void btnAceptar_Click (object sender, EventArgs e)
 		{
-			this.DialogResult = DialogResult.OK;
-			this.Close ();
+			DialogResult = DialogResult.OK;
+			Close ();
 		}
 
-		private void DialogItemSelector_Load (object sender, EventArgs e)
+		void DialogItemSelector_Load (object sender, EventArgs e)
 		{
-			this.combo.Focus ();
+			combo.Focus ();
 		}
 	}
 }

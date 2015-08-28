@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
@@ -36,16 +35,16 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public float MontoImpuestosInternos { get; set; }
 
-		string Impresion;
+		readonly string impresion;
 
 		public string Comando ()
 		{
-			return string.Format ("{0}{1}{2}{1}{3}{1}{4}", cmd, separador, Impresion, 0, 0);
+			return string.Format ("{0}{1}{2}{1}{3}{1}{4}", cmd, separador, impresion, 0, 0);
 		}
 
-		public Subtotal (string Impresion)
+		public Subtotal (string impresion)
 		{
-			this.Impresion = Impresion;
+			this.impresion = impresion;
 		}
 	}
 }

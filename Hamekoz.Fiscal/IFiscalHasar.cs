@@ -19,8 +19,6 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-
 namespace Hamekoz.Fiscal
 {
 	public interface IFiscalHasar
@@ -54,31 +52,7 @@ namespace Hamekoz.Fiscal
 		/// <summary>
 		/// Imprime el reporte Z para cerrar la jornada fiscal devolviendo los valores impresos
 		/// </summary>
-		/// <param name="NumeroReporte"></param>
-		/// <param name="CantidadDFCancelados"></param>
-		/// <param name="CantidadDNFHEmitidos"></param>
-		/// <param name="CantidadDNFEmitidos"></param>
-		/// <param name="CantidadDFEmitidos"></param>
-		/// <param name="UltimoDocFiscalBC"></param>
-		/// <param name="UltimoDocFiscalA"></param>
-		/// <param name="MontoVentasDocFiscal"></param>
-		/// <param name="MontoIVADocFiscal"></param>
-		/// <param name="MontoImpInternosDocFiscal"></param>
-		/// <param name="MontoPercepcionesDocFiscal"></param>
-		/// <param name="MontoIVANoInscriptoDocFiscal"></param>
-		/// <param name="UltimaNotaCreditoBC"></param>
-		/// <param name="UltimaNotaCreditoA"></param>
-		/// <param name="MontoVentasNotaCredito"></param>
-		/// <param name="MontoIVANotaCredito"></param>
-		/// <param name="MontoImpInternosNotaCredito"></param>
-		/// <param name="MontoPercepcionesNotaCredito"></param>
-		/// <param name="MontoIVANoInscriptoNotaCredito"></param>
-		/// <param name="UltimoRemito"></param>
-		/// <param name="CantidadNCCanceladas"></param>
-		/// <param name="CantidadDFBCEmitidos"></param>
-		/// <param name="CantidadDFAEEmitidos"></param>
-		/// <param name="CantidadNCBCEmitidos"></param>
-		/// <param name="CantidadNCAEmitidos"></param>
+		/// <param name = "zeta"></param>
 		void ReporteZ (IZeta zeta);
 	}
 }

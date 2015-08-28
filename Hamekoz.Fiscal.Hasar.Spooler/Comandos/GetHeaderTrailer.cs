@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
@@ -28,16 +27,16 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public string texto { get; set; }
 
-		int NroLineaEncabezamiento;
+		readonly int nroLineaEncabezamiento;
 
 		public string Comando ()
 		{
-			return string.Format ("{0}{1}{2}", cmd, separador, NroLineaEncabezamiento);
+			return string.Format ("{0}{1}{2}", cmd, separador, nroLineaEncabezamiento);
 		}
 
-		public GetHeaderTrailer (int NroLineaEncabezamiento)
+		public GetHeaderTrailer (int nroLineaEncabezamiento)
 		{
-			this.NroLineaEncabezamiento = NroLineaEncabezamiento;
+			this.nroLineaEncabezamiento = nroLineaEncabezamiento;
 		}
 	}
 }

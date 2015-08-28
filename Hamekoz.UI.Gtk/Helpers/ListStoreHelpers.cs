@@ -4,7 +4,7 @@
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2015 ecanedo
+//  Copyright (c) 2015 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,14 +20,13 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using Gtk;
-using System;
-using System.Collections.Generic;
 
 namespace Hamekoz.UI.Gtk
 {
 	public static class ListStoreHelpers
 	{
-		public static bool SearchIntAtPosition (this ListStore list, int value, int position) {
+		public static bool SearchIntAtPosition (this ListStore list, int value, int position)
+		{
 			TreeIter iter;
 			bool state = false;
 
@@ -45,7 +44,8 @@ namespace Hamekoz.UI.Gtk
 			return state;
 		}
 
-		public static bool SearchIntAtPosition (this ListStore list, int value, int position, out TreeIter outIter) {
+		public static bool SearchIntAtPosition (this ListStore list, int value, int position, out TreeIter outIter)
+		{
 			TreeIter iter;
 			bool state = false;
 

@@ -25,7 +25,7 @@ using Gtk;
 namespace Hamekoz.UI.Gtk
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class WidgetDate : Bin
+	public sealed partial class WidgetDate : Bin
 	{
 		public string Label {
 			get {
@@ -40,7 +40,7 @@ namespace Hamekoz.UI.Gtk
 
 		public event DateChangedHandler ChangeDate;
 
-		protected virtual void OnChangeDate ()
+		protected void OnChangeDate ()
 		{
 			var handler = ChangeDate;
 			if (handler != null)
@@ -58,7 +58,7 @@ namespace Hamekoz.UI.Gtk
 
 		public WidgetDate ()
 		{
-			this.Build ();
+			Build ();
 
 			datepicker.DefaultDate = DateTime.Now;
 
@@ -69,7 +69,7 @@ namespace Hamekoz.UI.Gtk
 
 		public WidgetDate (DateTime fecha)
 		{
-			this.Build ();
+			Build ();
 
 			datepicker.DefaultDate = fecha;
 

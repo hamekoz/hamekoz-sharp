@@ -19,8 +19,6 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Hamekoz.Interfaces;
-using System.Collections.Generic;
 
 namespace Hamekoz.Argentina.Agip
 {
@@ -81,7 +79,7 @@ namespace Hamekoz.Argentina.Agip
 		/// Gets or sets the codigo de norma.
 		/// </summary>
 		/// <value>The codigo de norma.</value>
-		/// <see cref="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
+		/// <see href="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
 		public int CodigoDeNorma {
 			get;
 			set;
@@ -106,26 +104,26 @@ namespace Hamekoz.Argentina.Agip
 		/// Tos the fixed string.
 		/// </summary>
 		/// <returns>The fixed string.</returns>
-		/// <see cref="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
+		/// <see href="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
 		public string ToFixedString ()
 		{
 			string cadena = string.Format ("{0:D1}{1:D12}{2:d}{3:0000000000000.00}{4}{5:D2}{6}{7:D16}{8:D11}{9:D3}{10:d}{11:0000000000000.00}{12:00.00}"
-				, (int)this.Operacion
-				, this.NroNotaDeCredito
-				, this.FechaNotaDeCredito
-				, this.MontoNotaDeCredito
-				, this.NroCertificadoPropio.PadRight (16).Substring (0, 16)
-				, (int)this.TipoDeComprobanteOrigenDeLaRetencion
-				, this.LetraDelComprobante
-				, this.NroDeComprobante
-				, this.NroDeDocumento
-				, this.CodigoDeNorma
-				, this.FechaDeRetencionPercepcion
-				, this.RetecionPercepcionADeducir
-				, this.Alicuota
+				, (int)Operacion
+				, NroNotaDeCredito
+				, FechaNotaDeCredito
+				, MontoNotaDeCredito
+				, NroCertificadoPropio.PadRight (16).Substring (0, 16)
+				, (int)TipoDeComprobanteOrigenDeLaRetencion
+				, LetraDelComprobante
+				, NroDeComprobante
+				, NroDeDocumento
+				, CodigoDeNorma
+				, FechaDeRetencionPercepcion
+				, RetecionPercepcionADeducir
+				, Alicuota
 			                );
 			if (cadena.Length != 119) {
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nNota de credito: {0}", this.NroNotaDeCredito));
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nNota de credito: {0}", NroNotaDeCredito));
 			}
 			return cadena;
 		}

@@ -4,7 +4,7 @@
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2014 ecanedo
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,9 +19,9 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using Gtk;
 using System;
 using System.Collections.Generic;
+using Gtk;
 using Hamekoz.Extensions;
 
 namespace Hamekoz.UI.Gtk
@@ -37,9 +37,9 @@ namespace Hamekoz.UI.Gtk
 		{
 			int iter = 0;
 			foreach (string column in columns) {
-				TreeViewColumn treeColumn = new TreeViewColumn ();
-				treeColumn.Title = column.ToHumanize();
-				CellRendererText columnCell = new CellRendererText ();
+				var treeColumn = new TreeViewColumn ();
+				treeColumn.Title = column.ToHumanize ();
+				var columnCell = new CellRendererText ();
 				treeColumn.PackStart (columnCell, true);
 				tree.AppendColumn (treeColumn);
 				treeColumn.AddAttribute (columnCell, "text", iter);
@@ -54,9 +54,10 @@ namespace Hamekoz.UI.Gtk
 		/// <param name="numberOfColumns">Number of columns.</param>
 		public static ListStore SetListStore (int numberOfColumns)
 		{
-			List<Type> types = new List<Type>();
-			for (int iter = 0; iter < numberOfColumns; iter++) types.Add (typeof(string));
-			return new ListStore (types.ToArray());
+			var types = new List<Type> ();
+			for (int iter = 0; iter < numberOfColumns; iter++)
+				types.Add (typeof(string));
+			return new ListStore (types.ToArray ());
 		}
 	}
 }
