@@ -19,7 +19,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using Gtk;
 
 namespace Hamekoz.UI.Gtk
@@ -27,7 +26,7 @@ namespace Hamekoz.UI.Gtk
 	public delegate void ChangedHandler ();
 
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class WidgetCheckbox : Bin
+	public sealed partial class WidgetCheckbox : Bin
 	{
 		public string Label {
 			get {
@@ -40,7 +39,7 @@ namespace Hamekoz.UI.Gtk
 
 		public event ChangedHandler ChangeState;
 
-		protected virtual void OnChangeState ()
+		protected void OnChangeState ()
 		{
 			var handler = ChangeState;
 			if (handler != null)
@@ -58,7 +57,7 @@ namespace Hamekoz.UI.Gtk
 
 		public WidgetCheckbox ()
 		{
-			this.Build ();
+			Build ();
 
 			checkbutton.Clicked += delegate {
 				OnChangeState ();

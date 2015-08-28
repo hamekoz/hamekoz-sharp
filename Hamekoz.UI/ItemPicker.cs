@@ -20,9 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Mono.Unix;
 using Xwt;
-using System.Reflection;
 
 namespace Hamekoz.UI
 {

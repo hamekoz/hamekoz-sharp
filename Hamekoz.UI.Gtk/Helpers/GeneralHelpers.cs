@@ -4,7 +4,7 @@
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
 //
-//  Copyright (c) 2014 ecanedo
+//  Copyright (c) 2014 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,9 +19,8 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using Gtk;
 using System;
-using System.Collections.Generic;
+using Gtk;
 
 namespace Hamekoz.UI.Gtk
 {
@@ -31,8 +30,9 @@ namespace Hamekoz.UI.Gtk
 		public static void HabilitarControles (this Container widget, bool estado)
 		{
 			foreach (var control in widget.AllChildren) {
-				if (control is Container) {
-					GeneralHelpers.HabilitarControles ((Container)control, estado);
+				var container = control as Container;
+				if (container != null) {
+					container.HabilitarControles (estado);
 				}
 				if (control is Entry) {
 					((Entry)control).Sensitive = estado;
@@ -87,13 +87,13 @@ namespace Hamekoz.UI.Gtk
 		//FIXME dependent-function
 		public static bool VentanaConfirmacion (this Window ventana, string mensaje)
 		{
-			MessageDialog md = new MessageDialog (ventana,
-				                   DialogFlags.DestroyWithParent,
-				                   MessageType.Question,
-				                   ButtonsType.YesNo,
-				                   mensaje);
+			var md = new MessageDialog (ventana,
+				         DialogFlags.DestroyWithParent,
+				         MessageType.Question,
+				         ButtonsType.YesNo,
+				         mensaje);
 
-			ResponseType result = (ResponseType)md.Run ();
+			var result = (ResponseType)md.Run ();
 
 			if (result == ResponseType.Yes) {
 				md.Destroy ();
@@ -107,13 +107,13 @@ namespace Hamekoz.UI.Gtk
 		//FIXME dependent-function
 		public static void VentanaError (this Window ventana, string mensaje)
 		{
-			MessageDialog md = new MessageDialog (ventana,
-				                   DialogFlags.DestroyWithParent,
-				                   MessageType.Error,
-				                   ButtonsType.Ok,
-				                   mensaje);
+			var md = new MessageDialog (ventana,
+				         DialogFlags.DestroyWithParent,
+				         MessageType.Error,
+				         ButtonsType.Ok,
+				         mensaje);
 
-			ResponseType result = (ResponseType)md.Run ();
+			var result = (ResponseType)md.Run ();
 
 			if (result == ResponseType.Ok)
 				md.Destroy ();
@@ -125,13 +125,13 @@ namespace Hamekoz.UI.Gtk
 		//FIXME dependent-function
 		public static void VentanaMensaje (this Window ventana, string mensaje)
 		{
-			MessageDialog md = new MessageDialog (ventana,
-				                   DialogFlags.DestroyWithParent,
-				                   MessageType.Info,
-				                   ButtonsType.Ok,
-				                   mensaje);
+			var md = new MessageDialog (ventana,
+				         DialogFlags.DestroyWithParent,
+				         MessageType.Info,
+				         ButtonsType.Ok,
+				         mensaje);
 
-			ResponseType result = (ResponseType)md.Run ();
+			var result = (ResponseType)md.Run ();
 
 			if (result == ResponseType.Ok)
 				md.Destroy ();
@@ -168,11 +168,7 @@ namespace Hamekoz.UI.Gtk
 					}
 				}
 
-				if (matches == filter.Length) {
-					return true;
-				} else {
-					return SearchCompareRecursive (filter, current, currentPosition + 1);
-				}
+				return matches == filter.Length || SearchCompareRecursive (filter, current, currentPosition + 1);
 
 			} else {
 				return false;

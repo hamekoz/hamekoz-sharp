@@ -19,9 +19,9 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System;
 
 namespace Hamekoz.UI.WinForm
 {
@@ -53,9 +53,9 @@ namespace Hamekoz.UI.WinForm
 		public string ImagePath {
 			set {
 				try {
-					this.Imagen = System.Drawing.Image.FromFile (value);
+					Imagen = Image.FromFile (value);
 				} catch (Exception ex) {
-					Console.WriteLine ("Fallo al carcar la imagen del splash", ex.Message);
+					Console.WriteLine ("Fallo al carcar la imagen del splash {0}", ex.Message);
 				}
 			}
 		}
@@ -83,7 +83,7 @@ namespace Hamekoz.UI.WinForm
 				BeginInvoke (new SplashDelegate (Cerrar));
 				return;
 			}
-			this.Close ();        
+			Close ();
 		}
 
 		/// <summary>
@@ -95,7 +95,7 @@ namespace Hamekoz.UI.WinForm
 				BeginInvoke (new SplashDelegate (Mostrar));
 				return;
 			}
-			this.Show ();
+			Show ();
 			Application.Run (this);
 		}
 	}

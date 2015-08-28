@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
@@ -54,18 +53,18 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public float MontoPercepcionesNC { get; set; }
 
-		string nroZOFecha;
-		string Calificador;
+		readonly string nroZOFecha;
+		readonly string calificador;
 
 		public string Comando ()
 		{
-			return string.Format ("{0}{1}{2}{1}{3}", cmd, separador, nroZOFecha, Calificador);
+			return string.Format ("{0}{1}{2}{1}{3}", cmd, separador, nroZOFecha, calificador);
 		}
 
-		public GetDailyReport (string nroZOFecha, string Calificador)
+		public GetDailyReport (string nroZOFecha, string calificador)
 		{
 			this.nroZOFecha = nroZOFecha;
-			this.Calificador = Calificador;
+			this.calificador = calificador;
 		}
 	}
 }

@@ -72,7 +72,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 		/// <summary>
 		/// Cierre de jornada fiscal
 		/// </summary>
-		/// <param name="tipo">Tipo de Informe</param>
+		/// <param name = "zeta"></param>
 		DailyClose DailyClose (bool zeta);
 
 		/// <summary>
@@ -259,7 +259,6 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 		/// <summary>
 		/// Cerrar comprobante fiscal
 		/// </summary>
-		/// <param name="email">Email.</param>
 		CloseFiscalReceipt CloseFiscalReceipt ();
 
 		#endregion
@@ -357,6 +356,10 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 		/// <param name="nroAutorizacion">Nro autorizacion (6 digitos).</param>
 		/// <param name="importe">Importe (15 caracteres incluyendo signo monetario).</param>
 		/// <param name="nroComprobanteFiscal">Nro comprobante fiscal (8 digitos).</param>
+		/// <param name="tipoOperacion"></param>
+		/// <param name="nroAutorizacion"></param>
+		/// <param name="importe"></param>
+		/// <param name="nroComprobanteFiscal"></param>
 		void SetVoucherData2 (float codigoComercio, float nroTerminal, float nroLote, float nroCupon, string ingresoDatosTarjeta, string tipoOperacion, float nroAutorizacion, string importe, float nroComprobanteFiscal);
 
 		/// <summary>

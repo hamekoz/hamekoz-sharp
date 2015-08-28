@@ -20,10 +20,11 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Text;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 
+//TODO traducir cadenas de texto
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
 	public class Impresora
@@ -34,11 +35,11 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public string comando { get; set; }
 		//private char separador { get; set; }
-		private EndPoint ep { get; set; }
+		EndPoint ep { get; set; }
 
-		private Socket sock { get; set; }
+		Socket sock { get; set; }
 
-		private NetworkStream ns { get; set; }
+		NetworkStream ns { get; set; }
 
 		public void Conectar (string printerIP, int printerPort)
 		{
@@ -47,7 +48,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 			try {
 				sock.Connect (ep);
 			} catch (Exception e) {
-				Console.WriteLine (e.ToString ());
+				Console.WriteLine (e);
 				throw (new Exception ("No se pudo conectar con la impresora"));
 			}
 
@@ -59,7 +60,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 				sock.Shutdown (SocketShutdown.Both);
 				sock.Close ();
 			} catch (Exception e) {
-				Console.WriteLine (e.ToString ());
+				Console.WriteLine (e);
 			}
 		}
 
@@ -78,7 +79,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 				ns.BeginWrite (toSend, 0, toSend.Length, OnWriteComplete, null);
 				ns.Flush ();
 			} catch (Exception e) {
-				Console.WriteLine (e.ToString ());
+				Console.WriteLine (e);
 			}
 		}
 
@@ -87,11 +88,11 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 			// Examples for CanRead, Read, and DataAvailable.
 			// Check to see if this NetworkStream is readable.
 			//myCompleteMessage = string.Empty;
-			StringBuilder myCompleteMessage = new StringBuilder ();
+			var myCompleteMessage = new StringBuilder ();
 			while (ns.CanRead) {
-				byte[] myReadBuffer = new byte[1024];
+				var myReadBuffer = new byte[1024];
 				myCompleteMessage = new StringBuilder ();
-				int numberOfBytesRead = 0;
+				int numberOfBytesRead;
 				// Incoming message may be larger than the buffer size.
 				do {
 					numberOfBytesRead = ns.Read (myReadBuffer, 0, myReadBuffer.Length);
@@ -106,7 +107,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 			return myCompleteMessage.ToString ().Split ((char)28);
 		}
 
-		private void OnWriteComplete (IAsyncResult ar)
+		void OnWriteComplete (IAsyncResult ar)
 		{
 			NetworkStream thisNS = ns;
 			thisNS.EndWrite (ar);

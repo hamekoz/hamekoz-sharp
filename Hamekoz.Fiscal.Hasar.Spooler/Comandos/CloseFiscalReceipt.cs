@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
@@ -31,10 +30,6 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 		public string Comando ()
 		{
 			return string.Format ("{0}", cmd);
-		}
-
-		public CloseFiscalReceipt ()
-		{
 		}
 	}
 }

@@ -78,7 +78,7 @@ namespace Hamekoz.Extensions
 			var value = date.FirstDayOfMonth ();
 			value = value.AddMonths (1);
 			value = value.AddDays (-1);
-			return value; // date.FirstDayOfMonth ().AddMonths (1).AddDays (-1);
+			return value;
 		}
 	}
 }

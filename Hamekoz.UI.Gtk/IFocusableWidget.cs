@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Hamekoz.Interfaces
+namespace Hamekoz.UI.Gtk
 {
 	public interface IFocusableWidget
 	{

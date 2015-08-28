@@ -21,8 +21,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Globalization;
+using System.Linq;
 
 namespace Hamekoz.Extensions
 {
@@ -33,6 +33,7 @@ namespace Hamekoz.Extensions
 		/// </summary>
 		/// <returns>String camelized.</returns>
 		/// <param name="the_string">The string.</param>
+		[Obsolete ("Use Humanizer from nuget")]
 		public static string ToCamelCase (this string the_string)
 		{
 			// If there are 0 or 1 characters, just return the string.
@@ -60,6 +61,7 @@ namespace Hamekoz.Extensions
 		/// </summary>
 		/// <returns>The title case.</returns>
 		/// <param name="s">S.</param>
+		[Obsolete ("Use Humanizer from nuget")]
 		public static string ToTitleCase (this string s)
 		{
 			s = System.Text.RegularExpressions.Regex.Replace (s, "[A-Z]", " $0").Remove (0, 1);
@@ -72,12 +74,13 @@ namespace Hamekoz.Extensions
 			return s;
 		}
 
+		[Obsolete ("Use Humanizer from nuget")]
 		public static string ToHumanize (this string value)
 		{
 			string[] spacedWords
 			= ((IEnumerable<char>)value).Skip (1)
 				.Select (c => c == char.ToUpper (c)
-					? " " + char.ToLower (c).ToString ()
+					? " " + char.ToLower (c)
 					: c.ToString ()).ToArray ();
 
 			string result = value.Substring (0, 1)
@@ -86,6 +89,7 @@ namespace Hamekoz.Extensions
 			return result;
 		}
 
+		[Obsolete ("Use Humanizer from nuget")]
 		public static string ToName (this string value)
 		{
 			return CultureInfo.CurrentCulture.TextInfo.ToTitleCase (value.ToLower ());

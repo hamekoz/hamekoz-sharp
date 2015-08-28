@@ -18,9 +18,8 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Text;
 
+//TODO revisar el parametro con codigo comentado
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
 	public class OpenDNFH : Comando
@@ -29,7 +28,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public int NroDNFHAbierto { get; set; }
 
-		string TipoDocumento;
+		readonly string tipoDocumento;
 		//string identificacionNroDocumento;
 
 		//Encoding enc = Encoding.GetEncoding(437);
@@ -38,12 +37,12 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 		public string Comando ()
 		{
 			//return string.Format("{0}{1}{2}{1}{3}{1}{4}",cmd,separador,TipoDocumento,"S",identificacionNroDocumento);
-			return string.Format ("{0}{1}{2}{1}{3}", cmd, separador, TipoDocumento, "T");
+			return string.Format ("{0}{1}{2}{1}{3}", cmd, separador, tipoDocumento, "T");
 		}
 
-		public OpenDNFH (string TipoDocumento, string identificacionNroDocumento)
+		public OpenDNFH (string tipoDocumento, string identificacionNroDocumento)
 		{
-			this.TipoDocumento = TipoDocumento;
+			this.tipoDocumento = tipoDocumento;
 			//this.identificacionNroDocumento = identificacionNroDocumento;
 		}
 	}

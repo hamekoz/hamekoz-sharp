@@ -3,8 +3,9 @@
 //
 //  Author:
 //       Emiliano Gabriel Canedo <emilianocanedo@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 ecanedo
+//  Copyright (c) 2015 Hamekoz
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -21,7 +22,6 @@
 
 using Gtk;
 using System;
-using Hamekoz.Core;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +31,12 @@ namespace Hamekoz.UI.Gtk
 	public delegate void ObjectHandler (object obj);
 
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class TreeViewDynamic : Bin
+	public sealed partial class TreeViewDynamic : Bin
 	{
-		private List<string> stringList;
-		private ListStore store;
+		List<string> stringList;
+		ListStore store;
 
-		private object currentObject;
+		object currentObject;
 
 		public object CurrentObject {
 			get {
@@ -46,14 +46,14 @@ namespace Hamekoz.UI.Gtk
 
 		public event ObjectHandler EventCursorChanged;
 
-		protected virtual void OnEventCursorChanged (object obj)
+		protected void OnEventCursorChanged (object obj)
 		{
 			var handler = EventCursorChanged;
 			if (handler != null)
 				handler (obj);
 		}
 
-		private Type classType;
+		Type classType;
 
 		public Type ClassType {
 			get {
@@ -88,7 +88,7 @@ namespace Hamekoz.UI.Gtk
 			model = modelClass.Cast<object> ().ToList ();
 			store.Clear ();
 			foreach (var item in modelClass) {
-				List<string> valores = new List<string> ();
+				var valores = new List<string> ();
 				foreach (var propertyName in stringList) {
 					valores.Add (item.GetType ().GetProperty (propertyName).GetValue (item, null).ToString ());
 				}
@@ -98,7 +98,7 @@ namespace Hamekoz.UI.Gtk
 
 		public TreeViewDynamic ()
 		{
-			this.Build ();
+			Build ();
 
 			treeview.CursorChanged += delegate {
 				int index;
