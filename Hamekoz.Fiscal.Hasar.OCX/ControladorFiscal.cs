@@ -29,11 +29,11 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 	public class ControladorFiscal : IFiscalHasar
 	{
 		public FiscalPrinterLib.HASAR fiscalHasar;
-		private int idErrorFiscal;
-		private string descripcionErrorFiscal;
-		private int idErrorImpresora;
-		private string descripcionErrorImpresora;
-		private Boolean abortar;
+		int idErrorFiscal;
+		string descripcionErrorFiscal;
+		int idErrorImpresora;
+		string descripcionErrorImpresora;
+		bool abortar;
 
 		public ControladorFiscal ()
 		{
@@ -65,7 +65,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 			}
 		}
 
-		private void DatosClientes (IResponsable cliente)
+		void DatosClientes (IResponsable cliente)
 		{
 			switch (cliente.CondicionDeIVA) {
 			case SituacionIVA.SIN_DATO:
@@ -92,8 +92,6 @@ namespace Hamekoz.Fiscal.Hasar.OCX
                         , FiscalPrinterLib.TiposDeDocumento.TIPO_CUIT
                         , FiscalPrinterLib.TiposDeResponsabilidades.RESPONSABLE_EXENTO
                         , 1);
-				break;
-			default:
 				break;
 			}
 		}
@@ -181,62 +179,62 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 			fiscalHasar.ReporteZ (out NumeroReporte, out CantidadDFCancelados, out CantidadDNFHEmitidos, out CantidadDNFEmitidos, out CantidadDFEmitidos, out UltimoDocFiscalBC, out UltimoDocFiscalA, out MontoVentasDocFiscal, out MontoIVADocFiscal, out MontoImpInternosDocFiscal, out MontoPercepcionesDocFiscal, out MontoIVANoInscriptoDocFiscal, out UltimaNotaCreditoBC, out UltimaNotaCreditoA, out MontoVentasNotaCredito, out MontoIVANotaCredito, out MontoImpInternosNotaCredito, out MontoPercepcionesNotaCredito, out MontoIVANoInscriptoNotaCredito, out UltimoRemito, out CantidadNCCanceladas, out CantidadDFBCEmitidos, out CantidadDFAEEmitidos, out CantidadNCBCEmitidos, out CantidadNCAEmitidos);
 		}
 
-        public void ReporteZ(IZeta  zeta)
-        {
-            object NumeroReporte;
-            object CantidadDFCancelados;
-            object CantidadDNFHEmitidos;
-            object CantidadDNFEmitidos;
-            object CantidadDFEmitidos;
-            object UltimoDocFiscalBC;
-            object UltimoDocFiscalA;
-            object MontoVentasDocFiscal;
-            object MontoIVADocFiscal;
-            object MontoImpInternosDocFiscal;
-            object MontoPercepcionesDocFiscal;
-            object MontoIVANoInscriptoDocFiscal;
-            object UltimaNotaCreditoBC;
-            object UltimaNotaCreditoA;
-            object MontoVentasNotaCredito;
-            object MontoIVANotaCredito;
-            object MontoImpInternosNotaCredito;
-            object MontoPercepcionesNotaCredito;
-            object MontoIVANoInscriptoNotaCredito;
-            object UltimoRemito;
-            object CantidadNCCanceladas;
-            object CantidadDFBCEmitidos;
-            object CantidadDFAEEmitidos;
-            object CantidadNCBCEmitidos;
-            object CantidadNCAEmitidos;
-            
-            fiscalHasar.ReporteZ(out NumeroReporte, out CantidadDFCancelados, out CantidadDNFHEmitidos, out CantidadDNFEmitidos, out CantidadDFEmitidos, out UltimoDocFiscalBC, out UltimoDocFiscalA, out MontoVentasDocFiscal, out MontoIVADocFiscal, out MontoImpInternosDocFiscal, out MontoPercepcionesDocFiscal, out MontoIVANoInscriptoDocFiscal, out UltimaNotaCreditoBC, out UltimaNotaCreditoA, out MontoVentasNotaCredito, out MontoIVANotaCredito, out MontoImpInternosNotaCredito, out MontoPercepcionesNotaCredito, out MontoIVANoInscriptoNotaCredito, out UltimoRemito, out CantidadNCCanceladas, out CantidadDFBCEmitidos, out CantidadDFAEEmitidos, out CantidadNCBCEmitidos, out CantidadNCAEmitidos);
-            
-            zeta.NumeroReporte = (int)NumeroReporte;
-            zeta.CantidadDFCancelados = (int)CantidadDFCancelados;
-            zeta.CantidadDNFHEmitidos = (int)CantidadDNFHEmitidos;
-            zeta.CantidadDNFEmitidos = (int)CantidadDNFEmitidos;
-            zeta.CantidadDFEmitidos = (int)CantidadDFEmitidos;
-            zeta.UltimoDocFiscalBC = (int)UltimoDocFiscalBC;
-            zeta.UltimoDocFiscalA = (int)UltimoDocFiscalA;
-            zeta.MontoVentasDocFiscal = (double)MontoVentasDocFiscal;
-            zeta.MontoIVADocFiscal = (double)MontoIVADocFiscal;
-            zeta.MontoImpInternosDocFiscal = (double)MontoImpInternosDocFiscal;
-            zeta.MontoPercepcionesDocFiscal = (double)MontoPercepcionesDocFiscal;
-            zeta.MontoIVANoInscriptoDocFiscal = (double)MontoIVANoInscriptoDocFiscal;
-            zeta.UltimaNotaCreditoBC = (int)UltimaNotaCreditoBC;
-            zeta.UltimaNotaCreditoA = (int)UltimaNotaCreditoA;
-            zeta.MontoVentasNotaCredito = (double)MontoVentasNotaCredito;
-            zeta.MontoIVANotaCredito = (double)MontoIVANotaCredito;
-            zeta.MontoImpInternosNotaCredito = (double)MontoImpInternosNotaCredito;
-            zeta.MontoPercepcionesNotaCredito = (double)MontoPercepcionesNotaCredito;
-            zeta.MontoIVANoInscriptoNotaCredito = (double)MontoIVANoInscriptoNotaCredito;
-            zeta.UltimoRemito = (int)UltimoRemito;
-            zeta.CantidadNCCanceladas = (int)CantidadNCCanceladas;
-            zeta.CantidadDFBCEmitidos = (int)CantidadDFBCEmitidos;
-            zeta.CantidadDFAEEmitidos = (int)CantidadDFAEEmitidos;
-            zeta.CantidadNCBCEmitidos = (int)CantidadNCBCEmitidos;
-            zeta.CantidadNCAEmitidos = (int)CantidadNCAEmitidos;
-        }
+		public void ReporteZ (IZeta  zeta)
+		{
+			object NumeroReporte;
+			object CantidadDFCancelados;
+			object CantidadDNFHEmitidos;
+			object CantidadDNFEmitidos;
+			object CantidadDFEmitidos;
+			object UltimoDocFiscalBC;
+			object UltimoDocFiscalA;
+			object MontoVentasDocFiscal;
+			object MontoIVADocFiscal;
+			object MontoImpInternosDocFiscal;
+			object MontoPercepcionesDocFiscal;
+			object MontoIVANoInscriptoDocFiscal;
+			object UltimaNotaCreditoBC;
+			object UltimaNotaCreditoA;
+			object MontoVentasNotaCredito;
+			object MontoIVANotaCredito;
+			object MontoImpInternosNotaCredito;
+			object MontoPercepcionesNotaCredito;
+			object MontoIVANoInscriptoNotaCredito;
+			object UltimoRemito;
+			object CantidadNCCanceladas;
+			object CantidadDFBCEmitidos;
+			object CantidadDFAEEmitidos;
+			object CantidadNCBCEmitidos;
+			object CantidadNCAEmitidos;
+
+			fiscalHasar.ReporteZ (out NumeroReporte, out CantidadDFCancelados, out CantidadDNFHEmitidos, out CantidadDNFEmitidos, out CantidadDFEmitidos, out UltimoDocFiscalBC, out UltimoDocFiscalA, out MontoVentasDocFiscal, out MontoIVADocFiscal, out MontoImpInternosDocFiscal, out MontoPercepcionesDocFiscal, out MontoIVANoInscriptoDocFiscal, out UltimaNotaCreditoBC, out UltimaNotaCreditoA, out MontoVentasNotaCredito, out MontoIVANotaCredito, out MontoImpInternosNotaCredito, out MontoPercepcionesNotaCredito, out MontoIVANoInscriptoNotaCredito, out UltimoRemito, out CantidadNCCanceladas, out CantidadDFBCEmitidos, out CantidadDFAEEmitidos, out CantidadNCBCEmitidos, out CantidadNCAEmitidos);
+
+			zeta.NumeroReporte = (int)NumeroReporte;
+			zeta.CantidadDFCancelados = (int)CantidadDFCancelados;
+			zeta.CantidadDNFHEmitidos = (int)CantidadDNFHEmitidos;
+			zeta.CantidadDNFEmitidos = (int)CantidadDNFEmitidos;
+			zeta.CantidadDFEmitidos = (int)CantidadDFEmitidos;
+			zeta.UltimoDocFiscalBC = (int)UltimoDocFiscalBC;
+			zeta.UltimoDocFiscalA = (int)UltimoDocFiscalA;
+			zeta.MontoVentasDocFiscal = (double)MontoVentasDocFiscal;
+			zeta.MontoIVADocFiscal = (double)MontoIVADocFiscal;
+			zeta.MontoImpInternosDocFiscal = (double)MontoImpInternosDocFiscal;
+			zeta.MontoPercepcionesDocFiscal = (double)MontoPercepcionesDocFiscal;
+			zeta.MontoIVANoInscriptoDocFiscal = (double)MontoIVANoInscriptoDocFiscal;
+			zeta.UltimaNotaCreditoBC = (int)UltimaNotaCreditoBC;
+			zeta.UltimaNotaCreditoA = (int)UltimaNotaCreditoA;
+			zeta.MontoVentasNotaCredito = (double)MontoVentasNotaCredito;
+			zeta.MontoIVANotaCredito = (double)MontoIVANotaCredito;
+			zeta.MontoImpInternosNotaCredito = (double)MontoImpInternosNotaCredito;
+			zeta.MontoPercepcionesNotaCredito = (double)MontoPercepcionesNotaCredito;
+			zeta.MontoIVANoInscriptoNotaCredito = (double)MontoIVANoInscriptoNotaCredito;
+			zeta.UltimoRemito = (int)UltimoRemito;
+			zeta.CantidadNCCanceladas = (int)CantidadNCCanceladas;
+			zeta.CantidadDFBCEmitidos = (int)CantidadDFBCEmitidos;
+			zeta.CantidadDFAEEmitidos = (int)CantidadDFAEEmitidos;
+			zeta.CantidadNCBCEmitidos = (int)CantidadNCBCEmitidos;
+			zeta.CantidadNCAEmitidos = (int)CantidadNCAEmitidos;
+		}
 
 		/*public void ImprimirTicket()
         {
@@ -332,7 +330,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 				//IMPRIMO PAGOS
 				if (recibo != null) {
 					foreach (IItem ren in recibo.Items) {
-						Console.WriteLine ((ren.Total + vueltoefectivo).ToString ());
+						Console.WriteLine ((ren.Total + vueltoefectivo));
 						fiscalHasar.ImprimirPago (ren.Descripcion, ren.Total + vueltoefectivo, "", out vuelto);
 						if (fiscalHasar.HuboErrorFiscal) {
 							Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
@@ -351,7 +349,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 				if (!abortar) {
 					fiscalHasar.CerrarComprobanteFiscal (1, out numero);
 					factura.Numero = string.Format ("{0}-{1}", factura.PuntoDeVenta.PadLeft (4, Char.Parse ("0")), numero.ToString ().PadLeft (8, Char.Parse ("0")));
-					Console.WriteLine (numero.ToString ());
+					Console.WriteLine (numero);
 				}
 			}
 		}
@@ -428,7 +426,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 
 		#endregion
 
-		private string Limpiar (string cadena)
+		static string Limpiar (string cadena)
 		{
 			//TODO considerar modelos que tiene hasta 50 caracteres
 			int length = 40;

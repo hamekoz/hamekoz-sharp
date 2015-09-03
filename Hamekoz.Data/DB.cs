@@ -86,6 +86,11 @@ namespace Hamekoz.Data
 			}
 		}
 
+		public static void SetInstancia (DB db)
+		{
+			instancia = db;
+		}
+
 		public int DefaultCommandTimeOut {
 			get {
 				return  30;
@@ -205,18 +210,16 @@ namespace Hamekoz.Data
 
 		public DbDataReader SPToDbDataReader (string sp, params object[] parameters)
 		{
-			using (DbConnection conexion = factory.CreateConnection ()) {
-				conexion.ConnectionString = ConnectionString;
-				conexion.Open ();
-				using (DbCommand comando = factory.CreateCommand ()) {
-					comando.Connection = conexion;
-					comando.CommandType = CommandType.StoredProcedure;
-					comando.CommandText = sp;
-					comando.CommandTimeout = CommandTimeOut;
-					cargarParametros (comando, parameters);
-					return comando.ExecuteReader (CommandBehavior.CloseConnection);
-				}
-			}
+			DbConnection conexion = factory.CreateConnection ();
+			conexion.ConnectionString = ConnectionString;
+			conexion.Open ();
+			DbCommand comando = factory.CreateCommand ();
+			comando.Connection = conexion;
+			comando.CommandType = CommandType.StoredProcedure;
+			comando.CommandText = sp;
+			comando.CommandTimeout = CommandTimeOut;
+			cargarParametros (comando, parameters);
+			return comando.ExecuteReader (CommandBehavior.CloseConnection);
 		}
 
 		public object SPToScalar (string sp, params object[] parameters)
@@ -335,7 +338,7 @@ namespace Hamekoz.Data
 		/// Tipo de comando que se pueden utilizar en consultas de Base de Datos
 		/// </summary>
 		[Obsolete ("Ya nos se requiere")]
-		enum TipoComando
+		public enum TipoComando
 		{
 			/// <summary>
 			/// Procedimiento almacenado
@@ -549,7 +552,7 @@ namespace Hamekoz.Data
 		/// <param name="parametros">Pares Nombre parametros, Valor parametro</param>
 		/// <returns>Devuelve cantidad de registros afectados</returns>
 		[Obsolete ("Usar SP o Sql")]
-		int ejecutarProceso (TipoComando tipo, string cadenaSql, params object[] parametros)
+		public int ejecutarProceso (TipoComando tipo, string cadenaSql, params object[] parametros)
 		{
 			int cant;
 			DbCommand comando;
