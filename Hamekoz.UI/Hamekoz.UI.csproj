@@ -77,12 +77,17 @@
     </Compile>
     <Compile Include="About.cs" />
     <Compile Include="DatePeriod.cs" />
+    <Compile Include="Search.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\xwt\Xwt\Xwt.csproj">
       <Project>{92494904-35FA-4DC9-BDE9-3A3E87AC49D3}</Project>
       <Name>Xwt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
+      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
+      <Name>Hamekoz.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

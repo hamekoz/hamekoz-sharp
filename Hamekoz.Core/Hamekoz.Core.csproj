@@ -28,6 +28,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fiscal\IComprobante.cs" />
@@ -49,6 +50,9 @@
     <Compile Include="ValidationDataException.cs" />
     <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\IIdentifiable.cs" />
+    <Compile Include="Interfaces\ISearchable.cs" />
+    <Compile Include="Extensions\BooleanExtension.cs" />
+    <Compile Include="Extensions\TypeExtension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
