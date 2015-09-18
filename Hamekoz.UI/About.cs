@@ -22,12 +22,11 @@ using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
 using System.Reflection;
-using Mono.Unix;
 
 namespace Hamekoz.UI
 {
 	public class About : Dialog
-	{		
+	{
 		//FIXME textarea's readonly property allows to modify the paragraph
 
 		readonly ImageView logo;
