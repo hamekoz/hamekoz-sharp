@@ -94,7 +94,7 @@ namespace Hamekoz.Argentina.Arba
 				writer.WriteValue (string.Format ("{0:yyyyMMdd}", new DateTime (año, mes, 1)));
 				writer.WriteEndElement ();
 				writer.WriteStartElement ("fechaHasta");
-				writer.WriteValue (string.Format ("{0:yyyyMMdd}", new DateTime (año, mes + 1, 1).AddDays (-1)));
+				writer.WriteValue (string.Format ("{0:yyyyMMdd}", new DateTime (año, mes, 1).AddMonths (1).AddDays (-1)));
 				writer.WriteEndElement ();
 				writer.WriteEndElement ();
 				writer.WriteEndDocument ();
