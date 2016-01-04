@@ -424,9 +424,18 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 			fiscalHasar.CerrarComprobanteNoFiscal (1);
 		}
 
-		#endregion
+        public DateTime FechaHora
+        {
+            get
+            {
+                return fiscalHasar.FechaHoraFiscal;
+            }
+            set { fiscalHasar.FechaHoraFiscal = value; }
+        }
 
-		static string Limpiar (string cadena)
+        #endregion
+
+        static string Limpiar (string cadena)
 		{
 			//TODO considerar modelos que tiene hasta 50 caracteres
 			int length = 40;
@@ -434,5 +443,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 			cadena = cadena.Substring (0, length);
 			return cadena;
 		}
+
+        
 	}
 }
