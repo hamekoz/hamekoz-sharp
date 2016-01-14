@@ -39,10 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DialogItemSelector.cs" />
-    <Compile Include="DialogItemSelector.Designer.cs">
-      <DependentUpon>DialogItemSelector.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Splash.cs">
       <SubType>Form</SubType>
@@ -51,7 +47,7 @@
       <DependentUpon>Splash.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DialogItemSelector.resx">
-      <DependentUpon>DialogItemSelector.cs</DependentUpon>
+      <DependentUpon>ItemSelectorDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -83,6 +79,10 @@
       <DependentUpon>BarCodeCtrl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="ItemSelectorDialog.cs" />
+    <Compile Include="ItemSelectorDialog.Designer.cs">
+      <DependentUpon>ItemSelectorDialog.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Hamekoz.ico" />

@@ -1,5 +1,5 @@
 //
-//  DialogItemSelector.cs
+//  ItemSelectorDialog.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -24,9 +24,9 @@ using System.Windows.Forms;
 
 namespace Hamekoz.UI.WinForm
 {
-	public partial class DialogItemSelector : Form
+	public partial class ItemSelectorDialog : Form
 	{
-		public DialogItemSelector ()
+		public ItemSelectorDialog ()
 		{
 			InitializeComponent ();
 		}
