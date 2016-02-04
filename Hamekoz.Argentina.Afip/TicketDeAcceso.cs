@@ -19,10 +19,16 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections;
 using System.Text;
 using System.Xml;
-using Org.BouncyCastle;
+using System.IO;
+using Org.BouncyCastle.Cms;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Security;
+using Org.BouncyCastle.Crypto.Engines;
+using System.Collections.Generic;
+using Org.BouncyCastle.X509;
 
 namespace Hamekoz.Argentina.Afip
 {
@@ -73,17 +79,30 @@ namespace Hamekoz.Argentina.Afip
 		}
 
 		X509Certificate certificadoFirmante;
+		System.Security.Cryptography.X509Certificates.X509Certificate2 x509certificate2;
 
 		public void CargarCertificadoFirmante (string path)
 		{
-			certificadoFirmante = new X509Certificate2 ();
-			certificadoFirmante.Import (path);
+			x509certificate2 = new System.Security.Cryptography.X509Certificates.X509Certificate2 ();
+			x509certificate2.Import (path);
+			var key = System.Security.Cryptography.AsymmetricAlgorithm.Create ();
+
+			//x509certificate2.PrivateKey = key;
+			var parser = new X509CertificateParser ();
+			string certString = File.OpenText (path).ReadToEnd ();
+			X509Certificate certi = parser.ReadCertificate (Encoding.UTF8.GetBytes (certString));
+
+
+			var cert = DotNetUtilities.FromX509Certificate (x509certificate2);
+
+			certificadoFirmante = cert;
 		}
 
-		XmlDocument solicitudXML;
+		//XmlDocument solicitudXML;
 		XmlDocument respuestaXML;
+
 		public string RutaDelCertificadoFirmante;
-		const string solicitudPlantillaXML = "<loginTicketRequest><header><uniqueId></uniqueId><generationTime></generationTime><expirationTime></expirationTime></header><service></service></loginTicketRequest>";
+
 
 		// OJO! NO ES THREAD-SAFE
 		static UInt32 _globalUniqueID;
@@ -91,93 +110,22 @@ namespace Hamekoz.Argentina.Afip
 		/// <summary> 
 		/// Construye un Login Ticket obtenido del WSAA 
 		/// </summary> 
-		/// <param name="argServicio">Servicio al que se desea acceder</param> 
-		/// <param name="argUrlWsaa">URL del WSAA</param> 
 		/// <param name="argRutaCertX509Firmante">Ruta del certificado X509 (con clave privada) usado para firmar</param> 
-		/// <param name="argVerbose">Nivel detallado de descripcion? true/false</param> 
 		/// <remarks></remarks> 
-		public void Obtener (string argServicio, string argUrlWsaa, string argRutaCertX509Firmante, bool argVerbose)
+		public void Obtener (string argRutaCertX509Firmante)
 		{
-
 			RutaDelCertificadoFirmante = argRutaCertX509Firmante;
+			CargarCertificadoFirmante (RutaDelCertificadoFirmante);
+			var key = ReadAsymmetricKeyParameter ("/balcarce/objetos/postresbalcarce.key");
+			XmlDocument tra = TicketDeRequerimientoDeAcceso ();
+			Encoding EncodedMsg = Encoding.UTF8;
+			byte[] msgBytes = EncodedMsg.GetBytes (tra.OuterXml);
+			var signedData = SignData (tra.OuterXml, key);
+			var signedDataByteArray = EncodedMsg.GetBytes (signedData);
 
-			string cmsFirmadoBase64;
+			var cmsFirmadoBase64 = Convert.ToBase64String (signedDataByteArray);
+
 			string respuesta;
-
-			XmlNode xmlNodoUniqueId;
-			XmlNode xmlNodoGenerationTime;
-			XmlNode xmlNodoExpirationTime;
-			XmlNode xmlNodoService;
-
-			// PASO 1: Genero el Login Ticket Request 
-			try {
-				solicitudXML = new XmlDocument ();
-				solicitudXML.LoadXml (solicitudPlantillaXML);
-
-				xmlNodoUniqueId = solicitudXML.SelectSingleNode ("//uniqueId");
-				xmlNodoGenerationTime = solicitudXML.SelectSingleNode ("//generationTime");
-				xmlNodoExpirationTime = solicitudXML.SelectSingleNode ("//expirationTime");
-				xmlNodoService = solicitudXML.SelectSingleNode ("//service");
-
-				var now = DateTime.Now;
-
-				xmlNodoGenerationTime.InnerText = now.ToString ("s");
-				xmlNodoExpirationTime.InnerText = now.AddHours (12).ToString ("s");
-				xmlNodoUniqueId.InnerText = Convert.ToString (_globalUniqueID);
-				xmlNodoService.InnerText = Servicio;
-
-				_globalUniqueID += 1;
-
-			} catch (Exception ex) {
-				throw new Exception ("Error GENERANDO el Ticket de acceso : " + ex.Message);
-			}
-
-			// PASO 2: Firmo el Login Ticket Request 
-			try {
-				// Convierto el login ticket request a bytes, para firmar 
-				Encoding EncodedMsg = Encoding.UTF8;
-				byte[] msgBytes = EncodedMsg.GetBytes (solicitudXML.OuterXml);
-				byte[] encodedSignedCms;
-				// Firmo el msg y paso a Base64 
-				try {
-					var certList = new ArrayList ();
-					CMSTypedData msg = new CMSProcessableByteArray ("Hello world!".getBytes ());
-
-					certList.add (signCert);
-
-					Store certs = new JcaCertStore (certList);
-
-					var gen = new  CMSSignedDataGenerator ();
-					ContentSigner sha1Signer = new JcaContentSignerBuilder ("SHA1withRSA").setProvider ("BC").build (signKP.getPrivate ());
-
-					gen.addSignerInfoGenerator (
-						new JcaSignerInfoGeneratorBuilder (
-							new JcaDigestCalculatorProviderBuilder ().setProvider ("BC").build ())
-						.build (sha1Signer, signCert));
-
-					gen.addCertificates (certs);
-
-					CMSSignedData sigData = gen.generate (msg, false);
-
-					cmsFirmadoBase64 = Convert.ToBase64String (encodedSignedCms);
-					// Pongo el mensaje en un objeto ContentInfo (requerido para construir el obj SignedCms) 
-					var infoContenido = new System.Security.Cryptography.Pkcs.ContentInfo (msgBytes);
-					var cmsFirmado = new SignedCms (infoContenido);
-
-					// Creo objeto CmsSigner que tiene las caracteristicas del firmante 
-					var cmsFirmante = new CmsSigner (certificadoFirmante);
-					cmsFirmante.IncludeOption = X509IncludeOption.EndCertOnly;
-
-					// Firmo el mensaje PKCS #7 
-					cmsFirmado.ComputeSignature (cmsFirmante);
-					// Encodeo el mensaje PKCS #7. 
-					encodedSignedCms = cmsFirmado.Encode ();
-				} catch (Exception excepcionAlFirmar) {
-					throw new Exception ("***Error al firmar: " + excepcionAlFirmar.Message);
-				}
-			} catch (Exception excepcionAlFirmar) {
-				throw new Exception ("***Error FIRMANDO el LoginTicketRequest : " + excepcionAlFirmar.Message);
-			}
 
 			// PASO 3: Invoco al WSAA para obtener el Login Ticket Response 
 			try {
@@ -200,6 +148,80 @@ namespace Hamekoz.Argentina.Afip
 			} catch (Exception ex) {
 				throw new Exception ("Error ANALIZANDO el LoginTicketResponse : " + ex.Message);
 			}
+		}
+
+		XmlDocument TicketDeRequerimientoDeAcceso ()
+		{
+
+			const string solicitudPlantillaXML = "<loginTicketRequest><header><uniqueId></uniqueId><generationTime></generationTime><expirationTime></expirationTime></header><service></service></loginTicketRequest>";
+			XmlDocument solicitudXML;
+			XmlNode xmlNodoUniqueId;
+			XmlNode xmlNodoGenerationTime;
+			XmlNode xmlNodoExpirationTime;
+			XmlNode xmlNodoService;
+
+			// PASO 1: Genero el Login Ticket Request 
+			#if !DEBUG
+			try {
+			#endif
+			solicitudXML = new XmlDocument ();
+			solicitudXML.LoadXml (solicitudPlantillaXML);
+
+			xmlNodoUniqueId = solicitudXML.SelectSingleNode ("//uniqueId");
+			xmlNodoGenerationTime = solicitudXML.SelectSingleNode ("//generationTime");
+			xmlNodoExpirationTime = solicitudXML.SelectSingleNode ("//expirationTime");
+			xmlNodoService = solicitudXML.SelectSingleNode ("//service");
+
+			var now = DateTime.Now;
+
+			xmlNodoUniqueId.InnerText = Convert.ToString (_globalUniqueID);
+			xmlNodoGenerationTime.InnerText = now.ToString ("s");
+			xmlNodoExpirationTime.InnerText = now.AddHours (12).ToString ("s");
+			xmlNodoService.InnerText = Servicio;
+
+			_globalUniqueID += 1;
+
+			return solicitudXML;
+			#if !DEBUG
+			} catch (Exception ex) {
+				throw new Exception ("Error GENERANDO el Ticket de requerimiento de acceso : " + ex.Message);
+			}
+			#endif
+		}
+
+		public RsaPrivateCrtKeyParameters ReadAsymmetricKeyParameter (string pemFilename)
+		{
+			var fileStream = File.OpenText (pemFilename);
+			var pemReader = new Org.BouncyCastle.OpenSsl.PemReader (fileStream);
+			var KeyParameter = (AsymmetricKeyParameter)pemReader.ReadObject ();
+			return (RsaPrivateCrtKeyParameters)KeyParameter;
+		}
+
+		public string SignData (string msg, RsaPrivateCrtKeyParameters privKey)
+		{
+			try {
+				byte[] msgBytes = Encoding.UTF8.GetBytes (msg);
+
+				ISigner signer = SignerUtilities.GetSigner ("SHA1withRSA");
+				signer.Init (true, privKey);
+				signer.BlockUpdate (msgBytes, 0, msgBytes.Length);
+				byte[] sigBytes = signer.GenerateSignature ();
+
+				return Convert.ToBase64String (sigBytes);
+			} catch (Exception exc) {
+				Console.WriteLine ("Signing Failed: " + exc);
+				return null;
+			}
+		}
+
+		static AsymmetricKeyParameter readPrivateKey (string privateKeyFileName)
+		{
+			AsymmetricCipherKeyPair keyPair;
+
+			using (var reader = File.OpenText (privateKeyFileName))
+				keyPair = (AsymmetricCipherKeyPair)new Org.BouncyCastle.OpenSsl.PemReader (reader).ReadObject ();
+
+			return keyPair.Private;
 		}
 	}
 }
