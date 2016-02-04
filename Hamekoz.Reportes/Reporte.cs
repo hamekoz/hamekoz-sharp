@@ -61,6 +61,19 @@ namespace Hamekoz.Reportes
 			set;
 		}
 
+		bool hasTitleAndSubjetOnAllPages;
+
+		public bool HasTitleAndSubjetOnAllPages {
+			get {
+				return hasTitleAndSubjetOnAllPages;
+			}
+			set {
+				hasTitleAndSubjetOnAllPages = value;
+				HasTituloPrimerPagina = !value && HasTituloPrimerPagina;
+				HasAsuntoPrimerPagina = !value && HasAsuntoPrimerPagina;
+			}
+		}
+
 		public void Iniciar ()
 		{
 			pdfWriter = PdfWriter.GetInstance (document, new FileStream (FileName, FileMode.Create));
@@ -99,6 +112,18 @@ namespace Hamekoz.Reportes
 				pageEventHandler.HasWaterMarkImage = true;
 				pageEventHandler.WaterMarkImagePath = MarcaDeAguaImagenUri;
 				pageEventHandler.WaterMarkOpacity = marcaDeAguaTransparencia;
+			}
+
+			if (HasTitleAndSubjetOnAllPages) {
+				pageEventHandler.HasTitleAndSubjet = true;
+				pageEventHandler.Title = Titulo;
+				pageEventHandler.Subjet = Asunto;
+				document.SetMargins (
+					document.LeftMargin,
+					document.RightMargin,
+					document.TopMargin + 65,
+					document.BottomMargin
+				);
 			}
 
 			pdfWriter.PageEvent = pageEventHandler;
