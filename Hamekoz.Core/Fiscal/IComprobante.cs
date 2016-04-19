@@ -26,26 +26,26 @@ namespace Hamekoz.Fiscal
 {
 	public interface IComprobante
 	{
-		IResponsable Responsable { get;}
+		IResponsable Responsable { get; }
 
-        string Numero { get; set; }
+		string Numero { get; set; }
 
-		string PuntoDeVenta { get;}
+		string PuntoDeVenta { get; }
 
-		DateTime FechaDeEmision { get;}
+		DateTime FechaDeEmision { get; }
 
 		IList<IItem> Items { get; }
 
-		double Total { get; }
+		decimal Total { get; }
 
-		double SubTotal { get;}
+		decimal SubTotal { get; }
 
-		double IVA { get; }
+		decimal IVA { get; }
 
-		double NOGravado { get;}
+		decimal NoGravado { get; }
 
-		double Percepciones { get;}
+		decimal Percepciones { get; }
 
-		string Observaciones { get;}
+		string Observaciones { get; }
 	}
 }

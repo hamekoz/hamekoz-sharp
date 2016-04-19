@@ -21,6 +21,7 @@
 
 namespace Hamekoz.Fiscal
 {
+	//UNDONE refactorizar nombres de propiedades pasar todo los valores monetarios a decimal
 	public interface IZeta
 	{
 		int NumeroReporte { get; set; }

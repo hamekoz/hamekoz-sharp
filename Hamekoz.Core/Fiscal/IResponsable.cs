@@ -27,6 +27,7 @@ namespace Hamekoz.Fiscal
 
 		string RazonSocial { get; }
 
+		//HACK ver si la interfaz IResponsable deberia usar la clase Domicilio
 		string Domicilio { get; }
 
 		SituacionIVA CondicionDeIVA { get; }

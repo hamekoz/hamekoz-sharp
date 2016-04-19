@@ -27,16 +27,16 @@ namespace Hamekoz.Fiscal
 
 		string DescripcionCorta { get; }
 
-		double Cantidad { get; }
+		decimal Cantidad { get; }
 
-		double Precio { get; }
+		decimal Precio { get; }
 
-		double IVA { get; }
+		decimal IVA { get; }
 
-		double TasaIVA { get; }
+		decimal TasaIVA { get; }
 
-		double Impuestos { get; }
+		decimal Impuestos { get; }
 
-		double Total { get; }
+		decimal Total { get; }
 	}
 }
