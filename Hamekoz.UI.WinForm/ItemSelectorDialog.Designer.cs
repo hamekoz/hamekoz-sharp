@@ -21,7 +21,7 @@
 
 namespace Hamekoz.UI.WinForm
 {
-	partial class DialogItemSelector
+	partial class ItemSelectorDialog
 	{
 		/// <summary>
 		/// Variable del diseñador requerida.

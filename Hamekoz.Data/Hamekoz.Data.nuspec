@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Hamekoz.Data</id>
+    <version>1.0.0</version>
+    <authors>Claudio Rodrigo Pereyra Diaz</authors>
+    <owners>Hamekoz</owners>
+    <licenseUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/hamekoz/hamekoz-sharp</projectUrl>
+    <iconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Facilita el acceso a bases de datos de forma agnostica al motor de base de datos utilizado.</description>
+    <releaseNotes>First release.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>mono database hamekoz</tags>
+  </metadata>
+  <files>
+    <file src="lib/net40/Hamekoz.Data.dll" target="lib" />
+    <file src="lib/netcore45/Hamekoz.Data.dll" target="lib" />
+  </files>
+</package>
