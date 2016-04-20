@@ -55,7 +55,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 			throw new NotImplementedException ();
 		}
 
-		public void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, double vueltoefectivo)
+		public void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, decimal vueltoefectivo)
 		{
 			throw new NotImplementedException ();
 		}
