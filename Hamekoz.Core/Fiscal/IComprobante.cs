@@ -32,7 +32,7 @@ namespace Hamekoz.Fiscal
 
 		string PuntoDeVenta { get; }
 
-		DateTime FechaDeEmision { get; }
+		DateTime Emision { get; }
 
 		IList<IItem> Items { get; }
 
