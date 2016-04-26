@@ -21,6 +21,7 @@
 
 namespace Hamekoz.Fiscal
 {
+	//TODO Renombrar a TiposDeControladorFiscal
 	public enum TipoDeControladorFiscal
 	{
 		SIN_DATO = 0,
