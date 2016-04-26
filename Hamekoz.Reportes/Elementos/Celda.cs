@@ -24,10 +24,6 @@ namespace Hamekoz.Reportes
 {
 	public class Celda
 	{
-		public Celda ()
-		{
-		}
-
 		public Object Dato { get; set; }
 
 		public Alineaciones Alineacion { get; set; }

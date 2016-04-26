@@ -24,10 +24,6 @@ namespace Hamekoz.Reportes
 {
 	public class Columna
 	{
-		public Columna ()
-		{
-		}
-
 		public String Nombre { get; set; }
 
 		public int Ancho { get; set; }
