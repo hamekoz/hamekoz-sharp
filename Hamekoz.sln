@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Data", "Hamekoz.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Reportes", "Hamekoz.Reportes\Hamekoz.Reportes.csproj", "{29DC07C7-4B1A-4AC2-99A5-7AE8C795A62A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.UI.Gtk", "Hamekoz.UI.Gtk\Hamekoz.UI.Gtk.csproj", "{35F2BA75-C58A-46F9-866E-B528671FB0D0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.UI.WinForm", "Hamekoz.UI.WinForm\Hamekoz.UI.WinForm.csproj", "{9184B746-F0F7-41A3-B0EA-7FE5D1B8BBCF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz", "Hamekoz\Hamekoz.csproj", "{6201BB5D-2825-4E51-B610-1230C5585362}"
@@ -55,14 +53,6 @@ Global
 		{29DC07C7-4B1A-4AC2-99A5-7AE8C795A62A}.Release Win|Any CPU.Build.0 = Release|Any CPU
 		{29DC07C7-4B1A-4AC2-99A5-7AE8C795A62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29DC07C7-4B1A-4AC2-99A5-7AE8C795A62A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35F2BA75-C58A-46F9-866E-B528671FB0D0}.Debug Win|Any CPU.ActiveCfg = Debug Win|Any CPU
-		{35F2BA75-C58A-46F9-866E-B528671FB0D0}.Debug Win|Any CPU.Build.0 = Debug Win|Any CPU
-		{35F2BA75-C58A-46F9-866E-B528671FB0D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35F2BA75-C58A-46F9-866E-B528671FB0D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35F2BA75-C58A-46F9-866E-B528671FB0D0}.Release Win|Any CPU.ActiveCfg = Release Win|Any CPU
-		{35F2BA75-C58A-46F9-866E-B528671FB0D0}.Release Win|Any CPU.Build.0 = Release Win|Any CPU
-		{35F2BA75-C58A-46F9-866E-B528671FB0D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35F2BA75-C58A-46F9-866E-B528671FB0D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3B25FD1F-CEBA-4450-8893-DC330FDB56A7}.Debug Win|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B25FD1F-CEBA-4450-8893-DC330FDB56A7}.Debug Win|Any CPU.Build.0 = Debug|Any CPU
 		{3B25FD1F-CEBA-4450-8893-DC330FDB56A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
