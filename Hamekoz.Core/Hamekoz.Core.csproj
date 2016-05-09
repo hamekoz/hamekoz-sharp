@@ -44,18 +44,12 @@
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\NumericExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Interfaces\IAutorizable.cs" />
-    <Compile Include="Interfaces\IDescriptible.cs" />
-    <Compile Include="Interfaces\IPersistible.cs" />
-    <Compile Include="Interfaces\ISupervisor.cs" />
     <Compile Include="Numalet.cs" />
     <Compile Include="ValidationDataException.cs" />
-    <Compile Include="Interfaces\IController.cs" />
-    <Compile Include="Interfaces\IIdentifiable.cs" />
-    <Compile Include="Interfaces\ISearchable.cs" />
     <Compile Include="Extensions\BooleanExtension.cs" />
     <Compile Include="Extensions\TypeExtension.cs" />
   </ItemGroup>
+  <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" Condition="Exists('..\Hamekoz.Shared\Hamekoz.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
 </Project>

@@ -37,6 +37,8 @@ Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Hamekoz", "Hamekoz.locale\H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Argentina.Afip", "Hamekoz.Argentina.Afip\Hamekoz.Argentina.Afip.csproj", "{E79A4EB9-F6CE-4124-A71A-0E56D6999FE3}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hamekoz.Shared", "Hamekoz.Shared\Hamekoz.Shared.shproj", "{5BF8AF42-F3DB-4842-ADC0-CE95561138B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
