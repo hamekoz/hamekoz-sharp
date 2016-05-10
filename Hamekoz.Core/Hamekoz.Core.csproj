@@ -33,21 +33,8 @@
     <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fiscal\IComprobante.cs" />
-    <Compile Include="Fiscal\IComprobanteElectronico.cs" />
-    <Compile Include="Fiscal\IItem.cs" />
-    <Compile Include="Fiscal\IResponsable.cs" />
-    <Compile Include="Fiscal\IZeta.cs" />
-    <Compile Include="Fiscal\SituacionIVA.cs" />
-    <Compile Include="Fiscal\TipoControladorFiscal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Extensions\DateTimeExtensions.cs" />
-    <Compile Include="Extensions\NumericExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Numalet.cs" />
-    <Compile Include="ValidationDataException.cs" />
     <Compile Include="Extensions\BooleanExtension.cs" />
-    <Compile Include="Extensions\TypeExtension.cs" />
   </ItemGroup>
   <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" Condition="Exists('..\Hamekoz.Shared\Hamekoz.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
