@@ -53,11 +53,13 @@ namespace Hamekoz.Reportes
 
 		#region Properties
 
-		public bool HasHeaderAndFooter{ get; set; }
+		public bool HasHeaderAndFooter { get; set; }
 
-		public bool HasWaterMarkImage{ get; set; }
+		public bool HasWaterMarkImage { get; set; }
 
-		public bool HasWaterMarkText{ get; set; }
+		public bool HasWaterMarkText { get; set; }
+
+		public bool HasTitleAndSubjet { get; set; }
 
 		string header = string.Empty;
 
@@ -120,6 +122,16 @@ namespace Hamekoz.Reportes
 			}
 		}
 
+		public string Title {
+			get;
+			set;
+		}
+
+		public string Subjet {
+			get;
+			set;
+		}
+
 		#endregion
 
 		public override void OnOpenDocument (PdfWriter writer, Document document)
@@ -137,6 +149,39 @@ namespace Hamekoz.Reportes
 				PrintHeader (document);
 				PrintFooter (writer, document);
 			}
+			if (HasTitleAndSubjet) {
+				PrintTitleAndSubjet (document);
+			}
+		}
+
+		void PrintTitleAndSubjet (Document document)
+		{
+			Font titleFont = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 22);
+			Font subjetFont = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 14);
+
+			contentByte.BeginText ();
+			contentByte.SetFontAndSize (titleFont.BaseFont, titleFont.CalculatedSize);
+			contentByte.ShowTextAligned ((int)Alineaciones.Centrado, Title, (document.Right - document.Left) / 2 + document.Left, document.Top + 32, 0);
+			contentByte.EndText ();
+
+			contentByte.Stroke ();
+
+			contentByte.BeginText ();
+			contentByte.SetFontAndSize (subjetFont.BaseFont, subjetFont.CalculatedSize);
+			contentByte.ShowTextAligned ((int)Alineaciones.Centrado, Subjet, (document.Right - document.Left) / 2 + document.Left, document.Top + 11, 0);
+			contentByte.EndText ();
+
+			contentByte.Stroke ();
+
+			contentByte.MoveTo (
+				document.PageSize.GetLeft (document.LeftMargin),
+				document.PageSize.GetTop (document.TopMargin - 5)
+			);
+			contentByte.LineTo (
+				document.PageSize.GetRight (document.RightMargin),
+				document.PageSize.GetTop (document.TopMargin - 5)
+			);
+			contentByte.Stroke ();
 		}
 
 		void PrintHeader (Document document)
@@ -164,18 +209,18 @@ namespace Hamekoz.Reportes
 
 			contentByte.MoveTo (
 				document.PageSize.GetLeft (document.LeftMargin),
-				document.PageSize.GetTop (document.TopMargin - 5)
+				document.PageSize.GetTop (document.TopMargin - 5 - (HasTitleAndSubjet ? 65 : 0))
 			);
 			contentByte.LineTo (
 				document.PageSize.GetRight (document.RightMargin),
-				document.PageSize.GetTop (document.TopMargin - 5)
+				document.PageSize.GetTop (document.TopMargin - 5 - (HasTitleAndSubjet ? 65 : 0))
 			);
 			contentByte.Stroke ();
 
 			headerTable.WriteSelectedRows (
 				0, -1,
 				document.PageSize.GetLeft (document.LeftMargin),
-				document.PageSize.GetTop (document.TopMargin - 20),
+				document.PageSize.GetTop (document.TopMargin - 20 - (HasTitleAndSubjet ? 65 : 0)),
 				contentByte
 			);
 		}
@@ -266,7 +311,7 @@ namespace Hamekoz.Reportes
 			template.SetFontAndSize (font.BaseFont, font.Size);
 			template.SetColorFill (font.Color);
 			template.SetTextMatrix (0, 0);
-			template.ShowText ((writer.PageNumber - 1).ToString ());
+			template.ShowText ((writer.PageNumber).ToString ());
 			template.EndText ();
 		}
 	}

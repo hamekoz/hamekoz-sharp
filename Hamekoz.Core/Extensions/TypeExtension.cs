@@ -21,7 +21,7 @@
 using System;
 using System.Linq;
 
-namespace Hamekoz.Core
+namespace Hamekoz.Extensions
 {
 	public static class TypeExtension
 	{

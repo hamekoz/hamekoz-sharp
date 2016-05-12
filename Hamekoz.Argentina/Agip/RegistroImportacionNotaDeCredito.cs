@@ -120,7 +120,7 @@ namespace Hamekoz.Argentina.Agip
 				, CodigoDeNorma
 				, FechaDeRetencionPercepcion
 				, RetecionPercepcionADeducir
-				, Alicuota
+				, Alicuota >= 100 ? 99.99 : Alicuota
 			                );
 			if (cadena.Length != 119) {
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nNota de credito: {0}", NroNotaDeCredito));

@@ -56,6 +56,8 @@ namespace Hamekoz.Reportes
 
 		float MargenIzquierdo { get; set; }
 
+		bool HasTitleAndSubjetOnAllPages { get; set; }
+
 		void Agregar (IElemento elemento);
 
 		void Iniciar ();

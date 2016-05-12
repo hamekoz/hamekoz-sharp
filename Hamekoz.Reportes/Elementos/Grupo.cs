@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using System.Collections.Generic;
 using iTextSharp.text;
 
@@ -26,12 +25,8 @@ namespace Hamekoz.Reportes
 {
 	public class Grupo : IElemento
 	{
-		public Grupo ()
-		{
-		}
-
-		IList<IElemento> contenido = new List<IElemento> ();
-		IList<Grupo> subgrupos = new List<Grupo> ();
+		readonly IList<IElemento> contenido = new List<IElemento> ();
+		readonly IList<Grupo> subgrupos = new List<Grupo> ();
 
 		public Parrafo Texto { get; set; }
 
@@ -59,7 +54,7 @@ namespace Hamekoz.Reportes
 		public IElement GetElemento ()
 		{
 			Section grupo;
-			Paragraph texto = (Paragraph)Texto.GetElemento ();
+			var texto = (Paragraph)Texto.GetElemento ();
 			if (Parent == null) {
 				grupo = new ChapterAutoNumber (texto);
 			} else {

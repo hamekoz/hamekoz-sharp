@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using System.Collections.Generic;
 using iTextSharp.text;
 
@@ -34,14 +33,14 @@ namespace Hamekoz.Reportes
 
 		public Alineaciones Alineacion { get; set; }
 
-		private int size = 10;
+		int size = 10;
 
 		public int Size {
 			get { return Size; }
 			set { size = value; }
 		}
 
-		private IList<string> fragmentos = new List<string> ();
+		readonly IList<string> fragmentos = new List<string> ();
 
 		public void Agregar (string texto)
 		{

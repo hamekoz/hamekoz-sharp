@@ -28,6 +28,8 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 	{
 		#region IFiscalHasar implementation
 
+		public DateTime FechaHora { get; set; }
+
 		public void ImprimirComprobanteCuentaCorriente (IComprobante factura)
 		{
 			throw new NotImplementedException ();
@@ -53,7 +55,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 			throw new NotImplementedException ();
 		}
 
-		public void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, double vueltoefectivo)
+		public void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, decimal vueltoefectivo)
 		{
 			throw new NotImplementedException ();
 		}
