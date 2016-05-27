@@ -51,7 +51,8 @@ namespace Hamekoz.UI
 		TextArea creditsText = new TextArea {
 			Text = string.Format (Catalog.GetString ("Written by {0}"),	"\n" + "Claudio Rodrigo Pereyra Diaz \n" + "Ezequiel Carlos Taranto \n" + "Emiliano Gabriel Canedo \n" + "Juan Angel Dinamarca \n" + ""),
 			ReadOnly = true,
-			TextAlignment = Alignment.Center,			
+			TextAlignment = Alignment.Center,
+			CanGetFocus = false,			
 		};
 
 		ScrollView licenseScroll = new ScrollView ();
@@ -71,6 +72,8 @@ namespace Hamekoz.UI
 			"along with this program.  If not, see <http://www.gnu.org/licenses/>.\n" +
 			"",
 			ReadOnly = true,
+			CanGetFocus = false,
+			//FIXME Revisar TextArea. Se puede modificar el texto a pesar de las restricciones.
 		};
 
 		public About ()

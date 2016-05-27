@@ -27,7 +27,7 @@ namespace Hamekoz.Extensions
 	{
 		public static string[] GetPropertiesNames (this Type t)
 		{
-			return t.GetProperties ().Select (p => p.Name).ToArray<string> ();
+			return t.GetProperties ().Select (p => p.Name+"=").ToArray<string> ();
 		}
 	}
 }
