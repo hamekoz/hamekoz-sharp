@@ -4,6 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <rodrigo@hamekoz.com.ar>
 //		 Ezequiel Taranto <ezequiel89@gmail.com>
+//       Juan Angel Dinamarca <juan.angel.dinamarca@gmail.com>
 //
 //  Copyright (c) 2014 Hamekoz
 //
@@ -19,80 +20,39 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Hamekoz.Extensions
 {
 	public static class StringExtensions
 	{
-		/// <summary>
-		/// String to the camel case convension.
-		/// </summary>
-		/// <returns>String camelized.</returns>
-		/// <param name="the_string">The string.</param>
-		[Obsolete ("Use Humanizer from nuget")]
-		public static string ToCamelCase (this string the_string)
+		//TODO VERIFICAR QUE SEA EL METODO CORRECTO
+		public static string ToBasicASCII (this string texto)
 		{
-			// If there are 0 or 1 characters, just return the string.
-			if (the_string == null || the_string.Length < 2)
-				return the_string;
-
-			// Split the string into words.
-			string[] words = the_string.Split (
-				                 new char[] { },
-				                 StringSplitOptions.RemoveEmptyEntries);
-
-			// Combine the words.
-			string result = words [0].ToLower ();
-			for (int i = 1; i < words.Length; i++) {
-				result +=
-					words [i].Substring (0, 1).ToUpper () +
-				words [i].Substring (1);
+			const string consignos = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇ";
+			const string sinsignos = "aaaeeeiiiooouuunAAAEEEIIIOOOUUUNcC";
+			var textoSinAcentos = new StringBuilder (texto.Length);
+			int indexConAcento;
+			foreach (char caracter in texto) {
+				indexConAcento = consignos.IndexOf (caracter);
+				if (indexConAcento > -1)
+					textoSinAcentos.Append (sinsignos.Substring (indexConAcento, 1));
+				else
+					textoSinAcentos.Append (caracter);
 			}
-
-			return result;
+			return textoSinAcentos.ToString ();
 		}
 
-		/// <summary>
-		/// Convert CamelCase to string with spaces.
-		/// </summary>
-		/// <returns>The title case.</returns>
-		/// <param name="s">S.</param>
-		[Obsolete ("Use Humanizer from nuget")]
-		public static string ToTitleCase (this string s)
+		private static readonly Regex emailRegex = new Regex (@"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$", RegexOptions.IgnoreCase);
+
+		public static bool CheckEmailFormat (this string email)
 		{
-			s = System.Text.RegularExpressions.Regex.Replace (s, "[A-Z]", " $0").Remove (0, 1);
-			s = s.ToLower ();
-			//s = char.ToUpper(s[0]) + s.Substring(1);
-			//Console.Out.WriteLine (System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase (s));
-			char[] a = s.ToCharArray ();
-			a [0] = char.ToUpper (a [0]);
-			s = new string (a);
-			return s;
+			if (!string.IsNullOrWhiteSpace (email)) {
+				return emailRegex.IsMatch (email.Trim ());
+			}
+			return false;
 		}
-
-		[Obsolete ("Use Humanizer from nuget")]
-		public static string ToHumanize (this string value)
-		{
-			string[] spacedWords
-			= ((IEnumerable<char>)value).Skip (1)
-				.Select (c => c == char.ToUpper (c)
-					? " " + char.ToLower (c)
-					: c.ToString ()).ToArray ();
-
-			string result = value.Substring (0, 1)
-			                + (String.Join ("", spacedWords)).Trim ();
-			result = result.Replace ("  ", " ");
-			return result;
-		}
-
-		[Obsolete ("Use Humanizer from nuget")]
-		public static string ToName (this string value)
-		{
-			return CultureInfo.CurrentCulture.TextInfo.ToTitleCase (value.ToLower ());
-		}
+	
 	}
 }

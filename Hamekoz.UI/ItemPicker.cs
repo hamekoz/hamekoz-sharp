@@ -3,6 +3,7 @@
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
+//       Mariano Adrian Ripa <ripamariano@gmail.com>
 //
 //  Copyright (c) 2015 Hamekoz
 //
@@ -26,139 +27,6 @@ using Xwt;
 
 namespace Hamekoz.UI
 {
-	[Obsolete ("Use ItemPicker<T>")]
-	public class ItemPicker : TextEntry, IListBoxFilter
-	{
-		readonly ListBoxFilter listBoxFilter = new ListBoxFilter {
-			RealTimeFilter = false,
-			ExpandHorizontal = true,
-			ExpandVertical = true,
-			HeightRequest = 150,
-			WidthRequest = 350,
-		};
-
-		public ItemPicker ()
-		{
-			ReadOnly = true;
-			PlaceholderText = Catalog.GetString ("Click o press Intro or Space to select one item");
-			TooltipText = Catalog.GetString ("Click o press Intro or Space to select one item from the list");
-
-			var popover = new Popover {
-				Content = listBoxFilter,
-			};
-
-			Activated += delegate {
-				popover.Show (Popover.Position.Top, this);
-			};
-			ButtonPressed += delegate {
-				popover.Show (Popover.Position.Top, this);
-			}; 
-
-			popover.Closed += delegate {
-				if (SelectedItem != null) {
-					try {
-						Text = SelectedItem.GetType ().GetProperty (FieldDescription).GetValue (SelectedItem, null).ToString ();
-					} catch {
-						Text = SelectedItem.ToString ();
-					}
-				} else {
-					Text = string.Empty;
-				}
-			};
-			listBoxFilter.ListBox.RowActivated += delegate {
-				if (SelectedItem != null) {
-					popover.Hide ();
-				}
-			};
-
-			listBoxFilter.SelectionItemChanged += SelectionItemChanged;
-		}
-
-		#region IListBoxFilter implementation
-
-		public event ListBoxFilterSelectionChanged SelectionItemChanged;
-
-		public void SetList<T> (IList<T> typedList)
-		{
-			listBoxFilter.SetList<T> (typedList);
-			Text = string.Empty;
-		}
-
-		public T GetSelectedItem<T> ()
-		{
-			return listBoxFilter.GetSelectedItem<T> ();
-		}
-
-		public IList<T> GetSelectedItems<T> ()
-		{
-			return listBoxFilter.GetSelectedItems<T> ();
-		}
-
-		public string FieldDescription {
-			get {
-				return listBoxFilter.FieldDescription;
-			}
-			set {
-				listBoxFilter.FieldDescription = value;
-				Text = string.Empty;
-			}
-		}
-
-		public bool RealTimeFilter {
-			get {
-				return listBoxFilter.RealTimeFilter;
-			}
-			set {
-				listBoxFilter.RealTimeFilter = value;
-			}
-		}
-
-		public IList<object> List {
-			get {
-				return listBoxFilter.List;
-			}
-			set {
-				listBoxFilter.List = value;
-				Text = string.Empty;
-			}
-		}
-
-		public object SelectedItem {
-			get {
-				return listBoxFilter.SelectedItem;
-			}
-			set {
-				listBoxFilter.SelectedItem = value;
-				if (value == null)
-					Text = string.Empty;
-			}
-		}
-
-		public bool MultipleSelection {
-			get {
-				return listBoxFilter.MultipleSelection;
-			}
-			set {
-				listBoxFilter.MultipleSelection = value;
-			}
-		}
-
-		public IList<object> SelectedItems {
-			get {
-				return listBoxFilter.SelectedItems;
-			}
-		}
-
-		#endregion
-
-		//		protected virtual void OnSelectionItemChanged ()
-		//		{
-		//			var handler = SelectionItemChanged;
-		//			if (handler != null)
-		//				handler ();
-		//		}
-	}
-
 	public class ItemPicker<T> : TextEntry, IListBoxFilter<T>
 	{
 		Type type = typeof(T);
@@ -182,10 +50,12 @@ namespace Hamekoz.UI
 			};
 
 			Activated += delegate {
-				popover.Show (Popover.Position.Top, this);
+				if (!DisabledPicker)
+					popover.Show (Popover.Position.Top, this);
 			};
 			ButtonPressed += delegate {
-				popover.Show (Popover.Position.Top, this);
+				if (!DisabledPicker)
+					popover.Show (Popover.Position.Top, this);
 			}; 
 
 			popover.Closed += delegate {
@@ -207,6 +77,8 @@ namespace Hamekoz.UI
 
 			Changed += (sender, e) => OnSelectionItemChanged (e);
 		}
+
+		public bool DisabledPicker { get; set; }
 
 		#region IListBoxFilter implementation
 
@@ -276,6 +148,7 @@ namespace Hamekoz.UI
 				return listBoxFilter.SelectedItems;
 			}
 		}
+
 
 		#endregion
 
