@@ -21,6 +21,7 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Hamekoz.Extensions
 {
@@ -42,5 +43,16 @@ namespace Hamekoz.Extensions
 			}
 			return textoSinAcentos.ToString ();
 		}
+
+		private static readonly Regex emailRegex = new Regex (@"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$", RegexOptions.IgnoreCase);
+
+		public static bool CheckEmailFormat (this string email)
+		{
+			if (!string.IsNullOrWhiteSpace (email)) {
+				return emailRegex.IsMatch (email.Trim ());
+			}
+			return false;
+		}
+	
 	}
 }
