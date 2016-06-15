@@ -50,27 +50,26 @@ namespace Hamekoz.UI
 			};
 
 			Activated += delegate {
-				if (!DisabledPicker)
+				if (!DisabledPicker) {
 					popover.Show (Popover.Position.Top, this);
+					listBoxFilter.Search.SetFocus ();
+				}
+				
 			};
 			ButtonPressed += delegate {
-				if (!DisabledPicker)
+				if (!DisabledPicker) {
 					popover.Show (Popover.Position.Top, this);
+					listBoxFilter.Search.SetFocus ();
+				}
 			}; 
 
 			popover.Closed += delegate {
-				if (SelectedItem != null) {
-					try {
-						Text = fieldDescription.GetValue (SelectedItem, null).ToString ();
-					} catch {
-						Text = SelectedItem.ToString ();
-					}
-				} else {
-					Text = string.Empty;
-				}
+				if (listBoxFilter.SelectedItem != null)
+					SelectedItem = listBoxFilter.SelectedItem;
 			};
+
 			listBoxFilter.ListBox.RowActivated += delegate {
-				if (SelectedItem != null) {
+				if (listBoxFilter.SelectedItem != null) {
 					popover.Hide ();
 				}
 			};
@@ -79,6 +78,11 @@ namespace Hamekoz.UI
 		}
 
 		public bool DisabledPicker { get; set; }
+
+		public void ClearPicker ()
+		{
+			listBoxFilter.Search.Text = string.Empty;
+		}
 
 		#region IListBoxFilter implementation
 
@@ -116,21 +120,16 @@ namespace Hamekoz.UI
 			}
 		}
 
+		T selectedItem;
+
 		public T SelectedItem {
 			get {
-				return listBoxFilter.SelectedItem;
+				return selectedItem;
 			}
 			set {
+				selectedItem = value;
 				listBoxFilter.SelectedItem = value;
-				if (value != null) {
-					try {
-						Text = fieldDescription.GetValue (value, null).ToString ();
-					} catch {
-						Text = value.ToString ();
-					}
-				} else {
-					Text = string.Empty;
-				}
+				OnSelectionItemChanged (null);
 			}
 		}
 
@@ -149,11 +148,20 @@ namespace Hamekoz.UI
 			}
 		}
 
-
 		#endregion
 
 		protected virtual void OnSelectionItemChanged (EventArgs e)
 		{
+			if (selectedItem != null) {
+				try {
+					Text = fieldDescription.GetValue (selectedItem, null).ToString ();
+				} catch {
+					Text = selectedItem.ToString ();
+				}
+			} else {
+				Text = string.Empty;
+			}
+
 			var handler = SelectionItemChanged;
 			if (handler != null)
 				handler (this, e);
