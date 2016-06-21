@@ -54,14 +54,14 @@ namespace Hamekoz.UI
 					popover.Show (Popover.Position.Top, this);
 					listBoxFilter.Search.SetFocus ();
 				}
-				
+
 			};
 			ButtonPressed += delegate {
 				if (!DisabledPicker) {
 					popover.Show (Popover.Position.Top, this);
 					listBoxFilter.Search.SetFocus ();
 				}
-			}; 
+			};
 
 			popover.Closed += delegate {
 				if (listBoxFilter.SelectedItem != null)
