@@ -45,12 +45,14 @@
     <Compile Include="Afip\Afip.cs" />
     <Compile Include="Arba\Arba.cs" />
     <Compile Include="Arba\RegistroPadronUnificado.cs" />
+    <Compile Include="SIAP\RegistroDeImportacionIVA.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Agip\" />
     <Folder Include="Afip\" />
     <Folder Include="Arba\" />
+    <Folder Include="SIAP\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.Data\Hamekoz.Data.csproj">
