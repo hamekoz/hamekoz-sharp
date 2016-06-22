@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
+using System.Reflection;
 
 namespace Hamekoz.Data
 {
@@ -143,6 +144,60 @@ namespace Hamekoz.Data
 				t.Rows.Add (row);
 			}
 			return ds;
+		}
+
+		public static DataSet ToDataSet<T> (this IEnumerable<T> collection)
+		{
+			var dataSet = new DataSet ();
+			dataSet.Tables.Add (collection.ToDataTable ());
+			return dataSet;
+		}
+
+		/// <summary>
+		/// Tos the data table.
+		/// </summary>
+		/// <returns>The data table.</returns>
+		/// <param name="collection">Collection.</param>
+		/// <param name="tableName">Table name.</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		///<remarks>https://blogs.msdn.microsoft.com/dataaccesstechnologies/2009/04/08/how-to-convert-an-ienumerable-to-a-datatable-in-the-same-way-as-we-use-tolist-or-toarray/</remarks>
+		public static DataTable ToDataTable<T> (this IEnumerable<T> collection, string tableName)
+		{
+			DataTable table = ToDataTable (collection);
+			table.TableName = tableName;
+			return table;
+		}
+
+		/// <summary>
+		/// Tos the data table.
+		/// </summary>
+		/// <returns>The data table.</returns>
+		/// <param name="collection">Collection.</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		/// ///<remarks>https://blogs.msdn.microsoft.com/dataaccesstechnologies/2009/04/08/how-to-convert-an-ienumerable-to-a-datatable-in-the-same-way-as-we-use-tolist-or-toarray/</remarks>
+		public static DataTable ToDataTable<T> (this IEnumerable<T> collection)
+		{
+			var dt = new DataTable ();
+			Type t = typeof(T);
+			PropertyInfo[] pia = t.GetProperties ();
+
+			//Create the columns in the DataTable
+			foreach (PropertyInfo pi in pia) {
+				dt.Columns.Add (pi.Name, pi.PropertyType);
+			}
+
+			//Populate the table
+			foreach (T item in collection) {
+				DataRow dr = dt.NewRow ();
+				dr.BeginEdit ();
+				foreach (PropertyInfo pi in pia) {
+					dr [pi.Name] = pi.GetValue (item, null);
+				}
+				dr.EndEdit ();
+				dt.Rows.Add (dr);
+			}
+
+			return dt;
 		}
 	}
 }
