@@ -33,7 +33,7 @@ namespace Hamekoz.Argentina.Sifere
 		/// </summary>
 		/// <value>The codigo de norma.</value>
 		/// <see href="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
-		public int CodigoJurisdiccion {
+		public string CodigoJurisdiccion {
 			get;
 			set;
 		}
@@ -43,32 +43,32 @@ namespace Hamekoz.Argentina.Sifere
 			set;
 		}
 
-		public DateTime FechaRetencionPercepcion {
+		public DateTime Fecha {
 			get;
 			set;
 		}
 
-		public string NroSucursal {
+		public string Sucursal {
 			get;
 			set;
 		}
 
-		public string NroConstancia {
+		public string Constancia {
 			get;
 			set;
 		}
 
-		public TipoDeComprobante TipoDeComprobanteOrigenDeLaRetencion {
+		public string TipoDeComprobante {
 			get;
 			set;
 		}
 
-		public string LetraDelComprobante {
+		public string Letra {
 			get;
 			set;
 		}
 
-		public string NroComprobanteOriginal {
+		public string NroComprobante {
 			get;
 			set;
 		}
@@ -79,7 +79,12 @@ namespace Hamekoz.Argentina.Sifere
 			set;
 		}
 
-	
+
+		public bool esPercepcion {
+			get;
+			set;
+		}
+
 
 		/// <summary>
 		/// Tos the fixed string.
@@ -95,11 +100,11 @@ namespace Hamekoz.Argentina.Sifere
 			string cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7:00000000.00}"
 				, CodigoJurisdiccion
 				, CUIT
-				, FechaRetencionPercepcion
-				, NroSucursal
-				, NroConstancia
-				, (int)TipoDeComprobanteOrigenDeLaRetencion
-				, LetraDelComprobante
+				, Fecha
+				, Sucursal
+				, Constancia.PadLeft (8, '0')
+				, TipoDeComprobante
+				, Letra
 				, Importe
 			                );
 			if (cadena.Length != 51) {
@@ -108,6 +113,7 @@ namespace Hamekoz.Argentina.Sifere
 
 			return cadena;
 		}
+
 
 		public string ToFixedStringRetencion ()
 		{
@@ -118,15 +124,15 @@ namespace Hamekoz.Argentina.Sifere
 			string cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}{8:00000000.00}"
 				, CodigoJurisdiccion
 				, CUIT
-				, FechaRetencionPercepcion
-				, NroSucursal.PadLeft (4, '0')
-				, NroConstancia.PadLeft (16, '0')
-				, (int)TipoDeComprobanteOrigenDeLaRetencion
-				, LetraDelComprobante
-				, NroComprobanteOriginal.PadLeft (20, '0')
+				, Fecha
+				, Sucursal
+				, Constancia.PadLeft (16, '0')
+				, TipoDeComprobante
+				, Letra
+				, NroComprobante
 				, Importe
 			                );
-			if (cadena.Length != 71) {
+			if (cadena.Length != 79) {
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
 			}
 

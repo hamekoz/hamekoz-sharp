@@ -33,7 +33,10 @@ namespace Hamekoz.Argentina.Sifere
 		{
 			StreamWriter sw = File.CreateText (archivo);
 			foreach (var registro in registros) {
-				//sw.WriteLine (registro.ToFixedString ());
+				if (registro.esPercepcion)
+					sw.WriteLine (registro.ToFixedStringPercepcion ());
+				else
+					sw.WriteLine (registro.ToFixedStringRetencion ());
 			}
 			sw.Close ();
 		}
