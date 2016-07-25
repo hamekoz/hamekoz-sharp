@@ -136,6 +136,11 @@ namespace Hamekoz.Argentina.Citi
 			set;
 		}
 
+		public string CodigoCiti {
+			get;
+			set;
+		}
+
 		public string OtrosTributos {
 			get;
 			set;
@@ -150,9 +155,9 @@ namespace Hamekoz.Argentina.Citi
 		{
 
 
-			string cadena = string.Format ("{0:yyyyMMdd}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}{22}{23}"
+			string cadena = string.Format ("{0:yyyyMMdd}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}"
 				, Fecha
-				, Tipo
+				, CodigoCiti
 				, PuntoVenta
 				, Comprobante
 				, Comprobante //Hasta
@@ -163,8 +168,8 @@ namespace Hamekoz.Argentina.Citi
 				, Neto
 				, PercepcionNoCategorizados
 				, Exento
-				, IVA
-				, NoGrabados //Ingresos Brutos
+				//, IVA
+				//, NoGrabados //Ingresos Brutos
 				, PercepcionesIVA
 				, PercepcionesIB
 				, PercepcionMunicipal
