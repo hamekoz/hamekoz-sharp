@@ -75,12 +75,32 @@ namespace Hamekoz.Argentina.Citi
 			set;
 		}
 
+		public string NetoDif1 {
+			get;
+			set;
+		}
+
+		public string NetoDif2 {
+			get;
+			set;
+		}
+
 		public string Exento {
 			get;
 			set;
 		}
 
 		public string IVA {
+			get;
+			set;
+		}
+
+		public string IVADif1 {
+			get;
+			set;
+		}
+
+		public string IVADif2 {
 			get;
 			set;
 		}
@@ -156,6 +176,11 @@ namespace Hamekoz.Argentina.Citi
 			set;
 		}
 
+		public string IVAAlicuota {
+			get;
+			set;
+		}
+
 		public string ToFixedString ()
 		{
 
@@ -193,6 +218,29 @@ namespace Hamekoz.Argentina.Citi
 
 			return cadena;
 		}
+
+
+		public string ToFixedStringAlicuotas ()
+		{
+
+
+			string cadena = string.Format ("{0}{1}{2}{3}{4}{5}{6}{7}"				
+				, TipoComprobante
+				, PuntoVenta
+				, NroComprobante
+				, CodDocumento
+				, NroDocumento
+				, Neto
+				, IVAAlicuota //puede ser 10.5 21 o 27%
+				, IVA
+			                );
+			if (cadena.Length != 84) {
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
+			}
+
+			return cadena;
+		}
+
 
 	}
 }

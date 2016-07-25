@@ -25,7 +25,7 @@ namespace Hamekoz.Argentina.Citi
 {
 	public static class Citi
 	{
-		public static void ExportarVentas (List<RegistroImportacionCitiVentas> registros, string archivo)
+		public static void Exportar (List<RegistroImportacionCitiVentas> registros, string archivo)
 		{
 			StreamWriter sw = File.CreateText (archivo);
 			sw.NewLine = "\r\n";
@@ -35,7 +35,7 @@ namespace Hamekoz.Argentina.Citi
 			sw.Close ();
 		}
 
-		public static void ExportarVentasAlicuotas (List<RegistroImportacionCitiVentas> registros, string archivo)
+		public static void ExportarAlicuotas (List<RegistroImportacionCitiVentas> registros, string archivo)
 		{
 			StreamWriter sw = File.CreateText (archivo);
 			sw.NewLine = "\r\n";
@@ -52,6 +52,30 @@ namespace Hamekoz.Argentina.Citi
 			sw.NewLine = "\r\n";
 			foreach (var registro in registros) {
 				sw.WriteLine (registro.ToFixedString ());
+			}
+			sw.Close ();
+		}
+
+		public static void ExportarAlicuotas (List<RegistroImportacionCitiCompras> registros, string archivo)
+		{
+			StreamWriter sw = File.CreateText (archivo);
+			sw.NewLine = "\r\n";
+			foreach (var registro in registros) {
+
+				if (decimal.Parse (registro.Neto) == 0) {//no es 21%
+
+					if (decimal.Parse (registro.NetoDif1) != 0) {//es 10.5%
+						registro.Neto = registro.NetoDif1;
+						registro.IVA = registro.IVADif1;
+						registro.IVAAlicuota = "0004";
+					} else {
+						registro.Neto = registro.NetoDif2; //es 27%
+						registro.IVA = registro.IVADif2;
+						registro.IVAAlicuota = "0006";
+					}
+				}
+
+				sw.WriteLine (registro.ToFixedStringAlicuotas ());
 			}
 			sw.Close ();
 		}
