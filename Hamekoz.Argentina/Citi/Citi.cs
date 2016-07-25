@@ -28,6 +28,7 @@ namespace Hamekoz.Argentina.Citi
 		public static void ExportarVentas (List<RegistroImportacionCitiVentas> registros, string archivo)
 		{
 			StreamWriter sw = File.CreateText (archivo);
+			sw.NewLine = "\r\n";
 			foreach (var registro in registros) {
 				sw.WriteLine (registro.ToFixedString ());
 			}
@@ -37,6 +38,7 @@ namespace Hamekoz.Argentina.Citi
 		public static void ExportarVentasAlicuotas (List<RegistroImportacionCitiVentas> registros, string archivo)
 		{
 			StreamWriter sw = File.CreateText (archivo);
+			sw.NewLine = "\r\n";
 			foreach (var registro in registros) {
 				sw.WriteLine (registro.ToFixedStringAlicuotas ());
 			}
@@ -47,6 +49,7 @@ namespace Hamekoz.Argentina.Citi
 		{
 
 			StreamWriter sw = File.CreateText (archivo);
+			sw.NewLine = "\r\n";
 			foreach (var registro in registros) {
 				sw.WriteLine (registro.ToFixedString ());
 			}

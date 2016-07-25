@@ -170,7 +170,7 @@ namespace Hamekoz.Argentina.Citi
 				, RazonSocial
 				, Total
 				, Neto
-				, IVA
+				, Exento
 				, PercepcionesACuentaIVA
 				, PercepcionesACuentaOtros
 				, PercepcionesIB
@@ -187,7 +187,7 @@ namespace Hamekoz.Argentina.Citi
 				, IVAComision
 
 			                );
-			if (cadena.Length != 51) {
+			if (cadena.Length != 325) {
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
 			}
 
