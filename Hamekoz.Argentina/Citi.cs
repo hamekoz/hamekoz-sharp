@@ -1,5 +1,5 @@
 ﻿//
-//  Sifere.cs
+//  Citi.cs
 //
 //  Author:
 //       Mariano Ripa <ripamariano@gmail.com>
@@ -18,39 +18,15 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 
-
-using System.Collections.Generic;
-using System.IO;
-
-
-namespace Hamekoz.Argentina.Sifere
+namespace Hamekoz.Argentina
 {
-	public static class Sifere
+	public class Citi
 	{
-		public static void Exportar (List<RegistroImportacionRetencionPercepcion> registros, string archivo)
+		public Citi ()
 		{
-			StreamWriter sw = File.CreateText (archivo);
-			foreach (var registro in registros) {
-				if (registro.esPercepcion)
-					sw.WriteLine (registro.ToFixedStringPercepcion ());
-				else
-					sw.WriteLine (registro.ToFixedStringRetencion ());
-			}
-			sw.Close ();
 		}
-
-		/*public static void Exportar (List<RegistroImportacionNotaDeCredito> registros, string archivo)
-		{
-
-			StreamWriter sw = File.CreateText (archivo);
-			foreach (var registro in registros) {
-				sw.WriteLine (registro.ToFixedString ());
-			}
-			sw.Close ();
-		}*/
-
-
 	}
 }
 

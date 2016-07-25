@@ -49,6 +49,9 @@
     <Compile Include="Sifere\Sifere.cs" />
     <Compile Include="Sifere\RegistroImportacionRetencionPercepcion.cs" />
     <Compile Include="Sifere\Enumerados.cs" />
+    <Compile Include="Citi\Citi.cs" />
+    <Compile Include="Citi\RegistroImportacionCitiVentas.cs" />
+    <Compile Include="Citi\RegistroImportacionCitiCompras.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -57,6 +60,7 @@
     <Folder Include="Arba\" />
     <Folder Include="SIAP\" />
     <Folder Include="Sifere\" />
+    <Folder Include="Citi\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.Data\Hamekoz.Data.csproj">
