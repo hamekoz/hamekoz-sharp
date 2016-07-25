@@ -24,12 +24,12 @@ namespace Hamekoz.Argentina.Citi
 {
 	public class RegistroImportacionCitiCompras
 	{
-		public string Fecha {
+		public DateTime Fecha {
 			get;
 			set;
 		}
 
-		public string CUIT {
+		public string TipoComprobante {
 			get;
 			set;
 		}
@@ -65,42 +65,47 @@ namespace Hamekoz.Argentina.Citi
 		}
 
 
-		public decimal Total {
+		public string Total {
 			get;
 			set;
 		}
 
-		public decimal Neto {
+		public string Neto {
 			get;
 			set;
 		}
 
-		public decimal IVA {
+		public string Exento {
 			get;
 			set;
 		}
 
-		public decimal PercepcionesACuentaIVA {
+		public string IVA {
 			get;
 			set;
 		}
 
-		public decimal PercepcionesACuentaOtros {
+		public string PercepcionesACuentaIVA {
 			get;
 			set;
 		}
 
-		public decimal PercepcionesIB {
+		public string PercepcionesACuentaOtros {
 			get;
 			set;
 		}
 
-		public decimal PercepcionesMunicipales {
+		public string PercepcionesIB {
 			get;
 			set;
 		}
 
-		public decimal ImpuestosInternos {
+		public string PercepcionesMunicipales {
+			get;
+			set;
+		}
+
+		public string ImpuestosInternos {
 			get;
 			set;
 		}
@@ -111,12 +116,12 @@ namespace Hamekoz.Argentina.Citi
 		}
 
 
-		public decimal TipoDeCambio {
+		public string TipoDeCambio {
 			get;
 			set;
 		}
 
-		public int CantidadAlicuotaIVA {
+		public string CantidadAlicuotaIVA {
 			get;
 			set;
 		}
@@ -126,12 +131,12 @@ namespace Hamekoz.Argentina.Citi
 			set;
 		}
 
-		public decimal CreditoFiscal {
+		public string CreditoFiscal {
 			get;
 			set;
 		}
 
-		public decimal OtrosTributos {
+		public string OtrosTributos {
 			get;
 			set;
 		}
@@ -146,7 +151,7 @@ namespace Hamekoz.Argentina.Citi
 			set;
 		}
 
-		public decimal IVAComision {
+		public string IVAComision {
 			get;
 			set;
 		}
@@ -154,9 +159,9 @@ namespace Hamekoz.Argentina.Citi
 		public string ToFixedString ()
 		{
 
-			string cadena = string.Format ("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}{22}{23}{24}"
+			string cadena = string.Format ("{0:yyyyMMdd}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}{22}{23}{24}"
 				, Fecha
-				, CUIT
+				, TipoComprobante
 				, PuntoVenta
 				, NroComprobante
 				, Despacho
