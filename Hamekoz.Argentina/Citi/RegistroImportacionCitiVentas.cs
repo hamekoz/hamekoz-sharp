@@ -188,6 +188,29 @@ namespace Hamekoz.Argentina.Citi
 			return cadena;
 		}
 
+
+
+		public string ToFixedStringAlicuotas ()
+		{
+
+
+			string cadena = string.Format ("{0}{1}{2}{3}{4}{5}"				
+				, CodigoCiti
+				, PuntoVenta
+				, Comprobante
+				, Neto
+				, "0005" //simpre al 21%
+				, IVA
+			                );
+			if (cadena.Length != 62) {
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
+			}
+
+			return cadena;
+		}
+
+
+
 	}
 }
 
