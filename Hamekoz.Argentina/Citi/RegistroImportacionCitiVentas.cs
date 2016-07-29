@@ -151,6 +151,12 @@ namespace Hamekoz.Argentina.Citi
 			set;
 		}
 
+		public string IVAAlicuota {
+			get;
+			set;
+		}
+
+
 		public string ToFixedString ()
 		{
 
@@ -199,7 +205,7 @@ namespace Hamekoz.Argentina.Citi
 				, PuntoVenta
 				, Comprobante
 				, Neto
-				, "0005" //simpre al 21%
+				, IVAAlicuota //simpre al 21% o Exento
 				, IVA
 			                );
 			if (cadena.Length != 62) {

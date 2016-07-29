@@ -194,7 +194,7 @@ namespace Hamekoz.Argentina.Citi
 				, NroDocumento
 				, RazonSocial
 				, Total
-				, Neto
+				, "000000000000000"
 				, Exento
 				, PercepcionesACuentaIVA
 				, PercepcionesACuentaOtros
