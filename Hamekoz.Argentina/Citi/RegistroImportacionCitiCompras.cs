@@ -181,6 +181,11 @@ namespace Hamekoz.Argentina.Citi
 			set;
 		}
 
+		public string NoInscripto {
+			get;
+			set;
+		}
+
 		public string ToFixedString ()
 		{
 
@@ -194,7 +199,7 @@ namespace Hamekoz.Argentina.Citi
 				, NroDocumento
 				, RazonSocial
 				, Total
-				, "000000000000000"
+				, NoInscripto
 				, Exento
 				, PercepcionesACuentaIVA
 				, PercepcionesACuentaOtros

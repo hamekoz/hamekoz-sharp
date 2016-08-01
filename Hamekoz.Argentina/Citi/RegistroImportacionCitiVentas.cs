@@ -174,8 +174,6 @@ namespace Hamekoz.Argentina.Citi
 				, "000000000000000"
 				, PercepcionNoCategorizados
 				, Exento
-				//, IVA
-				//, NoGrabados //Ingresos Brutos
 				, PercepcionesIVA
 				, PercepcionesIB
 				, PercepcionMunicipal

@@ -82,13 +82,6 @@ namespace Hamekoz.Argentina.Citi
 						registro.IVAAlicuota = "0006";
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
 					}
-//					if (decimal.Parse (registro.Exento) != 0) {//Exento
-//						registro.Neto = "000000000000000";
-//						registro.IVA = "000000000000000";
-//						registro.IVAAlicuota = "0003";//Exento
-//						sw.WriteLine (registro.ToFixedStringAlicuotas ());
-//						registro.CantidadAlicuotaIVA = (int.Parse (registro.CantidadAlicuotaIVA) - 1).ToString ();
-//					}
 				} else if (int.Parse (registro.CantidadAlicuotaIVA) == 1) {
 					if (decimal.Parse (registro.IVA) != 0) {//es 21%
 						registro.Neto = registro.Neto;
@@ -108,18 +101,16 @@ namespace Hamekoz.Argentina.Citi
 						registro.IVAAlicuota = "0006";
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
 					}
-					if (decimal.Parse (registro.IVA) == 0 && decimal.Parse (registro.IVADif1) == 0 && decimal.Parse (registro.IVADif2) == 0) {
-						if (decimal.Parse (registro.Exento) != 0) {//Exento
-							registro.Neto = "000000000000000";
-							registro.IVA = "000000000000000";
-							registro.IVAAlicuota = "0003";//Exento
-							sw.WriteLine (registro.ToFixedStringAlicuotas ());
-						}	
+					if (decimal.Parse (registro.IVA) == 0 && decimal.Parse (registro.IVADif1) == 0 && decimal.Parse (registro.IVADif2) == 0) {						
+						registro.Neto = "000000000000000";
+						registro.IVA = "000000000000000";
+						registro.IVAAlicuota = "0003";//0%
+						sw.WriteLine (registro.ToFixedStringAlicuotas ());
 					}
 				} else { 
 					if (registro.TipoComprobante != "006" || registro.TipoComprobante != "007" || registro.TipoComprobante != "008" || registro.TipoComprobante != "009" || registro.TipoComprobante != "011" || registro.TipoComprobante != "012" || registro.TipoComprobante != "013" || registro.TipoComprobante != "015") {
 						//NoGravado
-						registro.IVAAlicuota = "0003";//NoGravado
+						registro.IVAAlicuota = "0003";//0%
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
 					}
 				}
