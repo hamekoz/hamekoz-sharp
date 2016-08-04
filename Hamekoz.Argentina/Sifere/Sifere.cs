@@ -28,16 +28,22 @@ namespace Hamekoz.Argentina.Sifere
 {
 	public static class Sifere
 	{
-		public static void Exportar (List<RegistroImportacionRetencionPercepcion> registros, string archivo)
+		public static int Exportar (List<RegistroImportacionRetencionPercepcion> registros, string archivo)
 		{
 			StreamWriter sw = File.CreateText (archivo);
+			var c = 0;
 			foreach (var registro in registros) {
+
+				if (string.IsNullOrEmpty (registro.CUIT))
+					c++;
+
 				if (registro.esPercepcion)
 					sw.WriteLine (registro.ToFixedStringPercepcion ());
 				else
 					sw.WriteLine (registro.ToFixedStringRetencion ());
 			}
 			sw.Close ();
+			return c;
 		}
 
 		/*public static void Exportar (List<RegistroImportacionNotaDeCredito> registros, string archivo)

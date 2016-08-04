@@ -107,7 +107,7 @@ namespace Hamekoz.Argentina.Sifere
 				, Letra
 				, Importe
 			                );
-			if (cadena.Length != 51) {
+			if ((cadena.Length != 51) && (cadena.Length != 38)) {
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
 			}
 
@@ -132,7 +132,7 @@ namespace Hamekoz.Argentina.Sifere
 				, NroComprobante
 				, Importe
 			                );
-			if (cadena.Length != 79) {
+			if ((cadena.Length != 79) && (cadena.Length != 66)) {
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
 			}
 
