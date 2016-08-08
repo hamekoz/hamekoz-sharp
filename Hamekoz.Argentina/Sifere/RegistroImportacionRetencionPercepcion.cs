@@ -74,7 +74,7 @@ namespace Hamekoz.Argentina.Sifere
 		}
 
 
-		public decimal Importe {
+		public string Importe {
 			get;
 			set;
 		}
@@ -97,7 +97,7 @@ namespace Hamekoz.Argentina.Sifere
 				throw new Exception (string.Format ("El monto sujeto no es correcto.\nRazon Social: {0}\nComprobante: {1}", RazonSocialDelRetenido, NroDeComprobante));
 			}*/
 
-			string cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7:00000000.00}"
+			string cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}"
 				, CodigoJurisdiccion
 				, CUIT
 				, Fecha
@@ -121,7 +121,7 @@ namespace Hamekoz.Argentina.Sifere
 				throw new Exception (string.Format ("El monto sujeto no es correcto.\nRazon Social: {0}\nComprobante: {1}", RazonSocialDelRetenido, NroDeComprobante));
 			}*/
 
-			string cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}{8:00000000.00}"
+			string cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}{8}"
 				, CodigoJurisdiccion
 				, CUIT
 				, Fecha
