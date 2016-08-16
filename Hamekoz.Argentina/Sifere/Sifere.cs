@@ -46,6 +46,20 @@ namespace Hamekoz.Argentina.Sifere
 			return c;
 		}
 
+
+		public static void ExportarRecaudaciones (List<RegistroRecaudacionesBancarias> registros, string archivo)
+		{
+			StreamWriter sw = File.CreateText (archivo);
+
+			foreach (var registro in registros) {
+				
+				sw.WriteLine (registro.ToFixedString ());
+			
+			}
+			sw.Close ();
+		
+		}
+
 		/*public static void Exportar (List<RegistroImportacionNotaDeCredito> registros, string archivo)
 		{
 
