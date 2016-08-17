@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Hamekoz.Negocio;
 
 namespace Hamekoz.Argentina.Sifere
 {
@@ -55,7 +56,10 @@ namespace Hamekoz.Argentina.Sifere
 			set;
 		}
 
-
+		public Banco Banco {
+			get;
+			set;
+		}
 
 		public string Importe {
 			get;
@@ -78,11 +82,11 @@ namespace Hamekoz.Argentina.Sifere
 				, CBU
 				, TipoCuenta
 				, TipoMoneda
-				, Importe
+				, Importe.PadLeft (10, '0')
 			                );
-			/*if (cadena.Length != 51) {
+			if (cadena.Length != 58) {
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
-			}*/
+			}
 
 			return cadena;
 		}
