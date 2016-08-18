@@ -40,6 +40,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\NumericExtensions.cs" />
     <Compile Include="Extensions\TypeExtension.cs" />
+    <Compile Include="PlatformHacks.cs" />
   </ItemGroup>
   <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" Condition="Exists('..\Hamekoz.Shared\Hamekoz.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
