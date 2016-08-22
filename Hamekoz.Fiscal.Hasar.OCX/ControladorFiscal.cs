@@ -263,7 +263,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
             fiscalHasar.CerrarComprobanteFiscal(1, out numero);
         }*/
 
-		public void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, double vueltoefectivo)
+		public void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, decimal vueltoefectivo)
 		{
 			abortar = false;
 
@@ -315,7 +315,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 
 			//IMPRIMO RENGLONES
 			foreach (IItem renglon in factura.Items) {
-				fiscalHasar.ImprimirItem (renglon.DescripcionCorta, renglon.Cantidad, renglon.Precio, renglon.TasaIVA, renglon.Impuestos);
+				fiscalHasar.ImprimirItem (renglon.DescripcionCorta, (double)renglon.Cantidad, (double)renglon.Precio, (double)renglon.TasaIVA, (double)renglon.Impuestos);
 				if (fiscalHasar.HuboErrorFiscal) {
 					Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
 					fiscalHasar.CancelarComprobante ();
@@ -331,7 +331,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 				if (recibo != null) {
 					foreach (IItem ren in recibo.Items) {
 						Console.WriteLine ((ren.Total + vueltoefectivo));
-						fiscalHasar.ImprimirPago (ren.Descripcion, ren.Total + vueltoefectivo, "", out vuelto);
+						fiscalHasar.ImprimirPago (ren.Descripcion, (double)(ren.Total + vueltoefectivo), "", out vuelto);
 						if (fiscalHasar.HuboErrorFiscal) {
 							Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
 							fiscalHasar.CancelarComprobante ();
@@ -339,7 +339,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 						}
 					}
 				} else {
-					fiscalHasar.ImprimirPago ("CUENTA CORRIENTE", factura.Total, "", out vuelto);
+					fiscalHasar.ImprimirPago ("CUENTA CORRIENTE", (double)factura.Total, "", out vuelto);
 					if (fiscalHasar.HuboErrorFiscal) {
 						Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
 						fiscalHasar.CancelarComprobante ();
