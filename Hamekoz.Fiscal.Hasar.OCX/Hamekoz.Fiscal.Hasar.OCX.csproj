@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="FiscalPrinterLib">
-      <Guid>{9C5C9460-5789-11DA-8CFB-0000E856BC17}</Guid>
+      <Guid>{39ABE45D-F077-4D34-A361-6906C77D67F7}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
@@ -58,10 +58,5 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Fiscal051122.ocx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 </Project>
