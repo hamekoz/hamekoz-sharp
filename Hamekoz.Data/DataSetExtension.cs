@@ -164,7 +164,7 @@ namespace Hamekoz.Data
 		public static DataTable ToDataTable<T> (this IEnumerable<T> collection, string tableName)
 		{
 			DataTable table = ToDataTable (collection);
-			table.TableName = tableName;
+			table.TableName = tableName.Replace ('/', ' ');
 			return table;
 		}
 
