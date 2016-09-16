@@ -21,13 +21,13 @@
 using System;
 using System.Linq;
 
-namespace Hamekoz.Core
+namespace Hamekoz.Extensions
 {
 	public static class TypeExtension
 	{
 		public static string[] GetPropertiesNames (this Type t)
 		{
-			return t.GetProperties ().Select (p => p.Name).ToArray<string> ();
+			return t.GetProperties ().Select (p => p.Name+"=").ToArray<string> ();
 		}
 	}
 }

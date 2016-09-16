@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
-
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -28,10 +27,6 @@ namespace Hamekoz.Reportes
 {
 	public class Tabla : IElemento
 	{
-		public Tabla ()
-		{
-		}
-
 		float fuenteTamaño = 7f;
 
 		public float FuenteTamaño {
@@ -52,14 +47,14 @@ namespace Hamekoz.Reportes
 			set { columnas = value; }
 		}
 
-		List<Object> datos = new List<Object> ();
+		readonly List<Object> datos = new List<Object> ();
 
 		public void AgregarDato (Object dato)
 		{
 			datos.Add (dato);
 		}
 
-		List<Object> totales = new List<Object> ();
+		readonly List<Object> totales = new List<Object> ();
 
 		public void AgregarTotal (Object total)
 		{
@@ -70,10 +65,9 @@ namespace Hamekoz.Reportes
 
 		public PdfPCell GetNewHeader (Columna columna)
 		{
-			//Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), 7, Font.BOLD | Font.UNDERLINE);
 			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño, Font.BOLD);
-			Phrase phrase = new Phrase (columna.Nombre, font);
-			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
+			var phrase = new Phrase (columna.Nombre, font);
+			var pdfPCell = new PdfPCell (tabla.DefaultCell);
 			pdfPCell.PaddingBottom = 3;
 			if (MostrarBordes) {
 				pdfPCell.BackgroundColor = BaseColor.LIGHT_GRAY;
@@ -89,7 +83,7 @@ namespace Hamekoz.Reportes
 		public PdfPCell GetNewTotal (Object total)
 		{
 			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño, Font.BOLD);
-			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
+			var pdfPCell = new PdfPCell (tabla.DefaultCell);
 			pdfPCell.PaddingTop = 2;
 			if (MostrarBordes) {
 				pdfPCell.BackgroundColor = BaseColor.LIGHT_GRAY;
@@ -128,7 +122,7 @@ namespace Hamekoz.Reportes
 				total = string.Format ("{0:#0.0000}", total);
 			}
 
-			Phrase phrase = new Phrase (total.ToString (), font);
+			var phrase = new Phrase (total.ToString (), font);
 			pdfPCell.Phrase = phrase;
 			return pdfPCell;
 		}
@@ -136,7 +130,7 @@ namespace Hamekoz.Reportes
 		public PdfPCell GetNewData (Object dato)
 		{
 			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño);
-			PdfPCell pdfPCell = new PdfPCell (tabla.DefaultCell);
+			var pdfPCell = new PdfPCell (tabla.DefaultCell);
 			pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 			if (dato is string) {
 				Alineaciones alineacionColumna = columnas [datos.IndexOf (dato) % columnas.Count].Alineacion;
@@ -168,15 +162,14 @@ namespace Hamekoz.Reportes
 				dato = string.Format ("{0:#0.0000}", dato);
 			}
 
-			Phrase phrase = new Phrase (dato.ToString (), font);
+			var phrase = new Phrase (dato.ToString (), font);
 			pdfPCell.Phrase = phrase;
 			return pdfPCell;
 		}
 
-
-		private float[] AnchoDeColumnas ()
+		float[] AnchoDeColumnas ()
 		{
-			List<float> anchos = new List<float> ();
+			var anchos = new List<float> ();
 			foreach (var columna in Columnas) {
 				anchos.Add (columna.Ancho);
 			}
@@ -193,7 +186,7 @@ namespace Hamekoz.Reportes
 			tabla.SpacingBefore = 3f;
 			tabla.SpacingAfter = 3f;
 			if (!MostrarBordes) {
-				tabla.DefaultCell.Border = PdfPCell.NO_BORDER;
+				tabla.DefaultCell.Border = Rectangle.NO_BORDER;
 			}
 			tabla.DefaultCell.BackgroundColor = new BaseColor (System.Drawing.Color.Transparent);
 			tabla.WidthPercentage = 100;

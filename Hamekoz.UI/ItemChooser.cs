@@ -108,6 +108,7 @@ namespace Hamekoz.UI
 			ExpandHorizontal = false,
 			VerticalPlacement = WidgetPlacement.Fill,
 			MarginLeft = 5,
+			WidthRequest = 300,
 		};
 
 		public Widget Widget {

@@ -35,7 +35,7 @@ namespace Hamekoz.Fiscal
 
 		void ImprimirRemitoProveedor (IComprobante remito);
 
-		void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, double vueltoefectivo);
+		void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, decimal vueltoefectivo);
 
 		void Iniciar ();
 
@@ -57,6 +57,6 @@ namespace Hamekoz.Fiscal
 		/// <param name = "zeta"></param>
 		void ReporteZ (IZeta zeta);
 
-        DateTime FechaHora { get; set; }
+		DateTime FechaHora { get; set; }
 	}
 }

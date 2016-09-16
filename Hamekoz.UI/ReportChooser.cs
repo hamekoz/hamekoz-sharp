@@ -28,14 +28,14 @@ namespace Hamekoz.UI
 	{
 		public event EventHandler PdfClicked, XlsClicked, ExportClicked;
 
-		readonly Button pdf = new Button {
+		public readonly Button pdf = new Button {
 			Label = "PDF",
 			ExpandHorizontal = true,
 			HorizontalPlacement = WidgetPlacement.Fill,
 			Image = Icons.Document.WithSize (IconSize.Medium),
 			ImagePosition = ContentPosition.Left,
 		};
-		readonly Button xls = new Button {
+		public readonly Button xls = new Button {
 			Label = "XLS",
 			ExpandHorizontal = true,
 			HorizontalPlacement = WidgetPlacement.Fill,

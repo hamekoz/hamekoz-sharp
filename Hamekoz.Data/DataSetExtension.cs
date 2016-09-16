@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace Hamekoz.Data
@@ -143,6 +144,159 @@ namespace Hamekoz.Data
 				t.Rows.Add (row);
 			}
 			return ds;
+		}
+
+		public static DataSet ToDataSet<T> (this IEnumerable<T> collection)
+		{
+			var dataSet = new DataSet ();
+			dataSet.Tables.Add (collection.ToDataTable ());
+			return dataSet;
+		}
+
+		/// <summary>
+		/// Tos the data table.
+		/// </summary>
+		/// <returns>The data table.</returns>
+		/// <param name="collection">Collection.</param>
+		/// <param name="tableName">Table name.</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		///<remarks>https://blogs.msdn.microsoft.com/dataaccesstechnologies/2009/04/08/how-to-convert-an-ienumerable-to-a-datatable-in-the-same-way-as-we-use-tolist-or-toarray/</remarks>
+		public static DataTable ToDataTable<T> (this IEnumerable<T> collection, string tableName)
+		{
+			DataTable table = ToDataTable (collection);
+			table.TableName = tableName.Replace ('/', ' ');
+			return table;
+		}
+
+		/// <summary>
+		/// Tos the data table.
+		/// </summary>
+		/// <returns>The data table.</returns>
+		/// <param name="collection">Collection.</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		/// ///<remarks>https://blogs.msdn.microsoft.com/dataaccesstechnologies/2009/04/08/how-to-convert-an-ienumerable-to-a-datatable-in-the-same-way-as-we-use-tolist-or-toarray/</remarks>
+		public static DataTable ToDataTable<T> (this IEnumerable<T> collection)
+		{
+			var dt = new DataTable ();
+			Type t = typeof(T);
+			PropertyInfo[] pia = t.GetProperties ();
+
+			//Create the columns in the DataTable
+			foreach (PropertyInfo pi in pia) {
+				dt.Columns.Add (pi.Name, pi.PropertyType);
+			}
+
+			//Populate the table
+			foreach (T item in collection) {
+				DataRow dr = dt.NewRow ();
+				dr.BeginEdit ();
+				foreach (PropertyInfo pi in pia) {
+					dr [pi.Name] = pi.GetValue (item, null);
+				}
+				dr.EndEdit ();
+				dt.Rows.Add (dr);
+			}
+
+			return dt;
+		}
+
+		/// <summary>
+		/// Gets a Inverted DataTable
+		/// </summary>
+		/// <param name="table">Provided DataTable</param>
+		/// <param name="columnX">X Axis Column</param>
+		/// <param name="columnY">Y Axis Column</param>
+		/// <param name="columnZ">Z Axis Column (values)</param>
+		/// <param name="nullValue">Whether to ignore some column, it must be 
+		/// provided here</param>
+		/// <param name="sumValues">null Values to be filled</param> 
+		/// <returns>C# Pivot Table Method  - Felipe Sabino</returns>
+		/// http://www.codeproject.com/Articles/22008/C-Pivot-Table
+		public static DataTable GetInversedDataTable (this DataTable table, string columnX, 
+		                                              string columnY, string columnZ, string nullValue, bool sumValues)
+		{
+			//Create a DataTable to Return
+			var returnTable = new DataTable ();
+
+			if (columnX == "")
+				columnX = table.Columns [0].ColumnName;
+
+			//Add a Column at the beginning of the table
+			returnTable.Columns.Add (columnY);
+
+			//Read all DISTINCT values from columnX Column in the provided DataTale
+			var columnXValues = new List<string> ();
+
+			foreach (DataRow dr in table.Rows) {
+
+				string columnXTemp = dr [columnX].ToString ();
+				if (!columnXValues.Contains (columnXTemp)) {
+					//Read each row value, if it's different from others provided, add to 
+					//the list of values and creates a new Column with its value.
+					columnXValues.Add (columnXTemp);
+					returnTable.Columns.Add (columnXTemp);
+				}
+			}
+
+			//Verify if Y and Z Axis columns re provided
+			if (columnY != "" && columnZ != "") {
+				//Read DISTINCT Values for Y Axis Column
+				var columnYValues = new List<string> ();
+
+				foreach (DataRow dr in table.Rows) {
+					if (!columnYValues.Contains (dr [columnY].ToString ()))
+						columnYValues.Add (dr [columnY].ToString ());
+				}
+
+				//Loop all Column Y Distinct Value
+				foreach (string columnYValue in columnYValues) {
+					//Creates a new Row
+					DataRow drReturn = returnTable.NewRow ();
+					drReturn [0] = columnYValue;
+					//foreach column Y value, The rows are selected distincted
+					DataRow[] rows = table.Select (columnY + "='" + columnYValue + "'");
+
+					//Read each row to fill the DataTable
+					foreach (DataRow dr in rows) {
+						string rowColumnTitle = dr [columnX].ToString ();
+
+						//Read each column to fill the DataTable
+						foreach (DataColumn dc in returnTable.Columns) {
+							if (dc.ColumnName == rowColumnTitle) {
+								//If Sum of Values is True it try to perform a Sum
+								//If sum is not possible due to value types, the value 
+								// displayed is the last one read
+								if (sumValues) {
+									try {
+										drReturn [rowColumnTitle] = 
+											Convert.ToDecimal (drReturn [rowColumnTitle]) +
+										Convert.ToDecimal (dr [columnZ]);
+									} catch {
+										drReturn [rowColumnTitle] = dr [columnZ];
+									}
+								} else {
+									drReturn [rowColumnTitle] = dr [columnZ];
+								}
+							}
+						}
+					}
+					returnTable.Rows.Add (drReturn);
+				}
+			} else {
+				throw new Exception ("The columns to perform inversion are not provided");
+			}
+
+			//if a nullValue is provided, fill the datable with it
+			if (nullValue != "") {
+				foreach (DataRow dr in returnTable.Rows) {
+					foreach (DataColumn dc in returnTable.Columns) {
+						if (dr [dc.ColumnName].ToString () == "")
+							dr [dc.ColumnName] = nullValue;
+					}
+				}
+			}
+
+			return returnTable;
 		}
 	}
 }
