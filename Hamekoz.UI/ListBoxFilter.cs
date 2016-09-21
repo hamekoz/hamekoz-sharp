@@ -335,5 +335,10 @@ namespace Hamekoz.UI
 			if (handler != null && !filtering)
 				handler (this, e);
 		}
+
+		public void ClearSearch ()
+		{
+			search.Text = string.Empty;
+		}
 	}
 }
