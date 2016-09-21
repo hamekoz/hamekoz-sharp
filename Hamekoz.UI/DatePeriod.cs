@@ -76,6 +76,19 @@ namespace Hamekoz.UI
 			}
 		}
 
+		bool withCalendarButton = true;
+
+		public bool WithCalendarButton {
+			get {
+				return withCalendarButton;
+			}
+			set {
+				withCalendarButton = value;
+				dateStart.WithCalendarButton = withCalendarButton;
+				dateEnd.WithCalendarButton = withCalendarButton;
+			}
+		}
+
 		public DateTime DateStart {
 			get {
 				return dateStart.DateTime;
