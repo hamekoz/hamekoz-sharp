@@ -40,7 +40,7 @@ namespace Hamekoz.UI
 		public static readonly Image GoNext = Image.FromResource ("Hamekoz.UI.Icons.go-next.png");
 		public static readonly Image GoPrevious = Image.FromResource ("Hamekoz.UI.Icons.go-previous.png");
 
-		public static readonly Image ListAdd = Image.FromResource ("Hamekoz.UI.Icons.list-add.svg");
+		public static readonly Image ListAdd = Image.FromResource ("Hamekoz.UI.Icons.list-add.png");
 
 		public static readonly Image ProcessStop = Image.FromResource ("Hamekoz.UI.Icons.process-stop.png");
 		public static readonly Image Starred = Image.FromResource ("Hamekoz.UI.Icons.starred.png");

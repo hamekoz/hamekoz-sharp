@@ -112,7 +112,6 @@
     <EmbeddedResource Include="Icons\document-properties.png" />
     <EmbeddedResource Include="Icons\edit-find-replace.png" />
     <EmbeddedResource Include="Icons\view-refresh.png" />
-    <EmbeddedResource Include="Icons\list-add.svg" />
     <EmbeddedResource Include="Icons\go-first.png" />
     <EmbeddedResource Include="Icons\go-jump.png" />
     <EmbeddedResource Include="Icons\go-last.png" />
@@ -121,5 +120,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\list-add.png" />
   </ItemGroup>
 </Project>
