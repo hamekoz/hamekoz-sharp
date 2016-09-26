@@ -138,8 +138,11 @@ namespace Hamekoz.UI
 			cancelar.Clicked += delegate {
 				if (isNew)
 					Widget.ValuesClean ();
-				else
+				else {
+					//FIX no deberia tener que recargar el objeto si no se persisten los cambios
+					controller.Load (Widget.Item);
 					Widget.ValuesRefresh ();
+				}
 				Editable (false);
 			};
 
