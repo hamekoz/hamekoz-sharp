@@ -66,6 +66,8 @@ namespace Hamekoz.UI
 		T SelectedItem { get; set; }
 
 		IList<T> SelectedItems { get; }
+
+		void UnselectAll ();
 	}
 }
 

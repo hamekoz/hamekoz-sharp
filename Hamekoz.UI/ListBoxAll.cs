@@ -318,6 +318,11 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public void UnselectAll ()
+		{
+			listBoxFilter.UnselectAll ();
+		}
+
 		#endregion
 
 		protected virtual void OnSelectionItemChanged (EventArgs e)

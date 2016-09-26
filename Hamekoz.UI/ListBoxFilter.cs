@@ -192,7 +192,7 @@ namespace Hamekoz.UI
 	{
 		Type type = typeof(T);
 
-		SearchTextEntry search;
+		readonly SearchTextEntry search;
 
 		internal SearchTextEntry Search {
 			get {
@@ -336,9 +336,14 @@ namespace Hamekoz.UI
 				handler (this, e);
 		}
 
-		public void ClearSearch ()
+		public void Refresh ()
 		{
-			search.Text = string.Empty;
+			FilterActivated (search, null);
+		}
+
+		public void UnselectAll ()
+		{
+			listBox.UnselectAll ();
 		}
 	}
 }
