@@ -155,6 +155,14 @@ namespace Hamekoz.UI
 
 		#endregion
 
+		public void Clear ()
+		{
+			Text = string.Empty;
+			UnselectAll ();
+			listBoxFilter.Search.Text = string.Empty;
+			listBoxFilter.Refresh ();
+		}
+
 		protected virtual void OnSelectionItemChanged (EventArgs e)
 		{
 			if (selectedItem != null) {
