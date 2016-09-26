@@ -80,6 +80,7 @@
     <Compile Include="About.cs" />
     <Compile Include="DatePeriod.cs" />
     <Compile Include="Search.cs" />
+    <Compile Include="Lame.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
