@@ -119,6 +119,7 @@
     <EmbeddedResource Include="Icons\go-next.png" />
     <EmbeddedResource Include="Icons\go-previous.png" />
     <EmbeddedResource Include="Icons\list-add.png" />
+    <EmbeddedResource Include="Icons\list-remove.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
