@@ -19,33 +19,18 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Hamekoz.Core;
+using Mono.Unix;
 using Xwt;
 
-//TODO Internacionalizar textos
 namespace Hamekoz.UI
 {
-	public interface ILameItem<T>
-	{
-		bool HasItem ();
-
-		T Item { get; set; }
-
-		void ValuesRefresh ();
-
-		void ValuesTake ();
-
-		void ValuesClean ();
-
-		void Editable (bool editable);
-	}
-
 	/// <summary>
 	/// Lame. List, Add, Modify, Erase
 	/// </summary>
 	public abstract class Lame<T> : ItemChooser<T>
 	{
-		new ILameItem<T> Widget {
-			get { return base.Widget as ILameItem<T>; }
+		new IItemUI<T> Widget {
+			get { return base.Widget as IItemUI<T>; }
 			set { base.Widget = (Widget)value; }
 		}
 
@@ -62,26 +47,26 @@ namespace Hamekoz.UI
 		}
 
 		readonly Button agregar = new Button {
-			Label = "Agregar",
+			Label = Catalog.GetString ("Add"),
 			Image = Icons.New.WithSize (IconSize.Medium),
 		};
 		readonly Button modificar = new Button {
-			Label = "Modificar",
+			Label = Catalog.GetString ("Modify"),
 			Sensitive = false,
 			Image = Icons.Edit.WithSize (IconSize.Medium),
 		};
 		readonly Button eliminar = new Button {
-			Label = "Eliminar",
+			Label = Catalog.GetString ("Erase"),
 			Sensitive = false,
 			Image = Icons.Delete.WithSize (IconSize.Medium),
 		};
 		readonly Button grabar = new Button {
-			Label = "Grabar",
+			Label = Catalog.GetString ("Save"),
 			Sensitive = false,
 			Image = Icons.Save.WithSize (IconSize.Medium),
 		};
 		readonly Button cancelar = new Button {
-			Label = "Cancelar",
+			Label = Catalog.GetString ("Cancel"),
 			Sensitive = false,
 			Image = Icons.ProcessStop.WithSize (IconSize.Medium),
 		};
@@ -113,7 +98,7 @@ namespace Hamekoz.UI
 			};
 
 			eliminar.Clicked += delegate {
-				if (Widget.HasItem () && MessageDialog.Confirm ("¿Está seguro que quiere eliminar?", Command.Yes)) {
+				if (Widget.HasItem () && MessageDialog.Confirm (Catalog.GetString ("Are you sure to erase this item?"), Command.Yes)) {
 					Controller.Remove (Widget.Item);
 					List.List.Remove (Widget.Item);
 					List.Refresh ();
@@ -131,7 +116,7 @@ namespace Hamekoz.UI
 					List.SelectedItem = Widget.Item;
 					Editable (false);
 				} catch (ValidationDataException ex) {
-					MessageDialog.ShowWarning ("Datos no validos", ex.Message);
+					MessageDialog.ShowWarning (Catalog.GetString ("Data is not valid"), ex.Message);
 				}
 			};
 
