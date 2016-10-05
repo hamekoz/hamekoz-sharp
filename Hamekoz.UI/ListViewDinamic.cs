@@ -34,7 +34,13 @@ namespace Hamekoz.UI
 		IList<T> list;
 
 		public T Current {
-			get { return list [SelectedRow]; }
+			get { 
+				T selected = default(T);
+				if (SelectedRow >= 0) {
+					selected = list [SelectedRow]; 	
+				}
+				return selected;
+			}
 		}
 
 		public IList<T> List {
