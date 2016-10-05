@@ -81,6 +81,7 @@
     <Compile Include="DatePeriod.cs" />
     <Compile Include="Search.cs" />
     <Compile Include="Lame.cs" />
+    <Compile Include="ISearchDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
