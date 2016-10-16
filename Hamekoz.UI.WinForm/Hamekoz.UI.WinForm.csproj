@@ -83,6 +83,7 @@
     <Compile Include="ItemSelectorDialog.Designer.cs">
       <DependentUpon>ItemSelectorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Hamekoz.ico" />

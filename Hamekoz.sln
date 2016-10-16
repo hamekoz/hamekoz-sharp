@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Argentina.Afip", "H
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hamekoz.Shared", "Hamekoz.Shared\Hamekoz.Shared.shproj", "{5BF8AF42-F3DB-4842-ADC0-CE95561138B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.Fiscal.Hasar.IFH2G", "Hamekoz.Fiscal.Hasar.IFH2G\Hamekoz.Fiscal.Hasar.IFH2G.csproj", "{2892BE94-282F-4DED-A995-079B6026D553}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,14 @@ Global
 		{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}.Release Win|Any CPU.Build.0 = Release|Any CPU
 		{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2892BE94-282F-4DED-A995-079B6026D553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2892BE94-282F-4DED-A995-079B6026D553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2892BE94-282F-4DED-A995-079B6026D553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2892BE94-282F-4DED-A995-079B6026D553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2892BE94-282F-4DED-A995-079B6026D553}.Debug Win|Any CPU.ActiveCfg = Debug|Any CPU
+		{2892BE94-282F-4DED-A995-079B6026D553}.Debug Win|Any CPU.Build.0 = Debug|Any CPU
+		{2892BE94-282F-4DED-A995-079B6026D553}.Release Win|Any CPU.ActiveCfg = Release|Any CPU
+		{2892BE94-282F-4DED-A995-079B6026D553}.Release Win|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{92494904-35FA-4DC9-BDE9-3A3E87AC49D3} = {FCD61DDE-E1C7-40AE-9227-1BD8699293EA}
@@ -190,12 +200,18 @@ Global
 		$0.NameConventionPolicy = $3
 		$3.Rules = $4
 		$4.NamingRule = $5
-		$5.Name = Namespaces
-		$5.AffectedEntity = Namespace
+		$5.Name = Type Parameters
+		$5.AffectedEntity = TypeParameter
 		$5.VisibilityMask = VisibilityMask
 		$5.NamingStyle = PascalCase
 		$5.IncludeInstanceMembers = True
 		$5.IncludeStaticEntities = True
+		$5.RequiredPrefixes = $42
+		$42.String = T
+		$5.RequiredSuffixes = $43
+		$43.String = Exception
+		$5.AllowedPrefixes = $44
+		$44.String = m_
 		$4.NamingRule = $6
 		$6.Name = Types
 		$6.AffectedEntity = Class, Struct, Enum, Delegate
@@ -342,7 +358,10 @@ Global
 		$31.inheritsSet = Mono
 		$0.TextStylePolicy = $32
 		$32.inheritsSet = null
-		$32.scope = text/x-csharp
+		$32.scope = text/microsoft-resx
+		$32.FileWidth = 120
+		$32.TabsToSpaces = False
+		$32.inheritsScope = text/plain
 		$0.CSharpFormattingPolicy = $33
 		$33.AfterDelegateDeclarationParameterComma = True
 		$33.inheritsSet = Mono
@@ -362,7 +381,8 @@ Global
 		$36.scope = application/config+xml
 		$0.XmlFormattingPolicy = $37
 		$37.inheritsSet = null
-		$37.scope = application/config+xml
+		$37.scope = text/microsoft-resx
+		$37.inheritsScope = application/xml
 		$0.TextStylePolicy = $38
 		$38.inheritsSet = null
 		$38.scope = application/xml
