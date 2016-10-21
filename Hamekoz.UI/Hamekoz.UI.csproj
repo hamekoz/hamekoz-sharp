@@ -85,6 +85,7 @@
     <Compile Include="Same.cs" />
     <Compile Include="IItemUI.cs" />
     <Compile Include="MultiSelect.cs" />
+    <Compile Include="ListBox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

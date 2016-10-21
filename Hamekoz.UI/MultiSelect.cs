@@ -132,5 +132,68 @@ namespace Hamekoz.UI
 			PackStart (list.WithLabel (Catalog.GetString ("Availables")), true, true);
 		}
 	}
+
+	public class MultiSelectListView<T> : ListView
+	{
+		readonly ListStore store;
+		readonly IDataField<bool> checkDataField = new DataField<bool> ();
+		readonly IDataField<T> itemDataField = new DataField<T> ();
+
+		IList<T> list;
+
+		public IList<T> List {
+			get {
+				return list;
+			}
+			set {
+				list = value;
+				StoreFill ();
+			}
+		}
+
+		IList<T> selectedItems;
+
+		public IList<T> SelectedItems {
+			get {
+				return selectedItems;
+			}
+			set {
+				selectedItems = value;
+				StoreFill ();
+				foreach (var item in selectedItems) {
+					int r = list.IndexOf (item);
+					store.SetValue (r, checkDataField, true);
+				}
+			}
+		}
+
+		public MultiSelectListView ()
+		{
+			store = new ListStore (checkDataField, itemDataField);
+			DataSource = store;
+		}
+
+		void StoreFill ()
+		{
+			store.Clear ();
+			foreach (var item in list) {
+				var r = store.AddRow ();
+				store.SetValue (r, checkDataField, false);
+				store.SetValue (r, itemDataField, item);
+			}
+		}
+
+		bool editable;
+
+		public bool Editable {
+			get {
+				return editable;
+			}
+			set {
+				editable = value;
+				StoreFill ();
+			}
+		}
+	}
 }
 
