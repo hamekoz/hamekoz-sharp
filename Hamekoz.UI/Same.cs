@@ -42,7 +42,7 @@ namespace Hamekoz.UI
 			HorizontalScrollPolicy = ScrollPolicy.Automatic,
 		};
 
-		internal IItemUI<T>  Widget {
+		public IItemUI<T>  Widget {
 			get { return scroller.Content as IItemUI<T>; }
 			set { scroller.Content = (Widget)value; }
 		}
@@ -84,25 +84,28 @@ namespace Hamekoz.UI
 
 		bool isNew;
 
-		internal ISearchDialog<T> dialogo;
+		public ISearchDialog<T> Dialogo {
+			get;
+			set;
+		}
 
 		protected Same ()
 		{
 			buscar.Clicked += delegate {
-				dialogo.Refresh ();
-				var r = dialogo.Run (ParentWindow);
+				Dialogo.Refresh ();
+				var r = Dialogo.Run (ParentWindow);
 				if (r == Command.Ok) {
-					if (dialogo.SelectedItem == null) {
+					if (Dialogo.SelectedItem == null) {
 						return;
 					}
-					var item = dialogo.SelectedItem;
+					var item = Dialogo.SelectedItem;
 					Controller.Load (item);
 					Widget.Item = item;
 					Widget.ValuesRefresh ();
 					Editable (false);
 					isNew = false;
 				}
-				dialogo.Hide ();
+				Dialogo.Hide ();
 			};
 
 			agregar.Clicked += delegate {
