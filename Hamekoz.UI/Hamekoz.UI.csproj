@@ -80,6 +80,12 @@
     <Compile Include="About.cs" />
     <Compile Include="DatePeriod.cs" />
     <Compile Include="Search.cs" />
+    <Compile Include="IItemUI.cs" />
+    <Compile Include="ISearchDialog.cs" />
+    <Compile Include="Lame.cs" />
+    <Compile Include="ListBox.cs" />
+    <Compile Include="MultiSelect.cs" />
+    <Compile Include="Same.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -118,6 +124,7 @@
     <EmbeddedResource Include="Icons\go-next.png" />
     <EmbeddedResource Include="Icons\go-previous.png" />
     <EmbeddedResource Include="Icons\list-add.png" />
+    <EmbeddedResource Include="Icons\list-remove.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
