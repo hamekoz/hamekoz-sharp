@@ -148,7 +148,20 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public void UnselectAll ()
+		{
+			listBoxFilter.UnselectAll ();
+		}
+
 		#endregion
+
+		public void Clear ()
+		{
+			Text = string.Empty;
+			UnselectAll ();
+			listBoxFilter.Search.Text = string.Empty;
+			listBoxFilter.Refresh ();
+		}
 
 		protected virtual void OnSelectionItemChanged (EventArgs e)
 		{

@@ -1,10 +1,11 @@
 ﻿//
-//  DecimalExtensions.cs
+//  NumericExtensions.cs
 //
 //  Author:
 //       Ezequiel Taranto <ezequiel89@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2014 Hamekoz
+//  Copyright (c) 2014 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -71,6 +72,11 @@ namespace Hamekoz.Extensions
 			return number.ToString (nfi);
 		}
 
+		public static string ToEnglishFormat (this decimal number)
+		{
+			NumberFormatInfo nfi = new CultureInfo ("en-US", false).NumberFormat;
+			return number.ToString (nfi);
+		}
 	}
 }
 
