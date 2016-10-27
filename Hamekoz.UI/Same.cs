@@ -29,7 +29,7 @@ namespace Hamekoz.UI
 	/// </summary>
 	public abstract class Same<T> : VBox where T : ISearchable
 	{
-		readonly HBox actionBox = new HBox {
+		readonly protected HBox actionBox = new HBox {
 			ExpandHorizontal = true,
 			ExpandVertical = true,
 			HorizontalPlacement = WidgetPlacement.Fill,
@@ -132,6 +132,7 @@ namespace Hamekoz.UI
 				try {
 					Widget.ValuesTake ();
 					Controller.Save (Widget.Item);
+					Widget.ValuesRefresh ();
 					Editable (false);
 				} catch (ValidationDataException ex) {
 					MessageDialog.ShowWarning (Catalog.GetString ("Data is not valid"), ex.Message);
