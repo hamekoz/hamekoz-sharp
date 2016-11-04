@@ -19,11 +19,14 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Xwt;
+using System.Collections.Generic;
 
 namespace Hamekoz.UI
 {
 	public interface ISearchDialog<T>
 	{
+		IList<T> List { get; set; }
+
 		T SelectedItem { get; }
 
 		Command Run (WindowFrame parentWindow);

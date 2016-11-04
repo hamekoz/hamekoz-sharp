@@ -25,6 +25,7 @@ using Xwt;
 
 namespace Hamekoz.UI
 {
+	//TODO agregar metodo click para poder ejecutar una accion al activar un renglon
 	public class ListViewDinamic<T> : ListView
 	{
 		readonly Type type;

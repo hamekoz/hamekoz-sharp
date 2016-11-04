@@ -34,6 +34,8 @@ namespace Hamekoz.UI
 		public static readonly Image EditFindReplace = Image.FromResource ("Hamekoz.UI.Icons.edit-find-replace.png");
 		public static readonly Image EditSelectAll = Image.FromResource ("Hamekoz.UI.Icons.edit-select-all.png");
 
+		public static readonly Image Folder = Image.FromResource ("Hamekoz.UI.Icons.folder.png");
+
 		public static readonly Image GoFirst = Image.FromResource ("Hamekoz.UI.Icons.go-first.png");
 		public static readonly Image GoJump = Image.FromResource ("Hamekoz.UI.Icons.go-jump.png");
 		public static readonly Image GoLast = Image.FromResource ("Hamekoz.UI.Icons.go-last.png");

@@ -47,6 +47,11 @@ namespace Hamekoz.Argentina.Agip
 			sw.Close ();
 		}
 
+		public static void DescargarPadronDeContribuyentesRegimenGeneral ()
+		{
+			Process.Start ("http://www.agip.gob.ar/agentes/agentes-de-recaudacion-e-informacion");
+		}
+
 		public static void DescargarPadronDeContribuyentesDeRiesgoFiscal ()
 		{
 			Process.Start ("http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm");
@@ -56,6 +61,12 @@ namespace Hamekoz.Argentina.Agip
 		{
 			Process.Start ("http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html");
 		}
+
+		public static void DescargarPadronDeContribuyentesRegimenSimplificado ()
+		{
+			Process.Start ("http://www.agip.gob.ar/agentes/agentes-de-recaudacion/ib-agentes-recaudacion/padrones/ag-rec-padron-contribuyentes");
+		}
+
 
 		/// <summary>
 		/// Importar un archivo del padron unificado.

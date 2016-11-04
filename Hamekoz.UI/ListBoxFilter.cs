@@ -185,5 +185,11 @@ namespace Hamekoz.UI
 		{
 			listBox.UnselectAll ();
 		}
+
+		public void ResetFilter ()
+		{
+			Search.Text = string.Empty;
+			Refresh ();
+		}
 	}
 }

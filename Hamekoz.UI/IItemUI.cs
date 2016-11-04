@@ -33,6 +33,7 @@ namespace Hamekoz.UI
 
 		void ValuesClean ();
 
+		//TODO agregar propiedad Editable de tipo boolean que ejecute metodo editable al cambiar de valor
 		void Editable (bool editable);
 	}
 }
