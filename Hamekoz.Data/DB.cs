@@ -157,7 +157,7 @@ namespace Hamekoz.Data
 			for (int i = 0; i < parametros.Length; i = i + 2) {
 				p = factory.CreateParameter ();
 				p.ParameterName = parametros [i].ToString ();
-				p.Value = parametros [i + 1];
+				p.Value = parametros [i + 1] ?? DBNull.Value;
 				comando.Parameters.Add (p);
 			}
 		}
