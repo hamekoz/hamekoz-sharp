@@ -3,8 +3,9 @@
 //
 //  Author:
 //       Mariano Ripa <ripamariano@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2016 Hamekoz
+//  Copyright (c) 2016 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -35,7 +36,7 @@ namespace Hamekoz.Argentina.Sifere
 			set;
 		}
 
-	
+
 		public string TipoCuenta {
 			get;
 			set;
@@ -66,8 +67,6 @@ namespace Hamekoz.Argentina.Sifere
 			set;
 		}
 
-
-
 		/// <summary>
 		/// Tos the fixed string.
 		/// </summary>
@@ -75,7 +74,8 @@ namespace Hamekoz.Argentina.Sifere
 		/// <see href="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
 		public string ToFixedString ()
 		{
-			string cadena = string.Format ("{0:D}{1}{2}{3}{4}{5}{6}"
+			string cadena;
+			cadena = string.Format ("{0:D}{1}{2}{3}{4}{5}{6}"
 				, CodigoJurisdiccion
 				, CUIT
 				, Periodo
@@ -83,15 +83,11 @@ namespace Hamekoz.Argentina.Sifere
 				, TipoCuenta
 				, TipoMoneda
 				, Importe.PadLeft (10, '0')
-			                );
-			if (cadena.Length != 58) {
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
-			}
-
+			);
+			if (cadena.Length != 58)
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nCodigo: {0} Periodo: {1}, Importe: {2}", CodigoJurisdiccion, Periodo, Importe));
 			return cadena;
 		}
-
-
 	}
 }
 
