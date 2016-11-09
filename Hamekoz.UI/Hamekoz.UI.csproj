@@ -87,6 +87,7 @@
     <Compile Include="MultiSelect.cs" />
     <Compile Include="Same.cs" />
     <Compile Include="DatePickerNullable.cs" />
+    <Compile Include="SearchDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
