@@ -127,6 +127,7 @@
     <EmbeddedResource Include="Icons\list-add.png" />
     <EmbeddedResource Include="Icons\list-remove.png" />
     <EmbeddedResource Include="Icons\folder.png" />
+    <EmbeddedResource Include="Icons\edit-clear-all.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
