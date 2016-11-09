@@ -25,7 +25,7 @@ using Xwt;
 
 namespace Hamekoz.UI
 {
-	public class Search<T>: VBox where T : ISearchable
+	public class ListViewFilter<T>: VBox where T : ISearchable
 	{
 		public IList<T> List {
 			get;
@@ -36,16 +36,18 @@ namespace Hamekoz.UI
 		readonly ListViewDinamic<T> filterList = new ListViewDinamic<T> {
 			MinWidth = 600,
 			MinHeight = 300,
+			GridLinesVisible = GridLines.Both,
 		};
 
-		public Search ()
+		public ListViewFilter ()
 		{
+			text.SetFocus ();
+			text.SetCompletions (typeof(T).GetProperties ().Select (p => p.Name).ToArray<string> ());
 			text.Activated += delegate {
 				filterList.List = List
 					.Where (r => r.ToSearchString ().ToUpper ().Contains (text.Text.ToUpper ()))
 					.ToList ();
 			};
-			text.SetCompletions (typeof(T).GetProperties ().Select (p => p.Name).ToArray<string> ());
 
 			PackStart (text);
 			PackStart (filterList, true);
@@ -58,4 +60,6 @@ namespace Hamekoz.UI
 		}
 	}
 }
+
+
 
