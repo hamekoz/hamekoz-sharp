@@ -39,8 +39,53 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public DateTime MinimumDateTime {
+			get {
+				return datepicker.MinimumDateTime;
+			}
+			set {
+				datepicker.MinimumDateTime = value;
+			}
+		}
+
+		public DateTime MaximumDateTime {
+			get {
+				return datepicker.MaximumDateTime;
+			}
+			set {
+				datepicker.MaximumDateTime = value;
+			}
+		}
+
+		public DatePickerStyle Style {
+			get {
+				return datepicker.Style;
+			}
+			set {
+				datepicker.Style = value;
+			}
+		}
+
+		public bool ReadOnly {
+			get {
+				return datepicker.ReadOnly;
+			}
+			set {
+				datepicker.ReadOnly = value;
+			}
+		}
+
+		public bool WithCalendarButton {
+			get {
+				return datepicker.WithCalendarButton;
+			}
+			set {
+				datepicker.WithCalendarButton = value;
+			}
+		}
+
 		CheckBox check = new CheckBox ();
-		DatePicker datepicker = new DatePicker {
+		readonly DatePicker datepicker = new DatePicker {
 			Sensitive = false,
 		};
 
@@ -48,14 +93,25 @@ namespace Hamekoz.UI
 		public DatePickerNullable ()
 		{
 			PackStart (check);
-			PackStart (datepicker);
+			PackStart (datepicker, true, true);
 
 			check.Toggled += Check_Toggled;
+			datepicker.ValueChanged += (sender, e) => OnValueChanged (e);
 		}
 
 		void Check_Toggled (object sender, EventArgs e)
 		{
 			datepicker.Sensitive = ((CheckBox)sender).Active;
+			OnValueChanged (e);
+		}
+
+		public event EventHandler ValueChanged;
+
+		protected virtual void OnValueChanged (EventArgs e)
+		{
+			var handler = ValueChanged;
+			if (handler != null)
+				handler (this, e);
 		}
 	}
 }
