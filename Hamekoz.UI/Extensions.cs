@@ -42,6 +42,14 @@ namespace Hamekoz.UI
 			box.PackStart (widget, expand, fill);
 			return box;
 		}
+
+		public static ScrollView WithScroll (this TextArea widget, ScrollPolicy vertical = ScrollPolicy.Automatic, ScrollPolicy horizontal = ScrollPolicy.Never)
+		{
+			return new ScrollView (widget) {
+				VerticalScrollPolicy = vertical,
+				HorizontalScrollPolicy = horizontal,
+			};
+		}
 	}
 }
 
