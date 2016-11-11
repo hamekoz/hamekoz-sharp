@@ -31,11 +31,17 @@ namespace Hamekoz.UI
 {
 	public abstract class SearchDialog<T> : Dialog, ISearchDialog<T> where T : ISearchable
 	{
+		protected bool Reset {
+			get;
+			set;
+		}
+
 		#region ISearchDialog implementation
 
 		public void Refresh ()
 		{
-			FiltrarLista ();
+			if (!Reset)
+				FiltrarLista ();
 		}
 
 		public T SelectedItem {
@@ -50,7 +56,9 @@ namespace Hamekoz.UI
 
 		#endregion
 
-		readonly SearchTextEntry search = new SearchTextEntry ();
+		readonly SearchTextEntry search = new SearchTextEntry {
+			TooltipText = Catalog.GetString ("Tip: Try use field search. Ex: Status=Active")
+		};
 
 		readonly protected ListView listView = new ListView {
 			HeightRequest = 200,
@@ -149,6 +157,7 @@ namespace Hamekoz.UI
 		{
 			search.Text = string.Empty;
 			search.BackgroundColor = Colors.White;
+			Reset = false;
 			Refresh ();
 		}
 	}
