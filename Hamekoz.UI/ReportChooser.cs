@@ -35,8 +35,8 @@ namespace Hamekoz.UI
 			Image = Icons.Document.WithSize (IconSize.Medium),
 			ImagePosition = ContentPosition.Left,
 		};
-		public readonly Button xls = new Button {
-			Label = "XLS",
+		public readonly Button xlsx = new Button {
+			Label = "XLSX",
 			ExpandHorizontal = true,
 			HorizontalPlacement = WidgetPlacement.Fill,
 			Image = Icons.Spreadsheet.WithSize (IconSize.Medium),
@@ -53,10 +53,10 @@ namespace Hamekoz.UI
 		public ReportChooser ()
 		{
 			pdf.Clicked += OnPdfClicked;
-			xls.Clicked += OnXlsClicked;
+			xlsx.Clicked += OnXlsxClicked;
 			export.Clicked += OnExportClicked;
 			AddAction (pdf);
-			AddAction (xls);
+			AddAction (xlsx);
 			AddAction (export);
 		}
 
@@ -67,7 +67,7 @@ namespace Hamekoz.UI
 				handler (sender, e);
 		}
 
-		void OnXlsClicked (object sender, EventArgs e)
+		void OnXlsxClicked (object sender, EventArgs e)
 		{
 			var handler = XlsClicked;
 			if (handler != null)
