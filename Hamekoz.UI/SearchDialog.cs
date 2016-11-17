@@ -127,8 +127,8 @@ namespace Hamekoz.UI
 			dialogoVBox.PackStart (new Label (Catalog.GetString ("Text search")));
 			dialogoVBox.PackStart (search);
 			dialogoVBox.PackStart (filtersBox);
-			dialogoVBox.PackStart (listView);
-			dialogoVBox.PackStart (actionBox);
+			dialogoVBox.PackStart (listView, true, true);
+			dialogoVBox.PackEnd (actionBox);
 
 			Width = 700;
 			Content = dialogoVBox;
