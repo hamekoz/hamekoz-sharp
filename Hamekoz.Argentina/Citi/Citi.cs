@@ -107,8 +107,8 @@ namespace Hamekoz.Argentina.Citi
 						registro.IVAAlicuota = "0003";//0%
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
 					}
-				} else { 
-					if (registro.TipoComprobante != "006" || registro.TipoComprobante != "007" || registro.TipoComprobante != "008" || registro.TipoComprobante != "009" || registro.TipoComprobante != "011" || registro.TipoComprobante != "012" || registro.TipoComprobante != "013" || registro.TipoComprobante != "015") {
+				} else { 					
+					if (!EsComprobanteBoC (registro.TipoComprobante)) {						
 						//NoGravado
 						registro.IVAAlicuota = "0003";//0%
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
@@ -119,6 +119,13 @@ namespace Hamekoz.Argentina.Citi
 			sw.Close ();
 		}
 
+		static bool EsComprobanteBoC (string codigo)
+		{
+			if (codigo == "006" || codigo == "007" || codigo == "008" || codigo == "009" || codigo == "011" || codigo == "012" || codigo == "013" || codigo == "015")
+				return true;
+			else
+				return false;
+		}
 		
 	}
 }
