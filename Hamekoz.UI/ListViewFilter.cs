@@ -33,7 +33,7 @@ namespace Hamekoz.UI
 		}
 
 		SearchTextEntry text = new SearchTextEntry ();
-		readonly ListViewDinamic<T> filterList = new ListViewDinamic<T> {
+		readonly ListView<T> filterList = new ListView<T> {
 			MinWidth = 600,
 			MinHeight = 300,
 			GridLinesVisible = GridLines.Both,
@@ -55,7 +55,7 @@ namespace Hamekoz.UI
 
 		public T Selected {
 			get {
-				return filterList.Current;
+				return filterList.SelectedItem;
 			}
 		}
 	}
