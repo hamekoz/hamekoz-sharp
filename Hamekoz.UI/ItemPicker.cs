@@ -157,6 +157,7 @@ namespace Hamekoz.UI
 
 		public void Clear ()
 		{
+			selectedItem = default(T);
 			Text = string.Empty;
 			UnselectAll ();
 			listBoxFilter.Search.Text = string.Empty;
