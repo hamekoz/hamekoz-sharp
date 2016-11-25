@@ -90,6 +90,7 @@
     <Compile Include="DatePickerNullable.cs" />
     <Compile Include="ListViewFilter.cs" />
     <Compile Include="SearchDialog.cs" />
+    <Compile Include="ListViewAction.cs" />
     <Compile Include="ListView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
