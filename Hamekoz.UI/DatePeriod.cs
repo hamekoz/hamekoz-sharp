@@ -107,21 +107,23 @@ namespace Hamekoz.UI
 			}
 		}
 
-		DateTime MinimumDate {
+		public DateTime MinimumDate {
 			get {
 				return dateStart.MinimumDateTime;
 			}
 			set {
 				dateStart.MinimumDateTime = value;
+				dateEnd.MinimumDateTime = value;
 			}
 		}
 
-		DateTime MaximumDate {
+		public DateTime MaximumDate {
 			get {
 				return dateEnd.MaximumDateTime;
 			}
 			set {
 				dateEnd.MaximumDateTime = value;
+				dateStart.MaximumDateTime = value;
 			}
 		}
 
