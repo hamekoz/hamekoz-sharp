@@ -75,7 +75,7 @@ namespace Hamekoz.UI
 			Image = Icons.EditClearAll.WithSize (IconSize.Small),
 		};
 
-		protected DataField<T> columnItem = new DataField<T> ();
+		protected DataField<T> itemDataField = new DataField<T> ();
 
 		protected IController<T> controller;
 		protected ListStore store;
@@ -114,7 +114,7 @@ namespace Hamekoz.UI
 
 			listView.RowActivated += delegate {
 				var current = listView.SelectedRow;
-				SelectedItem = store.GetValue (current, columnItem);
+				SelectedItem = store.GetValue (current, itemDataField);
 				Respond (Command.Ok);
 			};
 
