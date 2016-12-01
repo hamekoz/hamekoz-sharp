@@ -90,13 +90,13 @@ namespace Hamekoz.UI
 				var property = type.GetProperty (propertyName);
 				switch (Type.GetTypeCode (property.PropertyType)) {
 				case TypeCode.Int32:
-					store.SetValue<int> (row, (IDataField<int>)field, (int)property.GetValue (item, null));
+					store.SetValue<string> (row, (IDataField<string>)field, string.Format ("{0:D}", (int)property.GetValue (item, null)));
 					break;
 				case TypeCode.Double:
-					store.SetValue<double> (row, (IDataField<double>)field, (double)property.GetValue (item, null));
+					store.SetValue<string> (row, (IDataField<string>)field, string.Format ("{0:##.0000}", (double)property.GetValue (item, null)));
 					break;
 				case TypeCode.Decimal:
-					store.SetValue<decimal> (row, (IDataField<decimal>)field, (decimal)property.GetValue (item, null));
+					store.SetValue<string> (row, (IDataField<string>)field, string.Format ("{0:C}", (decimal)property.GetValue (item, null)));
 					break;
 				case TypeCode.Boolean:
 					store.SetValue<bool> (row, (IDataField<bool>)field, (bool)property.GetValue (item, null));
@@ -126,21 +126,14 @@ namespace Hamekoz.UI
 				IDataField datafield;
 
 				switch (Type.GetTypeCode (property.PropertyType)) {
-
-				case TypeCode.Int32:
-					datafield = new DataField<int> ();
-					break;
-				case TypeCode.Double:
-					datafield = new DataField<double> ();
-					break;
-				case TypeCode.Decimal:
-					datafield = new DataField<decimal> ();
-					break;
 				case TypeCode.Boolean:
 					datafield = new DataField<bool> ();
 					break;
 				case TypeCode.DateTime:
 				case TypeCode.String:
+				case TypeCode.Int32:
+				case TypeCode.Double:
+				case TypeCode.Decimal:
 					datafield = new DataField<string> ();
 					break;
 				default:
@@ -152,10 +145,21 @@ namespace Hamekoz.UI
 			datafields.Add (itemDataField);
 			store = new ListStore (datafields.ToArray ());
 			for (int i = 0; i < properties.Length; i++) {
-				if (properties [i].PropertyType == typeof(bool))
+				switch (Type.GetTypeCode (properties [i].PropertyType)) {
+				case TypeCode.Boolean:
 					Columns.Add (new ListViewColumn (properties [i].Name.Humanize (), new CheckBoxCellView ((IDataField<bool>)datafields [i])));
-				else
+					break;
+				case TypeCode.DateTime:
+				case TypeCode.Int32:
+				case TypeCode.Double:
+				case TypeCode.Decimal:
+					var column = new ListViewColumn (properties [i].Name.Humanize (), new TextCellView (datafields [i]));
+					Columns.Add (column);
+					break;
+				default:
 					Columns.Add (properties [i].Name.Humanize (), datafields [i]);
+					break;
+				}
 			}
 			DataSource = store;
 		}
