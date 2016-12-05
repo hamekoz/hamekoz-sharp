@@ -25,6 +25,10 @@ namespace Hamekoz.Argentina.Afip
 	/// <see href="http://www.afip.gob.ar/genericos/cInscripcion/archivoCompleto.asp"/>
 	public class RegistroPadron
 	{
+		public RegistroPadron ()
+		{
+		}
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Hamekoz.Argentina.Afip.RegistroPadron"/> class.
 		/// </summary>
@@ -56,6 +60,7 @@ namespace Hamekoz.Argentina.Afip
 		/// Gets or sets the denominacion o razon social.
 		/// </summary>
 		/// <value>La denominacion o razon social.</value>
+		/// <remarks>Longitud 11</remarks>
 		public string Denominacion {
 			get;
 			set;
@@ -122,12 +127,17 @@ namespace Hamekoz.Argentina.Afip
 		/// Gets or sets the empleador.
 		/// 'S', 'N'
 		/// </summary>
-		/// <value>The empleador.</value>
+		/// <value>S o N</value>
 		public string Empleador {
 			get;
 			set;
 		}
 
+		/// <summary>
+		/// Gets or sets the actividad monotributo.
+		/// 'S', 'N'
+		/// </summary>
+		/// <value>S o N</value>
 		public string ActividadMonotributo {
 			get;
 			set;
