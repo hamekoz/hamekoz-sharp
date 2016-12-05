@@ -42,19 +42,49 @@ namespace Hamekoz.Argentina.Arba
 			set;
 		}
 
+		public DateTime Publicacion {
+			get;
+			set;
+		}
+
+		public DateTime VigenciaDesde {
+			get;
+			set;
+		}
+
+		public DateTime VigenciaHasta {
+			get;
+			set;
+		}
+
+		[Obsolete ("Usar Publicacion")]
 		public DateTime FechaDePublicacion {
-			get;
-			set;
+			get {
+				return Publicacion;
+			}
+			set {
+				Publicacion = value;
+			}
 		}
 
+		[Obsolete ("Usar VigenciaDesde")]
 		public DateTime FechaVigenciaDesde {
-			get;
-			set;
+			get {
+				return VigenciaDesde;
+			}
+			set {
+				VigenciaDesde = value;
+			}
 		}
 
+		[Obsolete ("Usar VigenciaHasta")]
 		public DateTime FechaVigenciaHasta {
-			get;
-			set;
+			get {
+				return VigenciaHasta;
+			}
+			set {
+				VigenciaHasta = value;
+			}
 		}
 
 		public long CUIT {
@@ -93,7 +123,7 @@ namespace Hamekoz.Argentina.Arba
 		/// <value>The marca cambio alicuota.</value>
 		public char MarcaCambioAlicuota {
 			get;
-			private set;
+			set;
 		}
 
 		public double Alicuota {
@@ -106,6 +136,11 @@ namespace Hamekoz.Argentina.Arba
 			set;
 		}
 
+		public RegistroPadronUnificado ()
+		{
+
+		}
+
 		public RegistroPadronUnificado (string linea)
 		{
 			if (linea.Length != 55) {
@@ -113,9 +148,9 @@ namespace Hamekoz.Argentina.Arba
 			}
 			string[] split = linea.Split (separador);
 			Regimen = char.Parse (split [0]);
-			FechaDePublicacion = DateTime.ParseExact (split [1], "ddMMyyyy", CultureInfo.InvariantCulture);
-			FechaVigenciaDesde = DateTime.ParseExact (split [2], "ddMMyyyy", CultureInfo.InvariantCulture);
-			FechaVigenciaHasta = DateTime.ParseExact (split [3], "ddMMyyyy", CultureInfo.InvariantCulture);
+			Publicacion = DateTime.ParseExact (split [1], "ddMMyyyy", CultureInfo.InvariantCulture);
+			VigenciaDesde = DateTime.ParseExact (split [2], "ddMMyyyy", CultureInfo.InvariantCulture);
+			VigenciaHasta = DateTime.ParseExact (split [3], "ddMMyyyy", CultureInfo.InvariantCulture);
 			CUIT = long.Parse (split [4]);
 			TipoDeContribuyenteInscripto = char.Parse (split [5]);
 			MarcaAltaBajaSujeto = char.Parse (split [6]);
