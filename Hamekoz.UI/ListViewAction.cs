@@ -74,6 +74,11 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public bool ActionsVisible {
+			get { return actions.Visible; }
+			set { actions.Visible = value; }
+		}
+
 		public ListViewAction ()
 		{
 			add.Clicked += delegate {
@@ -92,6 +97,7 @@ namespace Hamekoz.UI
 				if (dialogo.Run () == Command.Add) {
 					widget.ValuesTake ();
 					listView.Add (item);
+					OnChanged ();
 				}
 				dialogo.Hide ();
 			};
@@ -115,6 +121,7 @@ namespace Hamekoz.UI
 					if (dialogo.Run () == Command.Apply) {
 						widget.ValuesTake ();
 						listView.FillRow (row, listView.SelectedItem);
+						OnChanged ();
 					}
 					dialogo.Hide ();
 				}
@@ -126,6 +133,7 @@ namespace Hamekoz.UI
 					MessageDialog.ShowMessage (string.Format (Catalog.GetString ("Select a {0} to remove"), typeof(T).Name.Humanize ()));
 				} else {
 					listView.Remove ();
+					OnChanged ();
 				}
 			};
 
@@ -139,6 +147,15 @@ namespace Hamekoz.UI
 		public void RemoveColumnAt (int index)
 		{
 			listView.RemoveColumnAt (index);
+		}
+
+		public event EventHandler Changed;
+
+		protected virtual void OnChanged ()
+		{
+			var handler = Changed;
+			if (handler != null)
+				handler (this, null);
 		}
 	}
 }
