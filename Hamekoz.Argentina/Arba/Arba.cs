@@ -169,6 +169,8 @@ namespace Hamekoz.Argentina.Arba
 		/// <param name="archivo">Ruta absoluta al archivo.</param>
 		public static void ImportarPadronUnificado (string archivo)
 		{
+			//HACK esto deberia tener una estructura de almacenamiento mas generica de acuerdo al registro
+			//TODO esto puede almacenarse siempre en la misma tabla con consultas sobre CUIT, Publicacion y Regimen
 			var stream = new FileStream (archivo, FileMode.Open, FileAccess.Read);
 			var reader = new StreamReader (stream);
 			var dbagip = new DB {
@@ -181,10 +183,10 @@ namespace Hamekoz.Argentina.Arba
 					//TODO cambiar SP por consulta de texto plana
 					//TODO controlar la existencia de la tabla en la base de datos.
 					dbagip.SP ("padronTmpActualizar"
-						, "fechaPublicacion", registro.FechaDePublicacion
+						, "fechaPublicacion", registro.Publicacion
 						, "cuit", registro.CUIT
-						, "fechaVigenciaDesde", registro.FechaVigenciaDesde
-						, "fechaVigenciaHasta", registro.FechaVigenciaHasta
+						, "fechaVigenciaDesde", registro.VigenciaDesde
+						, "fechaVigenciaHasta", registro.VigenciaHasta
 						, "tipoContrInscr", registro.TipoDeContribuyenteInscripto
 						, "marcaAltaBajaSujeto", registro.MarcaAltaBajaSujeto
 						, "marcaCbioAlicuota", registro.MarcaCambioAlicuota
