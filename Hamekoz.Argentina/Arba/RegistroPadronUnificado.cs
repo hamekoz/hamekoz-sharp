@@ -57,36 +57,6 @@ namespace Hamekoz.Argentina.Arba
 			set;
 		}
 
-		[Obsolete ("Usar Publicacion")]
-		public DateTime FechaDePublicacion {
-			get {
-				return Publicacion;
-			}
-			set {
-				Publicacion = value;
-			}
-		}
-
-		[Obsolete ("Usar VigenciaDesde")]
-		public DateTime FechaVigenciaDesde {
-			get {
-				return VigenciaDesde;
-			}
-			set {
-				VigenciaDesde = value;
-			}
-		}
-
-		[Obsolete ("Usar VigenciaHasta")]
-		public DateTime FechaVigenciaHasta {
-			get {
-				return VigenciaHasta;
-			}
-			set {
-				VigenciaHasta = value;
-			}
-		}
-
 		public long CUIT {
 			get;
 			set;
