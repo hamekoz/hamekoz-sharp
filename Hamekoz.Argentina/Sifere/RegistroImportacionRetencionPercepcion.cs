@@ -3,8 +3,9 @@
 //
 //  Author:
 //       Mariano Ripa <ripamariano@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2016 Hamekoz
+//  Copyright (c) 2016 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,14 +21,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-
-
 namespace Hamekoz.Argentina.Sifere
 {
 	public class RegistroImportacionRetencionPercepcion
 	{
-		
-
 		/// <summary>
 		/// Gets or sets the codigo de norma.
 		/// </summary>
@@ -80,24 +77,20 @@ namespace Hamekoz.Argentina.Sifere
 		}
 
 
-		public bool esPercepcion {
+		public bool EsPercepcion {
 			get;
 			set;
 		}
 
-
 		/// <summary>
-		/// Tos the fixed string.
+		/// To the fixed string.
 		/// </summary>
 		/// <returns>The fixed string.</returns>
 		/// <see href="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
 		public string ToFixedStringPercepcion ()
 		{
-			/*if (MontoSujetoARetencionPercepcion != (MontoDelComprobante - ImporteIVA - ImporteOtrosConceptos)) {
-				throw new Exception (string.Format ("El monto sujeto no es correcto.\nRazon Social: {0}\nComprobante: {1}", RazonSocialDelRetenido, NroDeComprobante));
-			}*/
-
-			string cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}"
+			string cadena;
+			cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}"
 				, CodigoJurisdiccion
 				, CUIT
 				, Fecha
@@ -106,10 +99,9 @@ namespace Hamekoz.Argentina.Sifere
 				, TipoDeComprobante
 				, Letra
 				, Importe
-			                );
-			if ((cadena.Length != 51) && (cadena.Length != 38)) {
+			);
+			if ((cadena.Length != 51) && (cadena.Length != 38))
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
-			}
 
 			return cadena;
 		}
@@ -117,11 +109,8 @@ namespace Hamekoz.Argentina.Sifere
 
 		public string ToFixedStringRetencion ()
 		{
-			/*if (MontoSujetoARetencionPercepcion != (MontoDelComprobante - ImporteIVA - ImporteOtrosConceptos)) {
-				throw new Exception (string.Format ("El monto sujeto no es correcto.\nRazon Social: {0}\nComprobante: {1}", RazonSocialDelRetenido, NroDeComprobante));
-			}*/
-
-			string cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}{8}"
+			string cadena;
+			cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}{8}"
 				, CodigoJurisdiccion
 				, CUIT
 				, Fecha
@@ -131,10 +120,9 @@ namespace Hamekoz.Argentina.Sifere
 				, Letra
 				, NroComprobante
 				, Importe
-			                );
-			if ((cadena.Length != 79) && (cadena.Length != 66)) {
+			);
+			if ((cadena.Length != 79) && (cadena.Length != 66))
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
-			}
 
 			return cadena;
 		}

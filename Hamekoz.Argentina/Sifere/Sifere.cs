@@ -33,7 +33,7 @@ namespace Hamekoz.Argentina.Sifere
 			foreach (var registro in registros) {
 				if (string.IsNullOrEmpty (registro.CUIT))
 					c++;
-				if (registro.esPercepcion)
+				if (registro.EsPercepcion)
 					sw.WriteLine (registro.ToFixedStringPercepcion ());
 				else
 					sw.WriteLine (registro.ToFixedStringRetencion ());
