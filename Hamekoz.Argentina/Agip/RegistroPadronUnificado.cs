@@ -81,7 +81,7 @@ namespace Hamekoz.Argentina.Agip
 
 		public char MarcaAlicuota {
 			get;
-			private set;
+			set;
 		}
 
 		public double AlicuotaPercepcion {
@@ -107,6 +107,11 @@ namespace Hamekoz.Argentina.Agip
 		public string RazonSocial {
 			get;
 			set;
+		}
+
+		public RegistroPadronUnificado ()
+		{
+			
 		}
 
 		public RegistroPadronUnificado (string linea)
