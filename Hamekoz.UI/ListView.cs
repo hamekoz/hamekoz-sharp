@@ -90,7 +90,12 @@ namespace Hamekoz.UI
 				var property = type.GetProperty (propertyName);
 				switch (Type.GetTypeCode (property.PropertyType)) {
 				case TypeCode.Int32:
-					store.SetValue<string> (row, (IDataField<string>)field, string.Format ("{0:D}", (int)property.GetValue (item, null)));
+					if (property.PropertyType.IsEnum) {
+						var value = property.GetValue (item, null);
+						store.SetValue (row, (IDataField<string>)field, ((Enum)value).Humanize ());
+					} else {
+						store.SetValue<string> (row, (IDataField<string>)field, string.Format ("{0:D}", (int)property.GetValue (item, null)));
+					}
 					break;
 				case TypeCode.Double:
 					store.SetValue<string> (row, (IDataField<string>)field, string.Format ("{0:#0.0000}", (double)property.GetValue (item, null)));
