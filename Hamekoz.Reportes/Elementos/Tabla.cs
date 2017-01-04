@@ -162,8 +162,7 @@ namespace Hamekoz.Reportes
 				dato = string.Format ("{0:#0.0000}", dato);
 			}
 
-			//FIXME el dato venia null
-			var phrase = new Phrase (dato != null ? dato.ToString () : "", font);
+			var phrase = new Phrase (dato.ToString (), font);
 			pdfPCell.Phrase = phrase;
 			return pdfPCell;
 		}
