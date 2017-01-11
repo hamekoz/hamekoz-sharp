@@ -83,6 +83,10 @@ namespace Hamekoz.UI
 
 		protected VBox filtersBox = new VBox ();
 
+		protected Label result = new Label {
+			HorizontalPlacement = WidgetPlacement.Center
+		};
+
 		protected SearchDialog ()
 		{
 			Title = Catalog.GetString ("Search");
@@ -104,12 +108,9 @@ namespace Hamekoz.UI
 			};
 
 			search.Changed += delegate {
+				search.BackgroundColor = Colors.White;
 				if (search.Text == string.Empty)
 					Refresh ();
-			};
-
-			search.MouseEntered += delegate {
-				search.BackgroundColor = Colors.White;
 			};
 
 			listView.RowActivated += delegate {
@@ -128,6 +129,7 @@ namespace Hamekoz.UI
 			dialogoVBox.PackStart (search);
 			dialogoVBox.PackStart (filtersBox);
 			dialogoVBox.PackStart (listView, true, true);
+			dialogoVBox.PackStart (result);
 			dialogoVBox.PackEnd (actionBox);
 
 			Width = 700;
@@ -144,8 +146,8 @@ namespace Hamekoz.UI
 			store.Clear ();
 			FillStore ();
 
-			if (store.RowCount == 0)
-				search.BackgroundColor = Colors.Red;
+			search.BackgroundColor = search.Text == string.Empty ? Colors.White : store.RowCount == 0 ? Colors.Red : Colors.LightGreen;
+			result.Text = string.Format (Catalog.GetPluralString ("{0} result", "{0} results", store.RowCount), store.RowCount);
 		}
 
 		protected virtual void FillStore ()
