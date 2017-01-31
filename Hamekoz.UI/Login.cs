@@ -38,6 +38,7 @@ namespace Hamekoz.UI
 				Image = Icons.UserInfo.WithBoxSize (96),
 			};
 			userEntry = new TextEntry {
+				Text = Environment.UserName,
 				PlaceholderText = Catalog.GetString ("User"),
 			};
 			passwordEntry = new PasswordEntry {
@@ -70,7 +71,11 @@ namespace Hamekoz.UI
 
 			Content = table;
 
-			userEntry.SetFocus ();
+			if (string.IsNullOrWhiteSpace (userEntry.Text))
+				userEntry.SetFocus ();
+			else
+				passwordEntry.SetFocus ();
+			
 			Resizable = false;
 			ShowInTaskbar = false;
 			Title = Catalog.GetString ("Login");
