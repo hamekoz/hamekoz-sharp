@@ -48,6 +48,8 @@ namespace Hamekoz.UI
 			return new ScrollView (widget) {
 				VerticalScrollPolicy = vertical,
 				HorizontalScrollPolicy = horizontal,
+				MinHeight = widget.MinHeight,
+				MinWidth = widget.MinWidth
 			};
 		}
 	}
