@@ -43,6 +43,10 @@ namespace Hamekoz.UI
 				}
 				return selected;
 			}
+			set {
+				int index = list.IndexOf (value);
+				SelectRow (index);
+			}
 		}
 
 		public IList<T> List {
