@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -42,9 +42,10 @@ namespace Hamekoz.UI
 			DateTime = DateTime.Now.Date.AddDays (1).AddMilliseconds (-1),
 		};
 
+		Box box;
+
 		public DatePeriod (bool horizonal = false)
 		{
-			Box box;
 			if (horizonal)
 				box = new HBox ();
 			else
@@ -61,19 +62,15 @@ namespace Hamekoz.UI
 
 		void Period_ValueChanged (object sender, EventArgs e)
 		{
-			var datepicker = sender as DatePicker;
-			//HACK prevent that year change minor to 1900 change other year part
-			if (datepicker.DateTime.Year > 1900) {
-				if (dateStart.DateTime > dateEnd.DateTime) {
-					if (sender == dateStart) {
-						dateEnd.DateTime = dateStart.DateTime;
-					}
-					if (sender == dateEnd) {
-						dateStart.DateTime = dateEnd.DateTime;
-					}
-				}
-				OnValueChanged (e);
+			if (dateStart.DateTime > dateEnd.DateTime) {
+				box.BackgroundColor = Xwt.Drawing.Colors.Red;	
+				box.TooltipText = Catalog.GetString ("Invalid period, the start date must be less than or equal to the final");
+			} else {
+				box.BackgroundColor = Xwt.Drawing.Colors.Transparent;
+				box.TooltipText = string.Empty;
 			}
+
+			OnValueChanged (e);
 		}
 
 		bool withCalendarButton = true;
