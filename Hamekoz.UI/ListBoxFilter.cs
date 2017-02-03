@@ -165,6 +165,16 @@ namespace Hamekoz.UI
 			set { listBox.SelectionMode = value; }
 		}
 
+		public ScrollPolicy HorizontalScrollPolicy {
+			get { return listBox.HorizontalScrollPolicy; }
+			set { listBox.HorizontalScrollPolicy = value; }
+		}
+
+		public ScrollPolicy VerticalScrollPolicy {
+			get { return listBox.VerticalScrollPolicy; }
+			set { listBox.VerticalScrollPolicy = value; }
+		}
+
 		public event ListBoxFilterSelectionChanged SelectionItemChanged;
 
 		bool filtering;

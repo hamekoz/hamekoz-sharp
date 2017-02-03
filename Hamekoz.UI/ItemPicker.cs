@@ -36,7 +36,8 @@ namespace Hamekoz.UI
 			ExpandHorizontal = true,
 			ExpandVertical = true,
 			HeightRequest = 150,
-			WidthRequest = 350,
+			HorizontalScrollPolicy = ScrollPolicy.Never,
+			VerticalScrollPolicy = ScrollPolicy.Automatic,
 		};
 
 		public ItemPicker ()
