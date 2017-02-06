@@ -10,17 +10,12 @@
     <relPath>locale</relPath>
     <translations>
       <translations>
-        <Translation>
-          <isoCode>es</isoCode>
-        </Translation>
+        <Translation isoCode="es" />
       </translations>
     </translations>
     <projectInformations>
       <projectInformations>
-        <TranslationProjectInformation>
-          <projectName>Hamekoz.UI.Gtk</projectName>
-          <isIncluded>False</isIncluded>
-        </TranslationProjectInformation>
+        <TranslationProjectInformation projectName="Hamekoz.UI.Gtk" isIncluded="False" />
       </projectInformations>
     </projectInformations>
   </PropertyGroup>
