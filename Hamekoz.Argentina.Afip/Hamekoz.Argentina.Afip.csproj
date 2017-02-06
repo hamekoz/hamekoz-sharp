@@ -8,8 +8,6 @@
     <RootNamespace>Hamekoz.Argentina.Afip</RootNamespace>
     <AssemblyName>Hamekoz.Argentina.Afip</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,14 +34,9 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="Mono.Security" />
     <Reference Include="BouncyCastle.Crypto">
-      <HintPath>..\..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
-    <Reference Include="BouncyCastle">
-      <HintPath>..\..\packages\MimeKit.1.2.19\lib\net45\BouncyCastle.dll</HintPath>
-    </Reference>
-    <Reference Include="MimeKit">
-      <HintPath>..\..\packages\MimeKit.1.2.19\lib\net45\MimeKit.dll</HintPath>
+      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +47,9 @@
     <Compile Include="TicketDeAcceso.cs" />
     <Compile Include="Ejemplo.cs" />
     <Compile Include="TRA.cs" />
+    <Compile Include="Web References\WSDL\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -65,10 +61,20 @@
       <RelPath>Web References\WSAA</RelPath>
       <UpdateFromURL>https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl</UpdateFromURL>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="https://servicios1.afip.gov.ar/WSCDC/service.asmx?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSDL</RelPath>
+      <UpdateFromURL>https://servicios1.afip.gov.ar/WSCDC/service.asmx?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\WSAA\LoginCms.wsdl" />
     <None Include="Web References\WSAA\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WSDL\service.wsdl" />
+    <None Include="Web References\WSDL\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

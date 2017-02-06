@@ -1,64 +1,64 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s0="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:intf="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:tns1="http://wsaa.view.sua.dvadac.desein.afip.gov" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns="http://schemas.xmlsoap.org/wsdl/">
-  <types>
-    <q1:schema elementFormDefault="qualified" targetNamespace="http://wsaa.view.sua.dvadac.desein.afip.gov" xmlns:q1="http://www.w3.org/2001/XMLSchema">
-      <q1:import namespace="https://wsaa.afip.gov.ar/ws/services/LoginCms" />
-      <q1:element name="loginCms">
-        <q1:complexType>
-          <q1:sequence>
-            <q1:element name="in0" type="q1:string" />
-          </q1:sequence>
-        </q1:complexType>
-      </q1:element>
-      <q1:element name="loginCmsResponse">
-        <q1:complexType>
-          <q1:sequence>
-            <q1:element name="loginCmsReturn" type="q1:string" />
-          </q1:sequence>
-        </q1:complexType>
-      </q1:element>
-    </q1:schema>
-    <q1:schema elementFormDefault="qualified" targetNamespace="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:q1="http://www.w3.org/2001/XMLSchema">
-      <q1:complexType name="LoginFault">
-        <q1:sequence />
-      </q1:complexType>
-      <q1:element name="fault" type="intf:LoginFault" />
-    </q1:schema>
-  </types>
-  <message name="LoginFault">
-    <part name="fault" element="intf:fault" />
-  </message>
-  <message name="loginCmsResponse">
-    <part name="parameters" element="tns1:loginCmsResponse" />
-  </message>
-  <message name="loginCmsRequest">
-    <part name="parameters" element="tns1:loginCms" />
-  </message>
-  <portType name="LoginCMS">
-    <operation name="loginCms">
-      <fault name="LoginFault" message="intf:LoginFault" />
-      <input name="loginCmsRequest" message="intf:loginCmsRequest" />
-      <output name="loginCmsResponse" message="intf:loginCmsResponse" />
-    </operation>
-  </portType>
-  <binding name="LoginCmsSoapBinding" type="intf:LoginCMS">
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:impl="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:tns1="http://wsaa.view.sua.dvadac.desein.afip.gov" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:intf="https://wsaa.afip.gov.ar/ws/services/LoginCms" targetNamespace="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://wsaa.view.sua.dvadac.desein.afip.gov">
+      <xsd:import namespace="https://wsaa.afip.gov.ar/ws/services/LoginCms" />
+      <xsd:element name="loginCms">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in0" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="loginCmsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="loginCmsReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://wsaa.afip.gov.ar/ws/services/LoginCms">
+      <xsd:complexType name="LoginFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="fault" type="intf:LoginFault" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginFault">
+    <wsdl:part name="fault" element="intf:fault" />
+  </wsdl:message>
+  <wsdl:message name="loginCmsResponse">
+    <wsdl:part name="parameters" element="tns1:loginCmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="loginCmsRequest">
+    <wsdl:part name="parameters" element="tns1:loginCms" />
+  </wsdl:message>
+  <wsdl:portType name="LoginCMS">
+    <wsdl:operation name="loginCms">
+      <wsdl:input name="loginCmsRequest" message="intf:loginCmsRequest" />
+      <wsdl:output name="loginCmsResponse" message="intf:loginCmsResponse" />
+      <wsdl:fault name="LoginFault" message="intf:LoginFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LoginCmsSoapBinding" type="intf:LoginCMS">
     <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="loginCms">
+    <wsdl:operation name="loginCms">
       <wsdlsoap:operation soapAction="" />
-      <fault name="LoginFault">
-        <wsdlsoap:fault namespace="" use="literal" name="LoginFault" />
-      </fault>
-      <input name="loginCmsRequest">
+      <wsdl:input name="loginCmsRequest">
         <wsdlsoap:body use="literal" />
-      </input>
-      <output name="loginCmsResponse">
+      </wsdl:input>
+      <wsdl:output name="loginCmsResponse">
         <wsdlsoap:body use="literal" />
-      </output>
-    </operation>
-  </binding>
-  <service name="LoginCMSService">
-    <port name="LoginCms" binding="intf:LoginCmsSoapBinding">
+      </wsdl:output>
+      <wsdl:fault name="LoginFault">
+        <wsdlsoap:fault use="literal" name="LoginFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LoginCMSService">
+    <wsdl:port name="LoginCms" binding="intf:LoginCmsSoapBinding">
       <wsdlsoap:address location="https://wsaa.afip.gov.ar/ws/services/LoginCms" />
-    </port>
-  </service>
-</definitions>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

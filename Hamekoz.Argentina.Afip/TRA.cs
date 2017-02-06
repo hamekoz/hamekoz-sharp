@@ -33,7 +33,7 @@ namespace Hamekoz.Argentina.Afip
 		[STAThread]
 		static void Main (string[] args)
 		{
-
+			/*
 			try {
 				// First load a Certificate, filename/path and certificate password
 				Cert = ReadCertFromFile ("/balcarce/objetos/postresbalcarce.crt", "");
@@ -67,7 +67,10 @@ namespace Hamekoz.Argentina.Afip
 				Console.WriteLine ("So, you wanna make an exception huh! : " + ex.ToString ());
 				Console.ReadKey ();
 			}
+			*/
 		}
+
+		/*
 
 		public static byte[] ReadFully (Stream stream)
 		{
@@ -114,6 +117,7 @@ namespace Hamekoz.Argentina.Afip
 				return null;
 			}
 		}
+		*/
 	}
 }
 

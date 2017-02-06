@@ -9,16 +9,22 @@
 // ------------------------------------------------------------------------------
 
 namespace Hamekoz.Argentina.Afip.WSAA {
+    using System.Diagnostics;
+    using System;
+    using System.Xml.Serialization;
+    using System.ComponentModel;
+    using System.Web.Services.Protocols;
+    using System.Web.Services;
     
     
-    /// <remarks/>
-    [System.Web.Services.WebServiceBinding(Name="LoginCms", Namespace="https://wsaa.afip.gov.ar/ws/services/LoginCms")]
+    /// CodeRemarks
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("MonoDevelop", "2.6.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Web.Services.WebServiceBindingAttribute(Name="LoginCmsSoapBinding", Namespace="https://wsaa.afip.gov.ar/ws/services/LoginCms")]
     public partial class LoginCMSService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback loginCmsOperationCompleted;
-        
+        /// CodeRemarks
         public LoginCMSService() {
             this.Url = "https://wsaa.afip.gov.ar/ws/services/LoginCms";
         }
@@ -27,9 +33,8 @@ namespace Hamekoz.Argentina.Afip.WSAA {
             this.Url = url;
         }
         
-        public event loginCmsCompletedEventHandler loginCmsCompleted;
-        
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://wsaa.view.sua.dvadac.desein.afip.gov", ResponseNamespace="http://wsaa.view.sua.dvadac.desein.afip.gov", ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped, Use=System.Web.Services.Description.SoapBindingUse.Literal)]
+        /// CodeRemarks
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://wsaa.view.sua.dvadac.desein.afip.gov", ResponseNamespace="http://wsaa.view.sua.dvadac.desein.afip.gov", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("loginCmsReturn")]
         public string loginCms(string in0) {
             object[] results = this.Invoke("loginCms", new object[] {
@@ -37,52 +42,16 @@ namespace Hamekoz.Argentina.Afip.WSAA {
             return ((string)(results[0]));
         }
         
+        /// CodeRemarks
         public System.IAsyncResult BeginloginCms(string in0, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("loginCms", new object[] {
                         in0}, callback, asyncState);
         }
         
+        /// CodeRemarks
         public string EndloginCms(System.IAsyncResult asyncResult) {
             object[] results = this.EndInvoke(asyncResult);
             return ((string)(results[0]));
         }
-        
-        public void loginCmsAsync(string in0) {
-            this.loginCmsAsync(in0, null);
-        }
-        
-        public void loginCmsAsync(string in0, object userState) {
-            if ((this.loginCmsOperationCompleted == null)) {
-                this.loginCmsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnloginCmsCompleted);
-            }
-            this.InvokeAsync("loginCms", new object[] {
-                        in0}, this.loginCmsOperationCompleted, userState);
-        }
-        
-        private void OnloginCmsCompleted(object arg) {
-            if ((this.loginCmsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.loginCmsCompleted(this, new loginCmsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
     }
-    
-    public partial class loginCmsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal loginCmsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    public delegate void loginCmsCompletedEventHandler(object sender, loginCmsCompletedEventArgs args);
 }
