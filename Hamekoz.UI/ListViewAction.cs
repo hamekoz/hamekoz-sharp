@@ -31,9 +31,11 @@ namespace Hamekoz.UI
 	/// </summary>
 	public class ListViewAction<T> : HBox where T : new()
 	{
-		public Type WidgetType {
-			get;
-			set;
+		#region Properties
+
+		public bool ActionsVisible {
+			get { return actions.Visible; }
+			set { actions.Visible = value; }
 		}
 
 		public bool Editable {
@@ -44,6 +46,22 @@ namespace Hamekoz.UI
 				actions.Sensitive = value;
 			}
 		}
+
+		public IList<T> List {
+			get {
+				return listView.List;
+			}
+			set {
+				listView.List = value;
+			}
+		}
+
+		public Type WidgetType {
+			get;
+			set;
+		}
+
+		#endregion
 
 		readonly ListView<T> listView = new ListView<T> ();
 
@@ -65,22 +83,10 @@ namespace Hamekoz.UI
 			ImagePosition = ContentPosition.Center
 		};
 
-		public IList<T> List {
-			get {
-				return listView.List;
-			}
-			set {
-				listView.List = value;
-			}
-		}
-
-		public bool ActionsVisible {
-			get { return actions.Visible; }
-			set { actions.Visible = value; }
-		}
-
 		public ListViewAction ()
 		{
+			//TODO ver posibilidad de utilizar la misma instancia del Widget en lugar de instanciar uno nuevo
+			//Para poder parametrizar el Widget con valores segun la necesidad
 			add.Clicked += delegate {
 				var dialogo = new Dialog {
 					Title = string.Format (Catalog.GetString ("New {0}"), typeof(T).Name.Humanize ()),
@@ -96,8 +102,12 @@ namespace Hamekoz.UI
 				dialogo.Content = (Widget)widget;
 				if (dialogo.Run () == Command.Add) {
 					widget.ValuesTake ();
-					listView.Add (item);
-					OnChanged ();
+					if (Similarity (List, widget.Item))
+						MessageDialog.ShowWarning (Catalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
+					else {
+						listView.Add (item);
+						OnChanged ();	
+					}
 				}
 				dialogo.Hide ();
 			};
@@ -120,8 +130,12 @@ namespace Hamekoz.UI
 					dialogo.Content = (Widget)widget;
 					if (dialogo.Run () == Command.Apply) {
 						widget.ValuesTake ();
-						listView.FillRow (row, listView.SelectedItem);
-						OnChanged ();
+						if (Similarity (List, widget.Item))
+							MessageDialog.ShowWarning (Catalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
+						else {
+							listView.FillRow (row, listView.SelectedItem);
+							OnChanged ();
+						}
 					}
 					dialogo.Hide ();
 				}
@@ -132,6 +146,7 @@ namespace Hamekoz.UI
 				if (row == -1) {
 					MessageDialog.ShowMessage (string.Format (Catalog.GetString ("Select a {0} to remove"), typeof(T).Name.Humanize ()));
 				} else {
+					//TODO revisar si tiene sentido pedir confirmación
 					listView.Remove ();
 					OnChanged ();
 				}
@@ -142,6 +157,21 @@ namespace Hamekoz.UI
 			actions.PackStart (remove);
 			PackStart (listView, true, true);
 			PackEnd (actions, false, true);
+		}
+
+		public delegate bool SimilarityHandler (IList<T> list, T item);
+
+		public SimilarityHandler OnSimilarity;
+
+		protected bool Similarity (IList<T> list, T item)
+		{
+			var similarity = OnSimilarity;
+			return similarity != null && similarity (list, item);
+		}
+
+		public void DisableRemove ()
+		{
+			remove.Sensitive = false;
 		}
 
 		public void RemoveColumnAt (int index)
