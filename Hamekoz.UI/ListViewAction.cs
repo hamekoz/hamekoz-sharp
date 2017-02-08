@@ -27,7 +27,7 @@ using Xwt;
 namespace Hamekoz.UI
 {
 	/// <summary>
-	/// List view with action to Add, Modify, Erase.
+	/// List view with action to Add, Modify, Remove.
 	/// </summary>
 	public class ListViewAction<T> : HBox where T : new()
 	{
@@ -36,6 +36,33 @@ namespace Hamekoz.UI
 		public bool ActionsVisible {
 			get { return actions.Visible; }
 			set { actions.Visible = value; }
+		}
+
+		public bool AddVisible {
+			get {
+				return add.Visible;
+			}
+			set {
+				add.Visible = value;
+			}
+		}
+
+		public bool EditVisible {
+			get {
+				return edit.Visible;
+			}
+			set {
+				edit.Visible = value;
+			}
+		}
+
+		public bool RemoveVisible {
+			get {
+				return remove.Visible;
+			}
+			set {
+				remove.Visible = value;
+			}
 		}
 
 		public bool Editable {
@@ -56,7 +83,7 @@ namespace Hamekoz.UI
 			}
 		}
 
-		public Type WidgetType {
+		public IItemUI<T> ItemUI {
 			get;
 			set;
 		}
@@ -85,8 +112,6 @@ namespace Hamekoz.UI
 
 		public ListViewAction ()
 		{
-			//TODO ver posibilidad de utilizar la misma instancia del Widget en lugar de instanciar uno nuevo
-			//Para poder parametrizar el Widget con valores segun la necesidad
 			add.Clicked += delegate {
 				var dialogo = new Dialog {
 					Title = string.Format (Catalog.GetString ("New {0}"), typeof(T).Name.Humanize ()),
@@ -95,21 +120,25 @@ namespace Hamekoz.UI
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
 
 				var item = new T ();
-				var widget = (IItemUI<T>)Activator.CreateInstance (WidgetType);
-				widget.Item = item;
-				widget.ValuesRefresh ();
-				widget.Editable (true);
-				dialogo.Content = (Widget)widget;
+				ItemUI.Item = item;
+				ItemUI.ValuesRefresh ();
+				ItemUI.Editable (true);
+				var w = (Widget)ItemUI;
+				var box = new HBox ();
+				box.PackStart (w);
+				dialogo.Content = box;
 				if (dialogo.Run () == Command.Add) {
-					widget.ValuesTake ();
-					if (Similarity (List, widget.Item))
+					ItemUI.ValuesTake ();
+					if (OnSimilarity (List, ItemUI.Item))
 						MessageDialog.ShowWarning (Catalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
 					else {
 						listView.Add (item);
-						OnChanged ();	
+						OnChanged ();
 					}
 				}
-				dialogo.Hide ();
+
+				box.Remove (w);
+				dialogo.Close ();
 			};
 
 			edit.Clicked += delegate {
@@ -123,21 +152,24 @@ namespace Hamekoz.UI
 				if (row == -1) {
 					MessageDialog.ShowMessage (string.Format (Catalog.GetString ("Select a {0} to edit"), typeof(T).Name.Humanize ()));
 				} else {
-					var widget = (IItemUI<T>)Activator.CreateInstance (WidgetType);
-					widget.Item = listView.SelectedItem;
-					widget.ValuesRefresh ();
-					widget.Editable (true);
-					dialogo.Content = (Widget)widget;
+					ItemUI.Item = listView.SelectedItem;
+					ItemUI.ValuesRefresh ();
+					ItemUI.Editable (true);
+					var widget = (Widget)ItemUI;
+					var box = new HBox ();
+					box.PackStart (widget);
+					dialogo.Content = box;
 					if (dialogo.Run () == Command.Apply) {
-						widget.ValuesTake ();
-						if (Similarity (List, widget.Item))
+						ItemUI.ValuesTake ();
+						if (OnSimilarity (List, ItemUI.Item))
 							MessageDialog.ShowWarning (Catalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
 						else {
 							listView.FillRow (row, listView.SelectedItem);
 							OnChanged ();
 						}
 					}
-					dialogo.Hide ();
+					box.Remove (widget);
+					dialogo.Close ();
 				}
 			};
 
@@ -146,9 +178,12 @@ namespace Hamekoz.UI
 				if (row == -1) {
 					MessageDialog.ShowMessage (string.Format (Catalog.GetString ("Select a {0} to remove"), typeof(T).Name.Humanize ()));
 				} else {
-					//TODO revisar si tiene sentido pedir confirmación
-					listView.Remove ();
-					OnChanged ();
+					if (OnPreventRemove (listView.SelectedItem))
+						MessageDialog.ShowWarning (Catalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
+					else {
+						listView.Remove ();
+						OnChanged ();
+					}
 				}
 			};
 
@@ -161,17 +196,22 @@ namespace Hamekoz.UI
 
 		public delegate bool SimilarityHandler (IList<T> list, T item);
 
-		public SimilarityHandler OnSimilarity;
+		public SimilarityHandler Similarity;
 
-		protected bool Similarity (IList<T> list, T item)
+		protected bool OnSimilarity (IList<T> list, T item)
 		{
-			var similarity = OnSimilarity;
+			var similarity = Similarity;
 			return similarity != null && similarity (list, item);
 		}
 
-		public void DisableRemove ()
+		public delegate bool PreventRemoveHandler (T item);
+
+		public PreventRemoveHandler PreventRemove;
+
+		protected bool OnPreventRemove (T item)
 		{
-			remove.Sensitive = false;
+			var preventRemove = PreventRemove;
+			return preventRemove != null && preventRemove (item);
 		}
 
 		public void RemoveColumnAt (int index)
