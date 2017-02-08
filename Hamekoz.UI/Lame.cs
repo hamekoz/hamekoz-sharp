@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Hamekoz.Core;
+using Humanizer;
 using Mono.Unix;
 using Xwt;
 
@@ -98,7 +99,7 @@ namespace Hamekoz.UI
 			};
 
 			eliminar.Clicked += delegate {
-				if (Widget.HasItem () && MessageDialog.Confirm (Catalog.GetString ("Are you sure to erase this item?"), Command.Yes)) {
+				if (Widget.HasItem () && MessageDialog.Confirm (string.Format (Catalog.GetString ("Are you sure to erase this {0}?"), typeof(T).Name.Humanize ()), Command.Yes)) {
 					Controller.Remove (Widget.Item);
 					List.List.Remove (Widget.Item);
 					List.Refresh ();
