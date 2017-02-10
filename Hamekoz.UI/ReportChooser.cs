@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Mono.Unix;
 using Xwt;
 
 namespace Hamekoz.UI
@@ -43,7 +42,7 @@ namespace Hamekoz.UI
 			ImagePosition = ContentPosition.Left,
 		};
 		readonly Button export = new Button {
-			Label = Catalog.GetString ("Export"),
+			Label = Application.TranslationCatalog.GetString ("Export"),
 			ExpandHorizontal = true,
 			HorizontalPlacement = WidgetPlacement.Fill,
 			Image = Icons.SaveAs.WithSize (IconSize.Medium),

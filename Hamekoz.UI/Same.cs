@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Hamekoz.Core;
 using Humanizer;
-using Mono.Unix;
 using Xwt;
 
 namespace Hamekoz.UI
@@ -54,31 +53,31 @@ namespace Hamekoz.UI
 		}
 
 		readonly Button buscar = new Button {
-			Label = Catalog.GetString ("Search"),
+			Label = Application.TranslationCatalog.GetString ("Search"),
 			Image = Icons.EditFind.WithSize (IconSize.Medium),
 		};
 
 		readonly Button agregar = new Button {
-			Label = Catalog.GetString ("Add"),
+			Label = Application.TranslationCatalog.GetString ("Add"),
 			Image = Icons.New.WithSize (IconSize.Medium),
 		};
 		readonly Button modificar = new Button {
-			Label = Catalog.GetString ("Modify"),
+			Label = Application.TranslationCatalog.GetString ("Modify"),
 			Sensitive = false,
 			Image = Icons.Edit.WithSize (IconSize.Medium),
 		};
 		readonly Button eliminar = new Button {
-			Label = Catalog.GetString ("Erase"),
+			Label = Application.TranslationCatalog.GetString ("Erase"),
 			Sensitive = false,
 			Image = Icons.Delete.WithSize (IconSize.Medium),
 		};
 		readonly Button grabar = new Button {
-			Label = Catalog.GetString ("Save"),
+			Label = Application.TranslationCatalog.GetString ("Save"),
 			Sensitive = false,
 			Image = Icons.Save.WithSize (IconSize.Medium),
 		};
 		readonly Button cancelar = new Button {
-			Label = Catalog.GetString ("Cancel"),
+			Label = Application.TranslationCatalog.GetString ("Cancel"),
 			Sensitive = false,
 			Image = Icons.ProcessStop.WithSize (IconSize.Medium),
 		};
@@ -122,7 +121,7 @@ namespace Hamekoz.UI
 			};
 
 			eliminar.Clicked += delegate {
-				if (Widget.HasItem () && MessageDialog.Confirm (string.Format (Catalog.GetString ("Are you sure to erase this {0}?"), typeof(T).Name.Humanize ()), Command.Yes)) {
+				if (Widget.HasItem () && MessageDialog.Confirm (string.Format (Application.TranslationCatalog.GetString ("Are you sure to erase this {0}?"), typeof(T).Name.Humanize ()), Command.Yes)) {
 					Controller.Remove (Widget.Item);
 					Widget.ValuesClean ();
 					Editable (false);
@@ -136,7 +135,7 @@ namespace Hamekoz.UI
 					Widget.ValuesRefresh ();
 					Editable (false);
 				} catch (ValidationDataException ex) {
-					MessageDialog.ShowWarning (Catalog.GetString ("Data is not valid"), ex.Message);
+					MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("Data is not valid"), ex.Message);
 				}
 			};
 

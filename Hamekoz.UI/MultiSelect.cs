@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
-using Mono.Unix;
 using Xwt;
 
 namespace Hamekoz.UI
@@ -62,22 +61,22 @@ namespace Hamekoz.UI
 
 		readonly Button agregar = new Button {
 			Image = Icons.GoPrevious.WithSize (IconSize.Medium),
-			TooltipText = Catalog.GetString ("Add"),
+			TooltipText = Application.TranslationCatalog.GetString ("Add"),
 		};
 
 		readonly Button agregarTodos = new Button {
 			Image = Icons.GoFirst.WithSize (IconSize.Medium),
-			TooltipText = Catalog.GetString ("Add all"),
+			TooltipText = Application.TranslationCatalog.GetString ("Add all"),
 		};
 
 		readonly Button quitar = new Button {
 			Image = Icons.GoNext.WithSize (IconSize.Medium),
-			TooltipText = Catalog.GetString ("Remove"),
+			TooltipText = Application.TranslationCatalog.GetString ("Remove"),
 		};
 
 		readonly Button quitarTodos = new Button {
 			Image = Icons.GoLast.WithSize (IconSize.Medium),
-			TooltipText = Catalog.GetString ("Remove all"),
+			TooltipText = Application.TranslationCatalog.GetString ("Remove all"),
 		};
 
 		public MultiSelect ()
@@ -127,9 +126,9 @@ namespace Hamekoz.UI
 			actionBox.PackStart (agregarTodos);
 			actionBox.PackStart (quitarTodos);
 
-			PackStart (selected.WithLabel (Catalog.GetString ("Selected")), true, true);
+			PackStart (selected.WithLabel (Application.TranslationCatalog.GetString ("Selected")), true, true);
 			PackStart (actionBox);
-			PackStart (list.WithLabel (Catalog.GetString ("Availables")), true, true);
+			PackStart (list.WithLabel (Application.TranslationCatalog.GetString ("Availables")), true, true);
 		}
 	}
 

@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Mono.Unix;
 using Xwt;
 
 namespace Hamekoz.UI
@@ -28,7 +27,7 @@ namespace Hamekoz.UI
 	{
 		readonly DatePicker dateStart = new DatePicker {
 			Style = DatePickerStyle.Date,
-			TooltipText = Catalog.GetString ("Star date"),
+			TooltipText = Application.TranslationCatalog.GetString ("Star date"),
 			ExpandHorizontal = false,
 			ExpandVertical = false,
 			DateTime = DateTime.Now.Date
@@ -36,7 +35,7 @@ namespace Hamekoz.UI
 
 		readonly DatePicker dateEnd = new DatePicker {
 			Style = DatePickerStyle.Date,
-			TooltipText = Catalog.GetString ("End date"),
+			TooltipText = Application.TranslationCatalog.GetString ("End date"),
 			ExpandHorizontal = false,
 			ExpandVertical = false,
 			DateTime = DateTime.Now.Date.AddDays (1).AddMilliseconds (-1),
@@ -51,7 +50,7 @@ namespace Hamekoz.UI
 			else
 				box = new VBox ();
 
-			box.PackStart (new Label (Catalog.GetString ("Period")));
+			box.PackStart (new Label (Application.TranslationCatalog.GetString ("Period")));
 			box.PackStart (dateStart, horizonal, horizonal);
 			box.PackStart (dateEnd, horizonal, horizonal);
 			Content = box;
@@ -64,7 +63,7 @@ namespace Hamekoz.UI
 		{
 			if (dateStart.DateTime > dateEnd.DateTime) {
 				box.BackgroundColor = Xwt.Drawing.Colors.Red;	
-				box.TooltipText = Catalog.GetString ("Invalid period, the start date must be less than or equal to the final");
+				box.TooltipText = Application.TranslationCatalog.GetString ("Invalid period, the start date must be less than or equal to the final");
 			} else {
 				box.BackgroundColor = Xwt.Drawing.Colors.Transparent;
 				box.TooltipText = string.Empty;

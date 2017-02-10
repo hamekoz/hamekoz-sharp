@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
 
@@ -53,7 +52,7 @@ namespace Hamekoz.UI
 		public ListBoxFilter ()
 		{
 			search = new SearchTextEntry {
-				PlaceholderText = Catalog.GetString ("Filter"),
+				PlaceholderText = Application.TranslationCatalog.GetString ("Filter"),
 			};
 
 			search.Activated += FilterActivated;

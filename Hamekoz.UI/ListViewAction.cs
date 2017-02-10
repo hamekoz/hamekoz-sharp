@@ -21,7 +21,6 @@
 using System;
 using System.Collections.Generic;
 using Humanizer;
-using Mono.Unix;
 using Xwt;
 
 namespace Hamekoz.UI
@@ -95,17 +94,17 @@ namespace Hamekoz.UI
 		readonly VBox actions = new VBox ();
 
 		readonly Button add = new Button {
-			TooltipText = Catalog.GetString ("Add"),
+			TooltipText = Application.TranslationCatalog.GetString ("Add"),
 			Image = Icons.ListAdd.WithSize (IconSize.Medium),
 			ImagePosition = ContentPosition.Center
 		};
 		readonly Button edit = new Button {
-			TooltipText = Catalog.GetString ("Edit"),
+			TooltipText = Application.TranslationCatalog.GetString ("Edit"),
 			Image = Icons.Edit.WithSize (IconSize.Medium),
 			ImagePosition = ContentPosition.Center
 		};
 		readonly Button remove = new Button {
-			TooltipText = Catalog.GetString ("Remove"),
+			TooltipText = Application.TranslationCatalog.GetString ("Remove"),
 			Image = Icons.Delete.WithSize (IconSize.Medium),
 			ImagePosition = ContentPosition.Center
 		};
@@ -114,7 +113,7 @@ namespace Hamekoz.UI
 		{
 			add.Clicked += delegate {
 				var dialogo = new Dialog {
-					Title = string.Format (Catalog.GetString ("New {0}"), typeof(T).Name.Humanize ()),
+					Title = string.Format (Application.TranslationCatalog.GetString ("New {0}"), typeof(T).Name.Humanize ()),
 				};
 
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
@@ -130,7 +129,7 @@ namespace Hamekoz.UI
 				if (dialogo.Run () == Command.Add) {
 					ItemUI.ValuesTake ();
 					if (OnSimilarity (List, ItemUI.Item))
-						MessageDialog.ShowWarning (Catalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
+						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
 					else {
 						listView.Add (item);
 						OnChanged ();
@@ -143,14 +142,14 @@ namespace Hamekoz.UI
 
 			edit.Clicked += delegate {
 				var dialogo = new Dialog {
-					Title = string.Format (Catalog.GetString ("Edit {0}"), typeof(T).Name.Humanize ()),
+					Title = string.Format (Application.TranslationCatalog.GetString ("Edit {0}"), typeof(T).Name.Humanize ()),
 				};
 
 				dialogo.Buttons.Add (Command.Cancel, Command.Apply);
 
 				var row = listView.SelectedRow;
 				if (row == -1) {
-					MessageDialog.ShowMessage (string.Format (Catalog.GetString ("Select a {0} to edit"), typeof(T).Name.Humanize ()));
+					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to edit"), typeof(T).Name.Humanize ()));
 				} else {
 					ItemUI.Item = listView.SelectedItem;
 					ItemUI.ValuesRefresh ();
@@ -162,7 +161,7 @@ namespace Hamekoz.UI
 					if (dialogo.Run () == Command.Apply) {
 						ItemUI.ValuesTake ();
 						if (OnSimilarity (List, ItemUI.Item))
-							MessageDialog.ShowWarning (Catalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
+							MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
 						else {
 							listView.FillRow (row, listView.SelectedItem);
 							OnChanged ();
@@ -176,10 +175,10 @@ namespace Hamekoz.UI
 			remove.Clicked += delegate {
 				var row = listView.SelectedRow;
 				if (row == -1) {
-					MessageDialog.ShowMessage (string.Format (Catalog.GetString ("Select a {0} to remove"), typeof(T).Name.Humanize ()));
+					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to remove"), typeof(T).Name.Humanize ()));
 				} else {
 					if (OnPreventRemove (listView.SelectedItem))
-						MessageDialog.ShowWarning (Catalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
+						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
 					else {
 						listView.Remove ();
 						OnChanged ();

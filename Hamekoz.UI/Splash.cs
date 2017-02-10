@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Threading;
-using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
 
@@ -47,10 +46,10 @@ namespace Hamekoz.UI
 			};
 			progressBar = new ProgressBar {
 				Indeterminate = true,
-				TooltipText = Catalog.GetString ("Loading..."),
+				TooltipText = Application.TranslationCatalog.GetString ("Loading..."),
 			};
 			info = new Label {
-				Text = Catalog.GetString ("Loading..."),
+				Text = Application.TranslationCatalog.GetString ("Loading..."),
 				TextAlignment = Alignment.Center,
 			};
 			box.PackStart (imageView);
@@ -88,9 +87,9 @@ namespace Hamekoz.UI
 					imageView.Image = Image.FromFile (value);
 					splashURI = value;
 				} catch (Exception ex) {
-					Console.WriteLine (Catalog.GetString ("Failed to load image."));
-					Console.WriteLine (Catalog.GetString ("Swiching to default splash."));
-					Console.WriteLine (Catalog.GetString ("Error: {0}"), ex.Message);
+					Console.WriteLine (Application.TranslationCatalog.GetString ("Failed to load image."));
+					Console.WriteLine (Application.TranslationCatalog.GetString ("Swiching to default splash."));
+					Console.WriteLine (Application.TranslationCatalog.GetString ("Error: {0}"), ex.Message);
 					imageView.Image = Image.FromResource (Resources.Splash);
 				}
 			}

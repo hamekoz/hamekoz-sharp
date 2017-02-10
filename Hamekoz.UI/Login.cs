@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
 
@@ -39,17 +38,17 @@ namespace Hamekoz.UI
 			};
 			userEntry = new TextEntry {
 				Text = Environment.UserName,
-				PlaceholderText = Catalog.GetString ("User"),
+				PlaceholderText = Application.TranslationCatalog.GetString ("User"),
 			};
 			passwordEntry = new PasswordEntry {
-				PlaceholderText = Catalog.GetString ("Password"),
+				PlaceholderText = Application.TranslationCatalog.GetString ("Password"),
 			};
 			var userLabel = new Label {
-				Text = Catalog.GetString ("User"),
+				Text = Application.TranslationCatalog.GetString ("User"),
 				TextAlignment = Alignment.Center,
 			};
 			var passwordLabel = new Label {
-				Text = Catalog.GetString ("Password"),
+				Text = Application.TranslationCatalog.GetString ("Password"),
 				TextAlignment = Alignment.Center,
 			};
 			info = new Label {
@@ -78,7 +77,7 @@ namespace Hamekoz.UI
 			
 			Resizable = false;
 			ShowInTaskbar = false;
-			Title = Catalog.GetString ("Login");
+			Title = Application.TranslationCatalog.GetString ("Login");
 			Icon = Image.FromResource (GetType (), Resources.Icon);
 		}
 

@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
-using Mono.Unix;
 using Xwt;
 
 namespace Hamekoz.UI
@@ -34,7 +33,7 @@ namespace Hamekoz.UI
 		public ListBoxAll ()
 		{
 			label = new Label {
-				Text = Catalog.GetString ("List description"),
+				Text = Application.TranslationCatalog.GetString ("List description"),
 				Visible = false,
 			};
 
@@ -47,7 +46,7 @@ namespace Hamekoz.UI
 			listBoxFilter.SelectionItemChanged += (sender, e) => OnSelectionItemChanged (e);
 
 			allCheckBox = new CheckBox {
-				Label = Catalog.GetString ("All"),
+				Label = Application.TranslationCatalog.GetString ("All"),
 				AllowMixed = false,
 				State = CheckBoxState.Off,
 				Active = false,

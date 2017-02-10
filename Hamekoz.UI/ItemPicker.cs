@@ -5,7 +5,7 @@
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //       Mariano Adrian Ripa <ripamariano@gmail.com>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Mono.Unix;
 using Xwt;
 
 namespace Hamekoz.UI
@@ -43,8 +42,8 @@ namespace Hamekoz.UI
 		public ItemPicker ()
 		{
 			ReadOnly = true;
-			PlaceholderText = Catalog.GetString ("Click o press Intro or Space to select one item");
-			TooltipText = Catalog.GetString ("Click o press Intro or Space to select one item from the list");
+			PlaceholderText = Application.TranslationCatalog.GetString ("Click o press Intro or Space to select one item");
+			TooltipText = Application.TranslationCatalog.GetString ("Click o press Intro or Space to select one item from the list");
 
 			var popover = new Popover {
 				Content = listBoxFilter,

@@ -23,7 +23,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Hamekoz.Core;
 using Hamekoz.Extensions;
-using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
 
@@ -57,7 +56,7 @@ namespace Hamekoz.UI
 		#endregion
 
 		readonly SearchTextEntry search = new SearchTextEntry {
-			TooltipText = Catalog.GetString ("Tip: Try use field search. Ex: Status=Active")
+			TooltipText = Application.TranslationCatalog.GetString ("Tip: Try use field search. Ex: Status=Active")
 		};
 
 		readonly protected ListView listView = new ListView {
@@ -65,13 +64,13 @@ namespace Hamekoz.UI
 		};
 
 		readonly Button refresh = new Button {
-			Label = Catalog.GetString ("Refresh"),
+			Label = Application.TranslationCatalog.GetString ("Refresh"),
 			Image = Icons.ViewRefresh.WithSize (IconSize.Small),
-			TooltipText = Catalog.GetString ("Refresh the list including newest items")
+			TooltipText = Application.TranslationCatalog.GetString ("Refresh the list including newest items")
 		};
 
 		readonly Button clearFilter = new Button {
-			Label = Catalog.GetString ("Clear filters"),
+			Label = Application.TranslationCatalog.GetString ("Clear filters"),
 			Image = Icons.EditClearAll.WithSize (IconSize.Small),
 		};
 
@@ -89,7 +88,7 @@ namespace Hamekoz.UI
 
 		protected SearchDialog ()
 		{
-			Title = Catalog.GetString ("Search");
+			Title = Application.TranslationCatalog.GetString ("Search");
 			search.SetFocus ();
 			search.SetCompletions (typeof(T).GetPropertiesNames ());
 
@@ -125,7 +124,7 @@ namespace Hamekoz.UI
 
 			var dialogoVBox = new VBox ();
 
-			dialogoVBox.PackStart (new Label (Catalog.GetString ("Text search")));
+			dialogoVBox.PackStart (new Label (Application.TranslationCatalog.GetString ("Text search")));
 			dialogoVBox.PackStart (search);
 			dialogoVBox.PackStart (filtersBox);
 			dialogoVBox.PackStart (listView, true, true);
@@ -147,7 +146,7 @@ namespace Hamekoz.UI
 			FillStore ();
 
 			search.BackgroundColor = search.Text == string.Empty ? Colors.White : store.RowCount == 0 ? Colors.Red : Colors.LightGreen;
-			result.Text = string.Format (Catalog.GetPluralString ("{0} result", "{0} results", store.RowCount), store.RowCount);
+			result.Text = string.Format (Application.TranslationCatalog.GetPluralString ("{0} result", "{0} results", store.RowCount), store.RowCount);
 		}
 
 		protected virtual void FillStore ()
