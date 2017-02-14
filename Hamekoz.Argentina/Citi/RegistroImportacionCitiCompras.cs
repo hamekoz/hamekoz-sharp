@@ -4,7 +4,7 @@
 //  Author:
 //       Mariano Ripa <ripamariano@gmail.com>
 //
-//  Copyright (c) 2016 Hamekoz
+//  Copyright (c) 2016 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
