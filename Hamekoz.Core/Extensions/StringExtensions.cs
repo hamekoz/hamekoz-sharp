@@ -29,37 +29,34 @@ namespace Hamekoz.Extensions
 	public static class StringExtensions
 	{
 		//TODO VERIFICAR QUE SEA EL METODO CORRECTO
-		public static string ToBasicASCII(this string texto)
+		public static string ToBasicASCII (this string texto)
 		{
 			const string consignos = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇ";
 			const string sinsignos = "aaaeeeiiiooouuunAAAEEEIIIOOOUUUNcC";
-			var textoSinAcentos = new StringBuilder(texto.Length);
+			var textoSinAcentos = new StringBuilder (texto.Length);
 			int indexConAcento;
 			foreach (char caracter in texto) {
-				indexConAcento = consignos.IndexOf(caracter);
+				indexConAcento = consignos.IndexOf (caracter);
 				if (indexConAcento > -1)
-					textoSinAcentos.Append(sinsignos.Substring(indexConAcento, 1));
+					textoSinAcentos.Append (sinsignos.Substring (indexConAcento, 1));
 				else
-					textoSinAcentos.Append(caracter);
+					textoSinAcentos.Append (caracter);
 			}
-			return textoSinAcentos.ToString();
+			return textoSinAcentos.ToString ();
 		}
 
-		static readonly Regex emailRegex = new Regex(@"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$", RegexOptions.IgnoreCase);
+		static readonly Regex emailRegex = new Regex (@"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$", RegexOptions.IgnoreCase);
 
-		public static bool CheckEmailFormat(this string email)
+		public static bool CheckEmailFormat (this string email)
 		{
-			if (!string.IsNullOrWhiteSpace(email)) {
-				return emailRegex.IsMatch(email.Trim());
-			}
-			return false;
+			return string.IsNullOrWhiteSpace (email) || emailRegex.IsMatch (email.Trim ());
 		}
 
 		//UNDONE revisar logica y reemplazar por algo mas prolijo
-		public static bool IsNumeric(this string theValue)
+		public static bool IsNumeric (this string theValue)
 		{
 			try {
-				Convert.ToDouble(theValue);
+				Convert.ToDouble (theValue);
 				return true;
 			} catch {
 				return false;
@@ -72,13 +69,13 @@ namespace Hamekoz.Extensions
 		/// <param name="param"></param>
 		/// <param name="length"></param>
 		/// <returns></returns>
-		public static string Left(this string param, int length)
+		public static string Left (this string param, int length)
 		{
 			string result = param;
 			//we start at 0 since we want to get the characters starting from the
 			//left and with the specified lenght and assign it to a variable
 			if (param.Length > length)
-				result = param.Substring(0, length);
+				result = param.Substring (0, length);
 			//return the result of the operation
 			return result;
 		}
@@ -89,11 +86,11 @@ namespace Hamekoz.Extensions
 		/// <param name="param"></param>
 		/// <param name="length"></param>
 		/// <returns></returns>
-		public static string Right(this string param, int length)
+		public static string Right (this string param, int length)
 		{
 			//start at the index based on the lenght of the sting minus
 			//the specified lenght and assign it a variable
-			string result = param.Substring(param.Length - length, length);
+			string result = param.Substring (param.Length - length, length);
 			//return the result of the operation
 			return result;
 		}
