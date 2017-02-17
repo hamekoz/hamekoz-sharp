@@ -60,7 +60,8 @@ namespace Hamekoz.UI
 		};
 
 		readonly protected ListView listView = new ListView {
-			HeightRequest = 200,
+			GridLinesVisible = GridLines.Both,
+			HeightRequest = 200
 		};
 
 		readonly Button refresh = new Button {
