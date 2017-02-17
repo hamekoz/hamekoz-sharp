@@ -119,6 +119,7 @@ namespace Hamekoz.UI
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
 
 				var item = new T ();
+				ItemUI.ValuesClean ();
 				ItemUI.Item = item;
 				ItemUI.ValuesRefresh ();
 				ItemUI.Editable (true);
@@ -151,6 +152,7 @@ namespace Hamekoz.UI
 				if (row == -1) {
 					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to edit"), typeof(T).Name.Humanize ()));
 				} else {
+					ItemUI.ValuesClean ();
 					ItemUI.Item = listView.SelectedItem;
 					ItemUI.ValuesRefresh ();
 					ItemUI.Editable (true);
