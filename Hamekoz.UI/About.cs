@@ -47,8 +47,10 @@ namespace Hamekoz.UI
 			Image = Icons.Delete.WithSize (IconSize.Small),
 		};
 
+		const string authors = "Claudio Rodrigo Pereyra Diaz\n" + "Ezequiel Carlos Taranto\n" + "Emiliano Gabriel Canedo\n" + "Juan Angel Dinamarca\n" + "Mariano Adrián Ripa\n";
+
 		TextArea creditsText = new TextArea {
-			Text = string.Format (Application.TranslationCatalog.GetString ("Written by {0}"),	"\n" + "Claudio Rodrigo Pereyra Diaz \n" + "Ezequiel Carlos Taranto \n" + "Emiliano Gabriel Canedo \n" + "Juan Angel Dinamarca \n" + ""),
+			Text = string.Format (Application.TranslationCatalog.GetString ("Written by:\n{0}"), authors),
 			ReadOnly = true,
 			TextAlignment = Alignment.Center,
 			CanGetFocus = false,			
