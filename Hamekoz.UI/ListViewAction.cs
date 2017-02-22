@@ -125,7 +125,7 @@ namespace Hamekoz.UI
 				ItemUI.Editable (true);
 				var w = (Widget)ItemUI;
 				var box = new HBox ();
-				box.PackStart (w);
+				box.PackStart (w, true, true);
 				dialogo.Content = box;
 				if (dialogo.Run () == Command.Add) {
 					ItemUI.ValuesTake ();
@@ -158,7 +158,7 @@ namespace Hamekoz.UI
 					ItemUI.Editable (true);
 					var widget = (Widget)ItemUI;
 					var box = new HBox ();
-					box.PackStart (widget);
+					box.PackStart (widget, true, true);
 					dialogo.Content = box;
 					if (dialogo.Run () == Command.Apply) {
 						ItemUI.ValuesTake ();
