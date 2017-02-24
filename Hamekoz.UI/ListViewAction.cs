@@ -180,7 +180,7 @@ namespace Hamekoz.UI
 					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to remove"), typeof(T).Name.Humanize ()));
 				} else {
 					if (OnPreventRemove (listView.SelectedItem))
-						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
+						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A validation rule prevents you from deleting the selected item"));
 					else {
 						listView.Remove ();
 						OnChanged ();
