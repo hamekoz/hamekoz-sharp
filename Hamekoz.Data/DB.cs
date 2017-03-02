@@ -48,6 +48,20 @@ namespace Hamekoz.Data
 
 			return aux;
 		}
+
+		public static string DateTimeMinValueAsNull (this string sql)
+		{
+			sql = sql.Replace ("'" + DateTime.MinValue + "'", "null");
+			sql = sql.Replace ("'" + DateTime.MinValue.ToShortDateString () + "'", "null");
+			return sql;
+		}
+
+		public static string DateTimeMinValueAsSqlMinValue (this string sql)
+		{
+			sql = sql.Replace (DateTime.MinValue.ToString (), "01/01/1900");
+			sql = sql.Replace (DateTime.MinValue.ToShortDateString (), "01/01/1900");
+			return sql;
+		}
 	}
 
 	/// <summary>
