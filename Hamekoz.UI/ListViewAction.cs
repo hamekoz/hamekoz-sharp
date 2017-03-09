@@ -30,6 +30,8 @@ namespace Hamekoz.UI
 	/// </summary>
 	public class ListViewAction<T> : HBox where T : new()
 	{
+		//TODO permitir al ListViewAction recibir tanto el tipo como una interfaz para su presentacion
+
 		#region Properties
 
 		public bool ActionsVisible {
