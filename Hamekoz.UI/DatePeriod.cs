@@ -50,6 +50,9 @@ namespace Hamekoz.UI
 			else
 				box = new VBox ();
 
+			//HACK para resolver problema con fecha maxima fuera de periodo por ticks
+			MaximumDate = DateTime.MaxValue.AddMilliseconds (-1d);
+				
 			box.PackStart (new Label (Application.TranslationCatalog.GetString ("Period")));
 			box.PackStart (dateStart, horizonal, horizonal);
 			box.PackStart (dateEnd, horizonal, horizonal);
@@ -63,10 +66,12 @@ namespace Hamekoz.UI
 		{
 			if (dateStart.DateTime > dateEnd.DateTime) {
 				box.BackgroundColor = Xwt.Drawing.Colors.Red;	
-				box.TooltipText = Application.TranslationCatalog.GetString ("Invalid period, the start date must be less than or equal to the final");
+				box.TooltipText = string.Format (Application.TranslationCatalog.GetString ("Invalid period, the start date must be less than or equal to the final, and the period must be between {0} and {1}"), MinimumDate.ToShortDateString (), MaximumDate.ToShortDateString ());
+
 			} else {
+				
 				box.BackgroundColor = Xwt.Drawing.Colors.Transparent;
-				box.TooltipText = string.Empty;
+				box.TooltipText = string.Format (Application.TranslationCatalog.GetString ("The period must be between {0} and {1}"), MinimumDate.ToShortDateString (), MaximumDate.ToShortDateString ());
 			}
 
 			OnValueChanged (e);
@@ -110,6 +115,7 @@ namespace Hamekoz.UI
 			set {
 				dateStart.MinimumDateTime = value;
 				dateEnd.MinimumDateTime = value;
+				box.TooltipText = string.Format (Application.TranslationCatalog.GetString ("The period must be between {0} and {1}"), dateStart.MinimumDateTime.ToShortDateString (), MaximumDate.ToShortDateString ());
 			}
 		}
 
@@ -120,6 +126,7 @@ namespace Hamekoz.UI
 			set {
 				dateEnd.MaximumDateTime = value;
 				dateStart.MaximumDateTime = value;
+				box.TooltipText = string.Format (Application.TranslationCatalog.GetString ("The period must be between {0} and {1}"), MinimumDate.ToShortDateString (), dateEnd.MaximumDateTime.ToShortDateString ());
 			}
 		}
 
