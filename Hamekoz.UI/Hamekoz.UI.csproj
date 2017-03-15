@@ -89,6 +89,7 @@
     <Compile Include="SearchDialog.cs" />
     <Compile Include="ListViewAction.cs" />
     <Compile Include="ListView.cs" />
+    <Compile Include="ListBoxAction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
