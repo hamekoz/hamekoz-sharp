@@ -49,6 +49,11 @@ namespace Hamekoz.Data
 			return aux;
 		}
 
+		public static string ToSqlValue (this DateTime? datetime)
+		{
+			return datetime.HasValue ? "'" + datetime.Value.ToShortDateString () + "'" : "null";
+		}
+
 		public static string DateTimeMinValueAsNull (this string sql)
 		{
 			sql = sql.Replace ("'" + DateTime.MinValue + "'", "null");
