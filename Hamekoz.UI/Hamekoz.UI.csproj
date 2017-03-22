@@ -90,6 +90,7 @@
     <Compile Include="ListViewAction.cs" />
     <Compile Include="ListView.cs" />
     <Compile Include="ListBoxAction.cs" />
+    <Compile Include="ListViewAssociation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
