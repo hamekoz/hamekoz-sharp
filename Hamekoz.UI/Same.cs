@@ -110,6 +110,7 @@ namespace Hamekoz.UI
 
 			agregar.Clicked += delegate {
 				var item = Controller.Create ();
+				Widget.ValuesClean ();
 				Widget.Item = item;
 				Widget.ValuesRefresh ();
 				Editable (true);
