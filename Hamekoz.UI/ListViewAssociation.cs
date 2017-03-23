@@ -64,6 +64,11 @@ namespace Hamekoz.UI
 			set { listView.List = value; }
 		}
 
+		public void Add (T item)
+		{
+			listView.Add (item);
+		}
+
 		#endregion
 
 		readonly ListView<T> listView = new ListView<T> ();
@@ -106,6 +111,7 @@ namespace Hamekoz.UI
 					else {
 						controller.Load (listViewFilter.SelectedItem);
 						listView.Add (listViewFilter.SelectedItem);
+						OnAddItem (listViewFilter.SelectedItem);
 						OnChanged ();
 					}
 				}
@@ -152,6 +158,17 @@ namespace Hamekoz.UI
 			var handler = Changed;
 			if (handler != null)
 				handler (this, null);
+		}
+
+		public delegate void AddItemHandler (T item);
+
+		public event AddItemHandler AddItem;
+
+		protected virtual void OnAddItem (T item)
+		{
+			var handler = AddItem;
+			if (handler != null)
+				handler (item);
 		}
 
 		public void RemoveColumnAt (int index)

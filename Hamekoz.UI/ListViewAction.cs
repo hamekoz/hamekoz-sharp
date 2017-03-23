@@ -89,6 +89,11 @@ namespace Hamekoz.UI
 			set;
 		}
 
+		public void Add (T item)
+		{
+			listView.Add (item);
+		}
+
 		#endregion
 
 		readonly ListView<T> listView = new ListView<T> ();
