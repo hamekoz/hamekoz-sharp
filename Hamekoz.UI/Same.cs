@@ -162,6 +162,7 @@ namespace Hamekoz.UI
 			PackEnd (actionBox, false, true);
 		}
 
+		//TODO change metod to property
 		public void Editable (bool editable)
 		{
 			buscar.Sensitive = !editable;
