@@ -38,7 +38,7 @@ namespace Hamekoz.UI
 		public T SelectedItem {
 			get {
 				T selected = default(T);
-				if (SelectedRow >= 0) {
+				if (SelectedRow >= 0 && SelectedRow < list.Count) {
 					selected = list [SelectedRow];
 				}
 				return selected;
