@@ -77,7 +77,11 @@ namespace Hamekoz.UI
 
 		protected DataField<T> itemDataField = new DataField<T> ();
 
-		protected IController<T> controller;
+		public IController<T> Controller {
+			get;
+			set;
+		}
+
 		protected ListStore store;
 		protected IList<T> listFiltered;
 
@@ -95,8 +99,8 @@ namespace Hamekoz.UI
 
 			refresh.Clicked += delegate {
 				search.Text = string.Empty;
-				if (controller != null)
-					controller.Reload = true;
+				if (Controller != null)
+					Controller.Reload = true;
 				Refresh ();
 			};
 
@@ -138,7 +142,7 @@ namespace Hamekoz.UI
 
 		void FiltrarLista ()
 		{
-			listFiltered = List ?? controller.List;
+			listFiltered = List ?? Controller.List;
 
 			if (search.Text != string.Empty)
 				listFiltered = listFiltered.Where (r => r.ToSearchString ().ToUpperInvariant ().Contains (search.Text.ToUpperInvariant ())).ToList ();
