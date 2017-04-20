@@ -64,6 +64,11 @@ namespace Hamekoz.UI
 			set { listView.List = value; }
 		}
 
+		public IList<T> ListAvailable {
+			get;
+			set;
+		}
+
 		public void Add (T item)
 		{
 			listView.Add (item);
@@ -98,7 +103,7 @@ namespace Hamekoz.UI
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
 
 				listViewFilter = listViewFilter ?? new ListBoxFilter<T> {
-					List = controller.List,
+					List = ListAvailable ?? controller.List,
 					MinHeight = 200,
 					MinWidth = 300
 				};
