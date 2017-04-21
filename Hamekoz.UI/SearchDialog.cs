@@ -77,7 +77,7 @@ namespace Hamekoz.UI
 
 		protected DataField<T> itemDataField = new DataField<T> ();
 
-		public IController<T> Controller {
+		protected IController<T> Controller {
 			get;
 			set;
 		}
@@ -91,8 +91,9 @@ namespace Hamekoz.UI
 			HorizontalPlacement = WidgetPlacement.Center
 		};
 
-		protected SearchDialog ()
+		protected SearchDialog (IController<T> controller)
 		{
+			Controller = controller;
 			Title = Application.TranslationCatalog.GetString ("Search");
 			search.SetFocus ();
 			search.SetCompletions (typeof(T).GetPropertiesNames ());
