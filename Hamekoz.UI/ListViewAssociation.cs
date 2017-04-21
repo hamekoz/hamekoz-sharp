@@ -111,9 +111,11 @@ namespace Hamekoz.UI
 				box.PackStart (listViewFilter, true, true);
 				dialogo.Content = box;
 				if (dialogo.Run () == Command.Add) {
-					if (List.Contains (listViewFilter.SelectedItem))
+					if (listViewFilter.SelectedItems.Count == 0) {
+						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("Must select a item."));
+					} else if (List.Contains (listViewFilter.SelectedItem)) {
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("The item already exists in the list."));
-					else {
+					} else {
 						controller.Load (listViewFilter.SelectedItem);
 						listView.Add (listViewFilter.SelectedItem);
 						OnAddItem (listViewFilter.SelectedItem);

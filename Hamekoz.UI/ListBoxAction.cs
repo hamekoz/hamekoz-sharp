@@ -63,6 +63,11 @@ namespace Hamekoz.UI
 			set { listBox.List = value; }
 		}
 
+		public IList<T> ListAvailable {
+			get;
+			set;
+		}
+
 		#endregion
 
 		readonly ListBox<T> listBox = new ListBox<T> ();
@@ -90,7 +95,7 @@ namespace Hamekoz.UI
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
 
 				var w = new ListBoxFilter<T> {
-					List = controller.List,
+					List = ListAvailable ?? controller.List,
 					MinHeight = 200,
 					MinWidth = 300
 				};
@@ -98,9 +103,11 @@ namespace Hamekoz.UI
 				box.PackStart (w, true, true);
 				dialogo.Content = box;
 				if (dialogo.Run () == Command.Add) {
-					if (List.Contains (w.SelectedItem))
+					if (w.SelectedItems.Count == 0) {
+						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("Must select a item."));
+					} else if (List.Contains (w.SelectedItem)) {
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("The item already exists in the list."));
-					else {
+					} else {
 						listBox.List.Add (w.SelectedItem);
 						listBox.Items.Add (w.SelectedItem);
 						OnChanged ();
