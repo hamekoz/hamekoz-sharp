@@ -94,6 +94,11 @@ namespace Hamekoz.UI
 			listView.Add (item);
 		}
 
+		public T SelectedItem {
+			get { return listView.SelectedItem; }
+			set { listView.SelectedItem = value; }
+		}
+
 		#endregion
 
 		readonly ListView<T> listView = new ListView<T> ();
@@ -195,6 +200,8 @@ namespace Hamekoz.UI
 				}
 			};
 
+			listView.RowActivated += (sender, e) => OnRowActivated ();
+
 			actions.PackStart (add);
 			actions.PackStart (edit);
 			actions.PackStart (remove);
@@ -232,6 +239,15 @@ namespace Hamekoz.UI
 		protected virtual void OnChanged ()
 		{
 			var handler = Changed;
+			if (handler != null)
+				handler (this, null);
+		}
+
+		public event EventHandler RowActivated;
+
+		protected virtual void OnRowActivated ()
+		{
+			var handler = RowActivated;
 			if (handler != null)
 				handler (this, null);
 		}
