@@ -46,6 +46,8 @@ namespace Hamekoz.UI
 		public static readonly Image ListAdd = Image.FromResource ("Hamekoz.UI.Icons.list-add.png");
 		public static readonly Image ListRemove = Image.FromResource ("Hamekoz.UI.Icons.list-remove.png");
 
+		public static readonly Image MailSend = Image.FromResource ("Hamekoz.UI.Icons.mail-send.png");
+
 		public static readonly Image ProcessStop = Image.FromResource ("Hamekoz.UI.Icons.process-stop.png");
 		public static readonly Image Starred = Image.FromResource ("Hamekoz.UI.Icons.starred.png");
 		public static readonly Image SystemSearch = Image.FromResource ("Hamekoz.UI.Icons.system-search.png");
