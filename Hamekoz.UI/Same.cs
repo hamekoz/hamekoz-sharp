@@ -163,7 +163,7 @@ namespace Hamekoz.UI
 		}
 
 		//TODO change metod to property
-		public void Editable (bool editable)
+		public virtual void Editable (bool editable)
 		{
 			buscar.Sensitive = !editable;
 			agregar.Sensitive = !editable;
