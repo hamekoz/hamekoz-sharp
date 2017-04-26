@@ -117,8 +117,10 @@ namespace Hamekoz.UI
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("The item already exists in the list."));
 					} else {
 						controller.Load (listViewFilter.SelectedItem);
-						listView.Add (listViewFilter.SelectedItem);
-						OnAddItem (listViewFilter.SelectedItem);
+						if (AddItem != null)
+							OnAddItem (listViewFilter.SelectedItem);
+						else
+							listView.Add (listViewFilter.SelectedItem);	
 						OnChanged ();
 					}
 				}
