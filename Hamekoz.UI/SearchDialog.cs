@@ -37,7 +37,7 @@ namespace Hamekoz.UI
 
 		#region ISearchDialog implementation
 
-		public void Refresh ()
+		public virtual void Refresh ()
 		{
 			if (!Reset)
 				FiltrarLista ();
@@ -63,6 +63,8 @@ namespace Hamekoz.UI
 			GridLinesVisible = GridLines.Both,
 			HeightRequest = 200
 		};
+
+		readonly protected HBox actionBox = new HBox ();
 
 		readonly Button refresh = new Button {
 			Label = Application.TranslationCatalog.GetString ("Refresh"),
@@ -124,7 +126,7 @@ namespace Hamekoz.UI
 				Respond (Command.Ok);
 			};
 
-			var actionBox = new HBox ();
+
 			actionBox.PackStart (refresh, true);
 			actionBox.PackStart (clearFilter, true);
 
