@@ -91,6 +91,8 @@
     <Compile Include="ListView.cs" />
     <Compile Include="ListBoxAction.cs" />
     <Compile Include="ListViewAssociation.cs" />
+    <Compile Include="YearMonthPicker.cs" />
+    <Compile Include="YearMonthPeriod.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
