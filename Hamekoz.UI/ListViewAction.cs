@@ -117,7 +117,7 @@ namespace Hamekoz.UI
 		};
 		readonly Button remove = new Button {
 			TooltipText = Application.TranslationCatalog.GetString ("Remove"),
-			Image = Icons.Delete.WithSize (IconSize.Medium),
+			Image = Icons.ListRemove.WithSize (IconSize.Medium),
 			ImagePosition = ContentPosition.Center
 		};
 
