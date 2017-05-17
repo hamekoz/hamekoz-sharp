@@ -31,6 +31,7 @@ namespace Hamekoz.UI
 		public static readonly Image SaveAs = Image.FromResource ("Hamekoz.UI.Icons.document-save-as.png");
 		public static readonly Image Delete = Image.FromResource ("Hamekoz.UI.Icons.edit-delete.png");
 		public static readonly Image EditClearAll = Image.FromResource ("Hamekoz.UI.Icons.edit-clear-all.png");
+		public static readonly Image EditCopy = Image.FromResource ("Hamekoz.UI.Icons.edit-copy.png");
 		public static readonly Image EditFind = Image.FromResource ("Hamekoz.UI.Icons.edit-find.png");
 		public static readonly Image EditFindReplace = Image.FromResource ("Hamekoz.UI.Icons.edit-find-replace.png");
 		public static readonly Image EditSelectAll = Image.FromResource ("Hamekoz.UI.Icons.edit-select-all.png");
