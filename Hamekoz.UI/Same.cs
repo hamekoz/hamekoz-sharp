@@ -57,6 +57,33 @@ namespace Hamekoz.UI
 			Image = Icons.EditFind.WithSize (IconSize.Medium),
 		};
 
+		public bool AddVisible {
+			get {
+				return agregar.Visible;
+			}
+			set {
+				agregar.Visible = value;
+			}
+		}
+
+		public bool ModifyVisible {
+			get {
+				return modificar.Visible;
+			}
+			set {
+				modificar.Visible = value;
+			}
+		}
+
+		public bool EraseVisible {
+			get {
+				return eliminar.Visible;
+			}
+			set {
+				eliminar.Visible = value;
+			}
+		}
+
 		readonly Button agregar = new Button {
 			Label = Application.TranslationCatalog.GetString ("Add"),
 			Image = Icons.New.WithSize (IconSize.Medium),
