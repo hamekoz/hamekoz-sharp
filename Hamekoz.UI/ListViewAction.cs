@@ -34,6 +34,11 @@ namespace Hamekoz.UI
 
 		#region Properties
 
+		public bool ShowOnRowActivated {
+			get;
+			set;
+		}
+
 		public bool ActionsVisible {
 			get { return actions.Visible; }
 			set { actions.Visible = value; }
@@ -200,7 +205,30 @@ namespace Hamekoz.UI
 				}
 			};
 
-			listView.RowActivated += (sender, e) => OnRowActivated ();
+			listView.RowActivated += delegate(object sender, ListViewRowEventArgs e) {
+				OnRowActivated ();
+				if (ShowOnRowActivated) {
+					var dialogo = new Dialog {
+						Title = typeof(T).Name.Humanize (),
+					};
+
+					if (e.RowIndex == -1) {
+						MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to show"), typeof(T).Name.Humanize ()));
+					} else {
+						ItemUI.ValuesClean ();
+						ItemUI.Item = listView.SelectedItem;
+						ItemUI.ValuesRefresh ();
+						ItemUI.Editable (false);
+						var widget = (Widget)ItemUI;
+						var box = new HBox ();
+						box.PackStart (widget, true, true);
+						dialogo.Content = box;
+						dialogo.Run ();
+						box.Remove (widget);
+						dialogo.Close ();
+					}
+				}
+			};
 
 			actions.PackStart (add);
 			actions.PackStart (edit);
