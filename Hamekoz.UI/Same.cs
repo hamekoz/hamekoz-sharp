@@ -91,7 +91,7 @@ namespace Hamekoz.UI
 		readonly Button modificar = new Button {
 			Label = Application.TranslationCatalog.GetString ("Modify"),
 			Sensitive = false,
-			Image = Icons.Edit.WithSize (IconSize.Medium),
+			Image = Icons.DocumentProperties.WithSize (IconSize.Medium),
 		};
 		readonly Button eliminar = new Button {
 			Label = Application.TranslationCatalog.GetString ("Erase"),

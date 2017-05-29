@@ -26,7 +26,7 @@ namespace Hamekoz.UI
 	{
 		public static readonly Image New = Image.FromResource ("Hamekoz.UI.Icons.document-new.png");
 		public static readonly Image PrintPreview = Image.FromResource ("Hamekoz.UI.Icons.document-print-preview.png");
-		public static readonly Image Edit = Image.FromResource ("Hamekoz.UI.Icons.document-properties.png");
+		public static readonly Image DocumentProperties = Image.FromResource ("Hamekoz.UI.Icons.document-properties.png");
 		public static readonly Image Save = Image.FromResource ("Hamekoz.UI.Icons.document-save.png");
 		public static readonly Image SaveAs = Image.FromResource ("Hamekoz.UI.Icons.document-save-as.png");
 		public static readonly Image Delete = Image.FromResource ("Hamekoz.UI.Icons.edit-delete.png");
