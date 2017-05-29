@@ -117,7 +117,7 @@ namespace Hamekoz.UI
 		};
 		readonly Button edit = new Button {
 			TooltipText = Application.TranslationCatalog.GetString ("Edit"),
-			Image = Icons.Edit.WithSize (IconSize.Medium),
+			Image = Icons.AccessoriesTextEditor.WithSize (IconSize.Medium),
 			ImagePosition = ContentPosition.Center
 		};
 		readonly Button remove = new Button {

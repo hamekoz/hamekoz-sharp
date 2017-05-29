@@ -136,6 +136,7 @@
     <EmbeddedResource Include="Icons\edit-clear-all.png" />
     <EmbeddedResource Include="Icons\mail-send.png" />
     <EmbeddedResource Include="Icons\edit-copy.png" />
+    <EmbeddedResource Include="Icons\accessories-text-editor.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
