@@ -67,14 +67,16 @@ namespace Hamekoz.UI
 		readonly protected HBox actionBox = new HBox ();
 
 		readonly Button refresh = new Button {
-			Label = Application.TranslationCatalog.GetString ("Refresh"),
+			Label = Application.TranslationCatalog.GetString ("_Refresh"),
 			Image = Icons.ViewRefresh.WithSize (IconSize.Small),
-			TooltipText = Application.TranslationCatalog.GetString ("Refresh the list including newest items")
+			TooltipText = Application.TranslationCatalog.GetString ("Refresh the list including newest items"),
+			UseMnemonic = true
 		};
 
 		readonly Button clearFilter = new Button {
-			Label = Application.TranslationCatalog.GetString ("Clear filters"),
+			Label = Application.TranslationCatalog.GetString ("_Clear filters"),
 			Image = Icons.EditClearAll.WithSize (IconSize.Small),
+			UseMnemonic = true
 		};
 
 		protected DataField<T> itemDataField = new DataField<T> ();

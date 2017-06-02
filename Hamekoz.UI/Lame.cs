@@ -47,28 +47,34 @@ namespace Hamekoz.UI
 		}
 
 		readonly Button agregar = new Button {
-			Label = Application.TranslationCatalog.GetString ("Add"),
+			Label = Application.TranslationCatalog.GetString ("_Add"),
 			Image = Icons.New.WithSize (IconSize.Medium),
+			UseMnemonic = true
 		};
 		readonly Button modificar = new Button {
-			Label = Application.TranslationCatalog.GetString ("Modify"),
-			Sensitive = false,
+			Label = Application.TranslationCatalog.GetString ("_Modify"),
 			Image = Icons.DocumentProperties.WithSize (IconSize.Medium),
+			Sensitive = false,
+			UseMnemonic = true
 		};
 		readonly Button eliminar = new Button {
-			Label = Application.TranslationCatalog.GetString ("Erase"),
-			Sensitive = false,
+			Label = Application.TranslationCatalog.GetString ("_Erase"),
 			Image = Icons.Delete.WithSize (IconSize.Medium),
+			Sensitive = false,
+			UseMnemonic = true
+				
 		};
 		readonly Button grabar = new Button {
-			Label = Application.TranslationCatalog.GetString ("Save"),
-			Sensitive = false,
+			Label = Application.TranslationCatalog.GetString ("_Save"),
 			Image = Icons.Save.WithSize (IconSize.Medium),
+			Sensitive = false,
+			UseMnemonic = true
 		};
 		readonly Button cancelar = new Button {
-			Label = Application.TranslationCatalog.GetString ("Cancel"),
-			Sensitive = false,
+			Label = Application.TranslationCatalog.GetString ("_Cancel"),
 			Image = Icons.ProcessStop.WithSize (IconSize.Medium),
+			Sensitive = false,
+			UseMnemonic = true
 		};
 
 		bool isNew;
