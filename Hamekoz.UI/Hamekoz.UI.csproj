@@ -93,6 +93,7 @@
     <Compile Include="ListViewAssociation.cs" />
     <Compile Include="YearMonthPicker.cs" />
     <Compile Include="YearMonthPeriod.cs" />
+    <Compile Include="NumberEntry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -137,6 +138,8 @@
     <EmbeddedResource Include="Icons\mail-send.png" />
     <EmbeddedResource Include="Icons\edit-copy.png" />
     <EmbeddedResource Include="Icons\accessories-text-editor.png" />
+    <EmbeddedResource Include="Icons\list-remove-symbolic.svg" />
+    <EmbeddedResource Include="Icons\list-add-symbolic.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

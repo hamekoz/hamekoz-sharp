@@ -45,8 +45,10 @@ namespace Hamekoz.UI
 		public static readonly Image GoPrevious = Image.FromResource ("Hamekoz.UI.Icons.go-previous.png");
 
 		public static readonly Image ListAdd = Image.FromResource ("Hamekoz.UI.Icons.list-add.png");
+		public static readonly Image ListAddSymbolic = Image.FromResource ("Hamekoz.UI.Icons.list-add-symbolic.svg");
 		public static readonly Image AccessoriesTextEditor = Image.FromResource ("Hamekoz.UI.Icons.accessories-text-editor.png");
 		public static readonly Image ListRemove = Image.FromResource ("Hamekoz.UI.Icons.list-remove.png");
+		public static readonly Image ListRemoveSymbolic = Image.FromResource ("Hamekoz.UI.Icons.list-remove-symbolic.svg");
 
 		public static readonly Image MailSend = Image.FromResource ("Hamekoz.UI.Icons.mail-send.png");
 
