@@ -25,6 +25,8 @@ namespace Hamekoz.UI
 {
 	public class NumberEntry : HBox
 	{
+		//TODO definir metodo		ValueChanged
+
 		readonly TextEntry entry = new TextEntry {
 			TextAlignment = Alignment.End,
 		};
@@ -90,6 +92,7 @@ namespace Hamekoz.UI
 				entry.TooltipText = "El valor ingresado no se corresponde con un valor numerico";
 			} else {
 				Value = Math.Round (number, Digits);
+				OnValueChanged (null);
 			}
 			CheckRange ();
 			if (number < MinimumValue) {
@@ -121,15 +124,21 @@ namespace Hamekoz.UI
 			increment.Clicked += delegate {
 				Value = Value + IncrementValue;
 				ParseNumber ();
-
 			};
 
 			decrement.Clicked += delegate {
 				Value = Value - IncrementValue;
 				ParseNumber ();
-
 			};
 		}
+
+		protected virtual void OnValueChanged (EventArgs e)
+		{
+			if (ValueChanged != null)
+				ValueChanged (this, e);
+		}
+
+		public EventHandler ValueChanged;
 	}
 }
 
