@@ -82,14 +82,12 @@ namespace Hamekoz.UI
 		protected Lame ()
 		{
 			SelectedItemChanged += delegate {
-				if (List.SelectedItems.Count > 0) {
-					var item = List.SelectedItem;
-					Controller.Load (item);
-					Widget.Item = item;
-					Widget.ValuesRefresh ();
-					Editable (false);
-					isNew = false;
-				}
+				var item = List.SelectedItem;
+				Controller.Load (item);
+				Widget.Item = item;
+				Widget.ValuesRefresh ();
+				Editable (false);
+				isNew = false;
 			};
 
 			agregar.Clicked += delegate {
