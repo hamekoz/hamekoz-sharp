@@ -184,6 +184,12 @@ namespace Hamekoz.UI
 		{
 			listView.RemoveColumnAt (index);
 		}
+
+		public void RemoveColumnAt (int[] columnsIndex)
+		{
+			foreach (var index in columnsIndex)
+				RemoveColumnAt (index);
+		}
 	}
 }
 
