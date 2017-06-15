@@ -104,6 +104,11 @@ namespace Hamekoz.UI
 			set { listView.SelectedItem = value; }
 		}
 
+		public void Refresh ()
+		{
+			listView.Refresh ();
+		}
+
 		#endregion
 
 		readonly ListView<T> listView = new ListView<T> ();

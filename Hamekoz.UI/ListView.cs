@@ -55,10 +55,15 @@ namespace Hamekoz.UI
 			}
 			set {
 				list = value;
-				store.Clear ();
-				foreach (var item in list)
-					FillRow (item);
+				Refresh ();
 			}
+		}
+
+		public void Refresh ()
+		{
+			store.Clear ();
+			foreach (var item in list)
+				FillRow (item);
 		}
 
 		public void Add (T item)
