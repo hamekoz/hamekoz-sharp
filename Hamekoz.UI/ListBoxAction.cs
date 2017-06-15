@@ -108,6 +108,7 @@ namespace Hamekoz.UI
 					} else if (List.Contains (w.SelectedItem)) {
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("The item already exists in the list."));
 					} else {
+						OnAddItem (w.SelectedItem);
 						listBox.List.Add (w.SelectedItem);
 						listBox.Items.Add (w.SelectedItem);
 						OnChanged ();
@@ -126,6 +127,7 @@ namespace Hamekoz.UI
 					if (OnPreventRemove (listBox.SelectedItem))
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A validation rule prevents you from deleting the selected item"));
 					else {
+						OnRemoveItem (listBox.SelectedItem);
 						listBox.List.Remove (listBox.SelectedItem);
 						listBox.Items.Remove (listBox.SelectedItem);
 						OnChanged ();
@@ -156,6 +158,28 @@ namespace Hamekoz.UI
 			var handler = Changed;
 			if (handler != null)
 				handler (this, null);
+		}
+
+		public delegate void AddItemHandler (T item);
+
+		public event AddItemHandler AddItem;
+
+		protected virtual void OnAddItem (T item)
+		{
+			var handler = AddItem;
+			if (handler != null)
+				handler (item);
+		}
+
+		public delegate void RemoveItemHandler (T item);
+
+		public event RemoveItemHandler RemoveItem;
+
+		protected virtual void OnRemoveItem (T item)
+		{
+			var handler = RemoveItem;
+			if (handler != null)
+				handler (item);
 		}
 	}
 }
