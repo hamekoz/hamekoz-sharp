@@ -138,7 +138,7 @@ namespace Hamekoz.UI
 				ValueChanged (this, e);
 		}
 
-		public EventHandler ValueChanged;
+		public event EventHandler ValueChanged;
 	}
 }
 
