@@ -138,13 +138,13 @@
     <EmbeddedResource Include="Icons\mail-send.png" />
     <EmbeddedResource Include="Icons\edit-copy.png" />
     <EmbeddedResource Include="Icons\accessories-text-editor.png" />
-    <EmbeddedResource Include="Icons\list-remove-symbolic.svg" />
-    <EmbeddedResource Include="Icons\list-add-symbolic.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Icons\list-add-symbolic.png" />
+    <None Include="Icons\list-remove-symbolic.png" />
   </ItemGroup>
 </Project>
