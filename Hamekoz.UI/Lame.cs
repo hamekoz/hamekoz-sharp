@@ -83,11 +83,13 @@ namespace Hamekoz.UI
 		{
 			SelectedItemChanged += delegate {
 				var item = List.SelectedItem;
-				Controller.Load (item);
-				Widget.Item = item;
-				Widget.ValuesRefresh ();
-				Editable (false);
-				isNew = false;
+				if (item != null) {
+					Controller.Load (item);
+					Widget.Item = item;
+					Widget.ValuesRefresh ();
+					Editable (false);
+					isNew = false;
+				}
 			};
 
 			agregar.Clicked += delegate {
