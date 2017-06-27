@@ -83,19 +83,19 @@ namespace Hamekoz.UI
 
 		public bool AllCheckBoxValue {
 			get { return allCheckBox.Active; }
-			set {
-				allCheckBox.Active = value;
-				allCheckBox.Visible = true;
-			}
+			set { allCheckBox.Active = value; }
 		}
 
 		public string AllCheckBoxLabel {
 			get { return allCheckBox.Label; }
-			set {
-				allCheckBox.Label = value;
-				allCheckBox.Visible = value != string.Empty;
-			}
+			set { allCheckBox.Label = value; }
 		}
+
+		public bool AllCheckBoxVisible {
+			get { return allCheckBox.Visible; }
+			set { allCheckBox.Visible = value; }
+		}
+
 
 		#region IListBoxFilter implementation
 
