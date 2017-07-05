@@ -31,8 +31,8 @@ namespace Hamekoz.Extensions
 		//TODO VERIFICAR QUE SEA EL METODO CORRECTO
 		public static string ToBasicASCII (this string texto)
 		{
-			const string consignos = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇ";
-			const string sinsignos = "aaaeeeiiiooouuunAAAEEEIIIOOOUUUNcC";
+			const string consignos = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇ–";
+			const string sinsignos = "aaaeeeiiiooouuunAAAEEEIIIOOOUUUNcC-";
 			var textoSinAcentos = new StringBuilder (texto.Length);
 			int indexConAcento;
 			foreach (char caracter in texto) {
