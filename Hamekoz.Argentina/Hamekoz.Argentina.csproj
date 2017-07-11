@@ -8,6 +8,8 @@
     <RootNamespace>Hamekoz.Argentina</RootNamespace>
     <AssemblyName>Hamekoz.Argentina</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +33,8 @@
     <Reference Include="System" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -19,14 +19,47 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Net;
+using System.Data;
 using System.IO;
+using System.Net;
 using Hamekoz.Data;
 
 namespace Hamekoz.Argentina.Afip
 {
 	public static class Afip
 	{
+		public static bool Enpadronado (string cuit)
+		{
+			var sql = string.Format ("SELECT COUNT(*) FROM afip.dbo.padron WHERE CUIT = {0}", cuit.Limpiar ());
+			return (int)DB.Instancia.SqlToScalar (sql) > 0;
+		}
+
+		public static RegistroPadron Load (string cuit)
+		{
+			string sql;
+			sql = string.Format (
+				"SELECT * FROM afip.dbo.padron WHERE CUIT = {0}"
+				, cuit.Limpiar ()
+			);
+			using (DataSet dataset = DB.Instancia.SqlToDataSet (sql)) {
+				if (dataset.Tables [0].Rows.Count == 1) {
+					DataRow dr = dataset.Tables [0].Rows [0];
+					return new RegistroPadron {
+						CUIT = dr.Field<long> ("cuit"),
+						ImpuestoGanancias = dr.Field<string> ("impGanancias"),
+						ImpuestoIVA = dr.Field<string> ("impiva"),
+						Monotributo = dr.Field<string> ("monotributo"),
+						IntegranteSociedad = dr.Field<string> ("integrantesoc"),
+						Empleador = dr.Field<string> ("empleador"),
+						ActividadMonotributo = dr.Field<string> ("actividadmonotributo")
+					};
+				} else {
+					var mensaje = string.Format ("El CUIT {0} no se encuentra enpadronado en AFIP", cuit.Formato ());
+					throw new DataException (mensaje);
+				}
+			}
+		}
+
 		public static void DescargarPadron (bool conDenominacion)
 		{
 			DescargarPadron (conDenominacion, string.Empty);
