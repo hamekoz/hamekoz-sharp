@@ -140,6 +140,7 @@
     <EmbeddedResource Include="Icons\accessories-text-editor.png" />
     <EmbeddedResource Include="Icons\list-add-symbolic.png" />
     <EmbeddedResource Include="Icons\list-remove-symbolic.png" />
+    <EmbeddedResource Include="Icons\changes-prevent.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

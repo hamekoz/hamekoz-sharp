@@ -59,6 +59,8 @@ namespace Hamekoz.UI
 		public static readonly Image ViewRefresh = Image.FromResource ("Hamekoz.UI.Icons.view-refresh.png");
 		public static readonly Image Document = Image.FromResource ("Hamekoz.UI.Icons.x-office-document.png");
 		public static readonly Image Spreadsheet = Image.FromResource ("Hamekoz.UI.Icons.x-office-spreadsheet.png");
+
+		public static readonly Image ChangesPrevent = Image.FromResource ("Hamekoz.UI.Icons.changes-prevent.png");
 	}
 }
 
