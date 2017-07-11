@@ -73,8 +73,6 @@ namespace Hamekoz.UI
 					popover.Hide ();
 				}
 			};
-
-			Changed += (sender, e) => OnSelectionItemChanged (e);
 		}
 
 		public bool DisabledPicker { get; set; }
