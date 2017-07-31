@@ -1,6 +1,3 @@
-[submodule "xwt"]
-	path = xwt
-	url = git@github.com:hamekoz/xwt.git
 [submodule "Hamekoz.Shared"]
 	path = Hamekoz.Shared
 	url = git@github.com:hamekoz/Hamekoz.Shared.git

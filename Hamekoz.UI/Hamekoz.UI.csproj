@@ -8,8 +8,6 @@
     <RootNamespace>Hamekoz.UI</RootNamespace>
     <AssemblyName>Hamekoz.UI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,33 +50,6 @@
     <Compile Include="ListBoxAll.cs" />
     <Compile Include="IListBoxFilter.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\Axis.cs">
-      <Link>MonoDevelop.Components.Chart\Axis.cs</Link>
-    </Compile>
-    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\AxisDimension.cs">
-      <Link>MonoDevelop.Components.Chart\AxisDimension.cs</Link>
-    </Compile>
-    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\AxisPosition.cs">
-      <Link>MonoDevelop.Components.Chart\AxisPosition.cs</Link>
-    </Compile>
-    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\BasicChart.cs">
-      <Link>MonoDevelop.Components.Chart\BasicChart.cs</Link>
-    </Compile>
-    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\ChartCursor.cs">
-      <Link>MonoDevelop.Components.Chart\ChartCursor.cs</Link>
-    </Compile>
-    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\DateTimeAxis.cs">
-      <Link>MonoDevelop.Components.Chart\DateTimeAxis.cs</Link>
-    </Compile>
-    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\IntegerAxis.cs">
-      <Link>MonoDevelop.Components.Chart\IntegerAxis.cs</Link>
-    </Compile>
-    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\Serie.cs">
-      <Link>MonoDevelop.Components.Chart\Serie.cs</Link>
-    </Compile>
-    <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\TickEnumerator.cs">
-      <Link>MonoDevelop.Components.Chart\TickEnumerator.cs</Link>
-    </Compile>
     <Compile Include="About.cs" />
     <Compile Include="DatePeriod.cs" />
     <Compile Include="IItemUI.cs" />
