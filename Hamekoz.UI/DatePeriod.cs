@@ -85,8 +85,9 @@ namespace Hamekoz.UI
 			}
 			set {
 				withCalendarButton = value;
-				dateStart.WithCalendarButton = withCalendarButton;
-				dateEnd.WithCalendarButton = withCalendarButton;
+				//TODO descomentar cuando se integre en la version nuget
+				//dateStart.WithCalendarButton = withCalendarButton;
+				//dateEnd.WithCalendarButton = withCalendarButton;
 			}
 		}
 

@@ -49,18 +49,20 @@ namespace Hamekoz.UI
 
 		const string authors = "Claudio Rodrigo Pereyra Diaz\n" + "Ezequiel Carlos Taranto\n" + "Emiliano Gabriel Canedo\n" + "Juan Angel Dinamarca\n" + "Mariano Adrián Ripa\n";
 
-		TextArea creditsText = new TextArea {
+		//TODO replace with a parameter text and for a TextArea
+		TextEntry creditsText = new TextEntry {
 			Text = string.Format (Application.TranslationCatalog.GetString ("Written by:\n{0}"), authors),
 			ReadOnly = true,
 			TextAlignment = Alignment.Center,
-			CanGetFocus = false,			
+			CanGetFocus = false,
+			MultiLine = true,
 		};
 
 		ScrollView licenseScroll = new ScrollView ();
 		ScrollView creditsScroll = new ScrollView ();
 
-		//TODO replace with a parameter text
-		TextArea licenseText = new TextArea {
+		//TODO replace with a parameter text and for a TextArea
+		TextEntry licenseText = new TextEntry {
 			Text = "GNU Lesser General Public License v3.0\n\n" +
 			"This program is free software: you can redistribute it and/or modify\n" +
 			"it under the terms of the GNU Lesser General Public License as published by\n" +
@@ -75,6 +77,7 @@ namespace Hamekoz.UI
 			"",
 			ReadOnly = true,
 			CanGetFocus = false,
+			MultiLine = true,
 			//FIXME Revisar TextArea. Se puede modificar el texto a pesar de las restricciones.
 		};
 

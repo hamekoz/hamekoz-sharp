@@ -29,14 +29,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Xwt">
+      <HintPath>..\packages\Xwt.0.2.21\lib\net40\Xwt.dll</HintPath>
+    </Reference>
     <Reference Include="Xwt.WPF">
-      <Private>True</Private>
+      <HintPath>..\packages\Xwt.WPF.0.2.21\lib\net40\Xwt.WPF.dll</HintPath>
     </Reference>
     <Reference Include="Xwt.XamMac">
-      <Private>True</Private>
+      <HintPath>..\packages\Xwt.XamMac.0.2.21\lib\net40\Xwt.XamMac.dll</HintPath>
     </Reference>
-    <Reference Include="Xwt.Mac">
-      <Private>True</Private>
+    <Reference Include="Xwt.Gtk">
+      <HintPath>..\packages\Xwt.Gtk.0.2.21\lib\net40\Xwt.Gtk.dll</HintPath>
+    </Reference>
+    <Reference Include="Xwt.Gtk3">
+      <HintPath>..\packages\Xwt.Gtk3.0.2.21\lib\net40\Xwt.Gtk3.dll</HintPath>
+    </Reference>
+    <Reference Include="Xwt.Gtk.Mac">
+      <HintPath>..\packages\Xwt.Gtk.Mac.0.2.21\lib\net40\Xwt.Gtk.Mac.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -44,22 +53,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Xwt.Gtk.0.2.21\build\Xwt.Gtk.props" Condition="Exists('..\packages\Xwt.Gtk.0.2.21\build\Xwt.Gtk.props')" />
+  <Import Project="..\packages\Xwt.Gtk3.0.2.21\build\Xwt.Gtk3.props" Condition="Exists('..\packages\Xwt.Gtk3.0.2.21\build\Xwt.Gtk3.props')" />
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.Negocio.UI\Hamekoz.Negocio.UI.csproj">
       <Project>{7F32F597-EA48-49FA-B5D9-5B9CDF922041}</Project>
       <Name>Hamekoz.Negocio.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\xwt\Xwt.Gtk\Xwt.Gtk.csproj">
-      <Project>{C3887A93-B2BD-4097-8E2F-3A063EFF32FD}</Project>
-      <Name>Xwt.Gtk</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\xwt\Xwt\Xwt.csproj">
-      <Project>{92494904-35FA-4DC9-BDE9-3A3E87AC49D3}</Project>
-      <Name>Xwt</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\xwt\Xwt.Gtk\Xwt.Gtk3.csproj">
-      <Project>{3B25FD1F-CEBA-4450-8893-DC330FDB56A7}</Project>
-      <Name>Xwt.Gtk3</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

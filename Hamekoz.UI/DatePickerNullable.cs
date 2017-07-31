@@ -65,24 +65,24 @@ namespace Hamekoz.UI
 				datepicker.Style = value;
 			}
 		}
-
-		public bool ReadOnly {
-			get {
-				return datepicker.ReadOnly;
-			}
-			set {
-				datepicker.ReadOnly = value;
-			}
-		}
-
-		public bool WithCalendarButton {
-			get {
-				return datepicker.WithCalendarButton;
-			}
-			set {
-				datepicker.WithCalendarButton = value;
-			}
-		}
+		//TODO descomentar cuando e integre en la version nuget
+		//		public bool ReadOnly {
+		//			get {
+		//				return datepicker.ReadOnly;
+		//			}
+		//			set {
+		//				datepicker.ReadOnly = value;
+		//			}
+		//		}
+		//
+		//		public bool WithCalendarButton {
+		//			get {
+		//				return datepicker.WithCalendarButton;
+		//			}
+		//			set {
+		//				datepicker.WithCalendarButton = value;
+		//			}
+		//		}
 
 		CheckBox check = new CheckBox ();
 		readonly DatePicker datepicker = new DatePicker {

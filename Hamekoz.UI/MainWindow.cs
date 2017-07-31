@@ -57,7 +57,8 @@ namespace Hamekoz.UI
 			Title = string.Format (Application.TranslationCatalog.GetString ("{0} Demo Application"), "Hamekoz Xwt");
 			InitialLocation = WindowLocation.CenterScreen;
 			Icon = Image.FromResource (Resources.Icon);
-			WindowState = WindowState.Maximized;
+			//TODO descomentar cuando e integre en la version nuget
+//			WindowState = WindowState.Maximized;
 			try {
 				statusIcon = Application.CreateStatusIcon ();
 				statusIcon.Menu = new Menu ();

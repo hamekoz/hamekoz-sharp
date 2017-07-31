@@ -43,7 +43,8 @@ namespace Hamekoz.UI
 			return box;
 		}
 
-		public static ScrollView WithScroll (this TextArea widget, ScrollPolicy vertical = ScrollPolicy.Automatic, ScrollPolicy horizontal = ScrollPolicy.Never)
+		//TODO cambiar a TextArea cuando se integre en la version nuget
+		public static ScrollView WithScroll (this TextEntry widget, ScrollPolicy vertical = ScrollPolicy.Automatic, ScrollPolicy horizontal = ScrollPolicy.Never)
 		{
 			return new ScrollView (widget) {
 				VerticalScrollPolicy = vertical,
