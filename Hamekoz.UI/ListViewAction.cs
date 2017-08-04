@@ -109,6 +109,17 @@ namespace Hamekoz.UI
 			listView.Refresh ();
 		}
 
+		public void ScrollTo (T item)
+		{
+			int row = listView.List.IndexOf (item);
+			listView.ScrollToRow (row);
+		}
+
+		public void ScrollTo (int row)
+		{
+			listView.ScrollToRow (row);
+		}
+
 		#endregion
 
 		readonly ListView<T> listView = new ListView<T> ();
@@ -155,6 +166,8 @@ namespace Hamekoz.UI
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
 					else {
 						listView.Add (item);
+						listView.SelectedItem = item;
+						ScrollTo (item);
 						OnChanged ();
 					}
 				}
