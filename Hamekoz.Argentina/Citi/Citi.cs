@@ -63,7 +63,7 @@ namespace Hamekoz.Argentina.Citi
 			sw.NewLine = "\r\n";
 			foreach (var registro in registros) {
 
-				if (int.Parse (registro.CantidadAlicuotaIVA) > 1) {
+				if (registro.Alicuotas > 1) {
 					if (decimal.Parse (registro.IVA) != 0) {//es 21%
 						registro.Neto = registro.Neto;
 						registro.IVA = registro.IVA;
@@ -76,13 +76,13 @@ namespace Hamekoz.Argentina.Citi
 						registro.IVAAlicuota = "0004";
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
 					}
-					if (decimal.Parse (registro.IVADif2) != 0) {//es 10.5%
-						registro.Neto = registro.NetoDif2; //es 27%
+					if (decimal.Parse (registro.IVADif2) != 0) {//es 27%
+						registro.Neto = registro.NetoDif2; 
 						registro.IVA = registro.IVADif2;
 						registro.IVAAlicuota = "0006";
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
 					}
-				} else if (int.Parse (registro.CantidadAlicuotaIVA) == 1) {
+				} else if (registro.Alicuotas == 1) {
 					if (decimal.Parse (registro.IVA) != 0) {//es 21%
 						registro.Neto = registro.Neto;
 						registro.IVA = registro.IVA;

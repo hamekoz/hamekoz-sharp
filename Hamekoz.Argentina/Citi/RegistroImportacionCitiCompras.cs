@@ -141,7 +141,11 @@ namespace Hamekoz.Argentina.Citi
 			set;
 		}
 
-		public string CantidadAlicuotaIVA {
+		/// <summary>
+		/// Cantidad de alicuotas de IVA
+		/// </summary>
+		/// <value>0 a 9</value>
+		public int Alicuotas {
 			get;
 			set;
 		}
@@ -208,7 +212,7 @@ namespace Hamekoz.Argentina.Citi
 				, ImpuestosInternos
 				, CodigoMoneda
 				, TipoDeCambio
-				, CantidadAlicuotaIVA
+				, Alicuotas
 				, CodigoOperacion
 				, CreditoFiscal
 				, OtrosTributos
@@ -227,8 +231,6 @@ namespace Hamekoz.Argentina.Citi
 
 		public string ToFixedStringAlicuotas ()
 		{
-
-
 			string cadena = string.Format ("{0}{1}{2}{3}{4}{5}{6}{7}"				
 				, TipoComprobante
 				, PuntoVenta
@@ -245,8 +247,6 @@ namespace Hamekoz.Argentina.Citi
 
 			return cadena;
 		}
-
-
 	}
 }
 
