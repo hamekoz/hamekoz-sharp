@@ -38,6 +38,7 @@ namespace Hamekoz.UI
 
 		public static readonly Image Folder = Image.FromResource ("Hamekoz.UI.Icons.folder.png");
 
+		public static readonly Image GoBottom = Image.FromResource ("Hamekoz.UI.Icons.go-bottom.png");
 		public static readonly Image GoFirst = Image.FromResource ("Hamekoz.UI.Icons.go-first.png");
 		public static readonly Image GoJump = Image.FromResource ("Hamekoz.UI.Icons.go-jump.png");
 		public static readonly Image GoLast = Image.FromResource ("Hamekoz.UI.Icons.go-last.png");
@@ -61,6 +62,8 @@ namespace Hamekoz.UI
 		public static readonly Image Spreadsheet = Image.FromResource ("Hamekoz.UI.Icons.x-office-spreadsheet.png");
 
 		public static readonly Image ChangesPrevent = Image.FromResource ("Hamekoz.UI.Icons.changes-prevent.png");
+
+		public static readonly Image EmblemDefault = Image.FromResource ("Hamekoz.UI.Icons.emblem-default.png");
 	}
 }
 

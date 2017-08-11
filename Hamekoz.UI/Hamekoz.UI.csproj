@@ -141,6 +141,8 @@
     <EmbeddedResource Include="Icons\list-add-symbolic.png" />
     <EmbeddedResource Include="Icons\list-remove-symbolic.png" />
     <EmbeddedResource Include="Icons\changes-prevent.png" />
+    <EmbeddedResource Include="Icons\emblem-default.png" />
+    <EmbeddedResource Include="Icons\go-bottom.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
