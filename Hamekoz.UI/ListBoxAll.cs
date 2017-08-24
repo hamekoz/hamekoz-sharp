@@ -83,7 +83,10 @@ namespace Hamekoz.UI
 
 		public bool AllCheckBoxValue {
 			get { return allCheckBox.Active; }
-			set { allCheckBox.Active = value; }
+			set { 
+				allCheckBox.Active = value;
+				AllCheckBoxClicked (this, null);
+			}
 		}
 
 		public string AllCheckBoxLabel {
