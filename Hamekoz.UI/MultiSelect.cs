@@ -132,66 +132,99 @@ namespace Hamekoz.UI
 		}
 	}
 
-	public class MultiSelectListView<T> : ListView
+	public class MultiSelectListView<T> : HBox
 	{
-		readonly ListStore store;
-		readonly IDataField<bool> checkDataField = new DataField<bool> ();
-		readonly IDataField<T> itemDataField = new DataField<T> ();
-
-		IList<T> list;
-
-		public IList<T> List {
-			get {
-				return list;
-			}
-			set {
-				list = value;
-				StoreFill ();
-			}
+		public IList<T> ListAll {
+			get { return list.List; }
+			set { list.List = value; }
 		}
 
-		IList<T> selectedItems;
-
-		public IList<T> SelectedItems {
-			get {
-				return selectedItems;
-			}
-			set {
-				selectedItems = value;
-				StoreFill ();
-				foreach (var item in selectedItems) {
-					int r = list.IndexOf (item);
-					store.SetValue (r, checkDataField, true);
-				}
-			}
+		public IList<T> ListSelected {
+			get { return selected.List; }
+			set { selected.List = value; }
 		}
+
+		readonly VBox actionBox = new VBox {
+			VerticalPlacement = WidgetPlacement.Center,
+		};
+
+		readonly ListView<T> list = new ListView<T> {
+			SelectionMode = SelectionMode.Multiple,
+		};
+		readonly ListView<T> selected = new ListView<T> {
+			SelectionMode = SelectionMode.Multiple,
+		};
+
+		readonly Button agregar = new Button {
+			Image = Icons.GoPrevious.WithSize (IconSize.Medium),
+			TooltipText = Application.TranslationCatalog.GetString ("Add"),
+		};
+
+		readonly Button agregarTodos = new Button {
+			Image = Icons.GoFirst.WithSize (IconSize.Medium),
+			TooltipText = Application.TranslationCatalog.GetString ("Add all"),
+		};
+
+		readonly Button quitar = new Button {
+			Image = Icons.GoNext.WithSize (IconSize.Medium),
+			TooltipText = Application.TranslationCatalog.GetString ("Remove"),
+		};
+
+		readonly Button quitarTodos = new Button {
+			Image = Icons.GoLast.WithSize (IconSize.Medium),
+			TooltipText = Application.TranslationCatalog.GetString ("Remove all"),
+		};
 
 		public MultiSelectListView ()
 		{
-			store = new ListStore (checkDataField, itemDataField);
-			DataSource = store;
-		}
+			agregar.Clicked += delegate {
+				if (list.SelectedItems.Count > 0) {
+					foreach (var item in list.SelectedItems) {
+						selected.List.Add (item);
+						list.List.Remove (item);
+					}
+					selected.Refresh ();
+					list.Refresh ();
+				}
+			};
 
-		void StoreFill ()
-		{
-			store.Clear ();
-			foreach (var item in list) {
-				var r = store.AddRow ();
-				store.SetValue (r, checkDataField, false);
-				store.SetValue (r, itemDataField, item);
-			}
-		}
+			agregarTodos.Clicked += delegate {
+				foreach (var item in list.List) {
+					selected.List.Add (item);
+				}
+				selected.Refresh ();
+				list.List.Clear ();
+				list.Refresh ();
+			};
 
-		bool editable;
+			quitar.Clicked += delegate {
+				if (selected.SelectedItems.Count > 0) {
+					foreach (var item in selected.SelectedItems) {
+						list.List.Add (item);
+						selected.List.Remove (item);
+					}
+					selected.Refresh ();
+					list.Refresh ();
+				}
+			};
 
-		public bool Editable {
-			get {
-				return editable;
-			}
-			set {
-				editable = value;
-				StoreFill ();
-			}
+			quitarTodos.Clicked += delegate {
+				foreach (var item in selected.List) {
+					list.List.Add (item);
+				}
+				selected.List.Clear ();
+				selected.Refresh ();
+				list.Refresh ();
+			};
+
+			actionBox.PackStart (agregar);
+			actionBox.PackStart (quitar);
+			actionBox.PackStart (agregarTodos);
+			actionBox.PackStart (quitarTodos);
+
+			PackStart (selected.WithLabel (Application.TranslationCatalog.GetString ("Selected")), true, true);
+			PackStart (actionBox);
+			PackStart (list.WithLabel (Application.TranslationCatalog.GetString ("Availables")), true, true);
 		}
 	}
 }
