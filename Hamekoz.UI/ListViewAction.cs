@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Humanizer;
 using Xwt;
 
@@ -276,6 +277,11 @@ namespace Hamekoz.UI
 		}
 
 		public void RemoveColumnAt (int index)
+		{
+			listView.RemoveColumnAt (index);
+		}
+
+		public void RemoveColumnAt (params int[] index)
 		{
 			listView.RemoveColumnAt (index);
 		}

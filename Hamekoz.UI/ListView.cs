@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Humanizer;
 using Xwt;
@@ -198,6 +199,14 @@ namespace Hamekoz.UI
 		{
 			Columns.RemoveAt (index);
 			datafields.RemoveAt (index);
+		}
+
+		public void RemoveColumnAt (params int[] indexs)
+		{
+			foreach (var index in indexs.OrderByDescending(c => c).ToArray()) {
+				Columns.RemoveAt (index);
+				datafields.RemoveAt (index);
+			}
 		}
 	}
 }
