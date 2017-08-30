@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hamekoz.Core;
 using Humanizer;
 using Xwt;
@@ -64,9 +65,16 @@ namespace Hamekoz.UI
 			set { listView.List = value; }
 		}
 
+		IList<T> listAvailable = new List<T> ();
+
 		public IList<T> ListAvailable {
-			get;
-			set;
+			get {
+				return listAvailable;
+			}
+			set {
+				listAvailable = value;
+				listViewFilter.List = value;
+			}
 		}
 
 		public void Add (T item)
@@ -91,9 +99,13 @@ namespace Hamekoz.UI
 			ImagePosition = ContentPosition.Center
 		};
 
-		ListBoxFilter<T> listViewFilter;
+		ListBoxFilter<T> listViewFilter = new ListBoxFilter<T> {
+			List = new List<T> (),
+			MinHeight = 200,
+			MinWidth = 300
+		};
 
-		public ListViewAssociation (IController<T> controller)
+		public ListViewAssociation ()
 		{
 			add.Clicked += delegate {
 				var dialogo = new Dialog {
@@ -102,11 +114,8 @@ namespace Hamekoz.UI
 
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
 
-				listViewFilter = listViewFilter ?? new ListBoxFilter<T> {
-					List = ListAvailable ?? controller.List,
-					MinHeight = 200,
-					MinWidth = 300
-				};
+				listViewFilter.List = ListAvailable.Except (List).ToList ();
+
 				var box = new HBox ();
 				box.PackStart (listViewFilter, true, true);
 				dialogo.Content = box;
@@ -116,7 +125,6 @@ namespace Hamekoz.UI
 					} else if (List.Contains (listViewFilter.SelectedItem)) {
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("The item already exists in the list."));
 					} else {
-						controller.Load (listViewFilter.SelectedItem);
 						if (AddItem != null)
 							OnAddItem (listViewFilter.SelectedItem);
 						else
