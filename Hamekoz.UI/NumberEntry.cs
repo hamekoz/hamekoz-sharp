@@ -82,6 +82,25 @@ namespace Hamekoz.UI
 
 		#endregion
 
+		public bool ReadOnly {
+			get {
+				return entry.ReadOnly;
+			}
+			set { 
+				entry.ReadOnly = value;
+			}
+		}
+
+		public bool SpinVisible {
+			get { 
+				return increment.Visible && decrement.Visible;
+			}
+			set {
+				increment.Visible = value;
+				decrement.Visible = value;
+			}
+		}
+
 		void ParseNumber ()
 		{
 			entry.BackgroundColor = Xwt.Drawing.Colors.White;
