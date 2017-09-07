@@ -30,6 +30,7 @@ namespace Hamekoz.Argentina.Afip
 	{
 		public static bool Enpadronado (string cuit)
 		{
+			//TODO verificar los datos en linea por defecto, y en caso de falla en la base local.
 			var sql = string.Format ("SELECT COUNT(*) FROM afip.dbo.padron WHERE CUIT = {0}", cuit.Limpiar ());
 			return (int)DB.Instancia.SqlToScalar (sql) > 0;
 		}

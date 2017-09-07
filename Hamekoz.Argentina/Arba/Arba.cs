@@ -199,6 +199,39 @@ namespace Hamekoz.Argentina.Arba
 			}
 			reader.Close ();
 		}
+
+		/// <summary>
+		/// Alicuotas the retencion.
+		/// </summary>
+		/// <returns>Devuelve la alicuota o -1 si no esta en el padron</returns>
+		/// <param name="cuit">Cuit</param>
+		public static decimal AlicuotaPercepcion (string cuit)
+		{
+			//TODO consultar alicuota en linea
+			var dbagip = new DB {
+				ConnectionName = "Hamekoz.Argentina.Arba"
+			};
+			//TODO validar la fecha con el periodo de vigencia
+			string sql = string.Format ("SELECT ISNULL(Alicuota, -1) FROM arba.dbo.PadronPercepciones WHERE cuit = {0}", cuit.Limpiar ());
+			return decimal.Parse (dbagip.SqlToScalar (sql).ToString ());
+		}
+
+
+		/// <summary>
+		/// Alicuotas the retencion.
+		/// </summary>
+		/// <returns>Devuelve la alicuota o -1 si no esta en el padron</returns>
+		/// <param name="cuit">Cuit</param>
+		public static decimal AlicuotaRetencion (string cuit)
+		{
+			//TODO consultar alicuota en linea
+			var dbagip = new DB {
+				ConnectionName = "Hamekoz.Argentina.Arba"
+			};
+			//TODO validar la fecha con el periodo de vigencia
+			string sql = string.Format ("SELECT ISNULL(Alicuota, -1) FROM arba.dbo.PadronRetenciones WHERE cuit = {0}", cuit.Limpiar ());
+			return decimal.Parse (dbagip.SqlToScalar (sql).ToString ());
+		}
 	}
 }
 

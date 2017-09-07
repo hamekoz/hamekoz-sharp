@@ -110,6 +110,41 @@ namespace Hamekoz.Argentina.Agip
 			}
 			reader.Close ();
 		}
+
+		/// <summary>
+		/// Alicuotas the retencion.
+		/// </summary>
+		/// <returns>Devuelve la alicuota o -1 si no esta en el padron</returns>
+		/// <param name="cuit">Cuit</param>
+		public static decimal AlicuotaPercepcion (string cuit)
+		{
+			//TODO consultar alicuota en linea
+			var dbagip = new DB {
+				ConnectionName = "Hamekoz.Argentina.Agip"
+			};
+			string sql = string.Format ("SELECT ISNULL(alicuotaPercepcion, -1) FROM agip.dbo.padron WHERE cuit = {0} AND {1} BETWEEN fechaVigenciaDesde AND fechaVigenciaHasta"
+				, cuit.Limpiar ()
+				, DateTime.Now.Date);
+			return decimal.Parse (dbagip.SqlToScalar (sql).ToString ());
+		}
+
+
+		/// <summary>
+		/// Alicuotas the retencion.
+		/// </summary>
+		/// <returns>Devuelve la alicuota o -1 si no esta en el padron</returns>
+		/// <param name="cuit">Cuit</param>
+		public static decimal AlicuotaRetencion (string cuit)
+		{
+			//TODO consultar alicuota en linea
+			var dbagip = new DB {
+				ConnectionName = "Hamekoz.Argentina.Agip"
+			};
+			string sql = string.Format ("SELECT ISNULL(alicuotaRetencion, -1) FROM agip.dbo.padron WHERE cuit = {0} AND {1} BETWEEN fechaVigenciaDesde AND fechaVigenciaHasta"
+				, cuit.Limpiar ()
+				, DateTime.Now.Date);
+			return decimal.Parse (dbagip.SqlToScalar (sql).ToString ());
+		}
 	}
 }
 
