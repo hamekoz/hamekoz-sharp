@@ -225,12 +225,12 @@ namespace Hamekoz.Argentina.Arba
 		public static decimal AlicuotaRetencion (string cuit)
 		{
 			//TODO consultar alicuota en linea
-			var dbagip = new DB {
+			var dbarba = new DB {
 				ConnectionName = "Hamekoz.Argentina.Arba"
 			};
 			//TODO validar la fecha con el periodo de vigencia
 			string sql = string.Format ("SELECT ISNULL(Alicuota, -1) FROM arba.dbo.PadronRetenciones WHERE cuit = {0}", cuit.Limpiar ());
-			return decimal.Parse (dbagip.SqlToScalar (sql).ToString ());
+			return decimal.Parse (dbarba.SqlToScalar (sql).ToString ());
 		}
 	}
 }
