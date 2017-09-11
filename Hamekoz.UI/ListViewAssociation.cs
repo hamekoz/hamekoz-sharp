@@ -82,6 +82,20 @@ namespace Hamekoz.UI
 			listView.Add (item);
 		}
 
+		SelectionMode selectionMode;
+
+		public SelectionMode SelectionMode {
+			get {
+				return selectionMode;
+			}
+			set {
+				selectionMode = value;
+				//TODO activar cuando se pueda quitar multiples item a la vez
+				//listView.SelectionMode = value;
+				listViewFilter.SelectionMode = value;
+			}
+		}
+
 		#endregion
 
 		readonly ListView<T> listView = new ListView<T> ();
@@ -125,6 +139,7 @@ namespace Hamekoz.UI
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
 
 				listViewFilter.List = ListAvailable.Except (List).ToList ();
+				listView.ScrollToRow (-1);
 
 				var box = new HBox ();
 				box.PackStart ((Widget)listViewFilter, true, true);
@@ -133,13 +148,13 @@ namespace Hamekoz.UI
 					//TODO permitir multiseleccion para poder agregar de a mas de un elemento a la vez
 					if (listViewFilter.SelectedItems.Count == 0) {
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("Must select a item."));
-					} else if (List.Contains (listViewFilter.SelectedItem)) {
-						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("The item already exists in the list."));
 					} else {
-						if (AddItem != null)
-							OnAddItem (listViewFilter.SelectedItem);
-						else
-							listView.Add (listViewFilter.SelectedItem);	
+						foreach (var item in listViewFilter.SelectedItems) {
+							if (AddItem != null)
+								OnAddItem (item);
+							else
+								listView.Add (item);	
+						}
 						OnChanged ();
 					}
 				}
@@ -149,6 +164,7 @@ namespace Hamekoz.UI
 			};
 
 			remove.Clicked += delegate {
+				//TODO ver como resolver que se puedan remover multiples items a la vez
 				var row = listView.SelectedRow;
 				if (row == -1) {
 					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to remove"), typeof(T).Name.Humanize ()));
