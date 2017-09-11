@@ -1,10 +1,10 @@
 ﻿//
-//  IListBoxFilter.cs
+//  IListSelector.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
+//  Copyright (c) 2017 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,16 +19,28 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections.Generic;
+using Xwt;
 
 namespace Hamekoz.UI
 {
-	public delegate void ListBoxFilterSelectionChanged (object sender, EventArgs e);
+	public delegate void ListSelectionChanged (object sender, EventArgs e);
 
-	public interface IListBoxFilter<T> : IListSelector<T>
+	public interface IListSelector<T>
 	{
-		string FieldDescription { get; set; }
+		//TODO cambiar por ListSelectionChanged
+		//TODO renombar a SelectionChanged
+		event ListBoxFilterSelectionChanged SelectionItemChanged;
 
-		bool RealTimeFilter { get; set; }
+		SelectionMode SelectionMode { get; set; }
+
+		IList<T> List { get; set; }
+
+		T SelectedItem { get; set; }
+
+		IList<T> SelectedItems { get; }
+
+		void UnselectAll ();
 	}
 }
 

@@ -29,7 +29,7 @@ using Xwt;
 namespace Hamekoz.UI
 {
 	/// <summary>
-	/// List box with action to Add and Remove.
+	/// List View with action to Add and Remove.
 	/// </summary>
 	public class ListViewAssociation<T> : HBox
 	{
@@ -99,14 +99,24 @@ namespace Hamekoz.UI
 			ImagePosition = ContentPosition.Center
 		};
 
-		ListBoxFilter<T> listViewFilter = new ListBoxFilter<T> {
-			List = new List<T> (),
-			MinHeight = 200,
-			MinWidth = 300
-		};
+		IListSelector<T> listViewFilter;
 
-		public ListViewAssociation ()
+		public ListViewAssociation (bool simple = true)
 		{
+			if (simple) {
+				listViewFilter = new ListBoxFilter<T> {
+					List = new List<T> (),
+					MinHeight = 200,
+					MinWidth = 300
+				};
+			} else {
+				listViewFilter = new ListView<T> {
+					List = new List<T> (),
+					MinHeight = 200,
+					MinWidth = 600
+				};
+			}
+
 			add.Clicked += delegate {
 				var dialogo = new Dialog {
 					Title = string.Format (Application.TranslationCatalog.GetString ("Add {0}"), Title),
@@ -117,7 +127,7 @@ namespace Hamekoz.UI
 				listViewFilter.List = ListAvailable.Except (List).ToList ();
 
 				var box = new HBox ();
-				box.PackStart (listViewFilter, true, true);
+				box.PackStart ((Widget)listViewFilter, true, true);
 				dialogo.Content = box;
 				if (dialogo.Run () == Command.Add) {
 					//TODO permitir multiseleccion para poder agregar de a mas de un elemento a la vez
@@ -134,7 +144,7 @@ namespace Hamekoz.UI
 					}
 				}
 
-				box.Remove (listViewFilter);
+				box.Remove ((Widget)listViewFilter);
 				dialogo.Close ();
 			};
 

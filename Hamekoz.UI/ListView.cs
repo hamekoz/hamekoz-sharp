@@ -27,7 +27,7 @@ using Xwt;
 
 namespace Hamekoz.UI
 {
-	public class ListView<T> : ListView
+	public class ListView<T> : ListView, IListSelector<T>
 	{
 		readonly Type type;
 		readonly ListStore store;
@@ -192,6 +192,7 @@ namespace Hamekoz.UI
 				}
 			}
 			DataSource = store;
+			SelectionChanged += (sender, e) => OnSelectionItemChanged (e);
 		}
 
 		//TODO refactorizar para utilizar un diccionario basado en las propiedades, y eliminar las entradas basado en la propiedad
@@ -207,6 +208,15 @@ namespace Hamekoz.UI
 				Columns.RemoveAt (index);
 				datafields.RemoveAt (index);
 			}
+		}
+
+		public event ListBoxFilterSelectionChanged SelectionItemChanged;
+
+		protected virtual void OnSelectionItemChanged (EventArgs e)
+		{
+			var handler = SelectionItemChanged;
+			if (handler != null)
+				handler (this, e);
 		}
 	}
 }

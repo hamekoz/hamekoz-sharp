@@ -94,6 +94,7 @@
     <Compile Include="YearMonthPicker.cs" />
     <Compile Include="YearMonthPeriod.cs" />
     <Compile Include="NumberEntry.cs" />
+    <Compile Include="IListSelector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
