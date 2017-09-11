@@ -88,16 +88,8 @@ namespace Hamekoz.UI
 			}
 			set { 
 				entry.ReadOnly = value;
-			}
-		}
-
-		public bool SpinVisible {
-			get { 
-				return increment.Visible && decrement.Visible;
-			}
-			set {
-				increment.Visible = value;
-				decrement.Visible = value;
+				increment.Visible = !value;
+				decrement.Visible = !value;
 			}
 		}
 
