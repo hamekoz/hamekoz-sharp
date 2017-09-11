@@ -63,14 +63,10 @@ namespace Hamekoz.UI
 				}
 			};
 
-			popover.Closed += delegate {
-				if (listBoxFilter.SelectedItem != null)
-					SelectedItem = listBoxFilter.SelectedItem;
-			};
-
 			listBoxFilter.ListBox.RowActivated += delegate {
 				if (listBoxFilter.SelectedItem != null) {
 					popover.Hide ();
+					SelectedItem = listBoxFilter.SelectedItem;
 				}
 			};
 		}
