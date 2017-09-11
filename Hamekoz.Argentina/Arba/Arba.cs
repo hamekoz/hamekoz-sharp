@@ -229,8 +229,13 @@ namespace Hamekoz.Argentina.Arba
 				ConnectionName = "Hamekoz.Argentina.Arba"
 			};
 			//TODO validar la fecha con el periodo de vigencia
-			string sql = string.Format ("SELECT ISNULL(Alicuota, -1) FROM arba.dbo.PadronRetenciones WHERE cuit = {0}", cuit.Limpiar ());
-			return decimal.Parse (dbarba.SqlToScalar (sql).ToString ());
+			string sql = string.Format ("SELECT Alicuota FROM arba.dbo.PadronRetenciones WHERE cuit = {0}", cuit.Limpiar ());
+			decimal alicuota = -1;
+			var dataset = dbarba.SqlToDataSet (sql);
+			if (dataset.Tables [0].Rows.Count > 0) {
+				alicuota = decimal.Parse (dataset.Tables [0].Rows [0] ["Alicuota"].ToString ());
+			}
+			return alicuota;
 		}
 	}
 }

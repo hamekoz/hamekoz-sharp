@@ -140,7 +140,7 @@ namespace Hamekoz.Argentina.Agip
 			var dbagip = new DB {
 				ConnectionName = "Hamekoz.Argentina.Agip"
 			};
-			string sql = string.Format ("SELECT ISNULL(alicuotaRetencion, -1) FROM agip.dbo.padron WHERE cuit = '{0}' AND '{1:d}' BETWEEN fechaVigenciaDesde AND fechaVigenciaHasta"
+			string sql = string.Format ("SELECT alicuotaRetencion FROM agip.dbo.padron WHERE cuit = '{0}' AND '{1:d}' BETWEEN fechaVigenciaDesde AND fechaVigenciaHasta"
 				, cuit.Limpiar ()
 				, DateTime.Now.Date);
 			decimal alicuota = -1;
