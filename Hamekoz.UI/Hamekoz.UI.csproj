@@ -143,6 +143,7 @@
     <EmbeddedResource Include="Icons\changes-prevent.png" />
     <EmbeddedResource Include="Icons\emblem-default.png" />
     <EmbeddedResource Include="Icons\go-bottom.png" />
+    <EmbeddedResource Include="Icons\accessories-calculator.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

@@ -24,6 +24,10 @@ namespace Hamekoz.UI
 {
 	public static class Icons
 	{
+
+		public static readonly Image AccessoriesTextEditor = Image.FromResource ("Hamekoz.UI.Icons.accessories-text-editor.png");
+		public static readonly Image AccessoriesCalculator = Image.FromResource ("Hamekoz.UI.Icons.accessories-calculator.png");
+
 		public static readonly Image New = Image.FromResource ("Hamekoz.UI.Icons.document-new.png");
 		public static readonly Image PrintPreview = Image.FromResource ("Hamekoz.UI.Icons.document-print-preview.png");
 		public static readonly Image DocumentProperties = Image.FromResource ("Hamekoz.UI.Icons.document-properties.png");
@@ -47,7 +51,6 @@ namespace Hamekoz.UI
 
 		public static readonly Image ListAdd = Image.FromResource ("Hamekoz.UI.Icons.list-add.png");
 		public static readonly Image ListAddSymbolic = Image.FromResource ("Hamekoz.UI.Icons.list-add-symbolic.png");
-		public static readonly Image AccessoriesTextEditor = Image.FromResource ("Hamekoz.UI.Icons.accessories-text-editor.png");
 		public static readonly Image ListRemove = Image.FromResource ("Hamekoz.UI.Icons.list-remove.png");
 		public static readonly Image ListRemoveSymbolic = Image.FromResource ("Hamekoz.UI.Icons.list-remove-symbolic.png");
 
