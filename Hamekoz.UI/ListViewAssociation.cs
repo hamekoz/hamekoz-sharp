@@ -120,6 +120,7 @@ namespace Hamekoz.UI
 				box.PackStart (listViewFilter, true, true);
 				dialogo.Content = box;
 				if (dialogo.Run () == Command.Add) {
+					//TODO permitir multiseleccion para poder agregar de a mas de un elemento a la vez
 					if (listViewFilter.SelectedItems.Count == 0) {
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("Must select a item."));
 					} else if (List.Contains (listViewFilter.SelectedItem)) {
