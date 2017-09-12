@@ -21,7 +21,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Hamekoz.Core;
 using Humanizer;
 using Xwt;
 
@@ -82,7 +81,7 @@ namespace Hamekoz.UI
 			listView.Add (item);
 		}
 
-		SelectionMode selectionMode;
+		SelectionMode selectionMode = SelectionMode.Single;
 
 		public SelectionMode SelectionMode {
 			get {
@@ -92,7 +91,7 @@ namespace Hamekoz.UI
 				selectionMode = value;
 				//TODO activar cuando se pueda quitar multiples item a la vez
 				//listView.SelectionMode = value;
-				listViewFilter.SelectionMode = value;
+				//listViewFilter.SelectionMode = value;
 			}
 		}
 
@@ -121,13 +120,15 @@ namespace Hamekoz.UI
 				listViewFilter = new ListBoxFilter<T> {
 					List = new List<T> (),
 					MinHeight = 200,
-					MinWidth = 300
+					MinWidth = 300,
+					SelectionMode = selectionMode,
 				};
 			} else {
 				listViewFilter = new ListView<T> {
 					List = new List<T> (),
 					MinHeight = 200,
-					MinWidth = 600
+					MinWidth = 600,
+					SelectionMode = selectionMode,
 				};
 			}
 
@@ -136,10 +137,25 @@ namespace Hamekoz.UI
 					Title = string.Format (Application.TranslationCatalog.GetString ("Add {0}"), Title),
 				};
 
+				if (simple) {
+					listViewFilter = new ListBoxFilter<T> {
+						List = new List<T> (),
+						MinHeight = 200,
+						MinWidth = 300,
+						SelectionMode = selectionMode,
+					};
+				} else {
+					listViewFilter = new ListView<T> {
+						List = new List<T> (),
+						MinHeight = 200,
+						MinWidth = 600,
+						SelectionMode = selectionMode,
+					};
+				}
+
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
 
 				listViewFilter.List = ListAvailable.Except (List).ToList ();
-				listView.ScrollToRow (-1);
 
 				var box = new HBox ();
 				box.PackStart ((Widget)listViewFilter, true, true);

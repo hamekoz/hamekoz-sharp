@@ -80,6 +80,7 @@ namespace Hamekoz.UI
 
 		#region IListBoxFilter implementation
 
+		//TODO definir otro tipo de evento para separar el cambio de item por intervencion del usuario del cambio de item por codigo
 		public event ListBoxFilterSelectionChanged SelectionItemChanged;
 
 		PropertyInfo fieldDescription;
