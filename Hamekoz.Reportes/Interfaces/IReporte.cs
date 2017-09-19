@@ -67,5 +67,7 @@ namespace Hamekoz.Reportes
 		void NuevaPagina ();
 
 		void NuevaLineaDivisoria ();
+
+		bool Previsualizar { get; set; }
 	}
 }

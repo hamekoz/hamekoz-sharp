@@ -41,6 +41,11 @@ namespace Hamekoz.Reportes
 			MargenSuperior = document.TopMargin;
 		}
 
+		public bool Previsualizar {
+			get;
+			set;
+		} = true;
+
 		public float MargenSuperior {
 			get;
 			set;
@@ -290,7 +295,9 @@ namespace Hamekoz.Reportes
 		public void Abrir ()
 		{
 			document.Close ();
-			Process.Start (FileName);
+			if (Previsualizar) {
+				Process.Start (FileName);	
+			}
 		}
 
 		public void NuevaPagina ()
