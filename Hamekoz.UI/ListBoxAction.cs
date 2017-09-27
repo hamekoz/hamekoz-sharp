@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hamekoz.Core;
 using Humanizer;
 using Xwt;
@@ -85,7 +86,7 @@ namespace Hamekoz.UI
 			ImagePosition = ContentPosition.Center
 		};
 
-		public ListBoxAction (IController<T> controller)
+		public ListBoxAction (IController<T> controller = null)
 		{
 			add.Clicked += delegate {
 				var dialogo = new Dialog {
@@ -95,7 +96,7 @@ namespace Hamekoz.UI
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
 
 				var w = new ListBoxFilter<T> {
-					List = ListAvailable ?? controller.List,
+					List = ListAvailable.Except (List).ToList () ?? controller.List.Except (List).ToList (),
 					MinHeight = 200,
 					MinWidth = 300
 				};
