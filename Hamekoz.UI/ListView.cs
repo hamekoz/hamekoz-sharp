@@ -75,6 +75,11 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public void Clear ()
+		{
+			List = new List<T> ();
+		}
+
 		public void Refresh ()
 		{
 			store.Clear ();
