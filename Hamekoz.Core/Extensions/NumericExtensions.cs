@@ -19,6 +19,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using System.Globalization;
 using Hamekoz.Core;
 
@@ -66,16 +67,16 @@ namespace Hamekoz.Extensions
 			return Numalet.ToCardinal (number);
 		}
 
-		public static string ToEnglishFormat (this double number)
+		public static string ToEnglishFormat (this double number, int digits = 2)
 		{
 			NumberFormatInfo nfi = new CultureInfo ("en-US", false).NumberFormat;
-			return number.ToString (nfi);
+			return Math.Round (number, digits, MidpointRounding.AwayFromZero).ToString (nfi);
 		}
 
-		public static string ToEnglishFormat (this decimal number)
+		public static string ToEnglishFormat (this decimal number, int digits = 2)
 		{
 			NumberFormatInfo nfi = new CultureInfo ("en-US", false).NumberFormat;
-			return number.ToString (nfi);
+			return Math.Round (number, digits, MidpointRounding.AwayFromZero).ToString (nfi);
 		}
 	}
 }
