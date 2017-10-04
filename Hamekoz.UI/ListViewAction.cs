@@ -156,6 +156,7 @@ namespace Hamekoz.UI
 				var item = new T ();
 				ItemUI.ValuesClean ();
 				ItemUI.Item = item;
+				OnBeforeAdd (item);
 				ItemUI.ValuesRefresh ();
 				ItemUI.Editable (true);
 				var w = (Widget)ItemUI;
@@ -303,6 +304,17 @@ namespace Hamekoz.UI
 			var handler = RowActivated;
 			if (handler != null)
 				handler (this, null);
+		}
+
+		public delegate void BeforeAddHandler (T item);
+
+		public event BeforeAddHandler BeforeAdd;
+
+		void OnBeforeAdd (T item)
+		{
+			var handler = BeforeAdd;
+			if (handler != null)
+				handler (item);
 		}
 	}
 }
