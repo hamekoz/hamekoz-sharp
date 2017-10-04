@@ -108,6 +108,7 @@ namespace Hamekoz.UI
 		public void Refresh ()
 		{
 			listView.Refresh ();
+			OnChanged ();
 		}
 
 		public void ScrollTo (T item)
