@@ -124,6 +124,11 @@ namespace Hamekoz.UI
 
 		#endregion
 
+		public void AddAction (Button action)
+		{
+			actions.PackStart (action);
+		}
+
 		readonly ListView<T> listView = new ListView<T> ();
 
 		readonly VBox actions = new VBox ();
