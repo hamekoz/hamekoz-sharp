@@ -73,7 +73,7 @@ namespace Hamekoz.UI
 				return number;
 			}
 			set {
-				number = value;
+				number = Math.Round (value, Digits);
 				string format = string.Format ("F{0}", Digits);
 				entry.Text = number.ToString (format);
 				CheckRange ();
@@ -100,20 +100,19 @@ namespace Hamekoz.UI
 			entry.Text = entry.Text.Replace (".", ",");
 			if (!double.TryParse (entry.Text, out number)) {
 				entry.BackgroundColor = Xwt.Drawing.Colors.Red;
-				entry.TooltipText = "El valor ingresado no se corresponde con un valor numerico";
+				entry.TooltipText = "El valor ingresado no es numérico";
 			} else {
-				Value = Math.Round (number, Digits);
+				if (number < MinimumValue) {
+					Value = Math.Round (MinimumValue, Digits);
+				} else if (number > MaximumValue) {
+					Value = Math.Round (MaximumValue, Digits);
+				} else {
+					Value = Math.Round (number, Digits);	
+				}
 				OnValueChanged (null);
 			}
 			CheckRange ();
-			if (number < MinimumValue) {
-				entry.BackgroundColor = Xwt.Drawing.Colors.Red;
-				entry.TooltipText = string.Format ("El valor debe ser inferior o igual a {0}", MinimumValue);
-			}
-			if (number > MaximumValue) {
-				entry.BackgroundColor = Xwt.Drawing.Colors.Red;
-				entry.TooltipText = string.Format ("El valor debe ser superior o igual a {0}", MinimumValue);
-			}
+
 		}
 
 		void CheckRange ()
