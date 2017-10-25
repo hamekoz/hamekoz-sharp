@@ -24,7 +24,7 @@ namespace Hamekoz.Argentina.Citi
 {
 	public class RegistroImportacionCitiCompras
 	{
-		public DateTime Fecha {
+		public DateTime FechaContable {
 			get;
 			set;
 		}
@@ -194,7 +194,7 @@ namespace Hamekoz.Argentina.Citi
 		{
 
 			string cadena = string.Format ("{0:yyyyMMdd}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}{22}{23}{24}"
-				, Fecha
+				, FechaContable
 				, TipoComprobante
 				, PuntoVenta
 				, NroComprobante
