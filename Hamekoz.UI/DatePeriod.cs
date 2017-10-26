@@ -43,7 +43,7 @@ namespace Hamekoz.UI
 
 		Box box;
 
-		public DatePeriod (bool horizonal = false)
+		public DatePeriod (bool horizonal = false, bool withoutLabel = false)
 		{
 			if (horizonal)
 				box = new HBox ();
@@ -53,7 +53,8 @@ namespace Hamekoz.UI
 			//HACK para resolver problema con fecha maxima fuera de periodo por ticks
 			MaximumDate = DateTime.MaxValue.AddMilliseconds (-1d);
 				
-			box.PackStart (new Label (Application.TranslationCatalog.GetString ("Period")));
+			if (!withoutLabel)
+				box.PackStart (new Label (Application.TranslationCatalog.GetString ("Period")));
 			box.PackStart (dateStart, horizonal, horizonal);
 			box.PackStart (dateEnd, horizonal, horizonal);
 			Content = box;
