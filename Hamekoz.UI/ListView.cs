@@ -182,17 +182,39 @@ namespace Hamekoz.UI
 			for (int i = 0; i < properties.Length; i++) {
 				switch (Type.GetTypeCode (properties [i].PropertyType)) {
 				case TypeCode.Boolean:
-					Columns.Add (new ListViewColumn (properties [i].Name.Humanize (), new CheckBoxCellView ((IDataField<bool>)datafields [i])));
+					var boolColumn = new ListViewColumn (properties [i].Name.Humanize (), new CheckBoxCellView ((IDataField<bool>)datafields [i])) {
+						CanResize = true,
+						SortDataField = datafields [i]
+					};
+					Columns.Add (boolColumn);
 					break;
-				case TypeCode.DateTime:
+				
 				case TypeCode.Int32:
 				case TypeCode.Double:
 				case TypeCode.Decimal:
-					var column = new ListViewColumn (properties [i].Name.Humanize (), new TextCellView (datafields [i]));
-					Columns.Add (column);
+					var numberColumn = new ListViewColumn (properties [i].Name.Humanize (), new TextCellView (datafields [i])) {
+						CanResize = true,
+						//TODO ver como aliniear las celdas de contenido, esta propiedad solo alinea la celda de la cabecera
+						//Alignment = Alignment.End,
+						SortDataField = datafields [i],
+					};
+					Columns.Add (numberColumn);
+					break;
+				case TypeCode.DateTime:
+				case TypeCode.String:
+					var textColumn = new ListViewColumn (properties [i].Name.Humanize (), new TextCellView (datafields [i])) {
+						CanResize = true,
+						SortDataField = datafields [i],
+					};
+					Columns.Add (textColumn);
 					break;
 				default:
-					Columns.Add (properties [i].Name.Humanize (), datafields [i]);
+					var otherColumn = new ListViewColumn (properties [i].Name.Humanize (), new TextCellView (datafields [i])) {
+						CanResize = true,
+						//UNDONE ver como hacer para poder ordenar una columna en que el tipo es T
+						//SortDataField = datafields [i]
+					};
+					Columns.Add (otherColumn);
 					break;
 				}
 			}
