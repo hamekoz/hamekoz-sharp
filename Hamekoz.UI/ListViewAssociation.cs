@@ -188,7 +188,7 @@ namespace Hamekoz.UI
 					if (OnPreventRemove (listView.SelectedItem))
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A validation rule prevents you from deleting the selected item"));
 					else {
-						listView.SelectedItem = listView.SelectedItem;
+						OnRemoveItem (listView.SelectedItem);
 						listView.Remove ();
 						OnChanged ();
 					}
@@ -227,6 +227,17 @@ namespace Hamekoz.UI
 		protected virtual void OnAddItem (T item)
 		{
 			var handler = AddItem;
+			if (handler != null)
+				handler (item);
+		}
+
+		public delegate void RemoveItemHandler (T item);
+
+		public event RemoveItemHandler RemoveItem;
+
+		protected virtual void OnRemoveItem (T item)
+		{
+			var handler = RemoveItem;
 			if (handler != null)
 				handler (item);
 		}
