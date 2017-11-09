@@ -147,8 +147,15 @@ namespace Hamekoz.UI
 					store.SetValue<string> (row, (IDataField<string>)field, (string)property.GetValue (item, null));
 					break;
 				default:
-					store.SetValue (row, (IDataField<object>)field, property.GetValue (item, null));
-					break;
+					if (property.PropertyType == typeof(DateTime?)) {
+						var datenull = (DateTime?)property.GetValue (item, null);
+						string datenullString = datenull.HasValue ? (datenull.Value == datenull.Value.Date ? datenull.Value.ToShortDateString () : datenull.ToString ()) : string.Empty;
+						store.SetValue<string> (row, (IDataField<string>)field, datenullString);
+						break;
+					} else {
+						store.SetValue (row, (IDataField<object>)field, property.GetValue (item, null));
+						break;	
+					}
 				}
 				store.SetValue (row, itemDataField, item);
 			}
@@ -174,8 +181,13 @@ namespace Hamekoz.UI
 					datafield = new DataField<string> ();
 					break;
 				default:
-					datafield = new DataField<object> ();
-					break;
+					if (property.PropertyType == typeof(DateTime?)) {
+						datafield = new DataField<string> ();
+						break;
+					} else {
+						datafield = new DataField<object> ();
+						break;
+					}
 				}
 				datafields.Add (datafield);
 			}
