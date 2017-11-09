@@ -184,7 +184,8 @@ namespace Hamekoz.UI
 				case TypeCode.Boolean:
 					var boolColumn = new ListViewColumn (properties [i].Name.Humanize (), new CheckBoxCellView ((IDataField<bool>)datafields [i])) {
 						CanResize = true,
-						SortDataField = datafields [i]
+						//FIXME revisar porque la ordenacion esta causando que en el resfresco no se muestre contenido en algunas celdas
+//						SortDataField = datafields [i]
 					};
 					Columns.Add (boolColumn);
 					break;
@@ -196,7 +197,7 @@ namespace Hamekoz.UI
 						CanResize = true,
 						//TODO ver como aliniear las celdas de contenido, esta propiedad solo alinea la celda de la cabecera
 						//Alignment = Alignment.End,
-						SortDataField = datafields [i],
+//						SortDataField = datafields [i],
 					};
 					Columns.Add (numberColumn);
 					break;
@@ -204,7 +205,7 @@ namespace Hamekoz.UI
 				case TypeCode.String:
 					var textColumn = new ListViewColumn (properties [i].Name.Humanize (), new TextCellView (datafields [i])) {
 						CanResize = true,
-						SortDataField = datafields [i],
+//						SortDataField = datafields [i],
 					};
 					Columns.Add (textColumn);
 					break;
