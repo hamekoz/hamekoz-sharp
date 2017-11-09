@@ -40,11 +40,12 @@ namespace Hamekoz.UI
 			get {
 				T selected = default(T);
 				if (SelectedRow >= 0 && SelectedRow < list.Count) {
-					selected = list [SelectedRow];
+					selected = store.GetValue (SelectedRow, itemDataField);
 				}
 				return selected;
 			}
 			set {
+				Refresh ();
 				int index = list.IndexOf (value);
 				SelectRow (index);
 			}
@@ -54,10 +55,11 @@ namespace Hamekoz.UI
 			get {
 				var selected = new List<T> ();
 				foreach (var index in SelectedRows)
-					selected.Add (list [index]);
+					selected.Add (store.GetValue (index, itemDataField));
 				return selected;
 			}
 			set {
+				Refresh ();
 				foreach (var item in value) {
 					int index = list.IndexOf (item);
 					SelectRow (index);
