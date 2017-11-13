@@ -79,6 +79,33 @@ namespace Hamekoz.UI
 
 		bool isNew;
 
+		public bool AddVisible {
+			get {
+				return agregar.Visible;
+			}
+			set {
+				agregar.Visible = value;
+			}
+		}
+
+		public bool ModifyVisible {
+			get {
+				return modificar.Visible;
+			}
+			set {
+				modificar.Visible = value;
+			}
+		}
+
+		public bool EraseVisible {
+			get {
+				return eliminar.Visible;
+			}
+			set {
+				eliminar.Visible = value;
+			}
+		}
+
 		protected Lame ()
 		{
 			SelectedItemChanged += delegate {
