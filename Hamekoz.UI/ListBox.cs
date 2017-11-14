@@ -82,6 +82,12 @@ namespace Hamekoz.UI
 				}
 				return selectedItems;
 			}
+			set {
+				foreach (var item in value) {
+					int index = list.IndexOf (item);
+					SelectRow (index);
+				}
+			}
 		}
 
 		IList<T> list = new List<T> ();
