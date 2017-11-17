@@ -251,6 +251,12 @@ namespace Hamekoz.UI
 		{
 			listView.RemoveColumnAt (columnsIndex);
 		}
+
+		public void ClearLists ()
+		{
+			List = new List<T> ();
+			ListAvailable = new List<T> ();
+		}
 	}
 }
 
