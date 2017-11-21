@@ -145,6 +145,9 @@
     <EmbeddedResource Include="Icons\emblem-default.png" />
     <EmbeddedResource Include="Icons\go-bottom.png" />
     <EmbeddedResource Include="Icons\accessories-calculator.png" />
+    <EmbeddedResource Include="Icons\media-playback-pause.png" />
+    <EmbeddedResource Include="Icons\media-playback-stop.png" />
+    <EmbeddedResource Include="Icons\mail-mark-junk.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
