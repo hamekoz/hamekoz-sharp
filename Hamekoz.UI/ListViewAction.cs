@@ -321,6 +321,11 @@ namespace Hamekoz.UI
 			if (handler != null)
 				handler (item);
 		}
+
+		public void Reset ()
+		{
+			List = new List<T> ();
+		}
 	}
 }
 
