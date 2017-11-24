@@ -182,6 +182,17 @@ namespace Hamekoz.UI
 			if (handler != null)
 				handler (item);
 		}
+
+		public void Reset ()
+		{
+			List = new List<T> ();
+		}
+
+		public void ResetAll ()
+		{
+			List = new List<T> ();
+			ListAvailable = new List<T> ();
+		}
 	}
 }
 
