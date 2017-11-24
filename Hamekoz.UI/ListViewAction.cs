@@ -95,6 +95,17 @@ namespace Hamekoz.UI
 			set;
 		}
 
+		string title;
+
+		public string Title {
+			get {
+				return title.Length == 0 ? typeof(T).Name.Humanize () : title;
+			}
+			set {
+				title = value;
+			}
+		}
+
 		public void Add (T item)
 		{
 			listView.Add (item);
@@ -153,7 +164,7 @@ namespace Hamekoz.UI
 		{
 			add.Clicked += delegate {
 				var dialogo = new Dialog {
-					Title = string.Format (Application.TranslationCatalog.GetString ("New {0}"), typeof(T).Name.Humanize ()),
+					Title = string.Format (Application.TranslationCatalog.GetString ("New {0}"), Title),
 				};
 
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
@@ -186,14 +197,14 @@ namespace Hamekoz.UI
 
 			edit.Clicked += delegate {
 				var dialogo = new Dialog {
-					Title = string.Format (Application.TranslationCatalog.GetString ("Edit {0}"), typeof(T).Name.Humanize ()),
+					Title = string.Format (Application.TranslationCatalog.GetString ("Edit {0}"), Title),
 				};
 
 				dialogo.Buttons.Add (Command.Cancel, Command.Apply);
 
 				var row = listView.SelectedRow;
 				if (row == -1) {
-					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to edit"), typeof(T).Name.Humanize ()));
+					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to edit"), Title));
 				} else {
 					ItemUI.ValuesClean ();
 					ItemUI.Item = listView.SelectedItem;
@@ -220,7 +231,7 @@ namespace Hamekoz.UI
 			remove.Clicked += delegate {
 				var row = listView.SelectedRow;
 				if (row == -1) {
-					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to remove"), typeof(T).Name.Humanize ()));
+					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to remove"), Title));
 				} else {
 					if (OnPreventRemove (listView.SelectedItem))
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A validation rule prevents you from deleting the selected item"));
@@ -235,11 +246,11 @@ namespace Hamekoz.UI
 				OnRowActivated ();
 				if (ShowOnRowActivated) {
 					var dialogo = new Dialog {
-						Title = typeof(T).Name.Humanize (),
+						Title = Title,
 					};
 
 					if (e.RowIndex == -1) {
-						MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to show"), typeof(T).Name.Humanize ()));
+						MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to show"), Title));
 					} else {
 						ItemUI.ValuesClean ();
 						ItemUI.Item = listView.SelectedItem;
