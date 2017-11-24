@@ -95,7 +95,7 @@ namespace Hamekoz.UI
 			set;
 		}
 
-		string title;
+		string title = string.Empty;
 
 		public string Title {
 			get {
