@@ -35,6 +35,11 @@ namespace Hamekoz.UI
 
 		#region Properties
 
+		public string Title {
+			get;
+			set;
+		} = typeof(T).Name.Humanize ();
+
 		public bool ShowOnRowActivated {
 			get;
 			set;
@@ -93,17 +98,6 @@ namespace Hamekoz.UI
 		public IItemUI<T> ItemUI {
 			get;
 			set;
-		}
-
-		string title = string.Empty;
-
-		public string Title {
-			get {
-				return title.Length == 0 ? typeof(T).Name.Humanize () : title;
-			}
-			set {
-				title = value;
-			}
 		}
 
 		public void Add (T item)
