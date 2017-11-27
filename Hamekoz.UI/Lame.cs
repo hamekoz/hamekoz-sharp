@@ -27,8 +27,24 @@ namespace Hamekoz.UI
 	/// <summary>
 	/// Lame. List, Add, Modify, Erase
 	/// </summary>
-	public abstract class Lame<T> : ItemChooser<T>
+	public abstract class Lame<T> : ItemChooser<T>, IPermisible
 	{
+		#region IPermisible implementation
+
+		Permiso permiso = new Permiso ();
+
+		public Permiso Permiso {
+			get {
+				return permiso;
+			}
+			set {
+				permiso = value;
+				Editable (false);
+			}
+		}
+
+		#endregion
+
 		new IItemUI<T> Widget {
 			get { return base.Widget as IItemUI<T>; }
 			set { base.Widget = (Widget)value; }
@@ -176,9 +192,9 @@ namespace Hamekoz.UI
 		public void Editable (bool editable)
 		{
 			List.Sensitive = !editable;
-			agregar.Sensitive = !editable;
-			modificar.Sensitive = !editable && Widget.HasItem ();
-			eliminar.Sensitive = !editable && Widget.HasItem ();
+			agregar.Sensitive = !editable && Permiso.Agregar;
+			modificar.Sensitive = !editable && Permiso.Modificar && Widget.HasItem ();
+			eliminar.Sensitive = !editable && Permiso.Eliminar && Widget.HasItem ();
 			grabar.Sensitive = editable && Widget.HasItem ();
 			cancelar.Sensitive = editable && Widget.HasItem ();
 			Widget.Editable (editable);

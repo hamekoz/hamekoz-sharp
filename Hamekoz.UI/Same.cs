@@ -27,8 +27,24 @@ namespace Hamekoz.UI
 	/// <summary>
 	/// Same. Search, Add, Modify, Erase
 	/// </summary>
-	public abstract class Same<T> : VBox where T : ISearchable
+	public abstract class Same<T> : VBox, IPermisible where T : ISearchable
 	{
+		#region IPermisible implementation
+
+		Permiso permiso = new Permiso ();
+
+		public Permiso Permiso {
+			get {
+				return permiso;
+			}
+			set {
+				permiso = value;
+				Editable (false);
+			}
+		}
+
+		#endregion
+
 		readonly protected HBox actionBox = new HBox {
 			ExpandHorizontal = true,
 			ExpandVertical = true,
@@ -200,9 +216,9 @@ namespace Hamekoz.UI
 		public virtual void Editable (bool editable)
 		{
 			buscar.Sensitive = !editable;
-			agregar.Sensitive = !editable;
-			modificar.Sensitive = !editable && Widget.HasItem ();
-			eliminar.Sensitive = !editable && Widget.HasItem ();
+			agregar.Sensitive = !editable && Permiso.Agregar;
+			modificar.Sensitive = !editable && Permiso.Modificar && Widget.HasItem ();
+			eliminar.Sensitive = !editable && Permiso.Eliminar && Widget.HasItem ();
 			grabar.Sensitive = editable && Widget.HasItem ();
 			cancelar.Sensitive = editable && Widget.HasItem ();
 			Widget.Editable (editable);
