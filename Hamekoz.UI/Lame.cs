@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using Hamekoz.Core;
 using Humanizer;
 using Xwt;
@@ -78,7 +79,6 @@ namespace Hamekoz.UI
 			Image = Icons.Delete.WithSize (IconSize.Medium),
 			Sensitive = false,
 			UseMnemonic = true
-				
 		};
 		readonly Button grabar = new Button {
 			Label = Application.TranslationCatalog.GetString ("_Save"),
@@ -91,6 +91,14 @@ namespace Hamekoz.UI
 			Image = Icons.ProcessStop.WithSize (IconSize.Medium),
 			Sensitive = false,
 			UseMnemonic = true
+		};
+
+		readonly Button imprimir = new Button {
+			Label = Application.TranslationCatalog.GetString ("_Print"),
+			Image = Icons.PrintPreview.WithSize (IconSize.Medium),
+			Sensitive = false,
+			UseMnemonic = true,
+			Visible = false,
 		};
 
 		bool isNew;
@@ -119,6 +127,15 @@ namespace Hamekoz.UI
 			}
 			set {
 				eliminar.Visible = value;
+			}
+		}
+
+		public bool PrintVisible {
+			get {
+				return imprimir.Visible;
+			}
+			set {
+				imprimir.Visible = value;
 			}
 		}
 
@@ -161,6 +178,7 @@ namespace Hamekoz.UI
 			grabar.Clicked += delegate {
 				try {
 					Widget.ValuesTake ();
+					OnBeforeSave ();
 					Controller.Save (Widget.Item);
 					List.List = Controller.List;
 					List.Refresh ();
@@ -176,20 +194,24 @@ namespace Hamekoz.UI
 					Widget.ValuesClean ();
 				else {
 					//FIX no deberia tener que recargar el objeto si no se persisten los cambios
-					controller.Load (Widget.Item);
+					Controller.Load (Widget.Item);
 					Widget.ValuesRefresh ();
 				}
 				Editable (false);
 			};
+
+			imprimir.Clicked += (sender, e) => OnPrint ();
 
 			AddAction (agregar);
 			AddAction (modificar);
 			AddAction (eliminar);
 			AddAction (grabar);
 			AddAction (cancelar);
+			AddAction (imprimir);
 		}
 
-		public void Editable (bool editable)
+		//TODO change metod to property
+		public virtual void Editable (bool editable)
 		{
 			List.Sensitive = !editable;
 			agregar.Sensitive = !editable && Permiso.Agregar;
@@ -197,7 +219,26 @@ namespace Hamekoz.UI
 			eliminar.Sensitive = !editable && Permiso.Eliminar && Widget.HasItem ();
 			grabar.Sensitive = editable && Widget.HasItem ();
 			cancelar.Sensitive = editable && Widget.HasItem ();
+			imprimir.Sensitive = !editable && Widget.HasItem () && Permiso.Imprimir;
 			Widget.Editable (editable);
+		}
+
+		public event EventHandler BeforeSave;
+
+		void OnBeforeSave ()
+		{
+			var handler = BeforeSave;
+			if (handler != null)
+				handler (this, null);
+		}
+
+		public event EventHandler Print;
+
+		void OnPrint ()
+		{
+			var handler = Print;
+			if (handler != null)
+				handler (this, null);
 		}
 	}
 }

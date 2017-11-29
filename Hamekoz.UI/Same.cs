@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using Hamekoz.Core;
 using Humanizer;
 using Xwt;
@@ -58,7 +59,7 @@ namespace Hamekoz.UI
 			HorizontalScrollPolicy = ScrollPolicy.Automatic,
 		};
 
-		public IItemUI<T>  Widget {
+		public IItemUI<T> Widget {
 			get { return scroller.Content as IItemUI<T>; }
 			set { scroller.Content = (Widget)value; }
 		}
@@ -73,6 +74,46 @@ namespace Hamekoz.UI
 			Image = Icons.EditFind.WithSize (IconSize.Medium),
 			UseMnemonic = true
 		};
+
+		readonly Button agregar = new Button {
+			Label = Application.TranslationCatalog.GetString ("_Add"),
+			Image = Icons.New.WithSize (IconSize.Medium),
+			UseMnemonic = true
+		};
+		readonly Button modificar = new Button {
+			Label = Application.TranslationCatalog.GetString ("_Modify"),
+			Image = Icons.DocumentProperties.WithSize (IconSize.Medium),
+			Sensitive = false,
+			UseMnemonic = true
+		};
+		readonly Button eliminar = new Button {
+			Label = Application.TranslationCatalog.GetString ("_Erase"),
+			Image = Icons.Delete.WithSize (IconSize.Medium),
+			Sensitive = false,
+			UseMnemonic = true
+		};
+		readonly Button grabar = new Button {
+			Label = Application.TranslationCatalog.GetString ("_Save"),
+			Image = Icons.Save.WithSize (IconSize.Medium),
+			Sensitive = false,
+			UseMnemonic = true
+		};
+		readonly Button cancelar = new Button {
+			Label = Application.TranslationCatalog.GetString ("_Cancel"),
+			Image = Icons.ProcessStop.WithSize (IconSize.Medium),
+			Sensitive = false,
+			UseMnemonic = true
+		};
+
+		readonly Button imprimir = new Button {
+			Label = Application.TranslationCatalog.GetString ("_Print"),
+			Image = Icons.PrintPreview.WithSize (IconSize.Medium),
+			Sensitive = false,
+			UseMnemonic = true,
+			Visible = false,
+		};
+
+		bool isNew;
 
 		public bool AddVisible {
 			get {
@@ -101,38 +142,14 @@ namespace Hamekoz.UI
 			}
 		}
 
-		readonly Button agregar = new Button {
-			Label = Application.TranslationCatalog.GetString ("_Add"),
-			Image = Icons.New.WithSize (IconSize.Medium),
-			UseMnemonic = true
-		};
-		readonly Button modificar = new Button {
-			Label = Application.TranslationCatalog.GetString ("_Modify"),
-			Image = Icons.DocumentProperties.WithSize (IconSize.Medium),
-			Sensitive = false,
-			UseMnemonic = true
-		};
-		readonly Button eliminar = new Button {
-			Label = Application.TranslationCatalog.GetString ("_Erase"),
-			Image = Icons.Delete.WithSize (IconSize.Medium),
-			Sensitive = false,
-			UseMnemonic = true
-		};
-		readonly Button grabar = new Button {
-			Label = Application.TranslationCatalog.GetString ("_Save"),
-			Image = Icons.Save.WithSize (IconSize.Medium),
-			Sensitive = false,
-			UseMnemonic = true
-				
-		};
-		readonly Button cancelar = new Button {
-			Label = Application.TranslationCatalog.GetString ("_Cancel"),
-			Image = Icons.ProcessStop.WithSize (IconSize.Medium),
-			Sensitive = false,
-			UseMnemonic = true
-		};
-
-		bool isNew;
+		public bool PrintVisible {
+			get {
+				return imprimir.Visible;
+			}
+			set {
+				imprimir.Visible = value;
+			}
+		}
 
 		public ISearchDialog<T> Dialogo {
 			get;
@@ -182,6 +199,7 @@ namespace Hamekoz.UI
 			grabar.Clicked += delegate {
 				try {
 					Widget.ValuesTake ();
+					OnBeforeSave ();
 					Controller.Save (Widget.Item);
 					Widget.ValuesRefresh ();
 					Editable (false);
@@ -201,12 +219,15 @@ namespace Hamekoz.UI
 				Editable (false);
 			};
 
+			imprimir.Clicked += (sender, e) => OnPrint ();
+
 			actionBox.PackStart (buscar, true, true);
 			actionBox.PackStart (agregar, true, true);
 			actionBox.PackStart (modificar, true, true);
 			actionBox.PackStart (eliminar, true, true);
 			actionBox.PackStart (grabar, true, true);
 			actionBox.PackStart (cancelar, true, true);
+			actionBox.PackStart (imprimir, true, true);
 
 			PackStart (scroller, true, true);
 			PackEnd (actionBox, false, true);
@@ -221,7 +242,26 @@ namespace Hamekoz.UI
 			eliminar.Sensitive = !editable && Permiso.Eliminar && Widget.HasItem ();
 			grabar.Sensitive = editable && Widget.HasItem ();
 			cancelar.Sensitive = editable && Widget.HasItem ();
+			imprimir.Sensitive = !editable && Widget.HasItem () && Permiso.Imprimir;
 			Widget.Editable (editable);
+		}
+
+		public event EventHandler BeforeSave;
+
+		void OnBeforeSave ()
+		{
+			var handler = BeforeSave;
+			if (handler != null)
+				handler (this, null);
+		}
+
+		public event EventHandler Print;
+
+		void OnPrint ()
+		{
+			var handler = Print;
+			if (handler != null)
+				handler (this, null);
 		}
 	}
 }
