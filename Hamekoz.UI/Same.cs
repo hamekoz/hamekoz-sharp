@@ -40,7 +40,7 @@ namespace Hamekoz.UI
 			}
 			set {
 				permiso = value;
-				Editable (false);
+				Editable (AllowEdit);
 			}
 		}
 
@@ -233,9 +233,21 @@ namespace Hamekoz.UI
 			PackEnd (actionBox, false, true);
 		}
 
-		//TODO change metod to property
+		bool allowEdit;
+
+		public bool AllowEdit {
+			get {
+				return allowEdit;
+			}
+			set {
+				allowEdit = value;
+				Editable = allowEdit;
+			}
+		}
+
 		public virtual void Editable (bool editable)
 		{
+			allowEdit = editable;
 			buscar.Sensitive = !editable;
 			agregar.Sensitive = !editable && Permiso.Agregar;
 			modificar.Sensitive = !editable && Permiso.Modificar && Widget.HasItem ();
