@@ -219,7 +219,7 @@ namespace Hamekoz.UI
 			}
 			set {
 				allowEdit = value;
-				Editable = allowEdit;
+				Editable (allowEdit);
 			}
 		}
 
