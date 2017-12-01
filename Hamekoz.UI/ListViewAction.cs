@@ -86,6 +86,15 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public bool AddSensitive {
+			get {
+				return add.Sensitive;
+			}
+			set {
+				add.Sensitive = value;
+			}
+		}
+
 		public IList<T> List {
 			get {
 				return listView.List;
