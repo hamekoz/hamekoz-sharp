@@ -167,7 +167,7 @@ namespace Hamekoz.UI
 					} else {
 						foreach (var item in listViewFilter.SelectedItems) {
 							if (OnSimilarity (List, item))
-								MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A similar element already exists in the list."));
+								MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A validation rule prevents adding this item."));
 							else {
 								if (AddItem != null)
 									OnAddItem (item);
