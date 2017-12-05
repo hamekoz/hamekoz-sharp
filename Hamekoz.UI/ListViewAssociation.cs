@@ -166,10 +166,14 @@ namespace Hamekoz.UI
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("Must select a item."));
 					} else {
 						foreach (var item in listViewFilter.SelectedItems) {
-							if (AddItem != null)
-								OnAddItem (item);
-							else
-								listView.Add (item);	
+							if (OnSimilarity (List, item))
+								MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A similar element already exists in the list."));
+							else {
+								if (AddItem != null)
+									OnAddItem (item);
+								else
+									listView.Add (item);	
+							}
 						}
 						OnChanged ();
 					}
@@ -199,6 +203,16 @@ namespace Hamekoz.UI
 			actions.PackStart (remove);
 			PackStart (listView, true, true);
 			PackEnd (actions, false, true);
+		}
+
+		public delegate bool SimilarityHandler (IList<T> list, T item);
+
+		public SimilarityHandler Similarity;
+
+		protected bool OnSimilarity (IList<T> list, T item)
+		{
+			var similarity = Similarity;
+			return similarity != null && similarity (list, item);
 		}
 
 		public delegate bool PreventRemoveHandler (T item);
@@ -250,6 +264,11 @@ namespace Hamekoz.UI
 		public void RemoveColumnAt (params int[] columnsIndex)
 		{
 			listView.RemoveColumnAt (columnsIndex);
+		}
+
+		public void ClearList ()
+		{
+			List = new List<T> ();
 		}
 
 		public void ClearLists ()
