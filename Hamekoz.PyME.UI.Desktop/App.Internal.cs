@@ -22,7 +22,7 @@ using System;
 using System.Runtime.InteropServices;
 using Xwt;
 
-namespace Hamekoz.Negocio.UI
+namespace Hamekoz.PyME.UI.Desktop
 {
 	public static partial class App
 	{

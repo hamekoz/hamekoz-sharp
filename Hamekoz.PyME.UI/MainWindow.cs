@@ -1,5 +1,5 @@
 ﻿//
-//  Program.cs
+//  MainWindow.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
@@ -18,18 +18,42 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using Xwt;
 
-namespace Hamekoz.Negocio.UI.Desktop
+namespace Hamekoz.PyME.UI
 {
-	public static class Program
+	public class MainWindow : Hamekoz.UI.MainWindow
 	{
-		[STAThread]
-		public static void Main (string[] args)
+		public MainWindow ()
 		{
-			App.Run (args);
+			Title = "Hamekoz.PyME.UI";
+			Width = 400;
+			Height = 400;
+
+			Menu menu = new Menu ();
+
+			var file = new MenuItem ("_File");
+			file.SubMenu = new Menu ();
+			file.SubMenu.Items.Add (new MenuItem ("_Open"));
+			file.SubMenu.Items.Add (new MenuItem ("_New"));
+			MenuItem mi = new MenuItem ("_Close");
+			mi.Clicked += (sender, e) => Close ();
+			file.SubMenu.Items.Add (mi);
+			menu.Items.Add (file);
+			MainMenu = menu;
+
+			var sampleLabel = new Label ("Hamekoz.PyME.UI");
+			Content = sampleLabel;
+		}
+
+		protected override bool OnCloseRequested ()
+		{
+			var allow_close = MessageDialog.Confirm ("Hamekoz.PyME.UI will be closed", Command.Ok);
+			if (allow_close)
+				Application.Exit ();
+			return allow_close;
 		}
 	}
 }
+
 

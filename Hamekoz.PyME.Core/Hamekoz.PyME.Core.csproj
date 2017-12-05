@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7F32F597-EA48-49FA-B5D9-5B9CDF922041}</ProjectGuid>
+    <ProjectGuid>{D3F6653E-D246-4F93-A2A1-377B7587B7DF}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Hamekoz.Negocio.UI</RootNamespace>
-    <AssemblyName>Hamekoz.Negocio.UI</AssemblyName>
+    <RootNamespace>Hamekoz.PyME.Core</RootNamespace>
+    <AssemblyName>Hamekoz.PyME.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -31,18 +31,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindow.cs" />
-    <Compile Include="App.cs" />
-    <Compile Include="App.Internal.cs">
-      <DependentUpon>App.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" Condition="Exists('..\Hamekoz.Shared\Hamekoz.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\xwt\Xwt\Xwt.csproj">
-      <Project>{92494904-35FA-4DC9-BDE9-3A3E87AC49D3}</Project>
-      <Name>Xwt</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

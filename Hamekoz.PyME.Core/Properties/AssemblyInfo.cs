@@ -24,7 +24,7 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle ("Hamekoz.Negocio.UI.Desktop")]
+[assembly: AssemblyTitle ("Hamekoz.PyME.Core")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("Hamekoz")]

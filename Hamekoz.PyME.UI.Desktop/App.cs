@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using Xwt;
 
-namespace Hamekoz.Negocio.UI
+namespace Hamekoz.PyME.UI.Desktop
 {
 	public static partial class App
 	{
@@ -29,7 +29,7 @@ namespace Hamekoz.Negocio.UI
 		static App ()
 		{
 			ToolkitWindows = ToolkitType.Wpf;
-			ToolkitLinux = ToolkitType.Gtk;
+			ToolkitLinux = ToolkitType.Gtk3;
 			ToolkitMacOS = ToolkitType.XamMac;
 		}
 

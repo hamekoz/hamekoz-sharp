@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</ProjectGuid>
+    <ProjectGuid>{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Hamekoz.Core</RootNamespace>
-    <AssemblyName>Hamekoz.Core</AssemblyName>
+    <RootNamespace>Hamekoz.PyME.UI</RootNamespace>
+    <AssemblyName>Hamekoz.PyME.UI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -20,6 +20,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -28,21 +29,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Mono.Posix" />
-    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Extensions\BooleanExtension.cs" />
-    <Compile Include="Numalet.cs" />
-    <Compile Include="ValidationDataException.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Extensions\NumericExtensions.cs" />
-    <Compile Include="Extensions\TypeExtension.cs" />
-    <Compile Include="PlatformHacks.cs" />
-    <Compile Include="Settings.cs" />
   </ItemGroup>
-  <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" Condition="Exists('..\Hamekoz.Shared\Hamekoz.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\xwt\Xwt\Xwt.csproj">
+      <Project>{92494904-35FA-4DC9-BDE9-3A3E87AC49D3}</Project>
+      <Name>Xwt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hamekoz.UI\Hamekoz.UI.csproj">
+      <Project>{57C0A7DC-F7B7-42C3-AE4D-984938F61542}</Project>
+      <Name>Hamekoz.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
