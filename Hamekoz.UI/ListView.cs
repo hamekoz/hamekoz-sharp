@@ -161,6 +161,7 @@ namespace Hamekoz.UI
 			}
 		}
 
+		//TODO evaluar como poder definir que columnas y en que orden mostrar en la grilla. Una idea es que la clase implemente intefaces de vista, y se pase al constructor la interfaaz a utilizar para la presentacion
 		public ListView ()
 		{
 			type = typeof(T);
@@ -168,7 +169,6 @@ namespace Hamekoz.UI
 			PropertyInfo[] properties = type.GetProperties ();
 			foreach (var property in properties) {
 				IDataField datafield;
-
 				switch (Type.GetTypeCode (property.PropertyType)) {
 				case TypeCode.Boolean:
 					datafield = new DataField<bool> ();
