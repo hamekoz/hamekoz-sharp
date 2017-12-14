@@ -39,15 +39,16 @@ namespace Hamekoz.UI
 			GridLinesVisible = GridLines.Both,
 		};
 
+		public void Refresh ()
+		{
+			filterList.List = List.Where (r => r.ToSearchString ().ToUpper ().Contains (text.Text.ToUpper ())).ToList ();
+		}
+
 		public ListViewFilter ()
 		{
 			text.SetFocus ();
 			text.SetCompletions (typeof(T).GetProperties ().Select (p => p.Name).ToArray<string> ());
-			text.Activated += delegate {
-				filterList.List = List
-					.Where (r => r.ToSearchString ().ToUpper ().Contains (text.Text.ToUpper ()))
-					.ToList ();
-			};
+			text.Activated += (sender, e) => Refresh ();
 
 			PackStart (text);
 			PackStart (filterList, true);
@@ -56,6 +57,19 @@ namespace Hamekoz.UI
 		public T Selected {
 			get {
 				return filterList.SelectedItem;
+			}
+		}
+
+		//TODO refactorizar para utilizar un diccionario basado en las propiedades, y eliminar las entradas basado en la propiedad
+		public void RemoveColumnAt (int index)
+		{
+			filterList.RemoveColumnAt (index);
+		}
+
+		public void RemoveColumnAt (params int[] indexs)
+		{
+			foreach (var index in indexs.OrderByDescending(c => c).ToArray()) {
+				filterList.RemoveColumnAt (index);
 			}
 		}
 	}
