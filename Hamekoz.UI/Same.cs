@@ -203,6 +203,7 @@ namespace Hamekoz.UI
 					Controller.Save (Widget.Item);
 					Widget.ValuesRefresh ();
 					Editable (false);
+					OnAfterSave ();
 				} catch (ValidationDataException ex) {
 					MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("Data is not valid"), ex.Message);
 				}
@@ -263,6 +264,15 @@ namespace Hamekoz.UI
 		void OnBeforeSave ()
 		{
 			var handler = BeforeSave;
+			if (handler != null)
+				handler (this, null);
+		}
+
+		public event EventHandler AfterSave;
+
+		void OnAfterSave ()
+		{
+			var handler = AfterSave;
 			if (handler != null)
 				handler (this, null);
 		}
