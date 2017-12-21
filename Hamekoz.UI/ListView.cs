@@ -130,7 +130,7 @@ namespace Hamekoz.UI
 					}
 					break;
 				case TypeCode.Double:
-					store.SetValue<string> (row, (IDataField<string>)field, string.Format ("{0:#0.#}", (double)property.GetValue (item, null)));
+					store.SetValue<string> (row, (IDataField<string>)field, string.Format ("{0:#0.####}", (double)property.GetValue (item, null)));
 					break;
 				case TypeCode.Decimal:
 					store.SetValue<string> (row, (IDataField<string>)field, string.Format ("{0:N}", (decimal)property.GetValue (item, null)));
