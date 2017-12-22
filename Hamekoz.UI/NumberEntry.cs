@@ -27,6 +27,15 @@ namespace Hamekoz.UI
 	{
 		//TODO definir metodo		ValueChanged
 
+		public double WidthRequest {
+			get {
+				return entry.WidthRequest;
+			}
+			set {
+				entry.WidthRequest = value;
+			}
+		}
+
 		readonly TextEntry entry = new TextEntry {
 			TextAlignment = Alignment.End,
 		};
