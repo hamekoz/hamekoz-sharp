@@ -18,6 +18,8 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using iTextSharp.text;
+
 namespace Hamekoz.Reportes
 {
 	public interface IReporte
@@ -59,6 +61,8 @@ namespace Hamekoz.Reportes
 		bool HasTitleAndSubjetOnAllPages { get; set; }
 
 		void Agregar (IElemento elemento);
+
+		void Agregar (IElement elemento);
 
 		void Iniciar ();
 

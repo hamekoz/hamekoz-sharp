@@ -292,6 +292,14 @@ namespace Hamekoz.Reportes
 			document.Add (elemento.GetElemento ());
 		}
 
+		public void Agregar (IElement elemento)
+		{
+			if (!document.IsOpen ()) {
+				Iniciar ();
+			}
+			document.Add (elemento);
+		}
+
 		public void Abrir ()
 		{
 			document.Close ();
