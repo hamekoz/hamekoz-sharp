@@ -106,6 +106,7 @@ namespace Hamekoz.Reportes
 				pageEventHandler.Header = Titulo;
 				pageEventHandler.HeaderLeft = Empresa;
 				pageEventHandler.HeaderRight = Creador;
+				pageEventHandler.ShowGeneratedInfo = ShowGeneratedInfo;
 			}
 
 			if (marcaDeAguaTexto != string.Empty) {
@@ -321,6 +322,12 @@ namespace Hamekoz.Reportes
 			document.Add (linea);
 			document.Add (new Paragraph (espacio));
 		}
+
+
+		public bool ShowGeneratedInfo {
+			get;
+			set;
+		} = true;
 
 		#endregion
 	}

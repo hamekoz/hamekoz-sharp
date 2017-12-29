@@ -61,6 +61,8 @@ namespace Hamekoz.Reportes
 
 		public bool HasTitleAndSubjet { get; set; }
 
+		public bool ShowGeneratedInfo { get; set; } = true;
+
 		string header = string.Empty;
 
 		public string Header {
@@ -147,7 +149,7 @@ namespace Hamekoz.Reportes
 
 			if (HasHeaderAndFooter) {
 				PrintHeader (document);
-				PrintFooter (writer, document);
+				PrintFooter (writer, document, ShowGeneratedInfo);
 			}
 			if (HasTitleAndSubjet) {
 				PrintTitleAndSubjet (document);
@@ -225,17 +227,17 @@ namespace Hamekoz.Reportes
 			);
 		}
 
-		void PrintFooter (PdfWriter writer, Document document)
+		void PrintFooter (PdfWriter writer, Document document, bool ShowGenerated = true)
 		{
 			//TODO localizar los textos para poder traducirlos
-			string generated = String.Format (
+			string generated = string.Format (
 				                   "Generado el {0} {1}",
 				                   printTime.ToShortDateString (),
 				                   printTime.ToShortTimeString ()
 			                   );
 
 			//TODO localizar los textos para poder traducirlos
-			String pageof = string.Format ("Página {0} de ", writer.PageNumber);
+			string pageof = string.Format ("Página {0} de ", writer.PageNumber);
 			float len = font.BaseFont.GetWidthPoint (pageof, font.Size) + 2;
 
 			contentByte.AddTemplate (
@@ -252,7 +254,7 @@ namespace Hamekoz.Reportes
 			footerLeftCell.Border = Rectangle.NO_BORDER;
 			footerTable.AddCell (footerLeftCell);
 
-			var footerCenterCell = new PdfPCell (new Phrase (8, generated, font));
+			var footerCenterCell = new PdfPCell (new Phrase (8, ShowGenerated ? generated : string.Empty, font));
 			footerCenterCell.HorizontalAlignment = Element.ALIGN_CENTER;
 			footerCenterCell.Border = Rectangle.NO_BORDER;
 			footerTable.AddCell (footerCenterCell);
