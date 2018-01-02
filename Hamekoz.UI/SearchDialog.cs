@@ -95,6 +95,11 @@ namespace Hamekoz.UI
 			HorizontalPlacement = WidgetPlacement.Center
 		};
 
+		public string Info {
+			get;
+			set;
+		}
+
 		protected SearchDialog (IController<T> controller)
 		{
 			Controller = controller;
@@ -128,7 +133,6 @@ namespace Hamekoz.UI
 				Respond (Command.Ok);
 			};
 
-
 			actionBox.PackStart (refresh, true);
 			actionBox.PackStart (clearFilter, true);
 
@@ -156,7 +160,7 @@ namespace Hamekoz.UI
 			FillStore ();
 
 			search.BackgroundColor = search.Text == string.Empty ? Colors.White : store.RowCount == 0 ? Colors.Red : Colors.LightGreen;
-			result.Text = string.Format (Application.TranslationCatalog.GetPluralString ("{0} result", "{0} results", store.RowCount), store.RowCount);
+			result.Text = string.Format (Application.TranslationCatalog.GetPluralString ("{0} result {1}", "{0} results {1}", store.RowCount), store.RowCount, Info);
 		}
 
 		protected virtual void FillStore ()
