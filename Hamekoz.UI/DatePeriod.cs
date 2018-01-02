@@ -41,6 +41,14 @@ namespace Hamekoz.UI
 			DateTime = DateTime.Now.Date.AddDays (1).AddMilliseconds (-1),
 		};
 
+		readonly Button apply = new Button {
+			Image = Icons.GoJump.WithSize (IconSize.Small),
+			Label = Application.TranslationCatalog.GetString ("Apply"),
+			TooltipText = Application.TranslationCatalog.GetString ("Applies the selected period"),
+			Sensitive = false,
+			Visible = false,
+		};
+
 		Box box;
 
 		public DatePeriod (bool horizonal = false, bool withoutLabel = false)
@@ -57,20 +65,22 @@ namespace Hamekoz.UI
 				box.PackStart (new Label (Application.TranslationCatalog.GetString ("Period")));
 			box.PackStart (dateStart, horizonal, horizonal);
 			box.PackStart (dateEnd, horizonal, horizonal);
+			box.PackEnd (apply, horizonal, horizonal);
 			Content = box;
 
 			dateStart.ValueChanged += Period_ValueChanged;
 			dateEnd.ValueChanged += Period_ValueChanged;
+
+			apply.Clicked += (sender, e) => OnApplied (e); 
 		}
 
 		void Period_ValueChanged (object sender, EventArgs e)
 		{
+			apply.Sensitive = true;
 			if (dateStart.DateTime > dateEnd.DateTime) {
 				box.BackgroundColor = Xwt.Drawing.Colors.Red;	
 				box.TooltipText = string.Format (Application.TranslationCatalog.GetString ("Invalid period, the start date must be less than or equal to the final, and the period must be between {0} and {1}"), MinimumDate.ToShortDateString (), MaximumDate.ToShortDateString ());
-
 			} else {
-				
 				box.BackgroundColor = Xwt.Drawing.Colors.Transparent;
 				box.TooltipText = string.Format (Application.TranslationCatalog.GetString ("The period must be between {0} and {1}"), MinimumDate.ToShortDateString (), MaximumDate.ToShortDateString ());
 			}
@@ -97,6 +107,7 @@ namespace Hamekoz.UI
 			}
 			set {
 				dateStart.DateTime = value;
+				apply.Sensitive = false;
 			}
 		}
 
@@ -106,6 +117,7 @@ namespace Hamekoz.UI
 			}
 			set {
 				dateEnd.DateTime = value;
+				apply.Sensitive = false;
 			}
 		}
 
@@ -131,6 +143,15 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public bool Applicable {
+			get {
+				return apply.Visible;
+			}
+			set {
+				apply.Visible = value;
+			}
+		}
+
 		public event EventHandler ValueChanged;
 
 		protected virtual void OnValueChanged (EventArgs e)
@@ -138,6 +159,16 @@ namespace Hamekoz.UI
 			var handler = ValueChanged;
 			if (handler != null)
 				handler (this, e);
+		}
+
+		public event EventHandler Applied;
+
+		protected virtual void OnApplied (EventArgs e)
+		{
+			var handler = Applied;
+			if (handler != null)
+				handler (this, e);
+			apply.Sensitive = false;
 		}
 	}
 }
