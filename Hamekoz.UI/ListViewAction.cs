@@ -184,7 +184,9 @@ namespace Hamekoz.UI
 				dialogo.Content = box;
 				if (dialogo.Run () == Command.Add) {
 					ItemUI.ValuesTake ();
-					if (OnSimilarity (List, ItemUI.Item))
+					if (OnPreventAdd (ItemUI.Item))
+						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A validation rule prevents you from add the item"));
+					else if (OnSimilarity (List, ItemUI.Item))
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
 					else {
 						listView.Add (item);
@@ -287,14 +289,22 @@ namespace Hamekoz.UI
 			return similarity != null && similarity (list, item);
 		}
 
-		public delegate bool PreventRemoveHandler (T item);
+		public delegate bool ValidationItemHandler (T item);
 
-		public PreventRemoveHandler PreventRemove;
+		public ValidationItemHandler PreventRemove;
 
 		protected bool OnPreventRemove (T item)
 		{
 			var preventRemove = PreventRemove;
 			return preventRemove != null && preventRemove (item);
+		}
+
+		public ValidationItemHandler PreventAdd;
+
+		protected bool OnPreventAdd (T item)
+		{
+			var preventAdd = PreventAdd;
+			return preventAdd != null && preventAdd (item);
 		}
 
 		public void RemoveColumnAt (int index)
