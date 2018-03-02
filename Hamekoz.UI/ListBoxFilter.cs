@@ -200,5 +200,10 @@ namespace Hamekoz.UI
 			Search.Text = string.Empty;
 			Refresh ();
 		}
+
+		public void ClearList ()
+		{
+			List = new List<T> ();
+		}
 	}
 }
