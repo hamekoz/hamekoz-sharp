@@ -203,7 +203,7 @@ namespace Hamekoz.UI
 
 		public void ClearList ()
 		{
-			List = new List<T> ();
+			List.Clear ();
 		}
 	}
 }
