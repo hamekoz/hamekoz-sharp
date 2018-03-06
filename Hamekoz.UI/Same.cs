@@ -41,10 +41,20 @@ namespace Hamekoz.UI
 			set {
 				permiso = value;
 				Editable (AllowEdit);
+				OnPermisoChanged (null);
 			}
 		}
 
 		#endregion
+
+		public event EventHandler PermisoChanged;
+
+		protected virtual void OnPermisoChanged (EventArgs e)
+		{
+			var handler = PermisoChanged;
+			if (handler != null)
+				handler (this, e);
+		}
 
 		readonly protected HBox actionBox = new HBox {
 			ExpandHorizontal = true,
