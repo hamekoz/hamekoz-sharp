@@ -39,14 +39,23 @@ namespace Hamekoz.UI
 			VerticalScrollPolicy = ScrollPolicy.Automatic,
 		};
 
+		Button selectedItemClear = new Button {
+			Label = Application.TranslationCatalog.GetString ("Clear"),
+			Image = Icons.EditClearAll.WithSize (IconSize.Small)
+		};
+
 		public ItemPicker ()
 		{
 			ReadOnly = true;
 			PlaceholderText = Application.TranslationCatalog.GetString ("Click o press Intro or Space to select one item");
 			TooltipText = Application.TranslationCatalog.GetString ("Click o press Intro or Space to select one item from the list");
 
+			var popoverBox = new VBox ();
+			popoverBox.PackStart (listBoxFilter, true, true);
+			popoverBox.PackEnd (selectedItemClear, false, true);
+
 			var popover = new Popover {
-				Content = listBoxFilter,
+				Content = popoverBox,
 			};
 
 			Activated += delegate {
@@ -68,6 +77,12 @@ namespace Hamekoz.UI
 					popover.Hide ();
 					SelectedItem = listBoxFilter.SelectedItem;
 				}
+			};
+
+			selectedItemClear.Clicked += delegate {
+				listBoxFilter.UnselectAll ();
+				popover.Hide ();
+				SelectedItem = default(T);
 			};
 		}
 
@@ -161,6 +176,7 @@ namespace Hamekoz.UI
 
 		protected virtual void OnSelectionItemChanged (EventArgs e)
 		{
+			//TODO evaluar si seria correcto disparar este evento solo cuando el componente tiene sensibilidad
 			if (selectedItem != null) {
 				try {
 					Text = fieldDescription.GetValue (selectedItem, null).ToString ();
