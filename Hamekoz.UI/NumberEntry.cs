@@ -153,6 +153,7 @@ namespace Hamekoz.UI
 
 		protected virtual void OnValueChanged (EventArgs e)
 		{
+			//TODO evaluar si seria correcto disparar este evento solo cuando el componente tiene sensibilidad
 			if (ValueChanged != null)
 				ValueChanged (this, e);
 		}
