@@ -211,8 +211,8 @@ namespace Hamekoz.UI
 					Widget.ValuesTake ();
 					OnBeforeSave ();
 					Controller.Save (Widget.Item);
-					Widget.ValuesRefresh ();
 					Editable (false);
+					Widget.ValuesRefresh ();
 					OnAfterSave ();
 				} catch (ValidationDataException ex) {
 					MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("Data is not valid"), ex.Message);
