@@ -21,6 +21,7 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -93,6 +94,16 @@ namespace Hamekoz.Extensions
 			string result = param.Substring (param.Length - length, length);
 			//return the result of the operation
 			return result;
+		}
+
+		public static bool IsValidEmail (this string email)
+		{
+			try {
+				var addr = new MailAddress (email);
+				return true;
+			} catch {
+				return false;
+			}
 		}
 	}
 }
