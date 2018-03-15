@@ -43,7 +43,7 @@ namespace Hamekoz.UI
 		public bool ShowOnRowActivated {
 			get;
 			set;
-		}
+		} = true;
 
 		public bool ActionsVisible {
 			get { return actions.Visible; }
