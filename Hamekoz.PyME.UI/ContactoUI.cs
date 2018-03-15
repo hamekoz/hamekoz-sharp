@@ -31,6 +31,7 @@ namespace Hamekoz.PyME.UI
 		readonly TextEntry telefono = new TextEntry ();
 		readonly TextEntry email = new TextEntry ();
 		readonly TextEntry observaciones = new TextEntry ();
+		readonly CheckBox inactivo = new CheckBox ("Inactivo");
 
 		public Contacto Contacto {
 			get { return Item; }
@@ -48,6 +49,7 @@ namespace Hamekoz.PyME.UI
 			PackStart (email);
 			PackStart (new Label ("Observaciones"));
 			PackStart (observaciones);
+			PackStart (inactivo);
 
 			MinWidth = 400;
 		}
@@ -66,6 +68,7 @@ namespace Hamekoz.PyME.UI
 			telefono.Text = Contacto.Telefono;
 			email.Text = Contacto.Email;
 			observaciones.Text = Contacto.Observaciones;
+			inactivo.Active = Contacto.Inactivo;
 		}
 
 		public void ValuesTake ()
@@ -75,6 +78,7 @@ namespace Hamekoz.PyME.UI
 			Contacto.Telefono = telefono.Text;
 			Contacto.Email = email.Text;
 			Contacto.Observaciones = observaciones.Text;
+			Contacto.Inactivo = inactivo.Active;
 		}
 
 		public void ValuesClean ()
@@ -85,6 +89,7 @@ namespace Hamekoz.PyME.UI
 			telefono.Text = string.Empty;
 			email.Text = string.Empty;
 			observaciones.Text = string.Empty;
+			inactivo.Active = false;
 		}
 
 		public void Editable (bool editable)
@@ -94,6 +99,7 @@ namespace Hamekoz.PyME.UI
 			telefono.ReadOnly = !editable;
 			email.ReadOnly = !editable;
 			observaciones.ReadOnly = !editable;
+			inactivo.Sensitive = editable;
 		}
 
 		public Contacto Item {
