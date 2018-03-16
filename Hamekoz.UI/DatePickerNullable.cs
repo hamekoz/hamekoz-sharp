@@ -72,6 +72,7 @@ namespace Hamekoz.UI
 			}
 			set {
 				datepicker.ReadOnly = value;
+				check.Sensitive = !value;
 			}
 		}
 
