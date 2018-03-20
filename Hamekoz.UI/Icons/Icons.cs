@@ -49,6 +49,8 @@ namespace Hamekoz.UI
 		public static readonly Image GoNext = Image.FromResource ("Hamekoz.UI.Icons.go-next.png");
 		public static readonly Image GoPrevious = Image.FromResource ("Hamekoz.UI.Icons.go-previous.png");
 
+		public static readonly Image InsertLink = Image.FromResource ("Hamekoz.UI.Icons.insert-link.png");
+
 		public static readonly Image ListAdd = Image.FromResource ("Hamekoz.UI.Icons.list-add.png");
 		public static readonly Image ListAddSymbolic = Image.FromResource ("Hamekoz.UI.Icons.list-add-symbolic.png");
 		public static readonly Image ListRemove = Image.FromResource ("Hamekoz.UI.Icons.list-remove.png");
