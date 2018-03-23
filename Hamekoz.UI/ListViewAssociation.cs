@@ -81,6 +81,26 @@ namespace Hamekoz.UI
 			listView.Add (item);
 		}
 
+		public void ScrollToFirst ()
+		{
+			listView.ScrollToFirst ();
+		}
+
+		public void ScrollToLast ()
+		{
+			listView.ScrollToLast ();
+		}
+
+		public void ScrollTo (T item)
+		{
+			listView.ScrollTo (item);
+		}
+
+		public void ScrollTo (int row)
+		{
+			listView.ScrollToRow (row);
+		}
+
 		SelectionMode selectionMode = SelectionMode.Single;
 
 		public SelectionMode SelectionMode {
