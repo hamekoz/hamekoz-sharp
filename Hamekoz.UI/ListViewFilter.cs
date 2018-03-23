@@ -72,6 +72,26 @@ namespace Hamekoz.UI
 				filterList.RemoveColumnAt (index);
 			}
 		}
+
+		public void ScrollToFirst ()
+		{
+			filterList.ScrollToFirst ();
+		}
+
+		public void ScrollToLast ()
+		{
+			filterList.ScrollToLast ();
+		}
+
+		public void ScrollTo (T item)
+		{
+			filterList.ScrollTo (item);
+		}
+
+		public void ScrollTo (int row)
+		{
+			filterList.ScrollToRow (row);
+		}
 	}
 }
 

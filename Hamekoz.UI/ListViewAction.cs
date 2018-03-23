@@ -127,8 +127,7 @@ namespace Hamekoz.UI
 
 		public void ScrollTo (T item)
 		{
-			int row = listView.List.IndexOf (item);
-			listView.ScrollToRow (row);
+			listView.ScrollTo (item);
 		}
 
 		public void ScrollTo (int row)
