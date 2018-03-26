@@ -62,6 +62,7 @@ namespace Hamekoz.UI
 		public static readonly Image MediaPlaybackStop = Image.FromResource ("Hamekoz.UI.Icons.media-playback-stop.png");
 		public static readonly Image MediaPlaybackPause = Image.FromResource ("Hamekoz.UI.Icons.media-playback-pause.png");
 
+		public static readonly Image TaskDue = Image.FromResource ("Hamekoz.UI.Icons.task-due.png");
 
 		public static readonly Image ProcessStop = Image.FromResource ("Hamekoz.UI.Icons.process-stop.png");
 		public static readonly Image Starred = Image.FromResource ("Hamekoz.UI.Icons.starred.png");

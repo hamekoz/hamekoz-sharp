@@ -149,6 +149,7 @@
     <EmbeddedResource Include="Icons\media-playback-stop.png" />
     <EmbeddedResource Include="Icons\mail-mark-junk.png" />
     <EmbeddedResource Include="Icons\insert-link.png" />
+    <EmbeddedResource Include="Icons\task-due.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
