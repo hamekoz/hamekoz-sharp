@@ -23,9 +23,6 @@ using System.Text;
 using System.Xml;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Pkcs;
-using Org.BouncyCastle.Cms;
-using Org.BouncyCastle.X509.Store;
-using Org.BouncyCastle.Crypto;
 
 namespace Hamekoz.Argentina.Afip
 {
@@ -109,7 +106,7 @@ namespace Hamekoz.Argentina.Afip
 
 				// Convierto el login ticket request a bytes, para firmar 
 				Encoding EncodedMsg = Encoding.UTF8;
-				byte[] msgBytes = 
+				byte[] msgBytes = EncodedMsg.GetBytes (xmlLoginTicketRequest.OuterXml); 
 
 				// Firmo el msg y paso a Base64 
 				byte[] encodedSignedCms = CertificadosX509Lib.FirmaBytesMensaje (msgBytes, certFirmante);
@@ -142,10 +139,10 @@ namespace Hamekoz.Argentina.Afip
 				xmlLoginTicketResponse.LoadXml (loginTicketResponse);
 
 				id = UInt32.Parse (xmlLoginTicketResponse.SelectSingleNode ("//uniqueId").InnerText);
-				Generacion = DateTime.Parse (xmlLoginTicketResponse.SelectSingleNode ("//generationTime").InnerText);
-				Expiracion = DateTime.Parse (xmlLoginTicketResponse.SelectSingleNode ("//expirationTime").InnerText);
-				Firma = xmlLoginTicketResponse.SelectSingleNode ("//sign").InnerText;
-				Token = xmlLoginTicketResponse.SelectSingleNode ("//token").InnerText;
+				generacion = DateTime.Parse (xmlLoginTicketResponse.SelectSingleNode ("//generationTime").InnerText);
+				expiracion = DateTime.Parse (xmlLoginTicketResponse.SelectSingleNode ("//expirationTime").InnerText);
+				firma = xmlLoginTicketResponse.SelectSingleNode ("//sign").InnerText;
+				token = xmlLoginTicketResponse.SelectSingleNode ("//token").InnerText;
 			} catch (Exception excepcionAlAnalizarLoginTicketResponse) {
 				throw new Exception ("***Error ANALIZANDO el LoginTicketResponse : " + excepcionAlAnalizarLoginTicketResponse.Message);
 			}
@@ -244,6 +241,7 @@ namespace Hamekoz.Argentina.Afip
 		/// <param name="argCertFirmante">Certificado usado para firmar</param> 
 		/// <returns>Bytes del mensaje firmado</returns> 
 		/// <remarks></remarks> 
+		/*
 		public static byte[] FirmaBytesMensajeBC (byte[] argBytesMsg, X509Certificate2 argCertFirmante)
 		{
 			AsymmetricKeyParameter pKey = null;
@@ -311,7 +309,7 @@ namespace Hamekoz.Argentina.Afip
 
 			return (asn1_cms);
 		}
-
+*/
 
 		/// <summary> 
 		/// Lee certificado de disco 

@@ -33,13 +33,17 @@ namespace Hamekoz.Argentina.Afip
 		[STAThread]
 		static void Main (string[] args)
 		{
-			/*
+			const string DEFAULT_URLWSAAWSDL = "https://wsaa.afip.gov.ar/ws/services/LoginCms?WSDL";
+
 			try {
 				// First load a Certificate, filename/path and certificate password
 				Cert = ReadCertFromFile ("/balcarce/objetos/postresbalcarce.crt", "");
 
 				//  Select a binary file
 				const string filename = "/balcarce/objetos/postresbalcarce.key";
+
+				var ticket = new TicketDeAcceso ();
+				ticket.ObtenerLoginTicketResponse (DEFAULT_URLWSAAWSDL, "/balcarce/objetos/postresbalcarce.crt", true);
 
 				// Get the file
 				var f = new FileStream (filename, System.IO.FileMode.Open);
@@ -67,10 +71,10 @@ namespace Hamekoz.Argentina.Afip
 				Console.WriteLine ("So, you wanna make an exception huh! : " + ex.ToString ());
 				Console.ReadKey ();
 			}
-			*/
+
 		}
 
-		/*
+
 
 		public static byte[] ReadFully (Stream stream)
 		{
@@ -117,7 +121,7 @@ namespace Hamekoz.Argentina.Afip
 				return null;
 			}
 		}
-		*/
+
 	}
 }
 

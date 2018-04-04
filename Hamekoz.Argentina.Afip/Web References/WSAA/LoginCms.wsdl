@@ -25,11 +25,11 @@
       <xsd:element name="fault" type="intf:LoginFault" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="LoginFault">
-    <wsdl:part name="fault" element="intf:fault" />
-  </wsdl:message>
   <wsdl:message name="loginCmsResponse">
     <wsdl:part name="parameters" element="tns1:loginCmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginFault">
+    <wsdl:part name="fault" element="intf:fault" />
   </wsdl:message>
   <wsdl:message name="loginCmsRequest">
     <wsdl:part name="parameters" element="tns1:loginCms" />

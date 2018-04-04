@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E79A4EB9-F6CE-4124-A71A-0E56D6999FE3}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Hamekoz.Argentina.Afip</RootNamespace>
     <AssemblyName>Hamekoz.Argentina.Afip</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -45,7 +45,6 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="TicketDeAcceso.cs" />
-    <Compile Include="Ejemplo.cs" />
     <Compile Include="TRA.cs" />
     <Compile Include="Web References\WSDL\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
