@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -22,177 +22,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
 
 namespace Hamekoz.UI
 {
-	[Obsolete ("Use ListBoxFilter<T>")]
-	public class ListBoxFilter : VBox, IListBoxFilter
-	{
-		SearchTextEntry search;
-
-		internal SearchTextEntry Search {
-			get {
-				return search;
-			}
-		}
-
-		ListBox listBox;
-
-		internal ListBox ListBox {
-			get {
-				return listBox;
-			}
-		}
-
-		IList<object> list = new List<object> ();
-
-		public ListBoxFilter ()
-		{
-			search = new SearchTextEntry {
-				PlaceholderText = Catalog.GetString ("Filter"),
-			};
-
-			search.Activated += FilterActivated;
-			search.Changed += FilterChanged;
-
-			listBox = new ListBox {
-				ExpandHorizontal = true,
-				ExpandVertical = true,
-				HorizontalPlacement = WidgetPlacement.Fill,
-				VerticalPlacement = WidgetPlacement.Fill,
-			};
-			listBox.SelectionChanged += (sender, e) => OnSelectionChanged (e);
-
-			PackStart (search);
-			PackStart (listBox, true, true);
-			ExpandHorizontal = true;
-			ExpandVertical = true;
-		}
-
-		void FilterList ()
-		{
-			FilterList (string.Empty);
-		}
-
-		void FilterList (string filter)
-		{
-			search.BackgroundColor = filter == string.Empty ? Colors.White : Colors.LightGreen;
-			filter = filter.ToUpper ();
-			var filterList = list.Where (i => ItemLabel (i).ToUpper ().Contains (filter));
-			listBox.UnselectAll ();
-			listBox.Items.Clear ();
-			foreach (var item in filterList) {
-				listBox.Items.Add (item, ItemLabel (item));
-			}
-		}
-
-		string ItemLabel (object item)
-		{
-			string labelText;
-			try {
-				labelText = item.GetType ().GetProperty (FieldDescription).GetValue (item, null).ToString ();
-			} catch {
-				labelText = item.ToString ();
-			}
-			return labelText;
-		}
-
-		void FilterActivated (object sender, EventArgs e)
-		{
-			var s = sender as SearchTextEntry;
-			FilterList (s.Text);
-		}
-
-		void FilterChanged (object sender, EventArgs e)
-		{
-			var s = sender as SearchTextEntry;
-			if (RealTimeFilter || s.Text == string.Empty) {
-				FilterList (s.Text);
-			} else {
-				search.BackgroundColor = Colors.White;
-			}
-		}
-
-		string fieldDescription;
-
-		public string FieldDescription {
-			get {
-				return fieldDescription;
-			}
-			set {
-				fieldDescription = value;
-				FilterList ();
-			}
-		}
-
-		public object SelectedItem {
-			get { return listBox.SelectedItem; }
-			set { listBox.SelectedItem = value; }
-		}
-
-		public IList<object> SelectedItems {
-			get {
-				var selectedItems = new List<object> ();
-				foreach (int item in listBox.SelectedRows) {
-					selectedItems.Add (listBox.Items [item]);
-				}
-				return selectedItems;
-			}
-		}
-
-		public IList<object> List {
-			get { return list; }
-			set {
-				list = value;
-				FilterList ();
-			}
-		}
-
-		public void SetList<T> (IList<T> typedList)
-		{
-			List = typedList.Cast<object> ().ToList ();
-		}
-
-		public T GetSelectedItem<T> ()
-		{
-			return (T)SelectedItem;
-		}
-
-		public IList<T> GetSelectedItems<T> ()
-		{
-			return SelectedItems.Cast<T> ().ToList ();
-		}
-
-		public bool RealTimeFilter {
-			get;
-			set;
-		}
-
-		public bool MultipleSelection {
-			get { return listBox.SelectionMode == SelectionMode.Multiple; }
-			set {
-				listBox.SelectionMode = value ? SelectionMode.Multiple : SelectionMode.Single;
-			}
-		}
-
-		public event ListBoxFilterSelectionChanged SelectionItemChanged;
-
-		protected virtual void OnSelectionChanged (EventArgs e)
-		{
-			var handler = SelectionItemChanged;
-			if (handler != null)
-				handler (this, e);
-		}
-	}
-
 	public class ListBoxFilter<T> : VBox, IListBoxFilter<T>
 	{
 		Type type = typeof(T);
 
-		SearchTextEntry search;
+		readonly SearchTextEntry search;
 
 		internal SearchTextEntry Search {
 			get {
@@ -200,7 +39,7 @@ namespace Hamekoz.UI
 			}
 		}
 
-		ListBox listBox;
+		readonly ListBox listBox;
 
 		internal ListBox ListBox {
 			get {
@@ -213,7 +52,7 @@ namespace Hamekoz.UI
 		public ListBoxFilter ()
 		{
 			search = new SearchTextEntry {
-				PlaceholderText = Catalog.GetString ("Filter"),
+				PlaceholderText = Application.TranslationCatalog.GetString ("Filter"),
 			};
 
 			search.Activated += FilterActivated;
@@ -325,6 +164,16 @@ namespace Hamekoz.UI
 			set { listBox.SelectionMode = value; }
 		}
 
+		public ScrollPolicy HorizontalScrollPolicy {
+			get { return listBox.HorizontalScrollPolicy; }
+			set { listBox.HorizontalScrollPolicy = value; }
+		}
+
+		public ScrollPolicy VerticalScrollPolicy {
+			get { return listBox.VerticalScrollPolicy; }
+			set { listBox.VerticalScrollPolicy = value; }
+		}
+
 		public event ListBoxFilterSelectionChanged SelectionItemChanged;
 
 		bool filtering;
@@ -334,6 +183,27 @@ namespace Hamekoz.UI
 			var handler = SelectionItemChanged;
 			if (handler != null && !filtering)
 				handler (this, e);
+		}
+
+		public void Refresh ()
+		{
+			FilterActivated (search, null);
+		}
+
+		public void UnselectAll ()
+		{
+			listBox.UnselectAll ();
+		}
+
+		public void ResetFilter ()
+		{
+			Search.Text = string.Empty;
+			Refresh ();
+		}
+
+		public void ClearList ()
+		{
+			List = new List<T> ();
 		}
 	}
 }

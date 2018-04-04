@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -81,7 +81,7 @@ namespace Hamekoz.Argentina.Agip
 
 		public char MarcaAlicuota {
 			get;
-			private set;
+			set;
 		}
 
 		public double AlicuotaPercepcion {
@@ -109,11 +109,18 @@ namespace Hamekoz.Argentina.Agip
 			set;
 		}
 
+		public RegistroPadronUnificado ()
+		{
+			
+		}
+
 		public RegistroPadronUnificado (string linea)
 		{
-			if (linea.Length < 61 || linea.Length > 121) {
-				throw new Exception ("Longitud de linea incorrecta. Verificar");
-			}
+			if (linea.Length < 61)
+				throw new Exception ("Longitud de linea es menor a lo esperado, no se insertara. Verificar");
+			if (linea.Length > 121)
+				Console.WriteLine ("Longitud de linea es superior a lo esperado. Se insertara igual. Verificar");
+
 			string[] split = linea.Split (separador);
 			FechaDePublicacion = DateTime.ParseExact (split [0], "ddMMyyyy", CultureInfo.InvariantCulture);
 			FechaVigenciaDesde = DateTime.ParseExact (split [1], "ddMMyyyy", CultureInfo.InvariantCulture);

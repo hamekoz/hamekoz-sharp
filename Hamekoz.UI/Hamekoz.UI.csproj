@@ -30,8 +30,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Mono.Posix">
-      <Private>True</Private>
+    <Reference Include="Humanizer">
+      <HintPath>..\..\packages\Humanizer.Core.2.0.1\lib\portable-win+net45+wp8+wpa81\Humanizer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -49,7 +49,6 @@
     <Compile Include="ListBoxAll.cs" />
     <Compile Include="IListBoxFilter.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="ListViewDinamic.cs" />
     <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\Axis.cs">
       <Link>MonoDevelop.Components.Chart\Axis.cs</Link>
     </Compile>
@@ -79,7 +78,23 @@
     </Compile>
     <Compile Include="About.cs" />
     <Compile Include="DatePeriod.cs" />
-    <Compile Include="Search.cs" />
+    <Compile Include="IItemUI.cs" />
+    <Compile Include="ISearchDialog.cs" />
+    <Compile Include="Lame.cs" />
+    <Compile Include="ListBox.cs" />
+    <Compile Include="MultiSelect.cs" />
+    <Compile Include="Same.cs" />
+    <Compile Include="DatePickerNullable.cs" />
+    <Compile Include="ListViewFilter.cs" />
+    <Compile Include="SearchDialog.cs" />
+    <Compile Include="ListViewAction.cs" />
+    <Compile Include="ListView.cs" />
+    <Compile Include="ListBoxAction.cs" />
+    <Compile Include="ListViewAssociation.cs" />
+    <Compile Include="YearMonthPicker.cs" />
+    <Compile Include="YearMonthPeriod.cs" />
+    <Compile Include="NumberEntry.cs" />
+    <Compile Include="IListSelector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -112,14 +127,34 @@
     <EmbeddedResource Include="Icons\document-properties.png" />
     <EmbeddedResource Include="Icons\edit-find-replace.png" />
     <EmbeddedResource Include="Icons\view-refresh.png" />
-    <EmbeddedResource Include="Icons\list-add.svg" />
     <EmbeddedResource Include="Icons\go-first.png" />
     <EmbeddedResource Include="Icons\go-jump.png" />
     <EmbeddedResource Include="Icons\go-last.png" />
     <EmbeddedResource Include="Icons\go-next.png" />
     <EmbeddedResource Include="Icons\go-previous.png" />
+    <EmbeddedResource Include="Icons\list-add.png" />
+    <EmbeddedResource Include="Icons\list-remove.png" />
+    <EmbeddedResource Include="Icons\folder.png" />
+    <EmbeddedResource Include="Icons\edit-clear-all.png" />
+    <EmbeddedResource Include="Icons\mail-send.png" />
+    <EmbeddedResource Include="Icons\edit-copy.png" />
+    <EmbeddedResource Include="Icons\accessories-text-editor.png" />
+    <EmbeddedResource Include="Icons\list-add-symbolic.png" />
+    <EmbeddedResource Include="Icons\list-remove-symbolic.png" />
+    <EmbeddedResource Include="Icons\changes-prevent.png" />
+    <EmbeddedResource Include="Icons\emblem-default.png" />
+    <EmbeddedResource Include="Icons\go-bottom.png" />
+    <EmbeddedResource Include="Icons\accessories-calculator.png" />
+    <EmbeddedResource Include="Icons\media-playback-pause.png" />
+    <EmbeddedResource Include="Icons\media-playback-stop.png" />
+    <EmbeddedResource Include="Icons\mail-mark-junk.png" />
+    <EmbeddedResource Include="Icons\insert-link.png" />
+    <EmbeddedResource Include="Icons\task-due.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

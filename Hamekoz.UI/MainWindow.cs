@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
 
@@ -55,7 +54,7 @@ namespace Hamekoz.UI
 
 		public MainWindow ()
 		{
-			Title = string.Format (Catalog.GetString ("{0} Demo Application"), "Hamekoz Xwt");
+			Title = string.Format (Application.TranslationCatalog.GetString ("{0} Demo Application"), "Hamekoz Xwt");
 			InitialLocation = WindowLocation.CenterScreen;
 			Icon = Image.FromResource (Resources.Icon);
 			WindowState = WindowState.Maximized;
@@ -63,11 +62,11 @@ namespace Hamekoz.UI
 				statusIcon = Application.CreateStatusIcon ();
 				statusIcon.Menu = new Menu ();
 				var about = new MenuItem {
-					Label = Catalog.GetString ("About"),
+					Label = Application.TranslationCatalog.GetString ("About"),
 					Image = Icons.Starred.WithSize (IconSize.Small),
 				};
 				var exit = new MenuItem {
-					Label = Catalog.GetString ("Exit"),
+					Label = Application.TranslationCatalog.GetString ("Exit"),
 					Image = Icons.Delete.WithSize (IconSize.Small),
 				};
 				statusIcon.Menu.Items.Add (about);
@@ -76,7 +75,7 @@ namespace Hamekoz.UI
 				exit.Clicked += ExitClicked;
 				statusIcon.Image = Icon;
 			} catch {
-				Console.WriteLine (Catalog.GetString ("Status icon could not be shown"));
+				Console.WriteLine (Application.TranslationCatalog.GetString ("Status icon could not be shown"));
 			}
 
 			panel = new HPaned ();
@@ -132,18 +131,18 @@ namespace Hamekoz.UI
 
 		void HandleCloseRequested (object sender, CloseRequestedEventArgs args)
 		{
-			args.AllowClose = MessageDialog.Confirm (Catalog.GetString ("The application will be closed"), Command.Ok);
+			args.AllowClose = MessageDialog.Confirm (Application.TranslationCatalog.GetString ("The application will be closed"), Command.Ok);
 			if (args.AllowClose)
 				Application.Exit ();
 		}
 
 		Label SelectItemLabel = new Label {
-			Text = Catalog.GetString ("Select one item from menu"),
+			Text = Application.TranslationCatalog.GetString ("Select one item from menu"),
 			TextAlignment = Alignment.Center
 		};
 
 		Label AccessDeniedLabel = new Label {
-			Text = Catalog.GetString ("Access Denied. You do not have sufficient permissions."),
+			Text = Application.TranslationCatalog.GetString ("Access Denied. You do not have sufficient permissions."),
 			TextAlignment = Alignment.Center
 		};
 

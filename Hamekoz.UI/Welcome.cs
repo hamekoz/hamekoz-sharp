@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Reflection;
-using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
 
@@ -44,18 +43,18 @@ namespace Hamekoz.UI
 			};
 
 			primaryInfo = new Label {
-				Text = string.Format (Catalog.GetString ("Welcome to {0}"), assemblyName.Name),
+				Text = string.Format (Application.TranslationCatalog.GetString ("Welcome to {0}"), assemblyName.Name),
 				TextAlignment = Alignment.Center,
 				Font = Font.WithSize (15),
 				MarginTop = 10,
 			};
 			secondaryInfo = new Label {
-				Text = string.Format (Catalog.GetString ("Powered by {0}"), "Hamekoz"),
+				Text = string.Format (Application.TranslationCatalog.GetString ("Powered by {0}"), "Hamekoz"),
 				TextAlignment = Alignment.Center,
 				Font = Font.WithSize (11),
 			};
 			var versionLabel = new Label {
-				Text = string.Format (Catalog.GetString ("Version {0}"), version),
+				Text = string.Format (Application.TranslationCatalog.GetString ("Version {0}"), version),
 				TextAlignment = Alignment.Center,
 				MarginTop = 3,
 			};
@@ -123,9 +122,9 @@ namespace Hamekoz.UI
 					logo.Image = Image.FromFile (value);
 					logoURI = value;
 				} catch (Exception ex) {
-					Console.WriteLine (Catalog.GetString ("Failed to load image."));
-					Console.WriteLine (Catalog.GetString ("Swiching to default logo."));
-					Console.WriteLine (Catalog.GetString ("Error: {0}"), ex.Message);
+					Console.WriteLine (Application.TranslationCatalog.GetString ("Failed to load image."));
+					Console.WriteLine (Application.TranslationCatalog.GetString ("Swiching to default logo."));
+					Console.WriteLine (Application.TranslationCatalog.GetString ("Error: {0}"), ex.Message);
 					logo.Image = Image.FromResource (Resources.Logo);
 				}
 			}

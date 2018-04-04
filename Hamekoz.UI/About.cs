@@ -3,8 +3,9 @@
 //
 //  Author:
 //       Juan Angel Dinamarca <juan.angel.dinamarca@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -18,10 +19,8 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Mono.Unix;
 using Xwt;
 using Xwt.Drawing;
-using System.Reflection;
 
 namespace Hamekoz.UI
 {
@@ -37,19 +36,21 @@ namespace Hamekoz.UI
 			HeightRequest = 90,
 		};
 		ToggleButton credits = new ToggleButton {
-			Label = Catalog.GetString ("Credits"),
+			Label = Application.TranslationCatalog.GetString ("Credits"),
 			Image = Icons.Starred.WithSize (IconSize.Small),
 		};
 		ToggleButton license = new ToggleButton {
-			Label = Catalog.GetString ("License"),
+			Label = Application.TranslationCatalog.GetString ("License"),
 		};
 		Button close = new Button {
-			Label = Catalog.GetString ("Close"),
+			Label = Application.TranslationCatalog.GetString ("Close"),
 			Image = Icons.Delete.WithSize (IconSize.Small),
 		};
 
+		const string authors = "Claudio Rodrigo Pereyra Diaz\n" + "Ezequiel Carlos Taranto\n" + "Emiliano Gabriel Canedo\n" + "Juan Angel Dinamarca\n" + "Mariano Adrián Ripa\n";
+
 		TextArea creditsText = new TextArea {
-			Text = string.Format (Catalog.GetString ("Written by {0}"),	"\n" + "Claudio Rodrigo Pereyra Diaz \n" + "Ezequiel Carlos Taranto \n" + "Emiliano Gabriel Canedo \n" + "Juan Angel Dinamarca \n" + ""),
+			Text = string.Format (Application.TranslationCatalog.GetString ("Written by:\n{0}"), authors),
 			ReadOnly = true,
 			TextAlignment = Alignment.Center,
 			CanGetFocus = false,			
@@ -58,6 +59,7 @@ namespace Hamekoz.UI
 		ScrollView licenseScroll = new ScrollView ();
 		ScrollView creditsScroll = new ScrollView ();
 
+		//TODO replace with a parameter text
 		TextArea licenseText = new TextArea {
 			Text = "GNU Lesser General Public License v3.0\n\n" +
 			"This program is free software: you can redistribute it and/or modify\n" +

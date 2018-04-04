@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -23,72 +23,6 @@ using System;
 
 namespace Hamekoz.UI
 {
-	[Obsolete ("Use ItemChooser<T>")]
-	public class ItemChooser : HPaned
-	{
-		public event ListBoxFilterSelectionChanged SelectedItemChanged;
-
-		readonly ListBoxFilter list = new ListBoxFilter {
-			RealTimeFilter = true,
-			WidthRequest = 200,
-			MarginRight = 5,
-		};
-
-		public ListBoxFilter List {
-			get { return list; }
-		}
-
-		readonly VBox container = new VBox {
-			ExpandVertical = true,
-			ExpandHorizontal = false,
-			VerticalPlacement = WidgetPlacement.Fill,
-			MarginLeft = 5,
-		};
-
-		public Widget Widget {
-			get { return scroller.Content; }
-			set { scroller.Content = value; }
-		}
-
-		readonly HBox actionBox = new HBox {
-			ExpandHorizontal = true,
-			ExpandVertical = true,
-			HorizontalPlacement = WidgetPlacement.Fill,
-			VerticalPlacement = WidgetPlacement.Fill,
-		};
-
-		readonly ScrollView scroller = new ScrollView {
-			BorderVisible = false,
-			VerticalScrollPolicy = ScrollPolicy.Automatic,
-			HorizontalScrollPolicy = ScrollPolicy.Automatic,
-		};
-
-		public ItemChooser ()
-		{
-			list.SelectionItemChanged += ListSelectionChanged;
-			container.PackStart (scroller, true, true);
-			container.PackEnd (actionBox, false, true);
-			Panel1.Content = list;
-			Panel1.Shrink = false;
-			Panel1.Resize = true;
-			Panel2.Content = container;
-			Panel2.Shrink = false;
-			Panel2.Resize = true;
-		}
-
-		void ListSelectionChanged (object sender, EventArgs e)
-		{
-			var handler = SelectedItemChanged;
-			if (handler != null)
-				handler (this, e);
-		}
-
-		public void AddAction (Button action)
-		{
-			actionBox.PackStart (action, true, true);
-		}
-	}
-
 	public class ItemChooser<T> : HPaned
 	{
 		public event ListBoxFilterSelectionChanged SelectedItemChanged;

@@ -48,6 +48,25 @@ namespace Hamekoz.Data
 
 			return aux;
 		}
+
+		public static string ToSqlValue (this DateTime? datetime)
+		{
+			return datetime.HasValue ? "'" + datetime.Value.ToShortDateString () + "'" : "null";
+		}
+
+		public static string DateTimeMinValueAsNull (this string sql)
+		{
+			sql = sql.Replace ("'" + DateTime.MinValue + "'", "null");
+			sql = sql.Replace ("'" + DateTime.MinValue.ToShortDateString () + "'", "null");
+			return sql;
+		}
+
+		public static string DateTimeMinValueAsSqlMinValue (this string sql)
+		{
+			sql = sql.Replace (DateTime.MinValue.ToString (), "01/01/1900");
+			sql = sql.Replace (DateTime.MinValue.ToShortDateString (), "01/01/1900");
+			return sql;
+		}
 	}
 
 	/// <summary>
@@ -157,7 +176,7 @@ namespace Hamekoz.Data
 			for (int i = 0; i < parametros.Length; i = i + 2) {
 				p = factory.CreateParameter ();
 				p.ParameterName = parametros [i].ToString ();
-				p.Value = parametros [i + 1];
+				p.Value = parametros [i + 1] ?? DBNull.Value;
 				comando.Parameters.Add (p);
 			}
 		}

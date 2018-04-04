@@ -1,10 +1,10 @@
-﻿//
-//  Search.cs
+//
+//  ISearchDialog.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2016 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -18,44 +18,22 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Collections.Generic;
-using System.Linq;
-using Hamekoz.Core;
 using Xwt;
+using System.Collections.Generic;
 
 namespace Hamekoz.UI
 {
-	public class Search<T>: VBox where T : ISearchable
+	public interface ISearchDialog<T>
 	{
-		public IList<T> List {
-			get;
-			set;
-		}
+		IList<T> List { get; set; }
 
-		SearchTextEntry text = new SearchTextEntry ();
-		readonly ListViewDinamic<T> filterList = new ListViewDinamic<T> {
-			MinWidth = 600,
-			MinHeight = 300,
-		};
+		T SelectedItem { get; }
 
-		public Search ()
-		{
-			text.Activated += delegate {
-				filterList.List = List
-					.Where (r => r.ToSearchString ().ToUpper ().Contains (text.Text.ToUpper ()))
-					.ToList ();
-			};
-			text.SetCompletions (typeof(T).GetProperties ().Select (p => p.Name).ToArray<string> ());
+		Command Run (WindowFrame parentWindow);
 
-			PackStart (text);
-			PackStart (filterList, true);
-		}
+		void Hide ();
 
-		public T Selected {
-			get {
-				return filterList.Current;
-			}
-		}
+		void Refresh ();
 	}
 }
 

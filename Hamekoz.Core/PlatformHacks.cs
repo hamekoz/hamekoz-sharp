@@ -3,8 +3,9 @@
 //
 //  Author:
 //       Ezequiel Taranto <ezequiel89@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2016 Hamekoz
+//  Copyright (c) 2016 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -27,10 +28,10 @@ namespace Hamekoz.Core
 	public static class PlatformHacks
 	{
 		[DllImport ("libc")] // Linux
-		private static extern int prctl (int option, byte[] arg2, IntPtr arg3, IntPtr arg4, IntPtr arg5);
+		static extern int prctl (int option, byte[] arg2, IntPtr arg3, IntPtr arg4, IntPtr arg5);
 
 		[DllImport ("libc")] // BSD
-		private static extern void setproctitle (byte[] fmt, byte[] str_arg);
+		static extern void setproctitle (byte[] fmt, byte[] str_arg);
 
 		public static void SetProcessName (string name)
 		{

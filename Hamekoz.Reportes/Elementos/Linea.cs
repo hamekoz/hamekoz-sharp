@@ -34,4 +34,16 @@ namespace Hamekoz.Reportes
 
 		#endregion
 	}
+
+	public class LineaPunteada : IElemento
+	{
+		#region IElemento implementation
+
+		public IElement GetElemento ()
+		{
+			return new DottedLineSeparator ();
+		}
+
+		#endregion
+	}
 }

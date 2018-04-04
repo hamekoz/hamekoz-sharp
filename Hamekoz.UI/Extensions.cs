@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -41,6 +41,16 @@ namespace Hamekoz.UI
 			box.PackStart (new Label (label));
 			box.PackStart (widget, expand, fill);
 			return box;
+		}
+
+		public static ScrollView WithScroll (this TextArea widget, ScrollPolicy vertical = ScrollPolicy.Automatic, ScrollPolicy horizontal = ScrollPolicy.Never)
+		{
+			return new ScrollView (widget) {
+				VerticalScrollPolicy = vertical,
+				HorizontalScrollPolicy = horizontal,
+				MinHeight = widget.MinHeight,
+				MinWidth = widget.MinWidth
+			};
 		}
 	}
 }

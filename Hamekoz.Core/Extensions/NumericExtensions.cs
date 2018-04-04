@@ -1,10 +1,11 @@
 ﻿//
-//  DecimalExtensions.cs
+//  NumericExtensions.cs
 //
 //  Author:
 //       Ezequiel Taranto <ezequiel89@gmail.com>
+//       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2014 Hamekoz
+//  Copyright (c) 2014 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -18,6 +19,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using System.Globalization;
 using Hamekoz.Core;
 
@@ -65,12 +67,17 @@ namespace Hamekoz.Extensions
 			return Numalet.ToCardinal (number);
 		}
 
-		public static string ToEnglishFormat (this double number)
+		public static string ToEnglishFormat (this double number, int digits = 2)
 		{
 			NumberFormatInfo nfi = new CultureInfo ("en-US", false).NumberFormat;
-			return number.ToString (nfi);
+			return Math.Round (number, digits, MidpointRounding.AwayFromZero).ToString (nfi);
 		}
 
+		public static string ToEnglishFormat (this decimal number, int digits = 2)
+		{
+			NumberFormatInfo nfi = new CultureInfo ("en-US", false).NumberFormat;
+			return Math.Round (number, digits, MidpointRounding.AwayFromZero).ToString (nfi);
+		}
 	}
 }
 

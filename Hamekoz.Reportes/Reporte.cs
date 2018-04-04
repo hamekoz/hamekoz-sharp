@@ -41,6 +41,11 @@ namespace Hamekoz.Reportes
 			MargenSuperior = document.TopMargin;
 		}
 
+		public bool Previsualizar {
+			get;
+			set;
+		} = true;
+
 		public float MargenSuperior {
 			get;
 			set;
@@ -101,6 +106,7 @@ namespace Hamekoz.Reportes
 				pageEventHandler.Header = Titulo;
 				pageEventHandler.HeaderLeft = Empresa;
 				pageEventHandler.HeaderRight = Creador;
+				pageEventHandler.ShowGeneratedInfo = ShowGeneratedInfo;
 			}
 
 			if (marcaDeAguaTexto != string.Empty) {
@@ -287,10 +293,20 @@ namespace Hamekoz.Reportes
 			document.Add (elemento.GetElemento ());
 		}
 
+		public void Agregar (IElement elemento)
+		{
+			if (!document.IsOpen ()) {
+				Iniciar ();
+			}
+			document.Add (elemento);
+		}
+
 		public void Abrir ()
 		{
 			document.Close ();
-			Process.Start (FileName);
+			if (Previsualizar) {
+				Process.Start (FileName);	
+			}
 		}
 
 		public void NuevaPagina ()
@@ -306,6 +322,12 @@ namespace Hamekoz.Reportes
 			document.Add (linea);
 			document.Add (new Paragraph (espacio));
 		}
+
+
+		public bool ShowGeneratedInfo {
+			get;
+			set;
+		} = true;
 
 		#endregion
 	}

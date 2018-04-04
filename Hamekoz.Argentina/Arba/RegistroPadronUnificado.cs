@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -42,17 +42,17 @@ namespace Hamekoz.Argentina.Arba
 			set;
 		}
 
-		public DateTime FechaDePublicacion {
+		public DateTime Publicacion {
 			get;
 			set;
 		}
 
-		public DateTime FechaVigenciaDesde {
+		public DateTime VigenciaDesde {
 			get;
 			set;
 		}
 
-		public DateTime FechaVigenciaHasta {
+		public DateTime VigenciaHasta {
 			get;
 			set;
 		}
@@ -93,7 +93,7 @@ namespace Hamekoz.Argentina.Arba
 		/// <value>The marca cambio alicuota.</value>
 		public char MarcaCambioAlicuota {
 			get;
-			private set;
+			set;
 		}
 
 		public double Alicuota {
@@ -106,6 +106,11 @@ namespace Hamekoz.Argentina.Arba
 			set;
 		}
 
+		public RegistroPadronUnificado ()
+		{
+
+		}
+
 		public RegistroPadronUnificado (string linea)
 		{
 			if (linea.Length != 55) {
@@ -113,9 +118,9 @@ namespace Hamekoz.Argentina.Arba
 			}
 			string[] split = linea.Split (separador);
 			Regimen = char.Parse (split [0]);
-			FechaDePublicacion = DateTime.ParseExact (split [1], "ddMMyyyy", CultureInfo.InvariantCulture);
-			FechaVigenciaDesde = DateTime.ParseExact (split [2], "ddMMyyyy", CultureInfo.InvariantCulture);
-			FechaVigenciaHasta = DateTime.ParseExact (split [3], "ddMMyyyy", CultureInfo.InvariantCulture);
+			Publicacion = DateTime.ParseExact (split [1], "ddMMyyyy", CultureInfo.InvariantCulture);
+			VigenciaDesde = DateTime.ParseExact (split [2], "ddMMyyyy", CultureInfo.InvariantCulture);
+			VigenciaHasta = DateTime.ParseExact (split [3], "ddMMyyyy", CultureInfo.InvariantCulture);
 			CUIT = long.Parse (split [4]);
 			TipoDeContribuyenteInscripto = char.Parse (split [5]);
 			MarcaAltaBajaSujeto = char.Parse (split [6]);

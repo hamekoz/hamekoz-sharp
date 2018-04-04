@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -169,6 +169,8 @@ namespace Hamekoz.Argentina.Arba
 		/// <param name="archivo">Ruta absoluta al archivo.</param>
 		public static void ImportarPadronUnificado (string archivo)
 		{
+			//HACK esto deberia tener una estructura de almacenamiento mas generica de acuerdo al registro
+			//TODO esto puede almacenarse siempre en la misma tabla con consultas sobre CUIT, Publicacion y Regimen
 			var stream = new FileStream (archivo, FileMode.Open, FileAccess.Read);
 			var reader = new StreamReader (stream);
 			var dbagip = new DB {
@@ -181,10 +183,10 @@ namespace Hamekoz.Argentina.Arba
 					//TODO cambiar SP por consulta de texto plana
 					//TODO controlar la existencia de la tabla en la base de datos.
 					dbagip.SP ("padronTmpActualizar"
-						, "fechaPublicacion", registro.FechaDePublicacion
+						, "fechaPublicacion", registro.Publicacion
 						, "cuit", registro.CUIT
-						, "fechaVigenciaDesde", registro.FechaVigenciaDesde
-						, "fechaVigenciaHasta", registro.FechaVigenciaHasta
+						, "fechaVigenciaDesde", registro.VigenciaDesde
+						, "fechaVigenciaHasta", registro.VigenciaHasta
 						, "tipoContrInscr", registro.TipoDeContribuyenteInscripto
 						, "marcaAltaBajaSujeto", registro.MarcaAltaBajaSujeto
 						, "marcaCbioAlicuota", registro.MarcaCambioAlicuota
@@ -196,6 +198,44 @@ namespace Hamekoz.Argentina.Arba
 				}
 			}
 			reader.Close ();
+		}
+
+		/// <summary>
+		/// Alicuotas the retencion.
+		/// </summary>
+		/// <returns>Devuelve la alicuota o -1 si no esta en el padron</returns>
+		/// <param name="cuit">Cuit</param>
+		public static decimal AlicuotaPercepcion (string cuit)
+		{
+			//TODO consultar alicuota en linea
+			var dbagip = new DB {
+				ConnectionName = "Hamekoz.Argentina.Arba"
+			};
+			//TODO validar la fecha con el periodo de vigencia
+			string sql = string.Format ("SELECT ISNULL(Alicuota, -1) FROM arba.dbo.PadronPercepciones WHERE cuit = {0}", cuit.Limpiar ());
+			return decimal.Parse (dbagip.SqlToScalar (sql).ToString ());
+		}
+
+
+		/// <summary>
+		/// Alicuotas the retencion.
+		/// </summary>
+		/// <returns>Devuelve la alicuota o -1 si no esta en el padron</returns>
+		/// <param name="cuit">Cuit</param>
+		public static decimal AlicuotaRetencion (string cuit)
+		{
+			//TODO consultar alicuota en linea
+			var dbarba = new DB {
+				ConnectionName = "Hamekoz.Argentina.Arba"
+			};
+			//TODO validar la fecha con el periodo de vigencia
+			string sql = string.Format ("SELECT Alicuota FROM arba.dbo.PadronRetenciones WHERE cuit = {0}", cuit.Limpiar ());
+			decimal alicuota = -1;
+			var dataset = dbarba.SqlToDataSet (sql);
+			if (dataset.Tables [0].Rows.Count > 0) {
+				alicuota = decimal.Parse (dataset.Tables [0].Rows [0] ["Alicuota"].ToString ());
+			}
+			return alicuota;
 		}
 	}
 }

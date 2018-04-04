@@ -4,7 +4,7 @@
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2014 Hamekoz
+//  Copyright (c) 2014 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -47,6 +47,11 @@ namespace Hamekoz.Argentina.Agip
 			sw.Close ();
 		}
 
+		public static void DescargarPadronDeContribuyentesRegimenGeneral ()
+		{
+			Process.Start ("http://www.agip.gob.ar/agentes/agentes-de-recaudacion-e-informacion");
+		}
+
 		public static void DescargarPadronDeContribuyentesDeRiesgoFiscal ()
 		{
 			Process.Start ("http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm");
@@ -56,6 +61,12 @@ namespace Hamekoz.Argentina.Agip
 		{
 			Process.Start ("http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html");
 		}
+
+		public static void DescargarPadronDeContribuyentesRegimenSimplificado ()
+		{
+			Process.Start ("http://www.agip.gob.ar/agentes/agentes-de-recaudacion/ib-agentes-recaudacion/padrones/ag-rec-padron-contribuyentes");
+		}
+
 
 		/// <summary>
 		/// Importar un archivo del padron unificado.
@@ -98,6 +109,46 @@ namespace Hamekoz.Argentina.Agip
 				}
 			}
 			reader.Close ();
+		}
+
+		/// <summary>
+		/// Alicuotas the retencion.
+		/// </summary>
+		/// <returns>Devuelve la alicuota o -1 si no esta en el padron</returns>
+		/// <param name="cuit">Cuit</param>
+		public static decimal AlicuotaPercepcion (string cuit)
+		{
+			//TODO consultar alicuota en linea
+			var dbagip = new DB {
+				ConnectionName = "Hamekoz.Argentina.Agip"
+			};
+			string sql = string.Format ("SELECT ISNULL(alicuotaPercepcion, -1) FROM agip.dbo.padron WHERE cuit = {0} AND {1} BETWEEN fechaVigenciaDesde AND fechaVigenciaHasta"
+				, cuit.Limpiar ()
+				, DateTime.Now.Date);
+			return decimal.Parse (dbagip.SqlToScalar (sql).ToString ());
+		}
+
+
+		/// <summary>
+		/// Alicuotas the retencion.
+		/// </summary>
+		/// <returns>Devuelve la alicuota o -1 si no esta en el padron</returns>
+		/// <param name="cuit">Cuit</param>
+		public static decimal AlicuotaRetencion (string cuit)
+		{
+			//TODO consultar alicuota en linea
+			var dbagip = new DB {
+				ConnectionName = "Hamekoz.Argentina.Agip"
+			};
+			string sql = string.Format ("SELECT alicuotaRetencion FROM agip.dbo.padron WHERE cuit = '{0}' AND '{1:d}' BETWEEN fechaVigenciaDesde AND fechaVigenciaHasta"
+				, cuit.Limpiar ()
+				, DateTime.Now.Date);
+			decimal alicuota = -1;
+			var dataset = dbagip.SqlToDataSet (sql);
+			if (dataset.Tables [0].Rows.Count > 0) {
+				alicuota = decimal.Parse (dataset.Tables [0].Rows [0] ["alicuotaRetencion"].ToString ());
+			}
+			return alicuota;
 		}
 	}
 }

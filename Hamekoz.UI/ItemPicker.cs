@@ -5,7 +5,7 @@
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //       Mariano Adrian Ripa <ripamariano@gmail.com>
 //
-//  Copyright (c) 2015 Hamekoz
+//  Copyright (c) 2015 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Mono.Unix;
 using Xwt;
 
 namespace Hamekoz.UI
@@ -36,17 +35,27 @@ namespace Hamekoz.UI
 			ExpandHorizontal = true,
 			ExpandVertical = true,
 			HeightRequest = 150,
-			WidthRequest = 350,
+			HorizontalScrollPolicy = ScrollPolicy.Never,
+			VerticalScrollPolicy = ScrollPolicy.Automatic,
+		};
+
+		Button selectedItemClear = new Button {
+			Label = Application.TranslationCatalog.GetString ("Clear"),
+			Image = Icons.EditClearAll.WithSize (IconSize.Small)
 		};
 
 		public ItemPicker ()
 		{
 			ReadOnly = true;
-			PlaceholderText = Catalog.GetString ("Click o press Intro or Space to select one item");
-			TooltipText = Catalog.GetString ("Click o press Intro or Space to select one item from the list");
+			PlaceholderText = Application.TranslationCatalog.GetString ("Click o press Intro or Space to select one item");
+			TooltipText = Application.TranslationCatalog.GetString ("Click o press Intro or Space to select one item from the list");
+
+			var popoverBox = new VBox ();
+			popoverBox.PackStart (listBoxFilter, true, true);
+			popoverBox.PackEnd (selectedItemClear, false, true);
 
 			var popover = new Popover {
-				Content = listBoxFilter,
+				Content = popoverBox,
 			};
 
 			Activated += delegate {
@@ -63,18 +72,18 @@ namespace Hamekoz.UI
 				}
 			};
 
-			popover.Closed += delegate {
-				if (listBoxFilter.SelectedItem != null)
-					SelectedItem = listBoxFilter.SelectedItem;
-			};
-
 			listBoxFilter.ListBox.RowActivated += delegate {
 				if (listBoxFilter.SelectedItem != null) {
 					popover.Hide ();
+					SelectedItem = listBoxFilter.SelectedItem;
 				}
 			};
 
-			Changed += (sender, e) => OnSelectionItemChanged (e);
+			selectedItemClear.Clicked += delegate {
+				listBoxFilter.UnselectAll ();
+				popover.Hide ();
+				SelectedItem = default(T);
+			};
 		}
 
 		public bool DisabledPicker { get; set; }
@@ -86,6 +95,7 @@ namespace Hamekoz.UI
 
 		#region IListBoxFilter implementation
 
+		//TODO definir otro tipo de evento para separar el cambio de item por intervencion del usuario del cambio de item por codigo
 		public event ListBoxFilterSelectionChanged SelectionItemChanged;
 
 		PropertyInfo fieldDescription;
@@ -148,10 +158,25 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public void UnselectAll ()
+		{
+			listBoxFilter.UnselectAll ();
+		}
+
 		#endregion
+
+		public void Clear ()
+		{
+			selectedItem = default(T);
+			Text = string.Empty;
+			UnselectAll ();
+			listBoxFilter.Search.Text = string.Empty;
+			listBoxFilter.Refresh ();
+		}
 
 		protected virtual void OnSelectionItemChanged (EventArgs e)
 		{
+			//TODO evaluar si seria correcto disparar este evento solo cuando el componente tiene sensibilidad
 			if (selectedItem != null) {
 				try {
 					Text = fieldDescription.GetValue (selectedItem, null).ToString ();

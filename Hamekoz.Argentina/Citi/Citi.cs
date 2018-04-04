@@ -4,7 +4,7 @@
 //  Author:
 //       Mariano Ripa <ripamariano@gmail.com>
 //
-//  Copyright (c) 2016 Hamekoz
+//  Copyright (c) 2016 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -63,7 +63,7 @@ namespace Hamekoz.Argentina.Citi
 			sw.NewLine = "\r\n";
 			foreach (var registro in registros) {
 
-				if (int.Parse (registro.CantidadAlicuotaIVA) > 1) {
+				if (registro.Alicuotas > 1) {
 					if (decimal.Parse (registro.IVA) != 0) {//es 21%
 						registro.Neto = registro.Neto;
 						registro.IVA = registro.IVA;
@@ -76,13 +76,13 @@ namespace Hamekoz.Argentina.Citi
 						registro.IVAAlicuota = "0004";
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
 					}
-					if (decimal.Parse (registro.IVADif2) != 0) {//es 10.5%
-						registro.Neto = registro.NetoDif2; //es 27%
+					if (decimal.Parse (registro.IVADif2) != 0) {//es 27%
+						registro.Neto = registro.NetoDif2; 
 						registro.IVA = registro.IVADif2;
 						registro.IVAAlicuota = "0006";
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
 					}
-				} else if (int.Parse (registro.CantidadAlicuotaIVA) == 1) {
+				} else if (registro.Alicuotas == 1) {
 					if (decimal.Parse (registro.IVA) != 0) {//es 21%
 						registro.Neto = registro.Neto;
 						registro.IVA = registro.IVA;
@@ -107,8 +107,8 @@ namespace Hamekoz.Argentina.Citi
 						registro.IVAAlicuota = "0003";//0%
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
 					}
-				} else { 
-					if (registro.TipoComprobante != "006" || registro.TipoComprobante != "007" || registro.TipoComprobante != "008" || registro.TipoComprobante != "009" || registro.TipoComprobante != "011" || registro.TipoComprobante != "012" || registro.TipoComprobante != "013" || registro.TipoComprobante != "015") {
+				} else { 					
+					if (!EsComprobanteBoC (registro.TipoComprobante)) {						
 						//NoGravado
 						registro.IVAAlicuota = "0003";//0%
 						sw.WriteLine (registro.ToFixedStringAlicuotas ());
@@ -119,6 +119,13 @@ namespace Hamekoz.Argentina.Citi
 			sw.Close ();
 		}
 
+		static bool EsComprobanteBoC (string codigo)
+		{
+			if (codigo == "006" || codigo == "007" || codigo == "008" || codigo == "009" || codigo == "011" || codigo == "012" || codigo == "013" || codigo == "015")
+				return true;
+			else
+				return false;
+		}
 		
 	}
 }
