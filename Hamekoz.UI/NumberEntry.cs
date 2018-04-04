@@ -89,6 +89,19 @@ namespace Hamekoz.UI
 			}
 		}
 
+		bool isIndeterminate;
+
+		public bool IsIndeterminate {
+			get { return isIndeterminate; }
+			set {
+				isIndeterminate = value;
+				if (value)
+					entry.Text = string.Empty;
+				else
+					Value = MinimumValue;
+			}
+		}
+
 		#endregion
 
 		public bool ReadOnly {
