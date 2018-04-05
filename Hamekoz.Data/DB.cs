@@ -31,6 +31,9 @@ namespace Hamekoz.Data
 		{
 			//HACK refactoriar para que sea mas eficiente y contemple mas caracteres
 
+			if (string.IsNullOrWhiteSpace (sql))
+				return sql;
+
 			string aux = sql;
 			// eliminamos caracteres que nos puedan estorbar
 			var simbolos = new char[7];
