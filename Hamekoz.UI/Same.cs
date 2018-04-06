@@ -189,6 +189,7 @@ namespace Hamekoz.UI
 				var item = Controller.Create ();
 				Widget.ValuesClean ();
 				Widget.Item = item;
+				OnBeforeAdd ();
 				Widget.ValuesRefresh ();
 				Editable (true);
 				isNew = true;
@@ -267,6 +268,15 @@ namespace Hamekoz.UI
 			cancelar.Sensitive = editable && Widget.HasItem ();
 			imprimir.Sensitive = !editable && Widget.HasItem () && Permiso.Imprimir;
 			Widget.Editable (editable);
+		}
+
+		public event EventHandler BeforeAdd;
+
+		void OnBeforeAdd ()
+		{
+			var handler = BeforeAdd;
+			if (handler != null)
+				handler (this, null);
 		}
 
 		public event EventHandler BeforeSave;
