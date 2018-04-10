@@ -174,6 +174,12 @@ namespace Hamekoz.UI
 			listBoxFilter.Refresh ();
 		}
 
+		public void Reset ()
+		{
+			List = new List<T> ();
+			Clear ();
+		}
+
 		protected virtual void OnSelectionItemChanged (EventArgs e)
 		{
 			//TODO evaluar si seria correcto disparar este evento solo cuando el componente tiene sensibilidad
