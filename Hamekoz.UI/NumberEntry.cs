@@ -85,6 +85,8 @@ namespace Hamekoz.UI
 				number = Math.Round (value, Digits);
 				string format = string.Format ("F{0}", Digits);
 				entry.Text = number.ToString (format);
+				entry.BackgroundColor = Xwt.Drawing.Colors.White;
+				entry.TooltipText = string.Empty;
 				CheckRange ();
 			}
 		}
