@@ -49,7 +49,7 @@ namespace Hamekoz.Data
 				aux = aux.Replace (simbolos [i], ' ');
 			}
 
-			return aux;
+			return aux.Trim ();
 		}
 
 		public static string ToSqlValue (this DateTime? datetime)
