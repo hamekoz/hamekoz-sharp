@@ -74,9 +74,22 @@ namespace Hamekoz.UI
 			set { scroller.Content = (Widget)value; }
 		}
 
+		IController<T> controller;
+
 		public IController<T> Controller {
-			get;
-			set;
+			get {
+				return controller;
+			}
+			set {
+				controller = value;
+				var calbackable = controller as ICallBack;
+				if (calbackable != null) {
+					calbackable.CallBack.Message += (title, message) => MessageDialog.ShowMessage (ParentWindow, title, message);
+					calbackable.CallBack.Warning += (title, message) => MessageDialog.ShowWarning (ParentWindow, title, message);
+					calbackable.CallBack.Error += (title, message) => MessageDialog.ShowError (ParentWindow, title, message);
+					calbackable.CallBack.Confirmation += (title, message) => MessageDialog.Confirm (ParentWindow, title, message, Command.Yes);
+				}
+			}
 		}
 
 		readonly Button buscar = new Button {
