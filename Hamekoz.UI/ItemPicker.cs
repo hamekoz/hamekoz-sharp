@@ -176,6 +176,7 @@ namespace Hamekoz.UI
 
 		public void Reset ()
 		{
+			DisabledPicker = false;
 			List = new List<T> ();
 			Clear ();
 		}
