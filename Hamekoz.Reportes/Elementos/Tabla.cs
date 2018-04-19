@@ -27,6 +27,21 @@ namespace Hamekoz.Reportes
 {
 	public class Tabla : IElemento
 	{
+		public bool PosicionAbsoluta {
+			get;
+			set;
+		}
+
+		public float PosicionX {
+			get;
+			set;
+		}
+
+		public float PosicionY {
+			get;
+			set;
+		}
+
 		float fuenteTamaño = 7f;
 
 		public float FuenteTamaño {

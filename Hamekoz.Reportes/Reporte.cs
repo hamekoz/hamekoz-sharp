@@ -290,7 +290,15 @@ namespace Hamekoz.Reportes
 			if (!document.IsOpen ()) {
 				Iniciar ();
 			}
-			document.Add (elemento.GetElemento ());
+			var tabla = elemento as Tabla;
+			if (tabla != null && tabla.PosicionAbsoluta) {
+				var pdfTable = elemento.GetElemento () as PdfPTable;
+				pdfTable.TotalWidth = document.PageSize.Width;
+				pdfTable.WriteSelectedRows (0, -1, tabla.PosicionX, document.PageSize.Height - tabla.PosicionY, pdfWriter.DirectContent);
+			} else {
+				document.Add (elemento.GetElemento ());	
+			}
+
 		}
 
 		public void Agregar (IElement elemento)
