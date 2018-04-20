@@ -24,6 +24,7 @@ using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.draw;
+using RawPrint;
 
 namespace Hamekoz.Reportes
 {
@@ -314,6 +315,41 @@ namespace Hamekoz.Reportes
 			document.Close ();
 			if (Previsualizar) {
 				Process.Start (FileName);	
+			}
+		}
+
+		public void Imprimir ()
+		{
+			Imprimir (string.Empty);
+		}
+
+		public void Imprimir (string printerName)
+		{
+			Imprimir (printerName, 1);
+		}
+
+		public void Imprimir (string printerName, int copias)
+		{
+			if (!File.Exists (FileName))
+				document.Close ();
+			switch (Environment.OSVersion.Platform) {
+			case PlatformID.Unix:
+			case PlatformID.MacOSX:
+				string argumentos = string.Format ("-n {0} -t '{1}' '{2}'", copias, Titulo, FileName);
+				if (!string.IsNullOrWhiteSpace (printerName))
+					argumentos = string.Format ("-d '{0}' {1}", printerName, argumentos);
+				Process.Start ("lp", argumentos);
+				break;
+			case PlatformID.Win32NT:
+			case PlatformID.Win32S:
+			case PlatformID.Win32Windows:
+			case PlatformID.WinCE:
+				IPrinter printer = new Printer ();
+				printer.PrintRawFile (printerName, FileName, Titulo);
+				break;
+			default:
+				throw new PlatformNotSupportedException ();
+				break;
 			}
 		}
 

@@ -68,6 +68,12 @@ namespace Hamekoz.Reportes
 
 		void Abrir ();
 
+		void Imprimir ();
+
+		void Imprimir (string printerName);
+
+		void Imprimir (string printerName, int copias);
+
 		void NuevaPagina ();
 
 		void NuevaLineaDivisoria ();

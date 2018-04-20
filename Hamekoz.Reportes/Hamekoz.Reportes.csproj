@@ -38,6 +38,9 @@
     <Reference Include="itextsharp">
       <HintPath>..\..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="RawPrint">
+      <HintPath>..\..\packages\RawPrint.0.2.0.0\lib\net40\RawPrint.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
