@@ -1,0 +1,2 @@
+Pagina de ayuda de afip que contiene referencias a web services y tablas de sistema AFIP
+https://www.afip.gob.ar/fe/ayuda.asp
