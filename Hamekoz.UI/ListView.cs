@@ -77,7 +77,7 @@ namespace Hamekoz.UI
 			}
 		}
 
-		public void Clear ()
+		public void Reset ()
 		{
 			List = new List<T> ();
 		}
