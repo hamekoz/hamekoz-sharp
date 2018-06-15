@@ -77,6 +77,12 @@ namespace Hamekoz.UI
 			}
 		}
 
+		public void Reset ()
+		{
+			List = new List<T> ();
+		}
+
+		[Obsolete ("Usar metodo Reset()")]
 		public void Clear ()
 		{
 			List = new List<T> ();
