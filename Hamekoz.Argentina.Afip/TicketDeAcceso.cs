@@ -23,6 +23,9 @@ using System.Text;
 using System.Xml;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Pkcs;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.X509.Store;
+using Org.BouncyCastle.Cms;
 
 namespace Hamekoz.Argentina.Afip
 {
@@ -241,7 +244,6 @@ namespace Hamekoz.Argentina.Afip
 		/// <param name="argCertFirmante">Certificado usado para firmar</param> 
 		/// <returns>Bytes del mensaje firmado</returns> 
 		/// <remarks></remarks> 
-		/*
 		public static byte[] FirmaBytesMensajeBC (byte[] argBytesMsg, X509Certificate2 argCertFirmante)
 		{
 			AsymmetricKeyParameter pKey = null;
@@ -309,7 +311,7 @@ namespace Hamekoz.Argentina.Afip
 
 			return (asn1_cms);
 		}
-*/
+
 
 		/// <summary> 
 		/// Lee certificado de disco 
