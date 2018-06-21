@@ -22,6 +22,11 @@ using System;
 
 namespace Hamekoz.Argentina.Citi
 {
+	/// <summary>
+	/// Registro importacion citi ventas.
+	/// </summary>
+	/// <see href="http://www.afip.gob.ar/comprasyventas/"/>
+	/// <see href="http://www.afip.gob.ar/comprasyventas/documentos/RegimendeInformaciondeComprasyVentasDisenosdeRegistros1.xls"/>
 	public class RegistroImportacionCitiVentas
 	{
 
