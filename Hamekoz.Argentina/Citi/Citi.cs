@@ -23,6 +23,10 @@ using System.IO;
 
 namespace Hamekoz.Argentina.Citi
 {
+	/// <summary>
+	/// Citi.
+	/// </summary>
+	/// <see href="http://www.afip.gob.ar/comprasyventas/"/>
 	public static class Citi
 	{
 		public static void Exportar (List<RegistroImportacionCitiVentas> registros, string archivo)
