@@ -82,12 +82,6 @@ namespace Hamekoz.UI
 			List = new List<T> ();
 		}
 
-		[Obsolete ("Usar metodo Reset()")]
-		public void Clear ()
-		{
-			List = new List<T> ();
-		}
-
 		public void Refresh ()
 		{
 			store.Clear ();
