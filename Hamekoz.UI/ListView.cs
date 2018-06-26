@@ -171,7 +171,13 @@ namespace Hamekoz.UI
 						store.SetValue<string> (row, (IDataField<string>)field, datenullString);
 						break;
 					} else {
-						store.SetValue (row, (IDataField<object>)field, property.GetValue (item, null));
+						object value;
+						try {
+							value = property.GetValue (item, null);
+						} catch (Exception) {
+							value = string.Empty;
+						}
+						store.SetValue (row, (IDataField<object>)field, value);
 						break;	
 					}
 				}
