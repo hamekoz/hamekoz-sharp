@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{5BF8AF42-F3DB-4842-ADC0-CE95561138B5}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Hamekoz</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Clases\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Fiscal\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Reportes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Medidas.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Stock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Articulo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\AsientoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Asiento.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Banco.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\CentroDeCosto.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Cliente.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Cobranza.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\CondicionDePago.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\CuentaContable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Deposito.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\ComprobanteCliente.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\ComprobanteProveedor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\ListaDePrecios.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Moneda.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Proveedor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Recibo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\RemitoCliente.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\RemitoProveedor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Rubro.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\TipoDeMovimiento.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Zeta.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\TipoDeContribuyenteDeIngresosBrutos.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\JurisdiccionDeIngresosBrutos.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\CondicionDeIngresosBrutos.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\RemitoClienteItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\ReciboItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRemitoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Empresa.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Cotizacion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Domicilio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Localidad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Estados.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Telefono.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Lote.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Cheque.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Pedido.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRemito.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Sucursal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\PuntoDeVenta.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Provincia.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Pais.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Municipio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IAutorizable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IDescriptible.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IIdentifiable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IPersistible.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\ISearchable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\ISupervisor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\IComprobante.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\IComprobanteElectronico.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\IItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\IResponsable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\IZeta.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\SituacionIVA.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\TipoControladorFiscal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\DateTimeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Encuestas\Encuesta.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Encuestas\EncuestaDeCliente.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Encuestas\EncuestaDeEmpleado.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Encuestas\EncuestaPregunta.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Encuestas\EncuestaRespuesta.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Encuestas\EncuestaSeccion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Empleado.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Area.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Encuestas\EncuestaDeProveedor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Encuestas\EncuestaControlDeSucursal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IReportTo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IReportInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\CUIT.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\CBU.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Precio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\NumeracionDeComprobante.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\TiposDeComprobante.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\MovimientoDeArticulo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInforme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IComprobanteVencimiento.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICuentaCorrienteController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\CuentaCorriente.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Comprobante.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Impuesto.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\ImpuestoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Imputacion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\ProveedorDeArticulo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\SituacionesIngresosBrutos.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Chequera.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IComprobanteImputable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\CuentaBancaria.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Agencia.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\IVAItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICheque.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\PagoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fiscal\IVA.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\RemitoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Flete.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Permiso.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IPermisible.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\SucursalDeBanco.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Contacto.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ComprobanteExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Sexos.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\Retencion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\LoteDeTarjeta.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\ICallBack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\ValidacionException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\ParametrosInsuficientesException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroAnioMes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroApaisado.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroBoolean.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroCombo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroFecha.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroGroupBy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroNumero.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroOrderBy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroPeriodo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroTexto.cs" />
+  </ItemGroup>
+</Project>
