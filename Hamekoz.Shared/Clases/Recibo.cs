@@ -126,5 +126,7 @@ namespace Hamekoz.Negocio
 		}
 
 		#endregion
+
+		public bool Modificado;
 	}
 }
