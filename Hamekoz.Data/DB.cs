@@ -113,13 +113,15 @@ namespace Hamekoz.Data
 			instancia = db;
 		}
 
+		const int defaultCommandTimeOut = 60;
+
 		public int DefaultCommandTimeOut {
 			get {
-				return  30;
+				return  defaultCommandTimeOut;
 			}
 		}
 
-		int commandTimeOut = 30;
+		int commandTimeOut = defaultCommandTimeOut;
 
 		/// <summary>
 		/// Gets or sets the command time out.
@@ -340,7 +342,7 @@ namespace Hamekoz.Data
 		/// <param name="error"></param>
 		static void RegistrarError (Exception error)
 		{
-			System.IO.StreamWriter w = System.IO.File.AppendText ("DBNet.log");
+			System.IO.StreamWriter w = System.IO.File.AppendText ("Hamekoz.Data.DB.log");
 			w.Write ("\r\nRegistro de error: ");
 			w.WriteLine ("{0} {1}", DateTime.Now.ToShortDateString (), DateTime.Now.ToShortTimeString ());
 			w.WriteLine ("Message: {0}", error.Message);
