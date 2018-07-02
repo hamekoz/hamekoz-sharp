@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using Hamekoz.Core;
 using Hamekoz.Fiscal;
 
@@ -31,6 +32,7 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
+		//TODO renombrar a Comprobante que tiene que ser de tipo Enumerado segun la tabla de AFIP
 		public string Descripcion {
 			get;
 			set;
@@ -44,26 +46,21 @@ namespace Hamekoz.Negocio
 		public string Letra {
 			get;
 			set;
-		}
-
-		public int UltimoNumero {
-			get;
-			set;
-		}
+		} = "X";
 
 		//TODO evaluar pasar a que sea un valor int
 		public string Pre {
 			get;
 			set;
-		}
+		} = "1";
 
-		//UNDONE reivar si tiene sentido almacenar la sucursal en el tipo de comprobante
-		public Sucursal Sucursal {
+		public int UltimoNumero {
 			get;
 			set;
-		}
+		} = 1;
 
-		public int IdEmpresa {
+		//UNDONE revsar si tiene sentido almacenar la sucursal en el tipo de comprobante
+		public Sucursal Sucursal {
 			get;
 			set;
 		}
@@ -78,14 +75,12 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
-		//FIX esto deberia ser una funcion en lugar de una propiedad
-		public string UltimoNumeroConFormato {
-			get {
-				if (Pre != null)
-					return Pre.PadLeft (4, '0') + "-" + UltimoNumero.ToString ().PadLeft (8, '0');
-				else
-					return string.Empty;
-			}
+		[Obsolete]
+		public int IdEmpresa;
+
+		public string UltimoNumeroConFormato ()
+		{
+			return Pre != null ? string.Format ("{0:0000}-{1:00000000}", Pre, UltimoNumero) : string.Empty;
 		}
 
 		public override string ToString ()
