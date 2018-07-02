@@ -191,6 +191,7 @@ namespace Hamekoz.UI
 						listView.Add (item);
 						listView.SelectedItem = item;
 						ScrollTo (item);
+						OnItemEdited (ItemUI.Item);
 						OnChanged ();
 					}
 				}
@@ -224,6 +225,7 @@ namespace Hamekoz.UI
 							MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A similar element already exists in the list. Try to modify the existing one"));
 						else {
 							listView.FillRow (row, listView.SelectedItem);
+							OnItemEdited (ItemUI.Item);
 							OnChanged ();
 						}
 					}
@@ -341,6 +343,17 @@ namespace Hamekoz.UI
 		void OnBeforeAdd (T item)
 		{
 			var handler = BeforeAdd;
+			if (handler != null)
+				handler (item);
+		}
+
+		public delegate void OnItemEditedHandler (T item);
+
+		public event OnItemEditedHandler ItemEdited;
+
+		void OnItemEdited (T item)
+		{
+			var handler = ItemEdited;
 			if (handler != null)
 				handler (item);
 		}
