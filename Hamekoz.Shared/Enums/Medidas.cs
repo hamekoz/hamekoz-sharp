@@ -23,7 +23,7 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	//TODO cambiar valor 6 por 1 y 7 por 6 en base de datos existente
+	//TODO cambiar valor 6 por 0 y 7 por 6 en base de datos existente
 	[Obsolete ("Usar clase Medida")]
 	public enum Medidas
 	{
@@ -53,7 +53,7 @@ namespace Hamekoz.Negocio
 		public string Descripcion {
 			get;
 			set;
-		}
+		} = string.Empty;
 
 		public bool Inactiva {
 			get;
