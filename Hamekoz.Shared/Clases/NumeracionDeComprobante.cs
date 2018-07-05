@@ -36,12 +36,12 @@ namespace Hamekoz.Negocio
 		public string Descripcion {
 			get;
 			set;
-		}
+		} = string.Empty;
 
 		public string Abreviatura {
 			get;
 			set;
-		}
+		} = string.Empty;
 
 		public string Letra {
 			get;
