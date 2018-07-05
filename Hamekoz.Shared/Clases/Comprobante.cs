@@ -80,7 +80,7 @@ namespace Hamekoz.Negocio
 		public string Numero {
 			get;
 			set;
-		}
+		} = string.Empty;
 
 		public Asiento Asiento {
 			get;
