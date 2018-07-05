@@ -35,7 +35,7 @@ namespace Hamekoz.Negocio
 			//HACK aca no debria inicializase los objetos
 			Proveedor = new Proveedor ();
 			Tipo = new NumeracionDeComprobante ();
-			Remito = new RemitoProveedor ();
+			Remito = new RemitoProveedor { DomicilioDeEntrega = new Domicilio () };
 			Remitos = new List<RemitoProveedor> ();
 			CondicionDePago = new CondicionDePago ();
 			Observaciones = string.Empty;
