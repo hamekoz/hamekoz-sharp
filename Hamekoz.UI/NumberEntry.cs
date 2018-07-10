@@ -63,7 +63,7 @@ namespace Hamekoz.UI
 		public double IncrementValue {
 			get;
 			set;
-		}
+		} = 1;
 
 		public double MaximumValue {
 			get;
