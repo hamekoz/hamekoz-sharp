@@ -101,7 +101,7 @@ namespace Hamekoz.Negocio
 		public IList<RemitoItem> Items {
 			get;
 			set;
-		}
+		} = new List<RemitoItem>();
 
 		public bool Anulado {
 			get;

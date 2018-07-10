@@ -41,7 +41,7 @@ namespace Hamekoz.Negocio
 		public string Nombre {
 			get;
 			set;
-		}
+		} = string.Empty;
 
 		public Tipos Tipo {
 			get;
