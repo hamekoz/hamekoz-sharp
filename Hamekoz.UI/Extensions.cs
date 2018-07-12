@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Hamekoz.Core;
 using Xwt;
 
 namespace Hamekoz.UI
@@ -51,6 +52,16 @@ namespace Hamekoz.UI
 				MinHeight = widget.MinHeight,
 				MinWidth = widget.MinWidth
 			};
+		}
+
+		public static void CallBackEvents (this Widget widget, ICallBack calbackable)
+		{
+			if (calbackable != null) {
+				calbackable.CallBack.Message += (title, message) => MessageDialog.ShowMessage (widget.ParentWindow, title, message);
+				calbackable.CallBack.Warning += (title, message) => MessageDialog.ShowWarning (widget.ParentWindow, title, message);
+				calbackable.CallBack.Error += (title, message) => MessageDialog.ShowError (widget.ParentWindow, title, message);
+				calbackable.CallBack.Confirmation += (title, message) => MessageDialog.Confirm (widget.ParentWindow, title, message, Command.Yes);
+			}
 		}
 	}
 }
