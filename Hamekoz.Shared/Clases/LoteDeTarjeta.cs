@@ -18,12 +18,13 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using Hamekoz.Core;
 using System;
+using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
 	//TODO ver si es posible unificar con PagoItem
+	[Obsolete ("Realmente no se utiliza para hacer sequimiento, y podria omitirse completamente")]
 	public partial class LoteDeTarjeta : IIdentifiable, IPersistible
 	{
 		#region IIdentifiable implementation
