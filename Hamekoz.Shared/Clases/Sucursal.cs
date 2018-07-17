@@ -18,11 +18,67 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System.Collections.Generic;
 
 namespace Hamekoz.Negocio
 {
 	//UNDONE completar clase sucursal
-	public partial  class Sucursal: CentroDeCosto
+	public partial class Sucursal : CentroDeCosto
 	{
+		string nombre;
+		//TODO hay que separar la logica de centro de costo de la sucursal y hacer Nombre autopropiedad
+		public string Nombre {
+			get {
+				return Descripcion;
+			}
+			set {
+				Descripcion = value;
+			}
+		}
+
+		public Estados Estado {
+			get;
+			set;
+		}
+
+		public Domicilio Domicilio {
+			get;
+			set;
+		}
+
+		public string Telefono {
+			get;
+			set;
+		}
+
+		public string Fax {
+			get;
+			set;
+		}
+
+		public string Email {
+			get;
+			set;
+		}
+
+		public ListaDePrecios ListaDePrecios {
+			get;
+			set;
+		}
+
+		public IList<Contacto> Contactos {
+			get;
+			set;
+		}
+
+		public string Observaciones {
+			get;
+			set;
+		}
+
+		public override string ToString ()
+		{
+			return Nombre;
+		}
 	}
 }
