@@ -27,6 +27,8 @@ namespace Hamekoz.Reportes
 		IList<string> Valores { get; }
 
 		string Valor { get; set; }
+
+		string Label { get; }
 	}
 }
 
