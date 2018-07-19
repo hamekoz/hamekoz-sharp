@@ -87,5 +87,11 @@ namespace Hamekoz.Negocio
 		{
 			return string.Format ("{0} {1}", Abreviatura, Letra);
 		}
+
+		public string PreSucursal {
+			get { 
+				return string.Format ("{0} {1}", Pre, Sucursal?.Nombre);
+			}
+		}
 	}
 }
