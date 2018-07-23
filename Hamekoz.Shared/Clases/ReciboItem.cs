@@ -133,7 +133,7 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
-		public LoteDeTarjeta LoteDeTarjeta {
+		public int LoteDeTarjeta {
 			get;
 			set;
 		}
