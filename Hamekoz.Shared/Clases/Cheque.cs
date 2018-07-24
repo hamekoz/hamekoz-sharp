@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using Hamekoz.Core;
+using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
@@ -40,12 +41,6 @@ namespace Hamekoz.Negocio
 		public int Id { get; set; }
 
 		#endregion
-
-		//TODO el banco se puede inferir de la propiedad Banco de la SucursalDeCobro
-		public Banco Banco {
-			get;
-			set;
-		}
 
 		public Estados Estado {
 			get;
@@ -72,10 +67,29 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
+		public bool Cobrado {
+			get;
+			set;
+		}
+
+		//TODO deberia ser Emisor, Receptor
+		public IResponsable Responsable {
+			get;
+			set;
+		}
+
+		//TODO el banco se puede inferir de la propiedad Banco de la SucursalDeCobro
+		public Banco Banco {
+			get;
+			set;
+		}
+
 		public SucursalDeBanco SucursalDeCobro {
 			get;
 			set;
 		}
+
+		public Asiento Asiento { get; set; }
 
 		public override string ToString ()
 		{
