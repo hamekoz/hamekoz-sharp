@@ -54,13 +54,23 @@ namespace Hamekoz.UI
 			};
 		}
 
-		public static void CallBackEvents (this Widget widget, ICallBack calbackable)
+		public static void CallBackEvents (this Widget widget, ICallBack callbackable)
 		{
-			if (calbackable != null) {
-				calbackable.CallBack.Message += (title, message) => MessageDialog.ShowMessage (widget.ParentWindow, title, message);
-				calbackable.CallBack.Warning += (title, message) => MessageDialog.ShowWarning (widget.ParentWindow, title, message);
-				calbackable.CallBack.Error += (title, message) => MessageDialog.ShowError (widget.ParentWindow, title, message);
-				calbackable.CallBack.Confirmation += (title, message) => MessageDialog.Confirm (widget.ParentWindow, title, message, Command.Yes);
+			if (callbackable != null) {
+				callbackable.CallBack.Message += (title, message) => MessageDialog.ShowMessage (widget.ParentWindow, title, message);
+				callbackable.CallBack.Warning += (title, message) => MessageDialog.ShowWarning (widget.ParentWindow, title, message);
+				callbackable.CallBack.Error += (title, message) => MessageDialog.ShowError (widget.ParentWindow, title, message);
+				callbackable.CallBack.Confirmation += (title, message) => MessageDialog.Confirm (widget.ParentWindow, title, message, Command.Yes);
+			}
+		}
+
+		public static void CallBackEvents (this ICallBack callbackable, Widget widget)
+		{
+			if (callbackable != null) {
+				callbackable.CallBack.Message += (title, message) => MessageDialog.ShowMessage (widget.ParentWindow, title, message);
+				callbackable.CallBack.Warning += (title, message) => MessageDialog.ShowWarning (widget.ParentWindow, title, message);
+				callbackable.CallBack.Error += (title, message) => MessageDialog.ShowError (widget.ParentWindow, title, message);
+				callbackable.CallBack.Confirmation += (title, message) => MessageDialog.Confirm (widget.ParentWindow, title, message, Command.Yes);
 			}
 		}
 	}

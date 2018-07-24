@@ -60,6 +60,9 @@ namespace Hamekoz.UI
 			set {
 				controller = value;
 				List.List = controller.List;
+				var callbackable = controller as ICallBack;
+				if (callbackable != null)
+					callbackable.CallBackEvents (this);
 			}
 		}
 

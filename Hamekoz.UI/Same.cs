@@ -82,13 +82,9 @@ namespace Hamekoz.UI
 			}
 			set {
 				controller = value;
-				var calbackable = controller as ICallBack;
-				if (calbackable != null) {
-					calbackable.CallBack.Message += (title, message) => MessageDialog.ShowMessage (ParentWindow, title, message);
-					calbackable.CallBack.Warning += (title, message) => MessageDialog.ShowWarning (ParentWindow, title, message);
-					calbackable.CallBack.Error += (title, message) => MessageDialog.ShowError (ParentWindow, title, message);
-					calbackable.CallBack.Confirmation += (title, message) => MessageDialog.Confirm (ParentWindow, title, message, Command.Yes);
-				}
+				var callbackable = controller as ICallBack;
+				if (callbackable != null)
+					callbackable.CallBackEvents (this);
 			}
 		}
 
