@@ -43,11 +43,19 @@ namespace Hamekoz.UI
 		public static readonly Image Folder = Image.FromResource ("Hamekoz.UI.Icons.folder.png");
 
 		public static readonly Image GoBottom = Image.FromResource ("Hamekoz.UI.Icons.go-bottom.png");
+		public static readonly Image GoDown = Image.FromResource ("Hamekoz.UI.Icons.go-down.png");
 		public static readonly Image GoFirst = Image.FromResource ("Hamekoz.UI.Icons.go-first.png");
+		public static readonly Image GoFirstRtl = Image.FromResource ("Hamekoz.UI.Icons.go-first-rtl.png");
+		public static readonly Image GoHome = Image.FromResource ("Hamekoz.UI.Icons.go-home.png");
 		public static readonly Image GoJump = Image.FromResource ("Hamekoz.UI.Icons.go-jump.png");
 		public static readonly Image GoLast = Image.FromResource ("Hamekoz.UI.Icons.go-last.png");
+		public static readonly Image GoLastRtl = Image.FromResource ("Hamekoz.UI.Icons.go-last-rtl.png");
 		public static readonly Image GoNext = Image.FromResource ("Hamekoz.UI.Icons.go-next.png");
+		public static readonly Image GoNextRtl = Image.FromResource ("Hamekoz.UI.Icons.go-next-rtl.png");
 		public static readonly Image GoPrevious = Image.FromResource ("Hamekoz.UI.Icons.go-previous.png");
+		public static readonly Image GoPreviousRtl = Image.FromResource ("Hamekoz.UI.Icons.go-previous-rtl.png");
+		public static readonly Image GoTop = Image.FromResource ("Hamekoz.UI.Icons.go-top.png");
+		public static readonly Image GoUp = Image.FromResource ("Hamekoz.UI.Icons.go-up.png");
 
 		public static readonly Image InsertLink = Image.FromResource ("Hamekoz.UI.Icons.insert-link.png");
 

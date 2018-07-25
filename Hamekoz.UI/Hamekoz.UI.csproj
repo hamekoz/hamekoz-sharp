@@ -150,6 +150,14 @@
     <EmbeddedResource Include="Icons\mail-mark-junk.png" />
     <EmbeddedResource Include="Icons\insert-link.png" />
     <EmbeddedResource Include="Icons\task-due.png" />
+    <EmbeddedResource Include="Icons\go-down.png" />
+    <EmbeddedResource Include="Icons\go-first-rtl.png" />
+    <EmbeddedResource Include="Icons\go-home.png" />
+    <EmbeddedResource Include="Icons\go-last-rtl.png" />
+    <EmbeddedResource Include="Icons\go-next-rtl.png" />
+    <EmbeddedResource Include="Icons\go-previous-rtl.png" />
+    <EmbeddedResource Include="Icons\go-top.png" />
+    <EmbeddedResource Include="Icons\go-up.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
