@@ -132,7 +132,7 @@ namespace Hamekoz.UI
 		}
 	}
 
-	public class MultiSelectListView<T> : HBox
+	public class MultiSelectListViewH<T> : HBox
 	{
 		public IList<T> ListAll {
 			get { return list.List; }
@@ -175,7 +175,7 @@ namespace Hamekoz.UI
 			TooltipText = Application.TranslationCatalog.GetString ("Remove all"),
 		};
 
-		public MultiSelectListView ()
+		public MultiSelectListViewH ()
 		{
 			agregar.Clicked += delegate {
 				if (list.SelectedItems.Count > 0) {
@@ -225,6 +225,102 @@ namespace Hamekoz.UI
 			PackStart (selected.WithLabel (Application.TranslationCatalog.GetString ("Selected")), true, true);
 			PackStart (actionBox);
 			PackStart (list.WithLabel (Application.TranslationCatalog.GetString ("Availables")), true, true);
+		}
+	}
+
+	public class MultiSelectListViewV<T> : VBox
+	{
+		public IList<T> ListAll {
+			get { return list.List; }
+			set { list.List = value; }
+		}
+
+		public IList<T> ListSelected {
+			get { return selected.List; }
+			set { selected.List = value; }
+		}
+
+		readonly HBox actionBox = new HBox {
+			HorizontalPlacement = WidgetPlacement.Center,
+		};
+
+		readonly ListView<T> list = new ListView<T> {
+			SelectionMode = SelectionMode.Multiple,
+		};
+		readonly ListView<T> selected = new ListView<T> {
+			SelectionMode = SelectionMode.Multiple,
+		};
+
+		readonly Button agregar = new Button {
+			Image = Icons.GoDown.WithSize (IconSize.Medium),
+			TooltipText = Application.TranslationCatalog.GetString ("Add"),
+		};
+
+		readonly Button agregarTodos = new Button {
+			Image = Icons.GoBottom.WithSize (IconSize.Medium),
+			TooltipText = Application.TranslationCatalog.GetString ("Add all"),
+		};
+
+		readonly Button quitar = new Button {
+			Image = Icons.GoUp.WithSize (IconSize.Medium),
+			TooltipText = Application.TranslationCatalog.GetString ("Remove"),
+		};
+
+		readonly Button quitarTodos = new Button {
+			Image = Icons.GoTop.WithSize (IconSize.Medium),
+			TooltipText = Application.TranslationCatalog.GetString ("Remove all"),
+		};
+
+		public MultiSelectListViewV ()
+		{
+			agregar.Clicked += delegate {
+				if (list.SelectedItems.Count > 0) {
+					foreach (var item in list.SelectedItems) {
+						selected.List.Add (item);
+						list.List.Remove (item);
+					}
+					selected.Refresh ();
+					list.Refresh ();
+				}
+			};
+
+			agregarTodos.Clicked += delegate {
+				foreach (var item in list.List) {
+					selected.List.Add (item);
+				}
+				selected.Refresh ();
+				list.List.Clear ();
+				list.Refresh ();
+			};
+
+			quitar.Clicked += delegate {
+				if (selected.SelectedItems.Count > 0) {
+					foreach (var item in selected.SelectedItems) {
+						list.List.Add (item);
+						selected.List.Remove (item);
+					}
+					selected.Refresh ();
+					list.Refresh ();
+				}
+			};
+
+			quitarTodos.Clicked += delegate {
+				foreach (var item in selected.List) {
+					list.List.Add (item);
+				}
+				selected.List.Clear ();
+				selected.Refresh ();
+				list.Refresh ();
+			};
+
+			actionBox.PackStart (agregar);
+			actionBox.PackStart (quitar);
+			actionBox.PackStart (agregarTodos);
+			actionBox.PackStart (quitarTodos);
+
+			PackStart (list.WithLabel (Application.TranslationCatalog.GetString ("Availables")), true, true);
+			PackStart (actionBox);
+			PackStart (selected.WithLabel (Application.TranslationCatalog.GetString ("Selected")), true, true);
 		}
 	}
 }
