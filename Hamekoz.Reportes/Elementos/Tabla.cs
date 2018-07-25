@@ -53,6 +53,22 @@ namespace Hamekoz.Reportes
 			}
 		}
 
+		string fuente = Font.FontFamily.HELVETICA.ToString ();
+
+		public string Fuente {
+			get {
+				return fuente;
+			}
+			set {
+				fuente = value;
+			}
+		}
+
+		public void FuenteMonoespaciada ()
+		{
+			fuente = Font.FontFamily.COURIER.ToString ();
+		}
+
 		public bool OcultarTitulosDeColumnas { get; set; }
 
 		List<Columna> columnas = new List<Columna> ();
@@ -80,7 +96,7 @@ namespace Hamekoz.Reportes
 
 		public PdfPCell GetNewHeader (Columna columna)
 		{
-			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño, Font.BOLD);
+			Font font = FontFactory.GetFont (Fuente, fuenteTamaño, Font.BOLD);
 			var phrase = new Phrase (columna.Nombre, font);
 			var pdfPCell = new PdfPCell (tabla.DefaultCell);
 			pdfPCell.PaddingBottom = 3;
@@ -97,7 +113,7 @@ namespace Hamekoz.Reportes
 
 		public PdfPCell GetNewTotal (Object total)
 		{
-			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño, Font.BOLD);
+			Font font = FontFactory.GetFont (Fuente, fuenteTamaño, Font.BOLD);
 			var pdfPCell = new PdfPCell (tabla.DefaultCell);
 			pdfPCell.PaddingTop = 2;
 			if (MostrarBordes) {
@@ -144,7 +160,7 @@ namespace Hamekoz.Reportes
 
 		public PdfPCell GetNewData (Object dato)
 		{
-			Font font = FontFactory.GetFont (Font.FontFamily.HELVETICA.ToString (), fuenteTamaño);
+			Font font = FontFactory.GetFont (Fuente, fuenteTamaño);
 			var pdfPCell = new PdfPCell (tabla.DefaultCell);
 			pdfPCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 			if (dato is string) {

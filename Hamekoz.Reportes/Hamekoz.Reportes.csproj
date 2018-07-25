@@ -58,6 +58,7 @@
     <Compile Include="Elementos\Parrafo.cs" />
     <Compile Include="ReportPdfPageEvent.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="ConversionExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
