@@ -165,12 +165,14 @@ namespace Hamekoz.UI
 						SelectionMode = selectionMode,
 					};
 				} else {
-					listViewFilter = new ListView<T> {
+					var listViewSelector = new ListView<T> {
 						List = new List<T> (),
 						MinHeight = 200,
 						MinWidth = 600,
 						SelectionMode = selectionMode,
 					};
+					listViewSelector.RemoveColumnAt (columnsRemoved);
+					listViewFilter = listViewSelector;
 				}
 
 				dialogo.Buttons.Add (Command.Cancel, Command.Add);
@@ -281,8 +283,11 @@ namespace Hamekoz.UI
 			listView.RemoveColumnAt (index);
 		}
 
+		int[] columnsRemoved = { };
+
 		public void RemoveColumnAt (params int[] columnsIndex)
 		{
+			columnsRemoved = columnsIndex;
 			listView.RemoveColumnAt (columnsIndex);
 		}
 
