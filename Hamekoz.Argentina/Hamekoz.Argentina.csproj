@@ -55,6 +55,7 @@
     <Compile Include="Citi\RegistroImportacionCitiVentas.cs" />
     <Compile Include="Citi\RegistroImportacionCitiCompras.cs" />
     <Compile Include="Sifere\RegistroRecaudacionesBancarias.cs" />
+    <Compile Include="Arba\RegistroImportacionRetencionPercepcion.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
