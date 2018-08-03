@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using Hamekoz.Extensions;
 
 namespace Hamekoz.Argentina.Arba
 {
@@ -42,8 +43,8 @@ namespace Hamekoz.Argentina.Arba
 
 		public static string FileNamePercepciones (string cuit, int actividad, DateTime fecha)
 		{
-			return string.Format ("AR-{0}-{1:yyyyMM}0-{2}-PercepcionesClientes-{3:yyyyMMdd}.txt"
-				, cuit
+			return string.Format ("AR-{0}-{1:yyyyMM}0-{2}-PercepcionesClientes{3:yyyyMMdd}.txt"
+				, cuit.Limpiar ()
 				, fecha
 				, actividad
 				, DateTime.Now);
@@ -51,9 +52,14 @@ namespace Hamekoz.Argentina.Arba
 
 		public static string FileNameRetenciones (string cuit, int actividad, DateTime fecha)
 		{
-			return string.Format ("AR-{0}-{1:yyyyMM}0-{2}-RetencionesProveedores-{3:yyyyMMdd}.txt"
-				, cuit
+			//1 -> Primera quincena
+			//2 -> Segunda quincena
+			int periodo = fecha.Day < 14 ? 1 : 2;
+
+			return string.Format ("AR-{0}-{1:yyyyMM}{2}-{3}-RetencionesProveedores{4:yyyyMMdd}.txt"
+				, cuit.Limpiar ()
 				, fecha
+				, periodo
 				, actividad
 				, DateTime.Now);
 		}
@@ -106,15 +112,15 @@ namespace Hamekoz.Argentina.Arba
 		public string ToFixedStringPercepcion ()
 		{
 			//UNDONE
-			string cadena = string.Format ("{0}{1:d}{2}{3}{4}{5}{6::0000000000000.00}{7:0000000000000.00}A"
+			string cadena = string.Format ("{0}{1:d}{2}{3}{4}{5}{6}{7}A"
 				, CUIT
 				, Fecha
-				, TipoDeComprobante
+				, TipoDeComprobante == "N" ? "D" : TipoDeComprobante
 				, LetraDelComprobante
 				, Sucursal.PadLeft (4, '0')
 				, NroDeComprobante.PadLeft (8, '0')
-				, MontoImponible
-				, Importe);
+				, ((TipoDeComprobante == "C" ? -1 : 1) * MontoImponible).ToEnglishFormat ().PadLeft (12, '0')
+				, ((TipoDeComprobante == "C" ? -1 : 1) * Importe).ToEnglishFormat ().PadLeft (11, '0'));
 
 			return cadena;
 		}
@@ -127,12 +133,12 @@ namespace Hamekoz.Argentina.Arba
 		public string ToFixedStringRetencion ()
 		{
 			//UNDONE
-			string cadena = string.Format ("{0}{1:d}{2}{3}{4:00000000.00}A"
+			string cadena = string.Format ("{0}{1:d}{2}{3}{4}A"
 				, CUIT
 				, Fecha
 				, Sucursal.PadLeft (4, '0')
 				, NroDeComprobante.PadLeft (8, '0')
-				, Importe);
+				, Importe.ToEnglishFormat ().PadLeft (11, '0'));
 
 			return cadena;
 		}
