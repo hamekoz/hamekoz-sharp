@@ -21,29 +21,15 @@
 using System;
 using System.IO;
 using System.Net;
-using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
+using Hamekoz.Core;
 using Hamekoz.Data;
 
 namespace Hamekoz.Argentina.Arba
 {
 	public static class Arba
 	{
-		static string CalcularHashMD5 (string archivo)
-		{
-			var fs = new FileStream (archivo, FileMode.Open, FileAccess.Read);
-			var hash = new MD5CryptoServiceProvider ();
-			Int64 currentPos = fs.Position;
-			fs.Seek (0, SeekOrigin.Begin);
-			var sb = new StringBuilder ();
-			foreach (Byte b in hash.ComputeHash(fs)) {
-				sb.Append (b.ToString ("X2"));
-			}
-			fs.Close ();
-			return sb.ToString ();
-		}
-
 		static string ContenidoDeArchivo (string archivo)
 		{
 			var stream = new FileStream (archivo, FileMode.Open, FileAccess.Read);
@@ -101,7 +87,7 @@ namespace Hamekoz.Argentina.Arba
 				writer.Flush ();
 			}
 
-			string hash = CalcularHashMD5 (archivoConExtension);
+			string hash = archivoConExtension.HashMD5 ();
 			string archivoConHash = string.Format ("{0}{1}_{2}.{3}", Path.GetTempPath (), archivo, hash, extension);
 			File.Copy (archivoConExtension, archivoConHash, true);
 			string contenido = ContenidoDeArchivo (archivoConHash);
