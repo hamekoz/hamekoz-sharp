@@ -112,6 +112,12 @@ namespace Hamekoz.Argentina.Arba
 		public string ToFixedStringPercepcion ()
 		{
 			//UNDONE
+			string montoImponible = MontoImponible.ToString ("F2").PadLeft (12, '0');
+			string importe = Importe.ToString ("F2").PadLeft (11, '0');
+			if (TipoDeComprobante == "C") {
+				montoImponible = "-" + montoImponible.Substring (1);
+				importe = "-" + importe.Substring (1);
+			}
 			string cadena = string.Format ("{0}{1:d}{2}{3}{4}{5}{6}{7}A"
 				, CUIT
 				, Fecha
@@ -119,8 +125,8 @@ namespace Hamekoz.Argentina.Arba
 				, LetraDelComprobante
 				, Sucursal.PadLeft (4, '0')
 				, NroDeComprobante.PadLeft (8, '0')
-				, ((TipoDeComprobante == "C" ? -1 : 1) * MontoImponible).ToEnglishFormat ().PadLeft (12, '0')
-				, ((TipoDeComprobante == "C" ? -1 : 1) * Importe).ToEnglishFormat ().PadLeft (11, '0'));
+				, montoImponible
+				, importe);
 
 			return cadena;
 		}
@@ -138,7 +144,7 @@ namespace Hamekoz.Argentina.Arba
 				, Fecha
 				, Sucursal.PadLeft (4, '0')
 				, NroDeComprobante.PadLeft (8, '0')
-				, Importe.ToEnglishFormat ().PadLeft (11, '0'));
+				, Importe.ToString ("F2").PadLeft (11, '0'));
 
 			return cadena;
 		}
