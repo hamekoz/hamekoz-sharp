@@ -31,6 +31,7 @@ namespace Hamekoz.UI
 			RealTimeFilter = true,
 			WidthRequest = 200,
 			MarginRight = 5,
+			LableVisible = false,
 		};
 
 		public ListBoxFilter<T> List {

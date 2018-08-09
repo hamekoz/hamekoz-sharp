@@ -37,6 +37,7 @@ namespace Hamekoz.UI
 			HeightRequest = 150,
 			HorizontalScrollPolicy = ScrollPolicy.Never,
 			VerticalScrollPolicy = ScrollPolicy.Automatic,
+			LableVisible = false,
 		};
 
 		Button selectedItemClear = new Button {

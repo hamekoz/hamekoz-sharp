@@ -46,7 +46,6 @@
     <Compile Include="ItemChooser.cs" />
     <Compile Include="Icons\Icons.cs" />
     <Compile Include="ItemPicker.cs" />
-    <Compile Include="ListBoxAll.cs" />
     <Compile Include="IListBoxFilter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="..\xwt\TestApps\Samples\MonoDevelop.Components.Chart\Axis.cs">

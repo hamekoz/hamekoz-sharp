@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Humanizer;
 using Xwt;
 using Xwt.Drawing;
 
@@ -30,6 +31,8 @@ namespace Hamekoz.UI
 	public class ListBoxFilter<T> : VBox, IListBoxFilter<T>
 	{
 		Type type = typeof(T);
+		Label label;
+		CheckBox allCheckBox;
 
 		readonly SearchTextEntry search;
 
@@ -51,12 +54,25 @@ namespace Hamekoz.UI
 
 		public ListBoxFilter ()
 		{
+			label = new Label {
+				Text = type.Name.Humanize (),
+			};
+
 			search = new SearchTextEntry {
 				PlaceholderText = Application.TranslationCatalog.GetString ("Filter"),
 			};
 
 			search.Activated += FilterActivated;
 			search.Changed += FilterChanged;
+
+			allCheckBox = new CheckBox {
+				Label = Application.TranslationCatalog.GetString ("All"),
+				AllowMixed = false,
+				State = CheckBoxState.Off,
+				Active = false,
+				Visible = false,
+			};
+			allCheckBox.Clicked += AllCheckBoxClicked;
 
 			listBox = new ListBox {
 				ExpandHorizontal = true,
@@ -67,10 +83,59 @@ namespace Hamekoz.UI
 
 			listBox.SelectionChanged += (sender, e) => OnSelectionItemChanged (e);
 
-			PackStart (search);
+			var box = new HBox ();
+			box.PackStart (label);
+			box.PackEnd (search);
+			box.PackEnd (allCheckBox);
+			PackStart (box, false, true);
 			PackStart (listBox, true, true);
 			ExpandHorizontal = true;
 			ExpandVertical = true;
+		}
+
+		void AllCheckBoxClicked (object sender, EventArgs e)
+		{
+			listBox.Sensitive = !allCheckBox.Active;
+			search.Sensitive = !allCheckBox.Active;
+			search.Text = string.Empty;
+			if (allCheckBox.Active && SelectionMode == SelectionMode.Multiple)
+				listBox.SelectAll ();
+			else
+				listBox.UnselectAll ();
+			OnSelectionItemChanged (e);
+			if (!allCheckBox.Active)
+				search.SetFocus ();
+		}
+
+		public string Label {
+			get { return label.Text; }
+			set {
+				label.Text = value;
+				label.Visible = value != string.Empty;
+			}
+		}
+
+		public bool LableVisible {
+			get {
+				return label.Visible;
+			}
+			set {
+				label.Visible = value;
+				search.ExpandHorizontal = !value;
+			}
+		}
+
+		public bool AllCheckBoxValue {
+			get { return allCheckBox.Active; }
+			set { 
+				allCheckBox.Active = value;
+				AllCheckBoxClicked (this, null);
+			}
+		}
+
+		public bool AllCheckBoxVisible {
+			get { return allCheckBox.Visible; }
+			set { allCheckBox.Visible = value; }
 		}
 
 		void FilterList ()
