@@ -286,12 +286,15 @@ namespace Hamekoz.Reportes
 			base.OnEndPage (writer, document);
 
 			if (HasWaterMarkText) {
+				contentByte.SaveState ();
+				contentByte.SetGState (state);
 				ColumnText.ShowTextAligned (
-					writer.DirectContent,
+					contentByte,
 					Element.ALIGN_CENTER,
 					new Phrase (waterMarkText, waterFont),
 					300, 400, 45
 				);
+				contentByte.RestoreState ();
 			}
 			if (HasWaterMarkImage) {
 				waterMarkImage.ScaleToFit (document.PageSize);

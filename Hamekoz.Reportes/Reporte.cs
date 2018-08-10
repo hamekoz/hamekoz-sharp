@@ -113,6 +113,7 @@ namespace Hamekoz.Reportes
 			if (marcaDeAguaTexto != string.Empty) {
 				pageEventHandler.HasWaterMarkText = true;
 				pageEventHandler.WaterMarkText = MarcaDeAguaTexto;
+				pageEventHandler.WaterMarkOpacity = marcaDeAguaTransparencia;
 			}
 
 			if (marcaDeAguaImagenUri != string.Empty) {
