@@ -26,6 +26,8 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 {
 	public class ControladorFiscal : IFiscalHasar
 	{
+		Hasar fiscal = new Hasar ();
+
 		#region IFiscalHasar implementation
 
 		public DateTime FechaHora { get; set; }
@@ -81,6 +83,11 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 		}
 
 		public void ReporteZ (IZeta zeta)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public string ReporteElectronico (DateTime desde, DateTime hasta)
 		{
 			throw new NotImplementedException ();
 		}

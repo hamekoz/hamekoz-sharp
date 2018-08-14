@@ -40,6 +40,7 @@
     <Compile Include="TiposDeResposableAFIP.cs" />
     <Compile Include="FiscalHasar.cs" />
     <Compile Include="IFiscalHasar.cs" />
+    <Compile Include="Ascii85.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">

@@ -58,5 +58,7 @@ namespace Hamekoz.Fiscal
 		void ReporteZ (IZeta zeta);
 
 		DateTime FechaHora { get; set; }
+
+		string ReporteElectronico (DateTime desde, DateTime hasta);
 	}
 }

@@ -3,9 +3,8 @@
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
-//		 Hernan Ignacio Vivani <hernan@vivani.com.ar>
 //
-//  Copyright (c) 2014 Hamekoz
+//  Copyright (c) 2014 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -348,6 +347,21 @@ namespace Hamekoz.Fiscal.Hasar.IFH2G
 			length = cadena.Length > length ? length : cadena.Length;
 			cadena = cadena.Substring (0, length);
 			return cadena;
+		}
+
+		public string ReporteElectronico (DateTime desde, DateTime hasta)
+		{
+			string bloque = string.Empty;
+			var primer_bloque = fiscalHasar.ObtenerPrimerBloqueReporteElectronico (desde, hasta, HasarImpresoraFiscalRG3561.TiposReporteAFIP.REPORTE_AFIP_COMPLETO);
+			if (primer_bloque.getRegistro () == HasarImpresoraFiscalRG3561.IdentificadorBloque.BLOQUE_INFORMACION) {
+				bloque += primer_bloque.getInformacion ();
+				var respuesta = fiscalHasar.ObtenerSiguienteBloqueReporteElectronico ();
+				while (respuesta.getRegistro () == HasarImpresoraFiscalRG3561.IdentificadorBloque.BLOQUE_INFORMACION) {
+					bloque += respuesta.getInformacion ();
+					respuesta = fiscalHasar.ObtenerSiguienteBloqueReporteElectronico ();
+				}
+			}
+			return bloque;
 		}
 	}
 }

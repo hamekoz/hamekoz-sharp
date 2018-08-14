@@ -462,7 +462,7 @@ namespace Hamekoz.Fiscal.Hasar.Spooler
 
 		public CloseFiscalReceipt CloseFiscalReceipt ()
 		{
-			CloseFiscalReceipt c = new CloseFiscalReceipt ();
+			var c = new CloseFiscalReceipt ();
 			impresora.EnviarComando (c.Comando ());
 			string[] arrayRespuesta = impresora.LeerRespuesta ();
 			statusImpresora (arrayRespuesta [0]);
