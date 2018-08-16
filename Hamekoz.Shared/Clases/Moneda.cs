@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
@@ -44,7 +43,8 @@ namespace Hamekoz.Negocio
 						Id = 1,
 						Codigo = "ARS",
 						Nombre = "PESO",
-						Simbolo = "$"
+						Simbolo = "$",
+						Cotizacion = 1,
 					};
 				}
 				return moneda;
@@ -58,12 +58,12 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
-		public string Nombre {
+		public string Codigo {
 			get;
 			set;
 		}
 
-		public string Codigo {
+		public int Numero {
 			get;
 			set;
 		}
@@ -71,6 +71,36 @@ namespace Hamekoz.Negocio
 		public string Simbolo {
 			get;
 			set;
+		}
+
+
+		public string Nombre {
+			get;
+			set;
+		}
+
+		public int Decimales {
+			get;
+			set;
+		}
+
+		public decimal Cotizacion {
+			get;
+			set;
+		}
+
+		public bool Obsoleta {
+			get;
+			set;
+		}
+
+		public decimal CotizacionInversa ()
+		{
+			if (Cotizacion == 0) {
+				return 0;
+			} else {
+				return 1 / Cotizacion;
+			}
 		}
 	}
 }
