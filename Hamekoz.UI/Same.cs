@@ -211,7 +211,11 @@ namespace Hamekoz.UI
 			eliminar.Clicked += delegate {
 				if (Widget.HasItem () && MessageDialog.Confirm (string.Format (Application.TranslationCatalog.GetString ("Are you sure to erase this {0}?"), typeof(T).Name.Humanize ()), Command.Yes)) {
 					Controller.Remove (Widget.Item);
-					Widget.ValuesClean ();
+					if (Widget.Item is IAnulable) {
+						Widget.ValuesRefresh ();
+					} else {
+						Widget.ValuesClean ();	
+					}
 					Editable (false);
 				}
 			};
