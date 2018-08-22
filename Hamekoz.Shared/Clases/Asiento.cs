@@ -114,16 +114,19 @@ namespace Hamekoz.Negocio
 
 		#endregion
 
+		[Obsolete ("Usar logica de seguimiento de cambios")]
 		public Empleado CreadoPor {
 			get;
 			set;
 		}
 
+		[Obsolete ("Usar logica de seguimiento de cambios")]
 		public Empleado ModificadoPor {
 			get;
 			set;
 		}
 
+		[Obsolete ("Usar logica de seguimiento de cambios")]
 		public DateTime ModificadoEn {
 			get;
 			set;
