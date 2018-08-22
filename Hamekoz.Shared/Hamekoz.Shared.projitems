@@ -137,5 +137,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroPeriodo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroTexto.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroRangoNumerico.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IAnulable.cs" />
   </ItemGroup>
 </Project>
