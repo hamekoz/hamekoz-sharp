@@ -71,7 +71,10 @@ namespace Hamekoz.UI
 
 		public new T SelectedItem {
 			get { return (T)base.SelectedItem; }
-			set { base.SelectedItem = value; }
+			set {
+				base.SelectedItem = value;
+				ScrollTo (value);
+			}
 		}
 
 		public IList<T> SelectedItems {

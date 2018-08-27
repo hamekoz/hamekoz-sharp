@@ -198,7 +198,10 @@ namespace Hamekoz.UI
 
 		public T SelectedItem {
 			get { return (T)listBox.SelectedItem; }
-			set { listBox.SelectedItem = value; }
+			set {
+				listBox.SelectedItem = value;
+				ScrollTo (value);
+			}
 		}
 
 		public IList<T> SelectedItems {
