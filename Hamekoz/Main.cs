@@ -23,7 +23,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using Xwt;
+using System;
 
 namespace Hamekoz
 {
@@ -31,7 +31,15 @@ namespace Hamekoz
 	{
 		public static void Main (string[] args)
 		{
-			Application.Initialize (); 
+			var ta = Hamekoz.Argentina.Afip.FacturaElectronicaExtensions.TA ();
+			var fePaisesResponse = new Hamekoz.Argentina.Afip.wsfev1.Service ().FEParamGetTiposPaises (ta);
+			var puntos_de_venta = Hamekoz.Argentina.Afip.FacturaElectronicaExtensions.PuntosDeVenta ();
+
+			var ivas = new Hamekoz.Argentina.Afip.wsfev1.Service ().FEParamGetTiposIva (ta);
+			var monedas = new Hamekoz.Argentina.Afip.wsfev1.Service ().FEParamGetTiposMonedas (ta);
+			var tributos = new Hamekoz.Argentina.Afip.wsfev1.Service ().FEParamGetTiposTributos (ta);
+			var comprobantes = new Hamekoz.Argentina.Afip.wsfev1.Service ().FEParamGetTiposCbte (ta);
+			Console.WriteLine ("Fin de llamada");
 		}
 	}
 }

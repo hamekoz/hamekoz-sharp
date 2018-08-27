@@ -22,7 +22,6 @@ using System;
 using System.Collections;
 using System.Text;
 using System.Xml;
-using Org.BouncyCastle;
 
 namespace Hamekoz.Argentina.Afip
 {
@@ -72,13 +71,13 @@ namespace Hamekoz.Argentina.Afip
 			}
 		}
 
-		X509Certificate certificadoFirmante;
-
-		public void CargarCertificadoFirmante (string path)
-		{
-			certificadoFirmante = new X509Certificate2 ();
-			certificadoFirmante.Import (path);
-		}
+		//		X509Certificate certificadoFirmante;
+		//
+		//		public void CargarCertificadoFirmante (string path)
+		//		{
+		//			certificadoFirmante = new X509Certificate2 ();
+		//			certificadoFirmante.Import (path);
+		//		}
 
 		XmlDocument solicitudXML;
 		XmlDocument respuestaXML;
@@ -101,7 +100,7 @@ namespace Hamekoz.Argentina.Afip
 
 			RutaDelCertificadoFirmante = argRutaCertX509Firmante;
 
-			string cmsFirmadoBase64;
+			string cmsFirmadoBase64 = string.Empty;
 			string respuesta;
 
 			XmlNode xmlNodoUniqueId;
@@ -141,37 +140,37 @@ namespace Hamekoz.Argentina.Afip
 				// Firmo el msg y paso a Base64 
 				try {
 					var certList = new ArrayList ();
-					CMSTypedData msg = new CMSProcessableByteArray ("Hello world!".getBytes ());
-
-					certList.add (signCert);
-
-					Store certs = new JcaCertStore (certList);
-
-					var gen = new  CMSSignedDataGenerator ();
-					ContentSigner sha1Signer = new JcaContentSignerBuilder ("SHA1withRSA").setProvider ("BC").build (signKP.getPrivate ());
-
-					gen.addSignerInfoGenerator (
-						new JcaSignerInfoGeneratorBuilder (
-							new JcaDigestCalculatorProviderBuilder ().setProvider ("BC").build ())
-						.build (sha1Signer, signCert));
-
-					gen.addCertificates (certs);
-
-					CMSSignedData sigData = gen.generate (msg, false);
-
-					cmsFirmadoBase64 = Convert.ToBase64String (encodedSignedCms);
-					// Pongo el mensaje en un objeto ContentInfo (requerido para construir el obj SignedCms) 
-					var infoContenido = new System.Security.Cryptography.Pkcs.ContentInfo (msgBytes);
-					var cmsFirmado = new SignedCms (infoContenido);
-
-					// Creo objeto CmsSigner que tiene las caracteristicas del firmante 
-					var cmsFirmante = new CmsSigner (certificadoFirmante);
-					cmsFirmante.IncludeOption = X509IncludeOption.EndCertOnly;
-
-					// Firmo el mensaje PKCS #7 
-					cmsFirmado.ComputeSignature (cmsFirmante);
-					// Encodeo el mensaje PKCS #7. 
-					encodedSignedCms = cmsFirmado.Encode ();
+//					CMSTypedData msg = new CMSProcessableByteArray ("Hello world!".getBytes ());
+//
+//					certList.add (signCert);
+//
+//					Store certs = new JcaCertStore (certList);
+//
+//					var gen = new  CMSSignedDataGenerator ();
+//					ContentSigner sha1Signer = new JcaContentSignerBuilder ("SHA1withRSA").setProvider ("BC").build (signKP.getPrivate ());
+//
+//					gen.addSignerInfoGenerator (
+//						new JcaSignerInfoGeneratorBuilder (
+//							new JcaDigestCalculatorProviderBuilder ().setProvider ("BC").build ())
+//						.build (sha1Signer, signCert));
+//
+//					gen.addCertificates (certs);
+//
+//					CMSSignedData sigData = gen.generate (msg, false);
+//
+//					cmsFirmadoBase64 = Convert.ToBase64String (encodedSignedCms);
+//					// Pongo el mensaje en un objeto ContentInfo (requerido para construir el obj SignedCms) 
+//					var infoContenido = new System.Security.Cryptography.Pkcs.ContentInfo (msgBytes);
+//					var cmsFirmado = new SignedCms (infoContenido);
+//
+//					// Creo objeto CmsSigner que tiene las caracteristicas del firmante 
+//					var cmsFirmante = new CmsSigner (certificadoFirmante);
+//					cmsFirmante.IncludeOption = X509IncludeOption.EndCertOnly;
+//
+//					// Firmo el mensaje PKCS #7 
+//					cmsFirmado.ComputeSignature (cmsFirmante);
+//					// Encodeo el mensaje PKCS #7. 
+//					encodedSignedCms = cmsFirmado.Encode ();
 				} catch (Exception excepcionAlFirmar) {
 					throw new Exception ("***Error al firmar: " + excepcionAlFirmar.Message);
 				}
