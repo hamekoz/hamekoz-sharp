@@ -270,5 +270,23 @@ namespace Hamekoz.UI
 		{
 			List = new List<T> ();
 		}
+
+		public void ScrollToFirst ()
+		{
+			if (list != null && list.Count > 0)
+				listBox.ScrollToRow (0);
+		}
+
+		public void ScrollToLast ()
+		{
+			if (list != null && list.Count > 0)
+				listBox.ScrollToRow (list.Count - 1);
+		}
+
+		public void ScrollTo (T item)
+		{
+			if (list != null && list.Count > 0)
+				listBox.ScrollToRow (list.IndexOf (item));
+		}
 	}
 }
