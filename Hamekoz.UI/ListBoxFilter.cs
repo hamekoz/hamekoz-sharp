@@ -198,7 +198,10 @@ namespace Hamekoz.UI
 
 		public T SelectedItem {
 			get { return (T)listBox.SelectedItem; }
-			set { listBox.SelectedItem = value; }
+			set {
+				listBox.SelectedItem = value;
+				ScrollTo (value);
+			}
 		}
 
 		public IList<T> SelectedItems {
@@ -269,6 +272,24 @@ namespace Hamekoz.UI
 		public void ClearList ()
 		{
 			List = new List<T> ();
+		}
+
+		public void ScrollToFirst ()
+		{
+			if (list != null && list.Count > 0)
+				listBox.ScrollToRow (0);
+		}
+
+		public void ScrollToLast ()
+		{
+			if (list != null && list.Count > 0)
+				listBox.ScrollToRow (list.Count - 1);
+		}
+
+		public void ScrollTo (T item)
+		{
+			if (list != null && list.Count > 0)
+				listBox.ScrollToRow (list.IndexOf (item));
 		}
 	}
 }
