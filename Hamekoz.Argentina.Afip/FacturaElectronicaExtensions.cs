@@ -29,13 +29,19 @@ namespace Hamekoz.Argentina.Afip
 {
 	public static class FacturaElectronicaExtensions
 	{
+		const string homo_url = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL";
 		//HACK por ahora uso una constante
-		const long cuit = 30655462224;
+		const long cuit_balcarce = 30655462224;
+		const long cuit = 2031186493;
 
 		public static FEAuthRequest TA ()
 		{
 			//HACK por ahora uso una constante
-			string xml = File.ReadAllText ("/home/cpereyra/.wine/drive_c/ta.xml");
+			string ta_path = Path.Combine ("home", Environment.UserName, ".wine", "drive_c", "ta.xml");
+			if (!File.Exists (ta_path)) {
+				System.Diagnostics.Process.Start ("wine", "wsaa.exe postresbalcarce.crt postresbalcarce.key ta.xml");
+			}
+			string xml = File.ReadAllText (ta_path);
 			var loginTicketResponse = new LoginTicketResponse (xml);
 			if (loginTicketResponse.ExpirationTime <= DateTime.Now) {
 				//TODO informar ticket expirado y solicitar un nuevo ticket
@@ -49,7 +55,7 @@ namespace Hamekoz.Argentina.Afip
 
 		public static object PuntosDeVenta ()
 		{
-			var service = new Hamekoz.Argentina.Afip.wsfev1.Service ();
+			var service = new Service ();
 			var respuesta = service.FEParamGetPtosVenta (TA ());
 			return respuesta.ResultGet;
 		}
@@ -112,15 +118,9 @@ namespace Hamekoz.Argentina.Afip
 
 			var feCabReq = new FECAECabRequest {
 				CantReg = 1,
-				CbteTipo = 1,
+				CbteTipo = tipo,
 				PtoVta = punto_de_venta
 			};
-
-			var compradores = new List<Comprador> ();
-			compradores.Add (new Comprador {
-				DocNro = long.Parse (comprobante.Cliente.CUIT.Limpiar ()),
-				DocTipo = 80, //HACK CUIT
-			});
 
 			var fEDetRequest = new FECAEDetRequest {
 				CbteDesde = numero,
@@ -176,18 +176,19 @@ namespace Hamekoz.Argentina.Afip
 
 			//TODO refactorizar para soportar un lote de comprobantes
 
-			comprobante.CAE = fECAEResponse.FeDetResp [0].CAE;
-			comprobante.VencimientoCAE = fECAEResponse.FeDetResp [0].CAEFchVto;
-
+			var observaciones = new StringBuilder ();
 			if (fECAEResponse.FeDetResp [0].Observaciones.Length > 0) {
-				var observaciones = new StringBuilder ();
 				foreach (var observacion in fECAEResponse.Errors) {
 					observaciones.AppendFormat ("Código: {0}. Mensaje: {1}", observacion.Code, observacion.Msg);
 					observaciones.AppendLine ();
 				}
-				comprobante.ComentariosAFIP = observaciones.ToString ();
+
 				callback.CallBack.OnWarning ("Advertencia", "Comprobante registrado con observaciones");
 			}
+			comprobante.NumeroAFIP = string.Format ("{0:0000}-{1:00000000}", punto_de_venta, numero);
+			comprobante.CAE = fECAEResponse.FeDetResp [0].CAE;
+			comprobante.VencimientoCAE = fECAEResponse.FeDetResp [0].CAEFchVto;
+			comprobante.ComentariosAFIP = observaciones.ToString ();
 		}
 	}
 }
