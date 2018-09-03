@@ -32,9 +32,6 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Security" />
-    <Reference Include="BouncyCastle.Crypto">
-      <HintPath>..\..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -42,7 +39,14 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="TicketDeAcceso.cs" />
+    <Compile Include="Web References\wsfev1\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="FacturaElectronica.cs" />
+    <Compile Include="FacturaElectronicaExtensions.cs" />
+    <Compile Include="LoginTicketResponse.cs" />
   </ItemGroup>
+  <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" Condition="Exists('..\Hamekoz.Shared\Hamekoz.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <WebReferences Include="Web References" />
@@ -53,6 +57,11 @@
       <RelPath>Web References\WSAA</RelPath>
       <UpdateFromURL>https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl</UpdateFromURL>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\wsfev1</RelPath>
+      <UpdateFromURL>https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\WSAA\LoginCms.wsdl" />
@@ -60,6 +69,10 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="packages.config" />
+    <None Include="Web References\wsfev1\service.wsdl" />
+    <None Include="Web References\wsfev1\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>
