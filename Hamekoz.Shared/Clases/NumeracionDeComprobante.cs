@@ -93,5 +93,11 @@ namespace Hamekoz.Negocio
 				return string.Format ("{0} {1}", Pre, Sucursal?.Nombre);
 			}
 		}
+
+		public string TipoNumero {
+			get { 
+				return string.Format ("{0} {1} {2}", Abreviatura, Letra, UltimoNumeroConFormato ());
+			}
+		}
 	}
 }
