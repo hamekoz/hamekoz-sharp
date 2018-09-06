@@ -97,5 +97,43 @@ namespace Hamekoz.Extensions
 			var result = firstThursday.AddDays (weekNum * 7);
 			return result.AddDays (-3);
 		}
-	}
+
+        public enum DateInterval
+        {
+            Second,
+            Minute,
+            Hour,
+            Day,
+            Week,
+            Month,
+            Quarter,
+            Year
+        }
+
+        public static long Diff(this DateTime StartDate, DateTime EndDate, DateInterval Interval = DateInterval.Day)
+        {
+            var TS = new TimeSpan(EndDate.Ticks - StartDate.Ticks);
+            switch (Interval)
+            {
+                case DateInterval.Day:
+                    return (long)TS.Days;
+                case DateInterval.Hour:
+                    return (long)TS.TotalHours;
+                case DateInterval.Minute:
+                    return (long)TS.TotalMinutes;
+                case DateInterval.Month:
+                    return (long)(TS.Days / 30);
+                case DateInterval.Quarter:
+                    return (long)((TS.Days / 30) / 3);
+                case DateInterval.Second:
+                    return (long)TS.TotalSeconds;
+                case DateInterval.Week:
+                    return (long)(TS.Days / 7);
+                case DateInterval.Year:
+                    return (long)(TS.Days / 365);
+                default:
+                    return 0;
+            }
+        }
+    }
 }
