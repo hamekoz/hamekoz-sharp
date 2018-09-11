@@ -58,7 +58,7 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
-		public SituacionIVA CondicionDeIVA {
+		public TipoDeResponsable Tipo {
 			get;
 			set;
 		}
@@ -112,9 +112,9 @@ namespace Hamekoz.Negocio
 		{
 			CUIT = string.Empty;
 			RazonSocial = string.Empty;
-			CondicionDeIVA = SituacionIVA.CONSUMIDOR_FINAL;
+			Tipo = TipoDeResponsable.Consumidor_Final;
 			Estado = Estados.Gestion;
-            ListaDePrecios = new ListaDePrecios();
+			ListaDePrecios = new ListaDePrecios ();
 		}
 
 		public override string ToString ()

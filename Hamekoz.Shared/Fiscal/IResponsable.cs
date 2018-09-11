@@ -34,7 +34,7 @@ namespace Hamekoz.Fiscal
 
 		string Email { get; }
 
-		SituacionIVA CondicionDeIVA { get; }
+		TipoDeResponsable Tipo { get; }
 
 		CondicionDePago CondicionDePago { get; }
 	}
