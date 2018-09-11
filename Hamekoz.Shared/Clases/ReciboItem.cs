@@ -95,13 +95,13 @@ namespace Hamekoz.Negocio
 			}
 		}
 
-		decimal IItem.TasaIVA {
+		IVA IItem.Iva {
 			get {
-				return 0;
+				return IVA.NoCorresponde;
 			}
 		}
 
-		decimal IItem.IVA {
+		decimal IItem.ImporteIVA {
 			get {
 				return 0;
 			}

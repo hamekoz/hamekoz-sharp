@@ -18,67 +18,67 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using System.ComponentModel;
 
-//TODO quizas deberia moverse a un espacio de nombres mas adecuado como Hamekoz.Argentina.AFIP
-namespace Hamekoz.Negocio
+namespace Hamekoz.Fiscal
 {
 	/// <summary>
 	/// Condición de IVA en operación
 	/// </summary>
-	/// <see cref="http://www.afip.gob.ar/fe/documentos/OperacionCondicionIVA.xls"/>
+	/// <see href="http://www.afip.gob.ar/fe/documentos/OperacionCondicionIVA.xls"/>
 	public enum IVA
 	{
 		/// <summary>
 		/// No Corresponde. NO APLICA PARA FACTURA ELECTRÓNICA.
 		/// </summary>
-		[DescriptionAttribute ("NO CORRESPONDE")]
+		[DescriptionAttribute ("N/C")]
 		NoCorresponde = 0,
 		/// <summary>
 		/// No Gravado
 		/// </summary>
-		[DescriptionAttribute ("NO GRAVADO")]
+		[DescriptionAttribute ("No Gravado")]
 		NoGravado = 1,
 		/// <summary>
 		/// IVA EXENTO
 		/// </summary>
-		[DescriptionAttribute ("IVA EXENTO")]
+		[DescriptionAttribute ("Exento")]
 		Exento = 2,
 		/// <summary>
 		/// IVA 0 %
 		/// </summary>
-		[DescriptionAttribute ("IVA 0 %")]
-		Diferencial5 = 3,
+		[DescriptionAttribute ("0 %")]
+		Cero = 3,
 		/// <summary>
 		/// IVA 10.5 %
 		/// </summary>
-		[DescriptionAttribute ("IVA 10.5 %")]
-		Diferencial1 = 4,
+		[DescriptionAttribute ("10.5 %")]
+		DiezCinco = 4,
 		/// <summary>
 		/// IVA 21 %
 		/// </summary>
-		[DescriptionAttribute ("IVA 21 %")]
-		General = 5,
+		[DescriptionAttribute ("21 %")]
+		Veintiuno = 5,
 		/// <summary>
 		/// IVA 27 %
 		/// </summary>
-		[DescriptionAttribute ("IVA 27 %")]
-		Diferencial2 = 6,
+		[DescriptionAttribute ("27 %")]
+		Veintisiete = 6,
 		/// <summary>
 		/// Gravado. SOLO PARA CONTROLADORES FISCALES.
 		/// </summary>
-		[DescriptionAttribute ("GRAVADO")]
+		[DescriptionAttribute ("Gravado")]
 		Gravado = 7,
 		/// <summary>
 		/// IVA 5 %
 		/// </summary>
-		[DescriptionAttribute ("IVA 5 %")]
-		Diferencial4 = 8,
+		[DescriptionAttribute ("5 %")]
+		Cinco = 8,
 		/// <summary>
 		/// IVA 2.5 %
 		/// </summary>
-		[DescriptionAttribute ("IVA 2.5 %")]
-		Diferencial3 = 9,
+		[DescriptionAttribute ("2.5 %")]
+		DosCinco = 9,
 	}
 
 	public static class IVAExtension
@@ -86,21 +86,81 @@ namespace Hamekoz.Negocio
 		public static decimal Alicuota (this IVA iva)
 		{
 			switch (iva) {
-			case IVA.General:
+			case IVA.Veintiuno:
 				return 21m;
-			case IVA.Diferencial1:
+			case IVA.DiezCinco:
 				return 10.5m;
-			case IVA.Diferencial2:
+			case IVA.Veintisiete:
 				return 27m;
-			case IVA.Diferencial3:
+			case IVA.DosCinco:
 				return 2.5m;
-			case IVA.Diferencial4:
+			case IVA.Cinco:
 				return 5m;
-			case IVA.Diferencial5:
-			case IVA.Exento:
-				return 0m;
 			default:
-				return 0;
+				return 0m;
+			}
+		}
+
+		public static IVA Get (decimal iva)
+		{
+			int valor = Convert.ToInt32 (Math.Round (iva, 0));
+			switch (valor) {
+			case 21:
+				return IVA.Veintiuno;
+			case 10:
+				return IVA.DiezCinco;
+			case 27:
+				return IVA.Veintisiete;
+			case 2:
+				return IVA.DosCinco;
+			case 5:
+				return IVA.Cinco;
+			case 0:
+				return IVA.Cero;
+			default:
+				return IVA.NoCorresponde;
+			}
+		}
+
+		public static IVA Get (double iva)
+		{
+			int valor = Convert.ToInt32 (Math.Round (iva, 0));
+			switch (valor) {
+			case 21:
+				return IVA.Veintiuno;
+			case 10:
+				return IVA.DiezCinco;
+			case 27:
+				return IVA.Veintisiete;
+			case 2:
+				return IVA.DosCinco;
+			case 5:
+				return IVA.Cinco;
+			case 0:
+				return IVA.Cero;
+			default:
+				return IVA.NoCorresponde;
+			}
+		}
+
+		public static IVA Get (float iva)
+		{
+			int valor = Convert.ToInt32 (Math.Round (iva, 0));
+			switch (valor) {
+			case 21:
+				return IVA.Veintiuno;
+			case 10:
+				return IVA.DiezCinco;
+			case 27:
+				return IVA.Veintisiete;
+			case 2:
+				return IVA.DosCinco;
+			case 5:
+				return IVA.Cinco;
+			case 0:
+				return IVA.Cero;
+			default:
+				return IVA.NoCorresponde;
 			}
 		}
 	}

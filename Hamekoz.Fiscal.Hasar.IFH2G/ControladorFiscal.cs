@@ -214,7 +214,7 @@ namespace Hamekoz.Fiscal.Hasar.IFH2G
 						(double)renglon.Cantidad,
 						(double)renglon.Precio,
 						HasarImpresoraFiscalRG3561.CondicionesIVA.GRAVADO,
-						(double)renglon.TasaIVA,
+						(double)renglon.Iva.Alicuota (),
 						HasarImpresoraFiscalRG3561.ModosDeMonto.MODO_SUMA_MONTO,
 						HasarImpresoraFiscalRG3561.ModosDeImpuestosInternos.II_FIJO_MONTO,
 						(double)renglon.Impuestos,

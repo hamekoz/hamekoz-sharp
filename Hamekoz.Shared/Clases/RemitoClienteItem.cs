@@ -62,11 +62,11 @@ namespace Hamekoz.Negocio
 			}
 		}
 
-		public new decimal IVA {
+		public new decimal ImporteIVA {
 			get {
 				if (Id == 0)
-					base.IVA = Math.Round (Articulo.IVA * Cantidad * (1 + (decimal)porcentaje / 100), 2);
-				return base.IVA;
+					base.ImporteIVA = Math.Round (Articulo.IVA * Cantidad * (1 + (decimal)porcentaje / 100), 2);
+				return base.ImporteIVA;
 			}
 		}
 
