@@ -39,6 +39,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogos\PeriodoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogos\PeriodoDialog.Designer.cs">
+      <DependentUpon>PeriodoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogos\SeleccionFechaDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogos\SeleccionFechaDialog.Designer.cs">
+      <DependentUpon>SeleccionFechaDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogos\SeleccionValorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogos\SeleccionValorDialog.Designer.cs">
+      <DependentUpon>SeleccionValorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Splash.cs">
       <SubType>Form</SubType>
@@ -87,6 +105,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Hamekoz.ico" />
+    <Content Include="Imagenes\Banner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Icono.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagenes\Splash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
