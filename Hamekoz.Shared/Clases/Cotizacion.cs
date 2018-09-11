@@ -75,7 +75,7 @@ namespace Hamekoz.Negocio
 
 		public override string ToString ()
 		{
-			return string.Format ("{0}: 1 = {1:C}", Moneda.Nombre, Valor);
+			return string.Format ("{0}: 1 = {1:C}", Moneda.Codigo, Valor);
 		}
 	}
 }
