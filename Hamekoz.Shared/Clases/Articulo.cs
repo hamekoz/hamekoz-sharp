@@ -81,6 +81,7 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
+		//TODO reemplazar por Iva de tipo IVA
 		public decimal TasaDeIVA {
 			get;
 			set;
@@ -92,6 +93,7 @@ namespace Hamekoz.Negocio
 			}
 		}
 
+		//TODO renombrar por ImporteIVA
 		public decimal IVA {
 			get {
 				return Math.Round (Precio - Precio / (1 + TasaDeIVA / 100), 2);

@@ -36,12 +36,11 @@ namespace Hamekoz.Fiscal.Hasar.IFH2G
 
 		void DatosClientes (IResponsable cliente)
 		{
-			switch (cliente.CondicionDeIVA) {
-			case SituacionIVA.SIN_DATO:
+			switch (cliente.Tipo) {
+			case TipoDeResponsable.Sin_Dato:
+			case TipoDeResponsable.Consumidor_Final:
 				break;
-			case SituacionIVA.CONSUMIDOR_FINAL:
-				break;
-			case SituacionIVA.MONOTRIBUTO:
+			case TipoDeResponsable.Responsable_Monotributo:
 				fiscalHasar.CargarDatosCliente (cliente.RazonSocial
 												   , cliente.CUIT.Replace ("-", "")
 												   , HasarImpresoraFiscalRG3561.TiposDeResponsabilidadesCliente.MONOTRIBUTO
@@ -51,7 +50,7 @@ namespace Hamekoz.Fiscal.Hasar.IFH2G
 												   , string.Empty
 												   , string.Empty);
 				break;
-			case SituacionIVA.RESPONSABLE_INSCRIPTO:
+			case TipoDeResponsable.IVA_Responsable_Inscripto:
 				fiscalHasar.CargarDatosCliente (cliente.RazonSocial
 												   , cliente.CUIT.Replace ("-", "")
 													, HasarImpresoraFiscalRG3561.TiposDeResponsabilidadesCliente.RESPONSABLE_INSCRIPTO
@@ -61,7 +60,7 @@ namespace Hamekoz.Fiscal.Hasar.IFH2G
 												   , string.Empty
 												   , string.Empty);
 				break;
-			case SituacionIVA.EXENTO:
+			case TipoDeResponsable.IVA_Sujeto_Exento:
 				fiscalHasar.CargarDatosCliente (cliente.RazonSocial
 												   , cliente.CUIT.Replace ("-", "")
 													, HasarImpresoraFiscalRG3561.TiposDeResponsabilidadesCliente.RESPONSABLE_EXENTO
@@ -160,13 +159,13 @@ namespace Hamekoz.Fiscal.Hasar.IFH2G
 		public void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, decimal vueltoefectivo)
 		{
 			try {
-				switch (factura.Responsable.CondicionDeIVA) {
-				case SituacionIVA.SIN_DATO:
+				switch (factura.Responsable.Tipo) {
+				case TipoDeResponsable.Sin_Dato:
 					throw new Exception ("No se puede facturar a un cliente que no tiene declarada situacion respecto al IVA");
-				case SituacionIVA.CONSUMIDOR_FINAL:
+				case TipoDeResponsable.Consumidor_Final:
 					fiscalHasar.AbrirDocumento (HasarImpresoraFiscalRG3561.TiposComprobante.TIQUE_FACTURA_C);
 					break;
-				case SituacionIVA.MONOTRIBUTO:
+				case TipoDeResponsable.Responsable_Monotributo:
 					fiscalHasar.CargarDatosCliente (
 						factura.Responsable.RazonSocial,
 						factura.Responsable.CUIT.Replace ("-", ""),
@@ -179,7 +178,7 @@ namespace Hamekoz.Fiscal.Hasar.IFH2G
 					);
 					fiscalHasar.AbrirDocumento (HasarImpresoraFiscalRG3561.TiposComprobante.TIQUE_FACTURA_B);
 					break;
-				case SituacionIVA.RESPONSABLE_INSCRIPTO:
+				case TipoDeResponsable.IVA_Responsable_Inscripto:
 					fiscalHasar.CargarDatosCliente (
 						factura.Responsable.RazonSocial,
 						factura.Responsable.CUIT.Replace ("-", ""),
@@ -192,7 +191,7 @@ namespace Hamekoz.Fiscal.Hasar.IFH2G
 					);
 					fiscalHasar.AbrirDocumento (HasarImpresoraFiscalRG3561.TiposComprobante.TIQUE_FACTURA_A);
 					break;
-				case SituacionIVA.EXENTO:
+				case TipoDeResponsable.IVA_Sujeto_Exento:
 					fiscalHasar.CargarDatosCliente (
 						factura.Responsable.RazonSocial,
 						factura.Responsable.CUIT.Replace ("-", ""),
@@ -214,7 +213,7 @@ namespace Hamekoz.Fiscal.Hasar.IFH2G
 						(double)renglon.Cantidad,
 						(double)renglon.Precio,
 						HasarImpresoraFiscalRG3561.CondicionesIVA.GRAVADO,
-						(double)renglon.TasaIVA,
+						(double)renglon.Iva.Alicuota (),
 						HasarImpresoraFiscalRG3561.ModosDeMonto.MODO_SUMA_MONTO,
 						HasarImpresoraFiscalRG3561.ModosDeImpuestosInternos.II_FIJO_MONTO,
 						(double)renglon.Impuestos,

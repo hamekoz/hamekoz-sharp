@@ -92,24 +92,27 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
+		//FIXME el calculo de Neto deberia ser igual que ComprobanteClienteItem
 		public decimal Neto {
 			get {
-				return Total - IVA - Impuestos;
+				return Total - ImporteIVA - Impuestos;
 			}
 		}
 
-		public decimal TasaIVA {
+		public IVA Iva {
 			get;
 			set;
-		}
+		} = IVA.Veintiuno;
 
-		public decimal IVA {
+		//FIXME el calculo de ImporteIVA deberia ser igual que ComprobanteClienteItem
+		public decimal ImporteIVA {
 			get;
 			set;
 		}
 
 		decimal impuestos;
 
+		//FIXME el calculo de Impuestos deberia ser igual que ComprobanteClienteItem
 		public decimal Impuestos {
 			get {
 				if (Id == 0)
@@ -123,10 +126,11 @@ namespace Hamekoz.Negocio
 
 		decimal total;
 
+		//FIXME el calculo de Total deberia ser igual que ComprobanteClienteItem
 		public decimal Total {
 			get {
 				if (Id == 0)
-					total = Math.Round (Cantidad * Precio + IVA + Impuestos, 2);
+					total = Math.Round (Cantidad * Precio + ImporteIVA + Impuestos, 2);
 				return total;
 			}
 			set {

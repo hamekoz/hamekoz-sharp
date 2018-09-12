@@ -173,7 +173,7 @@ namespace Hamekoz.Negocio
 
 		decimal IComprobante.IVA {
 			get {
-				return Items.Sum (r => r.IVA);
+				return Items.Sum (r => r.ImporteIVA);
 			}
 		}
 

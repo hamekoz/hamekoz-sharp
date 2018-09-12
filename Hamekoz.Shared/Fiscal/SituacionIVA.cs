@@ -18,11 +18,13 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 
-//Mapeado con el PADRON Afip
 namespace Hamekoz.Fiscal
 {
 	//TODO deberia ser un enumerado de TiposDeResponsables segun la tabla de AFIP
+	[Obsolete ("Usar TipoDeResponsable")]
+	//Mapeado con el PADRON Afip
 	public enum SituacionIVA
 	{
 		SIN_DATO = 0,
@@ -37,7 +39,7 @@ namespace Hamekoz.Fiscal
 	/// </summary>
 	/// <description>Lista de responsabilidades frente al IVA segun AFIP</description>
 	/// <see ref="https://www.afip.gob.ar/fe/documentos/TABLA%20TIPO%20RESPONSABLES%20V.0%20%2025082010.xls"/>
-	public enum TiposDeResponsables
+	public enum TipoDeResponsable
 	{
 		Sin_Dato = 0,
 		IVA_Responsable_Inscripto = 1,

@@ -71,7 +71,7 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
-		public SituacionIVA CondicionDeIVA {
+		public TipoDeResponsable Tipo {
 			get;
 			set;
 		}
