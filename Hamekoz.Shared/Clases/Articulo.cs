@@ -119,6 +119,7 @@ namespace Hamekoz.Negocio
 			Medida = Medidas.Unidad;
 			TasaDeIVA = 21;
 			Proveedores = new List<ProveedorDeArticulo> ();
+            EANs = new List<string>();
 		}
 
 		#region IDescriptible
