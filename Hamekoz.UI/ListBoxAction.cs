@@ -37,7 +37,7 @@ namespace Hamekoz.UI
 		public string Title {
 			get;
 			set;
-		} = typeof(T).Name.Humanize ();
+		}
 
 		public bool ActionsVisible {
 			get { return actions.Visible; }
@@ -88,6 +88,8 @@ namespace Hamekoz.UI
 
 		public ListBoxAction (IController<T> controller = null)
 		{
+			Title = TypeName ();
+
 			add.Clicked += delegate {
 				var dialogo = new Dialog {
 					Title = string.Format (Application.TranslationCatalog.GetString ("Add {0}"), Title),
@@ -98,7 +100,8 @@ namespace Hamekoz.UI
 				var w = new ListBoxFilter<T> {
 					List = ListAvailable.Except (List).ToList () ?? controller.List.Except (List).ToList (),
 					MinHeight = 200,
-					MinWidth = 300
+					MinWidth = 300,
+					Label = TypeName (),
 				};
 				var box = new HBox ();
 				box.PackStart (w, true, true);
@@ -123,7 +126,7 @@ namespace Hamekoz.UI
 			remove.Clicked += delegate {
 				var row = listBox.SelectedRow;
 				if (row == -1) {
-					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to remove"), typeof(T).Name.Humanize ()));
+					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to remove"), TypeName ()));
 				} else {
 					if (OnPreventRemove (listBox.SelectedItem))
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A validation rule prevents you from deleting the selected item"));
@@ -140,6 +143,12 @@ namespace Hamekoz.UI
 			actions.PackStart (remove);
 			PackStart (listBox, true, true);
 			PackEnd (actions, false, true);
+		}
+
+		string TypeName ()
+		{
+			var type = typeof(T);
+			return type.IsInterface ? type.Name.Remove (0, 1).Humanize () : type.Name.Humanize ();
 		}
 
 		public delegate bool PreventRemoveHandler (T item);

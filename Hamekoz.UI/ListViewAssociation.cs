@@ -209,7 +209,7 @@ namespace Hamekoz.UI
 				//TODO ver como resolver que se puedan remover multiples items a la vez
 				var row = listView.SelectedRow;
 				if (row == -1) {
-					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to remove"), typeof(T).Name.Humanize ()));
+					MessageDialog.ShowMessage (string.Format (Application.TranslationCatalog.GetString ("Select a {0} to remove"), TypeName ()));
 				} else {
 					if (OnPreventRemove (listView.SelectedItem))
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A validation rule prevents you from deleting the selected item"));
@@ -225,6 +225,12 @@ namespace Hamekoz.UI
 			actions.PackStart (remove);
 			PackStart (listView, true, true);
 			PackEnd (actions, false, true);
+		}
+
+		string TypeName ()
+		{
+			var type = typeof(T);
+			return type.IsInterface ? type.Name.Remove (0, 1).Humanize () : type.Name.Humanize ();
 		}
 
 		public delegate bool SimilarityHandler (IList<T> list, T item);
