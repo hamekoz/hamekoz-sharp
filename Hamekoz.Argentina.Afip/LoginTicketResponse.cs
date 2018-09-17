@@ -25,6 +25,7 @@ namespace Hamekoz.Argentina.Afip
 {
 	public class LoginTicketResponse
 	{
+		public long cuit;
 		public string source;
 		public string destination;
 		public string uniqueId;
@@ -59,6 +60,8 @@ namespace Hamekoz.Argentina.Afip
 			expirationTime = element.SelectSingleNode ("/loginTicketResponse/header/expirationTime").InnerText;
 			sign = element.SelectSingleNode ("/loginTicketResponse/credentials/sign").InnerText;
 			token = element.SelectSingleNode ("/loginTicketResponse/credentials/token").InnerText;
+			//FIXME en produccion la linea destination tiene un formato distinto a homologacion hay que ver como contemplar para obtener bien el cuit
+			//cuit = long.Parse (destination.Replace ("SERIALNUMBER=CUIT ", "").Remove (destination.IndexOf (',')));
 		}
 	}
 }
