@@ -67,26 +67,26 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 
 		void DatosClientes (IResponsable cliente)
 		{
-			switch (cliente.CondicionDeIVA) {
-			case SituacionIVA.SIN_DATO:
+			switch (cliente.Tipo) {
+			case TipoDeResponsable.Sin_Dato:
 				break;
-			case SituacionIVA.CONSUMIDOR_FINAL:
+			case TipoDeResponsable.Consumidor_Final:
 				break;
-			case SituacionIVA.MONOTRIBUTO:
+			case TipoDeResponsable.Responsable_Monotributo:
 				fiscalHasar.DatosCliente (cliente.RazonSocial
                         , cliente.CUIT.Replace ("-", "")
                         , FiscalPrinterLib.TiposDeDocumento.TIPO_CUIT
                         , FiscalPrinterLib.TiposDeResponsabilidades.MONOTRIBUTO
                         , 1);
 				break;
-			case SituacionIVA.RESPONSABLE_INSCRIPTO:
+			case TipoDeResponsable.IVA_Responsable_Inscripto:
 				fiscalHasar.DatosCliente (cliente.RazonSocial
                         , cliente.CUIT.Replace ("-", "")
                         , FiscalPrinterLib.TiposDeDocumento.TIPO_CUIT
                         , FiscalPrinterLib.TiposDeResponsabilidades.RESPONSABLE_INSCRIPTO
                         , 1);
 				break;
-			case SituacionIVA.EXENTO:
+			case TipoDeResponsable.IVA_Sujeto_Exento:
 				fiscalHasar.DatosCliente (cliente.RazonSocial
                         , cliente.CUIT.Replace ("-", "")
                         , FiscalPrinterLib.TiposDeDocumento.TIPO_CUIT
