@@ -24,53 +24,53 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Hamekoz.Argentina.Afip.wsfev1;
+using Hamekoz.Fiscal;
 
 namespace Hamekoz.Argentina.Afip
 {
 	public static class FacturaElectronicaExtensions
 	{
-		const string homo_url = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL";
+		public const string homo_url = "http://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
+		const string url = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL";
 		//HACK por ahora uso una constante
 		const long cuit_balcarce = 30655462224;
-		const long cuit = 2031186493;
+		const long cuit = 20311864093;
 
-		public static FEAuthRequest TA ()
+		public static FEAuthRequest TA (string ta_path)
 		{
-			//HACK por ahora uso una constante
-			string ta_path = Path.Combine ("home", Environment.UserName, ".wine", "drive_c", "ta.xml");
 			if (!File.Exists (ta_path)) {
-				System.Diagnostics.Process.Start ("wine", "wsaa.exe postresbalcarce.crt postresbalcarce.key ta.xml");
+				throw new FileNotFoundException ("No existe el archivo", ta_path);
 			}
 			string xml = File.ReadAllText (ta_path);
 			var loginTicketResponse = new LoginTicketResponse (xml);
-			if (loginTicketResponse.ExpirationTime <= DateTime.Now) {
-				//TODO informar ticket expirado y solicitar un nuevo ticket
-			}
+			if (loginTicketResponse.ExpirationTime <= DateTime.Now)
+				throw new Exception ("El Ticket de Acceso a los Web Servicios de AFIP a expirado, debe solicitar uno nuevo");
 			return new FEAuthRequest {
-				Cuit = cuit,
+				Cuit = cuit, //FIXME reemplazar por el cuit leido del TA
 				Sign = loginTicketResponse.sign,
 				Token = loginTicketResponse.token,
 			};
 		}
 
-		public static object PuntosDeVenta ()
+		public static object PuntosDeVenta (string ta_path)
 		{
 			var service = new Service ();
-			var respuesta = service.FEParamGetPtosVenta (TA ());
+			var respuesta = service.FEParamGetPtosVenta (TA (ta_path));
 			return respuesta.ResultGet;
 		}
 
-		static IEnumerable<AlicIva> FEIVAS (this Hamekoz.Fiscal.IComprobante comprobante)
+		static IEnumerable<AlicIva> FEIVAS (this IComprobante comprobante)
 		{
-			return from i in comprobante.IVAItems
+			//TODO revisar porque quizas el IVA exento tendria que tratarlo de otra forma
+			return from i in comprobante.IVAItems.Where (i => i.IVA != IVA.Exento)
 			       select new AlicIva {
-				Id = 5, //HACK IVA 21%
+				Id = (int)i.IVA,
 				BaseImp = (double)i.Neto,
 				Importe = (double)i.Importe
 			};
 		}
 
-		static IEnumerable<Tributo> FETributos (this Hamekoz.Fiscal.IComprobante comprobante)
+		static IEnumerable<Tributo> FETributos (this IComprobante comprobante)
 		{
 			return from i in comprobante.Impuestos
 			       select new Tributo {
@@ -103,11 +103,14 @@ namespace Hamekoz.Argentina.Afip
 			throw new NotImplementedException ("Tipo de comprobante no soportado");
 		}
 
-		public static void SolicitarCAE (this Hamekoz.Negocio.ComprobanteCliente comprobante, Hamekoz.Core.ICallBack callback)
+		public static void SolicitarCAE (this Hamekoz.Negocio.ComprobanteCliente comprobante, string ta_path, Hamekoz.Core.ICallBack callback)
 		{
 			//TODO poder cambiar de homologacion a produccion
 			var service = new Service ();
-			var ta = TA ();
+			#if DEBUG
+			service = new Service (homo_url);
+			#endif
+			var ta = TA (ta_path);
 
 			int tipo = ComprobanteTipo (comprobante);
 			int punto_de_venta = int.Parse (comprobante.Tipo.Pre);
@@ -122,6 +125,11 @@ namespace Hamekoz.Argentina.Afip
 				PtoVta = punto_de_venta
 			};
 
+			double exento = 0;
+			var ivaExento = comprobante.IVAItems.FirstOrDefault (i => i.IVA == IVA.Exento);
+			if (ivaExento != null)
+				exento = (double)ivaExento.Neto;
+
 			var fEDetRequest = new FECAEDetRequest {
 				CbteDesde = numero,
 				CbteFch = comprobante.Emision.ToString ("yyyyMMdd"),
@@ -134,9 +142,9 @@ namespace Hamekoz.Argentina.Afip
 				//HACK CUIT
 				DocTipo = 80,
 				ImpIVA = (double)comprobante.IVA, //TODO debe excluirse el importe exento, para tipo C debe ser 0
-				ImpNeto = (double)comprobante.Neto,
+				ImpNeto = (double)comprobante.Gravado - exento, //FIXME, aca debo consultar con contador como tratarlo
 				//HACK deberia tener el campo en la clase Comprobante
-				ImpOpEx = (double)comprobante.IVAItems.FirstOrDefault (i => i.IVA == Hamekoz.Negocio.IVA.Exento).Importe,
+				ImpOpEx = exento,
 				ImpTotal = (double)comprobante.Total,
 				//TODO en caso de ser de tipo C debe ser siempre 0
 				ImpTotConc = (double)comprobante.NoGravado,
@@ -156,16 +164,16 @@ namespace Hamekoz.Argentina.Afip
 				FeDetReq = feDetReq.ToArray ()
 			};
 
-			FECAEResponse fECAEResponse = service.FECAESolicitar (TA (), solicitud);
+			FECAEResponse fECAEResponse = service.FECAESolicitar (ta, solicitud);
 
-			if (fECAEResponse.Events.Length > 0) {
+			if (fECAEResponse.Events != null) {
 				foreach (var evento in fECAEResponse.Events) {
 					string mensaje = string.Format ("Código: {0}. Mensaje: {1}", evento.Code, evento.Msg);
-					callback.CallBack.OnMessage ("Eventos AFIP", mensaje);
+					callback.CallBack.OnMessage ("Evento AFIP", mensaje);
 				}
 			}
 
-			if (fECAEResponse.Errors.Length > 0) {
+			if (fECAEResponse.Errors != null) {
 				var errores = new StringBuilder ();
 				foreach (var error in fECAEResponse.Errors) {
 					errores.AppendFormat ("Código: {0}. Mensaje: {1}", error.Code, error.Msg);
@@ -177,14 +185,18 @@ namespace Hamekoz.Argentina.Afip
 			//TODO refactorizar para soportar un lote de comprobantes
 
 			var observaciones = new StringBuilder ();
-			if (fECAEResponse.FeDetResp [0].Observaciones.Length > 0) {
-				foreach (var observacion in fECAEResponse.Errors) {
+			if (fECAEResponse.FeDetResp [0].Observaciones != null) {
+				foreach (var observacion in fECAEResponse.FeDetResp [0].Observaciones) {
 					observaciones.AppendFormat ("Código: {0}. Mensaje: {1}", observacion.Code, observacion.Msg);
 					observaciones.AppendLine ();
 				}
 
-				callback.CallBack.OnWarning ("Advertencia", "Comprobante registrado con observaciones");
+				callback.CallBack.OnWarning ("Comprobante con observaciones", observaciones.ToString ());
 			}
+
+			if (fECAEResponse.FeDetResp [0].Resultado == "R")
+				throw new Exception ("Comprobante rechazado");
+
 			comprobante.NumeroAFIP = string.Format ("{0:0000}-{1:00000000}", punto_de_venta, numero);
 			comprobante.CAE = fECAEResponse.FeDetResp [0].CAE;
 			comprobante.VencimientoCAE = fECAEResponse.FeDetResp [0].CAEFchVto;
