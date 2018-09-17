@@ -42,6 +42,7 @@ namespace Hamekoz.Fiscal
 		/// <summary>
 		/// IVA EXENTO
 		/// </summary>
+		/// <remarks>No valido para Factura Eletronica</remarks>
 		[DescriptionAttribute ("Exento")]
 		Exento = 2,
 		/// <summary>
