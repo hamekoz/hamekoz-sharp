@@ -8,6 +8,8 @@
     <RootNamespace>Hamekoz.Argentina.Afip</RootNamespace>
     <AssemblyName>Hamekoz.Argentina.Afip</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,11 +44,9 @@
     <Compile Include="Web References\wsfev1\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="FacturaElectronica.cs" />
     <Compile Include="FacturaElectronicaExtensions.cs" />
     <Compile Include="LoginTicketResponse.cs" />
   </ItemGroup>
-  <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" Condition="Exists('..\Hamekoz.Shared\Hamekoz.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <WebReferences Include="Web References" />
@@ -74,5 +74,11 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
+      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
+      <Name>Hamekoz.Core</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
