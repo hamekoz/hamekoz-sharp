@@ -178,7 +178,7 @@ namespace Hamekoz.Negocio
 			set;
 		} = string.Empty;
 
-		public override string ToString ()
+		public sealed override string ToString ()
 		{
 			return string.Format ("{0} {1} {2}", Tipo.Abreviatura, Tipo.Letra, Numero);
 		}

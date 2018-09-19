@@ -26,7 +26,7 @@ using Hamekoz.Fiscal;
 namespace Hamekoz.Negocio
 {
 	//UNDONE unificar logica comun en clase abstracta Comprobante
-	public partial class Recibo : Comprobante, IPersistible , IComprobante, ISearchable
+	public partial class Recibo : Comprobante, IPersistible , IComprobante, IComprobanteElectronico, ISearchable
 	{
 		public Recibo ()
 		{
@@ -46,7 +46,7 @@ namespace Hamekoz.Negocio
 			}
 		}
 
-		public IList<ReciboItem> Items {
+		public new IList<ReciboItem> Items {
 			get {
 				return base.Items.Cast<ReciboItem> ().ToList ();
 			}
@@ -65,7 +65,7 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
-		public string NumeroComprobanteAFIP {
+		public string NumeroAFIP {
 			get;
 			set;
 		}
@@ -108,11 +108,6 @@ namespace Hamekoz.Negocio
 		}
 
 		#endregion
-
-		public override string ToString ()
-		{
-			return string.Format ("{0} {1} {2}", Tipo.Abreviatura, Tipo.Letra, Numero);
-		}
 
 		#region ISearchable implementation
 
