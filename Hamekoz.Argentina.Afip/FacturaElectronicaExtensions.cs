@@ -137,7 +137,7 @@ namespace Hamekoz.Argentina.Afip
 				//HACK CUIT
 				DocTipo = 80,
 				ImpIVA = (double)comprobante.IVA, //TODO debe excluirse el importe exento, para tipo C debe ser 0
-				ImpNeto = (double)(comprobante.Gravado - comprobante.Exento), //FIXME, aca debo consultar con contador como tratarlo
+				ImpNeto = (double)(comprobante.Gravado - comprobante.Exento),
 				//HACK deberia tener el campo en la clase Comprobante
 				ImpOpEx = (double)comprobante.Exento,
 				ImpTotal = (double)comprobante.Total,
@@ -191,8 +191,11 @@ namespace Hamekoz.Argentina.Afip
 
 			if (fECAEResponse.FeDetResp [0].Resultado == "R")
 				throw new Exception ("Comprobante rechazado");
-
+			
+			//TODO ver si el formato seria correcto
+			comprobante.Tipo.UltimoNumero = numero;
 			comprobante.NumeroAFIP = string.Format ("{0:0000}-{1:00000000}", punto_de_venta, numero);
+			comprobante.Numero = comprobante.NumeroAFIP;
 			comprobante.CAE = fECAEResponse.FeDetResp [0].CAE;
 			comprobante.VencimientoCAE = fECAEResponse.FeDetResp [0].CAEFchVto;
 			comprobante.ComentariosAFIP = observaciones.ToString ();
