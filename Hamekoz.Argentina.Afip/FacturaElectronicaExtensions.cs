@@ -36,13 +36,16 @@ namespace Hamekoz.Argentina.Afip
 		const long cuit_balcarce = 30655462224;
 		const long cuit = 20311864093;
 
+		static LoginTicketResponse loginTicketResponse;
+
 		public static FEAuthRequest TA (string ta_path)
 		{
-			if (!File.Exists (ta_path)) {
-				throw new FileNotFoundException ("No existe el archivo", ta_path);
+			if (loginTicketResponse == null || loginTicketResponse.ExpirationTime > DateTime.Now) {
+				if (!File.Exists (ta_path))
+					throw new FileNotFoundException ("No existe el archivo", ta_path);
+				string xml = File.ReadAllText (ta_path);
+				loginTicketResponse = new LoginTicketResponse (xml);
 			}
-			string xml = File.ReadAllText (ta_path);
-			var loginTicketResponse = new LoginTicketResponse (xml);
 			if (loginTicketResponse.ExpirationTime <= DateTime.Now)
 				throw new Exception ("El Ticket de Acceso a los Web Servicios de AFIP a expirado, debe solicitar uno nuevo");
 			return new FEAuthRequest {
