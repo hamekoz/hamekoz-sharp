@@ -45,6 +45,7 @@ namespace Hamekoz.Fiscal
 
 		string Numero { get; set; }
 
+		//TODO reemplazar por NumeracionDeComprobante o por TipoDeComprobante
 		string PuntoDeVenta { get; }
 
 		DateTime Emision { get; }
@@ -57,17 +58,19 @@ namespace Hamekoz.Fiscal
 
 		IList<ImpuestoItem> Impuestos { get; }
 
-		decimal Neto { get; }
-
-		decimal Total { get; }
-
 		decimal Gravado { get; }
 
 		decimal NoGravado { get; }
 
+		decimal Exento { get; }
+
+		decimal Neto { get; }
+
 		decimal IVA { get; }
 
 		decimal Tributos { get; }
+
+		decimal Total { get; }
 
 		string Observaciones { get; }
 	}

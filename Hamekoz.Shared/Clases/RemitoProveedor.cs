@@ -189,6 +189,12 @@ namespace Hamekoz.Negocio
 			}
 		}
 
+		decimal IComprobante.Exento {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+
 		decimal IComprobante.Tributos {
 			get {
 				return Items.Sum (r => r.Impuestos);

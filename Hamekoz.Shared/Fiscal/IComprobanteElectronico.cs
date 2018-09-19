@@ -18,16 +18,19 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Hamekoz.Negocio;
 
 namespace Hamekoz.Fiscal
 {
-	public interface IComprobanteElectronico
+	public interface IComprobanteElectronico : IComprobante
 	{
+		NumeracionDeComprobante Tipo { get; }
+
+		string NumeroAFIP { get; set; }
+
 		string CAE { get; set; }
 
 		string VencimientoCAE { get; set; }
-
-		string NumeroAFIP { get; set; }
 
 		string ComentariosAFIP { get; set; }
 	}

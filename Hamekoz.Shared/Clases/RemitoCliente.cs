@@ -141,6 +141,12 @@ namespace Hamekoz.Negocio
 			}
 		}
 
+		decimal IComprobante.Exento {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+
 		decimal IComprobante.Neto {
 			get {
 				throw new NotImplementedException ();

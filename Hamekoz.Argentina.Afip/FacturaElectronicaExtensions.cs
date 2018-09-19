@@ -82,7 +82,7 @@ namespace Hamekoz.Argentina.Afip
 			};
 		}
 
-		static int ComprobanteTipo (this Hamekoz.Negocio.Comprobante comprobante)
+		static int ComprobanteTipo (this IComprobanteElectronico comprobante)
 		{
 			var tipo = comprobante.Tipo;
 
@@ -103,7 +103,7 @@ namespace Hamekoz.Argentina.Afip
 			throw new NotImplementedException ("Tipo de comprobante no soportado");
 		}
 
-		public static void SolicitarCAE (this Hamekoz.Negocio.ComprobanteCliente comprobante, string ta_path, Hamekoz.Core.ICallBack callback)
+		public static void SolicitarCAE (this IComprobanteElectronico comprobante, string ta_path, Hamekoz.Core.ICallBack callback)
 		{
 			//TODO poder cambiar de homologacion a produccion
 			var service = new Service ();
@@ -125,11 +125,6 @@ namespace Hamekoz.Argentina.Afip
 				PtoVta = punto_de_venta
 			};
 
-			double exento = 0;
-			var ivaExento = comprobante.IVAItems.FirstOrDefault (i => i.IVA == IVA.Exento);
-			if (ivaExento != null)
-				exento = (double)ivaExento.Neto;
-
 			var fEDetRequest = new FECAEDetRequest {
 				CbteDesde = numero,
 				CbteFch = comprobante.Emision.ToString ("yyyyMMdd"),
@@ -138,13 +133,13 @@ namespace Hamekoz.Argentina.Afip
 				Compradores = null, //TODO revisar porque no encuentro documentacion
 				//HACK producto
 				Concepto = 1,
-				DocNro = long.Parse (comprobante.Cliente.CUIT.Limpiar ()),
+				DocNro = long.Parse (comprobante.Responsable.CUIT.Limpiar ()),
 				//HACK CUIT
 				DocTipo = 80,
 				ImpIVA = (double)comprobante.IVA, //TODO debe excluirse el importe exento, para tipo C debe ser 0
-				ImpNeto = (double)comprobante.Gravado - exento, //FIXME, aca debo consultar con contador como tratarlo
+				ImpNeto = (double)(comprobante.Gravado - comprobante.Exento), //FIXME, aca debo consultar con contador como tratarlo
 				//HACK deberia tener el campo en la clase Comprobante
-				ImpOpEx = exento,
+				ImpOpEx = (double)comprobante.Exento,
 				ImpTotal = (double)comprobante.Total,
 				//TODO en caso de ser de tipo C debe ser siempre 0
 				ImpTotConc = (double)comprobante.NoGravado,

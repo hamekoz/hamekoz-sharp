@@ -113,6 +113,10 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
+		//INFO Gravado = Neto + Exento
+		//INFO Subtotal = Gravado + NoGravado
+		//INFO Total = Subtotal + IVA + OtrosImpuestos
+
 		public decimal Gravado {
 			get;
 			set;
@@ -123,6 +127,10 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
+		public decimal Exento {
+			get;
+			set;
+		}
 
 		public decimal IVA {
 			get;
@@ -138,6 +146,7 @@ namespace Hamekoz.Negocio
 			get { return Gravado + NoGravado; }
 		}
 
+		//TODO el total seria el subtotal mas los impuestos
 		public decimal Total {
 			get;
 			set;

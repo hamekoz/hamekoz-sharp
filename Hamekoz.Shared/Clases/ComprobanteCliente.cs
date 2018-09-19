@@ -19,7 +19,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Hamekoz.Fiscal;
@@ -33,7 +32,7 @@ namespace Hamekoz.Negocio
 		{
 			//HACK aca no deberia inicializarse los atributos complejos
 			Cliente = new Cliente ();
-            Cliente.CondicionDePago = new CondicionDePago();
+			Cliente.CondicionDePago = new CondicionDePago ();
 			Tipo = new NumeracionDeComprobante ();
 			Remito = new RemitoCliente ();
 			CondicionDePago = new CondicionDePago ();
