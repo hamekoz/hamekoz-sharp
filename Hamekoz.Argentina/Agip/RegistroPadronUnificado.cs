@@ -29,7 +29,7 @@ namespace Hamekoz.Argentina.Agip
 	/// - Padrón de Riesgo Fiscal
 	/// - Padrón de contribuyentes exentos, de actividades promovidas, de nuevos emprendimientos y con alícuotas diferenciales.
 	/// </summary>
-	/// <see href="http://www.agip.gov.ar/web/files/DISENOODEREGISTROPADRONUNIFICADO.pdf"/>
+	/// <see href="https://www.agip.gob.ar/filemanager/source/Agentes/De%20Recaudacion/Dise%C3%B1o%20Registro%20Padron%20por%20sujeto%202016%20OK.xls"/>
 	/// <seealso href="http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm"/>
 	/// <seealso href="http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html"/>
 	public class RegistroPadronUnificado
