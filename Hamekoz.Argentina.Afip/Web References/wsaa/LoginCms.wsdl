@@ -3,6 +3,8 @@
   <wsdl:types>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://wsaa.view.sua.dvadac.desein.afip.gov">
       <xsd:import namespace="https://wsaa.afip.gov.ar/ws/services/LoginCms" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
       <xsd:element name="loginCms">
         <xsd:complexType>
           <xsd:sequence>
@@ -19,6 +21,8 @@
       </xsd:element>
     </xsd:schema>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://wsaa.afip.gov.ar/ws/services/LoginCms">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
       <xsd:complexType name="LoginFault">
         <xsd:sequence />
       </xsd:complexType>

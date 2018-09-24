@@ -180,7 +180,7 @@ namespace Hamekoz.Argentina.Afip
 
 			// PASO 3: Invoco al WSAA para obtener el Login Ticket Response 
 			try {
-				var wsaa = new  WSAA.LoginCMSService ();
+				var wsaa = new  wsaa.LoginCMSService ();
 				respuesta = wsaa.loginCms (cmsFirmadoBase64);
 			} catch (Exception ex) {
 				throw new Exception ("Error INVOCANDO al servicio WSAA : " + ex.Message);

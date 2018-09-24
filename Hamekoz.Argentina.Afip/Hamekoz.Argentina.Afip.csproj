@@ -37,40 +37,40 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web References\WSAA\Reference.cs">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
     <Compile Include="TicketDeAcceso.cs" />
     <Compile Include="Web References\wsfev1\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="FacturaElectronicaExtensions.cs" />
     <Compile Include="LoginTicketResponse.cs" />
+    <Compile Include="Web References\wsaa\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <WebReferences Include="Web References" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\WSAA</RelPath>
-      <UpdateFromURL>https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl</UpdateFromURL>
-    </WebReferenceUrl>
     <WebReferenceUrl Include="https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\wsfev1</RelPath>
       <UpdateFromURL>https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL</UpdateFromURL>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\wsaa</RelPath>
+      <UpdateFromURL>https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl</UpdateFromURL>
+    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\WSAA\LoginCms.wsdl" />
-    <None Include="Web References\WSAA\Reference.map">
+    <None Include="Web References\wsfev1\service.wsdl" />
+    <None Include="Web References\wsfev1\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\wsfev1\service.wsdl" />
-    <None Include="Web References\wsfev1\Reference.map">
+    <None Include="Web References\wsaa\LoginCms.wsdl" />
+    <None Include="Web References\wsaa\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
