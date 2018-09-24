@@ -18,12 +18,13 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+using System;
 using Hamekoz.Core;
+using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Empresa : IPersistible, IIdentifiable
+	public partial class Empresa : IResponsable, IPersistible, IIdentifiable
 	{
 		public int Id {
 			get;
@@ -38,6 +39,22 @@ namespace Hamekoz.Negocio
 		public string CUIT {
 			get;
 			set;
+		}
+
+		public string Email {
+			get;
+			set;
+		}
+
+		public TipoDeResponsable Tipo {
+			get;
+			set;
+		}
+
+		CondicionDePago IResponsable.CondicionDePago {
+			get {
+				throw new System.NotImplementedException ();
+			}
 		}
 
 		public string NumeroDeIngresosBrutos {
@@ -80,6 +97,11 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
+		public DateTime InicioDeActividad {
+			get;
+			set;
+		}
+
 		//TODO esto deberia ser una clase de tipo de domicilio pero temporalmente lo defino como string
 		public string Domicilio {
 			get;
@@ -98,6 +120,21 @@ namespace Hamekoz.Negocio
 		}
 
 		public string Web {
+			get;
+			set;
+		}
+
+		public string Logo {
+			get;
+			set;
+		}
+
+		public string LogoBanner {
+			get;
+			set;
+		}
+
+		public string LogoMarcaDeAgua {
 			get;
 			set;
 		}

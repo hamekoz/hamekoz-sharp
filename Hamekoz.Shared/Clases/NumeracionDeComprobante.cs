@@ -75,6 +75,11 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
+		public int Codigo {
+			get;
+			set;
+		}
+
 		[Obsolete]
 		public int IdEmpresa;
 

@@ -18,6 +18,8 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
+using Hamekoz.Argentina;
 using Hamekoz.Negocio;
 
 namespace Hamekoz.Fiscal
@@ -33,5 +35,33 @@ namespace Hamekoz.Fiscal
 		string VencimientoCAE { get; set; }
 
 		string ComentariosAFIP { get; set; }
+	}
+
+	public static class ComprobanteElectronicoExtension
+	{
+		public static string BarcodeText (this IComprobanteElectronico comprobante, Empresa emisor)
+		{
+			string barcode = string.Format ("{0}{1:00}{2}{3}{4}", emisor.CUIT.Limpiar (), comprobante.Tipo.Codigo, comprobante.Tipo.Pre.PadLeft (4, '0'), comprobante.CAE.Trim (), comprobante.VencimientoCAE.Trim ());
+
+			int checksum = 0;
+			bool par = false;
+			foreach (var letra in barcode) {
+				checksum += int.Parse (letra.ToString ()) * (par ? 1 : 3);
+				par = !par;
+			}
+			checksum = checksum % 10;
+			checksum = checksum == 0 ? checksum : 10 - checksum;
+
+			return barcode + checksum;
+		}
+
+		public static DateTime VencimientoCAE (this IComprobanteElectronico comprobante)
+		{
+			string vencimientoCae = string.Format ("{0}/{1}/{2}"
+				, comprobante.VencimientoCAE.Substring (6, 2)
+				, comprobante.VencimientoCAE.Substring (4, 2)
+				, comprobante.VencimientoCAE.Substring (0, 4));
+			return DateTime.Parse (vencimientoCae);
+		}
 	}
 }

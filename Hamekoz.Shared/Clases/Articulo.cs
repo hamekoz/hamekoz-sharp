@@ -56,6 +56,7 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
+		//TODO reemplazar enumerado Medidas por clase Medida
 		public Medidas Medida {
 			get;
 			set;
@@ -121,7 +122,7 @@ namespace Hamekoz.Negocio
 			Medida = Medidas.Unidad;
 			TasaDeIVA = 21;
 			Proveedores = new List<ProveedorDeArticulo> ();
-            EANs = new List<string>();
+			EANs = new List<string> ();
 		}
 
 		#region IDescriptible

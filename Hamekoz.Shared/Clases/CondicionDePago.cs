@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
@@ -37,7 +36,7 @@ namespace Hamekoz.Negocio
 		public string Descripcion {
 			get;
 			set;
-		}
+		} = string.Empty;
 
 		public int Dias {
 			get;

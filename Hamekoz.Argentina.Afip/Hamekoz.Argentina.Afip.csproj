@@ -34,6 +34,19 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Security" />
+    <Reference Include="itextsharp">
+      <HintPath>..\..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer">
+      <HintPath>..\..\packages\Humanizer.Core.2.0.1\lib\portable-win+net45+wp8+wpa81\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing">
+      <HintPath>..\..\packages\ZXing.Net.0.15.0\lib\net45\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\..\packages\ZXing.Net.0.15.0\lib\net45\zxing.presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -46,6 +59,7 @@
     <Compile Include="Web References\wsaa\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="ComprobantePDF.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -74,6 +88,7 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
