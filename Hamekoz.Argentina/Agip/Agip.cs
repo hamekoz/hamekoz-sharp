@@ -111,8 +111,8 @@ namespace Hamekoz.Argentina.Agip
 			reader.Close ();
 		}
 
-		//HACK porque ya no aplicaria mas el minimo imponible para retencion
-		public const decimal NetoMinimoImponibleParaPercepcion = DateTime.Now.Date >= new DateTime (2018, 10, 1) ? 0 : 300;
+		[Obsolete ("A partir del 01/10/2018 no hay minimo imponible")]
+		public const decimal NetoMinimoImponibleParaPercepcion = 300;
 
 		/// <summary>
 		/// Alicuotas the retencion.

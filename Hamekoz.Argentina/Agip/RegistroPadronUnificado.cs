@@ -34,7 +34,7 @@ namespace Hamekoz.Argentina.Agip
 	/// <seealso href="http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html"/>
 	public class RegistroPadronUnificado
 	{
-		readonly char separador = char.Parse (";");
+		readonly char separador = ';';
 
 		public DateTime FechaDePublicacion {
 			get;
