@@ -33,6 +33,11 @@ namespace Hamekoz.Argentina.Afip
 {
 	public class ComprobantePDF
 	{
+		public static string BasePath {
+			get;
+			set;
+		} = Path.GetTempPath ();
+
 		public Comprobante Comprobante { 
 			get; 
 			set;
@@ -54,7 +59,7 @@ namespace Hamekoz.Argentina.Afip
 				throw new ParametrosInsuficientesException ("Debe indicar un comprobante");
 
 			//HACK ruta template deberia ser un parametro
-			string filename = string.Format (@"/home/{0}/{1}.pdf", Environment.UserName, Comprobante);
+			string filename = Path.Combine (BasePath, Comprobante + ".pdf");
 
 			var document = new Document (PageSize.A4);
 			PdfWriter.GetInstance (document, new FileStream (filename, FileMode.Create));
