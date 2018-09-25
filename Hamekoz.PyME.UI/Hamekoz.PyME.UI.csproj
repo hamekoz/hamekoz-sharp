@@ -40,6 +40,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ContactoUI.cs" />
     <Compile Include="IVAItemUI.cs" />
+    <Compile Include="ComprobanteItemUI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
