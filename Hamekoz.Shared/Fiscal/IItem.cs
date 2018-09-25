@@ -38,6 +38,7 @@ namespace Hamekoz.Fiscal
 
 		decimal ImporteIVA { get; }
 
+		//TODO revisar si esto aplica a nivel item, o los impuestos distintos de IVA se toman a nivel comprobante
 		decimal Impuestos { get; }
 
 		decimal Total { get; }

@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Hamekoz.Core;
@@ -25,7 +26,7 @@ using Xwt;
 
 namespace Hamekoz.UI
 {
-	public class ListViewFilter<T>: VBox where T : ISearchable
+	public class ListViewFilter<T>: VBox, IListSelector<T> where T : ISearchable
 	{
 		public IList<T> List {
 			get;
@@ -54,9 +55,41 @@ namespace Hamekoz.UI
 			PackStart (filterList, true);
 		}
 
-		public T Selected {
+		public event ListBoxFilterSelectionChanged SelectionItemChanged {
+			add {
+				filterList.SelectionItemChanged += value;
+			}
+			remove {
+				filterList.SelectionItemChanged -= value;
+			}
+		}
+
+		public void UnselectAll ()
+		{
+			filterList.UnselectAll ();
+		}
+
+		public SelectionMode SelectionMode {
+			get {
+				return filterList.SelectionMode;
+			}
+			set {
+				filterList.SelectionMode = value;
+			}
+		}
+
+		public T SelectedItem {
 			get {
 				return filterList.SelectedItem;
+			}
+			set {
+				filterList.SelectedItem = value;
+			}
+		}
+
+		public IList<T> SelectedItems {
+			get {
+				return filterList.SelectedItems;
 			}
 		}
 
@@ -94,6 +127,4 @@ namespace Hamekoz.UI
 		}
 	}
 }
-
-
 
