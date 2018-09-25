@@ -183,7 +183,11 @@ namespace Hamekoz.Argentina.Afip
 					itemsTable.DefaultCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 					itemsTable.AddCell (new Phrase (item.Cantidad.ToString (), fuente));
 					itemsTable.AddCell (new Phrase (item.Precio.ToString ("C2"), fuente));
-					itemsTable.AddCell (new Phrase (item.Total.ToString ("C2"), fuente));
+					if (Comprobante.Tipo.Letra == "A") {
+						itemsTable.AddCell (new Phrase (item.Neto.ToString ("C2"), fuente));
+					} else {
+						itemsTable.AddCell (new Phrase (item.Total.ToString ("C2"), fuente));
+					}
 				}
 				//Relleno con espacios en blanco
 				//FIXME deberia haber una forma mas eficiente de rellenar la tabla con espacios
