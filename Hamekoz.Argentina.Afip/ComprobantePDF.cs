@@ -154,10 +154,10 @@ namespace Hamekoz.Argentina.Afip
 			receptorBoxTable.AddCell (receptorCell);
 
 			var itemsTable = new PdfPTable (5) { SpacingBefore = 5f, WidthPercentage = 100 };
-			itemsTable.SetTotalWidth (new float[] { 40, 250, 50, 70, 75 });
+			itemsTable.SetTotalWidth (new float[] { 45, 300, 50, 70, 75 });
 
-			itemsTable.DefaultCell.PaddingLeft = 5;
-			itemsTable.DefaultCell.PaddingRight = 5;
+			itemsTable.DefaultCell.PaddingLeft = 3;
+			itemsTable.DefaultCell.PaddingRight = 3;
 			itemsTable.DefaultCell.Border = Rectangle.BOX;
 			itemsTable.DefaultCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 			itemsTable.AddCell (new Phrase ("Código", fuenteTitulo));
@@ -168,7 +168,7 @@ namespace Hamekoz.Argentina.Afip
 			itemsTable.AddCell (new Phrase ("Precio", fuenteTitulo));
 			itemsTable.AddCell (new Phrase ("Importe", fuenteTitulo));
 
-			itemsTable.DefaultCell.PaddingBottom = 0.2f;
+			itemsTable.DefaultCell.PaddingBottom = 0;
 			itemsTable.DefaultCell.PaddingTop = 0;
 
 			itemsTable.DefaultCell.Border = Rectangle.NO_BORDER;
