@@ -139,5 +139,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Reportes\IParametroRangoNumerico.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\IAnulable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fiscal\TipoDeTributo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\ComprobanteItem.cs" />
   </ItemGroup>
 </Project>

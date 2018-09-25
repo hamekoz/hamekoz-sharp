@@ -1,10 +1,10 @@
 ﻿//
-//  RemitoItem.cs
+//  ComprobanteItem.cs
 //
 //  Author:
 //       Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz.com.ar>
 //
-//  Copyright (c) 2017 Hamekoz - www.hamekoz.com.ar
+//  Copyright (c) 2018 Hamekoz - www.hamekoz.com.ar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
@@ -18,21 +18,14 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using Hamekoz.Core;
 using Hamekoz.Fiscal;
+using Hamekoz.Negocio;
 
 namespace Hamekoz.Negocio
 {
-	public partial class RemitoItem : IItem, IPersistible, IIdentifiable
+	public class ComprobanteItem : IItem, IIdentifiable, IPersistible
 	{
-		public RemitoItem ()
-		{
-			//HACK no deberia inicializar nada aca
-			Articulo = new Articulo ();
-			Cantidad = 1;
-		}
-
 		#region IIdentifiable implementation
 
 		public int Id {
@@ -42,57 +35,46 @@ namespace Hamekoz.Negocio
 
 		#endregion
 
-		public int Renglon {
-			get;
-			set;
-		}
-
-		public int Codigo {
-			get { return Articulo.Id; }
-		}
-
-		public Articulo Articulo {
-			get;
-			set;
-		}
-
 		#region IItem implementation
 
-		string IItem.Codigo {
-			get { return Articulo.Id.ToString (); }
+		string codigo;
+
+		public string Codigo {
+			get {
+				return Articulo != null ? Articulo.Id.ToString () : codigo;
+			}
+			set {
+				codigo = value;
+			}
 		}
 
-		string IItem.Descripcion {
-			get { return Articulo.Nombre; }
+		string descripcion;
+
+		public string Descripcion {
+			get {
+				return Articulo != null ? Articulo.Nombre : descripcion;
+			}
+			set {
+				descripcion = value;
+			}
 		}
 
-		string  IItemControladorFiscal.DescripcionCorta {
-			get { return Articulo.NombreCorto; }
-		}
-
-		public Lote Lote {
-			get;
-			set;
-		}
-
-		//TODO revisar, el costo deberia salir del Lote
-		public decimal Costo {
-			get;
-			set;
+		string IItemControladorFiscal.DescripcionCorta {
+			get {
+				return Articulo != null ? Articulo.NombreCorto : Descripcion;
+			}
 		}
 
 		public decimal Cantidad {
 			get;
 			set;
-		}
+		} = 1;
 
-		//TODO deberia tener una propiedad booleana que me identifique si el precio incluye o no IVA para realizar los calculos
 		public decimal Precio {
 			get;
 			set;
 		}
 
-		//FIXME el calculo de Neto deberia ser igual que ComprobanteClienteItem
 		public decimal Neto {
 			get {
 				return PrecioNeto () * Cantidad;
@@ -104,36 +86,25 @@ namespace Hamekoz.Negocio
 			set;
 		} = IVA.Veintiuno;
 
-		//FIXME el calculo de ImporteIVA deberia ser igual que ComprobanteClienteItem
-		decimal iva;
+		decimal? iva;
 
 		public decimal ImporteIVA {
 			get { 
-				//return Id > 0 ? iva : IVAUnitario () * Cantidad;
-				return IVAUnitario () * Cantidad;
+				return iva ?? IVAUnitario () * Cantidad;
 			}
-			set {
+			set { 
 				iva = value;
 			}
 		}
 
-		decimal impuestos;
-
-		//FIXME el calculo de Impuestos deberia ser igual que ComprobanteClienteItem
 		public decimal Impuestos {
-			get {
-				if (Id == 0)
-					impuestos = Math.Round (Articulo.ImpuestosInternos * Cantidad, 2);
-				return impuestos;
-			}	
-			set {
-				impuestos = value;
-			}
+			get;
+			set;
 		}
 
+		//TODO puede ser calculado segun Precio y PrecioConIVA, TasaIVA e Impuestos
 		decimal total;
 
-		//FIXME el calculo de Total deberia ser igual que ComprobanteClienteItem
 		public decimal Total {
 			get {
 				return Id > 0 ? total : Neto + ImporteIVA + Impuestos;
@@ -144,18 +115,6 @@ namespace Hamekoz.Negocio
 		}
 
 		#endregion
-
-		public bool VerificadoOriginal;
-
-		public bool Verificado {
-			get;
-			set;
-		}
-
-		public decimal CantidadRecibida {
-			get;
-			set;
-		}
 
 		public bool PrecioConIVA {
 			get;
@@ -180,6 +139,26 @@ namespace Hamekoz.Negocio
 			}
 		}
 
+		//TODO evaluar si es realmente necesario, se podria ordenar por el Id y no numerar
+		public int Renglon;
+
+		//TODO evaluar si es necesario que sea una propiedad o se puede manejar con una clase Stock que tiene Articulo, Lote y Cantidad
+		public Articulo Articulo { 
+			get; 
+			set; 
+		}
+
+		//TODO evaluar si es necesario
+		public Lote Lote {
+			get;
+			set;
+		}
+
+		//TODO evaluar si es necesario
+		public IRemito Remito {
+			get;
+			set;
+		}
 	}
 }
 
