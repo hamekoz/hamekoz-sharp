@@ -66,7 +66,7 @@ namespace Hamekoz.Negocio
 			get { return Articulo.Nombre; }
 		}
 
-		string  IItem.DescripcionCorta {
+		string  IItemControladorFiscal.DescripcionCorta {
 			get { return Articulo.NombreCorto; }
 		}
 

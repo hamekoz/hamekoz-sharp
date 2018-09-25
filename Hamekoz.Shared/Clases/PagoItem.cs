@@ -72,7 +72,7 @@ namespace Hamekoz.Negocio
 			set { descripcion = value; }
 		}
 
-		string IItem.DescripcionCorta {
+		string IItemControladorFiscal.DescripcionCorta {
 			get {
 				return CuentaContable == null ? descripcion : CuentaContable.Cuenta;
 			}

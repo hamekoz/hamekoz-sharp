@@ -90,7 +90,7 @@ namespace Hamekoz.Negocio
 			}
 		}
 
-		string IItem.DescripcionCorta {
+		string IItemControladorFiscal.DescripcionCorta {
 			get {
 				return Articulo.NombreCorto;
 			}
