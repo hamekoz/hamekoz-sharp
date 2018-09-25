@@ -122,8 +122,10 @@ namespace Hamekoz.UI
 
 		public void ScrollTo (T item)
 		{
-			if (list != null && list.Count > 0)
+			if (list != null && list.Count > 0) {
 				ScrollToRow (list.IndexOf (item));
+				SelectedItem = item;
+			}
 		}
 
 		public void FillRow (T item)
