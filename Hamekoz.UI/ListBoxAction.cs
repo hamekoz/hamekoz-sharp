@@ -131,10 +131,7 @@ namespace Hamekoz.UI
 					if (OnPreventRemove (listBox.SelectedItem))
 						MessageDialog.ShowWarning (Application.TranslationCatalog.GetString ("A validation rule prevents you from deleting the selected item"));
 					else {
-						OnRemoveItem (listBox.SelectedItem);
-						listBox.List.Remove (listBox.SelectedItem);
-						listBox.Items.Remove (listBox.SelectedItem);
-						OnChanged ();
+						Add (listBox.SelectedItem);
 					}
 				}
 			};
@@ -143,6 +140,14 @@ namespace Hamekoz.UI
 			actions.PackStart (remove);
 			PackStart (listBox, true, true);
 			PackEnd (actions, false, true);
+		}
+
+		public void Add (T item)
+		{
+			OnAddItem (item);
+			listBox.List.Add (item);
+			listBox.Items.Add (item);
+			OnChanged ();
 		}
 
 		string TypeName ()
