@@ -77,6 +77,13 @@ namespace Hamekoz.Negocio
 		{
 			return string.Format ("{0}: 1 = {1:C}", Moneda.Codigo, Valor);
 		}
+
+		public decimal ValorInverso ()
+		{
+			if (Valor == 0)
+				return 1;
+			return 1 / Valor;
+		}
 	}
 }
 
