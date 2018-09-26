@@ -82,11 +82,15 @@ namespace Hamekoz.UI
 			List = new List<T> ();
 		}
 
+		bool storeClear;
+
 		public void Refresh ()
 		{
+			storeClear = true;
 			store.Clear ();
 			foreach (var item in list)
 				FillRow (item);
+			storeClear = false;
 		}
 
 		public void Add (T item)
@@ -283,7 +287,7 @@ namespace Hamekoz.UI
 		protected virtual void OnSelectionItemChanged (EventArgs e)
 		{
 			var handler = SelectionItemChanged;
-			if (handler != null)
+			if (handler != null && !storeClear)
 				handler (this, e);
 		}
 	}
