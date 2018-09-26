@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using System;
 using Hamekoz.Core;
 using Hamekoz.Fiscal;
 using Hamekoz.Negocio;
@@ -124,18 +125,18 @@ namespace Hamekoz.Negocio
 		public decimal PrecioNeto ()
 		{
 			if (PrecioConIVA) {
-				return Precio / (1 + Iva.Alicuota () / 100);
+				return Math.Round (Precio / (1 + Iva.Alicuota () / 100), 2);
 			} else {
-				return Precio;
+				return Math.Round (Precio, 2);
 			}
 		}
 
 		public decimal IVAUnitario ()
 		{
 			if (PrecioConIVA) {
-				return Precio - (Precio / (1 + Iva.Alicuota () / 100));
+				return Math.Round (Precio - (Precio / (1 + Iva.Alicuota () / 100)), 2);
 			} else {
-				return Precio * Iva.Alicuota () / 100;
+				return Math.Round (Precio * Iva.Alicuota () / 100, 2);
 			}
 		}
 

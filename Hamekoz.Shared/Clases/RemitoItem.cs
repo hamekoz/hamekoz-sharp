@@ -165,18 +165,18 @@ namespace Hamekoz.Negocio
 		public decimal PrecioNeto ()
 		{
 			if (PrecioConIVA) {
-				return Precio / (1 + Iva.Alicuota () / 100);
+				return Math.Round (Precio / (1 + Iva.Alicuota () / 100), 2);
 			} else {
-				return Precio;
+				return Math.Round (Precio, 2);
 			}
 		}
 
 		public decimal IVAUnitario ()
 		{
 			if (PrecioConIVA) {
-				return Precio - (Precio / (1 + Iva.Alicuota () / 100));
+				return Math.Round (Precio - (Precio / (1 + Iva.Alicuota () / 100)), 2);
 			} else {
-				return Precio * Iva.Alicuota () / 100;
+				return Math.Round (Precio * Iva.Alicuota () / 100, 2);
 			}
 		}
 
