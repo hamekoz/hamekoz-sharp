@@ -33,8 +33,11 @@ namespace Hamekoz.Argentina.Afip
 		public const string homo_url = "http://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
 		const string url = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL";
 		//HACK por ahora uso una constante
-		const long cuit_balcarce = 30655462224;
-		const long cuit = 20311864093;
+		//HACK cpereyra para debug
+		//		const long cuit = 20311864093;
+		//HACK Postres Balcarce
+		const long cuit = 30655462224;
+
 
 		static LoginTicketResponse loginTicketResponse;
 
@@ -108,13 +111,14 @@ namespace Hamekoz.Argentina.Afip
 
 		public static void SolicitarCAE (this IComprobanteElectronico comprobante, string ta_path, Hamekoz.Core.ICallBack callback)
 		{
-			//TODO poder cambiar de homologacion a produccion
 			var service = new Service ();
+			//HACK para cambiar de produccion a homologacion
 			#if DEBUG
 			service = new Service (homo_url);
 			#endif
 			var ta = TA (ta_path);
 
+			//TODO ahora podria utilizar comprobante.Tipo.Codigo validando que sea un valor adecuado
 			int tipo = ComprobanteTipo (comprobante);
 			int punto_de_venta = int.Parse (comprobante.Tipo.Pre);
 
@@ -141,15 +145,14 @@ namespace Hamekoz.Argentina.Afip
 				DocTipo = 80,
 				ImpIVA = (double)comprobante.IVA, //TODO debe excluirse el importe exento, para tipo C debe ser 0
 				ImpNeto = (double)(comprobante.Gravado - comprobante.Exento),
-				//HACK deberia tener el campo en la clase Comprobante
 				ImpOpEx = (double)comprobante.Exento,
 				ImpTotal = (double)comprobante.Total,
 				//TODO en caso de ser de tipo C debe ser siempre 0
 				ImpTotConc = (double)comprobante.NoGravado,
 				ImpTrib = (double)comprobante.Tributos,
 				Iva = comprobante.FEIVAS ().ToArray (),
-				MonCotiz = 1,
-				MonId = "PES",
+				MonCotiz = 1, //TODO pasar la cotizacion correcta
+				MonId = "PES", //TODO pasar la moneda correcta
 				Opcionales = null,
 				Tributos = comprobante.Tributos > 0 ? comprobante.FETributos ().ToArray () : null,
 			};

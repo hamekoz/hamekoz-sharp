@@ -31,6 +31,7 @@ using iTextSharp.text.pdf;
 
 namespace Hamekoz.Argentina.Afip
 {
+	//TODO se podria convertir en clase static con metodo extension ToPdf(Emisor)
 	public class ComprobantePDF
 	{
 		public static string BasePath {

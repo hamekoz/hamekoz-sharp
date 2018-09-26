@@ -41,6 +41,7 @@ namespace Hamekoz.Negocio
 			set;
 		}
 
+		//TODO podria identificar al Emisor y al Recepto del comprobante en lugar de solo tener al Responsable como Receptor
 		public IResponsable Responsable {
 			get;
 			set;
