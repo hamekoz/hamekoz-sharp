@@ -60,6 +60,7 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="ComprobantePDF.cs" />
+    <Compile Include="AFIPException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

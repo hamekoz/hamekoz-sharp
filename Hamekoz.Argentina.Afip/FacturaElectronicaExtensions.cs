@@ -33,10 +33,13 @@ namespace Hamekoz.Argentina.Afip
 		public const string homo_url = "http://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
 		const string url = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL";
 		//HACK por ahora uso una constante
+		#if DEBUG
 		//HACK cpereyra para debug
-		//		const long cuit = 20311864093;
+		const long cuit = 20311864093;
+		#else
 		//HACK Postres Balcarce
-		const long cuit = 30655462224;
+		//const long cuit = 30655462224;
+		#endif
 
 
 		static LoginTicketResponse loginTicketResponse;
@@ -50,7 +53,7 @@ namespace Hamekoz.Argentina.Afip
 				loginTicketResponse = new LoginTicketResponse (xml);
 			}
 			if (loginTicketResponse.ExpirationTime <= DateTime.Now)
-				throw new Exception ("El Ticket de Acceso a los Web Servicios de AFIP a expirado, debe solicitar uno nuevo");
+				throw new AFIPException ("El Ticket de Acceso a los Web Servicios de AFIP a expirado, debe solicitar uno nuevo");
 			return new FEAuthRequest {
 				Cuit = cuit, //FIXME reemplazar por el cuit leido del TA
 				Sign = loginTicketResponse.sign,
@@ -180,7 +183,7 @@ namespace Hamekoz.Argentina.Afip
 					errores.AppendFormat ("Código: {0}. Mensaje: {1}", error.Code, error.Msg);
 					errores.AppendLine ();
 				}
-				throw new Exception (errores.ToString ());
+				throw new AFIPException (errores.ToString ());
 			}
 
 			//TODO refactorizar para soportar un lote de comprobantes
@@ -196,7 +199,7 @@ namespace Hamekoz.Argentina.Afip
 			}
 
 			if (fECAEResponse.FeDetResp [0].Resultado == "R")
-				throw new Exception ("Comprobante rechazado");
+				throw new AFIPException ("Comprobante rechazado");
 			
 			//TODO ver si el formato seria correcto
 			comprobante.Tipo.UltimoNumero = numero;
