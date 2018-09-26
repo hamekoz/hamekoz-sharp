@@ -39,6 +39,11 @@ namespace Hamekoz.Argentina.Afip
 			set;
 		} = Path.GetTempPath ();
 
+		public static void DefaultBasePath ()
+		{
+			BasePath = Path.GetTempPath ();
+		}
+
 		public Comprobante Comprobante { 
 			get; 
 			set;
