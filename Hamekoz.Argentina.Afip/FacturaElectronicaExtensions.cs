@@ -38,7 +38,7 @@ namespace Hamekoz.Argentina.Afip
 		const long cuit = 20311864093;
 		#else
 		//HACK Postres Balcarce
-		//const long cuit = 30655462224;
+		const long cuit = 30655462224;
 		#endif
 
 
