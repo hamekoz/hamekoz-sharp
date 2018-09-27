@@ -23,7 +23,7 @@ namespace Hamekoz.Fiscal
 	public enum SituacionesIngresosBrutos
 	{
 		//TODO evaluar eliminar la opcion SinDato
-		//SinDato = 0,
+		SinDato = 0,
 		Local = 1,
 		ConvenioMultilateral = 2,
 		Exento = 3,
