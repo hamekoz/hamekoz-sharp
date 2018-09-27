@@ -27,7 +27,7 @@ namespace Hamekoz.UI
 	{
 		//TODO definir metodo		ValueChanged
 
-		public double WidthRequest {
+		public new double WidthRequest {
 			get {
 				return entry.WidthRequest;
 			}
@@ -85,7 +85,6 @@ namespace Hamekoz.UI
 				number = Math.Round (value, Digits);
 				string format = string.Format ("F{0}", Digits);
 				entry.Text = number.ToString (format);
-				entry.BackgroundColor = Xwt.Drawing.Colors.White;
 				entry.TooltipText = string.Empty;
 				CheckRange ();
 			}
@@ -119,12 +118,16 @@ namespace Hamekoz.UI
 
 		void ParseNumber ()
 		{
-			entry.BackgroundColor = Xwt.Drawing.Colors.White;
-			entry.TooltipText = string.Empty;
+			increment.BackgroundColor = Xwt.Drawing.Colors.White;
+			decrement.BackgroundColor = Xwt.Drawing.Colors.White;
+			TooltipText = string.Empty;
 			entry.Text = entry.Text.Replace (".", ",");
 			if (!double.TryParse (entry.Text, out number)) {
-				entry.BackgroundColor = Xwt.Drawing.Colors.Red;
-				entry.TooltipText = "El valor ingresado no es numérico";
+				if (entry.Text != string.Empty) {
+					TooltipText = "El valor ingresado no es numérico";
+					increment.BackgroundColor = Xwt.Drawing.Colors.Red;
+					decrement.BackgroundColor = Xwt.Drawing.Colors.Red;
+				}
 			} else {
 				if (number < MinimumValue) {
 					Value = Math.Round (MinimumValue, Digits);
@@ -136,7 +139,6 @@ namespace Hamekoz.UI
 				OnValueChanged (null);
 			}
 			CheckRange ();
-
 		}
 
 		void CheckRange ()
@@ -147,6 +149,7 @@ namespace Hamekoz.UI
 
 		public NumberEntry ()
 		{
+			Name = "NumberEntry";
 			Spacing = 0;
 			PackStart (entry, true, true);
 			PackEnd (increment);
@@ -174,6 +177,11 @@ namespace Hamekoz.UI
 		}
 
 		public event EventHandler ValueChanged;
+
+		public new void SetFocus ()
+		{
+			entry.SetFocus ();
+		}
 	}
 }
 
