@@ -198,8 +198,10 @@ namespace Hamekoz.Argentina.Afip
 				callback.CallBack.OnWarning ("Comprobante con observaciones", observaciones.ToString ());
 			}
 
-			if (fECAEResponse.FeDetResp [0].Resultado == "R")
-				throw new AFIPException ("Comprobante rechazado");
+			if (fECAEResponse.FeDetResp [0].Resultado == "R") {
+				string errorAfip = string.Format ("Comprobante rechazado.\n{0}", observaciones);
+				throw new AFIPException (errorAfip);
+			}
 			
 			//TODO ver si el formato seria correcto
 			comprobante.Tipo.UltimoNumero = numero;

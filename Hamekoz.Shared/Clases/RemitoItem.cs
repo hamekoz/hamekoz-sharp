@@ -110,7 +110,7 @@ namespace Hamekoz.Negocio
 		public decimal ImporteIVA {
 			get { 
 				//return Id > 0 ? iva : IVAUnitario () * Cantidad;
-				return IVAUnitario () * Cantidad;
+				return Math.Round (Neto * Iva.Alicuota () / 100, 2);
 			}
 			set {
 				iva = value;
@@ -136,7 +136,9 @@ namespace Hamekoz.Negocio
 		//FIXME el calculo de Total deberia ser igual que ComprobanteClienteItem
 		public decimal Total {
 			get {
-				return Id > 0 ? total : Neto + ImporteIVA + Impuestos;
+				if (Id == 0)
+					total = Neto + ImporteIVA + Impuestos;
+				return total;
 			}
 			set {
 				total = value;

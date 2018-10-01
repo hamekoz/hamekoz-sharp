@@ -91,7 +91,7 @@ namespace Hamekoz.Negocio
 
 		public decimal ImporteIVA {
 			get { 
-				return iva ?? IVAUnitario () * Cantidad;
+				return iva ?? Math.Round (Neto * Iva.Alicuota () / 100, 2);
 			}
 			set { 
 				iva = value;
@@ -108,7 +108,9 @@ namespace Hamekoz.Negocio
 
 		public decimal Total {
 			get {
-				return Id > 0 ? total : Neto + ImporteIVA + Impuestos;
+				if (Id == 0)
+					total = Neto + ImporteIVA + Impuestos;
+				return total;
 			}
 			set {
 				total = value;
