@@ -111,8 +111,7 @@ namespace Hamekoz.Argentina.Agip
 			reader.Close ();
 		}
 
-		[Obsolete ("A partir del 01/10/2018 no hay minimo imponible")]
-		public const decimal NetoMinimoImponibleParaPercepcion = 300;
+		public const decimal NetoMinimoImponibleParaPercepcion = 0;
 
 		/// <summary>
 		/// Alicuotas the retencion.
@@ -125,7 +124,8 @@ namespace Hamekoz.Argentina.Agip
 			var dbagip = new DB {
 				ConnectionName = "Hamekoz.Argentina.Agip"
 			};
-			string sql = string.Format ("SELECT alicuotaPercepcion FROM agip.dbo.padron WHERE cuit = '{0}' AND '{1:d}' BETWEEN fechaVigenciaDesde AND fechaVigenciaHasta"
+			//HACK omito el tipo de padron 3 que es el de regimen general y no aplica a Postres Balcarce
+			string sql = string.Format ("SELECT alicuotaPercepcion FROM agip.dbo.padron WHERE tipoId != 3 AND cuit = '{0}' AND '{1:d}' BETWEEN fechaVigenciaDesde AND fechaVigenciaHasta"
 				, cuit.Limpiar ()
 				, DateTime.Now.Date);
 			decimal alicuota = -1;
