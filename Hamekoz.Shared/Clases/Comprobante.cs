@@ -97,7 +97,7 @@ namespace Hamekoz.Negocio
 		public Cotizacion Cotizacion {
 			get;
 			set;
-		}
+		} = Cotizacion.Default;
 
 		public IList<IItem> Items {
 			get;
