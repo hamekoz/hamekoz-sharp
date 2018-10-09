@@ -140,5 +140,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\IAnulable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fiscal\TipoDeTributo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clases\ComprobanteItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clases\MovimientoDeCaja.cs" />
   </ItemGroup>
 </Project>
