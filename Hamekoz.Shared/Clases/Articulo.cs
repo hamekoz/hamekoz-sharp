@@ -26,6 +26,12 @@ namespace Hamekoz.Negocio
 {
 	public partial class Articulo : IPersistible, IIdentifiable, IDescriptible, ISearchable
 	{
+		public enum Tipos
+		{
+			Producto,
+			Servicio
+		}
+
 		public int Id {
 			get;
 			set;
@@ -112,6 +118,12 @@ namespace Hamekoz.Negocio
 		}
 
 		public IList<ProveedorDeArticulo> Proveedores {
+			get;
+			set;
+		}
+
+		//TODO organizar la propiedad
+		public Tipos Tipo {
 			get;
 			set;
 		}
