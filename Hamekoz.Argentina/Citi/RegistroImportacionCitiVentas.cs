@@ -197,8 +197,6 @@ namespace Hamekoz.Argentina.Citi
 			return cadena;
 		}
 
-
-
 		public string ToFixedStringAlicuotas ()
 		{
 
@@ -217,6 +215,5 @@ namespace Hamekoz.Argentina.Citi
 
 			return cadena;
 		}
-
 	}
 }

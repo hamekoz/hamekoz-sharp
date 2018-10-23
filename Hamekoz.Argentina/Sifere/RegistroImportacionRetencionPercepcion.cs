@@ -106,7 +106,6 @@ namespace Hamekoz.Argentina.Sifere
 			return cadena;
 		}
 
-
 		public string ToFixedStringRetencion ()
 		{
 			string cadena;
@@ -121,6 +120,7 @@ namespace Hamekoz.Argentina.Sifere
 				, NroComprobante
 				, Importe
 			);
+
 			if ((cadena.Length != 79) && (cadena.Length != 66))
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nCódigo Juridicción: {0}\nCUIT: {1}", CodigoJurisdiccion, CUIT));
 

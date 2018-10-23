@@ -233,7 +233,6 @@ namespace Hamekoz.Argentina.Citi
 			return cadena;
 		}
 
-
 		public string ToFixedStringAlicuotas ()
 		{
 			string cadena = string.Format ("{0}{1}{2}{3}{4}{5}{6}{7}"				
@@ -249,7 +248,6 @@ namespace Hamekoz.Argentina.Citi
 			if (cadena.Length != 84) {
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nPunto de Venta: {0}\nComprobante: {1}", PuntoVenta, NroComprobante));
 			}
-
 			return cadena;
 		}
 	}
