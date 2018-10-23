@@ -86,8 +86,8 @@ namespace Hamekoz.Argentina.Sifere
 			);
 			if (cadena.Length != 58)
 				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nCodigo: {0} Periodo: {1}, Importe: {2}", CodigoJurisdiccion, Periodo, Importe));
+
 			return cadena;
 		}
 	}
 }
-

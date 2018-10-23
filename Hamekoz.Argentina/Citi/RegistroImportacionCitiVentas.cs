@@ -191,7 +191,7 @@ namespace Hamekoz.Argentina.Citi
 				, FechaVencimiento
 			                );
 			if (cadena.Length != 266) {
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nRazón Social: {0}\nComprobante: {1}", RazonSocial, Comprobante));
 			}
 
 			return cadena;
@@ -212,14 +212,11 @@ namespace Hamekoz.Argentina.Citi
 				, IVA
 			                );
 			if (cadena.Length != 62) {
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nPunto de Venta: {0}\nComprobante: {1}", PuntoVenta, Comprobante));
 			}
 
 			return cadena;
 		}
 
-
-
 	}
 }
-
