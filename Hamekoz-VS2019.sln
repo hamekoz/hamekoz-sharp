@@ -51,6 +51,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.PyME.UI", "Hamekoz.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamekoz.PyME.UI.Desktop", "Hamekoz.PyME.UI.Desktop\Hamekoz.PyME.UI.Desktop.csproj", "{FF2D6CD5-A17E-4123-B4C1-7F1200EDC4C5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4CD635A4-E6E5-40B2-BFA5-616507E2499E}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
+		ChangeLog = ChangeLog
+		Hamekoz.ico = Hamekoz.ico
+		Hamekoz.png = Hamekoz.png
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Hamekoz.Shared\Hamekoz.Shared.projitems*{5bf8af42-f3db-4842-adc0-ce95561138b5}*SharedItemsImports = 13
