@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hamekoz.Fiscal" Version="1.0.0" />
+    <ProjectReference Include="..\Hamekoz.Fiscal\Hamekoz.Fiscal.csproj" />
   </ItemGroup>
 
   <ItemGroup>

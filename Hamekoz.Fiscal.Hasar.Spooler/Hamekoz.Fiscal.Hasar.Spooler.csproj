@@ -21,7 +21,10 @@
 
   <ItemGroup>
     <PackageReference Include="Hamekoz.Core" Version="1.0.1" />
-    <PackageReference Include="Hamekoz.Fiscal" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hamekoz.Fiscal\Hamekoz.Fiscal.csproj" />
   </ItemGroup>
 
 </Project>
