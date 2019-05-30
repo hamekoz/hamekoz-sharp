@@ -48,6 +48,13 @@ namespace Hamekoz.Core
 			}
 		}
 
+        public static Negocio.Empresa GetEmpresa => new Negocio.Empresa
+        {
+            Tipo = Fiscal.TipoDeResponsable.IVA_Responsable_Inscripto, //HACK deberia leer el valor del archivo de configuracion
+            RazonSocial = ConfigurationManager.AppSettings["RazonSocial"],
+            CUIT = ConfigurationManager.AppSettings["CUIT"],
+            //UNDONE completar los con los demas datos de la empresa
+        };
 
 		/// <summary>
 		/// Establece el formato de fecha y hora corto con dos digitos para el dia y uso de 24 hs en lugar de am pm
