@@ -267,10 +267,8 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 		{
 			abortar = false;
 
-			switch (factura.Responsable.CondicionDeIVA) {
-			case SituacionIVA.SIN_DATO:
-				throw new Exception ("No se puede facturar a un cliente que no tiene declarada situacion respecto al IVA");
-			case SituacionIVA.CONSUMIDOR_FINAL:
+			switch (factura.Responsable.Tipo) {
+			case TipoDeResponsable.Consumidor_Final:
 				fiscalHasar.AbrirComprobanteFiscal (FiscalPrinterLib.DocumentosFiscales.TICKET_C);
 				if (fiscalHasar.HuboErrorFiscal) {
 					Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
@@ -278,7 +276,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 					abortar = true;
 				}
 				break;
-			case SituacionIVA.MONOTRIBUTO:
+			case TipoDeResponsable.Responsable_Monotributo:
 				fiscalHasar.DatosCliente (factura.Responsable.RazonSocial, factura.Responsable.CUIT.Replace ("-", ""), FiscalPrinterLib.TiposDeDocumento.TIPO_CUIT, FiscalPrinterLib.TiposDeResponsabilidades.MONOTRIBUTO, 1);
 				if (fiscalHasar.HuboErrorFiscal)
 					Console.WriteLine ("hubo error al cargar datos cliente:" + descripcionErrorFiscal);
@@ -289,7 +287,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 					abortar = true;
 				}
 				break;
-			case SituacionIVA.RESPONSABLE_INSCRIPTO:
+			case TipoDeResponsable.IVA_Responsable_Inscripto:
 				fiscalHasar.DatosCliente (factura.Responsable.RazonSocial, factura.Responsable.CUIT.Replace ("-", ""), FiscalPrinterLib.TiposDeDocumento.TIPO_CUIT, FiscalPrinterLib.TiposDeResponsabilidades.RESPONSABLE_INSCRIPTO, 1);
 				if (fiscalHasar.HuboErrorFiscal)
 					Console.WriteLine ("hubo error al cargar datos cliente:" + descripcionErrorFiscal);
@@ -300,7 +298,7 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 					abortar = true;
 				}
 				break;
-			case SituacionIVA.EXENTO:
+			case TipoDeResponsable.IVA_Sujeto_Exento:
 				fiscalHasar.DatosCliente (factura.Responsable.RazonSocial, factura.Responsable.CUIT.Replace ("-", ""), FiscalPrinterLib.TiposDeDocumento.TIPO_CUIT, FiscalPrinterLib.TiposDeResponsabilidades.RESPONSABLE_EXENTO, 1);
 				if (fiscalHasar.HuboErrorFiscal)
 					Console.WriteLine ("hubo error al cargar datos cliente:" + descripcionErrorFiscal);
@@ -311,11 +309,15 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 					abortar = true;
 				}
 				break;
-			}
+            case TipoDeResponsable.Sin_Dato:
+                    throw new Exception("No se puede facturar a un cliente que no tiene declarada situacion respecto al IVA");
+                default:
+                    throw new Exception("Tipo de responsable no soportado para facturar.");
+            }
 
 			//IMPRIMO RENGLONES
 			foreach (IItem renglon in factura.Items) {
-				fiscalHasar.ImprimirItem (renglon.DescripcionCorta, (double)renglon.Cantidad, (double)renglon.Precio, (double)renglon.TasaIVA, (double)renglon.Impuestos);
+				fiscalHasar.ImprimirItem (renglon.DescripcionCorta, (double)renglon.Cantidad, (double)renglon.Precio, (double)renglon.Iva, (double)renglon.Impuestos);
 				if (fiscalHasar.HuboErrorFiscal) {
 					Console.WriteLine ("Hubo error al abrir comprobante. Se cancelará el comprobante. " + descripcionErrorFiscal);
 					fiscalHasar.CancelarComprobante ();
@@ -444,6 +446,14 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 			return cadena;
 		}
 
-        
-	}
+        public void ImprimirComprobanteCuentaCorriente(IComprobante comprobante)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ReporteElectronico(DateTime desde, DateTime hasta)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
