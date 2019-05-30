@@ -176,3 +176,5 @@ FakesAssemblies/
 
 # Hamekoz
 *Secreto.txt
+MigrationBackup/*
+.vs/*

@@ -39,16 +39,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
-      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
-      <Name>Hamekoz.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hamekoz.Fiscal\Hamekoz.Fiscal.csproj">
-      <Project>{E773C3F7-FCB9-496E-871E-E0EA20E880EF}</Project>
-      <Name>Hamekoz.Fiscal</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="FiscalPrinterLib">
       <Guid>{39ABE45D-F077-4D34-A361-6906C77D67F7}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -58,5 +48,10 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Hamekoz.Fiscal">
+      <Version>1.0.0</Version>
+    </PackageReference>
   </ItemGroup>
 </Project>

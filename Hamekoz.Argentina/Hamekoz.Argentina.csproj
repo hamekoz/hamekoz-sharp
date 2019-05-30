@@ -1,88 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A996E409-1FB5-49C4-94E4-EFB8AB5BE44E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Hamekoz.Argentina</RootNamespace>
-    <AssemblyName>Hamekoz.Argentina</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
+    <TargetFramework>net45</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Claudio Rodrigo Pereyra Diaz</Authors>
+    <Company>Hamekoz</Company>
+    <Copyright>Copyright © Hamekoz 2014</Copyright>
+    <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</PackageIconUrl>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageTags>argentina hamekoz</PackageTags>
+    <Version>1.0.0</Version>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Data" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hamekoz.Core" Version="1.0.1" />
+    <PackageReference Include="Hamekoz.Data" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Agip\RegistroPadronUnificado.cs" />
-    <Compile Include="Agip\RegistroImportacionRetencionPercepcion.cs" />
-    <Compile Include="Agip\RegistroImportacionNotaDeCredito.cs" />
-    <Compile Include="Agip\Enumerados.cs" />
-    <Compile Include="Agip\Agip.cs" />
-    <Compile Include="Afip\RegistroPadron.cs" />
-    <Compile Include="Afip\Afip.cs" />
-    <Compile Include="Arba\Arba.cs" />
-    <Compile Include="Arba\RegistroPadronUnificado.cs" />
-    <Compile Include="SIAP\RegistroDeImportacionIVA.cs" />
-    <Compile Include="Sifere\Sifere.cs" />
-    <Compile Include="Sifere\RegistroImportacionRetencionPercepcion.cs" />
-    <Compile Include="Sifere\Enumerados.cs" />
-    <Compile Include="Citi\Citi.cs" />
-    <Compile Include="Citi\RegistroImportacionCitiVentas.cs" />
-    <Compile Include="Citi\RegistroImportacionCitiCompras.cs" />
-    <Compile Include="Sifere\RegistroRecaudacionesBancarias.cs" />
-    <Compile Include="Arba\RegistroImportacionRetencionPercepcion.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Agip\" />
-    <Folder Include="Afip\" />
-    <Folder Include="Arba\" />
-    <Folder Include="SIAP\" />
-    <Folder Include="Sifere\" />
-    <Folder Include="Citi\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hamekoz.Data\Hamekoz.Data.csproj">
-      <Project>{F2024AE4-2B88-4DFD-B6ED-F2ECB7349E93}</Project>
-      <Name>Hamekoz.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
-      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
-      <Name>Hamekoz.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <Policies>
-          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedHierarchical" ResourceNamePolicy="FileFormatDefault" />
-        </Policies>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
+
 </Project>

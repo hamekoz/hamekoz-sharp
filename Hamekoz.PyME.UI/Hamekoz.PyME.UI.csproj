@@ -1,63 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Hamekoz.PyME.UI</RootNamespace>
-    <AssemblyName>Hamekoz.PyME.UI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
+    <TargetFramework>net45</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Claudio Rodrigo Pereyra Diaz</Authors>
+    <Company>Hamekoz</Company>
+    <Copyright>Copyright © Hamekoz 2014</Copyright>
+    <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</PackageIconUrl>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageTags>xwt UI hamekoz</PackageTags>
+    <Version>1.0.0</Version>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Humanizer">
-      <HintPath>..\..\packages\Humanizer.Core.2.0.1\lib\portable-win+net45+wp8+wpa81\Humanizer.dll</HintPath>
-    </Reference>
+    <Folder Include="Properties\" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="MainWindow.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ContactoUI.cs" />
-    <Compile Include="IVAItemUI.cs" />
-    <Compile Include="ComprobanteItemUI.cs" />
+    <PackageReference Include="Hamekoz.Core" Version="1.0.2" />
+    <PackageReference Include="Hamekoz.UI" Version="1.0.0" />
+    <PackageReference Include="Hamekoz.Xwt" Version="1.0.0" />
+    <PackageReference Include="Humanizer.Core.es" Version="2.0.1" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\xwt\Xwt\Xwt.csproj">
-      <Project>{92494904-35FA-4DC9-BDE9-3A3E87AC49D3}</Project>
-      <Name>Xwt</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hamekoz.UI\Hamekoz.UI.csproj">
-      <Project>{57C0A7DC-F7B7-42C3-AE4D-984938F61542}</Project>
-      <Name>Hamekoz.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
-      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
-      <Name>Hamekoz.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
+
 </Project>

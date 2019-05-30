@@ -1,100 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F803E76-E8C1-45D7-88D1-E97B56297E75}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Hamekoz.Fiscal.Hasar.Spooler</RootNamespace>
-    <newfilesearch>OnLoad</newfilesearch>
-    <AssemblyName>Hamekoz.Fiscal.Hasar.Spooler</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
+    <TargetFramework>net45</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Claudio Rodrigo Pereyra Diaz; Ezequiel Taranto</Authors>
+    <Company>Hamekoz</Company>
+    <Copyright>Copyright © Hamekoz 2014</Copyright>
+    <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</PackageIconUrl>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageTags>fiscal hasar spooler hamekoz</PackageTags>
+    <Version>1.0.0</Version>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System">
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Enumerados\CortePapel.cs" />
-    <Compile Include="Enumerados\Imprime.cs" />
-    <Compile Include="Enumerados\ResponsabilidaFrenteIVA.cs" />
-    <Compile Include="Tipos\A.cs" />
-    <Compile Include="Tipos\D.cs" />
-    <Compile Include="Tipos\H.cs" />
-    <Compile Include="Tipos\N.cs" />
-    <Compile Include="Tipos\T.cs" />
-    <Compile Include="IDGI.cs" />
-    <Compile Include="IHasar.cs" />
-    <Compile Include="Impresora.cs" />
-    <Compile Include="IHasarAfip.cs" />
-    <Compile Include="Hasar.cs" />
-    <Compile Include="Comandos\StatusRequest.cs" />
-    <Compile Include="Comandos\DailyClose.cs" />
-    <Compile Include="Comandos\Comando.cs" />
-    <Compile Include="Comandos\GetConfigurationData.cs" />
-    <Compile Include="Comandos\GetInitData.cs" />
-    <Compile Include="Comandos\GetWorkingMemory.cs" />
-    <Compile Include="Comandos\HistoryCapacity.cs" />
-    <Compile Include="Comandos\GetDailyReport.cs" />
-    <Compile Include="Comandos\SendFirstIVA.cs" />
-    <Compile Include="Comandos\NextIVATransmission.cs" />
-    <Compile Include="Comandos\Subtotal.cs" />
-    <Compile Include="Comandos\TotalTender.cs" />
-    <Compile Include="Comandos\CloseFiscalReceipt.cs" />
-    <Compile Include="Comandos\OpenDNFH.cs" />
-    <Compile Include="Comandos\CloseDNFH.cs" />
-    <Compile Include="Comandos\GetDateTime.cs" />
-    <Compile Include="Comandos\GetHeaderTrailer.cs" />
-    <Compile Include="Comandos\CustomerData.cs" />
-    <Compile Include="Comandos\GetFantasyName.cs" />
-    <Compile Include="Comandos\GetEmbarkNumber.cs" />
-    <Compile Include="Test.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ControladorFiscal.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Comandos\" />
     <Folder Include="Properties\" />
   </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <Policies>
-          <StandardHeader Text="&#xA; ${FileName}&#xA; &#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA; &#xA; Copyright (c) ${Year} ${CopyrightHolder}&#xA;&#xA; This program is free software: you can redistribute it and/or modify&#xA; it under the terms of the GNU Lesser General Public License as published by&#xA; the Free Software Foundation, either version 3 of the License, or&#xA; (at your option) any later version.&#xA;&#xA; This program is distributed in the hope that it will be useful,&#xA; but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xA; GNU Lesser General Public License for more details.&#xA;&#xA; You should have received a copy of the GNU Lesser General Public License&#xA; along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;." IncludeInNewFiles="True" />
-        </Policies>
-        <Deployment.LinuxDeployData generateScript="False" />
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
+
   <ItemGroup>
-    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj">
-      <Project>{C5A5D712-545F-4088-B6B3-610BB7B61E9D}</Project>
-      <Name>Hamekoz.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hamekoz.Fiscal\Hamekoz.Fiscal.csproj">
-      <Project>{E773C3F7-FCB9-496E-871E-E0EA20E880EF}</Project>
-      <Name>Hamekoz.Fiscal</Name>
-    </ProjectReference>
+    <PackageReference Include="Hamekoz.Core" Version="1.0.1" />
+    <PackageReference Include="Hamekoz.Fiscal" Version="1.0.0" />
   </ItemGroup>
+
 </Project>
