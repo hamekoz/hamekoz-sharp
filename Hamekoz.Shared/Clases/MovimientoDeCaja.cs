@@ -21,7 +21,7 @@
 using System;
 using Hamekoz.Core;
 
-namespace Hamekoz
+namespace Hamekoz.Negocio
 {
 	public class MovimientoDeCaja : IPersistible, IIdentifiable
 	{
