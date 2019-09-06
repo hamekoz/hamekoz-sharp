@@ -22,7 +22,7 @@
   <ItemGroup>
     <PackageReference Include="Hamekoz.Core" Version="1.0.1" />
     <PackageReference Include="Hamekoz.Data" Version="1.0.1" />
-    <PackageReference Include="Humanizer.Core.es" Version="2.0.1" />
+    <PackageReference Include="Humanizer.Core.es" Version="2.7.2" />
     <PackageReference Include="iTextSharp" Version="5.5.13" />
     <PackageReference Include="ZXing.Net" Version="0.16.4" />
   </ItemGroup>
