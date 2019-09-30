@@ -23,7 +23,7 @@
     <PackageReference Include="Hamekoz.Core" Version="1.0.2" />
     <PackageReference Include="Hamekoz.UI" Version="1.0.0" />
     <PackageReference Include="Hamekoz.Xwt" Version="1.0.0" />
-    <PackageReference Include="Humanizer.Core.es" Version="2.0.1" />
+    <PackageReference Include="Humanizer.Core.es" Version="2.7.9" />
   </ItemGroup>
 
 </Project>
