@@ -52,7 +52,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Hamekoz.Shared\Hamekoz.Shared.projitems*{5bf8af42-f3db-4842-adc0-ce95561138b5}*SharedItemsImports = 13
-		Hamekoz.Shared\Hamekoz.Shared.projitems*{c5a5d712-545f-4088-b6b3-610bb7b61e9d}*SharedItemsImports = 4
+		Hamekoz.Shared\Hamekoz.Shared.projitems*{c5a5d712-545f-4088-b6b3-610bb7b61e9d}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Win|Any CPU = Debug Win|Any CPU
