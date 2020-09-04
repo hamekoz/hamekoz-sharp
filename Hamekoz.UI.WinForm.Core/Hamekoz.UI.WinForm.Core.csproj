@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyName>Hamekoz.UI.WinForm</AssemblyName>
+    <RootNamespace>Hamekoz.UI.WinForm</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Hamekoz.UI.WinForm\**\*.cs" />
+    <EmbeddedResource Include="..\Hamekoz.UI.WinForm\**\*.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="..\Hamekoz.UI.WinForm\obj\Debug\**" />
+  </ItemGroup>
+  
+</Project>
