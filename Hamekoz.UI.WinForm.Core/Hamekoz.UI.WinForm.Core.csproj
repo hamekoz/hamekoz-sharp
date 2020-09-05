@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Compile Remove="..\Hamekoz.UI.WinForm\obj\Debug\**" />
+    <Compile Remove="..\Hamekoz.UI.WinForm\obj\Release\net45\**" />
   </ItemGroup>
   
 </Project>
