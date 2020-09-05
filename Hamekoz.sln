@@ -154,7 +154,6 @@ Global
 		{D64808EA-9892-4961-953D-6939AE94DDD0}.Release Win|Any CPU.ActiveCfg = Release|Any CPU
 		{D64808EA-9892-4961-953D-6939AE94DDD0}.Release Win|Any CPU.Build.0 = Release|Any CPU
 		{D64808EA-9892-4961-953D-6939AE94DDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D64808EA-9892-4961-953D-6939AE94DDD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
