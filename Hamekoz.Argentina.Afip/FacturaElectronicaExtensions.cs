@@ -63,9 +63,9 @@ namespace Hamekoz.Argentina.Afip
 
 		public static object PuntosDeVenta (string ta_path)
 		{
-			var service = new Service ();
-			var respuesta = service.FEParamGetPtosVenta (TA (ta_path));
-			return respuesta.ResultGet;
+			var service = new wsfev1.ServiceSoapClient (ServiceSoapClient.EndpointConfiguration.ServiceSoap);
+			var respuesta = service.FEParamGetPtosVenta (new FEParamGetPtosVentaRequest(new FEParamGetPtosVentaRequestBody( TA (ta_path))));
+			return respuesta.Body.FEParamGetPtosVentaResult.ResultGet;
 		}
 
 		static IEnumerable<AlicIva> FEIVAS (this IComprobante comprobante)
@@ -114,10 +114,10 @@ namespace Hamekoz.Argentina.Afip
 
 		public static void SolicitarCAE (this IComprobanteElectronico comprobante, string ta_path, Hamekoz.Core.ICallBack callback)
 		{
-			var service = new Service ();
+			var service = new ServiceSoapClient (ServiceSoapClient.EndpointConfiguration.ServiceSoap);
 			//HACK para cambiar de produccion a homologacion
 			#if DEBUG
-			service = new Service (homo_url);
+			service = new ServiceSoapClient (ServiceSoapClient.EndpointConfiguration.ServiceSoap, homo_url);
 			#endif
 			var ta = TA (ta_path);
 
@@ -125,8 +125,11 @@ namespace Hamekoz.Argentina.Afip
 			int tipo = ComprobanteTipo (comprobante);
 			int punto_de_venta = int.Parse (comprobante.Tipo.Pre);
 
-			var fECompUltimoAutorizado = service.FECompUltimoAutorizado (ta, punto_de_venta, tipo);
-			int numero = fECompUltimoAutorizado.CbteNro;
+            var fECompUltimoAutorizadoRequestBody = new FECompUltimoAutorizadoRequestBody (ta, punto_de_venta, tipo);
+            var fECompUltimoAutorizadoRequest = new FECompUltimoAutorizadoRequest (fECompUltimoAutorizadoRequestBody);
+
+            var fECompUltimoAutorizado = service.FECompUltimoAutorizado(fECompUltimoAutorizadoRequest);
+			int numero = fECompUltimoAutorizado.Body.FECompUltimoAutorizadoResult.CbteNro;
 			numero++;
 
 			var feCabReq = new FECAECabRequest {
@@ -153,11 +156,11 @@ namespace Hamekoz.Argentina.Afip
 				//TODO en caso de ser de tipo C debe ser siempre 0
 				ImpTotConc = (double)comprobante.NoGravado,
 				ImpTrib = (double)comprobante.Tributos,
-				Iva = comprobante.FEIVAS ().ToArray (),
+				Iva = comprobante.FEIVAS ().ToList(),
 				MonCotiz = 1, //TODO pasar la cotizacion correcta
 				MonId = "PES", //TODO pasar la moneda correcta
 				Opcionales = null,
-				Tributos = comprobante.Tributos > 0 ? comprobante.FETributos ().ToArray () : null,
+				Tributos = comprobante.Tributos > 0 ? comprobante.FETributos ().ToList () : null,
 			};
 
 			var feDetReq = new List<FECAEDetRequest> ();
@@ -165,10 +168,13 @@ namespace Hamekoz.Argentina.Afip
 
 			var solicitud = new  FECAERequest {
 				FeCabReq = feCabReq,
-				FeDetReq = feDetReq.ToArray ()
+				FeDetReq = feDetReq.ToList ()
 			};
 
-			FECAEResponse fECAEResponse = service.FECAESolicitar (ta, solicitud);
+            var fECAESolicitarRequestBody = new FECAESolicitarRequestBody (ta, solicitud);
+            var fECAESolicitarRequest = new FECAESolicitarRequest (fECAESolicitarRequestBody);
+
+            FECAEResponse fECAEResponse = service.FECAESolicitar (fECAESolicitarRequest).Body.FECAESolicitarResult;
 
 			if (fECAEResponse.Events != null) {
 				foreach (var evento in fECAEResponse.Events) {

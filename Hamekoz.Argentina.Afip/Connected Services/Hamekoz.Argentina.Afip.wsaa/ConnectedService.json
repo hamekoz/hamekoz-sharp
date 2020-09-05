@@ -1,0 +1,46 @@
+﻿{
+  "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
+  "Version": "15.0.40203.910",
+  "ExtendedData": {
+    "inputs": [
+      "https://wsaa.afip.gov.ar/ws/services/LoginCms"
+    ],
+    "collectionTypes": [
+      "System.Collections.Generic.Dictionary`2",
+      "System.Collections.Generic.List`1"
+    ],
+    "messageContract": true,
+    "namespaceMappings": [
+      "*, Hamekoz.Argentina.Afip.wsaa"
+    ],
+    "references": [
+      "D:\\Documents\\GitHub\\hamekoz-sharp\\Hamekoz.Argentina.Afip\\bin\\Debug\\netstandard2.1\\Hamekoz.Core.dll",
+      "D:\\Documents\\GitHub\\hamekoz-sharp\\Hamekoz.Argentina.Afip\\bin\\Debug\\netstandard2.1\\Hamekoz.Data.dll",
+      "Humanizer, {Humanizer.Core, 2.8.26}",
+      "itextsharp.netstandard, {itextsharp.netstandard, 5.5.13.2}",
+      "Mono.Posix.NETStandard, {Mono.Posix.NETStandard, 1.0.0}",
+      "System.Configuration.ConfigurationManager, {System.Configuration.ConfigurationManager, 4.7.0}",
+      "System.Data.Common, {System.Data.Common, 4.3.0}",
+      "System.Drawing.Common, {System.Drawing.Common, 4.7.0}",
+      "System.IO, {System.IO, 4.3.0}",
+      "System.Reflection.DispatchProxy, {System.Reflection.DispatchProxy, 4.5.0}",
+      "System.Runtime, {System.Runtime, 4.3.0}",
+      "System.Security.AccessControl, {System.Security.AccessControl, 4.7.0}",
+      "System.Security.Cryptography.Xml, {System.Security.Cryptography.Xml, 4.5.0}",
+      "System.Security.Permissions, {System.Security.Permissions, 4.7.0}",
+      "System.Security.Principal.Windows, {System.Security.Principal.Windows, 4.7.0}",
+      "System.ServiceModel, {System.ServiceModel.Primitives, 4.7.0}",
+      "System.ServiceModel.Duplex, {System.ServiceModel.Duplex, 4.7.0}",
+      "System.ServiceModel.Http, {System.ServiceModel.Http, 4.7.0}",
+      "System.ServiceModel.NetTcp, {System.ServiceModel.NetTcp, 4.7.0}",
+      "System.ServiceModel.Primitives, {System.ServiceModel.Primitives, 4.7.0}",
+      "System.ServiceModel.Security, {System.ServiceModel.Security, 4.7.0}",
+      "System.Text.Encoding, {System.Text.Encoding, 4.3.0}",
+      "System.Threading.Tasks, {System.Threading.Tasks, 4.3.0}",
+      "zxing, {ZXing.Net, 0.16.5}"
+    ],
+    "sync": true,
+    "targetFramework": "netstandard2.1",
+    "typeReuseMode": "All"
+  }
+}
