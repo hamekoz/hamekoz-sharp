@@ -39,6 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		.gitmodules = .gitmodules
 		ChangeLog = ChangeLog
+		.github\workflows\dotnetcore.yml = .github\workflows\dotnetcore.yml
 		Hamekoz.ico = Hamekoz.ico
 		Hamekoz.png = Hamekoz.png
 		LICENSE = LICENSE
