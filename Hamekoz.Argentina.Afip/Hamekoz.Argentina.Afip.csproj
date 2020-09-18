@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Claudio Rodrigo Pereyra Diaz</Authors>
     <Company>Hamekoz</Company>
@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj" />
-    <ProjectReference Include="..\Hamekoz.Data\Hamekoz.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
