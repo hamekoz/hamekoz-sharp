@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Claudio Rodrigo Pereyra Diaz</Authors>
     <Company>Hamekoz</Company>
@@ -16,13 +16,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <PackageReference Include="Hamekoz.Xwt" Version="1.0.0" />
+    <PackageReference Include="Humanizer.Core.es" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hamekoz.Core" Version="1.0.1" />
-    <PackageReference Include="Hamekoz.Xwt" Version="1.0.0" />
-    <PackageReference Include="Humanizer.Core.es" Version="2.0.1" />
+    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -23,6 +23,7 @@
 using System;
 using System.Configuration;
 using FiscalPrinterLib;
+using Hamekoz.Negocio;
 
 namespace Hamekoz.Fiscal.Hasar.OCX
 {
@@ -446,14 +447,13 @@ namespace Hamekoz.Fiscal.Hasar.OCX
 			return cadena;
 		}
 
-        public void ImprimirComprobanteCuentaCorriente(IComprobante comprobante)
+        public string ReporteElectronico(DateTime desde, DateTime hasta)
         {
             throw new NotImplementedException();
         }
 
-        public string ReporteElectronico(DateTime desde, DateTime hasta)
-        {
-            throw new NotImplementedException();
+        public void ImprimirComprobanteCuentaCorriente (Comprobante comprobante) {
+            throw new NotImplementedException ();
         }
     }
 }

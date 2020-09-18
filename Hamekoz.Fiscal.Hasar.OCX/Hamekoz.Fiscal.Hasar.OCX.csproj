@@ -1,43 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A42896DA-744C-4366-9CC3-770583EADB4E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Hamekoz.Fiscal.Hasar.OCX</RootNamespace>
-    <AssemblyName>Hamekoz.Fiscal.Hasar.OCX</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Claudio Rodrigo Pereyra Diaz</Authors>
+    <Company>Hamekoz</Company>
+    <Copyright>Copyright © Hamekoz 2014</Copyright>
+    <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</PackageIconUrl>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageTags>fiscal hasar IFH2G hamekoz</PackageTags>
+    <Version>1.0.0</Version>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+    <ProjectReference Include="..\Hamekoz.Fiscal\Hamekoz.Fiscal.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ControladorFiscal.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
   <ItemGroup>
     <COMReference Include="FiscalPrinterLib">
       <Guid>{39ABE45D-F077-4D34-A361-6906C77D67F7}</Guid>
@@ -48,10 +29,5 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Hamekoz.Fiscal">
-      <Version>1.0.0</Version>
-    </PackageReference>
   </ItemGroup>
 </Project>

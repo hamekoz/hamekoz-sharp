@@ -18,7 +18,6 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -221,14 +220,14 @@ namespace Hamekoz.Argentina.Afip
 			};
 			totalesTable.SetTotalWidth (new float[] { 200, 92 });
 
-			var bw = new ZXing.BarcodeWriter {
+			var bw = new ZXing.BarcodeWriterPixelData {
 				Format = ZXing.BarcodeFormat.ITF,
 			};
 			bw.Options = new ZXing.Common.EncodingOptions { Height = 35, Margin = 20, PureBarcode = true };
 			var fe = Comprobante as IComprobanteElectronico;
 			var barcodeText = fe.BarcodeText (Emisor);
-			var barcodeImage = new System.Drawing.Bitmap (bw.Write (barcodeText));
-			Image barcode = Image.GetInstance (barcodeImage, BaseColor.WHITE);
+			var barcodeImage = bw.Write (barcodeText);
+			Image barcode = Image.GetInstance (barcodeImage.Pixels);
 
 			var caeCell = new PdfPCell (new Phrase (string.Format ("C.A.E. Nº {0} Fecha Vto. CAE: {1:dd/MM/yyyy}", fe.CAE.Trim (), fe.VencimientoCAE ()), fuenteTitulo)) {
 				HorizontalAlignment = Element.ALIGN_CENTER,

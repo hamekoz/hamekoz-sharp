@@ -219,7 +219,7 @@ namespace Hamekoz.Reportes
 			if (!MostrarBordes) {
 				tabla.DefaultCell.Border = Rectangle.NO_BORDER;
 			}
-			tabla.DefaultCell.BackgroundColor = new BaseColor (System.Drawing.Color.Transparent);
+			tabla.DefaultCell.BackgroundColor = new BaseColor (System.Drawing.Color.Transparent.ToArgb());
 			tabla.WidthPercentage = 100;
 			if (!OcultarTitulosDeColumnas) {
 				tabla.HeaderRows = 1;

@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using Hamekoz.Argentina.Afip.wsaa;
 using System;
 using System.Collections;
 using System.Text;
@@ -180,8 +181,8 @@ namespace Hamekoz.Argentina.Afip
 
 			// PASO 3: Invoco al WSAA para obtener el Login Ticket Response 
 			try {
-				var wsaa = new  wsaa.LoginCMSService ();
-				respuesta = wsaa.loginCms (cmsFirmadoBase64);
+				var wsaa = new  wsaa.LoginCMSClient ();
+				respuesta = wsaa.loginCms (new loginCmsRequest(new loginCmsRequestBody(cmsFirmadoBase64))).Body.loginCmsReturn;
 			} catch (Exception ex) {
 				throw new Exception ("Error INVOCANDO al servicio WSAA : " + ex.Message);
 			}
