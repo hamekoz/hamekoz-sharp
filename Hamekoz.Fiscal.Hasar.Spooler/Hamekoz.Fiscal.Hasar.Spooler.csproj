@@ -16,15 +16,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Hamekoz.Core" Version="1.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj" />
     <ProjectReference Include="..\Hamekoz.Fiscal\Hamekoz.Fiscal.csproj" />
   </ItemGroup>
 
