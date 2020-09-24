@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net48</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Claudio Rodrigo Pereyra Diaz</Authors>
     <Company>Hamekoz</Company>
@@ -10,6 +10,9 @@
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageTags>argentina hamekoz</PackageTags>
   </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj" />
     <ProjectReference Include="..\Hamekoz.Data\Hamekoz.Data.csproj" />
