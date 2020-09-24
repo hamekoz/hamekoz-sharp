@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -9,14 +8,9 @@
     <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
     <PackageIconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</PackageIconUrl>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
     <PackageTags>fiscal hasar IFH2G hamekoz</PackageTags>
-    <Version>1.0.0</Version>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.Core\Hamekoz.Core.csproj" />
   </ItemGroup>
-
 </Project>
