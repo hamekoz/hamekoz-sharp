@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -14,12 +13,9 @@
     <PackageTags>hamekoz</PackageTags>
     <Version>1.0.2</Version>
   </PropertyGroup>
-
+  <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" />
   <ItemGroup>
     <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
-
-  <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" />
-
 </Project>
