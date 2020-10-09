@@ -2,7 +2,16 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Claudio Rodrigo Pereyra Diaz</Authors>
+    <Company>Hamekoz</Company>
+    <Copyright>Copyright © Hamekoz 2014</Copyright>
+    <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
+    <PackageIcon>Hamekoz.png</PackageIcon>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <PackageTags>winform hamekoz</PackageTags>
     <Version>1.1.0</Version>
+    <ApplicationIcon>Hamekoz.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -16,5 +25,11 @@
   <ItemGroup>
     <Compile Remove="..\Hamekoz.UI.WinForm\obj\Debug\**" />
     <Compile Remove="..\Hamekoz.UI.WinForm\obj\Release\net45\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Hamekoz.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>

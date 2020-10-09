@@ -6,7 +6,7 @@
     <Company>Hamekoz</Company>
     <Copyright>Copyright © Hamekoz 2014</Copyright>
     <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
-    <PackageIconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</PackageIconUrl>
+    <PackageIcon>Hamekoz.png</PackageIcon>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageTags>winform hamekoz</PackageTags>
     <Version>1.1.0</Version>
@@ -34,6 +34,12 @@
     </None>
     <None Update="Imagenes\Splash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Hamekoz.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
     </None>
   </ItemGroup>
 </Project>
