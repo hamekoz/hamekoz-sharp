@@ -9,6 +9,7 @@
     <PackageIconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</PackageIconUrl>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageTags>xwt UI hamekoz</PackageTags>
+    <Version>1.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hamekoz.PyME.UI\Hamekoz.PyME.UI.csproj" />

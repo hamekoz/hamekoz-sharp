@@ -9,11 +9,9 @@
     <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
     <PackageIconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</PackageIconUrl>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
     <PackageReleaseNotes>First release</PackageReleaseNotes>
     <PackageTags>mono database hamekoz</PackageTags>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />

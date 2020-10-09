@@ -8,10 +8,8 @@
     <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
     <PackageIconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</PackageIconUrl>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
     <PackageTags>hamekoz</PackageTags>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
   <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" />
   <ItemGroup>
