@@ -6,7 +6,7 @@
     <Company>Hamekoz</Company>
     <Copyright>Copyright © Hamekoz 2014</Copyright>
     <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
-    <PackageIconUrl>https://github.com/hamekoz/hamekoz-sharp/blob/master/Hamekoz.png</PackageIconUrl>
+    <PackageIcon>Hamekoz.png</PackageIcon>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageTags>fiscal hasar IFH2G hamekoz</PackageTags>
     <Version>1.1.0</Version>
@@ -18,5 +18,11 @@
     <Reference Include="HasarLibreriaFiscal3561">
       <HintPath>libs\HasarLibreriaFiscal3561.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Hamekoz.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
