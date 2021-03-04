@@ -14,7 +14,7 @@
   <Import Project="..\Hamekoz.Shared\Hamekoz.Shared.projitems" Label="Shared" />
   <ItemGroup>
     <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Hamekoz.png">
