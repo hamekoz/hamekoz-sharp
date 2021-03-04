@@ -1,4 +1,4 @@
-name: .NET Build & Test
+name: .NET
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
