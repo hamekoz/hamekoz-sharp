@@ -227,12 +227,11 @@ namespace Hamekoz.Argentina.Citi
 
 			                );
 			if (cadena.Length != 325) {
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nPunto de Venta: {0}\nComprobante: {1}", PuntoVenta, NroComprobante));
 			}
 
 			return cadena;
 		}
-
 
 		public string ToFixedStringAlicuotas ()
 		{
@@ -247,11 +246,9 @@ namespace Hamekoz.Argentina.Citi
 				, IVA
 			                );
 			if (cadena.Length != 84) {
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nPunto de Venta: {0}\nComprobante: {1}", PuntoVenta, NroComprobante));
 			}
-
 			return cadena;
 		}
 	}
 }
-

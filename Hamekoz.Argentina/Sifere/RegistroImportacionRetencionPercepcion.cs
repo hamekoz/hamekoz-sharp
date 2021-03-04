@@ -101,11 +101,10 @@ namespace Hamekoz.Argentina.Sifere
 				, Importe
 			);
 			if ((cadena.Length != 51) && (cadena.Length != 38))
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nCódigo Juridicción: {0}\nCUIT: {1}", CodigoJurisdiccion, CUIT));
 
 			return cadena;
 		}
-
 
 		public string ToFixedStringRetencion ()
 		{
@@ -121,11 +120,11 @@ namespace Hamekoz.Argentina.Sifere
 				, NroComprobante
 				, Importe
 			);
+
 			if ((cadena.Length != 79) && (cadena.Length != 66))
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
+				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nCódigo Juridicción: {0}\nCUIT: {1}", CodigoJurisdiccion, CUIT));
 
 			return cadena;
 		}
 	}
 }
-
