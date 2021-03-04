@@ -17,17 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamekoz.Fiscal.Hasar.OCX", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamekoz.Fiscal.Hasar.Spooler", "Hamekoz.Fiscal.Hasar.Spooler\Hamekoz.Fiscal.Hasar.Spooler.csproj", "{8F803E76-E8C1-45D7-88D1-E97B56297E75}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamekoz.UI", "Hamekoz.UI\Hamekoz.UI.csproj", "{57C0A7DC-F7B7-42C3-AE4D-984938F61542}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamekoz.Argentina.Afip", "Hamekoz.Argentina.Afip\Hamekoz.Argentina.Afip.csproj", "{E79A4EB9-F6CE-4124-A71A-0E56D6999FE3}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hamekoz.Shared", "Hamekoz.Shared\Hamekoz.Shared.shproj", "{5BF8AF42-F3DB-4842-ADC0-CE95561138B5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamekoz.Fiscal.Hasar.IFH2G", "Hamekoz.Fiscal.Hasar.IFH2G\Hamekoz.Fiscal.Hasar.IFH2G.csproj", "{2892BE94-282F-4DED-A995-079B6026D553}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamekoz.PyME.UI", "Hamekoz.PyME.UI\Hamekoz.PyME.UI.csproj", "{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamekoz.PyME.UI.Desktop", "Hamekoz.PyME.UI.Desktop\Hamekoz.PyME.UI.Desktop.csproj", "{FF2D6CD5-A17E-4123-B4C1-7F1200EDC4C5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4CD635A4-E6E5-40B2-BFA5-616507E2499E}"
 	ProjectSection(SolutionItems) = preProject
@@ -35,20 +29,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		.gitmodules = .gitmodules
 		ChangeLog = ChangeLog
-		.github\workflows\dotnetcore.yml = .github\workflows\dotnetcore.yml
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 		Hamekoz.ico = Hamekoz.ico
 		Hamekoz.png = Hamekoz.png
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamekoz.UI.WinForm.Core", "Hamekoz.UI.WinForm.Core\Hamekoz.UI.WinForm.Core.csproj", "{D64808EA-9892-4961-953D-6939AE94DDD0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamekoz.UI.WinForm", "Hamekoz.UI.WinForm\Hamekoz.UI.WinForm.csproj", "{FDC6AF08-C34F-4A0A-AE17-CF589DCB3AB3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{4CF3D671-EC35-47CE-AD27-4023BFF25FA1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PyME", "PyME", "{FFA67DD5-6646-4EEC-9902-9DEAD37E5201}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -116,13 +102,6 @@ Global
 		{8F803E76-E8C1-45D7-88D1-E97B56297E75}.Release Win|Any CPU.Build.0 = Release|Any CPU
 		{8F803E76-E8C1-45D7-88D1-E97B56297E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F803E76-E8C1-45D7-88D1-E97B56297E75}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57C0A7DC-F7B7-42C3-AE4D-984938F61542}.Debug Win|Any CPU.ActiveCfg = Debug|Any CPU
-		{57C0A7DC-F7B7-42C3-AE4D-984938F61542}.Debug Win|Any CPU.Build.0 = Debug|Any CPU
-		{57C0A7DC-F7B7-42C3-AE4D-984938F61542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57C0A7DC-F7B7-42C3-AE4D-984938F61542}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57C0A7DC-F7B7-42C3-AE4D-984938F61542}.Release Win|Any CPU.ActiveCfg = Release|Any CPU
-		{57C0A7DC-F7B7-42C3-AE4D-984938F61542}.Release Win|Any CPU.Build.0 = Release|Any CPU
-		{57C0A7DC-F7B7-42C3-AE4D-984938F61542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E79A4EB9-F6CE-4124-A71A-0E56D6999FE3}.Debug Win|Any CPU.ActiveCfg = Debug|Any CPU
 		{E79A4EB9-F6CE-4124-A71A-0E56D6999FE3}.Debug Win|Any CPU.Build.0 = Debug|Any CPU
 		{E79A4EB9-F6CE-4124-A71A-0E56D6999FE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -139,45 +118,9 @@ Global
 		{2892BE94-282F-4DED-A995-079B6026D553}.Release Win|Any CPU.Build.0 = Release|Any CPU
 		{2892BE94-282F-4DED-A995-079B6026D553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2892BE94-282F-4DED-A995-079B6026D553}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0}.Debug Win|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0}.Debug Win|Any CPU.Build.0 = Debug|Any CPU
-		{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0}.Release Win|Any CPU.ActiveCfg = Release|Any CPU
-		{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0}.Release Win|Any CPU.Build.0 = Release|Any CPU
-		{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF2D6CD5-A17E-4123-B4C1-7F1200EDC4C5}.Debug Win|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF2D6CD5-A17E-4123-B4C1-7F1200EDC4C5}.Debug Win|Any CPU.Build.0 = Debug|Any CPU
-		{FF2D6CD5-A17E-4123-B4C1-7F1200EDC4C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF2D6CD5-A17E-4123-B4C1-7F1200EDC4C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF2D6CD5-A17E-4123-B4C1-7F1200EDC4C5}.Release Win|Any CPU.ActiveCfg = Release|Any CPU
-		{FF2D6CD5-A17E-4123-B4C1-7F1200EDC4C5}.Release Win|Any CPU.Build.0 = Release|Any CPU
-		{FF2D6CD5-A17E-4123-B4C1-7F1200EDC4C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D64808EA-9892-4961-953D-6939AE94DDD0}.Debug Win|Any CPU.ActiveCfg = Debug|Any CPU
-		{D64808EA-9892-4961-953D-6939AE94DDD0}.Debug Win|Any CPU.Build.0 = Debug|Any CPU
-		{D64808EA-9892-4961-953D-6939AE94DDD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D64808EA-9892-4961-953D-6939AE94DDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D64808EA-9892-4961-953D-6939AE94DDD0}.Release Win|Any CPU.ActiveCfg = Release|Any CPU
-		{D64808EA-9892-4961-953D-6939AE94DDD0}.Release Win|Any CPU.Build.0 = Release|Any CPU
-		{D64808EA-9892-4961-953D-6939AE94DDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDC6AF08-C34F-4A0A-AE17-CF589DCB3AB3}.Debug Win|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDC6AF08-C34F-4A0A-AE17-CF589DCB3AB3}.Debug Win|Any CPU.Build.0 = Debug|Any CPU
-		{FDC6AF08-C34F-4A0A-AE17-CF589DCB3AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDC6AF08-C34F-4A0A-AE17-CF589DCB3AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDC6AF08-C34F-4A0A-AE17-CF589DCB3AB3}.Release Win|Any CPU.ActiveCfg = Release|Any CPU
-		{FDC6AF08-C34F-4A0A-AE17-CF589DCB3AB3}.Release Win|Any CPU.Build.0 = Release|Any CPU
-		{FDC6AF08-C34F-4A0A-AE17-CF589DCB3AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDC6AF08-C34F-4A0A-AE17-CF589DCB3AB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{57C0A7DC-F7B7-42C3-AE4D-984938F61542} = {4CF3D671-EC35-47CE-AD27-4023BFF25FA1}
-		{7BD1C29C-E27D-4B6B-B8DB-6328FF3F2CB0} = {FFA67DD5-6646-4EEC-9902-9DEAD37E5201}
-		{FF2D6CD5-A17E-4123-B4C1-7F1200EDC4C5} = {FFA67DD5-6646-4EEC-9902-9DEAD37E5201}
-		{D64808EA-9892-4961-953D-6939AE94DDD0} = {4CF3D671-EC35-47CE-AD27-4023BFF25FA1}
-		{FDC6AF08-C34F-4A0A-AE17-CF589DCB3AB3} = {4CF3D671-EC35-47CE-AD27-4023BFF25FA1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F712D43-58A7-49D5-A5F6-E2B53CD7F1AF}
