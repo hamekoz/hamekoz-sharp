@@ -17,14 +17,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.15
-      with:
-        versionSpec: '5.x'
-    - name: Determine Version
-      id: gitversion # step id used as reference for output values
-      uses: gittools/actions/gitversion/execute@v0.9.15
-
     - name: Git Semantic Version
       uses: PaulHatch/semantic-version@v5.0.3
       with:
@@ -40,6 +32,14 @@ jobs:
 
     - name: Create new Semantic Version
       uses: zwaldowski/semver-release-action@v3
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.15
+      with:
+        versionSpec: '5.x'
+    - name: Determine Version
+      id: gitversion # step id used as reference for output values
+      uses: gittools/actions/gitversion/execute@v0.9.15
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
