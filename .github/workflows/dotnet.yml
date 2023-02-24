@@ -12,7 +12,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4.2.2
+    - name: Checkout
+      uses: actions/checkout@v4.2.2
+      with:
+        fetch-depth: 0
+
+    - name: Git Semantic Version
+      uses: PaulHatch/semantic-version@v5.0.3
+      with:
+        major_pattern: (!)
+        minor_pattern: (feat)
+
+    - name: Semver Conventional Commits
+      uses: ietf-tools/semver-action@v1
+      with:
+        majorList: feat!, refactor!, fix!
+        token: ${{ github.token }}
+        branch: main
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v3.2.0
+      with:
+        versionSpec: '6.2.x'
+
+    - name: Determine Version
+      id: gitversion # step id used as reference for output values
+      uses: gittools/actions/gitversion/execute@v0.9.15
+
+    - name: Create new Semantic Version
+      uses: zwaldowski/semver-release-action@v3
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -23,3 +52,14 @@ jobs:
       run: dotnet build --configuration Release --no-restore Hamekoz.sln
     - name: Test
       run: dotnet test --no-restore --verbosity normal Hamekoz.sln
+
+    - name: Pack nuget
+      run: dotnet pack --output ./artifacts --configuration Release -p:Version=${{ steps.next_version.outputs.version }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: artifacts
+        path: ./artifacts
+    - name: Delivery nuget to Github Packages
+      if: ${{ github.actor != 'dependabot[bot]' }}
+      run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source 'https://nuget.pkg.github.com/MakingSense/index.json'
