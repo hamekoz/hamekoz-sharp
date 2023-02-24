@@ -17,6 +17,14 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.15
+      with:
+        versionSpec: '5.x'
+    - name: Determine Version
+      id: gitversion # step id used as reference for output values
+      uses: gittools/actions/gitversion/execute@v0.9.15
+
     - name: Git Semantic Version
       uses: PaulHatch/semantic-version@v5.0.3
       with:
@@ -37,6 +45,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
+        
     - name: Install dependencies
       run: dotnet restore Hamekoz.sln
     - name: Build
