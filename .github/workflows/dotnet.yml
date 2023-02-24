@@ -26,6 +26,7 @@ jobs:
     - name: Semver Conventional Commits
       uses: ietf-tools/semver-action@v1
       with:
+        majorList: feat!, refactor!, fix!
         token: ${{ github.token }}
         branch: main
 
