@@ -23,21 +23,21 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class CentroDeCosto : IPersistible, IIdentifiable, IDescriptible
-	{
-		#region IPersistible implementation
+    public partial class CentroDeCosto : IPersistible, IIdentifiable, IDescriptible
+    {
+        #region IPersistible implementation
 
-		public int Id { get; set; }
+        public int Id { get; set; }
 
-		#endregion
+        #endregion
 
-		public string Descripcion { get; set; } = string.Empty;
+        public string Descripcion { get; set; } = string.Empty;
 
-		public bool Inactivo { get; set; }
+        public bool Inactivo { get; set; }
 
-		public override string ToString ()
-		{
-			return Descripcion;
-		}
-	}
+        public override string ToString()
+        {
+            return Descripcion;
+        }
+    }
 }

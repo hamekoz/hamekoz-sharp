@@ -22,11 +22,10 @@ using System;
 
 namespace Hamekoz.Argentina.Sifere
 {
-	public class RegistroImportacionPercepciones
-	{
-		public RegistroImportacionPercepciones ()
-		{
-		}
-	}
+    public class RegistroImportacionPercepciones
+    {
+        public RegistroImportacionPercepciones()
+        {
+        }
+    }
 }
-

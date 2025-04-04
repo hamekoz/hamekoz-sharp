@@ -22,36 +22,39 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Area : IPersistible, IDescriptible
-	{
-		#region IPersistible implementation
+    public partial class Area : IPersistible, IDescriptible
+    {
+        #region IPersistible implementation
 
-		public int Id {
-			get; 
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		#region IDescriptible implementation
+        #region IDescriptible implementation
 
-		string IDescriptible.Descripcion {
-			get {
-				return Nombre;
-			}
-		}
+        string IDescriptible.Descripcion
+        {
+            get
+            {
+                return Nombre;
+            }
+        }
 
-		#endregion
+        #endregion
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
-	}
+        public override string ToString()
+        {
+            return Nombre;
+        }
+    }
 }
-

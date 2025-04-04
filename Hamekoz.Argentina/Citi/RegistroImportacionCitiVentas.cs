@@ -22,204 +22,230 @@ using System;
 
 namespace Hamekoz.Argentina.Citi
 {
-	/// <summary>
-	/// Registro importacion citi ventas.
-	/// </summary>
-	/// <see href="http://www.afip.gob.ar/comprasyventas/"/>
-	/// <see href="http://www.afip.gob.ar/comprasyventas/documentos/RegimendeInformaciondeComprasyVentasDisenosdeRegistros1.xls"/>
-	public class RegistroImportacionCitiVentas
-	{
+    /// <summary>
+    /// Registro importacion citi ventas.
+    /// </summary>
+    /// <see href="http://www.afip.gob.ar/comprasyventas/"/>
+    /// <see href="http://www.afip.gob.ar/comprasyventas/documentos/RegimendeInformaciondeComprasyVentasDisenosdeRegistros1.xls"/>
+    public class RegistroImportacionCitiVentas
+    {
 
-		/*Fecha	Tipo	Letra	Comprobante	Nombre	TipoDoc	NroDoc	Neto	IVA 21%	Percepción	Percepción IIBB	No Grabados	Percepción Municipal	Exento	Total*/
+        /*Fecha	Tipo	Letra	Comprobante	Nombre	TipoDoc	NroDoc	Neto	IVA 21%	Percepción	Percepción IIBB	No Grabados	Percepción Municipal	Exento	Total*/
 
-		public DateTime FechaContable {
-			get;
-			set;
-		}
+        public DateTime FechaContable
+        {
+            get;
+            set;
+        }
 
-		public string Tipo {
-			get;
-			set;
-		}
+        public string Tipo
+        {
+            get;
+            set;
+        }
 
-		public string Comprobante {
-			get;
-			set;
-		}
+        public string Comprobante
+        {
+            get;
+            set;
+        }
 
-		public string PuntoVenta {
-			get;
-			set;
-		}
+        public string PuntoVenta
+        {
+            get;
+            set;
+        }
 
-		public string RazonSocial {
-			get;
-			set;
-		}
+        public string RazonSocial
+        {
+            get;
+            set;
+        }
 
-		public string TipoDocumento {
-			get;
-			set;
-		}
+        public string TipoDocumento
+        {
+            get;
+            set;
+        }
 
-		public string NroDocumento {
-			get;
-			set;
-		}
+        public string NroDocumento
+        {
+            get;
+            set;
+        }
 
-		public string Neto {
-			get;
-			set;
-		}
+        public string Neto
+        {
+            get;
+            set;
+        }
 
-		public string IVA {
-			get;
-			set;
-		}
-
-
-
-		public string NoGrabados {
-			get;
-			set;
-		}
-
-		public string PercepcionMunicipal {
-			get;
-			set;
-		}
-
-		public string PercepcionesIB {
-			get;
-			set;
-		}
-
-		public string PercepcionesIVA {
-			get;
-			set;
-		}
-
-		public string Exento {
-			get;
-			set;
-		}
-
-		public string Total {
-			get;
-			set;
-		}
-
-
-		public string PercepcionNoCategorizados {
-			get;
-			set;
-		}
-
-		public string ImpuestosInternos {
-			get;
-			set;
-		}
-
-		public string CodigoMoneda {
-			get;
-			set;
-		}
-
-
-		public string TipoDeCambio {
-			get;
-			set;
-		}
-
-		public int CantidadAlicuotaIVA {
-			get;
-			set;
-		}
-
-		public string CodigoOperacion {
-			get;
-			set;
-		}
-
-		public string CodigoCiti {
-			get;
-			set;
-		}
-
-		public string OtrosTributos {
-			get;
-			set;
-		}
-
-		public string FechaVencimiento {
-			get;
-			set;
-		}
-
-		public string IVAAlicuota {
-			get;
-			set;
-		}
-
-
-		public string ToFixedString ()
-		{
-
-
-			string cadena = string.Format ("{0:yyyyMMdd}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}"
-				, FechaContable
-				, CodigoCiti
-				, PuntoVenta
-				, Comprobante
-				, Comprobante //Hasta
-				, TipoDocumento
-				, NroDocumento	
-				, RazonSocial
-				, Total
-				, "000000000000000"
-				, PercepcionNoCategorizados
-				, Exento
-				, PercepcionesIVA
-				, PercepcionesIB
-				, PercepcionMunicipal
-				, ImpuestosInternos
-				, CodigoMoneda
-				, TipoDeCambio
-				, CantidadAlicuotaIVA
-				, CodigoOperacion
-				, OtrosTributos
-				, FechaVencimiento
-			                );
-			if (cadena.Length != 266) {
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
-			}
-
-			return cadena;
-		}
+        public string IVA
+        {
+            get;
+            set;
+        }
 
 
 
-		public string ToFixedStringAlicuotas ()
-		{
+        public string NoGrabados
+        {
+            get;
+            set;
+        }
+
+        public string PercepcionMunicipal
+        {
+            get;
+            set;
+        }
+
+        public string PercepcionesIB
+        {
+            get;
+            set;
+        }
+
+        public string PercepcionesIVA
+        {
+            get;
+            set;
+        }
+
+        public string Exento
+        {
+            get;
+            set;
+        }
+
+        public string Total
+        {
+            get;
+            set;
+        }
 
 
-			string cadena = string.Format ("{0}{1}{2}{3}{4}{5}"				
-				, CodigoCiti
-				, PuntoVenta
-				, Comprobante
-				, Neto
-				, IVAAlicuota //simpre al 21% o Exento
-				, IVA
-			                );
-			if (cadena.Length != 62) {
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
-			}
+        public string PercepcionNoCategorizados
+        {
+            get;
+            set;
+        }
 
-			return cadena;
-		}
+        public string ImpuestosInternos
+        {
+            get;
+            set;
+        }
+
+        public string CodigoMoneda
+        {
+            get;
+            set;
+        }
+
+
+        public string TipoDeCambio
+        {
+            get;
+            set;
+        }
+
+        public int CantidadAlicuotaIVA
+        {
+            get;
+            set;
+        }
+
+        public string CodigoOperacion
+        {
+            get;
+            set;
+        }
+
+        public string CodigoCiti
+        {
+            get;
+            set;
+        }
+
+        public string OtrosTributos
+        {
+            get;
+            set;
+        }
+
+        public string FechaVencimiento
+        {
+            get;
+            set;
+        }
+
+        public string IVAAlicuota
+        {
+            get;
+            set;
+        }
+
+
+        public string ToFixedString()
+        {
+
+
+            string cadena = string.Format("{0:yyyyMMdd}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}{15}{16}{17}{18}{19}{20}{21}"
+                , FechaContable
+                , CodigoCiti
+                , PuntoVenta
+                , Comprobante
+                , Comprobante //Hasta
+                , TipoDocumento
+                , NroDocumento
+                , RazonSocial
+                , Total
+                , "000000000000000"
+                , PercepcionNoCategorizados
+                , Exento
+                , PercepcionesIVA
+                , PercepcionesIB
+                , PercepcionMunicipal
+                , ImpuestosInternos
+                , CodigoMoneda
+                , TipoDeCambio
+                , CantidadAlicuotaIVA
+                , CodigoOperacion
+                , OtrosTributos
+                , FechaVencimiento
+                            );
+            if (cadena.Length != 266)
+            {
+                throw new Exception(string.Format("La longitud del registro a exportar es incorrecta."));
+            }
+
+            return cadena;
+        }
 
 
 
-	}
+        public string ToFixedStringAlicuotas()
+        {
+
+
+            string cadena = string.Format("{0}{1}{2}{3}{4}{5}"
+                , CodigoCiti
+                , PuntoVenta
+                , Comprobante
+                , Neto
+                , IVAAlicuota //simpre al 21% o Exento
+                , IVA
+                            );
+            if (cadena.Length != 62)
+            {
+                throw new Exception(string.Format("La longitud del registro a exportar es incorrecta."));
+            }
+
+            return cadena;
+        }
+
+
+
+    }
 }
-

@@ -22,9 +22,8 @@ using System;
 
 namespace Hamekoz.Core
 {
-	public interface IPermisible
-	{
-		Permiso Permiso { get; set; }
-	}
+    public interface IPermisible
+    {
+        Permiso Permiso { get; set; }
+    }
 }
-

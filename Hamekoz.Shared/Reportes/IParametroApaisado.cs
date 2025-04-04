@@ -22,9 +22,8 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public interface IParametroApaisado
-	{
-		bool Apaisado { get; set; }
-	}
+    public interface IParametroApaisado
+    {
+        bool Apaisado { get; set; }
+    }
 }
-

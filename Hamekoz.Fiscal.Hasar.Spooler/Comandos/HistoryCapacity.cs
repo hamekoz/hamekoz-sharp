@@ -21,16 +21,15 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class HistoryCapacity
-	{
-		const string cmd = "7";
+    public class HistoryCapacity
+    {
+        const string cmd = "7";
 
-		public int RegistrosUtilizados { get; set; }
+        public int RegistrosUtilizados { get; set; }
 
-		public string Comando ()
-		{
-			return cmd;
-		}
-	}
+        public string Comando()
+        {
+            return cmd;
+        }
+    }
 }
-

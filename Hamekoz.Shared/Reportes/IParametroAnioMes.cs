@@ -21,13 +21,12 @@
 
 namespace Hamekoz.Reportes
 {
-	public interface IParametroAnioMes
-	{
-		int Anio { get; set; }
+    public interface IParametroAnioMes
+    {
+        int Anio { get; set; }
 
-		int Mes { get; set; }
+        int Mes { get; set; }
 
-		int AnioMes { get; set; }
-	}
+        int AnioMes { get; set; }
+    }
 }
-

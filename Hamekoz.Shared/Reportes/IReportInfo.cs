@@ -22,9 +22,8 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public interface IReportInfo
-	{
-		string ReportInfo{ get; }
-	}
+    public interface IReportInfo
+    {
+        string ReportInfo { get; }
+    }
 }
-

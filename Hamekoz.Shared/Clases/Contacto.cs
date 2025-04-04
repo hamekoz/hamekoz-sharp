@@ -22,47 +22,53 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Contacto : IPersistible
-	{
-		#region IPersistible implementation
+    public partial class Contacto : IPersistible
+    {
+        #region IPersistible implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		public string Cargo {
-			get;
-			set;
-		}
+        public string Cargo
+        {
+            get;
+            set;
+        }
 
-		public string Telefono {
-			get;
-			set;
-		}
+        public string Telefono
+        {
+            get;
+            set;
+        }
 
-		public string Email {
-			get;
-			set;
-		}
+        public string Email
+        {
+            get;
+            set;
+        }
 
-		public string Observaciones {
-			get;
-			set;
-		}
+        public string Observaciones
+        {
+            get;
+            set;
+        }
 
-		//TODO evaluar el sentido de este atributo
-		public bool Inactivo {
-			get;
-			set;
-		}
-	}
+        //TODO evaluar el sentido de este atributo
+        public bool Inactivo
+        {
+            get;
+            set;
+        }
+    }
 }
-	

@@ -19,41 +19,46 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using Hamekoz.Core;
 using System.Collections.Generic;
+
+using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class EncuestaSeccion: IPersistible
-	{
+    public partial class EncuestaSeccion : IPersistible
+    {
 
-		#region IPersistible implementation
+        #region IPersistible implementation
 
-		public int Id { get; set; }
+        public int Id { get; set; }
 
-		#endregion
+        #endregion
 
-		public string Nombre { get; set; }
+        public string Nombre { get; set; }
 
-		public int Numero { get; set; }
+        public int Numero { get; set; }
 
-		public string Descripcion {
-			get {
-				return string.Format ("Número {0} - Sección {1}", Id, Numero);
-			}
-		}
+        public string Descripcion
+        {
+            get
+            {
+                return string.Format("Número {0} - Sección {1}", Id, Numero);
+            }
+        }
 
-		public int NroPreguntas {
-			get {
-				return Preguntas != null ? Preguntas.Count : 0;
-			}
-			set {
-				NroPreguntas = value;
-			}
-		}
+        public int NroPreguntas
+        {
+            get
+            {
+                return Preguntas != null ? Preguntas.Count : 0;
+            }
+            set
+            {
+                NroPreguntas = value;
+            }
+        }
 
-		public IList<EncuestaPregunta> Preguntas { get; set; }
-		
-	}
+        public IList<EncuestaPregunta> Preguntas { get; set; }
+
+    }
 }
-

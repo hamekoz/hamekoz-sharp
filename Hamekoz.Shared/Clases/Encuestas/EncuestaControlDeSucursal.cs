@@ -22,21 +22,24 @@
 
 namespace Hamekoz.Negocio
 {
-	public partial class EncuestaControlDeSucursal:Encuesta
-	{
-		public Sucursal Sucursal { get; set; }
+    public partial class EncuestaControlDeSucursal : Encuesta
+    {
+        public Sucursal Sucursal { get; set; }
 
-		public string Descripcion {
-			get {
-				return string.Format ("Nro. Encuesta {0} - Nombre {1}", Id, Nombre);
-			}
-		}
+        public string Descripcion
+        {
+            get
+            {
+                return string.Format("Nro. Encuesta {0} - Nombre {1}", Id, Nombre);
+            }
+        }
 
-		public override int ObjetivoId {
-			get {
-				return Sucursal.Id;
-			}
-		}
-	}
+        public override int ObjetivoId
+        {
+            get
+            {
+                return Sucursal.Id;
+            }
+        }
+    }
 }
-

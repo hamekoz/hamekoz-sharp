@@ -20,58 +20,59 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+
 using Hamekoz.Negocio;
 
 namespace Hamekoz.Fiscal
 {
-	public interface IComprobanteBase
-	{
-		string Comprobante { get; }
+    public interface IComprobanteBase
+    {
+        string Comprobante { get; }
 
-		DateTime Emision { get; }
+        DateTime Emision { get; }
 
-		DateTime Contable { get; }
+        DateTime Contable { get; }
 
-		IResponsable Responsable { get; }
+        IResponsable Responsable { get; }
 
-		decimal Total { get; }
+        decimal Total { get; }
 
-		bool Anulado { get; }
-	}
+        bool Anulado { get; }
+    }
 
-	public interface IComprobante
-	{
-		IResponsable Responsable { get; }
+    public interface IComprobante
+    {
+        IResponsable Responsable { get; }
 
-		string Numero { get; set; }
+        string Numero { get; set; }
 
-		//TODO reemplazar por NumeracionDeComprobante o por TipoDeComprobante
-		string PuntoDeVenta { get; }
+        //TODO reemplazar por NumeracionDeComprobante o por TipoDeComprobante
+        string PuntoDeVenta { get; }
 
-		DateTime Emision { get; }
+        DateTime Emision { get; }
 
-		DateTime Contable { get; }
+        DateTime Contable { get; }
 
-		IList<IItem> Items { get; }
+        IList<IItem> Items { get; }
 
-		IList<IVAItem> IVAItems { get; }
+        IList<IVAItem> IVAItems { get; }
 
-		IList<ImpuestoItem> Impuestos { get; }
+        IList<ImpuestoItem> Impuestos { get; }
 
-		decimal Gravado { get; }
+        decimal Gravado { get; }
 
-		decimal NoGravado { get; }
+        decimal NoGravado { get; }
 
-		decimal Exento { get; }
+        decimal Exento { get; }
 
-		decimal Neto { get; }
+        decimal Neto { get; }
 
-		decimal IVA { get; }
+        decimal IVA { get; }
 
-		decimal Tributos { get; }
+        decimal Tributos { get; }
 
-		decimal Total { get; }
+        decimal Total { get; }
 
-		string Observaciones { get; }
-	}
+        string Observaciones { get; }
+    }
 }

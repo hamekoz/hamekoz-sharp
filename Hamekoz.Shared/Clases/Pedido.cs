@@ -22,17 +22,18 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	//UNDONE completar clase pedido
-	public partial class Pedido : IPersistible, IIdentifiable
-	{
-		#region IIdentifiable implementation
+    //UNDONE completar clase pedido
+    public partial class Pedido : IPersistible, IIdentifiable
+    {
+        #region IIdentifiable implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 
 }

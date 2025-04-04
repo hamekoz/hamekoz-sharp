@@ -21,19 +21,19 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public enum CortePapel
-	{
-		/// <summary>
-		/// F
-		/// </summary>
-		Completo,
-		/// <summary>
-		/// P
-		/// </summary>
-		Parcial,
-		/// <summary>
-		/// N
-		/// </summary>
-		NoCorta,
-	}
+    public enum CortePapel
+    {
+        /// <summary>
+        /// F
+        /// </summary>
+        Completo,
+        /// <summary>
+        /// P
+        /// </summary>
+        Parcial,
+        /// <summary>
+        /// N
+        /// </summary>
+        NoCorta,
+    }
 }

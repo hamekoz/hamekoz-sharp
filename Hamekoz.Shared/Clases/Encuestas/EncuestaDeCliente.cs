@@ -22,15 +22,16 @@
 
 namespace Hamekoz.Negocio
 {
-	public partial class EncuestaDeCliente: Encuesta
-	{
-		public string Descripcion {
-			get {
-				return string.Format ("Nro. Encuesta {0} - Nombre {1}", Id, Nombre);
-			}
-		}
+    public partial class EncuestaDeCliente : Encuesta
+    {
+        public string Descripcion
+        {
+            get
+            {
+                return string.Format("Nro. Encuesta {0} - Nombre {1}", Id, Nombre);
+            }
+        }
 
-		//TODO falta terminar de definir la clase
-	}
+        //TODO falta terminar de definir la clase
+    }
 }
-

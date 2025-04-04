@@ -22,7 +22,7 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public struct N
-	{
-	}
+    public struct N
+    {
+    }
 }

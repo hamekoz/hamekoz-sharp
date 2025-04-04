@@ -22,40 +22,44 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Deposito : IPersistible, IIdentifiable
-	{
-		//TODO Revisar porque un deposito puede llegar a tener mas de un Rol
-		public enum Tipos
-		{
-			Almacenaje = 1,
-			Productivo = 2,
-			Expeditivo = 3,
-			Especial = 4
-		}
+    public partial class Deposito : IPersistible, IIdentifiable
+    {
+        //TODO Revisar porque un deposito puede llegar a tener mas de un Rol
+        public enum Tipos
+        {
+            Almacenaje = 1,
+            Productivo = 2,
+            Expeditivo = 3,
+            Especial = 4
+        }
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Nombre {
-			get;
-			set;
-		} = string.Empty;
+        public string Nombre
+        {
+            get;
+            set;
+        } = string.Empty;
 
-		public Tipos Tipo {
-			get;
-			set;
-		}
+        public Tipos Tipo
+        {
+            get;
+            set;
+        }
 
-		public bool Inactivo {
-			get;
-			set;
-		}
+        public bool Inactivo
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
-	}
+        public override string ToString()
+        {
+            return Nombre;
+        }
+    }
 }

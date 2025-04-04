@@ -20,42 +20,49 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Cobranza : IPersistible, IIdentifiable
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class Cobranza : IPersistible, IIdentifiable
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		//UNDONE revisar que siempre sea contra una factura de cliente
-		public ComprobanteCliente Comprobante {
-			get;
-			set;
-		}
+        //UNDONE revisar que siempre sea contra una factura de cliente
+        public ComprobanteCliente Comprobante
+        {
+            get;
+            set;
+        }
 
-		public Recibo Recibo {
-			get;
-			set;
-		}
+        public Recibo Recibo
+        {
+            get;
+            set;
+        }
 
-		//UNDONE revisar el nombre de esta propeuidad
-		public decimal MontoImputado {
-			get;
-			set;
-		}
+        //UNDONE revisar el nombre de esta propeuidad
+        public decimal MontoImputado
+        {
+            get;
+            set;
+        }
 
-		public DateTime Fecha {
-			get;
-			set;
-		}
+        public DateTime Fecha
+        {
+            get;
+            set;
+        }
 
-		public bool Eliminado {
-			get;
-			set;
-		}
-	}
+        public bool Eliminado
+        {
+            get;
+            set;
+        }
+    }
 }

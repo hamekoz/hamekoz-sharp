@@ -19,71 +19,78 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
+
 using iTextSharp.text;
 
 namespace Hamekoz.Reportes
 {
-	public class Grupo : IElemento
-	{
-		readonly IList<IElemento> contenido = new List<IElemento> ();
-		readonly IList<Grupo> subgrupos = new List<Grupo> ();
+    public class Grupo : IElemento
+    {
+        readonly IList<IElemento> contenido = new List<IElemento>();
+        readonly IList<Grupo> subgrupos = new List<Grupo>();
 
-		public Parrafo Texto { get; set; }
+        public Parrafo Texto { get; set; }
 
-		public bool Numerado { get; set; }
+        public bool Numerado { get; set; }
 
-		public bool SaltarPagina { get; set; }
+        public bool SaltarPagina { get; set; }
 
-		public string Titulo { get; set; }
+        public string Titulo { get; set; }
 
-		Section Parent { get; set; }
+        Section Parent { get; set; }
 
-		public void AgregarSubgrupo (Grupo subgrupo)
-		{
-			subgrupos.Add (subgrupo);
-		}
+        public void AgregarSubgrupo(Grupo subgrupo)
+        {
+            subgrupos.Add(subgrupo);
+        }
 
-		public void Agregar (IElemento elemento)
-		{
-			contenido.Add (elemento);
-		}
+        public void Agregar(IElemento elemento)
+        {
+            contenido.Add(elemento);
+        }
 
 
-		#region IElemento implementation
+        #region IElemento implementation
 
-		public IElement GetElemento ()
-		{
-			Section grupo;
-			var texto = (Paragraph)Texto.GetElemento ();
-			if (Parent == null) {
-				grupo = new ChapterAutoNumber (texto);
-			} else {
-				grupo = Parent.AddSection (texto);
-			}
+        public IElement GetElemento()
+        {
+            Section grupo;
+            var texto = (Paragraph)Texto.GetElemento();
+            if (Parent == null)
+            {
+                grupo = new ChapterAutoNumber(texto);
+            }
+            else
+            {
+                grupo = Parent.AddSection(texto);
+            }
 
-			foreach (Grupo subgrupo in subgrupos) {
-				subgrupo.Parent = grupo;
-				subgrupo.GetElemento ();
-			}
+            foreach (Grupo subgrupo in subgrupos)
+            {
+                subgrupo.Parent = grupo;
+                subgrupo.GetElemento();
+            }
 
-			foreach (IElemento item in contenido) {
-				grupo.Add (item.GetElemento ());
-			}
+            foreach (IElemento item in contenido)
+            {
+                grupo.Add(item.GetElemento());
+            }
 
-			if (!Numerado) {
-				grupo.NumberDepth = 0;
-			}
+            if (!Numerado)
+            {
+                grupo.NumberDepth = 0;
+            }
 
-			if (Titulo != string.Empty) {
-				grupo.BookmarkTitle = Titulo;
-			}
+            if (Titulo != string.Empty)
+            {
+                grupo.BookmarkTitle = Titulo;
+            }
 
-			grupo.BookmarkOpen = true;
-			grupo.TriggerNewPage = SaltarPagina;
-			return grupo;
-		}
+            grupo.BookmarkOpen = true;
+            grupo.TriggerNewPage = SaltarPagina;
+            return grupo;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
-

@@ -23,42 +23,46 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Flete : IPersistible, ISearchable
-	{
-		#region IPersistible implementation
+    public partial class Flete : IPersistible, ISearchable
+    {
+        #region IPersistible implementation
 
-		public int Id { get; set; }
+        public int Id { get; set; }
 
-		#endregion
+        #endregion
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		public string Telefonos {
-			get;
-			set;
-		}
+        public string Telefonos
+        {
+            get;
+            set;
+        }
 
-		public string Observaciones {
-			get;
-			set;
-		}
+        public string Observaciones
+        {
+            get;
+            set;
+        }
 
-		public bool Inactivo {
-			get;
-			set;
-		}
+        public bool Inactivo
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
+        public override string ToString()
+        {
+            return Nombre;
+        }
 
-		public string ToSearchString ()
-		{
-			return string.Format ("[Flete: Id={0}, Nombre={1}, Telefonos={2}, Observaciones={3}, Inactivo={4}]", Id, Nombre, Telefonos, Observaciones, Inactivo);
-		}
-	}
+        public string ToSearchString()
+        {
+            return string.Format("[Flete: Id={0}, Nombre={1}, Telefonos={2}, Observaciones={3}, Inactivo={4}]", Id, Nombre, Telefonos, Observaciones, Inactivo);
+        }
+    }
 }

@@ -21,57 +21,57 @@
 
 namespace Hamekoz.Fiscal
 {
-	//UNDONE refactorizar nombres de propiedades pasar todo los valores monetarios a decimal
-	public interface IZeta
-	{
-		int NumeroReporte { get; set; }
+    //UNDONE refactorizar nombres de propiedades pasar todo los valores monetarios a decimal
+    public interface IZeta
+    {
+        int NumeroReporte { get; set; }
 
-		int CantidadDFCancelados { get; set; }
+        int CantidadDFCancelados { get; set; }
 
-		int CantidadDNFHEmitidos { get; set; }
+        int CantidadDNFHEmitidos { get; set; }
 
-		int CantidadDNFEmitidos { get; set; }
+        int CantidadDNFEmitidos { get; set; }
 
-		int CantidadDFEmitidos { get; set; }
+        int CantidadDFEmitidos { get; set; }
 
-		int UltimoDocFiscalBC { get; set; }
+        int UltimoDocFiscalBC { get; set; }
 
-		int UltimoDocFiscalA { get; set; }
+        int UltimoDocFiscalA { get; set; }
 
-		double MontoVentasDocFiscal { get; set; }
+        double MontoVentasDocFiscal { get; set; }
 
-		double MontoIVADocFiscal { get; set; }
+        double MontoIVADocFiscal { get; set; }
 
-		double MontoImpInternosDocFiscal { get; set; }
+        double MontoImpInternosDocFiscal { get; set; }
 
-		double MontoPercepcionesDocFiscal { get; set; }
+        double MontoPercepcionesDocFiscal { get; set; }
 
-		double MontoIVANoInscriptoDocFiscal { get; set; }
+        double MontoIVANoInscriptoDocFiscal { get; set; }
 
-		int UltimaNotaCreditoBC { get; set; }
+        int UltimaNotaCreditoBC { get; set; }
 
-		int UltimaNotaCreditoA { get; set; }
+        int UltimaNotaCreditoA { get; set; }
 
-		double MontoVentasNotaCredito { get; set; }
+        double MontoVentasNotaCredito { get; set; }
 
-		double MontoIVANotaCredito { get; set; }
+        double MontoIVANotaCredito { get; set; }
 
-		double MontoImpInternosNotaCredito { get; set; }
+        double MontoImpInternosNotaCredito { get; set; }
 
-		double MontoPercepcionesNotaCredito { get; set; }
+        double MontoPercepcionesNotaCredito { get; set; }
 
-		double MontoIVANoInscriptoNotaCredito { get; set; }
+        double MontoIVANoInscriptoNotaCredito { get; set; }
 
-		int UltimoRemito { get; set; }
+        int UltimoRemito { get; set; }
 
-		int CantidadNCCanceladas { get; set; }
+        int CantidadNCCanceladas { get; set; }
 
-		int CantidadDFBCEmitidos { get; set; }
+        int CantidadDFBCEmitidos { get; set; }
 
-		int CantidadDFAEEmitidos { get; set; }
+        int CantidadDFAEEmitidos { get; set; }
 
-		int CantidadNCBCEmitidos { get; set; }
+        int CantidadNCBCEmitidos { get; set; }
 
-		int CantidadNCAEmitidos { get; set; }
-	}
+        int CantidadNCAEmitidos { get; set; }
+    }
 }

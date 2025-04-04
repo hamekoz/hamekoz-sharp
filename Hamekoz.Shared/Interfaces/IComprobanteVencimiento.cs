@@ -22,15 +22,14 @@ using System;
 
 namespace Hamekoz.Negocio
 {
-	public interface IComprobanteVencimiento
-	{
-		DateTime Emision { get; }
+    public interface IComprobanteVencimiento
+    {
+        DateTime Emision { get; }
 
-		string Numero { get; }
+        string Numero { get; }
 
-		DateTime Vencimiento { get; }
+        DateTime Vencimiento { get; }
 
-		decimal Restante { get; }
-	}
+        decimal Restante { get; }
+    }
 }
-

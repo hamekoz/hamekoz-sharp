@@ -22,11 +22,10 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public interface IParametroTexto
-	{
-		string Texto { get; set; }
+    public interface IParametroTexto
+    {
+        string Texto { get; set; }
 
-		string Etiqueta { get; }
-	}
+        string Etiqueta { get; }
+    }
 }
-

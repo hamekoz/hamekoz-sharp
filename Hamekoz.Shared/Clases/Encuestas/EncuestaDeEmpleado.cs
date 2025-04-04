@@ -22,22 +22,23 @@
 
 namespace Hamekoz.Negocio
 {
-	public partial class EncuestaDeEmpleado: Encuesta
-	{
-		public string Descripcion {
-			get {
-				return string.Format ("Nro. Encuesta {0} - Nombre {1}", Id, Nombre);
-			}
-		}
+    public partial class EncuestaDeEmpleado : Encuesta
+    {
+        public string Descripcion
+        {
+            get
+            {
+                return string.Format("Nro. Encuesta {0} - Nombre {1}", Id, Nombre);
+            }
+        }
 
-		/// Si es Anonima solo identifico por Area sino Empleado-Area
-		public bool EsAnonima { get; set; }
+        /// Si es Anonima solo identifico por Area sino Empleado-Area
+        public bool EsAnonima { get; set; }
 
-		public Empleado Empleado { get; set; }
+        public Empleado Empleado { get; set; }
 
-		public Area Sector { get; set; }
+        public Area Sector { get; set; }
 
-		//TODO falta terminar de definir la clase
-	}
+        //TODO falta terminar de definir la clase
+    }
 }
-

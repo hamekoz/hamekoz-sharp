@@ -22,42 +22,41 @@ using System;
 
 namespace Hamekoz.Argentina.Afip
 {
-	
-	[Serializable]
-	public class AFIPException : Exception
-	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:AFIPException"/> class
-		/// </summary>
-		public AFIPException ()
-		{
-		}
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:AFIPException"/> class
-		/// </summary>
-		/// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
-		public AFIPException (string message) : base (message)
-		{
-		}
+    [Serializable]
+    public class AFIPException : Exception
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:AFIPException"/> class
+        /// </summary>
+        public AFIPException()
+        {
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:AFIPException"/> class
-		/// </summary>
-		/// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
-		/// <param name="inner">The exception that is the cause of the current exception. </param>
-		public AFIPException (string message, Exception inner) : base (message, inner)
-		{
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:AFIPException"/> class
+        /// </summary>
+        /// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
+        public AFIPException(string message) : base(message)
+        {
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:AFIPException"/> class
-		/// </summary>
-		/// <param name="context">The contextual information about the source or destination.</param>
-		/// <param name="info">The object that holds the serialized object data.</param>
-		protected AFIPException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base (info, context)
-		{
-		}
-	}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:AFIPException"/> class
+        /// </summary>
+        /// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
+        /// <param name="inner">The exception that is the cause of the current exception. </param>
+        public AFIPException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:AFIPException"/> class
+        /// </summary>
+        /// <param name="context">The contextual information about the source or destination.</param>
+        /// <param name="info">The object that holds the serialized object data.</param>
+        protected AFIPException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
+        {
+        }
+    }
 }
-

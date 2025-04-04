@@ -22,11 +22,10 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public interface IParametroPeriodo
-	{
-		DateTime Desde { get; set; }
+    public interface IParametroPeriodo
+    {
+        DateTime Desde { get; set; }
 
-		DateTime Hasta { get; set; }
-	}
+        DateTime Hasta { get; set; }
+    }
 }
-

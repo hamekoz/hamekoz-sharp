@@ -21,8 +21,7 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class NextIVATransmission
-	{
-	}
+    public class NextIVATransmission
+    {
+    }
 }
-

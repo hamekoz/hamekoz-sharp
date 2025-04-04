@@ -19,56 +19,65 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class ListaDePrecios : IPersistible, IIdentifiable, IDescriptible
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class ListaDePrecios : IPersistible, IIdentifiable, IDescriptible
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Descripcion {
-			get;
-			set;
-		}
+        public string Descripcion
+        {
+            get;
+            set;
+        }
 
-		public bool Inactiva {
-			get;
-			set;
-		}
+        public bool Inactiva
+        {
+            get;
+            set;
+        }
 
-		public bool PreciosAConsumidorFinal {
-			get;
-			set;
-		}
+        public bool PreciosAConsumidorFinal
+        {
+            get;
+            set;
+        }
 
-		//TODO revisar esto no deberia ser publico
-		public int ListaBaseId {
-			get;
-			set;
-		}
+        //TODO revisar esto no deberia ser publico
+        public int ListaBaseId
+        {
+            get;
+            set;
+        }
 
-		public ListaDePrecios ListaBase {
-			get;
-			set;
-		}
+        public ListaDePrecios ListaBase
+        {
+            get;
+            set;
+        }
 
-		public decimal Porcentaje {
-			get;
-			set;
-		}
+        public decimal Porcentaje
+        {
+            get;
+            set;
+        }
 
-		public IList<Precio> Precios {
-			get;
-			set;
-		}
+        public IList<Precio> Precios
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Descripcion;
-		}
-	}
+        public override string ToString()
+        {
+            return Descripcion;
+        }
+    }
 }

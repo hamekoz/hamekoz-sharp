@@ -25,28 +25,30 @@ using System.Threading;
 
 namespace Hamekoz.Core
 {
-	public static class Settings
-	{
-		public static void SetCultura ()
-		{
-			Console.WriteLine ("Seteando configuración regional:");
-			Console.WriteLine (CultureInfo.CurrentCulture.NativeName);
-			Thread.CurrentThread.CurrentCulture = new CultureInfo (ConfigurationManager.AppSettings ["CultureInfo"], true);
-			Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencySymbol = ConfigurationManager.AppSettings ["CurrencySymbol"];
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortTimePattern = ConfigurationManager.AppSettings ["ShortTimePattern"];
-			Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = ConfigurationManager.AppSettings ["ShortDatePattern"];
-			Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = ConfigurationManager.AppSettings ["NumberDecimalSeparator"];
-			Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyDecimalSeparator = ConfigurationManager.AppSettings ["CurrencyDecimalSeparator"];
-			Console.WriteLine (CultureInfo.CurrentCulture.NativeName);
-		}
+    public static class Settings
+    {
+        public static void SetCultura()
+        {
+            Console.WriteLine("Seteando configuración regional:");
+            Console.WriteLine(CultureInfo.CurrentCulture.NativeName);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(ConfigurationManager.AppSettings["CultureInfo"], true);
+            Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencySymbol = ConfigurationManager.AppSettings["CurrencySymbol"];
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortTimePattern = ConfigurationManager.AppSettings["ShortTimePattern"];
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = ConfigurationManager.AppSettings["ShortDatePattern"];
+            Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = ConfigurationManager.AppSettings["NumberDecimalSeparator"];
+            Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyDecimalSeparator = ConfigurationManager.AppSettings["CurrencyDecimalSeparator"];
+            Console.WriteLine(CultureInfo.CurrentCulture.NativeName);
+        }
 
-		const string appConfigEmpresa = "Empresa";
+        const string appConfigEmpresa = "Empresa";
 
-		public static string Empresa {
-			get {
-				return ConfigurationManager.AppSettings [appConfigEmpresa];
-			}
-		}
+        public static string Empresa
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings[appConfigEmpresa];
+            }
+        }
 
         public static Negocio.Empresa GetEmpresa => new Negocio.Empresa
         {
@@ -56,21 +58,21 @@ namespace Hamekoz.Core
             //UNDONE completar los con los demas datos de la empresa
         };
 
-		/// <summary>
-		/// Establece el formato de fecha y hora corto con dos digitos para el dia y uso de 24 hs en lugar de am pm
-		/// </summary>
-		public static void ForceDateTimeFormat ()
-		{
-			#region Cultura
-			Console.WriteLine ("La cultura actual es {0}", Thread.CurrentThread.CurrentCulture.Name);
-			var cultura = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone ();
-			//HACK fuerzo a que los dias y meses se expresen siempre con dos digitos
-			cultura.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
-			//HACK fuerzo a que la hora se exprese en formato 24
-			cultura.DateTimeFormat.ShortTimePattern = "HH:mm";
-			cultura.DateTimeFormat.LongTimePattern = "HH:mm:ss";
-			Thread.CurrentThread.CurrentCulture = cultura;
-			#endregion
-		}
-	}
+        /// <summary>
+        /// Establece el formato de fecha y hora corto con dos digitos para el dia y uso de 24 hs en lugar de am pm
+        /// </summary>
+        public static void ForceDateTimeFormat()
+        {
+            #region Cultura
+            Console.WriteLine("La cultura actual es {0}", Thread.CurrentThread.CurrentCulture.Name);
+            var cultura = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
+            //HACK fuerzo a que los dias y meses se expresen siempre con dos digitos
+            cultura.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+            //HACK fuerzo a que la hora se exprese en formato 24
+            cultura.DateTimeFormat.ShortTimePattern = "HH:mm";
+            cultura.DateTimeFormat.LongTimePattern = "HH:mm:ss";
+            Thread.CurrentThread.CurrentCulture = cultura;
+            #endregion
+        }
+    }
 }

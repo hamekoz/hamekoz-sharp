@@ -21,59 +21,58 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class DailyClose : Comando
-	{
-		const string cmd = "9";
+    public class DailyClose : Comando
+    {
+        const string cmd = "9";
 
-		public int NroDeInforme { get; set; }
+        public int NroDeInforme { get; set; }
 
-		public int CantidadDocFiscalesCancelados { get; set; }
+        public int CantidadDocFiscalesCancelados { get; set; }
 
-		public int CantidadDocNoFiscalesHomologados { get; set; }
+        public int CantidadDocNoFiscalesHomologados { get; set; }
 
-		public int CantidadDocNoFiscales { get; set; }
+        public int CantidadDocNoFiscales { get; set; }
 
-		public int CantidadDocFiscalesEmitidos { get; set; }
+        public int CantidadDocFiscalesEmitidos { get; set; }
 
-		public string NroUltimoTicketEmitido { get; set; }
+        public string NroUltimoTicketEmitido { get; set; }
 
-		public string NroUltimoTicketFacturaA { get; set; }
+        public string NroUltimoTicketFacturaA { get; set; }
 
-		public float MontoVendidoDocFiscales { get; set; }
+        public float MontoVendidoDocFiscales { get; set; }
 
-		public float MontoIVA { get; set; }
+        public float MontoIVA { get; set; }
 
-		public float MontoImpuestosInternos { get; set; }
+        public float MontoImpuestosInternos { get; set; }
 
-		public float MontoPercepciones { get; set; }
+        public float MontoPercepciones { get; set; }
 
-		public string NroUltimoTicketNotaCreditoBC { get; set; }
+        public string NroUltimoTicketNotaCreditoBC { get; set; }
 
-		public string NroUltimoTicketNotaCreditoA { get; set; }
+        public string NroUltimoTicketNotaCreditoA { get; set; }
 
-		public float MontoCreditoEnTicketsNC { get; set; }
+        public float MontoCreditoEnTicketsNC { get; set; }
 
-		public float MontoIVANC { get; set; }
+        public float MontoIVANC { get; set; }
 
-		public float MontoImpuestosInternosNC { get; set; }
+        public float MontoImpuestosInternosNC { get; set; }
 
-		public float MontoPersepcionesTicketNC { get; set; }
+        public float MontoPersepcionesTicketNC { get; set; }
 
-		readonly bool tipo;
+        readonly bool tipo;
 
-		public string Comando ()
-		{
-			return string.Format ("{0}{1}{2}", cmd, separador, tipo ? "Z" : "X");
-		}
+        public string Comando()
+        {
+            return string.Format("{0}{1}{2}", cmd, separador, tipo ? "Z" : "X");
+        }
 
-		/// <summary>
-		/// Imprime Cierre de Jornada Fiscal Z = true X = false
-		/// </summary>
-		/// <param name = "tipo">If set to <c>true</c> z.</param>
-		public DailyClose (bool tipo)
-		{
-			this.tipo = tipo;
-		}
-	}
+        /// <summary>
+        /// Imprime Cierre de Jornada Fiscal Z = true X = false
+        /// </summary>
+        /// <param name = "tipo">If set to <c>true</c> z.</param>
+        public DailyClose(bool tipo)
+        {
+            this.tipo = tipo;
+        }
+    }
 }
-

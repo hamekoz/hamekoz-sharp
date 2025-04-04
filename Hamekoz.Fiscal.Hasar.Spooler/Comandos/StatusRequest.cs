@@ -21,18 +21,17 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class StatusRequest : Comando
-	{
-		const string cmd = "*";
+    public class StatusRequest : Comando
+    {
+        const string cmd = "*";
 
-		public string NroUltimoTicket { get; set; }
+        public string NroUltimoTicket { get; set; }
 
-		public string NroUltimoTicketFacturaA { get; set; }
+        public string NroUltimoTicketFacturaA { get; set; }
 
-		public string Comando ()
-		{
-			return cmd;
-		}
-	}
+        public string Comando()
+        {
+            return cmd;
+        }
+    }
 }
-

@@ -23,106 +23,129 @@ using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	//TODO ver si es posible unificar con ReciboItem
-	public partial class PagoItem : IItem, IIdentifiable
-	{
-		#region IIdentifiable implementation
+    //TODO ver si es posible unificar con ReciboItem
+    public partial class PagoItem : IItem, IIdentifiable
+    {
+        #region IIdentifiable implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public int Renglon {
-			get;
-			set;
-		}
+        public int Renglon
+        {
+            get;
+            set;
+        }
 
-		public CuentaContable CuentaContable {
-			get;
-			set;
-		}
+        public CuentaContable CuentaContable
+        {
+            get;
+            set;
+        }
 
-		public Cheque Cheque {
-			get;
-			set;
-		}
+        public Cheque Cheque
+        {
+            get;
+            set;
+        }
 
-		string ChequeToString ()
-		{
-			return Cheque == null ? string.Empty : string.Format ("Cheque: {0} Nro {1} al {2:d}", Cheque.Banco, Cheque.Numero, Cheque.Cobro);
-		}
+        string ChequeToString()
+        {
+            return Cheque == null ? string.Empty : string.Format("Cheque: {0} Nro {1} al {2:d}", Cheque.Banco, Cheque.Numero, Cheque.Cobro);
+        }
 
-		#region IItem implementation
+        #region IItem implementation
 
-		public string Codigo {
-			get {
-				return CuentaContable == null ? string.Empty : CuentaContable.Codigo.ToString ();
-			}
-		}
+        public string Codigo
+        {
+            get
+            {
+                return CuentaContable == null ? string.Empty : CuentaContable.Codigo.ToString();
+            }
+        }
 
-		string descripcion;
+        string descripcion;
 
-		public string Descripcion {
-			get {
-				return CuentaContable == null ? descripcion : string.Format ("{0} {1}", CuentaContable, ChequeToString ());
-			}
-			set { descripcion = value; }
-		}
+        public string Descripcion
+        {
+            get
+            {
+                return CuentaContable == null ? descripcion : string.Format("{0} {1}", CuentaContable, ChequeToString());
+            }
+            set { descripcion = value; }
+        }
 
-		string IItemControladorFiscal.DescripcionCorta {
-			get {
-				return CuentaContable == null ? descripcion : CuentaContable.Cuenta;
-			}
-		}
+        string IItemControladorFiscal.DescripcionCorta
+        {
+            get
+            {
+                return CuentaContable == null ? descripcion : CuentaContable.Cuenta;
+            }
+        }
 
-		public int Lote {
-			get {
-				return 0;
-			}
-		}
+        public int Lote
+        {
+            get
+            {
+                return 0;
+            }
+        }
 
-		public decimal Cantidad {
-			get;
-			set;
-		}
+        public decimal Cantidad
+        {
+            get;
+            set;
+        }
 
-		public decimal Precio {
-			get;
-			set;
-		}
+        public decimal Precio
+        {
+            get;
+            set;
+        }
 
-		decimal IItem.Neto {
-			get {
-				return Total; //UNDONE revisar
-			}
-		}
+        decimal IItem.Neto
+        {
+            get
+            {
+                return Total; //UNDONE revisar
+            }
+        }
 
-		IVA IItem.Iva {
-			get {
-				return IVA.NoCorresponde;
-			}
-		}
+        IVA IItem.Iva
+        {
+            get
+            {
+                return IVA.NoCorresponde;
+            }
+        }
 
-		decimal IItem.ImporteIVA {
-			get {
-				return 0;
-			}
-		}
+        decimal IItem.ImporteIVA
+        {
+            get
+            {
+                return 0;
+            }
+        }
 
-		decimal IItem.Impuestos {
-			get {
-				return 0;
-			}
-		}
+        decimal IItem.Impuestos
+        {
+            get
+            {
+                return 0;
+            }
+        }
 
-		public decimal Total {
-			get;
-			set;
-		}
+        public decimal Total
+        {
+            get;
+            set;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

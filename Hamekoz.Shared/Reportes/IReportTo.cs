@@ -21,74 +21,73 @@
 
 namespace Hamekoz.Reportes
 {
-	public interface IReportToPdf
-	{
-		/// <summary>
-		/// Pdf this instance.
-		/// </summary>
-		void ToPdf ();
+    public interface IReportToPdf
+    {
+        /// <summary>
+        /// Pdf this instance.
+        /// </summary>
+        void ToPdf();
 
-		/// <summary>
-		/// Pdf the specified filename.
-		/// </summary>
-		/// <param name="filename">Filename.</param>
-		void ToPdf (string filename);
-	}
+        /// <summary>
+        /// Pdf the specified filename.
+        /// </summary>
+        /// <param name="filename">Filename.</param>
+        void ToPdf(string filename);
+    }
 
-	public interface IReportToXls : IReportToXlsx
-	{
-		/// <summary>
-		/// Xls this instance.
-		/// </summary>
-		void ToXls ();
+    public interface IReportToXls : IReportToXlsx
+    {
+        /// <summary>
+        /// Xls this instance.
+        /// </summary>
+        void ToXls();
 
-		/// <summary>
-		/// Xls the specified filename.
-		/// </summary>
-		/// <param name="filename">Filename.</param>
-		void ToXls (string filename);
-	}
+        /// <summary>
+        /// Xls the specified filename.
+        /// </summary>
+        /// <param name="filename">Filename.</param>
+        void ToXls(string filename);
+    }
 
-	public interface IReportToXlsx
-	{
-		/// <summary>
-		/// Xlsx this instance.
-		/// </summary>
-		void ToXlsx ();
+    public interface IReportToXlsx
+    {
+        /// <summary>
+        /// Xlsx this instance.
+        /// </summary>
+        void ToXlsx();
 
-		/// <summary>
-		/// Xlsx the specified filename.
-		/// </summary>
-		/// <param name="filename">Filename.</param>
-		void ToXlsx (string filename);
-	}
+        /// <summary>
+        /// Xlsx the specified filename.
+        /// </summary>
+        /// <param name="filename">Filename.</param>
+        void ToXlsx(string filename);
+    }
 
-	public interface IReportToTxt
-	{
-		/// <summary>
-		/// Txt this instance.
-		/// </summary>
-		void ToTxt ();
+    public interface IReportToTxt
+    {
+        /// <summary>
+        /// Txt this instance.
+        /// </summary>
+        void ToTxt();
 
-		/// <summary>
-		/// Txt the specified filename.
-		/// </summary>
-		/// <param name="filename">Filename.</param>
-		void ToTxt (string filename);
-	}
+        /// <summary>
+        /// Txt the specified filename.
+        /// </summary>
+        /// <param name="filename">Filename.</param>
+        void ToTxt(string filename);
+    }
 
-	public interface IReportToCSV
-	{
-		/// <summary>
-		/// CSV this instance.
-		/// </summary>
-		void ToCSV ();
+    public interface IReportToCSV
+    {
+        /// <summary>
+        /// CSV this instance.
+        /// </summary>
+        void ToCSV();
 
-		/// <summary>
-		/// CSV the specified filename.
-		/// </summary>
-		/// <param name="filename">Filename.</param>
-		void ToCSV (string filename);
-	}
+        /// <summary>
+        /// CSV the specified filename.
+        /// </summary>
+        /// <param name="filename">Filename.</param>
+        void ToCSV(string filename);
+    }
 }
-

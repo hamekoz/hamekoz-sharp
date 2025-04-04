@@ -23,30 +23,33 @@ using System.Reflection;
 
 namespace Hamekoz.Reportes
 {
-	static class Constants
-	{
-		internal const string HamekozLogo = "http://www.hamekoz.com.ar/favicon.png";
+    static class Constants
+    {
+        internal const string HamekozLogo = "http://www.hamekoz.com.ar/favicon.png";
 
-		internal static string PoweredBy {
-			get {
-				return string.Format ("{0} v{1}",
-					Assembly.GetExecutingAssembly ().GetName ().Name, 
-					Assembly.GetExecutingAssembly ().GetName ().Version.ToString (2)
-				);
-			}
-		}
+        internal static string PoweredBy
+        {
+            get
+            {
+                return string.Format("{0} v{1}",
+                    Assembly.GetExecutingAssembly().GetName().Name,
+                    Assembly.GetExecutingAssembly().GetName().Version.ToString(2)
+                );
+            }
+        }
 
-		internal static string GeneratedBy {
-			get {
-				Assembly generator = Assembly.GetEntryAssembly ();
-				AssemblyTitleAttribute title = ((AssemblyTitleAttribute)Attribute.GetCustomAttribute (generator, typeof(AssemblyTitleAttribute), false));
+        internal static string GeneratedBy
+        {
+            get
+            {
+                Assembly generator = Assembly.GetEntryAssembly();
+                AssemblyTitleAttribute title = ((AssemblyTitleAttribute)Attribute.GetCustomAttribute(generator, typeof(AssemblyTitleAttribute), false));
 
-				return string.Format ("{0} v{1}",
-					title.Title.Length > 0 ? title.Title : generator.GetName ().Name, 
-					generator.GetName ().Version.ToString (2)
-				);
-			}
-		}
-	}
+                return string.Format("{0} v{1}",
+                    title.Title.Length > 0 ? title.Title : generator.GetName().Name,
+                    generator.GetName().Version.ToString(2)
+                );
+            }
+        }
+    }
 }
-

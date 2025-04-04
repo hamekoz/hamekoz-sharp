@@ -23,80 +23,80 @@ using System.Globalization;
 
 namespace Hamekoz.Extensions
 {
-	public static class DateTimeExtensions
-	{
-		/// <summary>
-		/// Weeks the of year with Sunday as first day of week.
-		/// </summary>
-		/// <returns>The number of week.</returns>
-		/// <param name="date">Date.</param>
-		public static int WeekOfYear (this DateTime date)
-		{
-			Calendar calendario = DateTimeFormatInfo.CurrentInfo.Calendar;
-			return calendario.GetWeekOfYear (date, CalendarWeekRule.FirstFullWeek, DayOfWeek.Sunday);
-		}
+    public static class DateTimeExtensions
+    {
+        /// <summary>
+        /// Weeks the of year with Sunday as first day of week.
+        /// </summary>
+        /// <returns>The number of week.</returns>
+        /// <param name="date">Date.</param>
+        public static int WeekOfYear(this DateTime date)
+        {
+            Calendar calendario = DateTimeFormatInfo.CurrentInfo.Calendar;
+            return calendario.GetWeekOfYear(date, CalendarWeekRule.FirstFullWeek, DayOfWeek.Sunday);
+        }
 
-		/// <summary>
-		/// Weeks the of year.
-		/// </summary>
-		/// <returns>The number of week.</returns>
-		/// <param name="date">Date.</param>
-		/// <param name="firstDay">First day of week.</param>
-		public static int WeekOfYear (this DateTime date, DayOfWeek firstDay)
-		{
-			Calendar calendario = DateTimeFormatInfo.CurrentInfo.Calendar;
-			return calendario.GetWeekOfYear (date, CalendarWeekRule.FirstFullWeek, firstDay);
-		}
+        /// <summary>
+        /// Weeks the of year.
+        /// </summary>
+        /// <returns>The number of week.</returns>
+        /// <param name="date">Date.</param>
+        /// <param name="firstDay">First day of week.</param>
+        public static int WeekOfYear(this DateTime date, DayOfWeek firstDay)
+        {
+            Calendar calendario = DateTimeFormatInfo.CurrentInfo.Calendar;
+            return calendario.GetWeekOfYear(date, CalendarWeekRule.FirstFullWeek, firstDay);
+        }
 
-		/// <summary>
-		/// Consider all the day .
-		/// </summary>
-		/// <returns>The day untill 23:59:59 hs.</returns>
-		/// <param name="date">Date.</param>
-		public static DateTime AllDay (this DateTime date)
-		{
-			//HACK deberia utilizar AddMilliseconds pero Windows lo redondea. Por eso utilizo AddSeconds
-			return date.Date.AddDays (1).AddSeconds (-1);
-		}
+        /// <summary>
+        /// Consider all the day .
+        /// </summary>
+        /// <returns>The day untill 23:59:59 hs.</returns>
+        /// <param name="date">Date.</param>
+        public static DateTime AllDay(this DateTime date)
+        {
+            //HACK deberia utilizar AddMilliseconds pero Windows lo redondea. Por eso utilizo AddSeconds
+            return date.Date.AddDays(1).AddSeconds(-1);
+        }
 
-		/// <summary>
-		/// Firsts the day of month from date.
-		/// </summary>
-		/// <returns>The first day of month.</returns>
-		/// <param name="date">Date.</param>
-		public static DateTime FirstDayOfMonth (this DateTime date)
-		{
-			return new DateTime (date.Year, date.Month, 1);
-		}
+        /// <summary>
+        /// Firsts the day of month from date.
+        /// </summary>
+        /// <returns>The first day of month.</returns>
+        /// <param name="date">Date.</param>
+        public static DateTime FirstDayOfMonth(this DateTime date)
+        {
+            return new DateTime(date.Year, date.Month, 1);
+        }
 
-		/// <summary>
-		/// The last day of month from date.
-		/// </summary>
-		/// <returns>The last day of month.</returns>
-		/// <param name="date">Date.</param>
-		public static DateTime LastDayOfMonth (this DateTime date)
-		{
-			var value = date.FirstDayOfMonth ();
-			value = value.AddMonths (1);
-			value = value.AddDays (-1);
-			return value;
-		}
+        /// <summary>
+        /// The last day of month from date.
+        /// </summary>
+        /// <returns>The last day of month.</returns>
+        /// <param name="date">Date.</param>
+        public static DateTime LastDayOfMonth(this DateTime date)
+        {
+            var value = date.FirstDayOfMonth();
+            value = value.AddMonths(1);
+            value = value.AddDays(-1);
+            return value;
+        }
 
-		public static DateTime FirstDateOfWeekISO8601 (int year, int weekOfYear)
-		{
-			var jan1 = new DateTime (year, 1, 1);
-			int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
+        public static DateTime FirstDateOfWeekISO8601(int year, int weekOfYear)
+        {
+            var jan1 = new DateTime(year, 1, 1);
+            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
 
-			DateTime firstThursday = jan1.AddDays (daysOffset);
-			var cal = CultureInfo.CurrentCulture.Calendar;
-			int firstWeek = cal.GetWeekOfYear (firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            DateTime firstThursday = jan1.AddDays(daysOffset);
+            var cal = CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
-			var weekNum = weekOfYear;
-			if (firstWeek <= 1)
-				weekNum -= 1;
-			var result = firstThursday.AddDays (weekNum * 7);
-			return result.AddDays (-3);
-		}
+            var weekNum = weekOfYear;
+            if (firstWeek <= 1)
+                weekNum -= 1;
+            var result = firstThursday.AddDays(weekNum * 7);
+            return result.AddDays(-3);
+        }
 
         public enum DateInterval
         {

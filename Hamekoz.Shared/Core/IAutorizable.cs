@@ -21,9 +21,8 @@
 
 namespace Hamekoz.Core
 {
-	public interface IAutorizable
-	{
-		int Guid { get; }
-	}
+    public interface IAutorizable
+    {
+        int Guid { get; }
+    }
 }
-

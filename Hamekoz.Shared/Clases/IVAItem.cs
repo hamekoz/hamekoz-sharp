@@ -22,23 +22,25 @@ using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	public partial class IVAItem
-	{
-		public IVA IVA {
-			get;
-			set;
-		} = IVA.Veintiuno;
+    public partial class IVAItem
+    {
+        public IVA IVA
+        {
+            get;
+            set;
+        } = IVA.Veintiuno;
 
-		//TODO renombrar a BaseImponible
-		public decimal Neto {
-			get;
-			set;
-		}
+        //TODO renombrar a BaseImponible
+        public decimal Neto
+        {
+            get;
+            set;
+        }
 
-		public decimal Importe {
-			get;
-			set;
-		}
-	}
+        public decimal Importe
+        {
+            get;
+            set;
+        }
+    }
 }
-

@@ -22,50 +22,57 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial  class SucursalDeBanco : IIdentifiable, IPersistible
-	{
-		#region IIdentifiable implementation
+    public partial class SucursalDeBanco : IIdentifiable, IPersistible
+    {
+        #region IIdentifiable implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public Banco Banco {
-			get;
-			set;
-		}
+        public Banco Banco
+        {
+            get;
+            set;
+        }
 
-		public int Codigo {
-			get;
-			set;
-		}
+        public int Codigo
+        {
+            get;
+            set;
+        }
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		public string Domicilio {
-			get;
-			set;
-		}
+        public string Domicilio
+        {
+            get;
+            set;
+        }
 
-		public Localidad Localidad {
-			get;
-			set;
-		}
+        public Localidad Localidad
+        {
+            get;
+            set;
+        }
 
-		public bool Inactiva {
-			get;
-			set;
-		}
+        public bool Inactiva
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
-	}
+        public override string ToString()
+        {
+            return Nombre;
+        }
+    }
 }
