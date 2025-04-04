@@ -1,0 +1,30 @@
+name: Code Format Verification
+
+on:
+  workflow_call:
+
+jobs:
+  shellcheck:
+    name: Shell
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        env:
+          SHELLCHECK_OPTS: -e SC1091 -e SC1090
+
+  prettier:
+    runs-on: ubuntu-latest
+    name: Prettier
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.3
+        with:
+          dry: True
+          only_changed: True
+          prettier_options: --check **/*.{html,css,scss,less,js,ts,md,yml,yaml,json}

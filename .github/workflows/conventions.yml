@@ -1,0 +1,30 @@
+name: Conventions
+
+on:
+  workflow_call:
+
+jobs:
+  conventional-commits:
+    if: ${{ github.event_name == 'pull_request' }}
+    name: Conventional Commits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - name: Install gitlint
+        shell: bash
+        run: |
+          python -m pip install gitlint
+      - name: Run gitlint
+        shell: bash
+        run: |
+          # Lint everything from the base to the latest
+          gitlint --commits "${{ github.event.pull_request.base.sha }}..HEAD" \
+            -c general.contrib=contrib-title-conventional-commits \
+            -c general.ignore=body-is-missing,body-max-line-length \
+            -c title-max-length.line-length=100
+  code-format:
+    name: Code Format
+    uses: ./.github/workflows/code-format-verification.yml@main

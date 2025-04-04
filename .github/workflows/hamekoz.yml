@@ -1,0 +1,20 @@
+name: Hamekoz
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+jobs:
+  conventional-commits:
+    name: Conventions
+    uses: ./.github/workflows/conventions.yml@main
+
+  dotnet:
+    name: Continuous Integration
+    uses: ./.github/workflows/dotnet.yml@main
+  nuget:
+    if: ${{ github.event_name == 'push' }}
+    name: Continuous Delivery
+    uses: ./.github/workflows/continuous-delivery-nuget.yml@main
