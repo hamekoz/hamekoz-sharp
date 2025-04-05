@@ -23,15 +23,16 @@ using Hamekoz.Negocio;
 
 namespace Hamekoz
 {
-	public partial class EncuestaDeProveedor: Encuesta
-	{
-		public string Descripcion {
-			get {
-				return string.Format ("Nro. Encuesta {0} - Nombre {1}", Id, Nombre);
-			}
-		}
+    public partial class EncuestaDeProveedor : Encuesta
+    {
+        public string Descripcion
+        {
+            get
+            {
+                return string.Format("Nro. Encuesta {0} - Nombre {1}", Id, Nombre);
+            }
+        }
 
-		public string RazonSocial { get; set; }
-	}
+        public string RazonSocial { get; set; }
+    }
 }
-

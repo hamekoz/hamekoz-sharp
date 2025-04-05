@@ -19,40 +19,45 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public class MovimientoDeCaja : IPersistible, IIdentifiable
-	{
-		#region IIdentifiable implementation
+    public class MovimientoDeCaja : IPersistible, IIdentifiable
+    {
+        #region IIdentifiable implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public DateTime Fecha {
-			get;
-			set;
-		}
+        public DateTime Fecha
+        {
+            get;
+            set;
+        }
 
-		public decimal Importe {
-			get;
-			set;
-		}
+        public decimal Importe
+        {
+            get;
+            set;
+        }
 
-		public string Responsable {
-			get;
-			set;
-		}
+        public string Responsable
+        {
+            get;
+            set;
+        }
 
-		public string Motivo {
-			get;
-			set;
-		}
-	}
+        public string Motivo
+        {
+            get;
+            set;
+        }
+    }
 }
-

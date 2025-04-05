@@ -19,71 +19,79 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Cotizacion : IPersistible, IIdentifiable
-	{
-		#region Singleton
+    public partial class Cotizacion : IPersistible, IIdentifiable
+    {
+        #region Singleton
 
-		//HACK para manejar la moneda por defecto, deberia utilizar un controlador y un parametro global de la aplicacion
+        //HACK para manejar la moneda por defecto, deberia utilizar un controlador y un parametro global de la aplicacion
 
-		/// <summary>
-		/// Instancia unica del patron sigleton
-		/// </summary>
-		static Cotizacion cotizacion;
+        /// <summary>
+        /// Instancia unica del patron sigleton
+        /// </summary>
+        static Cotizacion cotizacion;
 
-		/// <summary>
-		/// Obtiene una instancia unica de Moneda
-		/// </summary>
-		public static Cotizacion Default {
-			get {
-				if (cotizacion == null) {
-					cotizacion = new Cotizacion {
-						Id = 0,
-						Fecha = new DateTime (1992, 1, 1),
-						Moneda = Moneda.Default,
-						Valor = 1,
-					};
-				}
-				return cotizacion;
-			}
-		}
+        /// <summary>
+        /// Obtiene una instancia unica de Moneda
+        /// </summary>
+        public static Cotizacion Default
+        {
+            get
+            {
+                if (cotizacion == null)
+                {
+                    cotizacion = new Cotizacion
+                    {
+                        Id = 0,
+                        Fecha = new DateTime(1992, 1, 1),
+                        Moneda = Moneda.Default,
+                        Valor = 1,
+                    };
+                }
+                return cotizacion;
+            }
+        }
 
-		#endregion
+        #endregion
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public Moneda Moneda {
-			get;
-			set;
-		}
+        public Moneda Moneda
+        {
+            get;
+            set;
+        }
 
-		public DateTime Fecha {
-			get;
-			set;
-		}
+        public DateTime Fecha
+        {
+            get;
+            set;
+        }
 
-		public decimal Valor {
-			get;
-			set;
-		}
+        public decimal Valor
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return string.Format ("{0}: 1 = {1:C}", Moneda.Codigo, Valor);
-		}
+        public override string ToString()
+        {
+            return string.Format("{0}: 1 = {1:C}", Moneda.Codigo, Valor);
+        }
 
-		public decimal ValorInverso ()
-		{
-			if (Valor == 0)
-				return 1;
-			return 1 / Valor;
-		}
-	}
+        public decimal ValorInverso()
+        {
+            if (Valor == 0)
+                return 1;
+            return 1 / Valor;
+        }
+    }
 }
-

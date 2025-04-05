@@ -21,12 +21,11 @@
 
 namespace Hamekoz.Negocio
 {
-	public enum Estados
-	{
-		Activo,
-		Gestion,
-		Inactivo,
-		Baja
-	}
+    public enum Estados
+    {
+        Activo,
+        Gestion,
+        Inactivo,
+        Baja
+    }
 }
-

@@ -21,16 +21,15 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class CloseFiscalReceipt : Comando
-	{
-		const string cmd = "E";
+    public class CloseFiscalReceipt : Comando
+    {
+        const string cmd = "E";
 
-		public int NroComprobanteFiscalEmitido { get; set; }
+        public int NroComprobanteFiscalEmitido { get; set; }
 
-		public string Comando ()
-		{
-			return string.Format ("{0}", cmd);
-		}
-	}
+        public string Comando()
+        {
+            return string.Format("{0}", cmd);
+        }
+    }
 }
-

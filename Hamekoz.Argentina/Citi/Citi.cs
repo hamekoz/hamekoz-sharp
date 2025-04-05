@@ -23,116 +23,130 @@ using System.IO;
 
 namespace Hamekoz.Argentina.Citi
 {
-	/// <summary>
-	/// Citi.
-	/// </summary>
-	/// <see href="http://www.afip.gob.ar/comprasyventas/"/>
-	public static class Citi
-	{
-		public static void Exportar (List<RegistroImportacionCitiVentas> registros, string archivo)
-		{
-			StreamWriter sw = File.CreateText (archivo);
-			sw.NewLine = "\r\n";
-			foreach (var registro in registros) {
-				sw.WriteLine (registro.ToFixedString ());
-			}
-			sw.Close ();
-		}
+    /// <summary>
+    /// Citi.
+    /// </summary>
+    /// <see href="http://www.afip.gob.ar/comprasyventas/"/>
+    public static class Citi
+    {
+        public static void Exportar(List<RegistroImportacionCitiVentas> registros, string archivo)
+        {
+            StreamWriter sw = File.CreateText(archivo);
+            sw.NewLine = "\r\n";
+            foreach (var registro in registros)
+            {
+                sw.WriteLine(registro.ToFixedString());
+            }
+            sw.Close();
+        }
 
-		public static void ExportarAlicuotas (List<RegistroImportacionCitiVentas> registros, string archivo)
-		{
-			StreamWriter sw = File.CreateText (archivo);
-			sw.NewLine = "\r\n";
-			foreach (var registro in registros) {
+        public static void ExportarAlicuotas(List<RegistroImportacionCitiVentas> registros, string archivo)
+        {
+            StreamWriter sw = File.CreateText(archivo);
+            sw.NewLine = "\r\n";
+            foreach (var registro in registros)
+            {
 
-				sw.WriteLine (registro.ToFixedStringAlicuotas ());
-			}
-			sw.Close ();
-		}
+                sw.WriteLine(registro.ToFixedStringAlicuotas());
+            }
+            sw.Close();
+        }
 
-		public static void Exportar (List<RegistroImportacionCitiCompras> registros, string archivo)
-		{
+        public static void Exportar(List<RegistroImportacionCitiCompras> registros, string archivo)
+        {
 
-			StreamWriter sw = File.CreateText (archivo);
-			sw.NewLine = "\r\n";
-			foreach (var registro in registros) {
-				sw.WriteLine (registro.ToFixedString ());
-			}
-			sw.Close ();
-		}
+            StreamWriter sw = File.CreateText(archivo);
+            sw.NewLine = "\r\n";
+            foreach (var registro in registros)
+            {
+                sw.WriteLine(registro.ToFixedString());
+            }
+            sw.Close();
+        }
 
-		public static void ExportarAlicuotas (List<RegistroImportacionCitiCompras> registros, string archivo)
-		{
-			StreamWriter sw = File.CreateText (archivo);
-			sw.NewLine = "\r\n";
-			foreach (var registro in registros) {
+        public static void ExportarAlicuotas(List<RegistroImportacionCitiCompras> registros, string archivo)
+        {
+            StreamWriter sw = File.CreateText(archivo);
+            sw.NewLine = "\r\n";
+            foreach (var registro in registros)
+            {
 
-				if (registro.Alicuotas > 1) {
-					if (decimal.Parse (registro.IVA) != 0) {//es 21%
-						registro.Neto = registro.Neto;
-						registro.IVA = registro.IVA;
-						registro.IVAAlicuota = "0005";
-						sw.WriteLine (registro.ToFixedStringAlicuotas ());
-					}
-					if (decimal.Parse (registro.IVADif1) != 0) {//es 10.5%
-						registro.Neto = registro.NetoDif1;
-						registro.IVA = registro.IVADif1;
-						registro.IVAAlicuota = "0004";
-						sw.WriteLine (registro.ToFixedStringAlicuotas ());
-					}
-					if (decimal.Parse (registro.IVADif2) != 0) {//es 27%
-						registro.Neto = registro.NetoDif2; 
-						registro.IVA = registro.IVADif2;
-						registro.IVAAlicuota = "0006";
-						sw.WriteLine (registro.ToFixedStringAlicuotas ());
-					}
-				} else if (registro.Alicuotas == 1) {
-					if (decimal.Parse (registro.IVA) != 0) {//es 21%
-						registro.Neto = registro.Neto;
-						registro.IVA = registro.IVA;
-						registro.IVAAlicuota = "0005";
-						sw.WriteLine (registro.ToFixedStringAlicuotas ());
-					}
-					if (decimal.Parse (registro.IVADif1) != 0) {//es 10.5%
-						registro.Neto = registro.NetoDif1;
-						registro.IVA = registro.IVADif1;
-						registro.IVAAlicuota = "0004";
-						sw.WriteLine (registro.ToFixedStringAlicuotas ());
-					} 
-					if (decimal.Parse (registro.IVADif2) != 0) {//es 10.5%
-						registro.Neto = registro.NetoDif2; //es 27%
-						registro.IVA = registro.IVADif2;
-						registro.IVAAlicuota = "0006";
-						sw.WriteLine (registro.ToFixedStringAlicuotas ());
-					}
-					if (decimal.Parse (registro.IVA) == 0 && decimal.Parse (registro.IVADif1) == 0 && decimal.Parse (registro.IVADif2) == 0) {						
-						registro.Neto = "000000000000000";
-						registro.IVA = "000000000000000";
-						registro.IVAAlicuota = "0003";//0%
-						sw.WriteLine (registro.ToFixedStringAlicuotas ());
-					}
-				} else { 					
-					if (!EsComprobanteBoC (registro.TipoComprobante)) {						
-						//NoGravado
-						registro.IVAAlicuota = "0003";//0%
-						sw.WriteLine (registro.ToFixedStringAlicuotas ());
-					}
-				}
-			}
-		
-			sw.Close ();
-		}
+                if (registro.Alicuotas > 1)
+                {
+                    if (decimal.Parse(registro.IVA) != 0)
+                    {//es 21%
+                        registro.Neto = registro.Neto;
+                        registro.IVA = registro.IVA;
+                        registro.IVAAlicuota = "0005";
+                        sw.WriteLine(registro.ToFixedStringAlicuotas());
+                    }
+                    if (decimal.Parse(registro.IVADif1) != 0)
+                    {//es 10.5%
+                        registro.Neto = registro.NetoDif1;
+                        registro.IVA = registro.IVADif1;
+                        registro.IVAAlicuota = "0004";
+                        sw.WriteLine(registro.ToFixedStringAlicuotas());
+                    }
+                    if (decimal.Parse(registro.IVADif2) != 0)
+                    {//es 27%
+                        registro.Neto = registro.NetoDif2;
+                        registro.IVA = registro.IVADif2;
+                        registro.IVAAlicuota = "0006";
+                        sw.WriteLine(registro.ToFixedStringAlicuotas());
+                    }
+                }
+                else if (registro.Alicuotas == 1)
+                {
+                    if (decimal.Parse(registro.IVA) != 0)
+                    {//es 21%
+                        registro.Neto = registro.Neto;
+                        registro.IVA = registro.IVA;
+                        registro.IVAAlicuota = "0005";
+                        sw.WriteLine(registro.ToFixedStringAlicuotas());
+                    }
+                    if (decimal.Parse(registro.IVADif1) != 0)
+                    {//es 10.5%
+                        registro.Neto = registro.NetoDif1;
+                        registro.IVA = registro.IVADif1;
+                        registro.IVAAlicuota = "0004";
+                        sw.WriteLine(registro.ToFixedStringAlicuotas());
+                    }
+                    if (decimal.Parse(registro.IVADif2) != 0)
+                    {//es 10.5%
+                        registro.Neto = registro.NetoDif2; //es 27%
+                        registro.IVA = registro.IVADif2;
+                        registro.IVAAlicuota = "0006";
+                        sw.WriteLine(registro.ToFixedStringAlicuotas());
+                    }
+                    if (decimal.Parse(registro.IVA) == 0 && decimal.Parse(registro.IVADif1) == 0 && decimal.Parse(registro.IVADif2) == 0)
+                    {
+                        registro.Neto = "000000000000000";
+                        registro.IVA = "000000000000000";
+                        registro.IVAAlicuota = "0003";//0%
+                        sw.WriteLine(registro.ToFixedStringAlicuotas());
+                    }
+                }
+                else
+                {
+                    if (!EsComprobanteBoC(registro.TipoComprobante))
+                    {
+                        //NoGravado
+                        registro.IVAAlicuota = "0003";//0%
+                        sw.WriteLine(registro.ToFixedStringAlicuotas());
+                    }
+                }
+            }
 
-		static bool EsComprobanteBoC (string codigo)
-		{
-			if (codigo == "006" || codigo == "007" || codigo == "008" || codigo == "009" || codigo == "011" || codigo == "012" || codigo == "013" || codigo == "015")
-				return true;
-			else
-				return false;
-		}
-		
-	}
+            sw.Close();
+        }
+
+        static bool EsComprobanteBoC(string codigo)
+        {
+            if (codigo == "006" || codigo == "007" || codigo == "008" || codigo == "009" || codigo == "011" || codigo == "012" || codigo == "013" || codigo == "015")
+                return true;
+            else
+                return false;
+        }
+
+    }
 }
-
-
-

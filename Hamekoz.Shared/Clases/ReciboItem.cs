@@ -23,147 +23,178 @@ using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	//TODO ver si es posible unificar con PagoItem
-	public partial class ReciboItem : IPersistible, IIdentifiable, IItem
-	{
-		#region IIdentifiable implementation
+    //TODO ver si es posible unificar con PagoItem
+    public partial class ReciboItem : IPersistible, IIdentifiable, IItem
+    {
+        #region IIdentifiable implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		#region Recibo
+        #region Recibo
 
-		public int Renglon {
-			get;
-			set;
-		}
+        public int Renglon
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public CuentaContable CuentaContable {
-			get;
-			set;
-		}
+        public CuentaContable CuentaContable
+        {
+            get;
+            set;
+        }
 
-		public decimal Importe {
-			get;
-			set;
-		}
+        public decimal Importe
+        {
+            get;
+            set;
+        }
 
-		#region IItem implementation
+        #region IItem implementation
 
-		string IItem.Codigo {
-			get {
-				return CuentaContable == null ? string.Empty : CuentaContable.Codigo.ToString ();
-			}
-		}
+        string IItem.Codigo
+        {
+            get
+            {
+                return CuentaContable == null ? string.Empty : CuentaContable.Codigo.ToString();
+            }
+        }
 
-		string descripcion;
+        string descripcion;
 
-		public string Descripcion {
-			get {
-				return CuentaContable == null ? descripcion : string.Format ("{0} {1}", CuentaContable, ChequeToString ());
-			}
-			set { descripcion = value; }
-		}
+        public string Descripcion
+        {
+            get
+            {
+                return CuentaContable == null ? descripcion : string.Format("{0} {1}", CuentaContable, ChequeToString());
+            }
+            set { descripcion = value; }
+        }
 
-		string IItemControladorFiscal.DescripcionCorta {
-			get {
-				return CuentaContable == null ? descripcion : CuentaContable.Cuenta;
-			}
-		}
+        string IItemControladorFiscal.DescripcionCorta
+        {
+            get
+            {
+                return CuentaContable == null ? descripcion : CuentaContable.Cuenta;
+            }
+        }
 
-		decimal IItem.Cantidad {
-			get {
-				return 1;
-			}
-		}
+        decimal IItem.Cantidad
+        {
+            get
+            {
+                return 1;
+            }
+        }
 
-		decimal IItem.Precio {
-			get {
-				return Importe;
-			}
-		}
+        decimal IItem.Precio
+        {
+            get
+            {
+                return Importe;
+            }
+        }
 
-		decimal IItem.Neto {
-			get {
-				return Importe;
-			}
-		}
+        decimal IItem.Neto
+        {
+            get
+            {
+                return Importe;
+            }
+        }
 
-		IVA IItem.Iva {
-			get {
-				return IVA.NoCorresponde;
-			}
-		}
+        IVA IItem.Iva
+        {
+            get
+            {
+                return IVA.NoCorresponde;
+            }
+        }
 
-		decimal IItem.ImporteIVA {
-			get {
-				return 0;
-			}
-		}
+        decimal IItem.ImporteIVA
+        {
+            get
+            {
+                return 0;
+            }
+        }
 
-		decimal IItem.Impuestos {
-			get {
-				return 0;
-			}
-		}
+        decimal IItem.Impuestos
+        {
+            get
+            {
+                return 0;
+            }
+        }
 
-		decimal IItem.Total {
-			get {
-				return Importe;
-			}
-		}
+        decimal IItem.Total
+        {
+            get
+            {
+                return Importe;
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Revisar
+        #region Revisar
 
-		public double Debitar {
-			get;
-			set;
-		}
+        public double Debitar
+        {
+            get;
+            set;
+        }
 
-		public Retencion Retencion {
-			get;
-			set;
-		}
+        public Retencion Retencion
+        {
+            get;
+            set;
+        }
 
-		public int LoteDeTarjeta {
-			get;
-			set;
-		}
+        public int LoteDeTarjeta
+        {
+            get;
+            set;
+        }
 
-		//FIX el cheque no deberia ser un atributo del detalle del recibo.
-		public Cheque Cheque {
-			get;
-			set;
-		}
+        //FIX el cheque no deberia ser un atributo del detalle del recibo.
+        public Cheque Cheque
+        {
+            get;
+            set;
+        }
 
-		string ChequeToString ()
-		{
-			return Cheque == null ? string.Empty : string.Format ("Cheque: {0} Nro {1} al {2:d}", Cheque.Banco, Cheque.Numero, Cheque.Cobro);
-		}
+        string ChequeToString()
+        {
+            return Cheque == null ? string.Empty : string.Format("Cheque: {0} Nro {1} al {2:d}", Cheque.Banco, Cheque.Numero, Cheque.Cobro);
+        }
 
-		#endregion
+        #endregion
 
-		public decimal CotizacionDelPeso {
-			get;
-			set;
-		} = 1;
+        public decimal CotizacionDelPeso
+        {
+            get;
+            set;
+        } = 1;
 
-		public decimal CotizacionMoneda {
-			get;
-			set;
-		} = 1;
+        public decimal CotizacionMoneda
+        {
+            get;
+            set;
+        } = 1;
 
-		public bool Eliminado {
-			get;
-			set;
-		}
-	}
+        public bool Eliminado
+        {
+            get;
+            set;
+        }
+    }
 }

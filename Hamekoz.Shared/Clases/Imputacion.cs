@@ -19,49 +19,55 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 using Hamekoz.Negocio;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Imputacion : IPersistible
-	{
-		public enum Estados
-		{
-			Nueva,
-			Modificada,
-			Grabada,
-			Eliminada
-		}
+    public partial class Imputacion : IPersistible
+    {
+        public enum Estados
+        {
+            Nueva,
+            Modificada,
+            Grabada,
+            Eliminada
+        }
 
-		public DateTime Emision {
-			get { return ComprobanteDebe.Emision; }
-		}
+        public DateTime Emision
+        {
+            get { return ComprobanteDebe.Emision; }
+        }
 
-		public IComprobanteImputable ComprobanteDebe {
-			get;
-			set;
-		}
+        public IComprobanteImputable ComprobanteDebe
+        {
+            get;
+            set;
+        }
 
-		public IComprobanteImputable ComprobanteHaber {
-			get;
-			set;
-		}
+        public IComprobanteImputable ComprobanteHaber
+        {
+            get;
+            set;
+        }
 
-		public DateTime Fecha {
-			get;
-			set;
-		}
+        public DateTime Fecha
+        {
+            get;
+            set;
+        }
 
-		public decimal Imputado {
-			get;
-			set;
-		}
+        public decimal Imputado
+        {
+            get;
+            set;
+        }
 
-		public Estados Estado {
-			get;
-			set;
-		}
-	}
+        public Estados Estado
+        {
+            get;
+            set;
+        }
+    }
 }
-

@@ -19,50 +19,57 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Retencion : IPersistible, IIdentifiable
-	{
-		#region IIdentifiable implementation
+    public partial class Retencion : IPersistible, IIdentifiable
+    {
+        #region IIdentifiable implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public DateTime Fecha {
-			get;
-			set;
-		}
+        public DateTime Fecha
+        {
+            get;
+            set;
+        }
 
-		public decimal Importe {
-			get;
-			set;
-		}
+        public decimal Importe
+        {
+            get;
+            set;
+        }
 
-		public string Comprobante {
-			get;
-			set;
-		}
+        public string Comprobante
+        {
+            get;
+            set;
+        }
 
-		public Asiento Asiento {
-			get;
-			set;
-		}
+        public Asiento Asiento
+        {
+            get;
+            set;
+        }
 
-		public Cliente Cliente {
-			get;
-			set;
-		}
+        public Cliente Cliente
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Comprobante;
-		}
-	}
+        public override string ToString()
+        {
+            return Comprobante;
+        }
+    }
 
 }

@@ -22,64 +22,64 @@ using iTextSharp.text;
 
 namespace Hamekoz.Reportes
 {
-	public interface IReporte
-	{
-		string FileName { get; set; }
+    public interface IReporte
+    {
+        string FileName { get; set; }
 
-		string Titulo { get; set; }
+        string Titulo { get; set; }
 
-		string Asunto { get; set; }
+        string Asunto { get; set; }
 
-		string Autor { get; set; }
+        string Autor { get; set; }
 
-		string Creador { get; set; }
+        string Creador { get; set; }
 
-		string Empresa { get; set; }
+        string Empresa { get; set; }
 
-		bool Apaisado { get; set; }
+        bool Apaisado { get; set; }
 
-		bool HasEncabezadoPieDePagina { get; set; }
+        bool HasEncabezadoPieDePagina { get; set; }
 
-		bool HasTituloPrimerPagina { get; set; }
+        bool HasTituloPrimerPagina { get; set; }
 
-		bool HasAsuntoPrimerPagina { get; set; }
+        bool HasAsuntoPrimerPagina { get; set; }
 
-		string MarcaDeAguaImagenUri { get; set; }
+        string MarcaDeAguaImagenUri { get; set; }
 
-		string MarcaDeAguaTexto { get; set; }
+        string MarcaDeAguaTexto { get; set; }
 
-		float MarcaDeAguaTransparencia { get; set; }
+        float MarcaDeAguaTransparencia { get; set; }
 
-		float MargenSuperior { get; set; }
+        float MargenSuperior { get; set; }
 
-		float MargenInferior { get; set; }
+        float MargenInferior { get; set; }
 
-		float MargenDerecho { get; set; }
+        float MargenDerecho { get; set; }
 
-		float MargenIzquierdo { get; set; }
+        float MargenIzquierdo { get; set; }
 
-		bool HasTitleAndSubjetOnAllPages { get; set; }
+        bool HasTitleAndSubjetOnAllPages { get; set; }
 
-		void Agregar (IElemento elemento);
+        void Agregar(IElemento elemento);
 
-		void Agregar (IElement elemento);
+        void Agregar(IElement elemento);
 
-		void Iniciar ();
+        void Iniciar();
 
-		void Abrir ();
+        void Abrir();
 
-		void Imprimir ();
+        void Imprimir();
 
-		void Imprimir (string printerName);
+        void Imprimir(string printerName);
 
-		void Imprimir (string printerName, int copias);
+        void Imprimir(string printerName, int copias);
 
-		void NuevaPagina ();
+        void NuevaPagina();
 
-		void NuevaLineaDivisoria ();
+        void NuevaLineaDivisoria();
 
-		bool Previsualizar { get; set; }
+        bool Previsualizar { get; set; }
 
-		bool ShowGeneratedInfo { get; set; }
-	}
+        bool ShowGeneratedInfo { get; set; }
+    }
 }

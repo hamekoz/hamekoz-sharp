@@ -22,52 +22,56 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public abstract class Encuesta: IPersistible
-	{
-		#region IPersistible implementation
+    public abstract class Encuesta : IPersistible
+    {
+        #region IPersistible implementation
 
-		public int Id { get; set; }
+        public int Id { get; set; }
 
-		#endregion
+        #endregion
 
-		public enum Tipos
-		{
-			Empleado,
-			Cliente,
-			Provedor,
-			Sucursal,
-			Franquicia,
-		}
+        public enum Tipos
+        {
+            Empleado,
+            Cliente,
+            Provedor,
+            Sucursal,
+            Franquicia,
+        }
 
-		public string Nombre { get; set; }
+        public string Nombre { get; set; }
 
-		public Empleado Encuestador { get; set; }
+        public Empleado Encuestador { get; set; }
 
-		public short Puntaje { get; set; }
+        public short Puntaje { get; set; }
 
-		public DateTime Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
-		public Tipos Tipo { get; set; }
+        public Tipos Tipo { get; set; }
 
-		public int TotalPreguntas {
-			get {
-				return Secciones != null ? Secciones.Sum (i => i.NroPreguntas) : 0;
-			}
-		}
+        public int TotalPreguntas
+        {
+            get
+            {
+                return Secciones != null ? Secciones.Sum(i => i.NroPreguntas) : 0;
+            }
+        }
 
-		public int NroSecciones {
-			get {
-				return Secciones != null ? Secciones.Count : 0;
-			}
-		}
+        public int NroSecciones
+        {
+            get
+            {
+                return Secciones != null ? Secciones.Count : 0;
+            }
+        }
 
-		public IList<EncuestaSeccion> Secciones { get; set; }
+        public IList<EncuestaSeccion> Secciones { get; set; }
 
-		public virtual int ObjetivoId { get; }
-	}
+        public virtual int ObjetivoId { get; }
+    }
 }
-

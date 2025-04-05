@@ -23,111 +23,121 @@ using System.Globalization;
 
 namespace Hamekoz.Argentina.Arba
 {
-	/// <summary>
-	/// Registro de padrón unificado.
-	/// </summary>
-	/// <see href="http://www.arba.gov.ar/archivos/Publicaciones/regimen%20de%20rec%20x%20sujeto_nuevo%20dise%C3%B1o%20padr%C3%B3n.pdf"/>
-	/// <seealso href="http://www.arba.gov.ar/Informacion/IBrutos/LinksIIBB/RegimenSujeto.asp"/>
-	public class RegistroPadronUnificado
-	{
-		readonly char separador = char.Parse (";");
+    /// <summary>
+    /// Registro de padrón unificado.
+    /// </summary>
+    /// <see href="http://www.arba.gov.ar/archivos/Publicaciones/regimen%20de%20rec%20x%20sujeto_nuevo%20dise%C3%B1o%20padr%C3%B3n.pdf"/>
+    /// <seealso href="http://www.arba.gov.ar/Informacion/IBrutos/LinksIIBB/RegimenSujeto.asp"/>
+    public class RegistroPadronUnificado
+    {
+        readonly char separador = char.Parse(";");
 
-		/// <summary>
-		/// Gets or sets the regimen.
-		/// R o P según se trate del régimen de Retención o Percepción
-		/// </summary>
-		/// <value>The regimen.</value>
-		public char Regimen {
-			get;
-			set;
-		}
+        /// <summary>
+        /// Gets or sets the regimen.
+        /// R o P según se trate del régimen de Retención o Percepción
+        /// </summary>
+        /// <value>The regimen.</value>
+        public char Regimen
+        {
+            get;
+            set;
+        }
 
-		public DateTime Publicacion {
-			get;
-			set;
-		}
+        public DateTime Publicacion
+        {
+            get;
+            set;
+        }
 
-		public DateTime VigenciaDesde {
-			get;
-			set;
-		}
+        public DateTime VigenciaDesde
+        {
+            get;
+            set;
+        }
 
-		public DateTime VigenciaHasta {
-			get;
-			set;
-		}
+        public DateTime VigenciaHasta
+        {
+            get;
+            set;
+        }
 
-		public long CUIT {
-			get;
-			set;
-		}
+        public long CUIT
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Obtiene el tipo de contribuyente inscripto.
-		/// "C" Convenio Multilateral
-		/// "D" Directo Pcia de Bs. As
-		/// </summary>
-		/// <value>El tipo de contribuyente inscripto.</value>
-		public char TipoDeContribuyenteInscripto {
-			get;
-			set;
-		}
+        /// <summary>
+        /// Obtiene el tipo de contribuyente inscripto.
+        /// "C" Convenio Multilateral
+        /// "D" Directo Pcia de Bs. As
+        /// </summary>
+        /// <value>El tipo de contribuyente inscripto.</value>
+        public char TipoDeContribuyenteInscripto
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Obtiene la marca alta baja sujeto.
-		/// S o N
-		/// "S" indica que el sujeto se incorpora al padrón
-		/// "B" indica Baja.
-		/// </summary>
-		/// <value>Marca alta sujeto.</value>
-		public char MarcaAltaBajaSujeto {
-			get;
-			set;
-		}
+        /// <summary>
+        /// Obtiene la marca alta baja sujeto.
+        /// S o N
+        /// "S" indica que el sujeto se incorpora al padrón
+        /// "B" indica Baja.
+        /// </summary>
+        /// <value>Marca alta sujeto.</value>
+        public char MarcaAltaBajaSujeto
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Gets the marca cambio alicuota.
-		/// S o N indica si hubo o no cambio de alícuota
-		/// con respecto al padrón anterior
-		/// </summary>
-		/// <value>The marca cambio alicuota.</value>
-		public char MarcaCambioAlicuota {
-			get;
-			set;
-		}
+        /// <summary>
+        /// Gets the marca cambio alicuota.
+        /// S o N indica si hubo o no cambio de alícuota
+        /// con respecto al padrón anterior
+        /// </summary>
+        /// <value>The marca cambio alicuota.</value>
+        public char MarcaCambioAlicuota
+        {
+            get;
+            set;
+        }
 
-		public double Alicuota {
-			get;
-			set;
-		}
+        public double Alicuota
+        {
+            get;
+            set;
+        }
 
-		public int NumeroGrupo {
-			get;
-			set;
-		}
+        public int NumeroGrupo
+        {
+            get;
+            set;
+        }
 
-		public RegistroPadronUnificado ()
-		{
+        public RegistroPadronUnificado()
+        {
 
-		}
+        }
 
-		public RegistroPadronUnificado (string linea)
-		{
-			if (linea.Length != 55) {
-				throw new Exception ("Longitud de linea incorrecta. Verificar");
-			}
-			string[] split = linea.Split (separador);
-			Regimen = char.Parse (split [0]);
-			Publicacion = DateTime.ParseExact (split [1], "ddMMyyyy", CultureInfo.InvariantCulture);
-			VigenciaDesde = DateTime.ParseExact (split [2], "ddMMyyyy", CultureInfo.InvariantCulture);
-			VigenciaHasta = DateTime.ParseExact (split [3], "ddMMyyyy", CultureInfo.InvariantCulture);
-			CUIT = long.Parse (split [4]);
-			TipoDeContribuyenteInscripto = char.Parse (split [5]);
-			MarcaAltaBajaSujeto = char.Parse (split [6]);
-			MarcaCambioAlicuota = char.Parse (split [7]);
-			Alicuota = double.Parse (split [8]);
-			NumeroGrupo = int.Parse (split [9]);
-		}
-	}
+        public RegistroPadronUnificado(string linea)
+        {
+            if (linea.Length != 55)
+            {
+                throw new Exception("Longitud de linea incorrecta. Verificar");
+            }
+            string[] split = linea.Split(separador);
+            Regimen = char.Parse(split[0]);
+            Publicacion = DateTime.ParseExact(split[1], "ddMMyyyy", CultureInfo.InvariantCulture);
+            VigenciaDesde = DateTime.ParseExact(split[2], "ddMMyyyy", CultureInfo.InvariantCulture);
+            VigenciaHasta = DateTime.ParseExact(split[3], "ddMMyyyy", CultureInfo.InvariantCulture);
+            CUIT = long.Parse(split[4]);
+            TipoDeContribuyenteInscripto = char.Parse(split[5]);
+            MarcaAltaBajaSujeto = char.Parse(split[6]);
+            MarcaCambioAlicuota = char.Parse(split[7]);
+            Alicuota = double.Parse(split[8]);
+            NumeroGrupo = int.Parse(split[9]);
+        }
+    }
 }
-

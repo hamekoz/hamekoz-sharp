@@ -21,11 +21,10 @@
 
 namespace Hamekoz.Negocio
 {
-	public enum Sexos
-	{
-		Feminino,
-		Masculino,
-		Otro,
-	}
+    public enum Sexos
+    {
+        Feminino,
+        Masculino,
+        Otro,
+    }
 }
-

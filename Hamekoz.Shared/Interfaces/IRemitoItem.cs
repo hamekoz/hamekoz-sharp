@@ -21,20 +21,20 @@
 
 namespace Hamekoz.Negocio
 {
-	public interface IRemitoItem
-	{
-		IRemito Remito { get; set; }
+    public interface IRemitoItem
+    {
+        IRemito Remito { get; set; }
 
-		int Renglon { get; set; }
+        int Renglon { get; set; }
 
-		Articulo Articulo { get; set; }
+        Articulo Articulo { get; set; }
 
-		Lote Lote { get; set; }
+        Lote Lote { get; set; }
 
-		decimal Cantidad { get; set; }
+        decimal Cantidad { get; set; }
 
-		decimal Precio { get; set; }
+        decimal Precio { get; set; }
 
-		decimal Total { get; }
-	}
+        decimal Total { get; }
+    }
 }

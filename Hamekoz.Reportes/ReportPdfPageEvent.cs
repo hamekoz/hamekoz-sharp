@@ -19,305 +19,351 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
 namespace Hamekoz.Reportes
 {
-	public class ReportPdfPageEvent : PdfPageEventHelper
-	{
-		// This is the contentbyte object of the writer
-		PdfContentByte contentByte;
+    public class ReportPdfPageEvent : PdfPageEventHelper
+    {
+        // This is the contentbyte object of the writer
+        PdfContentByte contentByte;
 
-		// we will put the final number of pages in a template
-		PdfTemplate template;
+        // we will put the final number of pages in a template
+        PdfTemplate template;
 
-		/// <summary>
-		/// The header and footer font.
-		/// </summary>
-		readonly Font font = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 8, BaseColor.GRAY);
+        /// <summary>
+        /// The header and footer font.
+        /// </summary>
+        readonly Font font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 8, BaseColor.GRAY);
 
-		/// <summary>
-		/// The water font.
-		/// </summary>
-		Font waterFont = FontFactory.GetFont (FontFactory.HELVETICA, 40, BaseColor.LIGHT_GRAY);
 
-		// This keeps track of the creation time
-		DateTime printTime = DateTime.Now;
+        /* Cambio no fusionado mediante combinación del proyecto 'Hamekoz.Reportes(net9.0)'
+        Antes:
+                /// <summary>
+                /// The water font.
+                /// </summary>
+                Font waterFont = FontFactory.GetFont (FontFactory.HELVETICA, 40, BaseColor.LIGHT_GRAY);
+        Después:
+                /// <summary>
+                /// The water font.
+                /// </summary>
+                readonly Font waterFont = FontFactory.GetFont (FontFactory.HELVETICA, 40, BaseColor.LIGHT_GRAY);
+        */
 
-		// set transparency, see commented section below; 'image watermark'
-		PdfGState state = new PdfGState {
-			FillOpacity = waterMarkOpacity,
-			StrokeOpacity = waterMarkOpacity
-		};
+        /* Cambio no fusionado mediante combinación del proyecto 'Hamekoz.Reportes(net9.0)'
+        Antes:
+                // set transparency, see commented section below; 'image watermark'
+                PdfGState state = new PdfGState {
+        Después:
+                // set transparency, see commented section below; 'image watermark'
+                readonly PdfGState state = new PdfGState {
+        */
+        /// <summary>
+        /// The water font.
+        /// </summary>
+        readonly Font waterFont = FontFactory.GetFont(FontFactory.HELVETICA, 40, BaseColor.LIGHT_GRAY);
 
-		#region Properties
+        // This keeps track of the creation time
+        DateTime printTime = DateTime.Now;
 
-		public bool HasHeaderAndFooter { get; set; }
+        // set transparency, see commented section below; 'image watermark'
+        readonly PdfGState state = new PdfGState
+        {
+            FillOpacity = waterMarkOpacity,
+            StrokeOpacity = waterMarkOpacity
+        };
 
-		public bool HasWaterMarkImage { get; set; }
+        #region Properties
 
-		public bool HasWaterMarkText { get; set; }
+        public bool HasHeaderAndFooter { get; set; }
 
-		public bool HasTitleAndSubjet { get; set; }
+        public bool HasWaterMarkImage { get; set; }
 
-		public bool ShowGeneratedInfo { get; set; } = true;
+        public bool HasWaterMarkText { get; set; }
 
-		string header = string.Empty;
+        public bool HasTitleAndSubjet { get; set; }
 
-		public string Header {
-			get { return header; }
-			set { header = value; }
-		}
+        public bool ShowGeneratedInfo { get; set; } = true;
 
-		string headerLeft = string.Empty;
+        string header = string.Empty;
 
-		public string HeaderLeft {
-			get { return headerLeft; }
-			set { headerLeft = value; }
-		}
+        public string Header
+        {
+            get { return header; }
+            set { header = value; }
+        }
 
-		string headerRight = string.Empty;
+        string headerLeft = string.Empty;
 
-		public string HeaderRight {
-			get { return headerRight; }
-			set { headerRight = value; }
-		}
+        public string HeaderLeft
+        {
+            get { return headerLeft; }
+            set { headerLeft = value; }
+        }
 
-		string waterMarkText = string.Empty;
+        string headerRight = string.Empty;
 
-		public string WaterMarkText {
-			get {
-				return waterMarkText;
-			}
-			set {
-				waterMarkText = value;
-			}
-		}
+        public string HeaderRight
+        {
+            get { return headerRight; }
+            set { headerRight = value; }
+        }
 
-		static float waterMarkOpacity = 0.1F;
+        string waterMarkText = string.Empty;
 
-		public float WaterMarkOpacity {
-			get {
-				return waterMarkOpacity;
-			}
-			set {
-				waterMarkOpacity = value;
-			}
-		}
+        public string WaterMarkText
+        {
+            get
+            {
+                return waterMarkText;
+            }
+            set
+            {
+                waterMarkText = value;
+            }
+        }
 
-		Image waterMarkImage;
+        static float waterMarkOpacity = 0.1F;
 
-		public string WaterMarkImagePath {
-			get {
-				if (waterMarkImage == null) {
-					waterMarkImage = Image.GetInstance (Constants.HamekozLogo);
-				}
-				return waterMarkImage.Url.AbsolutePath;
-			}
-			set {
-				try {
-					waterMarkImage = Image.GetInstance (value);
-				} catch (InvalidOperationException ex) {
-					Console.WriteLine ("Fallo al obtener el archivo, usando imagen por defecto.\n Detalle: {0}", ex);
-				}
-			}
-		}
+        public float WaterMarkOpacity
+        {
+            get
+            {
+                return waterMarkOpacity;
+            }
+            set
+            {
+                waterMarkOpacity = value;
+            }
+        }
 
-		public string Title {
-			get;
-			set;
-		}
+        Image waterMarkImage;
 
-		public string Subjet {
-			get;
-			set;
-		}
+        public string WaterMarkImagePath
+        {
+            get
+            {
+                if (waterMarkImage == null)
+                {
+                    waterMarkImage = Image.GetInstance(Constants.HamekozLogo);
+                }
+                return waterMarkImage.Url.AbsolutePath;
+            }
+            set
+            {
+                try
+                {
+                    waterMarkImage = Image.GetInstance(value);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Console.WriteLine("Fallo al obtener el archivo, usando imagen por defecto.\n Detalle: {0}", ex);
+                }
+            }
+        }
 
-		#endregion
+        public string Title
+        {
+            get;
+            set;
+        }
 
-		public override void OnOpenDocument (PdfWriter writer, Document document)
-		{
-			printTime = DateTime.Now;
-			contentByte = writer.DirectContent;
-			template = contentByte.CreateTemplate (50, 50);
-		}
+        public string Subjet
+        {
+            get;
+            set;
+        }
 
-		public override void OnStartPage (PdfWriter writer, Document document)
-		{
-			base.OnStartPage (writer, document);
+        #endregion
 
-			if (HasHeaderAndFooter) {
-				PrintHeader (document);
-				PrintFooter (writer, document, ShowGeneratedInfo);
-			}
-			if (HasTitleAndSubjet) {
-				PrintTitleAndSubjet (document);
-			}
-		}
+        public override void OnOpenDocument(PdfWriter writer, Document document)
+        {
+            printTime = DateTime.Now;
+            contentByte = writer.DirectContent;
+            template = contentByte.CreateTemplate(50, 50);
+        }
 
-		void PrintTitleAndSubjet (Document document)
-		{
-			Font titleFont = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 22);
-			Font subjetFont = FontFactory.GetFont (FontFactory.HELVETICA_BOLD, 14);
+        public override void OnStartPage(PdfWriter writer, Document document)
+        {
+            base.OnStartPage(writer, document);
 
-			contentByte.BeginText ();
-			contentByte.SetFontAndSize (titleFont.BaseFont, titleFont.CalculatedSize);
-			contentByte.ShowTextAligned ((int)Alineaciones.Centrado, Title, (document.Right - document.Left) / 2 + document.Left, document.Top + 32, 0);
-			contentByte.EndText ();
+            if (HasHeaderAndFooter)
+            {
+                PrintHeader(document);
+                PrintFooter(writer, document, ShowGeneratedInfo);
+            }
+            if (HasTitleAndSubjet)
+            {
+                PrintTitleAndSubjet(document);
+            }
+        }
 
-			contentByte.Stroke ();
+        void PrintTitleAndSubjet(Document document)
+        {
+            Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 22);
+            Font subjetFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14);
 
-			contentByte.BeginText ();
-			contentByte.SetFontAndSize (subjetFont.BaseFont, subjetFont.CalculatedSize);
-			contentByte.ShowTextAligned ((int)Alineaciones.Centrado, Subjet, (document.Right - document.Left) / 2 + document.Left, document.Top + 11, 0);
-			contentByte.EndText ();
+            contentByte.BeginText();
+            contentByte.SetFontAndSize(titleFont.BaseFont, titleFont.CalculatedSize);
+            contentByte.ShowTextAligned((int)Alineaciones.Centrado, Title, (document.Right - document.Left) / 2 + document.Left, document.Top + 32, 0);
+            contentByte.EndText();
 
-			contentByte.Stroke ();
+            contentByte.Stroke();
 
-			contentByte.MoveTo (
-				document.PageSize.GetLeft (document.LeftMargin),
-				document.PageSize.GetTop (document.TopMargin - 5)
-			);
-			contentByte.LineTo (
-				document.PageSize.GetRight (document.RightMargin),
-				document.PageSize.GetTop (document.TopMargin - 5)
-			);
-			contentByte.Stroke ();
-		}
+            contentByte.BeginText();
+            contentByte.SetFontAndSize(subjetFont.BaseFont, subjetFont.CalculatedSize);
+            contentByte.ShowTextAligned((int)Alineaciones.Centrado, Subjet, (document.Right - document.Left) / 2 + document.Left, document.Top + 11, 0);
+            contentByte.EndText();
 
-		void PrintHeader (Document document)
-		{
-			var headerTable = new PdfPTable (3);
+            contentByte.Stroke();
 
-			headerTable.SetWidthPercentage (new float[] { 20, 60, 20 }, document.PageSize);
+            contentByte.MoveTo(
+                document.PageSize.GetLeft(document.LeftMargin),
+                document.PageSize.GetTop(document.TopMargin - 5)
+            );
+            contentByte.LineTo(
+                document.PageSize.GetRight(document.RightMargin),
+                document.PageSize.GetTop(document.TopMargin - 5)
+            );
+            contentByte.Stroke();
+        }
 
-			headerTable.DefaultCell.Border = Rectangle.NO_BORDER;
-			headerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
+        void PrintHeader(Document document)
+        {
+            var headerTable = new PdfPTable(3);
 
-			var headerLeftCell = new PdfPCell (new Phrase (8, headerLeft, font));
-			headerLeftCell.Border = Rectangle.NO_BORDER;
-			headerTable.AddCell (headerLeftCell);
+            headerTable.SetWidthPercentage(new float[] { 20, 60, 20 }, document.PageSize);
 
-			var headerCenterCell = new PdfPCell (new Phrase (8, header, font));
-			headerCenterCell.HorizontalAlignment = Element.ALIGN_CENTER;
-			headerCenterCell.Border = Rectangle.NO_BORDER;
-			headerTable.AddCell (headerCenterCell);
+            headerTable.DefaultCell.Border = Rectangle.NO_BORDER;
+            headerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
 
-			var headerRightCell = new PdfPCell (new Phrase (8, headerRight, font));
-			headerRightCell.Border = Rectangle.NO_BORDER;
-			headerRightCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-			headerTable.AddCell (headerRightCell);
+            var headerLeftCell = new PdfPCell(new Phrase(8, headerLeft, font));
+            headerLeftCell.Border = Rectangle.NO_BORDER;
+            headerTable.AddCell(headerLeftCell);
 
-			contentByte.MoveTo (
-				document.PageSize.GetLeft (document.LeftMargin),
-				document.PageSize.GetTop (document.TopMargin - 5 - (HasTitleAndSubjet ? 65 : 0))
-			);
-			contentByte.LineTo (
-				document.PageSize.GetRight (document.RightMargin),
-				document.PageSize.GetTop (document.TopMargin - 5 - (HasTitleAndSubjet ? 65 : 0))
-			);
-			contentByte.Stroke ();
+            var headerCenterCell = new PdfPCell(new Phrase(8, header, font));
+            headerCenterCell.HorizontalAlignment = Element.ALIGN_CENTER;
+            headerCenterCell.Border = Rectangle.NO_BORDER;
+            headerTable.AddCell(headerCenterCell);
 
-			headerTable.WriteSelectedRows (
-				0, -1,
-				document.PageSize.GetLeft (document.LeftMargin),
-				document.PageSize.GetTop (document.TopMargin - 20 - (HasTitleAndSubjet ? 65 : 0)),
-				contentByte
-			);
-		}
+            var headerRightCell = new PdfPCell(new Phrase(8, headerRight, font));
+            headerRightCell.Border = Rectangle.NO_BORDER;
+            headerRightCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+            headerTable.AddCell(headerRightCell);
 
-		void PrintFooter (PdfWriter writer, Document document, bool ShowGenerated = true)
-		{
-			//TODO localizar los textos para poder traducirlos
-			string generated = string.Format (
-				                   "Generado el {0} {1}",
-				                   printTime.ToShortDateString (),
-				                   printTime.ToShortTimeString ()
-			                   );
+            contentByte.MoveTo(
+                document.PageSize.GetLeft(document.LeftMargin),
+                document.PageSize.GetTop(document.TopMargin - 5 - (HasTitleAndSubjet ? 65 : 0))
+            );
+            contentByte.LineTo(
+                document.PageSize.GetRight(document.RightMargin),
+                document.PageSize.GetTop(document.TopMargin - 5 - (HasTitleAndSubjet ? 65 : 0))
+            );
+            contentByte.Stroke();
 
-			//TODO localizar los textos para poder traducirlos
-			string pageof = string.Format ("Página {0} de ", writer.PageNumber);
-			float len = font.BaseFont.GetWidthPoint (pageof, font.Size) + 2;
+            headerTable.WriteSelectedRows(
+                0, -1,
+                document.PageSize.GetLeft(document.LeftMargin),
+                document.PageSize.GetTop(document.TopMargin - 20 - (HasTitleAndSubjet ? 65 : 0)),
+                contentByte
+            );
+        }
 
-			contentByte.AddTemplate (
-				template,
-				document.PageSize.GetLeft (document.LeftMargin) + len,
-				document.PageSize.GetBottom (document.BottomMargin - 10)
-			);
+        void PrintFooter(PdfWriter writer, Document document, bool ShowGenerated = true)
+        {
+            //TODO localizar los textos para poder traducirlos
+            string generated = string.Format(
+                                   "Generado el {0} {1}",
+                                   printTime.ToShortDateString(),
+                                   printTime.ToShortTimeString()
+                               );
 
-			var footerTable = new PdfPTable (3);
-			footerTable.DefaultCell.Border = Rectangle.NO_BORDER;
-			footerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
+            //TODO localizar los textos para poder traducirlos
+            string pageof = string.Format("Página {0} de ", writer.PageNumber);
+            float len = font.BaseFont.GetWidthPoint(pageof, font.Size) + 2;
 
-			var footerLeftCell = new PdfPCell (new Phrase (8, pageof, font));
-			footerLeftCell.Border = Rectangle.NO_BORDER;
-			footerTable.AddCell (footerLeftCell);
+            contentByte.AddTemplate(
+                template,
+                document.PageSize.GetLeft(document.LeftMargin) + len,
+                document.PageSize.GetBottom(document.BottomMargin - 10)
+            );
 
-			var footerCenterCell = new PdfPCell (new Phrase (8, ShowGenerated ? generated : string.Empty, font));
-			footerCenterCell.HorizontalAlignment = Element.ALIGN_CENTER;
-			footerCenterCell.Border = Rectangle.NO_BORDER;
-			footerTable.AddCell (footerCenterCell);
+            var footerTable = new PdfPTable(3);
+            footerTable.DefaultCell.Border = Rectangle.NO_BORDER;
+            footerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
 
-			var footerRightCell = new PdfPCell (new Phrase (8, Constants.PoweredBy, font));
-			footerRightCell.Border = Rectangle.NO_BORDER;
-			footerRightCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-			footerTable.AddCell (footerRightCell);
+            var footerLeftCell = new PdfPCell(new Phrase(8, pageof, font));
+            footerLeftCell.Border = Rectangle.NO_BORDER;
+            footerTable.AddCell(footerLeftCell);
 
-			contentByte.MoveTo (
-				document.PageSize.GetLeft (document.LeftMargin),
-				document.PageSize.GetBottom (document.BottomMargin)
-			);
-			contentByte.LineTo (
-				document.PageSize.GetRight (document.RightMargin),
-				document.PageSize.GetBottom (document.BottomMargin)
-			);
-			contentByte.Stroke ();
+            var footerCenterCell = new PdfPCell(new Phrase(8, ShowGenerated ? generated : string.Empty, font));
+            footerCenterCell.HorizontalAlignment = Element.ALIGN_CENTER;
+            footerCenterCell.Border = Rectangle.NO_BORDER;
+            footerTable.AddCell(footerCenterCell);
 
-			footerTable.WriteSelectedRows (0, -1,
-				document.PageSize.GetLeft (document.LeftMargin),
-				document.PageSize.GetBottom (document.BottomMargin),
-				contentByte
-			);
-		}
+            var footerRightCell = new PdfPCell(new Phrase(8, Constants.PoweredBy, font));
+            footerRightCell.Border = Rectangle.NO_BORDER;
+            footerRightCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+            footerTable.AddCell(footerRightCell);
 
-		public sealed override void OnEndPage (PdfWriter writer, Document document)
-		{
-			base.OnEndPage (writer, document);
+            contentByte.MoveTo(
+                document.PageSize.GetLeft(document.LeftMargin),
+                document.PageSize.GetBottom(document.BottomMargin)
+            );
+            contentByte.LineTo(
+                document.PageSize.GetRight(document.RightMargin),
+                document.PageSize.GetBottom(document.BottomMargin)
+            );
+            contentByte.Stroke();
 
-			if (HasWaterMarkText) {
-				contentByte.SaveState ();
-				contentByte.SetGState (state);
-				ColumnText.ShowTextAligned (
-					contentByte,
-					Element.ALIGN_CENTER,
-					new Phrase (waterMarkText, waterFont),
-					300, 400, 45
-				);
-				contentByte.RestoreState ();
-			}
-			if (HasWaterMarkImage) {
-				waterMarkImage.ScaleToFit (document.PageSize);
-				waterMarkImage.SetAbsolutePosition (
-					(document.PageSize.Width - waterMarkImage.PlainWidth) / 2,
-					(document.PageSize.Height - waterMarkImage.PlainHeight) / 2
-				);
-				contentByte.SaveState ();
-				contentByte.SetGState (state);
-				contentByte.AddImage (waterMarkImage);
-				contentByte.RestoreState ();
-			}
-		}
+            footerTable.WriteSelectedRows(0, -1,
+                document.PageSize.GetLeft(document.LeftMargin),
+                document.PageSize.GetBottom(document.BottomMargin),
+                contentByte
+            );
+        }
 
-		public sealed override void OnCloseDocument (PdfWriter writer, Document document)
-		{
-			base.OnCloseDocument (writer, document);
-			template.BeginText ();
-			template.SetFontAndSize (font.BaseFont, font.Size);
-			template.SetColorFill (font.Color);
-			template.SetTextMatrix (0, 0);
-			template.ShowText ((writer.PageNumber).ToString ());
-			template.EndText ();
-		}
-	}
+        public sealed override void OnEndPage(PdfWriter writer, Document document)
+        {
+            base.OnEndPage(writer, document);
+
+            if (HasWaterMarkText)
+            {
+                contentByte.SaveState();
+                contentByte.SetGState(state);
+                ColumnText.ShowTextAligned(
+                    contentByte,
+                    Element.ALIGN_CENTER,
+                    new Phrase(waterMarkText, waterFont),
+                    300, 400, 45
+                );
+                contentByte.RestoreState();
+            }
+            if (HasWaterMarkImage)
+            {
+                waterMarkImage.ScaleToFit(document.PageSize);
+                waterMarkImage.SetAbsolutePosition(
+                    (document.PageSize.Width - waterMarkImage.PlainWidth) / 2,
+                    (document.PageSize.Height - waterMarkImage.PlainHeight) / 2
+                );
+                contentByte.SaveState();
+                contentByte.SetGState(state);
+                contentByte.AddImage(waterMarkImage);
+                contentByte.RestoreState();
+            }
+        }
+
+        public sealed override void OnCloseDocument(PdfWriter writer, Document document)
+        {
+            base.OnCloseDocument(writer, document);
+            template.BeginText();
+            template.SetFontAndSize(font.BaseFont, font.Size);
+            template.SetColorFill(font.Color);
+            template.SetTextMatrix(0, 0);
+            template.ShowText((writer.PageNumber).ToString());
+            template.EndText();
+        }
+    }
 }

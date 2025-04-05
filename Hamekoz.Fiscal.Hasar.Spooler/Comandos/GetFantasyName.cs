@@ -21,23 +21,22 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class GetFantasyName : Comando
-	{
-		const string cmd = "Æ";
+    public class GetFantasyName : Comando
+    {
+        const string cmd = "Æ";
 
-		public string Texto { get; set; }
+        public string Texto { get; set; }
 
-		readonly int nroLinea;
+        readonly int nroLinea;
 
-		public string Comando ()
-		{
-			return string.Format ("{0}{1}{2}", cmd, separador, nroLinea);
-		}
+        public string Comando()
+        {
+            return string.Format("{0}{1}{2}", cmd, separador, nroLinea);
+        }
 
-		public GetFantasyName (int nroLinea)
-		{
-			this.nroLinea = nroLinea;
-		}
-	}
+        public GetFantasyName(int nroLinea)
+        {
+            this.nroLinea = nroLinea;
+        }
+    }
 }
-

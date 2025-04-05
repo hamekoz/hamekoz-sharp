@@ -22,11 +22,11 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public enum Alineaciones
-	{
-		Derecha = 2,
-		Izquierda = 0,
-		Centrado = 1,
-		Justificado = 3,
-	}
+    public enum Alineaciones
+    {
+        Derecha = 2,
+        Izquierda = 0,
+        Centrado = 1,
+        Justificado = 3,
+    }
 }

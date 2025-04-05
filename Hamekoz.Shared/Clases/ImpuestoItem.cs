@@ -19,71 +19,80 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class ImpuestoItem : IPersistible, IIdentifiable
-	{
-		#region IIdentifiable implementation
+    public partial class ImpuestoItem : IPersistible, IIdentifiable
+    {
+        #region IIdentifiable implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public Impuesto Impuesto {
-			get;
-			set;
-		}
+        public Impuesto Impuesto
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Gets or sets the base imponible.
-		/// </summary>
-		/// <value>The base imponible.</value>
-		public decimal BaseImponible {
-			get;
-			set;
-		}
+        /// <summary>
+        /// Gets or sets the base imponible.
+        /// </summary>
+        /// <value>The base imponible.</value>
+        public decimal BaseImponible
+        {
+            get;
+            set;
+        }
 
-		public decimal Alicuota {
-			get;
-			set;
-		}
+        public decimal Alicuota
+        {
+            get;
+            set;
+        }
 
-		public decimal ValorFijo {
-			get;
-			set;
-		}
+        public decimal ValorFijo
+        {
+            get;
+            set;
+        }
 
-		//TODO calcular la propiedad Importe = BaseImponible * Alicuota / 100 + ValorFijo
-		decimal importe;
+        //TODO calcular la propiedad Importe = BaseImponible * Alicuota / 100 + ValorFijo
+        decimal importe;
 
-		public decimal Importe {
-			get {
-				return Math.Round (importe, 2);
-			}
-			set {
-				importe = value;
-			}
-		}
+        public decimal Importe
+        {
+            get
+            {
+                return Math.Round(importe, 2);
+            }
+            set
+            {
+                importe = value;
+            }
+        }
 
-		/// <summary>
-		/// Utilizado para indicar cuando el impuesto fue declaro ante algun organismo gubertamental de recaudacion
-		/// </summary>
-		/// <value><c>true</c> if declarado; otherwise, <c>false</c>.</value>
-		public bool Declarado {
-			get;
-			set;
-		}
+        /// <summary>
+        /// Utilizado para indicar cuando el impuesto fue declaro ante algun organismo gubertamental de recaudacion
+        /// </summary>
+        /// <value><c>true</c> if declarado; otherwise, <c>false</c>.</value>
+        public bool Declarado
+        {
+            get;
+            set;
+        }
 
-		public string AlicuotaToString ()
-		{
-			return (Alicuota / 100).ToString ("P");
-		}
-	}
+        public string AlicuotaToString()
+        {
+            return (Alicuota / 100).ToString("P");
+        }
+    }
 
 }
-

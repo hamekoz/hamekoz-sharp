@@ -19,90 +19,105 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	//UNDONE refactorizar para separar el tipo del comprobante de los puntos de venta
-	public partial class NumeracionDeComprobante : IPersistible, IIdentifiable, IDescriptible
-	{
-		public int Id {
-			get;
-			set;
-		}
+    //UNDONE refactorizar para separar el tipo del comprobante de los puntos de venta
+    public partial class NumeracionDeComprobante : IPersistible, IIdentifiable, IDescriptible
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		//TODO renombrar a Comprobante que tiene que ser de tipo Enumerado segun la tabla de AFIP
-		public string Descripcion {
-			get;
-			set;
-		} = string.Empty;
+        //TODO renombrar a Comprobante que tiene que ser de tipo Enumerado segun la tabla de AFIP
+        public string Descripcion
+        {
+            get;
+            set;
+        } = string.Empty;
 
-		public string Abreviatura {
-			get;
-			set;
-		} = string.Empty;
+        public string Abreviatura
+        {
+            get;
+            set;
+        } = string.Empty;
 
-		public string Letra {
-			get;
-			set;
-		} = "X";
+        public string Letra
+        {
+            get;
+            set;
+        } = "X";
 
-		//TODO evaluar pasar a que sea un valor int
-		public string Pre {
-			get;
-			set;
-		} = "1";
+        //TODO evaluar pasar a que sea un valor int
+        public string Pre
+        {
+            get;
+            set;
+        } = "1";
 
-		public int UltimoNumero {
-			get;
-			set;
-		} = 1;
+        public int UltimoNumero
+        {
+            get;
+            set;
+        } = 1;
 
-		//UNDONE revsar si tiene sentido almacenar la sucursal en el tipo de comprobante
-		public Sucursal Sucursal {
-			get;
-			set;
-		}
+        //UNDONE revsar si tiene sentido almacenar la sucursal en el tipo de comprobante
+        public Sucursal Sucursal
+        {
+            get;
+            set;
+        }
 
-		public TipoDeControladorFiscal Tipo {
-			get;
-			set;
-		}
+        public TipoDeControladorFiscal Tipo
+        {
+            get;
+            set;
+        }
 
-		public bool Inactivo {
-			get;
-			set;
-		}
+        public bool Inactivo
+        {
+            get;
+            set;
+        }
 
-		public int Codigo {
-			get;
-			set;
-		}
+        public int Codigo
+        {
+            get;
+            set;
+        }
 
-		[Obsolete]
-		public int IdEmpresa;
+        [Obsolete]
+        public int IdEmpresa;
 
-		public string UltimoNumeroConFormato ()
-		{
-			return Pre != null ? string.Format ("{0:0000}-{1:00000000}", Pre, UltimoNumero) : string.Empty;
-		}
+        public string UltimoNumeroConFormato()
+        {
+            return Pre != null ? string.Format("{0:0000}-{1:00000000}", Pre, UltimoNumero) : string.Empty;
+        }
 
-		public override string ToString ()
-		{
-			return string.Format ("{0} {1}", Abreviatura, Letra);
-		}
+        public override string ToString()
+        {
+            return string.Format("{0} {1}", Abreviatura, Letra);
+        }
 
-		public string PreSucursal {
-			get { 
-				return string.Format ("{0} {1}", Pre, Sucursal?.Nombre);
-			}
-		}
+        public string PreSucursal
+        {
+            get
+            {
+                return string.Format("{0} {1}", Pre, Sucursal?.Nombre);
+            }
+        }
 
-		public string TipoNumero {
-			get { 
-				return string.Format ("{0} {1} {2}", Abreviatura, Letra, UltimoNumeroConFormato ());
-			}
-		}
-	}
+        public string TipoNumero
+        {
+            get
+            {
+                return string.Format("{0} {1} {2}", Abreviatura, Letra, UltimoNumeroConFormato());
+            }
+        }
+    }
 }

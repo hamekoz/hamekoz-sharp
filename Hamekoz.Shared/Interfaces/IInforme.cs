@@ -22,8 +22,7 @@ using System;
 
 namespace Hamekoz.Negocio
 {
-	public interface IInforme
-	{
-	}
+    public interface IInforme
+    {
+    }
 }
-

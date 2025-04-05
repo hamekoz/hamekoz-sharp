@@ -19,30 +19,30 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Empleado: IPersistible, ISearchable
-	{
-		#region IPersistible implementation
+    public partial class Empleado : IPersistible, ISearchable
+    {
+        #region IPersistible implementation
 
-		public int Id { get; set; }
+        public int Id { get; set; }
 
-		#endregion
+        #endregion
 
-		public string NombresApellidos { get; set; }
+        public string NombresApellidos { get; set; }
 
-		public string Dni { get; set; }
+        public string Dni { get; set; }
 
-		#region ISearchable implementation
+        #region ISearchable implementation
 
-		public string ToSearchString ()
-		{
-			return string.Format ("[Empleado: Id={0}, NombresApellidos={1}, Dni={2}]", Id, NombresApellidos, Dni);
-		}
+        public string ToSearchString()
+        {
+            return string.Format("[Empleado: Id={0}, NombresApellidos={1}, Dni={2}]", Id, NombresApellidos, Dni);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
-

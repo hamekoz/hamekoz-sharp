@@ -22,30 +22,32 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial  class Telefono : IPersistible, IIdentifiable
-	{
-		public enum Tipos
-		{
-			Celular,
-			Fijo,
-			Fax,
-		}
+    public partial class Telefono : IPersistible, IIdentifiable
+    {
+        public enum Tipos
+        {
+            Celular,
+            Fijo,
+            Fax,
+        }
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public Tipos Tipo {
-			get;
-			set;
-		}
+        public Tipos Tipo
+        {
+            get;
+            set;
+        }
 
 
-		public string Numero {
-			get;
-			set;
-		}
-	}
+        public string Numero
+        {
+            get;
+            set;
+        }
+    }
 }
-

@@ -21,23 +21,22 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class GetHeaderTrailer : Comando
-	{
-		const string cmd = "^";
+    public class GetHeaderTrailer : Comando
+    {
+        const string cmd = "^";
 
-		public string texto { get; set; }
+        public string texto { get; set; }
 
-		readonly int nroLineaEncabezamiento;
+        readonly int nroLineaEncabezamiento;
 
-		public string Comando ()
-		{
-			return string.Format ("{0}{1}{2}", cmd, separador, nroLineaEncabezamiento);
-		}
+        public string Comando()
+        {
+            return string.Format("{0}{1}{2}", cmd, separador, nroLineaEncabezamiento);
+        }
 
-		public GetHeaderTrailer (int nroLineaEncabezamiento)
-		{
-			this.nroLineaEncabezamiento = nroLineaEncabezamiento;
-		}
-	}
+        public GetHeaderTrailer(int nroLineaEncabezamiento)
+        {
+            this.nroLineaEncabezamiento = nroLineaEncabezamiento;
+        }
+    }
 }
-

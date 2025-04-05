@@ -21,63 +21,63 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Globalization;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Extensions
 {
-	public static class NumericExtensions
-	{
-		/// <summary>
-		/// Convert decimal to words
-		/// </summary>
-		/// <returns>The words.</returns>
-		/// <param name="number">Number.</param>
-		public static string ToWords (this decimal number)
-		{
-			return Numalet.ToCardinal (number);
-		}
+    public static class NumericExtensions
+    {
+        /// <summary>
+        /// Convert decimal to words
+        /// </summary>
+        /// <returns>The words.</returns>
+        /// <param name="number">Number.</param>
+        public static string ToWords(this decimal number)
+        {
+            return Numalet.ToCardinal(number);
+        }
 
-		/// <summary>
-		/// Convert int to words.
-		/// </summary>
-		/// <returns>The words.</returns>
-		/// <param name="number">Number.</param>
-		public static string ToWords (this int number)
-		{
-			return Numalet.ToCardinal (number);
-		}
+        /// <summary>
+        /// Convert int to words.
+        /// </summary>
+        /// <returns>The words.</returns>
+        /// <param name="number">Number.</param>
+        public static string ToWords(this int number)
+        {
+            return Numalet.ToCardinal(number);
+        }
 
-		/// <summary>
-		/// Convert float to words
-		/// </summary>
-		/// <returns>The words.</returns>
-		/// <param name="number">Number.</param>
-		public static string ToWords (this float number)
-		{
-			return Numalet.ToCardinal (number);
-		}
+        /// <summary>
+        /// Convert float to words
+        /// </summary>
+        /// <returns>The words.</returns>
+        /// <param name="number">Number.</param>
+        public static string ToWords(this float number)
+        {
+            return Numalet.ToCardinal(number);
+        }
 
-		/// <summary>
-		/// Convert double to words
-		/// </summary>
-		/// <returns>The words.</returns>
-		/// <param name="number">Number.</param>
-		public static string ToWords (this double number)
-		{
-			return Numalet.ToCardinal (number);
-		}
+        /// <summary>
+        /// Convert double to words
+        /// </summary>
+        /// <returns>The words.</returns>
+        /// <param name="number">Number.</param>
+        public static string ToWords(this double number)
+        {
+            return Numalet.ToCardinal(number);
+        }
 
-		public static string ToEnglishFormat (this double number, int digits = 2)
-		{
-			NumberFormatInfo nfi = new CultureInfo ("en-US", false).NumberFormat;
-			return Math.Round (number, digits, MidpointRounding.AwayFromZero).ToString (nfi);
-		}
+        public static string ToEnglishFormat(this double number, int digits = 2)
+        {
+            NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
+            return Math.Round(number, digits, MidpointRounding.AwayFromZero).ToString(nfi);
+        }
 
-		public static string ToEnglishFormat (this decimal number, int digits = 2)
-		{
-			NumberFormatInfo nfi = new CultureInfo ("en-US", false).NumberFormat;
-			return Math.Round (number, digits, MidpointRounding.AwayFromZero).ToString (nfi);
-		}
-	}
+        public static string ToEnglishFormat(this decimal number, int digits = 2)
+        {
+            NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
+            return Math.Round(number, digits, MidpointRounding.AwayFromZero).ToString(nfi);
+        }
+    }
 }
-

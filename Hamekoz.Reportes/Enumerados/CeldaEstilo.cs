@@ -22,14 +22,14 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public enum CeldaEstilos
-	{
-		Cabecera,
-		DatoFecha,
-		DatoTexto,
-		DatoNumero,
-		DatoMoneda,
-		TotalNumero,
-		TotalMoneda
-	}
+    public enum CeldaEstilos
+    {
+        Cabecera,
+        DatoFecha,
+        DatoTexto,
+        DatoNumero,
+        DatoMoneda,
+        TotalNumero,
+        TotalMoneda
+    }
 }

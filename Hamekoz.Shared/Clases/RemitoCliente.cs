@@ -21,174 +21,211 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Hamekoz.Core;
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	public partial class RemitoCliente : IPersistible, IIdentifiable, IComprobante, IRemito
-	{
-		string ISearchable.ToSearchString ()
-		{
-			throw new NotImplementedException ();
-		}
+    public partial class RemitoCliente : IPersistible, IIdentifiable, IComprobante, IRemito
+    {
+        string ISearchable.ToSearchString()
+        {
+            throw new NotImplementedException();
+        }
 
-		public RemitoCliente ()
-		{
-			//HACK aca no se deben iniciar los objetos
-			Tipo = new NumeracionDeComprobante ();
-			Items = new List<RemitoItem> ();
+        public RemitoCliente()
+        {
+            //HACK aca no se deben iniciar los objetos
+            Tipo = new NumeracionDeComprobante();
+            Items = new List<RemitoItem>();
             Cliente = new Cliente();
-		}
+        }
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public Cliente Cliente {
-			get;
-			set;
-		}
+        public Cliente Cliente
+        {
+            get;
+            set;
+        }
 
-		public string Numero {
-			get;
-			set;
-		}
+        public string Numero
+        {
+            get;
+            set;
+        }
 
-		public NumeracionDeComprobante Tipo {
-			get;
-			set;
-		}
+        public NumeracionDeComprobante Tipo
+        {
+            get;
+            set;
+        }
 
-		public DateTime Emision {
-			get;
-			set;
-		}
+        public DateTime Emision
+        {
+            get;
+            set;
+        }
 
-		//FIX ver si realmente debe estar aca esta propiedad
-		public Pedido Pedido {
-			get;
-			set;
-		}
+        //FIX ver si realmente debe estar aca esta propiedad
+        public Pedido Pedido
+        {
+            get;
+            set;
+        }
 
-		//pasar a objeto (todavia no se usa)
-		public int Bultos {
-			get;
-			set;
-		}
+        //pasar a objeto (todavia no se usa)
+        public int Bultos
+        {
+            get;
+            set;
+        }
 
-		public decimal ValorAsegurado {
-			get;
-			set;
-		}
+        public decimal ValorAsegurado
+        {
+            get;
+            set;
+        }
 
-		//TODO deberia ser de tipo Domicilio de expedicion conteniendo el horario de la entrega
-		public Domicilio DomicilioDeEntrega {
-			get;
-			set;
-		}
+        //TODO deberia ser de tipo Domicilio de expedicion conteniendo el horario de la entrega
+        public Domicilio DomicilioDeEntrega
+        {
+            get;
+            set;
+        }
 
-		public string Observaciones {
-			get;
-			set;
-		}
+        public string Observaciones
+        {
+            get;
+            set;
+        }
 
-		public decimal Total {
-			get {
-				return Items.Sum(r => r.Total);
-			}
-		}
+        public decimal Total
+        {
+            get
+            {
+                return Items.Sum(r => r.Total);
+            }
+        }
 
-		public override string ToString ()
-		{
-			return Numero;
-		}
+        public override string ToString()
+        {
+            return Numero;
+        }
 
-		#region IComprobante
+        #region IComprobante
 
-		public IResponsable Responsable => Cliente;
+        public IResponsable Responsable => Cliente;
 
-		public string PuntoDeVenta => Tipo.Pre;
+        public string PuntoDeVenta => Tipo.Pre;
 
-		IList<IItem> IComprobante.Items { 
-			get { 
-				return Items.Cast<IItem>().ToList(); 
-			} 
-		}
+        IList<IItem> IComprobante.Items
+        {
+            get
+            {
+                return Items.Cast<IItem>().ToList();
+            }
+        }
 
-		DateTime IComprobante.Contable {
-			get {
-				return Emision;
-			}
-		}
+        DateTime IComprobante.Contable
+        {
+            get
+            {
+                return Emision;
+            }
+        }
 
-		decimal IComprobante.IVA {
-			get {
-				throw new NotImplementedException();
-			}
-		}
+        decimal IComprobante.IVA
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		decimal IComprobante.Gravado {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+        decimal IComprobante.Gravado
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		decimal IComprobante.NoGravado {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+        decimal IComprobante.NoGravado
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		decimal IComprobante.Exento {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+        decimal IComprobante.Exento
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		decimal IComprobante.Neto {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+        decimal IComprobante.Neto
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		decimal IComprobante.Tributos {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+        decimal IComprobante.Tributos
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		IList<IVAItem> IComprobante.IVAItems {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+        IList<IVAItem> IComprobante.IVAItems
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		IList<ImpuestoItem> IComprobante.Impuestos {
-			get {
-				return new List<ImpuestoItem> ();
-			}
-		}
+        IList<ImpuestoItem> IComprobante.Impuestos
+        {
+            get
+            {
+                return new List<ImpuestoItem>();
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region IRemito
+        #region IRemito
 
-		IDescriptible IRemito.Destinatario {
-			get {
-				return Cliente;
-			}
-			set { 
-				Cliente = (Cliente)value;
-			}
-		}
+        IDescriptible IRemito.Destinatario
+        {
+            get
+            {
+                return Cliente;
+            }
+            set
+            {
+                Cliente = (Cliente)value;
+            }
+        }
 
-		public IList<RemitoItem> Items {
-			get;
-			set;
-		}
+        public IList<RemitoItem> Items
+        {
+            get;
+            set;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

@@ -20,52 +20,52 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 namespace Hamekoz.Argentina.Agip
 {
-	public enum TipoDeOperacion
-	{
-		Retencion = 1,
-		Percepcion = 2,
-	}
+    public enum TipoDeOperacion
+    {
+        Retencion = 1,
+        Percepcion = 2,
+    }
 
-	public enum TipoDeComprobante
-	{
-		Factura = 1,
-		NotaDeDebito = 2,
-		OrdenDePago = 3,
-		BoletaDeDeposito = 4,
-		LiquidacionDePago = 5,
-		CertificadoDeObra = 6,
-		Recibo = 7,
-		ContDeLocacionDeServicio = 8,
-		OtroComprobante = 9,
-	}
+    public enum TipoDeComprobante
+    {
+        Factura = 1,
+        NotaDeDebito = 2,
+        OrdenDePago = 3,
+        BoletaDeDeposito = 4,
+        LiquidacionDePago = 5,
+        CertificadoDeObra = 6,
+        Recibo = 7,
+        ContDeLocacionDeServicio = 8,
+        OtroComprobante = 9,
+    }
 
-	public enum Letra
-	{
-		A = 'A',
-		B = 'B',
-		C = 'C',
-		M = 'M',
-	}
+    public enum Letra
+    {
+        A = 'A',
+        B = 'B',
+        C = 'C',
+        M = 'M',
+    }
 
-	public enum TipoDeDocumento
-	{
-		CUIT = 3,
-		CUIL = 2,
-		CDI = 1,
-	}
+    public enum TipoDeDocumento
+    {
+        CUIT = 3,
+        CUIL = 2,
+        CDI = 1,
+    }
 
-	public enum SituacionIngresosBrutos
-	{
-		Local = 1,
-		ConvenioMultilateral = 2,
-		NoInscripto = 4,
-		RegimenSimplificado = 5,
-	}
+    public enum SituacionIngresosBrutos
+    {
+        Local = 1,
+        ConvenioMultilateral = 2,
+        NoInscripto = 4,
+        RegimenSimplificado = 5,
+    }
 
-	public enum SituacionFrenteAlIVA
-	{
-		ResponsableInscripto = 1,
-		Excento = 2,
-		Monotributo = 4,
-	}
+    public enum SituacionFrenteAlIVA
+    {
+        ResponsableInscripto = 1,
+        Excento = 2,
+        Monotributo = 4,
+    }
 }

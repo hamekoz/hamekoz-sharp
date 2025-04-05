@@ -22,16 +22,15 @@ using System;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class GetDateTime : Comando
-	{
-		const string cmd = "Y";
+    public class GetDateTime : Comando
+    {
+        const string cmd = "Y";
 
-		public DateTime FechaHora { get; set; }
+        public DateTime FechaHora { get; set; }
 
-		public string Comando ()
-		{
-			return cmd;
-		}
-	}
+        public string Comando()
+        {
+            return cmd;
+        }
+    }
 }
-

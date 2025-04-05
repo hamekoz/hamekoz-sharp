@@ -21,32 +21,31 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class CustomerData : Comando
-	{
-		const string cmd = "b";
+    public class CustomerData : Comando
+    {
+        const string cmd = "b";
 
-		public string texto { get; set; }
+        public string texto { get; set; }
 
-		readonly string nombre;
-		readonly string cuit;
-		readonly string responsabilidadIVA;
-		readonly string tipoDocumento;
-		readonly string domicilio;
+        readonly string nombre;
+        readonly string cuit;
+        readonly string responsabilidadIVA;
+        readonly string tipoDocumento;
+        readonly string domicilio;
 
 
-		public string Comando ()
-		{
-			return string.Format ("{0}{1}{2}{1}{3}{1}{4}{1}{5}{1}{6}", cmd, separador, nombre, cuit, responsabilidadIVA, tipoDocumento, domicilio);
-		}
+        public string Comando()
+        {
+            return string.Format("{0}{1}{2}{1}{3}{1}{4}{1}{5}{1}{6}", cmd, separador, nombre, cuit, responsabilidadIVA, tipoDocumento, domicilio);
+        }
 
-		public CustomerData (string nombre, string cuit, string responsabilidadIVA, string tipoDocumento, string domicilio)
-		{
-			this.nombre = nombre;
-			this.cuit = cuit;
-			this.responsabilidadIVA = responsabilidadIVA;
-			this.tipoDocumento = tipoDocumento;
-			this.domicilio = domicilio;
-		}
-	}
+        public CustomerData(string nombre, string cuit, string responsabilidadIVA, string tipoDocumento, string domicilio)
+        {
+            this.nombre = nombre;
+            this.cuit = cuit;
+            this.responsabilidadIVA = responsabilidadIVA;
+            this.tipoDocumento = tipoDocumento;
+            this.domicilio = domicilio;
+        }
+    }
 }
-

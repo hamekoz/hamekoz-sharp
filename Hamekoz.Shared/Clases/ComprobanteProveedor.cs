@@ -21,89 +21,107 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
 using System.Linq;
+
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	//UNDONE unificar logica comun en clase abstracta Comprobante
-	//UNDONE separar datos de implementacion de comprobante electronico
-	public partial class ComprobanteProveedor : Comprobante, IComprobante
-	{
-		public ComprobanteProveedor ()
-		{
-			//HACK aca no debria inicializase los objetos
-			Proveedor = new Proveedor ();
-			Tipo = new NumeracionDeComprobante ();
-			Remito = new RemitoProveedor { DomicilioDeEntrega = new Domicilio () };
-			Remitos = new List<RemitoProveedor> ();
-			CondicionDePago = new CondicionDePago ();
-			Observaciones = string.Empty;
-		}
+    //UNDONE unificar logica comun en clase abstracta Comprobante
+    //UNDONE separar datos de implementacion de comprobante electronico
+    public partial class ComprobanteProveedor : Comprobante, IComprobante
+    {
+        public ComprobanteProveedor()
+        {
+            //HACK aca no debria inicializase los objetos
+            Proveedor = new Proveedor();
+            Tipo = new NumeracionDeComprobante();
+            Remito = new RemitoProveedor { DomicilioDeEntrega = new Domicilio() };
+            Remitos = new List<RemitoProveedor>();
+            CondicionDePago = new CondicionDePago();
+            Observaciones = string.Empty;
+        }
 
-		public Proveedor Proveedor {
-			get {
-				return (Proveedor)Responsable;
-			}
-			set {
-				Responsable = value;
-			}
-		}
+        public Proveedor Proveedor
+        {
+            get
+            {
+                return (Proveedor)Responsable;
+            }
+            set
+            {
+                Responsable = value;
+            }
+        }
 
-		//TODO revisar porque no deberia estar esta propiedad ya que esta en la clase base
-		public RemitoProveedor Remito {
-			get {
-				return (RemitoProveedor)base.Remito;
-			}
-			set {
-				base.Remito = value;
-			}
-		}
+        //TODO revisar porque no deberia estar esta propiedad ya que esta en la clase base
+        public RemitoProveedor Remito
+        {
+            get
+            {
+                return (RemitoProveedor)base.Remito;
+            }
+            set
+            {
+                base.Remito = value;
+            }
+        }
 
-		public IList<RemitoProveedor> Remitos {
-			get;
-			set;
-		}
+        public IList<RemitoProveedor> Remitos
+        {
+            get;
+            set;
+        }
 
-		public string CAE {
-			get;
-			set;
-		}
+        public string CAE
+        {
+            get;
+            set;
+        }
 
-		public string VencimientoCAE {
-			get;
-			set;
-		}
+        public string VencimientoCAE
+        {
+            get;
+            set;
+        }
 
-		public string NumeroAFIP {
-			get;
-			set;
-		}
+        public string NumeroAFIP
+        {
+            get;
+            set;
+        }
 
-		public string ComentariosAFIP {
-			get;
-			set;
-		}
+        public string ComentariosAFIP
+        {
+            get;
+            set;
+        }
 
-		#region IComprobante
+        #region IComprobante
 
-		IResponsable IComprobante.Responsable {
-			get {
-				return Proveedor;
-			}
-		}
+        IResponsable IComprobante.Responsable
+        {
+            get
+            {
+                return Proveedor;
+            }
+        }
 
-		string IComprobante.PuntoDeVenta {
-			get {
-				return Tipo.Pre;
-			}
-		}
+        string IComprobante.PuntoDeVenta
+        {
+            get
+            {
+                return Tipo.Pre;
+            }
+        }
 
-		IList<IItem> IComprobante.Items {
-			get {
-				return Remito.Items.Cast<IItem> ().ToList ();
-			}
-		}
+        IList<IItem> IComprobante.Items
+        {
+            get
+            {
+                return Remito.Items.Cast<IItem>().ToList();
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

@@ -23,109 +23,118 @@ using System;
 
 namespace Hamekoz.Argentina.Sifere
 {
-	public class RegistroImportacionRetencionPercepcion
-	{
-		/// <summary>
-		/// Gets or sets the codigo de norma.
-		/// </summary>
-		/// <value>The codigo de norma.</value>
-		/// <see href="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
-		public string CodigoJurisdiccion {
-			get;
-			set;
-		}
+    public class RegistroImportacionRetencionPercepcion
+    {
+        /// <summary>
+        /// Gets or sets the codigo de norma.
+        /// </summary>
+        /// <value>The codigo de norma.</value>
+        /// <see href="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
+        public string CodigoJurisdiccion
+        {
+            get;
+            set;
+        }
 
-		public string CUIT {
-			get;
-			set;
-		}
+        public string CUIT
+        {
+            get;
+            set;
+        }
 
-		public DateTime Fecha {
-			get;
-			set;
-		}
+        public DateTime Fecha
+        {
+            get;
+            set;
+        }
 
-		public string Sucursal {
-			get;
-			set;
-		}
+        public string Sucursal
+        {
+            get;
+            set;
+        }
 
-		public string Constancia {
-			get;
-			set;
-		}
+        public string Constancia
+        {
+            get;
+            set;
+        }
 
-		public string TipoDeComprobante {
-			get;
-			set;
-		}
+        public string TipoDeComprobante
+        {
+            get;
+            set;
+        }
 
-		public string Letra {
-			get;
-			set;
-		}
+        public string Letra
+        {
+            get;
+            set;
+        }
 
-		public string NroComprobante {
-			get;
-			set;
-		}
-
-
-		public string Importe {
-			get;
-			set;
-		}
-
-
-		public bool EsPercepcion {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// To the fixed string.
-		/// </summary>
-		/// <returns>The fixed string.</returns>
-		/// <see href="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
-		public string ToFixedStringPercepcion ()
-		{
-			string cadena;
-			cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}"
-				, CodigoJurisdiccion
-				, CUIT
-				, Fecha
-				, Sucursal
-				, Constancia.PadLeft (8, '0')
-				, TipoDeComprobante
-				, Letra
-				, Importe
-			);
-			if ((cadena.Length != 51) && (cadena.Length != 38))
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
-
-			return cadena;
-		}
+        public string NroComprobante
+        {
+            get;
+            set;
+        }
 
 
-		public string ToFixedStringRetencion ()
-		{
-			string cadena;
-			cadena = string.Format ("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}{8}"
-				, CodigoJurisdiccion
-				, CUIT
-				, Fecha
-				, Sucursal
-				, Constancia.PadLeft (16, '0')
-				, TipoDeComprobante
-				, Letra
-				, NroComprobante
-				, Importe
-			);
-			if ((cadena.Length != 79) && (cadena.Length != 66))
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta."));
+        public string Importe
+        {
+            get;
+            set;
+        }
 
-			return cadena;
-		}
-	}
+
+        public bool EsPercepcion
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// To the fixed string.
+        /// </summary>
+        /// <returns>The fixed string.</returns>
+        /// <see href="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
+        public string ToFixedStringPercepcion()
+        {
+            string cadena;
+            cadena = string.Format("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}"
+                , CodigoJurisdiccion
+                , CUIT
+                , Fecha
+                , Sucursal
+                , Constancia.PadLeft(8, '0')
+                , TipoDeComprobante
+                , Letra
+                , Importe
+            );
+            if ((cadena.Length != 51) && (cadena.Length != 38))
+                throw new Exception(string.Format("La longitud del registro a exportar es incorrecta."));
+
+            return cadena;
+        }
+
+
+        public string ToFixedStringRetencion()
+        {
+            string cadena;
+            cadena = string.Format("{0:D}{1}{2:d}{3}{4}{5:D1}{6}{7}{8}"
+                , CodigoJurisdiccion
+                , CUIT
+                , Fecha
+                , Sucursal
+                , Constancia.PadLeft(16, '0')
+                , TipoDeComprobante
+                , Letra
+                , NroComprobante
+                , Importe
+            );
+            if ((cadena.Length != 79) && (cadena.Length != 66))
+                throw new Exception(string.Format("La longitud del registro a exportar es incorrecta."));
+
+            return cadena;
+        }
+    }
 }
-

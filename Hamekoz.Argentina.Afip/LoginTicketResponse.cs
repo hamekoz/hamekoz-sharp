@@ -23,46 +23,49 @@ using System.Xml;
 
 namespace Hamekoz.Argentina.Afip
 {
-	public class LoginTicketResponse
-	{
-		public long cuit;
-		public string source;
-		public string destination;
-		public string uniqueId;
-		public string generationTime;
+    public class LoginTicketResponse
+    {
+        public long cuit;
+        public string source;
+        public string destination;
+        public string uniqueId;
+        public string generationTime;
 
-		public DateTime GenerationTime {
-			get {
-				return DateTime.Parse (generationTime);
-			}
-		}
+        public DateTime GenerationTime
+        {
+            get
+            {
+                return DateTime.Parse(generationTime);
+            }
+        }
 
-		public string expirationTime;
+        public string expirationTime;
 
-		public DateTime ExpirationTime {
-			get {
-				return DateTime.Parse (expirationTime);
-			}
-		}
+        public DateTime ExpirationTime
+        {
+            get
+            {
+                return DateTime.Parse(expirationTime);
+            }
+        }
 
-		public string token;
-		public string sign;
+        public string token;
+        public string sign;
 
-		public LoginTicketResponse (string xml)
-		{
-			var doc = new XmlDocument ();
-			doc.LoadXml (xml);
-			var element = doc.DocumentElement;
-			source = element.SelectSingleNode ("/loginTicketResponse/header/source").InnerText;
-			destination = element.SelectSingleNode ("/loginTicketResponse/header/destination").InnerText;
-			uniqueId = element.SelectSingleNode ("/loginTicketResponse/header/uniqueId").InnerText;
-			generationTime = element.SelectSingleNode ("/loginTicketResponse/header/generationTime").InnerText;
-			expirationTime = element.SelectSingleNode ("/loginTicketResponse/header/expirationTime").InnerText;
-			sign = element.SelectSingleNode ("/loginTicketResponse/credentials/sign").InnerText;
-			token = element.SelectSingleNode ("/loginTicketResponse/credentials/token").InnerText;
-			//FIXME en produccion la linea destination tiene un formato distinto a homologacion hay que ver como contemplar para obtener bien el cuit
-			//cuit = long.Parse (destination.Replace ("SERIALNUMBER=CUIT ", "").Remove (destination.IndexOf (',')));
-		}
-	}
+        public LoginTicketResponse(string xml)
+        {
+            var doc = new XmlDocument();
+            doc.LoadXml(xml);
+            var element = doc.DocumentElement;
+            source = element.SelectSingleNode("/loginTicketResponse/header/source").InnerText;
+            destination = element.SelectSingleNode("/loginTicketResponse/header/destination").InnerText;
+            uniqueId = element.SelectSingleNode("/loginTicketResponse/header/uniqueId").InnerText;
+            generationTime = element.SelectSingleNode("/loginTicketResponse/header/generationTime").InnerText;
+            expirationTime = element.SelectSingleNode("/loginTicketResponse/header/expirationTime").InnerText;
+            sign = element.SelectSingleNode("/loginTicketResponse/credentials/sign").InnerText;
+            token = element.SelectSingleNode("/loginTicketResponse/credentials/token").InnerText;
+            //FIXME en produccion la linea destination tiene un formato distinto a homologacion hay que ver como contemplar para obtener bien el cuit
+            //cuit = long.Parse (destination.Replace ("SERIALNUMBER=CUIT ", "").Remove (destination.IndexOf (',')));
+        }
+    }
 }
-

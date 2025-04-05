@@ -22,11 +22,10 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public interface IParametroBoolean
-	{
-		bool ValorBoolean { get; set; }
+    public interface IParametroBoolean
+    {
+        bool ValorBoolean { get; set; }
 
-		string Descripcion { get; }
-	}
+        string Descripcion { get; }
+    }
 }
-

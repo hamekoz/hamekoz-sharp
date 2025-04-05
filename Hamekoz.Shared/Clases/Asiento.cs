@@ -22,114 +22,131 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Asiento : IPersistible, IIdentifiable, IAnulable, ISearchable
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class Asiento : IPersistible, IIdentifiable, IAnulable, ISearchable
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Detalle {
-			get;
-			set;
-		}
+        public string Detalle
+        {
+            get;
+            set;
+        }
 
-		public DateTime Fecha {
-			get;
-			set;
-		}
+        public DateTime Fecha
+        {
+            get;
+            set;
+        }
 
-		public string Comprobante {
-			get;
-			set;
-		}
+        public string Comprobante
+        {
+            get;
+            set;
+        }
 
-		public DateTime FechaContable {
-			get;
-			set;
-		}
+        public DateTime FechaContable
+        {
+            get;
+            set;
+        }
 
-		public Moneda Moneda {
-			get;
-			set;
-		}
+        public Moneda Moneda
+        {
+            get;
+            set;
+        }
 
-		//UNDONE ver si tiene sentido tener aca la empresa
-		public Empresa Empresa {
-			get;
-			set;
-		}
+        //UNDONE ver si tiene sentido tener aca la empresa
+        public Empresa Empresa
+        {
+            get;
+            set;
+        }
 
-		public List<AsientoItem> Items { get; set; }
+        public List<AsientoItem> Items { get; set; }
 
-		public IList<AsientoItem> ItemsSumarizados {
-			get {
-				var lista = from i in Items
-				            group i by new { Cuenta = i.CuentaContable } into asiento
-				            select new AsientoItem {
-					CuentaContable = asiento.Key.Cuenta,
-					Debe = asiento.Sum (a => a.Debe),
-					Haber = asiento.Sum (a => a.Haber)
-				};
-				return lista.ToList ();
-			}
-		}
+        public IList<AsientoItem> ItemsSumarizados
+        {
+            get
+            {
+                var lista = from i in Items
+                            group i by new { Cuenta = i.CuentaContable } into asiento
+                            select new AsientoItem
+                            {
+                                CuentaContable = asiento.Key.Cuenta,
+                                Debe = asiento.Sum(a => a.Debe),
+                                Haber = asiento.Sum(a => a.Haber)
+                            };
+                return lista.ToList();
+            }
+        }
 
-		public decimal Debe {
-			get { return Math.Round (Items.Sum (i => i.Debe), 2); }
-		}
+        public decimal Debe
+        {
+            get { return Math.Round(Items.Sum(i => i.Debe), 2); }
+        }
 
-		public decimal Haber {
-			get { return Math.Round (Items.Sum (i => i.Haber), 2); }
-		}
+        public decimal Haber
+        {
+            get { return Math.Round(Items.Sum(i => i.Haber), 2); }
+        }
 
-		//TODO ver si tiene realmente sentido tener almacenado el centro de costo en la cabecera del asiento ya que tambien se almacena el centro de costo en cada item
-		public CentroDeCosto CentroDeCosto {
-			get;
-			set;
-		}
+        //TODO ver si tiene realmente sentido tener almacenado el centro de costo en la cabecera del asiento ya que tambien se almacena el centro de costo en cada item
+        public CentroDeCosto CentroDeCosto
+        {
+            get;
+            set;
+        }
 
-		public bool Anulado { get; set; }
+        public bool Anulado { get; set; }
 
-		public Asiento ()
-		{
-			Items = new List<AsientoItem> ();
-		}
+        public Asiento()
+        {
+            Items = new List<AsientoItem>();
+        }
 
-		public override string ToString ()
-		{
-			return Id.ToString ();
-		}
+        public override string ToString()
+        {
+            return Id.ToString();
+        }
 
-		#region ISearchable implementation
+        #region ISearchable implementation
 
-		public string ToSearchString ()
-		{
-			throw new NotImplementedException ();
-		}
+        public string ToSearchString()
+        {
+            throw new NotImplementedException();
+        }
 
-		#endregion
+        #endregion
 
-		[Obsolete ("Usar logica de seguimiento de cambios")]
-		public Empleado CreadoPor {
-			get;
-			set;
-		}
+        [Obsolete("Usar logica de seguimiento de cambios")]
+        public Empleado CreadoPor
+        {
+            get;
+            set;
+        }
 
-		[Obsolete ("Usar logica de seguimiento de cambios")]
-		public Empleado ModificadoPor {
-			get;
-			set;
-		}
+        [Obsolete("Usar logica de seguimiento de cambios")]
+        public Empleado ModificadoPor
+        {
+            get;
+            set;
+        }
 
-		[Obsolete ("Usar logica de seguimiento de cambios")]
-		public DateTime ModificadoEn {
-			get;
-			set;
-		}
-	}
+        [Obsolete("Usar logica de seguimiento de cambios")]
+        public DateTime ModificadoEn
+        {
+            get;
+            set;
+        }
+    }
 }

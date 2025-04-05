@@ -20,78 +20,86 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class ControladorFiscal : IFiscalHasar
-	{
-		Hasar fiscal = new Hasar ();
+    public class ControladorFiscal : IFiscalHasar
 
-		#region IFiscalHasar implementation
+    /* Cambio no fusionado mediante combinación del proyecto 'Hamekoz.Fiscal.Hasar.Spooler(net9.0)'
+    Antes:
+            Hasar fiscal = new Hasar ();
+    Después:
+            readonly Hasar fiscal = new Hasar ();
+    */
+    {
+        readonly Hasar fiscal = new Hasar();
 
-		public DateTime FechaHora { get; set; }
+        #region IFiscalHasar implementation
 
-		public void ImprimirComprobanteCuentaCorriente (IComprobante factura)
-		{
-			throw new NotImplementedException ();
-		}
+        public DateTime FechaHora { get; set; }
 
-		public void ImprimirFacturaProveedor (IComprobante factura)
-		{
-			throw new NotImplementedException ();
-		}
+        public void ImprimirComprobanteCuentaCorriente(IComprobante factura)
+        {
+            throw new NotImplementedException();
+        }
 
-		public void ImprimirRecibo (IComprobante recibo)
-		{
-			throw new NotImplementedException ();
-		}
+        public void ImprimirFacturaProveedor(IComprobante factura)
+        {
+            throw new NotImplementedException();
+        }
 
-		public void ImprimirRemitoCliente (IComprobante remito)
-		{
-			throw new NotImplementedException ();
-		}
+        public void ImprimirRecibo(IComprobante recibo)
+        {
+            throw new NotImplementedException();
+        }
 
-		public void ImprimirRemitoProveedor (IComprobante remito)
-		{
-			throw new NotImplementedException ();
-		}
+        public void ImprimirRemitoCliente(IComprobante remito)
+        {
+            throw new NotImplementedException();
+        }
 
-		public void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, decimal vueltoefectivo)
-		{
-			throw new NotImplementedException ();
-		}
+        public void ImprimirRemitoProveedor(IComprobante remito)
+        {
+            throw new NotImplementedException();
+        }
 
-		public void Iniciar ()
-		{
-			throw new NotImplementedException ();
-		}
+        public void ImprimirTicketFactura(IComprobante factura, IComprobante recibo, decimal vueltoefectivo)
+        {
+            throw new NotImplementedException();
+        }
 
-		public void Iniciar (int puertoSerie)
-		{
-			throw new NotImplementedException ();
-		}
+        public void Iniciar()
+        {
+            throw new NotImplementedException();
+        }
 
-		public void ReporteX ()
-		{
-			throw new NotImplementedException ("Metodo no implementado para conexion por spooler");
-		}
+        public void Iniciar(int puertoSerie)
+        {
+            throw new NotImplementedException();
+        }
 
-		public void ReporteZ ()
-		{
-			throw new NotImplementedException ();
-		}
+        public void ReporteX()
+        {
+            throw new NotImplementedException("Metodo no implementado para conexion por spooler");
+        }
 
-		public void ReporteZ (IZeta zeta)
-		{
-			throw new NotImplementedException ();
-		}
+        public void ReporteZ()
+        {
+            throw new NotImplementedException();
+        }
 
-		public string ReporteElectronico (DateTime desde, DateTime hasta)
-		{
-			throw new NotImplementedException ();
-		}
+        public void ReporteZ(IZeta zeta)
+        {
+            throw new NotImplementedException();
+        }
 
-		#endregion
-	}
+        public string ReporteElectronico(DateTime desde, DateTime hasta)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
 }

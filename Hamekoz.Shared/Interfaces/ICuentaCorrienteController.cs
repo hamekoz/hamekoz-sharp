@@ -20,21 +20,21 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public interface ICuentaCorrienteController
-	{
-		IList<CuentaCorriente> CuentaCorriente (IIdentifiable responsable, DateTime desde);
+    public interface ICuentaCorrienteController
+    {
+        IList<CuentaCorriente> CuentaCorriente(IIdentifiable responsable, DateTime desde);
 
-		IList<IComprobanteVencimiento> ComprobantesVencidos (IIdentifiable responsable);
+        IList<IComprobanteVencimiento> ComprobantesVencidos(IIdentifiable responsable);
 
-		IList<IComprobanteVencimiento> ComprobantesPorVencer (IIdentifiable responsable);
+        IList<IComprobanteVencimiento> ComprobantesPorVencer(IIdentifiable responsable);
 
-		Comprobante Comprobante (CuentaCorriente item);
+        Comprobante Comprobante(CuentaCorriente item);
 
-		Asiento Asiento (CuentaCorriente item);
-	}
+        Asiento Asiento(CuentaCorriente item);
+    }
 }
-
