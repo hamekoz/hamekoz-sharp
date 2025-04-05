@@ -24,60 +24,62 @@ using System.Reflection;
 
 namespace Hamekoz.Fiscal
 {
-	public static class FiscalHasar
-	{
-		public enum Backend
-		{
-			Spooler,
-			Ocx,
-			IFH2G
-		}
+    public static class FiscalHasar
+    {
+        public enum Backend
+        {
+            Spooler,
+            Ocx,
+            IFH2G
+        }
 
-		public static IFiscalHasar GetControladorFiscal ()
-		{
-			var backendSettings = ConfigurationManager.AppSettings ["ImpresoraFiscal.Backend"];
+        public static IFiscalHasar GetControladorFiscal()
+        {
+            var backendSettings = ConfigurationManager.AppSettings["ImpresoraFiscal.Backend"];
 
-			Backend backend;
-			if (!Enum.TryParse (backendSettings, out backend))
-				switch (Environment.OSVersion.Platform) {
-				case PlatformID.Unix:
-				case PlatformID.MacOSX:
-					backend = Backend.Spooler;
-					break;
-				case PlatformID.Win32NT:
-				case PlatformID.Win32S:
-				case PlatformID.Win32Windows:
-				case PlatformID.WinCE:
-					backend = Backend.Ocx;
-					break;
-				default:
-					backend = Backend.IFH2G;
-					break;
-				}
-			return GetControladorFiscal (backend);
-		}
+            Backend backend;
+            if (!Enum.TryParse(backendSettings, out backend))
+                switch (Environment.OSVersion.Platform)
+                {
+                    case PlatformID.Unix:
+                    case PlatformID.MacOSX:
+                        backend = Backend.Spooler;
+                        break;
+                    case PlatformID.Win32NT:
+                    case PlatformID.Win32S:
+                    case PlatformID.Win32Windows:
+                    case PlatformID.WinCE:
+                        backend = Backend.Ocx;
+                        break;
+                    default:
+                        backend = Backend.IFH2G;
+                        break;
+                }
+            return GetControladorFiscal(backend);
+        }
 
-		public static IFiscalHasar GetControladorFiscal (Backend backend)
-		{
-			string assemblyName;
-			switch (backend) {
-			case Backend.IFH2G:
-				assemblyName = "Hamekoz.Fiscal.Hasar.IFH2G";
-				break;
-			case Backend.Ocx:
-				assemblyName = "Hamekoz.Fiscal.Hasar.OCX";
-				break;
-			case Backend.Spooler:
-				assemblyName = "Hamekoz.Fiscal.Hasar.Spooler";
-				break;
-			default:
-				throw new ArgumentException ("No se definio el backend para la comunicacion con el controlador fiscal");
-			}
+        public static IFiscalHasar GetControladorFiscal(Backend backend)
+        {
+            string assemblyName;
+            switch (backend)
+            {
+                case Backend.IFH2G:
+                    assemblyName = "Hamekoz.Fiscal.Hasar.IFH2G";
+                    break;
+                case Backend.Ocx:
+                    assemblyName = "Hamekoz.Fiscal.Hasar.OCX";
+                    break;
+                case Backend.Spooler:
+                    assemblyName = "Hamekoz.Fiscal.Hasar.Spooler";
+                    break;
+                default:
+                    throw new ArgumentException("No se definio el backend para la comunicacion con el controlador fiscal");
+            }
 
-			Assembly assembly = Assembly.Load (assemblyName);
-			string nombreControlador = string.Format ("{0}.ControladorFiscal", assemblyName);
-			var controlador = (IFiscalHasar)assembly.CreateInstance (nombreControlador);
-			return controlador;
-		}
-	}
+            Assembly assembly = Assembly.Load(assemblyName);
+            string nombreControlador = string.Format("{0}.ControladorFiscal", assemblyName);
+            var controlador = (IFiscalHasar)assembly.CreateInstance(nombreControlador);
+            return controlador;
+        }
+    }
 }

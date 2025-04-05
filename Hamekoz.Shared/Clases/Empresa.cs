@@ -19,130 +19,154 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Empresa : IResponsable, IPersistible, IIdentifiable
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class Empresa : IResponsable, IPersistible, IIdentifiable
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string RazonSocial {
-			get;
-			set;
-		}
+        public string RazonSocial
+        {
+            get;
+            set;
+        }
 
-		public string CUIT {
-			get;
-			set;
-		}
+        public string CUIT
+        {
+            get;
+            set;
+        }
 
-		public string Email {
-			get;
-			set;
-		}
+        public string Email
+        {
+            get;
+            set;
+        }
 
-		public TipoDeResponsable Tipo {
-			get;
-			set;
-		}
+        public TipoDeResponsable Tipo
+        {
+            get;
+            set;
+        }
 
-		CondicionDePago IResponsable.CondicionDePago {
-			get {
-				throw new System.NotImplementedException ();
-			}
-		}
+        CondicionDePago IResponsable.CondicionDePago
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
-		public string NumeroDeIngresosBrutos {
-			get;
-			set;
-		}
+        public string NumeroDeIngresosBrutos
+        {
+            get;
+            set;
+        }
 
-		public bool AgenteDeRecaudacionARBA {
-			get;
-			set;
-		}
+        public bool AgenteDeRecaudacionARBA
+        {
+            get;
+            set;
+        }
 
-		public string NumeroDeAgenteARBA {
-			get;
-			set;
-		}
+        public string NumeroDeAgenteARBA
+        {
+            get;
+            set;
+        }
 
-		public string TipoDeAgenteARBA {
-			get;
-			set;
-		}
+        public string TipoDeAgenteARBA
+        {
+            get;
+            set;
+        }
 
-		public bool AgenteDeRecaudacionAGIP {
-			get;
-			set;
-		}
+        public bool AgenteDeRecaudacionAGIP
+        {
+            get;
+            set;
+        }
 
-		public object NumeroDeAgenteAGIP {
-			get;
-			set;
-		}
+        public object NumeroDeAgenteAGIP
+        {
+            get;
+            set;
+        }
 
-		public object TipoDeAgenteAGIP {
-			get;
-			set;
-		}
+        public object TipoDeAgenteAGIP
+        {
+            get;
+            set;
+        }
 
-		public string Actividad {
-			get;
-			set;
-		}
+        public string Actividad
+        {
+            get;
+            set;
+        }
 
-		public DateTime InicioDeActividad {
-			get;
-			set;
-		}
+        public DateTime InicioDeActividad
+        {
+            get;
+            set;
+        }
 
-		//TODO esto deberia ser una clase de tipo de domicilio pero temporalmente lo defino como string
-		public string Domicilio {
-			get;
-			set;
-		}
+        //TODO esto deberia ser una clase de tipo de domicilio pero temporalmente lo defino como string
+        public string Domicilio
+        {
+            get;
+            set;
+        }
 
-		//TODO esto deberia ser una clase de tipo de domicilio pero temporalmente lo defino como string
-		public string DomicilioLegal {
-			get;
-			set;
-		}
+        //TODO esto deberia ser una clase de tipo de domicilio pero temporalmente lo defino como string
+        public string DomicilioLegal
+        {
+            get;
+            set;
+        }
 
-		public string Telefonos {
-			get;
-			set;
-		}
+        public string Telefonos
+        {
+            get;
+            set;
+        }
 
-		public string Web {
-			get;
-			set;
-		}
+        public string Web
+        {
+            get;
+            set;
+        }
 
-		public string Logo {
-			get;
-			set;
-		}
+        public string Logo
+        {
+            get;
+            set;
+        }
 
-		public string LogoBanner {
-			get;
-			set;
-		}
+        public string LogoBanner
+        {
+            get;
+            set;
+        }
 
-		public string LogoMarcaDeAgua {
-			get;
-			set;
-		}
+        public string LogoMarcaDeAgua
+        {
+            get;
+            set;
+        }
 
-		public string DomicilioConTelefonos ()
-		{
-			return string.Format ("{0} - {1}", Domicilio, Telefonos);
-		}
+        public string DomicilioConTelefonos()
+        {
+            return string.Format("{0} - {1}", Domicilio, Telefonos);
+        }
 
-	}
+    }
 }

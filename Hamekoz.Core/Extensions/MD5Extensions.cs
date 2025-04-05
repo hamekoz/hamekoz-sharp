@@ -25,20 +25,19 @@ using System.Text;
 
 namespace Hamekoz.Core
 {
-	public static class MD5Extensions
-	{
-		public static string HashMD5 (this string archivo)
-		{
-			var fs = new FileStream (archivo, FileMode.Open, FileAccess.Read);
-			var hash = new MD5CryptoServiceProvider ();
-			Int64 currentPos = fs.Position;
-			fs.Seek (0, SeekOrigin.Begin);
-			var sb = new StringBuilder ();
-			foreach (Byte b in hash.ComputeHash(fs))
-				sb.Append (b.ToString ("X2"));
-			fs.Close ();
-			return sb.ToString ();
-		}
-	}
+    public static class MD5Extensions
+    {
+        public static string HashMD5(this string archivo)
+        {
+            var fs = new FileStream(archivo, FileMode.Open, FileAccess.Read);
+            var hash = new MD5CryptoServiceProvider();
+            Int64 currentPos = fs.Position;
+            fs.Seek(0, SeekOrigin.Begin);
+            var sb = new StringBuilder();
+            foreach (Byte b in hash.ComputeHash(fs))
+                sb.Append(b.ToString("X2"));
+            fs.Close();
+            return sb.ToString();
+        }
+    }
 }
-

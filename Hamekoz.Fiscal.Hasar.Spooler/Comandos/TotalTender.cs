@@ -21,27 +21,26 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class TotalTender : Comando
-	{
-		const string cmd = "D";
+    public class TotalTender : Comando
+    {
+        const string cmd = "D";
 
-		public float Vuelto { get; set; }
+        public float Vuelto { get; set; }
 
-		readonly string texto;
-		readonly float montoPagado;
-		readonly string cancelacionOVuelto;
+        readonly string texto;
+        readonly float montoPagado;
+        readonly string cancelacionOVuelto;
 
-		public string Comando ()
-		{
-			return string.Format ("{0}{1}{2}{1}{3:###0.00}{1}{4}{1}{5}", cmd, separador, texto, montoPagado, cancelacionOVuelto, 0).Replace (",", ".");
-		}
+        public string Comando()
+        {
+            return string.Format("{0}{1}{2}{1}{3:###0.00}{1}{4}{1}{5}", cmd, separador, texto, montoPagado, cancelacionOVuelto, 0).Replace(",", ".");
+        }
 
-		public TotalTender (string texto, float montoPagado, string cancelacionOVuelto)
-		{
-			this.texto = texto;
-			this.montoPagado = montoPagado;
-			this.cancelacionOVuelto = cancelacionOVuelto;
-		}
-	}
+        public TotalTender(string texto, float montoPagado, string cancelacionOVuelto)
+        {
+            this.texto = texto;
+            this.montoPagado = montoPagado;
+            this.cancelacionOVuelto = cancelacionOVuelto;
+        }
+    }
 }
-

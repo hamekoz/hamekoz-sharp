@@ -21,78 +21,93 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
 using System.Linq;
+
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	//UNDONE separar datos de implementacion de comprobante por controlador fiscal
-	public partial class ComprobanteCliente : Comprobante, IComprobante, IComprobanteElectronico
-	{
-		public ComprobanteCliente ()
-		{
-			//HACK aca no deberia inicializarse los atributos complejos
-			Cliente = new Cliente ();
-			Cliente.CondicionDePago = new CondicionDePago ();
-			Tipo = new NumeracionDeComprobante ();
-			Remito = new RemitoCliente ();
-			CondicionDePago = new CondicionDePago ();
-			Zeta = new Zeta ();
-		}
+    //UNDONE separar datos de implementacion de comprobante por controlador fiscal
+    public partial class ComprobanteCliente : Comprobante, IComprobante, IComprobanteElectronico
+    {
+        public ComprobanteCliente()
+        {
+            //HACK aca no deberia inicializarse los atributos complejos
+            Cliente = new Cliente();
+            Cliente.CondicionDePago = new CondicionDePago();
+            Tipo = new NumeracionDeComprobante();
+            Remito = new RemitoCliente();
+            CondicionDePago = new CondicionDePago();
+            Zeta = new Zeta();
+        }
 
-		public Cliente Cliente {
-			get {
-				return (Cliente)Responsable;
-			}
-			set {
-				Responsable = value;
-			}
-		}
+        public Cliente Cliente
+        {
+            get
+            {
+                return (Cliente)Responsable;
+            }
+            set
+            {
+                Responsable = value;
+            }
+        }
 
-		public string CAE {
-			get;
-			set;
-		}
+        public string CAE
+        {
+            get;
+            set;
+        }
 
-		public string VencimientoCAE {
-			get;
-			set;
-		}
+        public string VencimientoCAE
+        {
+            get;
+            set;
+        }
 
-		public string NumeroAFIP {
-			get;
-			set;
-		}
+        public string NumeroAFIP
+        {
+            get;
+            set;
+        }
 
-		public string ComentariosAFIP {
-			get;
-			set;
-		}
+        public string ComentariosAFIP
+        {
+            get;
+            set;
+        }
 
-		public Zeta Zeta {
-			get;
-			set;
-		}
+        public Zeta Zeta
+        {
+            get;
+            set;
+        }
 
-		#region IComprobante
+        #region IComprobante
 
-		IResponsable IComprobante.Responsable {
-			get {
-				return Cliente;
-			}
-		}
+        IResponsable IComprobante.Responsable
+        {
+            get
+            {
+                return Cliente;
+            }
+        }
 
-		string IComprobante.PuntoDeVenta {
-			get {
-				return Tipo.Pre;
-			}
-		}
+        string IComprobante.PuntoDeVenta
+        {
+            get
+            {
+                return Tipo.Pre;
+            }
+        }
 
-		IList<IItem> IComprobante.Items {
-			get {
-				return Remito.Items.Cast<IItem> ().ToList ();
-			}
-		}
+        IList<IItem> IComprobante.Items
+        {
+            get
+            {
+                return Remito.Items.Cast<IItem>().ToList();
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

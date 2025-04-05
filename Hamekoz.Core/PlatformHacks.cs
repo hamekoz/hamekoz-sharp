@@ -20,45 +20,53 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Text;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Hamekoz.Core
 {
-	public static class PlatformHacks
-	{
-		[DllImport ("libc")] // Linux
-		static extern int prctl (int option, byte[] arg2, IntPtr arg3, IntPtr arg4, IntPtr arg5);
+    public static class PlatformHacks
+    {
+        [DllImport("libc")] // Linux
+        static extern int prctl(int option, byte[] arg2, IntPtr arg3, IntPtr arg4, IntPtr arg5);
 
-		[DllImport ("libc")] // BSD
-		static extern void setproctitle (byte[] fmt, byte[] str_arg);
+        [DllImport("libc")] // BSD
+        static extern void setproctitle(byte[] fmt, byte[] str_arg);
 
-		public static void SetProcessName (string name)
-		{
-			if (Environment.OSVersion.Platform != PlatformID.Unix) {
-				return;
-			}
+        public static void SetProcessName(string name)
+        {
+            if (Environment.OSVersion.Platform != PlatformID.Unix)
+            {
+                return;
+            }
 
-			try {
-				if (prctl (15 /* PR_SET_NAME */, Encoding.ASCII.GetBytes (name + "\0"),
-					    IntPtr.Zero, IntPtr.Zero, IntPtr.Zero) != 0) {
+            try
+            {
+                if (prctl(15 /* PR_SET_NAME */, Encoding.ASCII.GetBytes(name + "\0"),
+                        IntPtr.Zero, IntPtr.Zero, IntPtr.Zero) != 0)
+                {
 
-					throw new ApplicationException ("Error setting process name: " +
-					Mono.Unix.Native.Stdlib.GetLastError ());
-				}
-			} catch (EntryPointNotFoundException) {
+                    throw new ApplicationException("Error setting process name: " +
+                    Mono.Unix.Native.Stdlib.GetLastError());
+                }
+            }
+            catch (EntryPointNotFoundException)
+            {
 
-				setproctitle (Encoding.ASCII.GetBytes ("%s\0"),
-					Encoding.ASCII.GetBytes (name + "\0"));
-			}
-		}
+                setproctitle(Encoding.ASCII.GetBytes("%s\0"),
+                    Encoding.ASCII.GetBytes(name + "\0"));
+            }
+        }
 
-		public static void TrySetProcessName (string name)
-		{
-			try {
-				SetProcessName (name);
-			} catch {
-			}
-		}
-	}
+        public static void TrySetProcessName(string name)
+        {
+            try
+            {
+                SetProcessName(name);
+            }
+            catch
+            {
+            }
+        }
+    }
 }

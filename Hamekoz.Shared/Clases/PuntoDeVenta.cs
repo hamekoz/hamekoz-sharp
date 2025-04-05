@@ -23,33 +23,37 @@ using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	//UNDONE terminar de completar la clase
-	public partial class PuntoDeVenta : IPersistible
-	{
-		public Sucursal Sucursal {
-			get;
-			set;
-		}
+    //UNDONE terminar de completar la clase
+    public partial class PuntoDeVenta : IPersistible
+    {
+        public Sucursal Sucursal
+        {
+            get;
+            set;
+        }
 
-		public TipoDeControladorFiscal Tipo {
-			get;
-			set;
-		}
+        public TipoDeControladorFiscal Tipo
+        {
+            get;
+            set;
+        }
 
-		public int Pre {
-			get;
-			set;
-		}
+        public int Pre
+        {
+            get;
+            set;
+        }
 
-		public int Revision {
-			get;
-			set;
-		}
+        public int Revision
+        {
+            get;
+            set;
+        }
 
-		public string UltimoNumero {
-			get;
-			set;
-		}
-	}
+        public string UltimoNumero
+        {
+            get;
+            set;
+        }
+    }
 }
-

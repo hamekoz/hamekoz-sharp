@@ -1,0 +1,24 @@
+name: Hamekoz
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+    tags:
+      - v*.*.*
+
+jobs:
+  Hamekoz:
+    name: Conventions
+    uses: Hamekoz/.github/.github/workflows/conventions.yml@main
+    secrets: inherit
+  dotnet:
+    name: Continuous Integration
+    uses: Hamekoz/.github/.github/workflows/dotnet.yml@main
+    secrets: inherit
+  nuget:
+    if: ${{ github.event_name == 'push' }}
+    name: Continuous Delivery
+    uses: Hamekoz/.github/.github/workflows/continuous-delivery-nuget.yml@main
+    secrets: inherit

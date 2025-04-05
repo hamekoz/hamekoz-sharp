@@ -22,17 +22,16 @@ using iTextSharp.text;
 
 namespace Hamekoz.Reportes
 {
-	public static class ConversionExtensions
-	{
-		public static float MillimetersToPoints (this float value)
-		{
-			return Utilities.MillimetersToPoints (value);
-		}
+    public static class ConversionExtensions
+    {
+        public static float MillimetersToPoints(this float value)
+        {
+            return Utilities.MillimetersToPoints(value);
+        }
 
-		public static int MillimetersToPoints (this int value)
-		{
-			return (int)Utilities.MillimetersToPoints (value);
-		}
-	}
+        public static int MillimetersToPoints(this int value)
+        {
+            return (int)Utilities.MillimetersToPoints(value);
+        }
+    }
 }
-

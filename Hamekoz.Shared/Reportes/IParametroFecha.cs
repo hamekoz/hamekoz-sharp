@@ -22,10 +22,9 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public interface IParametroFecha
-	{
-		DateTime Fecha{ get; set; }
-	}
+    public interface IParametroFecha
+    {
+        DateTime Fecha { get; set; }
+    }
 
 }
-

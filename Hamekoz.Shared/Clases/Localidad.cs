@@ -20,65 +20,74 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Text;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	//UNDONE completar clase Localidad
-	public partial class Localidad : IPersistible, IIdentifiable, IDescriptible
-	{
-		public int Id {
-			get;
-			set;
-		}
+    //UNDONE completar clase Localidad
+    public partial class Localidad : IPersistible, IIdentifiable, IDescriptible
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		//HACK el IsoManagement las localidad depende directamente de la provincia
-		public Provincia Provincia {
-			get;
-			set;
-		}
+        //HACK el IsoManagement las localidad depende directamente de la provincia
+        public Provincia Provincia
+        {
+            get;
+            set;
+        }
 
-		public Municipio Municipio {
-			get;
-			set;
-		}
+        public Municipio Municipio
+        {
+            get;
+            set;
+        }
 
-		public bool Inactiva {
-			get;
-			set;
-		}
+        public bool Inactiva
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
+        public override string ToString()
+        {
+            return Nombre;
+        }
 
-		public string ToFullString ()
-		{
-			//TODO reformular cuando se corrija la logica de pertenencia
-			var builder = new StringBuilder ();
-			if (Provincia != null) {
-				builder.Append (Provincia);
-				builder.Append (" - ");
-			}
-			if (Municipio != null && !string.IsNullOrWhiteSpace (Municipio.Nombre)) {
-				builder.Append (Municipio.Nombre);
-				builder.Append (" - ");
-			}
-			builder.Append (Nombre);
-			return builder.ToString ();
-		}
+        public string ToFullString()
+        {
+            //TODO reformular cuando se corrija la logica de pertenencia
+            var builder = new StringBuilder();
+            if (Provincia != null)
+            {
+                builder.Append(Provincia);
+                builder.Append(" - ");
+            }
+            if (Municipio != null && !string.IsNullOrWhiteSpace(Municipio.Nombre))
+            {
+                builder.Append(Municipio.Nombre);
+                builder.Append(" - ");
+            }
+            builder.Append(Nombre);
+            return builder.ToString();
+        }
 
-		string IDescriptible.Descripcion {
-			get {
-				return Nombre;
-			}
-		}
-	}
+        string IDescriptible.Descripcion
+        {
+            get
+            {
+                return Nombre;
+            }
+        }
+    }
 }
-

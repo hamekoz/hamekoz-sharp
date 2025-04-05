@@ -27,93 +27,104 @@ using System.Text;
 //TODO traducir cadenas de texto
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class Impresora
-	{
-		public string printerIP { get; set; }
+    public class Impresora
+    {
+        public string printerIP { get; set; }
 
-		public int printerPort { get; set; }
+        public int printerPort { get; set; }
 
-		public string comando { get; set; }
-		//private char separador { get; set; }
-		EndPoint ep { get; set; }
+        public string comando { get; set; }
+        //private char separador { get; set; }
+        EndPoint ep { get; set; }
 
-		Socket sock { get; set; }
+        Socket sock { get; set; }
 
-		NetworkStream ns { get; set; }
+        NetworkStream ns { get; set; }
 
-		public void Conectar (string printerIP, int printerPort)
-		{
-			ep = new IPEndPoint (IPAddress.Parse (printerIP), printerPort);
-			sock = new Socket (ep.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-			try {
-				sock.Connect (ep);
-			} catch (Exception e) {
-				Console.WriteLine (e);
-				throw (new Exception ("No se pudo conectar con la impresora"));
-			}
+        public void Conectar(string printerIP, int printerPort)
+        {
+            ep = new IPEndPoint(IPAddress.Parse(printerIP), printerPort);
+            sock = new Socket(ep.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+                sock.Connect(ep);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw (new Exception("No se pudo conectar con la impresora"));
+            }
 
-		}
+        }
 
-		public void Desconectar ()
-		{
-			try {
-				sock.Shutdown (SocketShutdown.Both);
-				sock.Close ();
-			} catch (Exception e) {
-				Console.WriteLine (e);
-			}
-		}
+        public void Desconectar()
+        {
+            try
+            {
+                sock.Shutdown(SocketShutdown.Both);
+                sock.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
-		public void EnviarComando (string comando)
-		{
-			try {
-				//sock.SendTimeout = 3000;
-				//sock.ReceiveTimeout = 3000;
-				//For iso-8859-1, use Encoding.GetEncoding("iso-8859-1");
-				// For ASCII  CP437, use Encoding.GetEncoding(437)
-				Encoding enc = Encoding.GetEncoding (437);//*********
-				ns = new NetworkStream (sock);
-				Console.WriteLine ("Debug: Comando: " + comando);
-				//byte[] toSend = Encoding.ASCII.GetBytes(comando);
-				byte[] toSend = enc.GetBytes (comando);//**********
-				ns.BeginWrite (toSend, 0, toSend.Length, OnWriteComplete, null);
-				ns.Flush ();
-			} catch (Exception e) {
-				Console.WriteLine (e);
-			}
-		}
+        public void EnviarComando(string comando)
+        {
+            try
+            {
+                //sock.SendTimeout = 3000;
+                //sock.ReceiveTimeout = 3000;
+                //For iso-8859-1, use Encoding.GetEncoding("iso-8859-1");
+                // For ASCII  CP437, use Encoding.GetEncoding(437)
+                Encoding enc = Encoding.GetEncoding(437);//*********
+                ns = new NetworkStream(sock);
+                Console.WriteLine("Debug: Comando: " + comando);
+                //byte[] toSend = Encoding.ASCII.GetBytes(comando);
+                byte[] toSend = enc.GetBytes(comando);//**********
+                ns.BeginWrite(toSend, 0, toSend.Length, OnWriteComplete, null);
+                ns.Flush();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
-		public string[] LeerRespuesta ()
-		{
-			// Examples for CanRead, Read, and DataAvailable.
-			// Check to see if this NetworkStream is readable.
-			//myCompleteMessage = string.Empty;
-			var myCompleteMessage = new StringBuilder ();
-			while (ns.CanRead) {
-				var myReadBuffer = new byte[1024];
-				myCompleteMessage = new StringBuilder ();
-				int numberOfBytesRead;
-				// Incoming message may be larger than the buffer size.
-				do {
-					numberOfBytesRead = ns.Read (myReadBuffer, 0, myReadBuffer.Length);
-					myCompleteMessage.AppendFormat ("{0}", Encoding.ASCII.GetString (myReadBuffer, 0, numberOfBytesRead));
-				} while(ns.DataAvailable);
-				// Print out the received message to the console.
-				Console.WriteLine ("Debug: Respuesta Impresora -> {0}", myCompleteMessage);
-				if (myCompleteMessage.ToString () != "DC2" && myCompleteMessage.ToString () != "DC4" && myCompleteMessage.ToString () != string.Empty) {
-					break;
-				}
-			}
-			return myCompleteMessage.ToString ().Split ((char)28);
-		}
+        public string[] LeerRespuesta()
+        {
+            // Examples for CanRead, Read, and DataAvailable.
+            // Check to see if this NetworkStream is readable.
+            //myCompleteMessage = string.Empty;
+            var myCompleteMessage = new StringBuilder();
+            while (ns.CanRead)
+            {
+                var myReadBuffer = new byte[1024];
+                myCompleteMessage = new StringBuilder();
+                int numberOfBytesRead;
+                // Incoming message may be larger than the buffer size.
+                do
+                {
+                    numberOfBytesRead = ns.Read(myReadBuffer, 0, myReadBuffer.Length);
+                    myCompleteMessage.AppendFormat("{0}", Encoding.ASCII.GetString(myReadBuffer, 0, numberOfBytesRead));
+                } while (ns.DataAvailable);
+                // Print out the received message to the console.
+                Console.WriteLine("Debug: Respuesta Impresora -> {0}", myCompleteMessage);
+                if (myCompleteMessage.ToString() != "DC2" && myCompleteMessage.ToString() != "DC4" && myCompleteMessage.ToString() != string.Empty)
+                {
+                    break;
+                }
+            }
+            return myCompleteMessage.ToString().Split((char)28);
+        }
 
-		void OnWriteComplete (IAsyncResult ar)
-		{
-			NetworkStream thisNS = ns;
-			thisNS.EndWrite (ar);
-		}
+        void OnWriteComplete(IAsyncResult ar)
+        {
+            NetworkStream thisNS = ns;
+            thisNS.EndWrite(ar);
+        }
 
 
-	}
+    }
 }
-

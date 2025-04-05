@@ -23,14 +23,13 @@ using System.Collections.Generic;
 
 namespace Hamekoz.Reportes
 {
-	public interface IParametroOrderBy
-	{
-		IList<string> Criterios { get; }
+    public interface IParametroOrderBy
+    {
+        IList<string> Criterios { get; }
 
-		string OrdenadoPor { get; set; }
+        string OrdenadoPor { get; set; }
 
-		//TODO agregar propiedad bool para activar o no la ordenacion
-		//TODO agregar propiedad bool para indicar ascendente o decendente
-	}
+        //TODO agregar propiedad bool para activar o no la ordenacion
+        //TODO agregar propiedad bool para indicar ascendente o decendente
+    }
 }
-

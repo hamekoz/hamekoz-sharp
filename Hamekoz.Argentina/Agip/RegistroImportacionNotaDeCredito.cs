@@ -22,111 +22,126 @@ using System;
 
 namespace Hamekoz.Argentina.Agip
 {
-	public class RegistroImportacionNotaDeCredito
-	{
-		public TipoDeOperacion Operacion {
-			get;
-			set;
-		}
+    public class RegistroImportacionNotaDeCredito
+    {
+        public TipoDeOperacion Operacion
+        {
+            get;
+            set;
+        }
 
-		public long NroNotaDeCredito {
-			get;
-			set;
-		}
+        public long NroNotaDeCredito
+        {
+            get;
+            set;
+        }
 
-		public DateTime FechaNotaDeCredito {
-			get;
-			set;
-		}
+        public DateTime FechaNotaDeCredito
+        {
+            get;
+            set;
+        }
 
-		public decimal MontoNotaDeCredito {
-			get;
-			set;
-		}
+        public decimal MontoNotaDeCredito
+        {
+            get;
+            set;
+        }
 
-		string nroCertificadoPropio = string.Empty;
+        string nroCertificadoPropio = string.Empty;
 
-		public string NroCertificadoPropio {
-			get {
-				return nroCertificadoPropio;
-			}
-			set {
-				nroCertificadoPropio = value;
-			}
-		}
+        public string NroCertificadoPropio
+        {
+            get
+            {
+                return nroCertificadoPropio;
+            }
+            set
+            {
+                nroCertificadoPropio = value;
+            }
+        }
 
-		public TipoDeComprobante TipoDeComprobanteOrigenDeLaRetencion {
-			get;
-			set;
-		}
+        public TipoDeComprobante TipoDeComprobanteOrigenDeLaRetencion
+        {
+            get;
+            set;
+        }
 
-		public string LetraDelComprobante {
-			get;
-			set;
-		}
+        public string LetraDelComprobante
+        {
+            get;
+            set;
+        }
 
-		public long NroDeComprobante {
-			get;
-			set;
-		}
+        public long NroDeComprobante
+        {
+            get;
+            set;
+        }
 
-		public long NroDeDocumento {
-			get;
-			set;
-		}
+        public long NroDeDocumento
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Gets or sets the codigo de norma.
-		/// </summary>
-		/// <value>The codigo de norma.</value>
-		/// <see href="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
-		public int CodigoDeNorma {
-			get;
-			set;
-		}
+        /// <summary>
+        /// Gets or sets the codigo de norma.
+        /// </summary>
+        /// <value>The codigo de norma.</value>
+        /// <see href="http://www.agip.gob.ar/web/agentes-recaudacion/ag-rec-arciba-codigo-de-normas.htm"/>
+        public int CodigoDeNorma
+        {
+            get;
+            set;
+        }
 
-		public DateTime FechaDeRetencionPercepcion {
-			get;
-			set;
-		}
+        public DateTime FechaDeRetencionPercepcion
+        {
+            get;
+            set;
+        }
 
-		public decimal RetecionPercepcionADeducir {
-			get;
-			set;
-		}
+        public decimal RetecionPercepcionADeducir
+        {
+            get;
+            set;
+        }
 
-		public float Alicuota {
-			get;
-			set;
-		}
+        public float Alicuota
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Tos the fixed string.
-		/// </summary>
-		/// <returns>The fixed string.</returns>
-		/// <see href="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
-		public string ToFixedString ()
-		{
-			string cadena = string.Format ("{0:D1}{1:D12}{2:d}{3:0000000000000.00}{4}{5:D2}{6}{7:D16}{8:D11}{9:D3}{10:d}{11:0000000000000.00}{12:00.00}"
-				, (int)Operacion
-				, NroNotaDeCredito
-				, FechaNotaDeCredito
-				, MontoNotaDeCredito
-				, NroCertificadoPropio.PadRight (16).Substring (0, 16)
-				, (int)TipoDeComprobanteOrigenDeLaRetencion
-				, LetraDelComprobante
-				, NroDeComprobante
-				, NroDeDocumento
-				, CodigoDeNorma
-				, FechaDeRetencionPercepcion
-				, RetecionPercepcionADeducir
-				, Alicuota >= 100 ? 99.99 : Alicuota
-			                );
-			if (cadena.Length != 119) {
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nNota de credito: {0}", NroNotaDeCredito));
-			}
-			return cadena;
-		}
-	}
+        /// <summary>
+        /// Tos the fixed string.
+        /// </summary>
+        /// <returns>The fixed string.</returns>
+        /// <see href="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
+        public string ToFixedString()
+        {
+            string cadena = string.Format("{0:D1}{1:D12}{2:d}{3:0000000000000.00}{4}{5:D2}{6}{7:D16}{8:D11}{9:D3}{10:d}{11:0000000000000.00}{12:00.00}"
+                , (int)Operacion
+                , NroNotaDeCredito
+                , FechaNotaDeCredito
+                , MontoNotaDeCredito
+                , NroCertificadoPropio.PadRight(16).Substring(0, 16)
+                , (int)TipoDeComprobanteOrigenDeLaRetencion
+                , LetraDelComprobante
+                , NroDeComprobante
+                , NroDeDocumento
+                , CodigoDeNorma
+                , FechaDeRetencionPercepcion
+                , RetecionPercepcionADeducir
+                , Alicuota >= 100 ? 99.99 : Alicuota
+                            );
+            if (cadena.Length != 119)
+            {
+                throw new Exception(string.Format("La longitud del registro a exportar es incorrecta.\nNota de credito: {0}", NroNotaDeCredito));
+            }
+            return cadena;
+        }
+    }
 }
-

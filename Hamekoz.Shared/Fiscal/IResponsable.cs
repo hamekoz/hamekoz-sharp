@@ -23,19 +23,19 @@ using Hamekoz.Negocio;
 
 namespace Hamekoz.Fiscal
 {
-	public interface IResponsable : IIdentifiable
-	{
-		string CUIT { get; }
+    public interface IResponsable : IIdentifiable
+    {
+        string CUIT { get; }
 
-		string RazonSocial { get; }
+        string RazonSocial { get; }
 
-		//HACK ver si la interfaz IResponsable deberia usar la clase Domicilio
-		string Domicilio { get; }
+        //HACK ver si la interfaz IResponsable deberia usar la clase Domicilio
+        string Domicilio { get; }
 
-		string Email { get; }
+        string Email { get; }
 
-		TipoDeResponsable Tipo { get; }
+        TipoDeResponsable Tipo { get; }
 
-		CondicionDePago CondicionDePago { get; }
-	}
+        CondicionDePago CondicionDePago { get; }
+    }
 }

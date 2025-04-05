@@ -23,118 +23,129 @@ using System.Globalization;
 
 namespace Hamekoz.Argentina.Agip
 {
-	/// <summary>
-	/// Registro de padrón unificado.
-	/// Validos para:
-	/// - Padrón de Riesgo Fiscal
-	/// - Padrón de contribuyentes exentos, de actividades promovidas, de nuevos emprendimientos y con alícuotas diferenciales.
-	/// </summary>
-	/// <see href="https://www.agip.gob.ar/filemanager/source/Agentes/De%20Recaudacion/Dise%C3%B1o%20Registro%20Padron%20por%20sujeto%202016%20OK.xls"/>
-	/// <seealso href="http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm"/>
-	/// <seealso href="http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html"/>
-	public class RegistroPadronUnificado
-	{
-		readonly char separador = ';';
+    /// <summary>
+    /// Registro de padrón unificado.
+    /// Validos para:
+    /// - Padrón de Riesgo Fiscal
+    /// - Padrón de contribuyentes exentos, de actividades promovidas, de nuevos emprendimientos y con alícuotas diferenciales.
+    /// </summary>
+    /// <see href="https://www.agip.gob.ar/filemanager/source/Agentes/De%20Recaudacion/Dise%C3%B1o%20Registro%20Padron%20por%20sujeto%202016%20OK.xls"/>
+    /// <seealso href="http://www.agip.gov.ar/web/banners-comunicacion/alto_riesgo_fiscal.htm"/>
+    /// <seealso href="http://www.agip.gov.ar/web/agentes-recaudacion/padron-.html"/>
+    public class RegistroPadronUnificado
+    {
+        readonly char separador = ';';
 
-		public DateTime FechaDePublicacion {
-			get;
-			set;
-		}
+        public DateTime FechaDePublicacion
+        {
+            get;
+            set;
+        }
 
-		public DateTime FechaVigenciaDesde {
-			get;
-			set;
-		}
+        public DateTime FechaVigenciaDesde
+        {
+            get;
+            set;
+        }
 
-		public DateTime FechaVigenciaHasta {
-			get;
-			set;
-		}
+        public DateTime FechaVigenciaHasta
+        {
+            get;
+            set;
+        }
 
-		public long CUIT {
-			get;
-			set;
-		}
+        public long CUIT
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Obtiene el tipo de contribuyente inscripto.
-		/// D -> Directo C.A.B.A
-		/// C -> Convenio
-		/// </summary>
-		/// <value>El tipo de contribuyente inscripto.</value>
-		public char TipoDeContribuyenteInscripto {
-			get;
-			set;
-		}
+        /// <summary>
+        /// Obtiene el tipo de contribuyente inscripto.
+        /// D -> Directo C.A.B.A
+        /// C -> Convenio
+        /// </summary>
+        /// <value>El tipo de contribuyente inscripto.</value>
+        public char TipoDeContribuyenteInscripto
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Obtiene la marca alta sujeto.
-		/// S -> el sujeto se incorporo al padrón
-		/// N ->
-		/// B ->
-		/// </summary>
-		/// <value>Marca alta sujeto.</value>
-		public char MarcaAltaSujeto {
-			get;
-			set;
-		}
+        /// <summary>
+        /// Obtiene la marca alta sujeto.
+        /// S -> el sujeto se incorporo al padrón
+        /// N ->
+        /// B ->
+        /// </summary>
+        /// <value>Marca alta sujeto.</value>
+        public char MarcaAltaSujeto
+        {
+            get;
+            set;
+        }
 
-		public char MarcaAlicuota {
-			get;
-			set;
-		}
+        public char MarcaAlicuota
+        {
+            get;
+            set;
+        }
 
-		public double AlicuotaPercepcion {
-			get;
-			set;
-		}
+        public double AlicuotaPercepcion
+        {
+            get;
+            set;
+        }
 
-		public double AlicuotaRetencion {
-			get;
-			set;
-		}
+        public double AlicuotaRetencion
+        {
+            get;
+            set;
+        }
 
-		public int NumeroGrupoPercepcion {
-			get;
-			set;
-		}
+        public int NumeroGrupoPercepcion
+        {
+            get;
+            set;
+        }
 
-		public int NumeroGrupoRetencion {
-			get;
-			set;
-		}
+        public int NumeroGrupoRetencion
+        {
+            get;
+            set;
+        }
 
-		public string RazonSocial {
-			get;
-			set;
-		}
+        public string RazonSocial
+        {
+            get;
+            set;
+        }
 
-		public RegistroPadronUnificado ()
-		{
-			
-		}
+        public RegistroPadronUnificado()
+        {
 
-		public RegistroPadronUnificado (string linea)
-		{
-			if (linea.Length < 61)
-				throw new Exception ("Longitud de linea es menor a lo esperado, no se insertara. Verificar");
-			if (linea.Length > 121)
-				Console.WriteLine ("Longitud de linea es superior a lo esperado. Se insertara igual. Verificar");
+        }
 
-			string[] split = linea.Split (separador);
-			FechaDePublicacion = DateTime.ParseExact (split [0], "ddMMyyyy", CultureInfo.InvariantCulture);
-			FechaVigenciaDesde = DateTime.ParseExact (split [1], "ddMMyyyy", CultureInfo.InvariantCulture);
-			FechaVigenciaHasta = DateTime.ParseExact (split [2], "ddMMyyyy", CultureInfo.InvariantCulture);
-			CUIT = long.Parse (split [3]);
-			TipoDeContribuyenteInscripto = char.Parse (split [4]);
-			MarcaAltaSujeto = char.Parse (split [5]);
-			MarcaAlicuota = char.Parse (split [6]);
-			AlicuotaPercepcion = double.Parse (split [7]);
-			AlicuotaRetencion = double.Parse (split [8]);
-			NumeroGrupoPercepcion = int.Parse (split [9]);
-			NumeroGrupoPercepcion = int.Parse (split [10]);
-			RazonSocial = split [11];
-		}
-	}
+        public RegistroPadronUnificado(string linea)
+        {
+            if (linea.Length < 61)
+                throw new Exception("Longitud de linea es menor a lo esperado, no se insertara. Verificar");
+            if (linea.Length > 121)
+                Console.WriteLine("Longitud de linea es superior a lo esperado. Se insertara igual. Verificar");
+
+            string[] split = linea.Split(separador);
+            FechaDePublicacion = DateTime.ParseExact(split[0], "ddMMyyyy", CultureInfo.InvariantCulture);
+            FechaVigenciaDesde = DateTime.ParseExact(split[1], "ddMMyyyy", CultureInfo.InvariantCulture);
+            FechaVigenciaHasta = DateTime.ParseExact(split[2], "ddMMyyyy", CultureInfo.InvariantCulture);
+            CUIT = long.Parse(split[3]);
+            TipoDeContribuyenteInscripto = char.Parse(split[4]);
+            MarcaAltaSujeto = char.Parse(split[5]);
+            MarcaAlicuota = char.Parse(split[6]);
+            AlicuotaPercepcion = double.Parse(split[7]);
+            AlicuotaRetencion = double.Parse(split[8]);
+            NumeroGrupoPercepcion = int.Parse(split[9]);
+            NumeroGrupoPercepcion = int.Parse(split[10]);
+            RazonSocial = split[11];
+        }
+    }
 }
-

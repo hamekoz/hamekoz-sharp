@@ -20,26 +20,26 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	//TODO referenciar en implementacion de cheques
-	public interface ICheque : IIdentifiable
-	{
-		Asiento Asiento { get; set; }
+    //TODO referenciar en implementacion de cheques
+    public interface ICheque : IIdentifiable
+    {
+        Asiento Asiento { get; set; }
 
-		CuentaContable.Monedas Moneda { get; set; }
+        CuentaContable.Monedas Moneda { get; set; }
 
-		double Importe { get; set; }
+        double Importe { get; set; }
 
-		decimal Numero { get; set; }
+        decimal Numero { get; set; }
 
-		DateTime Emision { get; set; }
+        DateTime Emision { get; set; }
 
-		DateTime Cobro { get; set; }
+        DateTime Cobro { get; set; }
 
-		int Estado { get; set; }
-	}
+        int Estado { get; set; }
+    }
 }
-

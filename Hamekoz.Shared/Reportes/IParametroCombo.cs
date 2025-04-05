@@ -22,14 +22,13 @@ using System.Collections.Generic;
 
 namespace Hamekoz.Reportes
 {
-	//TODO armar un IParametro que permita armar un combo de un enumerado con la opcion de elegir todos
-	public interface IParametroCombo
-	{
-		IList<string> Valores { get; }
+    //TODO armar un IParametro que permita armar un combo de un enumerado con la opcion de elegir todos
+    public interface IParametroCombo
+    {
+        IList<string> Valores { get; }
 
-		string Valor { get; set; }
+        string Valor { get; set; }
 
-		string Label { get; }
-	}
+        string Label { get; }
+    }
 }
-

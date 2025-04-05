@@ -24,92 +24,109 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Domicilio : IPersistible, IIdentifiable
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class Domicilio : IPersistible, IIdentifiable
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Direccion {
-			get;
-			set;
-		} = string.Empty;
+        public string Direccion
+        {
+            get;
+            set;
+        } = string.Empty;
 
-		public string CodigoPostal {
-			get;
-			set;
-		} = string.Empty;
+        public string CodigoPostal
+        {
+            get;
+            set;
+        } = string.Empty;
 
-		public Localidad Localidad {
-			get;
-			set;
-		}
+        public Localidad Localidad
+        {
+            get;
+            set;
+        }
 
-		//TODO Referenciar desde Localidad.Municipio
-		public Municipio Municipio {
-			get;
-			set;
-		}
+        //TODO Referenciar desde Localidad.Municipio
+        public Municipio Municipio
+        {
+            get;
+            set;
+        }
 
-		//TODO Referenciar desde Localidad.Municipio.Provincia
-		public Provincia Provincia {
-			get;
-			set;
-		}
+        //TODO Referenciar desde Localidad.Municipio.Provincia
+        public Provincia Provincia
+        {
+            get;
+            set;
+        }
 
-		//TODO Referenciar desde Localidad.Municipio.Provincia.Pais
-		public Pais Pais {
-			get;
-			set;
-		}
+        //TODO Referenciar desde Localidad.Municipio.Provincia.Pais
+        public Pais Pais
+        {
+            get;
+            set;
+        }
 
-		public bool Inactivo { 
-			get; 
-			set;
-		}
+        public bool Inactivo
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			var build = new System.Text.StringBuilder ();
-			build.Append (Direccion);
-			if (CodigoPostal != string.Empty) {
-				build.Append (" - ");
-				build.Append (" CP: ");
-				build.Append (CodigoPostal);
-			}
-			if (Localidad != null) {
-				if (Localidad?.Nombre != string.Empty) {
-					build.Append (" - ");
-					build.Append (Localidad.Nombre);
-				}
-				//			if (Localidad?.Municipio?.Nombre != string.Empty) {
-				//				build.Append (" - ");
-				//				build.Append (Localidad?.Municipio?.Nombre);
-				//			}
-				if (Localidad.Municipio != null) {
-					if (Localidad?.Municipio?.Provincia?.Nombre != string.Empty) {
-						build.Append (" - ");
-						build.Append (Localidad?.Municipio?.Provincia?.Nombre);
-					}
-					if (Localidad?.Municipio?.Provincia?.Pais?.Nombre != string.Empty) {
-						build.Append (" - ");
-						build.Append (Localidad?.Municipio?.Provincia?.Pais?.Nombre);
-					}
-				} else {
-					if (Localidad?.Provincia?.Nombre != string.Empty) {
-						build.Append (" - ");
-						build.Append (Localidad?.Municipio?.Provincia?.Nombre);
-					}
-					if (Localidad?.Provincia?.Pais?.Nombre != string.Empty) {
-						build.Append (" - ");
-						build.Append (Localidad?.Municipio?.Provincia?.Pais?.Nombre);
-					}
-				}
-			}
+        public override string ToString()
+        {
+            var build = new System.Text.StringBuilder();
+            build.Append(Direccion);
+            if (CodigoPostal != string.Empty)
+            {
+                build.Append(" - ");
+                build.Append(" CP: ");
+                build.Append(CodigoPostal);
+            }
+            if (Localidad != null)
+            {
+                if (Localidad?.Nombre != string.Empty)
+                {
+                    build.Append(" - ");
+                    build.Append(Localidad.Nombre);
+                }
+                //			if (Localidad?.Municipio?.Nombre != string.Empty) {
+                //				build.Append (" - ");
+                //				build.Append (Localidad?.Municipio?.Nombre);
+                //			}
+                if (Localidad.Municipio != null)
+                {
+                    if (Localidad?.Municipio?.Provincia?.Nombre != string.Empty)
+                    {
+                        build.Append(" - ");
+                        build.Append(Localidad?.Municipio?.Provincia?.Nombre);
+                    }
+                    if (Localidad?.Municipio?.Provincia?.Pais?.Nombre != string.Empty)
+                    {
+                        build.Append(" - ");
+                        build.Append(Localidad?.Municipio?.Provincia?.Pais?.Nombre);
+                    }
+                }
+                else
+                {
+                    if (Localidad?.Provincia?.Nombre != string.Empty)
+                    {
+                        build.Append(" - ");
+                        build.Append(Localidad?.Municipio?.Provincia?.Nombre);
+                    }
+                    if (Localidad?.Provincia?.Pais?.Nombre != string.Empty)
+                    {
+                        build.Append(" - ");
+                        build.Append(Localidad?.Municipio?.Provincia?.Pais?.Nombre);
+                    }
+                }
+            }
 
-			return build.ToString ();
-		}
-	}
+            return build.ToString();
+        }
+    }
 }
-

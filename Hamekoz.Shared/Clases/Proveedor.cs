@@ -19,98 +19,117 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
+
 using Hamekoz.Core;
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Proveedor : IDescriptible, IResponsable
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class Proveedor : IDescriptible, IResponsable
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string NombreFantasia {
-			get;
-			set;
-		}
+        public string NombreFantasia
+        {
+            get;
+            set;
+        }
 
-		public string RazonSocial {
-			get;
-			set;
-		}
+        public string RazonSocial
+        {
+            get;
+            set;
+        }
 
-		public string CUIT {
-			get;
-			set;
-		}
+        public string CUIT
+        {
+            get;
+            set;
+        }
 
-		public string IIBB {
-			get;
-			set;
-		}
+        public string IIBB
+        {
+            get;
+            set;
+        }
 
-		public string DNI {
-			get;
-			set;
-		}
+        public string DNI
+        {
+            get;
+            set;
+        }
 
-		public Domicilio Domicilio {
-			get;
-			set;
-		}
+        public Domicilio Domicilio
+        {
+            get;
+            set;
+        }
 
-		public CondicionDePago CondicionDePago {
-			get;
-			set;
-		}
+        public CondicionDePago CondicionDePago
+        {
+            get;
+            set;
+        }
 
-		public Estados Estado {
-			get;
-			set;
-		}
+        public Estados Estado
+        {
+            get;
+            set;
+        }
 
-		public TipoDeResponsable Tipo {
-			get;
-			set;
-		}
+        public TipoDeResponsable Tipo
+        {
+            get;
+            set;
+        }
 
-		IList<Telefono> Telefonos {
-			get;
-			set;
-		}
+        IList<Telefono> Telefonos
+        {
+            get;
+            set;
+        }
 
-		public string Telefono {
-			get;
-			set;
-		}
+        public string Telefono
+        {
+            get;
+            set;
+        }
 
-		public string Email {
-			get;
-			set;
-		}
+        public string Email
+        {
+            get;
+            set;
+        }
 
-		public double PuntajeDeEvaluacion { 
-			get; 
-			set; 
-		}
+        public double PuntajeDeEvaluacion
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return RazonSocial;
-		}
+        public override string ToString()
+        {
+            return RazonSocial;
+        }
 
-		string IDescriptible.Descripcion {
-			get {
-				return RazonSocial;
-			}
-		}
+        string IDescriptible.Descripcion
+        {
+            get
+            {
+                return RazonSocial;
+            }
+        }
 
-		string IResponsable.Domicilio {
-			get {
-				return Domicilio.ToString ();
-			}
-		}
-	}
+        string IResponsable.Domicilio
+        {
+            get
+            {
+                return Domicilio.ToString();
+            }
+        }
+    }
 }

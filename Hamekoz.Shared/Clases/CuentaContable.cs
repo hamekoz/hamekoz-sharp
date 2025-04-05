@@ -21,174 +21,194 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	//UNDONE ver si esto es necesario persistilo
-	public enum CuentaBase
-	{
-		Activo = 1,
-		Pasivo,
-		Ingreso,
-		Egreso,
-	}
+    //UNDONE ver si esto es necesario persistilo
+    public enum CuentaBase
+    {
+        Activo = 1,
+        Pasivo,
+        Ingreso,
+        Egreso,
+    }
 
-	public static class CuentaBaseExtension
-	{
-		public static int Inicio (this CuentaBase cuenta)
-		{
-			switch (cuenta) {
-			case CuentaBase.Activo:
-				return 10000;
-			case CuentaBase.Pasivo:
-				return 32900;
-			case CuentaBase.Ingreso:
-				return 55000;
-			case CuentaBase.Egreso:
-				return 77500;
-			default:
-				return 0;
-			}
-		}
+    public static class CuentaBaseExtension
+    {
+        public static int Inicio(this CuentaBase cuenta)
+        {
+            switch (cuenta)
+            {
+                case CuentaBase.Activo:
+                    return 10000;
+                case CuentaBase.Pasivo:
+                    return 32900;
+                case CuentaBase.Ingreso:
+                    return 55000;
+                case CuentaBase.Egreso:
+                    return 77500;
+                default:
+                    return 0;
+            }
+        }
 
-		public static int Fin (this CuentaBase cuenta)
-		{
-			switch (cuenta) {
-			case CuentaBase.Activo:
-				return 32890;
-			case CuentaBase.Pasivo:
-				return 54990;
-			case CuentaBase.Ingreso:
-				return 77490;
-			case CuentaBase.Egreso:
-				return 100000;
-			default:
-				return 0;
-			}
-		}
-	}
+        public static int Fin(this CuentaBase cuenta)
+        {
+            switch (cuenta)
+            {
+                case CuentaBase.Activo:
+                    return 32890;
+                case CuentaBase.Pasivo:
+                    return 54990;
+                case CuentaBase.Ingreso:
+                    return 77490;
+                case CuentaBase.Egreso:
+                    return 100000;
+                default:
+                    return 0;
+            }
+        }
+    }
 
-	public partial class CuentaContable : IPersistible, IIdentifiable, IDescriptible
-	{
-		#region Enums
+    public partial class CuentaContable : IPersistible, IIdentifiable, IDescriptible
+    {
+        #region Enums
 
-		//UNDONE Confirmar los tipos de cuentas contables que puede haber
-		public enum Tipos
-		{
-			SinDato,
-			Efectivo,
-			Cheque,
-		}
+        //UNDONE Confirmar los tipos de cuentas contables que puede haber
+        public enum Tipos
+        {
+            SinDato,
+            Efectivo,
+            Cheque,
+        }
 
-		//TODO deberia utilizarse la clase Moneda
-		public enum Monedas
-		{
-			[DescriptionAttribute ("SIN MONEDA")]
-			SINMONEDA,
-			PESOS,
-			DOLARES,
-			BONOS,
-			LECOP,
-		}
+        //TODO deberia utilizarse la clase Moneda
+        public enum Monedas
+        {
+            [DescriptionAttribute("SIN MONEDA")]
+            SINMONEDA,
+            PESOS,
+            DOLARES,
+            BONOS,
+            LECOP,
+        }
 
-		#endregion
+        #endregion
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public int Codigo {
-			get;
-			set;
-		}
+        public int Codigo
+        {
+            get;
+            set;
+        }
 
-		public string Cuenta {
-			get;
-			set;
-		}
+        public string Cuenta
+        {
+            get;
+            set;
+        }
 
-		public CuentaBase Base {
-			get;
-			set;
-		}
+        public CuentaBase Base
+        {
+            get;
+            set;
+        }
 
-		//HACK revisar atributos de acceso
-		public int cuentaSumaId;
+        //HACK revisar atributos de acceso
+        public int cuentaSumaId;
 
-		public CuentaContable Suma {
-			get;
-			set;
-		}
+        public CuentaContable Suma
+        {
+            get;
+            set;
+        }
 
-		public IList<CuentaContable> Cuentas {
-			get;
-			set;
-		}
+        public IList<CuentaContable> Cuentas
+        {
+            get;
+            set;
+        }
 
-		public bool Modificable {
-			get;
-			set;
-		}
+        public bool Modificable
+        {
+            get;
+            set;
+        }
 
-		public Tipos Tipo {
-			get;
-			set;
-		}
+        public Tipos Tipo
+        {
+            get;
+            set;
+        }
 
-		//TODO deberia utilizarse la clase Moneda
-		public Monedas Moneda {
-			get;
-			set;
-		}
+        //TODO deberia utilizarse la clase Moneda
+        public Monedas Moneda
+        {
+            get;
+            set;
+        }
 
-		//HACK revisar atributos de acceso
-		public int bancoId;
+        //HACK revisar atributos de acceso
+        public int bancoId;
 
-		public Banco Banco {
-			get;
-			set;
-		}
+        public Banco Banco
+        {
+            get;
+            set;
+        }
 
-		public bool RecibeAsientos {
-			get;
-			set;
-		}
+        public bool RecibeAsientos
+        {
+            get;
+            set;
+        }
 
-		#region Propiedades calculadas
+        #region Propiedades calculadas
 
-		public decimal Saldo {
-			get;
-			set;
-		}
+        public decimal Saldo
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public int Tabulacion {
-			get;
-			set;
-		}
+        public int Tabulacion
+        {
+            get;
+            set;
+        }
 
-		public bool Inactiva {
-			get;
-			set;
-		}
+        public bool Inactiva
+        {
+            get;
+            set;
+        }
 
-		public IDictionary<int, CuentaContable> Hijas { 
-			get; 
-			set;
-		}
+        public IDictionary<int, CuentaContable> Hijas
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Descripcion;
-		}
+        public override string ToString()
+        {
+            return Descripcion;
+        }
 
-		public string Descripcion {
-			get {
-				return string.Format ("{0} {1}", Codigo, Cuenta);
-			}
-		}
-	}
+        public string Descripcion
+        {
+            get
+            {
+                return string.Format("{0} {1}", Codigo, Cuenta);
+            }
+        }
+    }
 }

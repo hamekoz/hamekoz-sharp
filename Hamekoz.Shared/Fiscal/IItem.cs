@@ -22,30 +22,30 @@ using System;
 
 namespace Hamekoz.Fiscal
 {
-	public interface IItem : IItemControladorFiscal
-	{
-		string Codigo { get; }
+    public interface IItem : IItemControladorFiscal
+    {
+        string Codigo { get; }
 
-		string Descripcion { get; }
+        string Descripcion { get; }
 
-		decimal Cantidad { get; }
+        decimal Cantidad { get; }
 
-		decimal Precio { get; }
+        decimal Precio { get; }
 
-		decimal Neto { get; }
+        decimal Neto { get; }
 
-		IVA Iva { get; }
+        IVA Iva { get; }
 
-		decimal ImporteIVA { get; }
+        decimal ImporteIVA { get; }
 
-		//TODO revisar si esto aplica a nivel item, o los impuestos distintos de IVA se toman a nivel comprobante
-		decimal Impuestos { get; }
+        //TODO revisar si esto aplica a nivel item, o los impuestos distintos de IVA se toman a nivel comprobante
+        decimal Impuestos { get; }
 
-		decimal Total { get; }
-	}
+        decimal Total { get; }
+    }
 
-	public interface IItemControladorFiscal
-	{
-		string DescripcionCorta { get; }
-	}
+    public interface IItemControladorFiscal
+    {
+        string DescripcionCorta { get; }
+    }
 }

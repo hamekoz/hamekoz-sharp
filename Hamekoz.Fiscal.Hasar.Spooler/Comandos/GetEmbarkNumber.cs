@@ -21,23 +21,22 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class GetEmbarkNumber : Comando
-	{
-		const string cmd = "ö";
+    public class GetEmbarkNumber : Comando
+    {
+        const string cmd = "ö";
 
-		public string Texto { get; set; }
+        public string Texto { get; set; }
 
-		readonly int nroLinea;
+        readonly int nroLinea;
 
-		public string Comando ()
-		{
-			return string.Format ("{0}{1}{2}", cmd, separador, nroLinea);
-		}
+        public string Comando()
+        {
+            return string.Format("{0}{1}{2}", cmd, separador, nroLinea);
+        }
 
-		public GetEmbarkNumber (int nroLinea)
-		{
-			this.nroLinea = nroLinea;
-		}
-	}
+        public GetEmbarkNumber(int nroLinea)
+        {
+            this.nroLinea = nroLinea;
+        }
+    }
 }
-

@@ -19,92 +19,101 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Cheque : IPersistible, IIdentifiable, ISearchable
-	{
-		public enum Estados
-		{
-			EnCartera = 1,
-			Rechazado,
-			Depositado,
-			Endosado,
-			Emitido,
-			Anulado
-		}
+    public partial class Cheque : IPersistible, IIdentifiable, ISearchable
+    {
+        public enum Estados
+        {
+            EnCartera = 1,
+            Rechazado,
+            Depositado,
+            Endosado,
+            Emitido,
+            Anulado
+        }
 
-		#region IIdentifiable implementation
+        #region IIdentifiable implementation
 
-		public int Id { get; set; }
+        public int Id { get; set; }
 
-		#endregion
+        #endregion
 
-		public Estados Estado {
-			get;
-			set;
-		}
+        public Estados Estado
+        {
+            get;
+            set;
+        }
 
-		public DateTime Emision {
-			get;
-			set;
-		}
+        public DateTime Emision
+        {
+            get;
+            set;
+        }
 
-		public DateTime Cobro {
-			get;
-			set;
-		}
+        public DateTime Cobro
+        {
+            get;
+            set;
+        }
 
-		public int Numero {
-			get;
-			set;
-		}
+        public int Numero
+        {
+            get;
+            set;
+        }
 
-		public decimal Importe {
-			get;
-			set;
-		}
+        public decimal Importe
+        {
+            get;
+            set;
+        }
 
-		public bool Cobrado {
-			get;
-			set;
-		}
+        public bool Cobrado
+        {
+            get;
+            set;
+        }
 
-		//TODO deberia ser Emisor, Receptor
-		public IResponsable Responsable {
-			get;
-			set;
-		}
+        //TODO deberia ser Emisor, Receptor
+        public IResponsable Responsable
+        {
+            get;
+            set;
+        }
 
-		//TODO el banco se puede inferir de la propiedad Banco de la SucursalDeCobro
-		public Banco Banco {
-			get;
-			set;
-		}
+        //TODO el banco se puede inferir de la propiedad Banco de la SucursalDeCobro
+        public Banco Banco
+        {
+            get;
+            set;
+        }
 
-		public SucursalDeBanco SucursalDeCobro {
-			get;
-			set;
-		}
+        public SucursalDeBanco SucursalDeCobro
+        {
+            get;
+            set;
+        }
 
-		public Asiento Asiento { get; set; }
+        public Asiento Asiento { get; set; }
 
-		public override string ToString ()
-		{
-			return string.Format ("Cheque: Banco {0} Emision {1:d} Cobro {2:d} Numero {3} Importe {4:C}", Banco, Emision, Cobro, Numero, Importe);
-		}
+        public override string ToString()
+        {
+            return string.Format("Cheque: Banco {0} Emision {1:d} Cobro {2:d} Numero {3} Importe {4:C}", Banco, Emision, Cobro, Numero, Importe);
+        }
 
-		#region ISearchable implementation
+        #region ISearchable implementation
 
-		public virtual string ToSearchString ()
-		{
-			return string.Format ("[Cheque: Id={0}, Banco={1}, Estado={2}, Emision={3}, Cobro={4}, Numero={5}, Importe={6}]", Id, Banco, Estado, Emision, Cobro, Numero, Importe);
-		}
+        public virtual string ToSearchString()
+        {
+            return string.Format("[Cheque: Id={0}, Banco={1}, Estado={2}, Emision={3}, Cobro={4}, Numero={5}, Importe={6}]", Id, Banco, Estado, Emision, Cobro, Numero, Importe);
+        }
 
-		#endregion
+        #endregion
 
-	}
+    }
 }
-

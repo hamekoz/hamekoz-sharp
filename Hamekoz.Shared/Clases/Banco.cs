@@ -19,64 +19,75 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Banco : IPersistible, IIdentifiable, IDescriptible
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class Banco : IPersistible, IIdentifiable, IDescriptible
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		public string CUIT {
-			get;
-			set;
-		}
+        public string CUIT
+        {
+            get;
+            set;
+        }
 
-		public string CBU {
-			get;
-			set;
-		}
+        public string CBU
+        {
+            get;
+            set;
+        }
 
-		public int Clearing {
-			get;
-			set;
-		}
+        public int Clearing
+        {
+            get;
+            set;
+        }
 
-		public bool Inactivo {
-			get;
-			set;
-		}
+        public bool Inactivo
+        {
+            get;
+            set;
+        }
 
-		//HACK la cuenta contable deberia estar en una relacion entre el banco y la cuenta
-		//El id dela cuenta contable no esta en la tabla banco sino que en cuentacontable se encuentra el id del banco
-		//pongo la relacion aqui por comodidad, es cargada en el negocio de banco
-		public CuentaContable CuentaContable {
-			get;
-			set;
-		}
+        //HACK la cuenta contable deberia estar en una relacion entre el banco y la cuenta
+        //El id dela cuenta contable no esta en la tabla banco sino que en cuentacontable se encuentra el id del banco
+        //pongo la relacion aqui por comodidad, es cargada en el negocio de banco
+        public CuentaContable CuentaContable
+        {
+            get;
+            set;
+        }
 
-		string IDescriptible.Descripcion {
-			get {
-				return Nombre;
-			}
-		}
+        string IDescriptible.Descripcion
+        {
+            get
+            {
+                return Nombre;
+            }
+        }
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
+        public override string ToString()
+        {
+            return Nombre;
+        }
 
-		public IList<SucursalDeBanco> Sucursales {
-			get;
-			set;
-		}
-	}
+        public IList<SucursalDeBanco> Sucursales
+        {
+            get;
+            set;
+        }
+    }
 }

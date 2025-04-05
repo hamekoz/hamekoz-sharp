@@ -23,42 +23,42 @@ using System;
 
 namespace Hamekoz.Fiscal
 {
-	public interface IFiscalHasar
-	{
-		void ImprimirComprobanteCuentaCorriente (IComprobante comprobante);
+    public interface IFiscalHasar
+    {
+        void ImprimirComprobanteCuentaCorriente(IComprobante comprobante);
 
-		void ImprimirFacturaProveedor (IComprobante factura);
+        void ImprimirFacturaProveedor(IComprobante factura);
 
-		void ImprimirRecibo (IComprobante recibo);
+        void ImprimirRecibo(IComprobante recibo);
 
-		void ImprimirRemitoCliente (IComprobante remito);
+        void ImprimirRemitoCliente(IComprobante remito);
 
-		void ImprimirRemitoProveedor (IComprobante remito);
+        void ImprimirRemitoProveedor(IComprobante remito);
 
-		void ImprimirTicketFactura (IComprobante factura, IComprobante recibo, decimal vueltoefectivo);
+        void ImprimirTicketFactura(IComprobante factura, IComprobante recibo, decimal vueltoefectivo);
 
-		void Iniciar ();
+        void Iniciar();
 
-		void Iniciar (int puertoSerie);
+        void Iniciar(int puertoSerie);
 
-		/// <summary>
-		/// Imprime el reporte X
-		/// </summary>
-		void ReporteX ();
+        /// <summary>
+        /// Imprime el reporte X
+        /// </summary>
+        void ReporteX();
 
-		/// <summary>
-		/// Imprime el reporte Z para cerrar la jornada fiscal
-		/// </summary>
-		void ReporteZ ();
+        /// <summary>
+        /// Imprime el reporte Z para cerrar la jornada fiscal
+        /// </summary>
+        void ReporteZ();
 
-		/// <summary>
-		/// Imprime el reporte Z para cerrar la jornada fiscal devolviendo los valores impresos
-		/// </summary>
-		/// <param name = "zeta"></param>
-		void ReporteZ (IZeta zeta);
+        /// <summary>
+        /// Imprime el reporte Z para cerrar la jornada fiscal devolviendo los valores impresos
+        /// </summary>
+        /// <param name = "zeta"></param>
+        void ReporteZ(IZeta zeta);
 
-		DateTime FechaHora { get; set; }
+        DateTime FechaHora { get; set; }
 
-		string ReporteElectronico (DateTime desde, DateTime hasta);
-	}
+        string ReporteElectronico(DateTime desde, DateTime hasta);
+    }
 }

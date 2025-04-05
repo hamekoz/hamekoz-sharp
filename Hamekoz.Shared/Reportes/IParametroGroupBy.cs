@@ -22,12 +22,11 @@ using System.Collections.Generic;
 
 namespace Hamekoz.Reportes
 {
-	public interface IParametroGroupBy
-	{
-		IList<string> Criterios { get; }
+    public interface IParametroGroupBy
+    {
+        IList<string> Criterios { get; }
 
-		string AgruparPor { get; set; }
-		//TODO agregar propiedad bool para activar o no la agrupacion
-	}
+        string AgruparPor { get; set; }
+        //TODO agregar propiedad bool para activar o no la agrupacion
+    }
 }
-

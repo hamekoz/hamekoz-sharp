@@ -22,11 +22,11 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public enum FuenteEstilos
-	{
-		Normal,
-		Negrita,
-		Italica,
-		Subrayado,
-	}
+    public enum FuenteEstilos
+    {
+        Normal,
+        Negrita,
+        Italica,
+        Subrayado,
+    }
 }

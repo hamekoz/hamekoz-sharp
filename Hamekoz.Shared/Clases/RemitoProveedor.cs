@@ -21,214 +21,264 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Hamekoz.Core;
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	//FIX IRemito, deberia implementar IComprobante
-	public partial class RemitoProveedor : IPersistible, IIdentifiable, IComprobante, IComprobanteBase, IRemito
-	{
-		string ISearchable.ToSearchString ()
-		{
-			throw new NotImplementedException ();
-		}
+    //FIX IRemito, deberia implementar IComprobante
+    public partial class RemitoProveedor : IPersistible, IIdentifiable, IComprobante, IComprobanteBase, IRemito
+    {
+        string ISearchable.ToSearchString()
+        {
+            throw new NotImplementedException();
+        }
 
-		#region IPersistible implementation
+        #region IPersistible implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public Proveedor Proveedor {
-			get;
-			set;
-		}
+        public Proveedor Proveedor
+        {
+            get;
+            set;
+        }
 
-		public string Numero {
-			get;
-			set;
-		}
+        public string Numero
+        {
+            get;
+            set;
+        }
 
-		public NumeracionDeComprobante Tipo {
-			get;
-			set;
-		}
+        public NumeracionDeComprobante Tipo
+        {
+            get;
+            set;
+        }
 
-		public DateTime Emision {
-			get;
-			set;
-		}
+        public DateTime Emision
+        {
+            get;
+            set;
+        }
 
-		public DateTime Contable {
-			get;
-			set;
-		}
+        public DateTime Contable
+        {
+            get;
+            set;
+        }
 
-		public Flete Flete { 
-			get; 
-			set; 
-		}
+        public Flete Flete
+        {
+            get;
+            set;
+        }
 
-		public Pedido Pedido {
-			get;
-			set;
-		}
+        public Pedido Pedido
+        {
+            get;
+            set;
+        }
 
-		public int Bultos {
-			get;
-			set;
-		}
+        public int Bultos
+        {
+            get;
+            set;
+        }
 
-		public decimal ValorAsegurado {
-			get;
-			set;
-		}
+        public decimal ValorAsegurado
+        {
+            get;
+            set;
+        }
 
-		public Domicilio DomicilioDeEntrega {
-			get;
-			set;
-		}
+        public Domicilio DomicilioDeEntrega
+        {
+            get;
+            set;
+        }
 
-		public string Observaciones {
-			get;
-			set;
-		}
+        public string Observaciones
+        {
+            get;
+            set;
+        }
 
-		public IList<RemitoItem> Items {
-			get;
-			set;
-		} = new List<RemitoItem>();
+        public IList<RemitoItem> Items
+        {
+            get;
+            set;
+        } = new List<RemitoItem>();
 
-		public bool Anulado {
-			get;
-			set;
-		}
+        public bool Anulado
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return string.Format ("{0} {1} {2}", Tipo.Abreviatura, Tipo.Letra, Numero);
-		}
+        public override string ToString()
+        {
+            return string.Format("{0} {1} {2}", Tipo.Abreviatura, Tipo.Letra, Numero);
+        }
 
-		#region IRemito
+        #region IRemito
 
-		IDescriptible IRemito.Destinatario {
-			get {
-				return Proveedor;
-			}
-			set { 
-				Proveedor = (Proveedor)value;
-			}
-		}
+        IDescriptible IRemito.Destinatario
+        {
+            get
+            {
+                return Proveedor;
+            }
+            set
+            {
+                Proveedor = (Proveedor)value;
+            }
+        }
 
-		#endregion
+        #endregion
 
 
-		#region IComprobante
+        #region IComprobante
 
-		IResponsable IComprobante.Responsable {
-			get {
-				return Proveedor;
-			}
-		}
+        IResponsable IComprobante.Responsable
+        {
+            get
+            {
+                return Proveedor;
+            }
+        }
 
-		string IComprobante.PuntoDeVenta {
-			get {
-				return Tipo.Pre;
-			}
-		}
+        string IComprobante.PuntoDeVenta
+        {
+            get
+            {
+                return Tipo.Pre;
+            }
+        }
 
-		IList<IItem> IComprobante.Items {
-			get {
-				return Items.Cast<IItem> ().ToList ();
-			}
-		}
+        IList<IItem> IComprobante.Items
+        {
+            get
+            {
+                return Items.Cast<IItem>().ToList();
+            }
+        }
 
-		IList<IVAItem> IComprobante.IVAItems {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+        IList<IVAItem> IComprobante.IVAItems
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		IList<ImpuestoItem> IComprobante.Impuestos {
-			get {
-				return new List<ImpuestoItem> ();
-			}
-		}
+        IList<ImpuestoItem> IComprobante.Impuestos
+        {
+            get
+            {
+                return new List<ImpuestoItem>();
+            }
+        }
 
-		decimal IComprobante.Total {
-			get {
-				return Items.Sum (r => r.Total);
-			}
-		}
+        decimal IComprobante.Total
+        {
+            get
+            {
+                return Items.Sum(r => r.Total);
+            }
+        }
 
-		decimal IComprobante.Neto {
-			get {
-				return Items.Sum (r => r.Neto);
-			}
-		}
+        decimal IComprobante.Neto
+        {
+            get
+            {
+                return Items.Sum(r => r.Neto);
+            }
+        }
 
-		decimal IComprobante.IVA {
-			get {
-				return Items.Sum (r => r.ImporteIVA);
-			}
-		}
+        decimal IComprobante.IVA
+        {
+            get
+            {
+                return Items.Sum(r => r.ImporteIVA);
+            }
+        }
 
-		decimal IComprobante.Gravado {
-			get {
-				return Items.Sum (r => r.Neto);
-			}
-		}
+        decimal IComprobante.Gravado
+        {
+            get
+            {
+                return Items.Sum(r => r.Neto);
+            }
+        }
 
-		decimal IComprobante.NoGravado {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+        decimal IComprobante.NoGravado
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		decimal IComprobante.Exento {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+        decimal IComprobante.Exento
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		decimal IComprobante.Tributos {
-			get {
-				return Items.Sum (r => r.Impuestos);
-			}
-		}
+        decimal IComprobante.Tributos
+        {
+            get
+            {
+                return Items.Sum(r => r.Impuestos);
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region IComprobanteBase
+        #region IComprobanteBase
 
-		string IComprobanteBase.Comprobante {
-			get {
-				return ToString ();
-			}
-		}
+        string IComprobanteBase.Comprobante
+        {
+            get
+            {
+                return ToString();
+            }
+        }
 
-		DateTime IComprobanteBase.Emision {
-			get { 
-				return Emision.Date;
-			}
-		}
+        DateTime IComprobanteBase.Emision
+        {
+            get
+            {
+                return Emision.Date;
+            }
+        }
 
-		IResponsable IComprobanteBase.Responsable {
-			get {
-				return Proveedor;
-			}
-		}
+        IResponsable IComprobanteBase.Responsable
+        {
+            get
+            {
+                return Proveedor;
+            }
+        }
 
-		decimal IComprobanteBase.Total {
-			get {
-				return Items.Sum (r => r.Total);
-			}
-		}
+        decimal IComprobanteBase.Total
+        {
+            get
+            {
+                return Items.Sum(r => r.Total);
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

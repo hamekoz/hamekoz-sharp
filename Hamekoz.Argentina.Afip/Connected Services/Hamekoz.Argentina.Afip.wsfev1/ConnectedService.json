@@ -2,17 +2,13 @@
   "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
   "Version": "15.0.40203.910",
   "ExtendedData": {
-    "inputs": [
-      "https://servicios1.afip.gov.ar/wsfev1/service.asmx"
-    ],
+    "inputs": ["https://servicios1.afip.gov.ar/wsfev1/service.asmx"],
     "collectionTypes": [
       "System.Collections.Generic.Dictionary`2",
       "System.Collections.Generic.List`1"
     ],
     "messageContract": true,
-    "namespaceMappings": [
-      "*, Hamekoz.Argentina.Afip.wsfev1"
-    ],
+    "namespaceMappings": ["*, Hamekoz.Argentina.Afip.wsfev1"],
     "references": [
       "D:\\Documents\\GitHub\\hamekoz-sharp\\Hamekoz.Argentina.Afip\\bin\\Debug\\netstandard2.1\\Hamekoz.Core.dll",
       "D:\\Documents\\GitHub\\hamekoz-sharp\\Hamekoz.Argentina.Afip\\bin\\Debug\\netstandard2.1\\Hamekoz.Data.dll",

@@ -22,13 +22,12 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public class Columna
-	{
-		public String Nombre { get; set; }
+    public class Columna
+    {
+        public String Nombre { get; set; }
 
-		public int Ancho { get; set; }
+        public int Ancho { get; set; }
 
-		public Alineaciones Alineacion { get; set; }
-	}
+        public Alineaciones Alineacion { get; set; }
+    }
 }
-

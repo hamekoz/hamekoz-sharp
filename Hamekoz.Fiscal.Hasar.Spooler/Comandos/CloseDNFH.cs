@@ -21,20 +21,19 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class CloseDNFH : Comando
-	{
-		const string cmd = "ü";
+    public class CloseDNFH : Comando
+    {
+        const string cmd = "ü";
 
-		public int NroDNFHEmitido { get; set; }
+        public int NroDNFHEmitido { get; set; }
 
-		public string Comando ()
-		{
-			return string.Format ("{0}", cmd, separador, NroDNFHEmitido);
-		}
+        public string Comando()
+        {
+            return string.Format("{0}", cmd, separador, NroDNFHEmitido);
+        }
 
-		public CloseDNFH ()
-		{
-		}
-	}
+        public CloseDNFH()
+        {
+        }
+    }
 }
-

@@ -22,85 +22,100 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Moneda : IPersistible, IIdentifiable
-	{
-		#region Singleton
+    public partial class Moneda : IPersistible, IIdentifiable
+    {
+        #region Singleton
 
-		//HACK para manejar la moneda por defecto, deberia utilizar un controlador y un parametro global de la aplicacion
+        //HACK para manejar la moneda por defecto, deberia utilizar un controlador y un parametro global de la aplicacion
 
-		/// <summary>
-		/// Instancia unica del patron sigleton
-		/// </summary>
-		static Moneda moneda;
+        /// <summary>
+        /// Instancia unica del patron sigleton
+        /// </summary>
+        static Moneda moneda;
 
-		/// <summary>
-		/// Obtiene una instancia unica de Moneda
-		/// </summary>
-		public static Moneda Default {
-			get {
-				if (moneda == null) {
-					moneda = new Moneda {
-						Id = 1,
-						Codigo = "ARS",
-						Nombre = "PESO",
-						Simbolo = "$",
-						Cotizacion = 1,
-					};
-				}
-				return moneda;
-			}
-		}
+        /// <summary>
+        /// Obtiene una instancia unica de Moneda
+        /// </summary>
+        public static Moneda Default
+        {
+            get
+            {
+                if (moneda == null)
+                {
+                    moneda = new Moneda
+                    {
+                        Id = 1,
+                        Codigo = "ARS",
+                        Nombre = "PESO",
+                        Simbolo = "$",
+                        Cotizacion = 1,
+                    };
+                }
+                return moneda;
+            }
+        }
 
-		#endregion
+        #endregion
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Codigo {
-			get;
-			set;
-		}
+        public string Codigo
+        {
+            get;
+            set;
+        }
 
-		public int Numero {
-			get;
-			set;
-		}
+        public int Numero
+        {
+            get;
+            set;
+        }
 
-		public string Simbolo {
-			get;
-			set;
-		}
+        public string Simbolo
+        {
+            get;
+            set;
+        }
 
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		public int Decimales {
-			get;
-			set;
-		}
+        public int Decimales
+        {
+            get;
+            set;
+        }
 
-		public decimal Cotizacion {
-			get;
-			set;
-		}
+        public decimal Cotizacion
+        {
+            get;
+            set;
+        }
 
-		public bool Obsoleta {
-			get;
-			set;
-		}
+        public bool Obsoleta
+        {
+            get;
+            set;
+        }
 
-		public decimal CotizacionInversa ()
-		{
-			if (Cotizacion == 0) {
-				return 0;
-			} else {
-				return 1 / Cotizacion;
-			}
-		}
-	}
+        public decimal CotizacionInversa()
+        {
+            if (Cotizacion == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1 / Cotizacion;
+            }
+        }
+    }
 }

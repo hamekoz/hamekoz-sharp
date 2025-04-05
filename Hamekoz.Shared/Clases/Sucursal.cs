@@ -22,63 +22,81 @@ using System.Collections.Generic;
 
 namespace Hamekoz.Negocio
 {
-	//UNDONE completar clase sucursal
-	public partial class Sucursal : CentroDeCosto
-	{
-		string nombre;
-		//TODO hay que separar la logica de centro de costo de la sucursal y hacer Nombre autopropiedad
-		public string Nombre {
-			get {
-				return Descripcion;
-			}
-			set {
-				Descripcion = value;
-			}
-		}
+    //UNDONE completar clase sucursal
+    public partial class Sucursal : CentroDeCosto
 
-		public Estados Estado {
-			get;
-			set;
-		}
+    /* Cambio no fusionado mediante combinación del proyecto 'Hamekoz.Core(net9.0)'
+    Antes:
+            string nombre;
+    Después:
+            readonly string nombre;
+    */
+    {
+        readonly string nombre;
+        //TODO hay que separar la logica de centro de costo de la sucursal y hacer Nombre autopropiedad
+        public string Nombre
+        {
+            get
+            {
+                return Descripcion;
+            }
+            set
+            {
+                Descripcion = value;
+            }
+        }
 
-		public Domicilio Domicilio {
-			get;
-			set;
-		}
+        public Estados Estado
+        {
+            get;
+            set;
+        }
 
-		public string Telefono {
-			get;
-			set;
-		}
+        public Domicilio Domicilio
+        {
+            get;
+            set;
+        }
 
-		public string Fax {
-			get;
-			set;
-		}
+        public string Telefono
+        {
+            get;
+            set;
+        }
 
-		public string Email {
-			get;
-			set;
-		}
+        public string Fax
+        {
+            get;
+            set;
+        }
 
-		public ListaDePrecios ListaDePrecios {
-			get;
-			set;
-		}
+        public string Email
+        {
+            get;
+            set;
+        }
 
-		public IList<Contacto> Contactos {
-			get;
-			set;
-		}
+        public ListaDePrecios ListaDePrecios
+        {
+            get;
+            set;
+        }
 
-		public string Observaciones {
-			get;
-			set;
-		}
+        public IList<Contacto> Contactos
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
-	}
+        public string Observaciones
+        {
+            get;
+            set;
+        }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
+    }
 }

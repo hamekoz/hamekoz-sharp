@@ -20,74 +20,82 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Negocio;
 
 namespace Hamekoz.Argentina.Sifere
 {
-	public class RegistroRecaudacionesBancarias
-	{
-		public string CodigoJurisdiccion {
-			get;
-			set;
-		}
+    public class RegistroRecaudacionesBancarias
+    {
+        public string CodigoJurisdiccion
+        {
+            get;
+            set;
+        }
 
-		public string Periodo {
-			get;
-			set;
-		}
+        public string Periodo
+        {
+            get;
+            set;
+        }
 
 
-		public string TipoCuenta {
-			get;
-			set;
-		}
+        public string TipoCuenta
+        {
+            get;
+            set;
+        }
 
-		public string TipoMoneda {
-			get;
-			set;
-		}
+        public string TipoMoneda
+        {
+            get;
+            set;
+        }
 
-		public string CUIT {
-			get;
-			set;
-		}
+        public string CUIT
+        {
+            get;
+            set;
+        }
 
-		public string CBU {
-			get;
-			set;
-		}
+        public string CBU
+        {
+            get;
+            set;
+        }
 
-		public Banco Banco {
-			get;
-			set;
-		}
+        public Banco Banco
+        {
+            get;
+            set;
+        }
 
-		public string Importe {
-			get;
-			set;
-		}
+        public string Importe
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Tos the fixed string.
-		/// </summary>
-		/// <returns>The fixed string.</returns>
-		/// <see href="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
-		public string ToFixedString ()
-		{
-			string cadena;
-			cadena = string.Format ("{0:D}{1}{2}{3}{4}{5}{6}"
-				, CodigoJurisdiccion
-				, CUIT
-				, Periodo
-				, CBU
-				, TipoCuenta
-				, TipoMoneda
-				, Importe.PadLeft (10, '0')
-			);
-			if (cadena.Length != 58)
-				throw new Exception (string.Format ("La longitud del registro a exportar es incorrecta.\nCodigo: {0} Periodo: {1}, Importe: {2}", CodigoJurisdiccion, Periodo, Importe));
-			return cadena;
-		}
-	}
+        /// <summary>
+        /// Tos the fixed string.
+        /// </summary>
+        /// <returns>The fixed string.</returns>
+        /// <see href="http://www.agip.gov.ar/web/files/DocTecnicoImpoOperacionesDise%F1odeRegistro.pdf"/>
+        public string ToFixedString()
+        {
+            string cadena;
+            cadena = string.Format("{0:D}{1}{2}{3}{4}{5}{6}"
+                , CodigoJurisdiccion
+                , CUIT
+                , Periodo
+                , CBU
+                , TipoCuenta
+                , TipoMoneda
+                , Importe.PadLeft(10, '0')
+            );
+            if (cadena.Length != 58)
+                throw new Exception(string.Format("La longitud del registro a exportar es incorrecta.\nCodigo: {0} Periodo: {1}, Importe: {2}", CodigoJurisdiccion, Periodo, Importe));
+            return cadena;
+        }
+    }
 }
-

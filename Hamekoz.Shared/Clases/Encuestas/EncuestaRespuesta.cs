@@ -19,29 +19,29 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class EncuestaRespuesta: IPersistible
-	{
-		#region IPersistible implementation
+    public partial class EncuestaRespuesta : IPersistible
+    {
+        #region IPersistible implementation
 
-		public int Id { get; set; }
+        public int Id { get; set; }
 
-		#endregion
+        #endregion
 
-		public string Descripcion { get; set; }
-
-
-		//Respuesta de tipo Abierta o Seleccionable
-		public string Comentario { get; set; }
-
-		public bool Seleccionda { get; set; }
-
-		public short Valor { get; set; }
+        public string Descripcion { get; set; }
 
 
-	}
+        //Respuesta de tipo Abierta o Seleccionable
+        public string Comentario { get; set; }
+
+        public bool Seleccionda { get; set; }
+
+        public short Valor { get; set; }
+
+
+    }
 }
-

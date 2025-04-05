@@ -21,51 +21,50 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class GetDailyReport : Comando
-	{
-		const string cmd = "<";
+    public class GetDailyReport : Comando
+    {
+        const string cmd = "<";
 
-		public string FechaCierre { get; set; }
+        public string FechaCierre { get; set; }
 
-		public int NroZ { get; set; }
+        public int NroZ { get; set; }
 
-		public int NroUltimoTicket { get; set; }
+        public int NroUltimoTicket { get; set; }
 
-		public int NroUltimoFacturaA { get; set; }
+        public int NroUltimoFacturaA { get; set; }
 
-		public float MontoVendido { get; set; }
+        public float MontoVendido { get; set; }
 
-		public float IVA { get; set; }
+        public float IVA { get; set; }
 
-		public float ImpuestosInternos { get; set; }
+        public float ImpuestosInternos { get; set; }
 
-		public float MontoPercepciones { get; set; }
+        public float MontoPercepciones { get; set; }
 
-		public int NroUltimoNC { get; set; }
+        public int NroUltimoNC { get; set; }
 
-		public int NroUltimoNCA { get; set; }
+        public int NroUltimoNCA { get; set; }
 
-		public float MontoCreditoNC { get; set; }
+        public float MontoCreditoNC { get; set; }
 
-		public float MontoIVANC { get; set; }
+        public float MontoIVANC { get; set; }
 
-		public float MontoImpuestosInternosNC { get; set; }
+        public float MontoImpuestosInternosNC { get; set; }
 
-		public float MontoPercepcionesNC { get; set; }
+        public float MontoPercepcionesNC { get; set; }
 
-		readonly string nroZOFecha;
-		readonly string calificador;
+        readonly string nroZOFecha;
+        readonly string calificador;
 
-		public string Comando ()
-		{
-			return string.Format ("{0}{1}{2}{1}{3}", cmd, separador, nroZOFecha, calificador);
-		}
+        public string Comando()
+        {
+            return string.Format("{0}{1}{2}{1}{3}", cmd, separador, nroZOFecha, calificador);
+        }
 
-		public GetDailyReport (string nroZOFecha, string calificador)
-		{
-			this.nroZOFecha = nroZOFecha;
-			this.calificador = calificador;
-		}
-	}
+        public GetDailyReport(string nroZOFecha, string calificador)
+        {
+            this.nroZOFecha = nroZOFecha;
+            this.calificador = calificador;
+        }
+    }
 }
-

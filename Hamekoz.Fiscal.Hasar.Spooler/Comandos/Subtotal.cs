@@ -21,31 +21,30 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class Subtotal : Comando
-	{
-		const string cmd = "C";
+    public class Subtotal : Comando
+    {
+        const string cmd = "C";
 
-		public float CantidadItemsVendidos { get; set; }
+        public float CantidadItemsVendidos { get; set; }
 
-		public float MontoVentas { get; set; }
+        public float MontoVentas { get; set; }
 
-		public float MontoIVA { get; set; }
+        public float MontoIVA { get; set; }
 
-		public float MontoPagado { get; set; }
+        public float MontoPagado { get; set; }
 
-		public float MontoImpuestosInternos { get; set; }
+        public float MontoImpuestosInternos { get; set; }
 
-		readonly string impresion;
+        readonly string impresion;
 
-		public string Comando ()
-		{
-			return string.Format ("{0}{1}{2}{1}{3}{1}{4}", cmd, separador, impresion, 0, 0);
-		}
+        public string Comando()
+        {
+            return string.Format("{0}{1}{2}{1}{3}{1}{4}", cmd, separador, impresion, 0, 0);
+        }
 
-		public Subtotal (string impresion)
-		{
-			this.impresion = impresion;
-		}
-	}
+        public Subtotal(string impresion)
+        {
+            this.impresion = impresion;
+        }
+    }
 }
-
