@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net9.0</TargetFrameworks>
+    <TargetFramework>net9.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Claudio Rodrigo Pereyra Diaz</Authors>
     <Company>Hamekoz</Company>
