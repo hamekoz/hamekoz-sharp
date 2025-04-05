@@ -22,31 +22,33 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Agencia : IPersistible, IIdentifiable
-	{
-		#region IIdentifiable implementation
+    public partial class Agencia : IPersistible, IIdentifiable
+    {
+        #region IIdentifiable implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		public bool Inactiva {
-			get;
-			set;
-		}
+        public bool Inactiva
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
-	}
+        public override string ToString()
+        {
+            return Nombre;
+        }
+    }
 }
-

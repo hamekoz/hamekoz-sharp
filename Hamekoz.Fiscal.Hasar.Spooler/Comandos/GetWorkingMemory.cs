@@ -21,46 +21,45 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class GetWorkingMemory
-	{
-		const string cmd = "g";
+    public class GetWorkingMemory
+    {
+        const string cmd = "g";
 
-		public int CantidadTicketsCancelados { get; set; }
+        public int CantidadTicketsCancelados { get; set; }
 
-		public int CantidadDocNoFiscalesEmitidos { get; set; }
+        public int CantidadDocNoFiscalesEmitidos { get; set; }
 
-		public int CantidadDocFiscalesEmitidos { get; set; }
+        public int CantidadDocFiscalesEmitidos { get; set; }
 
-		public int NroUltimoTicketEmitido { get; set; }
+        public int NroUltimoTicketEmitido { get; set; }
 
-		public int NroUltimoDocFiscalAEmitido { get; set; }
+        public int NroUltimoDocFiscalAEmitido { get; set; }
 
-		public float MontoVentasEnDocFiscales { get; set; }
+        public float MontoVentasEnDocFiscales { get; set; }
 
-		public float MontoIVAEnDocFicales { get; set; }
+        public float MontoIVAEnDocFicales { get; set; }
 
-		public float MontoImpuestosInternosEnDocFiscales { get; set; }
+        public float MontoImpuestosInternosEnDocFiscales { get; set; }
 
-		public float MontoPercepcionesEnDocFiscales { get; set; }
+        public float MontoPercepcionesEnDocFiscales { get; set; }
 
-		public int NroUltimoTicketNCEmitido { get; set; }
+        public int NroUltimoTicketNCEmitido { get; set; }
 
-		public int NroUltimoTIcketNCAEmitido  { get; set; }
+        public int NroUltimoTIcketNCAEmitido { get; set; }
 
-		public float MontoCreditoNC { get; set; }
+        public float MontoCreditoNC { get; set; }
 
-		public float MontoIVANC { get; set; }
+        public float MontoIVANC { get; set; }
 
-		public float MontoImpuestosInternosNC { get; set; }
+        public float MontoImpuestosInternosNC { get; set; }
 
-		public float MontoPercepcionesNC { get; set; }
+        public float MontoPercepcionesNC { get; set; }
 
-		public int CantidadNCCanceladas { get; set; }
+        public int CantidadNCCanceladas { get; set; }
 
-		public string Comando ()
-		{
-			return cmd;
-		}
-	}
+        public string Comando()
+        {
+            return cmd;
+        }
+    }
 }
-

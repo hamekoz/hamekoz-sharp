@@ -19,119 +19,140 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Argentina;
 using Hamekoz.Core;
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Cliente : IPersistible, IIdentifiable, IDescriptible, IResponsable
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class Cliente : IPersistible, IIdentifiable, IDescriptible, IResponsable
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		//TODO CUIT y DNI se podrian unificar en una unica propiedad
-		public string CUIT {
-			get;
-			set;
-		}
+        //TODO CUIT y DNI se podrian unificar en una unica propiedad
+        public string CUIT
+        {
+            get;
+            set;
+        }
 
-		public string DNI {
-			get;
-			set;
-		}
+        public string DNI
+        {
+            get;
+            set;
+        }
 
-		public string RazonSocial {
-			get;
-			set;
-		}
+        public string RazonSocial
+        {
+            get;
+            set;
+        }
 
-		public string NombreFantasia {
-			get;
-			set;
-		}
+        public string NombreFantasia
+        {
+            get;
+            set;
+        }
 
-		public Estados Estado {
-			get;
-			set;
-		}
+        public Estados Estado
+        {
+            get;
+            set;
+        }
 
-		public TipoDeResponsable Tipo {
-			get;
-			set;
-		}
+        public TipoDeResponsable Tipo
+        {
+            get;
+            set;
+        }
 
-		public CondicionDePago CondicionDePago {
-			get;
-			set;
-		}
+        public CondicionDePago CondicionDePago
+        {
+            get;
+            set;
+        }
 
-		public Domicilio Domicilio {
-			get;
-			set;
-		} = new Domicilio();
+        public Domicilio Domicilio
+        {
+            get;
+            set;
+        } = new Domicilio();
 
-		public CondicionDeIngresosBrutos CondicionDeIngresosBrutos {
-			get;
-			set;
-		}
+        public CondicionDeIngresosBrutos CondicionDeIngresosBrutos
+        {
+            get;
+            set;
+        }
 
-		public string IIBB {
-			get;
-			set;
-		}
+        public string IIBB
+        {
+            get;
+            set;
+        }
 
-		public string Telefono {
-			get;
-			set;
-		}
+        public string Telefono
+        {
+            get;
+            set;
+        }
 
-		public string Email {
-			get;
-			set;
-		}
+        public string Email
+        {
+            get;
+            set;
+        }
 
-		public ListaDePrecios ListaDePrecios {
-			get;
-			set;
-		}
+        public ListaDePrecios ListaDePrecios
+        {
+            get;
+            set;
+        }
 
-		public int TarjetaDeFidelizacion {
-			get;
-			set;
-		}
+        public int TarjetaDeFidelizacion
+        {
+            get;
+            set;
+        }
 
-		public DateTime Aniversario {
-			get;
-			set;
-		}
+        public DateTime Aniversario
+        {
+            get;
+            set;
+        }
 
-		public Cliente ()
-		{
-			CUIT = string.Empty;
-			RazonSocial = string.Empty;
-			Tipo = TipoDeResponsable.Consumidor_Final;
-			Estado = Estados.Gestion;
-			ListaDePrecios = new ListaDePrecios ();
-		}
+        public Cliente()
+        {
+            CUIT = string.Empty;
+            RazonSocial = string.Empty;
+            Tipo = TipoDeResponsable.Consumidor_Final;
+            Estado = Estados.Gestion;
+            ListaDePrecios = new ListaDePrecios();
+        }
 
-		public override string ToString ()
-		{
-			return string.Format ("{0} ({1})", RazonSocial, CUIT.Formato ());
-		}
+        public override string ToString()
+        {
+            return string.Format("{0} ({1})", RazonSocial, CUIT.Formato());
+        }
 
-		string IDescriptible.Descripcion {
-			get {
-				return RazonSocial;
-			}
-		}
+        string IDescriptible.Descripcion
+        {
+            get
+            {
+                return RazonSocial;
+            }
+        }
 
-		string IResponsable.Domicilio {
-			get {
-				return Domicilio.ToString ();
-			}
-		}
-	}
+        string IResponsable.Domicilio
+        {
+            get
+            {
+                return Domicilio.ToString();
+            }
+        }
+    }
 }

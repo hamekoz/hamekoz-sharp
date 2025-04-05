@@ -23,7 +23,7 @@ using System;
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public struct A
-	{
-	}
+    public struct A
+    {
+    }
 }

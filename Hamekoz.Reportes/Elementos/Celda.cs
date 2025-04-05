@@ -22,13 +22,12 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public class Celda
-	{
-		public Object Dato { get; set; }
+    public class Celda
+    {
+        public Object Dato { get; set; }
 
-		public Alineaciones Alineacion { get; set; }
+        public Alineaciones Alineacion { get; set; }
 
-		public CeldaEstilos Estilo { get; set; }
-	}
+        public CeldaEstilos Estilo { get; set; }
+    }
 }
-

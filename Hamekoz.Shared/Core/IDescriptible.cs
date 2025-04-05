@@ -21,19 +21,18 @@
 
 namespace Hamekoz.Core
 {
-	public interface IDescriptible
-	{
-		/// <summary>
-		/// Gets the unique identifier.
-		/// </summary>
-		/// <value>The identifier.</value>
-		int Id { get; }
+    public interface IDescriptible
+    {
+        /// <summary>
+        /// Gets the unique identifier.
+        /// </summary>
+        /// <value>The identifier.</value>
+        int Id { get; }
 
-		/// <summary>
-		/// Gets the descripcion.
-		/// </summary>
-		/// <value>The descripcion.</value>
-		string Descripcion { get; }
-	}
+        /// <summary>
+        /// Gets the descripcion.
+        /// </summary>
+        /// <value>The descripcion.</value>
+        string Descripcion { get; }
+    }
 }
-

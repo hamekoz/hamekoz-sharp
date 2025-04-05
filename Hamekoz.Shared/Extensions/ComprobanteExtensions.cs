@@ -19,17 +19,17 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Text.RegularExpressions;
+
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	public static class ComprobanteExtensions
-	{
-		public static bool FormatoDeNumeroValido (this IComprobante comprobante)
-		{
-			var regex = new Regex (@"[0-9]{4}-[0-9]{8}$");
-			return regex.IsMatch (comprobante.Numero);
-		}
-	}
+    public static class ComprobanteExtensions
+    {
+        public static bool FormatoDeNumeroValido(this IComprobante comprobante)
+        {
+            var regex = new Regex(@"[0-9]{4}-[0-9]{8}$");
+            return regex.IsMatch(comprobante.Numero);
+        }
+    }
 }
-

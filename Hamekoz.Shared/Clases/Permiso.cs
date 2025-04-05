@@ -20,41 +20,48 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 namespace Hamekoz.Core
 {
-	public partial class Permiso
-	{
-		public int Guid {
-			get;
-			set;
-		}
+    public partial class Permiso
+    {
+        public int Guid
+        {
+            get;
+            set;
+        }
 
-		public bool Acceso {
-			get;
-			set;
-		}
+        public bool Acceso
+        {
+            get;
+            set;
+        }
 
-		public bool Agregar {
-			get;
-			set;
-		}
+        public bool Agregar
+        {
+            get;
+            set;
+        }
 
-		public bool Modificar {
-			get;
-			set;
-		}
+        public bool Modificar
+        {
+            get;
+            set;
+        }
 
-		public bool Eliminar {
-			get;
-			set;
-		}
+        public bool Eliminar
+        {
+            get;
+            set;
+        }
 
-		public bool Imprimir {
-			get;
-			set;
-		}
+        public bool Imprimir
+        {
+            get;
+            set;
+        }
 
-		public bool OtrasAcciones {
-			get;
-			set;
-		}
-	}
+        public bool OtrasAcciones
+        {
+            get;
+            set;
+        }
+    }
 }

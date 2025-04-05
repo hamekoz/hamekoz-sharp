@@ -22,25 +22,25 @@ using System.Linq;
 
 namespace Hamekoz.Argentina
 {
-	public static class CBU
-	{
-		public static bool ValidarCBU (this string cbu)
-		{
-			if (cbu == null)
-				return false;
-			if (cbu == string.Empty)
-				return false;
-			cbu = cbu.Replace ("-", string.Empty);
-			cbu = cbu.Replace (" ", string.Empty);
-			if (cbu.Length != 22)
-				return false;
-			if (!cbu.All (char.IsDigit))
-				return false;
+    public static class CBU
+    {
+        public static bool ValidarCBU(this string cbu)
+        {
+            if (cbu == null)
+                return false;
+            if (cbu == string.Empty)
+                return false;
+            cbu = cbu.Replace("-", string.Empty);
+            cbu = cbu.Replace(" ", string.Empty);
+            if (cbu.Length != 22)
+                return false;
+            if (!cbu.All(char.IsDigit))
+                return false;
 
-			//TODO completar algoritmo de verificacion
-			//https://es.wikipedia.org/wiki/Clave_Bancaria_Uniforme
-			return true;
-		}
+            //TODO completar algoritmo de verificacion
+            //https://es.wikipedia.org/wiki/Clave_Bancaria_Uniforme
+            return true;
+        }
 
         public static string ComponerCBU(CodigoDeBanco banco, int sucursal, string cuenta)
         {
@@ -173,4 +173,3 @@ namespace Hamekoz.Argentina
         }
     }
 }
-

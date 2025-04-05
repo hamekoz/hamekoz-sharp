@@ -21,15 +21,15 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public enum OpcionComando
-	{
-		/// <summary>
-		/// P
-		/// </summary>
-		SI,
-		/// <summary>
-		/// A
-		/// </summary>
-		NO
-	}
+    public enum OpcionComando
+    {
+        /// <summary>
+        /// P
+        /// </summary>
+        SI,
+        /// <summary>
+        /// A
+        /// </summary>
+        NO
+    }
 }

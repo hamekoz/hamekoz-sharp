@@ -22,14 +22,14 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	//UNDONE completar clase lote
-	public partial class Lote : IPersistible, IIdentifiable
-	{
-		public int Id { get; set; }
+    //UNDONE completar clase lote
+    public partial class Lote : IPersistible, IIdentifiable
+    {
+        public int Id { get; set; }
 
-		public override string ToString ()
-		{
-			return Id.ToString ();
-		}
-	}
+        public override string ToString()
+        {
+            return Id.ToString();
+        }
+    }
 }

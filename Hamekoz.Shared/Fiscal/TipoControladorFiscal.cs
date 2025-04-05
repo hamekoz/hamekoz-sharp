@@ -21,13 +21,13 @@
 
 namespace Hamekoz.Fiscal
 {
-	public enum TipoDeControladorFiscal
-	{
-		SIN_DATO = 0,
-		IMPRESORA_FISCAL = 1,
-		CAJA_REGISTRADORA = 2,
-		FORMULARIO_PREIMPRESO = 3,
-		FACTURA_MANUAL = 4,
-		FACTURA_DIGITAL = 5,
-	}
+    public enum TipoDeControladorFiscal
+    {
+        SIN_DATO = 0,
+        IMPRESORA_FISCAL = 1,
+        CAJA_REGISTRADORA = 2,
+        FORMULARIO_PREIMPRESO = 3,
+        FACTURA_MANUAL = 4,
+        FACTURA_DIGITAL = 5,
+    }
 }

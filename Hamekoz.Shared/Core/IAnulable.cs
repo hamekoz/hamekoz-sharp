@@ -22,9 +22,8 @@ using System;
 
 namespace Hamekoz
 {
-	public interface IAnulable
-	{
-		bool Anulado { get; }
-	}
+    public interface IAnulable
+    {
+        bool Anulado { get; }
+    }
 }
-

@@ -20,61 +20,72 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class AsientoItem : IPersistible, IIdentifiable
-	{
-		//HACK no deberia tener constructor
-		public AsientoItem ()
-		{
-			CuentaContable = new CuentaContable ();
-			CentroDeCosto = new CentroDeCosto ();
-		}
+    public partial class AsientoItem : IPersistible, IIdentifiable
+    {
+        //HACK no deberia tener constructor
+        public AsientoItem()
+        {
+            CuentaContable = new CuentaContable();
+            CentroDeCosto = new CentroDeCosto();
+        }
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public CuentaContable CuentaContable {
-			get;
-			set;
-		}
+        public CuentaContable CuentaContable
+        {
+            get;
+            set;
+        }
 
-		internal Cotizacion Cotizacion {
-			get;
-			set;
-		}
+        internal Cotizacion Cotizacion
+        {
+            get;
+            set;
+        }
 
-		decimal debe;
+        decimal debe;
 
-		public decimal Debe {
-			get {
-				return Math.Round (debe, 2);
-			}
-			set {
-				debe = value;
-			}
-		}
+        public decimal Debe
+        {
+            get
+            {
+                return Math.Round(debe, 2);
+            }
+            set
+            {
+                debe = value;
+            }
+        }
 
-		decimal haber;
+        decimal haber;
 
-		public decimal Haber {
-			get {
-				return Math.Round (haber, 2);
-			}
-			set {
-				haber = value;
-			}
-		}
+        public decimal Haber
+        {
+            get
+            {
+                return Math.Round(haber, 2);
+            }
+            set
+            {
+                haber = value;
+            }
+        }
 
-		public CentroDeCosto CentroDeCosto {
-			get;
-			set;
-		}
+        public CentroDeCosto CentroDeCosto
+        {
+            get;
+            set;
+        }
 
-		public Cheque Cheque;
-	}
+        public Cheque Cheque;
+    }
 }

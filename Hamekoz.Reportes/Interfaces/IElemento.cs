@@ -22,8 +22,8 @@ using iTextSharp.text;
 
 namespace Hamekoz.Reportes
 {
-	public interface IElemento
-	{
-		IElement GetElemento ();
-	}
+    public interface IElemento
+    {
+        IElement GetElemento();
+    }
 }

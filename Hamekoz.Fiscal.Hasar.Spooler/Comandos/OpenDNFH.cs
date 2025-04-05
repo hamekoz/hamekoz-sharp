@@ -22,29 +22,28 @@
 //TODO revisar el parametro con codigo comentado
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class OpenDNFH : Comando
-	{
-		const string cmd = "Ç";
+    public class OpenDNFH : Comando
+    {
+        const string cmd = "Ç";
 
-		public int NroDNFHAbierto { get; set; }
+        public int NroDNFHAbierto { get; set; }
 
-		readonly string tipoDocumento;
-		//string identificacionNroDocumento;
+        readonly string tipoDocumento;
+        //string identificacionNroDocumento;
 
-		//Encoding enc = Encoding.GetEncoding(437);
-		//const string cmd = enc.GetString(new byte[]{128});
+        //Encoding enc = Encoding.GetEncoding(437);
+        //const string cmd = enc.GetString(new byte[]{128});
 
-		public string Comando ()
-		{
-			//return string.Format("{0}{1}{2}{1}{3}{1}{4}",cmd,separador,TipoDocumento,"S",identificacionNroDocumento);
-			return string.Format ("{0}{1}{2}{1}{3}", cmd, separador, tipoDocumento, "T");
-		}
+        public string Comando()
+        {
+            //return string.Format("{0}{1}{2}{1}{3}{1}{4}",cmd,separador,TipoDocumento,"S",identificacionNroDocumento);
+            return string.Format("{0}{1}{2}{1}{3}", cmd, separador, tipoDocumento, "T");
+        }
 
-		public OpenDNFH (string tipoDocumento, string identificacionNroDocumento)
-		{
-			this.tipoDocumento = tipoDocumento;
-			//this.identificacionNroDocumento = identificacionNroDocumento;
-		}
-	}
+        public OpenDNFH(string tipoDocumento, string identificacionNroDocumento)
+        {
+            this.tipoDocumento = tipoDocumento;
+            //this.identificacionNroDocumento = identificacionNroDocumento;
+        }
+    }
 }
-

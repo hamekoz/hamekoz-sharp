@@ -21,37 +21,37 @@
 
 namespace Hamekoz.Core
 {
-	/// <summary>
-	/// Mark a class as data persistible.
-	/// </summary>
-	public interface IPersistible
-	{
-	}
+    /// <summary>
+    /// Mark a class as data persistible.
+    /// </summary>
+    public interface IPersistible
+    {
+    }
 
-	public interface IPersistible<T> where T : IPersistible
-	{
-		/// <summary>
-		/// Read the specified instance.
-		/// </summary>
-		/// <param name="instance">Instance.</param>
-		void Read (T instance);
+    public interface IPersistible<T> where T : IPersistible
+    {
+        /// <summary>
+        /// Read the specified instance.
+        /// </summary>
+        /// <param name="instance">Instance.</param>
+        void Read(T instance);
 
-		/// <summary>
-		/// Insert the specified instance.
-		/// </summary>
-		/// <param name="instance">Instance.</param>
-		void Insert (T instance);
+        /// <summary>
+        /// Insert the specified instance.
+        /// </summary>
+        /// <param name="instance">Instance.</param>
+        void Insert(T instance);
 
-		/// <summary>
-		/// Update the specified instance.
-		/// </summary>
-		/// <param name="instance">Instance.</param>
-		void Update (T instance);
+        /// <summary>
+        /// Update the specified instance.
+        /// </summary>
+        /// <param name="instance">Instance.</param>
+        void Update(T instance);
 
-		/// <summary>
-		/// Delete the specified instance.
-		/// </summary>
-		/// <param name="instance">Instance.</param>
-		void Delete (T instance);
-	}
+        /// <summary>
+        /// Delete the specified instance.
+        /// </summary>
+        /// <param name="instance">Instance.</param>
+        void Delete(T instance);
+    }
 }

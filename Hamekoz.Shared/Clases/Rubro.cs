@@ -23,26 +23,29 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Rubro : IPersistible, IIdentifiable, IDescriptible
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class Rubro : IPersistible, IIdentifiable, IDescriptible
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Descripcion {
-			get;
-			set;
-		}
+        public string Descripcion
+        {
+            get;
+            set;
+        }
 
-		public bool Inactivo {
-			get;
-			set;
-		}
+        public bool Inactivo
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Descripcion;
-		}
-	}
+        public override string ToString()
+        {
+            return Descripcion;
+        }
+    }
 }

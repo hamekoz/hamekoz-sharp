@@ -22,21 +22,20 @@ using System;
 
 namespace Hamekoz.Reportes
 {
-	public interface IParametroRangoNumerico
-	{
-		string Label { get; }
+    public interface IParametroRangoNumerico
+    {
+        string Label { get; }
 
-		double Desde { get; set; }
+        double Desde { get; set; }
 
-		double Hasta { get; set; }
+        double Hasta { get; set; }
 
-		int Digitos { get; }
+        int Digitos { get; }
 
-		double Incremento { get; }
+        double Incremento { get; }
 
-		double Minimo { get ; }
+        double Minimo { get; }
 
-		double Maximo { get ; }
-	}
+        double Maximo { get; }
+    }
 }
-

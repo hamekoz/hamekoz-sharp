@@ -21,34 +21,37 @@
 
 namespace Hamekoz.Negocio
 {
-	//TODO renombrar a SituacionDeIngresosBrutos
-	public partial class CondicionDeIngresosBrutos
-	{
-		public TipoDeContribuyenteDeIngresosBrutos Tipo {
-			get;
-			set;
-		}
+    //TODO renombrar a SituacionDeIngresosBrutos
+    public partial class CondicionDeIngresosBrutos
+    {
+        public TipoDeContribuyenteDeIngresosBrutos Tipo
+        {
+            get;
+            set;
+        }
 
-		public JurisdiccionDeIngresosBrutos Jurisdiccion {
-			get;
-			set;
-		}
+        public JurisdiccionDeIngresosBrutos Jurisdiccion
+        {
+            get;
+            set;
+        }
 
-		public string Numero {
-			get;
-			set;
-		}
+        public string Numero
+        {
+            get;
+            set;
+        }
 
-		public CondicionDeIngresosBrutos ()
-		{
-			//FIX aca no deberia inicializarse objetos
-			Tipo = new TipoDeContribuyenteDeIngresosBrutos ();
-			Jurisdiccion = new JurisdiccionDeIngresosBrutos ();
-		}
+        public CondicionDeIngresosBrutos()
+        {
+            //FIX aca no deberia inicializarse objetos
+            Tipo = new TipoDeContribuyenteDeIngresosBrutos();
+            Jurisdiccion = new JurisdiccionDeIngresosBrutos();
+        }
 
-		public override string ToString ()
-		{
-			return Tipo.Descripcion;
-		}
-	}
+        public override string ToString()
+        {
+            return Tipo.Descripcion;
+        }
+    }
 }

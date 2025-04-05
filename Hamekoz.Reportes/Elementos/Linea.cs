@@ -23,27 +23,27 @@ using iTextSharp.text.pdf.draw;
 
 namespace Hamekoz.Reportes
 {
-	public class Linea : IElemento
-	{
-		#region IElemento implementation
+    public class Linea : IElemento
+    {
+        #region IElemento implementation
 
-		public IElement GetElemento ()
-		{
-			return new LineSeparator ();
-		}
+        public IElement GetElemento()
+        {
+            return new LineSeparator();
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 
-	public class LineaPunteada : IElemento
-	{
-		#region IElemento implementation
+    public class LineaPunteada : IElemento
+    {
+        #region IElemento implementation
 
-		public IElement GetElemento ()
-		{
-			return new DottedLineSeparator ();
-		}
+        public IElement GetElemento()
+        {
+            return new DottedLineSeparator();
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

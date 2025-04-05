@@ -21,50 +21,49 @@
 
 namespace Hamekoz.Core
 {
-	public interface ICallBack
-	{
-		CallBack CallBack { get; }
-	}
+    public interface ICallBack
+    {
+        CallBack CallBack { get; }
+    }
 
-	public delegate void MessageHandler (string title, string message);
-	public delegate bool ConfirmationHandler (string title, string message);
+    public delegate void MessageHandler(string title, string message);
+    public delegate bool ConfirmationHandler(string title, string message);
 
-	public class CallBack
-	{
-		public event MessageHandler Message;
+    public class CallBack
+    {
+        public event MessageHandler Message;
 
-		public void OnMessage (string title, string message)
-		{
-			var handler = Message;
-			if (handler != null)
-				handler (title, message);
-		}
+        public void OnMessage(string title, string message)
+        {
+            var handler = Message;
+            if (handler != null)
+                handler(title, message);
+        }
 
-		public event MessageHandler Warning;
+        public event MessageHandler Warning;
 
-		public void OnWarning (string title, string message)
-		{
-			var handler = Warning;
-			if (handler != null)
-				handler (title, message);
-		}
+        public void OnWarning(string title, string message)
+        {
+            var handler = Warning;
+            if (handler != null)
+                handler(title, message);
+        }
 
-		public event MessageHandler Error;
+        public event MessageHandler Error;
 
-		public void OnError (string title, string message)
-		{
-			var handler = Error;
-			if (handler != null)
-				handler (title, message);
-		}
+        public void OnError(string title, string message)
+        {
+            var handler = Error;
+            if (handler != null)
+                handler(title, message);
+        }
 
-		public event ConfirmationHandler Confirmation;
+        public event ConfirmationHandler Confirmation;
 
-		public bool OnConfirmation (string title, string message)
-		{
-			var handler = Confirmation;
-			return handler == null || handler (title, message);
-		}
-	}
+        public bool OnConfirmation(string title, string message)
+        {
+            var handler = Confirmation;
+            return handler == null || handler(title, message);
+        }
+    }
 }
-

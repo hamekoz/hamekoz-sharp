@@ -21,24 +21,23 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public class GetConfigurationData
-	{
-		const string cmd = "f";
+    public class GetConfigurationData
+    {
+        const string cmd = "f";
 
-		public float LimiteDatos { get; set; }
+        public float LimiteDatos { get; set; }
 
-		public float LImiteTicket { get; set; }
+        public float LImiteTicket { get; set; }
 
-		public string Cambio { get; set; }
+        public string Cambio { get; set; }
 
-		public string Leyendas { get; set; }
+        public string Leyendas { get; set; }
 
-		public string TipoDeCorte { get; set; }
+        public string TipoDeCorte { get; set; }
 
-		public string Comando ()
-		{
-			return cmd;
-		}
-	}
+        public string Comando()
+        {
+            return cmd;
+        }
+    }
 }
-

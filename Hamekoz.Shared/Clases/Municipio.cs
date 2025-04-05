@@ -20,52 +20,59 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Municipio : IPersistible, IIdentifiable, IDescriptible
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class Municipio : IPersistible, IIdentifiable, IDescriptible
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		public Provincia Provincia {
-			get;
-			set;
-		}
+        public Provincia Provincia
+        {
+            get;
+            set;
+        }
 
-		public bool Inactivo {
-			get;
-			set;
-		}
+        public bool Inactivo
+        {
+            get;
+            set;
+        }
 
-		public IList<Localidad> Localidades {
-			get;
-			set;
-		}
+        public IList<Localidad> Localidades
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
+        public override string ToString()
+        {
+            return Nombre;
+        }
 
-		public string ToFullString ()
-		{
-			return Provincia != null ? string.Format ("{0} - {1}", Provincia, Nombre) : Nombre;
-		}
+        public string ToFullString()
+        {
+            return Provincia != null ? string.Format("{0} - {1}", Provincia, Nombre) : Nombre;
+        }
 
-		string IDescriptible.Descripcion {
-			get {
-				return Nombre;
-			}
-		}
-	}
+        string IDescriptible.Descripcion
+        {
+            get
+            {
+                return Nombre;
+            }
+        }
+    }
 }
-

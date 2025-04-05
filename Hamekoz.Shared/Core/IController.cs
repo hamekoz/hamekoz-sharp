@@ -22,28 +22,27 @@ using System.Collections.Generic;
 
 namespace Hamekoz.Core
 {
-	public interface IController<T>
-	{
-		T Create ();
+    public interface IController<T>
+    {
+        T Create();
 
-		void Load (T instance);
+        void Load(T instance);
 
-		void Save (T instance);
+        void Save(T instance);
 
-		void Remove (T instance);
+        void Remove(T instance);
 
-		IList<T> List { get; }
+        IList<T> List { get; }
 
-		bool Reload { get; set; }
+        bool Reload { get; set; }
 
-		//TODO agregar un metodo para realizar validaciones
-		//bool Validate(T instance);
+        //TODO agregar un metodo para realizar validaciones
+        //bool Validate(T instance);
 
-		//TODO agregar un metodo para realizar acciones o validaciones antes y despues de las acciones que modifican los datos
-		//void BeforeSave(T instance);
-		//void AfterSave(T instance);
-		//void BeforeRemove(T instance);
-		//void AfterRemove(T instance);
-	}
+        //TODO agregar un metodo para realizar acciones o validaciones antes y despues de las acciones que modifican los datos
+        //void BeforeSave(T instance);
+        //void AfterSave(T instance);
+        //void BeforeRemove(T instance);
+        //void AfterRemove(T instance);
+    }
 }
-

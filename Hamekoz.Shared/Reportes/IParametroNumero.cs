@@ -21,19 +21,18 @@
 
 namespace Hamekoz.Reportes
 {
-	public interface IParametroNumero
-	{
-		double Numero { get; set; }
+    public interface IParametroNumero
+    {
+        double Numero { get; set; }
 
-		int Digitos { get; }
+        int Digitos { get; }
 
-		double Minimo { get; }
+        double Minimo { get; }
 
-		double Maximo { get; }
+        double Maximo { get; }
 
-		double Incremento { get; }
+        double Incremento { get; }
 
-		string Etiqueta { get; }
-	}
+        string Etiqueta { get; }
+    }
 }
-

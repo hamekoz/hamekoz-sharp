@@ -22,17 +22,16 @@ using Mono.Unix;
 
 namespace Hamekoz.Core
 {
-	public static class BooleanExtension
-	{
-		public static string ToYesNo (this bool value)
-		{
-			return value ? Catalog.GetString ("Yes") : Catalog.GetString ("No");
-		}
+    public static class BooleanExtension
+    {
+        public static string ToYesNo(this bool value)
+        {
+            return value ? Catalog.GetString("Yes") : Catalog.GetString("No");
+        }
 
-		public static string ToTrueFalse (this bool value)
-		{
-			return value ? Catalog.GetString ("True") : Catalog.GetString ("False");
-		}
-	}
+        public static string ToTrueFalse(this bool value)
+        {
+            return value ? Catalog.GetString("True") : Catalog.GetString("False");
+        }
+    }
 }
-

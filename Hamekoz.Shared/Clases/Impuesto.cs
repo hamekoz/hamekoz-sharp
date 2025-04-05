@@ -23,36 +23,39 @@ using Hamekoz.Negocio;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Impuesto : IPersistible, IIdentifiable, IDescriptible
-	{
-		#region IDescriptible implementation
+    public partial class Impuesto : IPersistible, IIdentifiable, IDescriptible
+    {
+        #region IDescriptible implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Descripcion {
-			get;
-			set;
-		}
+        public string Descripcion
+        {
+            get;
+            set;
+        }
 
-		public CuentaContable CuentaContable {
-			get;
-			set;
-		}
+        public CuentaContable CuentaContable
+        {
+            get;
+            set;
+        }
 
-		public bool Inactivo {
-			get;
-			set;
-		}
+        public bool Inactivo
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public override string ToString ()
-		{
-			return Descripcion;
-		}
-	}
+        public override string ToString()
+        {
+            return Descripcion;
+        }
+    }
 }
-

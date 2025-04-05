@@ -22,16 +22,15 @@ using System;
 
 namespace Hamekoz
 {
-	//UNDONE revisar logica entre Enum y Class
-	public enum TiposDeComprobante
-	{
-		Factura,
-		NotaDeCredito,
-		NotaDeDebito,
-		Recibo,
-		OrdenDePago,
-		Interno,
+    //UNDONE revisar logica entre Enum y Class
+    public enum TiposDeComprobante
+    {
+        Factura,
+        NotaDeCredito,
+        NotaDeDebito,
+        Recibo,
+        OrdenDePago,
+        Interno,
 
-	}
+    }
 }
-

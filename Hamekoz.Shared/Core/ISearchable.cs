@@ -22,9 +22,8 @@ using System;
 
 namespace Hamekoz.Core
 {
-	public interface ISearchable
-	{
-		string ToSearchString ();
-	}
+    public interface ISearchable
+    {
+        string ToSearchString();
+    }
 }
-

@@ -20,145 +20,168 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Articulo : IPersistible, IIdentifiable, IDescriptible, ISearchable
-	{
-		public enum Tipos
-		{
-			Producto,
-			Servicio
-		}
+    public partial class Articulo : IPersistible, IIdentifiable, IDescriptible, ISearchable
+    {
+        public enum Tipos
+        {
+            Producto,
+            Servicio
+        }
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Codigo {
-			get;
-			set;
-		}
+        public string Codigo
+        {
+            get;
+            set;
+        }
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		public string NombreCorto {
-			get;
-			set;
-		}
+        public string NombreCorto
+        {
+            get;
+            set;
+        }
 
-		public Rubro Rubro {
-			get;
-			set;
-		}
+        public Rubro Rubro
+        {
+            get;
+            set;
+        }
 
-		public Estados Estado {
-			get;
-			set;
-		}
+        public Estados Estado
+        {
+            get;
+            set;
+        }
 
-		//TODO reemplazar enumerado Medidas por clase Medida
-		public Medidas Medida {
-			get;
-			set;
-		}
+        //TODO reemplazar enumerado Medidas por clase Medida
+        public Medidas Medida
+        {
+            get;
+            set;
+        }
 
-		public double StockMinimo {
-			get;
-			set;
-		}
+        public double StockMinimo
+        {
+            get;
+            set;
+        }
 
-		public double StockMaximo {
-			get;
-			set;
-		}
+        public double StockMaximo
+        {
+            get;
+            set;
+        }
 
-		public double CantidadPorBulto {
-			get;
-			set;
-		} = 1;
+        public double CantidadPorBulto
+        {
+            get;
+            set;
+        } = 1;
 
-		public decimal Precio {
-			get;
-			set;
-		}
+        public decimal Precio
+        {
+            get;
+            set;
+        }
 
-		//TODO reemplazar por Iva de tipo IVA
-		public decimal TasaDeIVA {
-			get;
-			set;
-		}
+        //TODO reemplazar por Iva de tipo IVA
+        public decimal TasaDeIVA
+        {
+            get;
+            set;
+        }
 
-		public decimal Neto {
-			get {
-				return Math.Round (Precio - IVA - ImpuestosInternos, 2);
-			}
-		}
+        public decimal Neto
+        {
+            get
+            {
+                return Math.Round(Precio - IVA - ImpuestosInternos, 2);
+            }
+        }
 
-		//TODO renombrar por ImporteIVA
-		public decimal IVA {
-			get {
-				return Math.Round (Precio - Precio / (1 + TasaDeIVA / 100), 2);
-			}
-		}
+        //TODO renombrar por ImporteIVA
+        public decimal IVA
+        {
+            get
+            {
+                return Math.Round(Precio - Precio / (1 + TasaDeIVA / 100), 2);
+            }
+        }
 
-		public decimal ImpuestosInternos {
-			get;
-			set;
-		}
+        public decimal ImpuestosInternos
+        {
+            get;
+            set;
+        }
 
-		public IList<string> EANs {
-			get;
-			set;
-		}
+        public IList<string> EANs
+        {
+            get;
+            set;
+        }
 
-		public IList<ProveedorDeArticulo> Proveedores {
-			get;
-			set;
-		}
+        public IList<ProveedorDeArticulo> Proveedores
+        {
+            get;
+            set;
+        }
 
-		//TODO organizar la propiedad
-		public Tipos Tipo {
-			get;
-			set;
-		}
+        //TODO organizar la propiedad
+        public Tipos Tipo
+        {
+            get;
+            set;
+        }
 
-		public Articulo ()
-		{
-			Estado = Estados.Gestion;
-			Medida = Medidas.Unidad;
-			TasaDeIVA = 21;
-			Proveedores = new List<ProveedorDeArticulo> ();
-			EANs = new List<string> ();
-		}
+        public Articulo()
+        {
+            Estado = Estados.Gestion;
+            Medida = Medidas.Unidad;
+            TasaDeIVA = 21;
+            Proveedores = new List<ProveedorDeArticulo>();
+            EANs = new List<string>();
+        }
 
-		#region IDescriptible
+        #region IDescriptible
 
-		string IDescriptible.Descripcion {
-			get {
-				return Nombre;
-			}
-		}
+        string IDescriptible.Descripcion
+        {
+            get
+            {
+                return Nombre;
+            }
+        }
 
-		#endregion
+        #endregion
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
+        public override string ToString()
+        {
+            return Nombre;
+        }
 
-		#region ISearchable implementation
+        #region ISearchable implementation
 
-		public virtual string ToSearchString ()
-		{
-			return string.Format ("[Articulo: Id={0}, Codigo={1}, Nombre={2}, NombreCorto={3}, Rubro={4}, Estado={5}, Medida={6}, StockMinimo={7}, Precio={8}, TasaDeIVA={9}, Neto={10}, IVA={11}, ImpuestosInternos={12}]", Id, Codigo, Nombre, NombreCorto, Rubro, Estado, Medida, StockMinimo, Precio, TasaDeIVA, Neto, IVA, ImpuestosInternos);
-		}
+        public virtual string ToSearchString()
+        {
+            return string.Format("[Articulo: Id={0}, Codigo={1}, Nombre={2}, NombreCorto={3}, Rubro={4}, Estado={5}, Medida={6}, StockMinimo={7}, Precio={8}, TasaDeIVA={9}, Neto={10}, IVA={11}, ImpuestosInternos={12}]", Id, Codigo, Nombre, NombreCorto, Rubro, Estado, Medida, StockMinimo, Precio, TasaDeIVA, Neto, IVA, ImpuestosInternos);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

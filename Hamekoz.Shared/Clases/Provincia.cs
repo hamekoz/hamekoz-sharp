@@ -20,58 +20,66 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Provincia : IPersistible, IIdentifiable, IDescriptible
-	{
-		public int Id {
-			get;
-			set;
-		}
+    public partial class Provincia : IPersistible, IIdentifiable, IDescriptible
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		public string Nombre {
-			get;
-			set;
-		}
+        public string Nombre
+        {
+            get;
+            set;
+        }
 
-		public Pais Pais {
-			get;
-			set;
-		}
+        public Pais Pais
+        {
+            get;
+            set;
+        }
 
-		public bool Inactiva {
-			get;
-			set;
-		}
+        public bool Inactiva
+        {
+            get;
+            set;
+        }
 
-		public IList<Municipio> Municipios {
-			get;
-			set;
-		}
+        public IList<Municipio> Municipios
+        {
+            get;
+            set;
+        }
 
-		//HACK el IsoManagement las localidad depende directamente de la provincia
-		public IList<Localidad> Localidades {
-			get;
-			set;
-		}
+        //HACK el IsoManagement las localidad depende directamente de la provincia
+        public IList<Localidad> Localidades
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return Nombre;
-		}
+        public override string ToString()
+        {
+            return Nombre;
+        }
 
-		public string ToFullString ()
-		{
-			return Pais != null ? string.Format ("{0} - {1}", Pais.Nombre, Nombre) : Nombre;
-		}
+        public string ToFullString()
+        {
+            return Pais != null ? string.Format("{0} - {1}", Pais.Nombre, Nombre) : Nombre;
+        }
 
-		string IDescriptible.Descripcion {
-			get {
-				return Nombre;
-			}
-		}
-	}
+        string IDescriptible.Descripcion
+        {
+            get
+            {
+                return Nombre;
+            }
+        }
+    }
 }
-

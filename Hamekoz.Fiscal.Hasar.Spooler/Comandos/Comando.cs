@@ -21,9 +21,8 @@
 
 namespace Hamekoz.Fiscal.Hasar.Spooler
 {
-	public abstract class Comando
-	{
-		public string separador = ((char)28).ToString ();
-	}
+    public abstract class Comando
+    {
+        public string separador = ((char)28).ToString();
+    }
 }
-

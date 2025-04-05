@@ -20,61 +20,71 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+
 using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class CuentaCorriente : IPersistible, IComprobanteVencimiento
-	{
-		public Type comprobanteType;
-		public int comprobanteId;
-		public int asientoId;
+    public partial class CuentaCorriente : IPersistible, IComprobanteVencimiento
+    {
+        public Type comprobanteType;
+        public int comprobanteId;
+        public int asientoId;
 
-		public DateTime Emision {
-			get;
-			set;
-		}
+        public DateTime Emision
+        {
+            get;
+            set;
+        }
 
-		public Comprobante Comprobante {
-			get;
-			set;
-		}
+        public Comprobante Comprobante
+        {
+            get;
+            set;
+        }
 
-		public string Numero {
-			get;
-			set;
-		}
+        public string Numero
+        {
+            get;
+            set;
+        }
 
-		public DateTime Vencimiento {
-			get;
-			set;
-		}
+        public DateTime Vencimiento
+        {
+            get;
+            set;
+        }
 
-		public decimal Deudor {
-			get;
-			set;
-		}
+        public decimal Deudor
+        {
+            get;
+            set;
+        }
 
-		public decimal Acreedor {
-			get;
-			set;
-		}
+        public decimal Acreedor
+        {
+            get;
+            set;
+        }
 
-		public decimal Restante {
-			get;
-			set;
-		}
+        public decimal Restante
+        {
+            get;
+            set;
+        }
 
-		public decimal Saldo {
-			get;
-			set;
-		}
+        public decimal Saldo
+        {
+            get;
+            set;
+        }
 
-		public string Estado {
-			get {
-				return Vencimiento < DateTime.Now.Date && Restante > 0 ? "V" : string.Empty;
-			}
-		}
-	}
+        public string Estado
+        {
+            get
+            {
+                return Vencimiento < DateTime.Now.Date && Restante > 0 ? "V" : string.Empty;
+            }
+        }
+    }
 }
-

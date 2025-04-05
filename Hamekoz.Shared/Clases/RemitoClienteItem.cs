@@ -19,83 +19,101 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+
 using Hamekoz.Fiscal;
 
 namespace Hamekoz.Negocio
 {
-	[Obsolete ("Reemplazar su uso por RemitoItem")]
-	public partial class RemitoClienteItem : RemitoItem, IItem, IRemitoItem
-	{
-		//UNDONE Los valores deben calcularse solo si no esta grabado el remito, en caso contrario son lectura directa
-		double porcentaje;
+    [Obsolete("Reemplazar su uso por RemitoItem")]
+    public partial class RemitoClienteItem : RemitoItem, IItem, IRemitoItem
+    {
+        //UNDONE Los valores deben calcularse solo si no esta grabado el remito, en caso contrario son lectura directa
+        double porcentaje;
 
-		[Obsolete ("Definir el precio con la variacion del porcentaje para que se realicen los demas calculos")]
-		public void SetPorcentaje (double porcentaje)
-		{
-			this.porcentaje = porcentaje;
-		}
+        [Obsolete("Definir el precio con la variacion del porcentaje para que se realicen los demas calculos")]
+        public void SetPorcentaje(double porcentaje)
+        {
+            this.porcentaje = porcentaje;
+        }
 
-		public IRemito Remito {
-			get;
-			set;
-		}
+        public IRemito Remito
+        {
+            get;
+            set;
+        }
 
-		public new decimal Total {
-			get {
-				if (Id == 0)
-					base.Total = Math.Round (Precio * Cantidad, 2);	
-				return base.Total;
-			}
-		}
+        public new decimal Total
+        {
+            get
+            {
+                if (Id == 0)
+                    base.Total = Math.Round(Precio * Cantidad, 2);
+                return base.Total;
+            }
+        }
 
-		public new decimal Neto {
-			get {
-				return Math.Round (Articulo.Neto * Cantidad * (1 + (decimal)porcentaje / 100), 2);
-			}
-		}
+        public new decimal Neto
+        {
+            get
+            {
+                return Math.Round(Articulo.Neto * Cantidad * (1 + (decimal)porcentaje / 100), 2);
+            }
+        }
 
-		public new decimal Impuestos {
-			get {
-				if (Id == 0)
-					base.Impuestos = Math.Round (Articulo.ImpuestosInternos * Cantidad * (1 + (decimal)porcentaje / 100), 2);
-				return base.Impuestos;
-			}
-		}
+        public new decimal Impuestos
+        {
+            get
+            {
+                if (Id == 0)
+                    base.Impuestos = Math.Round(Articulo.ImpuestosInternos * Cantidad * (1 + (decimal)porcentaje / 100), 2);
+                return base.Impuestos;
+            }
+        }
 
-		public new decimal ImporteIVA {
-			get {
-				if (Id == 0)
-					base.ImporteIVA = Math.Round (Articulo.IVA * Cantidad * (1 + (decimal)porcentaje / 100), 2);
-				return base.ImporteIVA;
-			}
-		}
+        public new decimal ImporteIVA
+        {
+            get
+            {
+                if (Id == 0)
+                    base.ImporteIVA = Math.Round(Articulo.IVA * Cantidad * (1 + (decimal)porcentaje / 100), 2);
+                return base.ImporteIVA;
+            }
+        }
 
-		public new decimal TasaIVA {
-			get {
-				return Articulo.TasaDeIVA;
-			}
-		}
+        public new decimal TasaIVA
+        {
+            get
+            {
+                return Articulo.TasaDeIVA;
+            }
+        }
 
-		#region IItem
+        #region IItem
 
-		string IItem.Codigo {
-			get {
-				return Articulo.Codigo;
-			}
-		}
+        string IItem.Codigo
+        {
+            get
+            {
+                return Articulo.Codigo;
+            }
+        }
 
-		string IItem.Descripcion {
-			get {
-				return Articulo.Nombre;
-			}
-		}
+        string IItem.Descripcion
+        {
+            get
+            {
+                return Articulo.Nombre;
+            }
+        }
 
-		string IItemControladorFiscal.DescripcionCorta {
-			get {
-				return Articulo.NombreCorto;
-			}
-		}
+        string IItemControladorFiscal.DescripcionCorta
+        {
+            get
+            {
+                return Articulo.NombreCorto;
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

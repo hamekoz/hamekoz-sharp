@@ -21,21 +21,21 @@
 
 namespace Hamekoz.Fiscal
 {
-	public enum TiposDeResposableAFIP
-	{
-		ResponsableInscripto = 1,
-		ResponsableNoInscripto = 2,
-		NoResponsable = 3,
-		SujetoExento = 4,
-		ConsumidorFinal = 5,
-		ResponsableMonotributo = 6,
-		SujetoNoCategorizado = 7,
-		ProveedorDelExterior = 8,
-		ClienteDelExterior = 9,
-		LiberadoLeyNro19640 = 10,
-		ResponsableInscriptoAgenteDePercepción = 11,
-		PequeñoContribuyenteEventual = 12,
-		MonotributistaSocial = 13,
-		PequeñoContribuyenteEventualSocial = 14,
-	}
+    public enum TiposDeResposableAFIP
+    {
+        ResponsableInscripto = 1,
+        ResponsableNoInscripto = 2,
+        NoResponsable = 3,
+        SujetoExento = 4,
+        ConsumidorFinal = 5,
+        ResponsableMonotributo = 6,
+        SujetoNoCategorizado = 7,
+        ProveedorDelExterior = 8,
+        ClienteDelExterior = 9,
+        LiberadoLeyNro19640 = 10,
+        ResponsableInscriptoAgenteDePercepción = 11,
+        PequeñoContribuyenteEventual = 12,
+        MonotributistaSocial = 13,
+        PequeñoContribuyenteEventualSocial = 14,
+    }
 }

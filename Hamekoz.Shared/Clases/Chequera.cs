@@ -22,45 +22,49 @@ using Hamekoz.Core;
 
 namespace Hamekoz.Negocio
 {
-	public partial class Chequera : IPersistible, IIdentifiable
-	{
-		#region IIdentifiable implementation
+    public partial class Chequera : IPersistible, IIdentifiable
+    {
+        #region IIdentifiable implementation
 
-		public int Id {
-			get;
-			set;
-		}
+        public int Id
+        {
+            get;
+            set;
+        }
 
-		#endregion
+        #endregion
 
-		public Banco Banco {
-			get;
-			set;
-		}
+        public Banco Banco
+        {
+            get;
+            set;
+        }
 
-		public int Desde {
-			get;
-			set;
-		}
+        public int Desde
+        {
+            get;
+            set;
+        }
 
-		public int Hasta {
-			get;
-			set;
-		}
+        public int Hasta
+        {
+            get;
+            set;
+        }
 
-		/// <summary>
-		/// Gets or sets the ultimo numero de cheque utilizado.
-		/// </summary>
-		/// <value>The ultimo numero de cheque utilizado.</value>
-		public int Ultimo {
-			get;
-			set;
-		}
+        /// <summary>
+        /// Gets or sets the ultimo numero de cheque utilizado.
+        /// </summary>
+        /// <value>The ultimo numero de cheque utilizado.</value>
+        public int Ultimo
+        {
+            get;
+            set;
+        }
 
-		public override string ToString ()
-		{
-			return string.Format ("Chequera {0} {1} del {2} al {3}", Id, Banco.Nombre, Desde, Hasta);
-		}
-	}
+        public override string ToString()
+        {
+            return string.Format("Chequera {0} {1} del {2} al {3}", Id, Banco.Nombre, Desde, Hasta);
+        }
+    }
 }
-
