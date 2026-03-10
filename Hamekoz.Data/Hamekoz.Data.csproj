@@ -1,26 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net48;net9.0</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Claudio Rodrigo Pereyra Diaz</Authors>
-    <Company>Hamekoz</Company>
-    <Description>Facilita el acceso a bases de datos de forma agnostica al motor de base de datos utilizado.</Description>
+    <TargetFrameworks>netstandard2.1;net48;net10.0</TargetFrameworks>
+    <!-- Override: this project has a different copyright year than the solution default -->
     <Copyright>Copyright 2015</Copyright>
-    <PackageProjectUrl>https://github.com/hamekoz/hamekoz-sharp</PackageProjectUrl>
-    <PackageIcon>Hamekoz.png</PackageIcon>
-    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <Description>Facilita el acceso a bases de datos de forma agnostica al motor de base de datos utilizado.</Description>
     <PackageReleaseNotes>First release</PackageReleaseNotes>
     <PackageTags>mono database hamekoz</PackageTags>
     <Version>1.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.4" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.0" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Hamekoz.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 </Project>
